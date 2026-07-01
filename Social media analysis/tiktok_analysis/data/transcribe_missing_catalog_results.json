@@ -1,0 +1,60 @@
+[
+  {
+    "video_id": "7650491657414085910",
+    "status": "transcribed",
+    "chars": 671
+  },
+  {
+    "video_id": "7650472969264844054",
+    "status": "transcribed",
+    "chars": 527
+  },
+  {
+    "video_id": "7650483052963040534",
+    "status": "skipped_carousel_or_no_speech"
+  },
+  {
+    "video_id": "7650479358867492118",
+    "status": "transcribed",
+    "chars": 702
+  },
+  {
+    "video_id": "7650466482173791510",
+    "status": "transcribed",
+    "chars": 833
+  },
+  {
+    "video_id": "7650467196187036950",
+    "status": "transcribed",
+    "chars": 932
+  },
+  {
+    "video_id": "7650465917700279574",
+    "status": "transcribed",
+    "chars": 1741
+  },
+  {
+    "video_id": "7650429101584469270",
+    "status": "transcribed",
+    "chars": 790
+  },
+  {
+    "video_id": "7650157296907062550",
+    "status": "transcribed",
+    "chars": 857
+  },
+  {
+    "video_id": "7649808436883967254",
+    "status": "transcribed",
+    "chars": 846
+  },
+  {
+    "video_id": "7647939769464278275",
+    "status": "transcribed",
+    "chars": 1365
+  },
+  {
+    "video_id": "7647574808162487574",
+    "status": "skipped_existing"
+  }
+]

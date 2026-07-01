@@ -1,0 +1,3362 @@
+{
+  "c25dcf85b51cb20c669240b566de347f": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "treatment_update"
+  },
+  "483c395abeb67481014f52d7704bd027": {
+    "stage": "post_treatment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "aftercare"
+  },
+  "062a10e44e49c236eef1ad0aa75d8efb": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "cbb302aea396175872c1a7fad7904ce0": {
+    "stage": "pre_appointment",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "general_info"
+  },
+  "a2b296120fa836867e70fa7cd1187a7d": {
+    "stage": "booking_admin",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "ab8dfee1021d8a2acb7407d499162171": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "aftercare"
+  },
+  "5db315fde9489abb933ffb7ee890157b": {
+    "stage": "pre_appointment",
+    "response_type": "wrong_info",
+    "channel": "email",
+    "what_sought": "general_info"
+  },
+  "54853a09d665e9dc745a08cc5528b76e": {
+    "stage": "pre_appointment",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "3d5178c1e34f427d5d56aa7d2bcd2fb7": {
+    "stage": "booking_admin",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "financial_info"
+  },
+  "8b2352b51425a87aa2d44db69afbd2b2": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "financial_info"
+  },
+  "51f21987a5b45c4800116139e47927c3": {
+    "stage": "during_treatment",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "treatment_update"
+  },
+  "6303245a1361a2a0cc88d838e19fa79c": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "unclear",
+    "what_sought": "aftercare"
+  },
+  "e21647f3937cbc3737a3206994e276e7": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "9274f9fb79d61ee7918ade75d1dec675": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "financial_info"
+  },
+  "efb4a01d092647d04726a5fa7ea1c2c5": {
+    "stage": "pre_appointment",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "general_info"
+  },
+  "2f57a656a30b09efe12bfdecfebf3747": {
+    "stage": "during_treatment",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "e09a030746174d46691e4218fbebd9b0": {
+    "stage": "pre_appointment",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "general_info"
+  },
+  "a79a56f92100371ad9c975ac0c7798dd": {
+    "stage": "during_treatment",
+    "response_type": "slow_response",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "053bef4a71396e9d516bdcdb99ec36d6": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "treatment_update"
+  },
+  "0b3d0cebf641aeb10fec364a3fe05148": {
+    "stage": "post_treatment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "aftercare"
+  },
+  "5474774614b2af5ec929c861daea361c": {
+    "stage": "during_treatment",
+    "response_type": "no_response",
+    "channel": "unclear",
+    "what_sought": "treatment_update"
+  },
+  "080fe1f8e9d4cf5291a38cd1cf36210f": {
+    "stage": "pre_appointment",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "general_info"
+  },
+  "47ceb1c06a5f05c517035efec4e6bb02": {
+    "stage": "complaint",
+    "response_type": "no_response",
+    "channel": "unclear",
+    "what_sought": "complaint_response"
+  },
+  "a46921ba5015a274db2233f5a0e82632": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "treatment_update"
+  },
+  "4860225efc016a0025acec7441d5d2a4": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "treatment_update"
+  },
+  "dad3cbdf762ba33d4b26e3d36f3b49b7": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "30c72e4dac343a463105c560afc29592": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "8ed5d18e3eb64b40ca0c165470a75b2b": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "32c078013251548f6abd2ac5f0ea6e48": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "unclear",
+    "what_sought": "aftercare"
+  },
+  "603a4459b5601a8c1704e215512c3702": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "cb9b5a52f01767e4f3eb98c80cf62a37": {
+    "stage": "booking_admin",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "financial_info"
+  },
+  "67fd862e9f15f6ac5573461781936d5e": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "financial_info"
+  },
+  "cef8a8cfa98196a23813cb6eb5fb1970": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "d9a29fbc7d585a00895f0de002644f46": {
+    "stage": "complaint",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "complaint_response"
+  },
+  "aeb9a6c64c500a9c9e6e5a79cfec707f": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "aftercare"
+  },
+  "db217382f158abfa94f5c5df0cb033a7": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "d55d6cb756c0175a287c72629c4cd92c": {
+    "stage": "pre_appointment",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "c6d45f751411a2e03623ab6116292436": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "email",
+    "what_sought": "test_results"
+  },
+  "a0d19953119d69b77fae2e79dc0c9669": {
+    "stage": "during_treatment",
+    "response_type": "slow_response",
+    "channel": "email",
+    "what_sought": "treatment_update"
+  },
+  "28b7301dcf80c2fb16bd3e85551c474b": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "18574272cf35be3afa331eb2db35f335": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "51db3b75a30760e9b9d679bf187f1f0e": {
+    "stage": "post_treatment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "other"
+  },
+  "e325c57fdde8185ceeab5772a8d0a4c0": {
+    "stage": "during_treatment",
+    "response_type": "slow_response",
+    "channel": "coordinator",
+    "what_sought": "treatment_update"
+  },
+  "8658f4a16819a746997b4574703f35fa": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "813c8a39ef5a0c4c0983a932215e37a0": {
+    "stage": "post_treatment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "other"
+  },
+  "74c1b73f355d76792b63d67dd48e9640": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "in_person",
+    "what_sought": "financial_info"
+  },
+  "d01e8baade784f923500ad9ff6a6deee": {
+    "stage": "pre_appointment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "financial_info"
+  },
+  "c7f25b7457e55d6566130443a6a523ac": {
+    "stage": "during_treatment",
+    "response_type": "slow_response",
+    "channel": "email",
+    "what_sought": "treatment_update"
+  },
+  "0e4d126872c3d0114f5685a59f55ac74": {
+    "stage": "pre_appointment",
+    "response_type": "slow_response",
+    "channel": "email",
+    "what_sought": "general_info"
+  },
+  "888f91bf4e840710a2b401cb0cb9d201": {
+    "stage": "pre_appointment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "test_results"
+  },
+  "679c2de90efa9bd039f3237a888754e2": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "treatment_update"
+  },
+  "4eb7ef13541ecb6e6624fb5133358b26": {
+    "stage": "booking_admin",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "21d8192415b6086c9a4fecc2ff76cf97": {
+    "stage": "during_treatment",
+    "response_type": "no_response",
+    "channel": "coordinator",
+    "what_sought": "treatment_update"
+  },
+  "46f11947c916eb23c8606d34ee363ee2": {
+    "stage": "booking_admin",
+    "response_type": "wrong_info",
+    "channel": "email",
+    "what_sought": "appointment"
+  },
+  "d4d9ed33c2d5d3897ead822bbd4de184": {
+    "stage": "during_treatment",
+    "response_type": "slow_response",
+    "channel": "unclear",
+    "what_sought": "treatment_update"
+  },
+  "6318e638f1ac96e75b020e5015b59d47": {
+    "stage": "pre_appointment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "financial_info"
+  },
+  "6f81c2cea7f5b391512a3b549a29e02f": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "phone",
+    "what_sought": "treatment_update"
+  },
+  "ca96085d8a5207392d82d8ca583b7715": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "e22764e79d23737b3396539ffa3a1bb2": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "coordinator",
+    "what_sought": "financial_info"
+  },
+  "a3eed041e3101110aad8ff5d90f68098": {
+    "stage": "complaint",
+    "response_type": "wrong_info",
+    "channel": "email",
+    "what_sought": "complaint_response"
+  },
+  "f0d16978d3aedee9d160c714e5fe4520": {
+    "stage": "pre_appointment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "general_info"
+  },
+  "93bf287b81659704bf32139f62bd52ec": {
+    "stage": "complaint",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "financial_info"
+  },
+  "0673eae801e72ae36a6369bbd454e7f2": {
+    "stage": "during_treatment",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "treatment_update"
+  },
+  "4739c44acc2f3d2b115d4cdf29523949": {
+    "stage": "complaint",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "complaint_response"
+  },
+  "42d04f00a47b664a6600ef915fe77300": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "treatment_update"
+  },
+  "291d5b23a928c6a4dc0c978cc982ecdf": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "treatment_update"
+  },
+  "c77116f11581d69215ee46c2306426a6": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "treatment_update"
+  },
+  "b0ee2f48e0c8d47b8aa4bbb30613166e": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "email",
+    "what_sought": "test_results"
+  },
+  "657e7c54d017016845f8be95f7b9e9aa": {
+    "stage": "during_treatment",
+    "response_type": "no_response",
+    "channel": "coordinator",
+    "what_sought": "treatment_update"
+  },
+  "b3ce7e2fbc5e0007fd42d636f4ec3e92": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "treatment_update"
+  },
+  "765c170f799d3a8e9a2733925f7446f5": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "52054f7f89c1268d05745aef21260fa6": {
+    "stage": "complaint",
+    "response_type": "other",
+    "channel": "email",
+    "what_sought": "complaint_response"
+  },
+  "4f0ef560c2decb4557652e0dfecb4a41": {
+    "stage": "complaint",
+    "response_type": "other",
+    "channel": "email",
+    "what_sought": "complaint_response"
+  },
+  "1e1659e90c81367cabf60687c5a5d6df": {
+    "stage": "complaint",
+    "response_type": "other",
+    "channel": "email",
+    "what_sought": "complaint_response"
+  },
+  "16b0743cec2f6b9f715eb79130c02077": {
+    "stage": "complaint",
+    "response_type": "other",
+    "channel": "email",
+    "what_sought": "complaint_response"
+  },
+  "4d59410836b27133c92fc5770f3bbbf1": {
+    "stage": "pre_appointment",
+    "response_type": "wrong_info",
+    "channel": "email",
+    "what_sought": "general_info"
+  },
+  "1d4ff75a21097e29bd18bab4d38f2aa4": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "unclear",
+    "what_sought": "financial_info"
+  },
+  "cbf65f2fae331fd0bbf295c5ff555ee8": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "e547b21d792675c0596707969b7e57f5": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "treatment_update"
+  },
+  "d93b55496a00542b299d87a2233b6905": {
+    "stage": "post_treatment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "3072fde63905d2ca0e0725b34fe4a176": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "appointment"
+  },
+  "82e23ceac668ac23333032a8d39ea02d": {
+    "stage": "complaint",
+    "response_type": "other",
+    "channel": "email",
+    "what_sought": "complaint_response"
+  },
+  "fed1b1ef40b7a24aef6e578e7bdefeeb": {
+    "stage": "pre_appointment",
+    "response_type": "slow_response",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "e8cfbdab61097322017783afa07bd200": {
+    "stage": "post_treatment",
+    "response_type": "other",
+    "channel": "email",
+    "what_sought": "complaint_response"
+  },
+  "d10b33dd49a4867c7f8cc72bf4f38058": {
+    "stage": "pre_appointment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "financial_info"
+  },
+  "201c88b01eb2fdc79a7588981df95c27": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "aftercare"
+  },
+  "4e1e10212cd8ef057a5403843b043fde": {
+    "stage": "booking_admin",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "financial_info"
+  },
+  "ecc364e258137189924e43f8b6168749": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "email",
+    "what_sought": "treatment_update"
+  },
+  "6ef3460f8515c38a64e9c5fc45d909ba": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "d4300c62851e07029abe8d4976c6b367": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "2004a6c4fbea0a841910252fdf3c43bb": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "dab728a0d80ca1b185e07ab511728981": {
+    "stage": "complaint",
+    "response_type": "other",
+    "channel": "email",
+    "what_sought": "complaint_response"
+  },
+  "253460096e48563ded3eeb715edafaa2": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "12b8ce081f4432b621203ef2c236423d": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "a1d87adcf57f7027ec81313696b569ee": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "012a0aa29e91b1b9cc654bed4ede0db1": {
+    "stage": "during_treatment",
+    "response_type": "slow_response",
+    "channel": "email",
+    "what_sought": "test_results"
+  },
+  "437111bf0b3eaebcc4f5eeab5e3f9e19": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "db633215f94ca2004a535558078a391f": {
+    "stage": "booking_admin",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "financial_info"
+  },
+  "5d6cbcba4215f53c385d3194fd854a17": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "dc0ccc6e7600f53ce5ed4ca35a751cd9": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "b1037ba8908c2b39c94c853fcfcf497d": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "efbac3d18880a43b9efe1135422ae72d": {
+    "stage": "pre_appointment",
+    "response_type": "other",
+    "channel": "email",
+    "what_sought": "general_info"
+  },
+  "5e40ed2cb249243183c724cb32104d4b": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "treatment_update"
+  },
+  "d82a622d58e58d346715e8a445d201c8": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "c67f433863a15e99fdfaa20293dfccf9": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "email",
+    "what_sought": "financial_info"
+  },
+  "d7b474891542b364cd2eb9e0201acfd2": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "4a2874a2dc7f812f5d75ef899937d773": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "64aa83f2518cd03286e8bfb0f81ef320": {
+    "stage": "booking_admin",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "dba677860e57f398375281f0a801794c": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "d40f61eadbc3526c5416141a1c63e582": {
+    "stage": "complaint",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "complaint_response"
+  },
+  "74e6a1e13224700f3139a3392a62f662": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "e3c87ee7ebac8f1f46e74be856bc41ab": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "phone",
+    "what_sought": "treatment_update"
+  },
+  "16a2a941e039f7a81f9ca28a229aed03": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "e8103012e23ecf584f9f49158623beb0": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "email",
+    "what_sought": "test_results"
+  },
+  "97572df70e3d4a2c97f14ce6d9dca0e4": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "598ede85667e1927f60df79a3386e884": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "treatment_update"
+  },
+  "7c495968c767a7bf674eb9a423cf68ee": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "0bd6ffd77ef39b46ee041d28fa4501c9": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "email",
+    "what_sought": "treatment_update"
+  },
+  "fe652f33679abac9b616cfd07f62bd1e": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "9e026cbe7dec16a0c9b9762e74acc8b8": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "ef98efff3387f864ff275cacae48cddd": {
+    "stage": "pre_appointment",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "2ea1e3e97c09838c103fbf5a9d426e4e": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "cb37f8ab16157c9185909fb6e524dd0b": {
+    "stage": "pre_appointment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "financial_info"
+  },
+  "33b7ee24a1fa8ffefacd4beeccfc205f": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "9551284ea9149190dd084ae4001fb601": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "financial_info"
+  },
+  "396846dfef311caf7f01ce4dd8167c54": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "treatment_update"
+  },
+  "21a4a1523c6c8c6b9556b49228e08ac4": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "treatment_update"
+  },
+  "b9c98c591f72854ce5ed52ef2ba8b8ad": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "treatment_update"
+  },
+  "b159a1fb8b9cde5a10b43e3602b0f03d": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "treatment_update"
+  },
+  "e90d2725ab7f7d31e3d7fd4da3e2b68a": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "treatment_update"
+  },
+  "110ae98ef2a3781eb0f3aee52abefbc3": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "treatment_update"
+  },
+  "ddc3ba4be06c8b4dafb3d353c849e075": {
+    "stage": "pre_appointment",
+    "response_type": "wrong_info",
+    "channel": "email",
+    "what_sought": "general_info"
+  },
+  "6c11f3925877441f650d2100ed9468f1": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "other"
+  },
+  "47dc24c178cf56decde9abacbb6461c4": {
+    "stage": "booking_admin",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "appointment"
+  },
+  "b0e9520cf5edd27d9f01781e4e33a6e7": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "other"
+  },
+  "ecb7de132c59914d3cd176ed6517abe9": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "other"
+  },
+  "65d55b19d6eebbc5a9a266034f463435": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "other"
+  },
+  "9ef59ba5f05af8d5bdc54810eff1337c": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "email",
+    "what_sought": "financial_info"
+  },
+  "1706dd4ed66e6b0f4bdbb8b787819c7b": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "financial_info"
+  },
+  "82ba0f84fab816a1b966feb39d7cc726": {
+    "stage": "post_treatment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "aftercare"
+  },
+  "e3605fccbb6606cd183dd61c102ce03c": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "financial_info"
+  },
+  "9cf60297c13c8c750a43544fab78955b": {
+    "stage": "booking_admin",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "appointment"
+  },
+  "272add8d286f005ca80325ca97ccaaf9": {
+    "stage": "pre_appointment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "general_info"
+  },
+  "2a3f50b3903cbd4a0a56c84d2e64db26": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "other"
+  },
+  "2ddcfb98181d9cd6d564f025e9413307": {
+    "stage": "pre_appointment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "financial_info"
+  },
+  "be76c1d1615156157c4917e720f95048": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "other"
+  },
+  "3bc995542e8d1285d3b6a83db5ad3581": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "email",
+    "what_sought": "test_results"
+  },
+  "af771135eeb3d9b3f4977d90b7364533": {
+    "stage": "post_treatment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "aftercare"
+  },
+  "37d6b9e48d921544c41d324a79007508": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "email",
+    "what_sought": "financial_info"
+  },
+  "1751c974bd74a96984ef99962da1c845": {
+    "stage": "pre_appointment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "general_info"
+  },
+  "e6672ab0e07c3a9e3dc322aec2ee5c6b": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "a4059a353b1ca333da31018f08265063": {
+    "stage": "booking_admin",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "appointment"
+  },
+  "abc27da68e8f0fc42493415d49906caa": {
+    "stage": "complaint",
+    "response_type": "other",
+    "channel": "phone",
+    "what_sought": "complaint_response"
+  },
+  "0987fb521b3541eef8f95ec4e5e176bc": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "email",
+    "what_sought": "treatment_update"
+  },
+  "7b05793cd4fe5022a3d581aec92dd3a6": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "financial_info"
+  },
+  "b7fcb53e9d826acda9699e3659e3741e": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "unclear",
+    "what_sought": "aftercare"
+  },
+  "388db29ec5f4d5a10774fdc4534454f1": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "daaa7aff193a8a59a3a6a6e6bde1d7e8": {
+    "stage": "booking_admin",
+    "response_type": "slow_response",
+    "channel": "coordinator",
+    "what_sought": "financial_info"
+  },
+  "dfaecd2057b81c3bfdaab6353affdbdb": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "83732a2f38a7085f2209b1bd44717df3": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "phone",
+    "what_sought": "aftercare"
+  },
+  "4493c0afbde11ca6f6f54dd0de55c689": {
+    "stage": "booking_admin",
+    "response_type": "slow_response",
+    "channel": "unclear",
+    "what_sought": "financial_info"
+  },
+  "da25a52cdef99320f3ce64991524ef49": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "aftercare"
+  },
+  "1aa4d11648d31e185f2c32adbd47eb01": {
+    "stage": "pre_appointment",
+    "response_type": "no_response",
+    "channel": "unclear",
+    "what_sought": "general_info"
+  },
+  "9b5d7ab1647d779762eccdfcda9e27e3": {
+    "stage": "pre_appointment",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "general_info"
+  },
+  "a1caa4ae34ebd57c5b07b63e6c54d285": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "003dcc62c874a52279cb3afa60e0f4e3": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "treatment_update"
+  },
+  "489596523d97bc6b94582a9f2477e3a2": {
+    "stage": "pre_appointment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "general_info"
+  },
+  "7e5e5d9ea3ceabefe67d057747c8d795": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "email",
+    "what_sought": "financial_info"
+  },
+  "0b900caa2e101ab59dd282660bc7803c": {
+    "stage": "pre_appointment",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "general_info"
+  },
+  "24608150a1774970f3b3eef6dd0fc410": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "treatment_update"
+  },
+  "5ac60f748f86f4a48da46c1c8eabf47f": {
+    "stage": "pre_appointment",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "general_info"
+  },
+  "1af8cf12365e82163a64fec6caf6eb89": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "0b1409e4972cd1589f2f8ab9223f3da2": {
+    "stage": "pre_appointment",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "general_info"
+  },
+  "26d76383715693dd6c303382d2509371": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "600c6b1690954beacf092ceb52d350e9": {
+    "stage": "pre_appointment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "financial_info"
+  },
+  "52297d16cea98691696df20678f66494": {
+    "stage": "complaint",
+    "response_type": "other",
+    "channel": "email",
+    "what_sought": "complaint_response"
+  },
+  "5d92795cf1d31569619a22bbd8ffd7ce": {
+    "stage": "complaint",
+    "response_type": "other",
+    "channel": "email",
+    "what_sought": "complaint_response"
+  },
+  "64d9c6f07e743c31ae21dca7f416ddd1": {
+    "stage": "complaint",
+    "response_type": "other",
+    "channel": "email",
+    "what_sought": "complaint_response"
+  },
+  "21e7896833ce109e6907109ea123a980": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "9668e216350bbcbf642688f0b9f389c3": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "7bf3f5b328d88c79bdccb5df65d3d072": {
+    "stage": "complaint",
+    "response_type": "other",
+    "channel": "email",
+    "what_sought": "complaint_response"
+  },
+  "084142af83b447be07d3bc22d9f1fba4": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "b638de529e2b67fea993751788acf047": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "a1bbd004595ad194b45d5dc48be44500": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "treatment_update"
+  },
+  "b8daf893b2ffe3aa0a8160226a2decaa": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "1955c7d8fd65eedd5f56d3a939798614": {
+    "stage": "booking_admin",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "appointment"
+  },
+  "d305b6fdf5f36d7d65847117b922c791": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "treatment_update"
+  },
+  "b1a8aa013cabfeb8a679c4e0c88eb8b3": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "treatment_update"
+  },
+  "8256bae34648a246a0733ed6992c92ea": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "a9dadaf105059a2d9045d087a7b5345c": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "email",
+    "what_sought": "financial_info"
+  },
+  "6ae0692909a83afb564538b3d1aa3bfd": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "3ec9bbb87d8c89026cfb620e3da55d3f": {
+    "stage": "post_treatment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "aftercare"
+  },
+  "4b27900de5f46d0af5d197311bf19633": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "c8b92e41a5d9cc10f582905638c67c00": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "2a63fd9c45a9aa848af1af485d536fd9": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "de8080d327f50059e362d364dacd7cce": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "financial_info"
+  },
+  "6a26be91f112bfcbbe2c23f98054ad0d": {
+    "stage": "booking_admin",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "appointment"
+  },
+  "69df49d28bfbf21631ae3305c7609f02": {
+    "stage": "post_treatment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "aftercare"
+  },
+  "33c3fe5e0648cec5482c6b5ee2855c92": {
+    "stage": "complaint",
+    "response_type": "other",
+    "channel": "phone",
+    "what_sought": "complaint_response"
+  },
+  "ef012ee0ea405927d32e4534998d310f": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "53dfd10fcc7d7fe9ec781451521b3ba5": {
+    "stage": "pre_appointment",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "general_info"
+  },
+  "35941f0d896cf3b701edf06839623dfb": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "test_results"
+  },
+  "c2e58d16060d7a597f861a5074cf8264": {
+    "stage": "during_treatment",
+    "response_type": "slow_response",
+    "channel": "coordinator",
+    "what_sought": "treatment_update"
+  },
+  "3a5a3e07a88a6d7092b3e9a4455d1a52": {
+    "stage": "pre_appointment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "financial_info"
+  },
+  "54630d67cf126d957febc0d225a7e90b": {
+    "stage": "booking_admin",
+    "response_type": "slow_response",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "36debe564e336b8ce630e6a6f8e0f230": {
+    "stage": "booking_admin",
+    "response_type": "wrong_info",
+    "channel": "email",
+    "what_sought": "financial_info"
+  },
+  "bb65c4af431cc6f6ed1043e30d70040e": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "treatment_update"
+  },
+  "34ef6302db3b5d8e45ccddc0998afef6": {
+    "stage": "during_treatment",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "treatment_update"
+  },
+  "bec664e3c2531f47ec9727d225d8d25e": {
+    "stage": "booking_admin",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "test_results"
+  },
+  "59a5837e093a8a1229ce29073582c41e": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "7428f721e34149d06cda5714ca937722": {
+    "stage": "pre_appointment",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "db0088d4ecc2cde41618ed52cbb89cea": {
+    "stage": "pre_appointment",
+    "response_type": "slow_response",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "8c3222c06ca3237451c329379798f19e": {
+    "stage": "during_treatment",
+    "response_type": "no_response",
+    "channel": "unclear",
+    "what_sought": "treatment_update"
+  },
+  "356e21c8fce9cee7ce55a506a21d484f": {
+    "stage": "pre_appointment",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "0356f7b0bf0c1d46351b44621769bdbe": {
+    "stage": "booking_admin",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "financial_info"
+  },
+  "45627738abbb105c1fcdadc7e0e86dab": {
+    "stage": "other",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "other"
+  },
+  "cbe59cfed1402831f9e7f79dfbfa94f5": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "aftercare"
+  },
+  "7a6df0a29e277a323c88e1ecb4d7c768": {
+    "stage": "complaint",
+    "response_type": "other",
+    "channel": "email",
+    "what_sought": "complaint_response"
+  },
+  "9127eaf3b3db9e41b118d4b501bfb37b": {
+    "stage": "complaint",
+    "response_type": "other",
+    "channel": "email",
+    "what_sought": "complaint_response"
+  },
+  "536ed4f49ecc7afe62765cd0bd9b0478": {
+    "stage": "pre_appointment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "general_info"
+  },
+  "8e272dfb1b9552fd016a2d586f7563e4": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "1d102000e0b2424ba12984e842c5dcdf": {
+    "stage": "booking_admin",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "financial_info"
+  },
+  "27aa57ebbfc856d42eaad9296a7acd75": {
+    "stage": "booking_admin",
+    "response_type": "wrong_info",
+    "channel": "email",
+    "what_sought": "financial_info"
+  },
+  "fb94e8a126bb86fd2ca6ce94b8b65dfa": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "unclear",
+    "what_sought": "aftercare"
+  },
+  "2b143fa245b8b4eb53f118b4a137c31b": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "test_results"
+  },
+  "7a13710fbe5c795025c5098ca58857f4": {
+    "stage": "complaint",
+    "response_type": "wrong_info",
+    "channel": "email",
+    "what_sought": "complaint_response"
+  },
+  "dfd4a8d05f382c9e866e080ab7eb0f7a": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "unclear",
+    "what_sought": "aftercare"
+  },
+  "4a2a35d12c10a5658b311e13c8079753": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "aftercare"
+  },
+  "0984bfe138b7fe51a72418b5badb67d7": {
+    "stage": "pre_appointment",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "general_info"
+  },
+  "f0d530211b3179bb8ce56680ace52d9c": {
+    "stage": "complaint",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "complaint_response"
+  },
+  "6853b37fd464523b063778dd1b721573": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "1636b71c83e2dca4cf5e83b2fdbcb338": {
+    "stage": "pre_appointment",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "financial_info"
+  },
+  "cf7b69f8201677dcf77a5a68a8f96f04": {
+    "stage": "complaint",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "complaint_response"
+  },
+  "99136661396ba69ba05a35a2a5ac94f3": {
+    "stage": "complaint",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "complaint_response"
+  },
+  "562a278d61c223c78474a2efdc6b6e93": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "0d2ebe655b0127f53cd5a76bf5ddbb96": {
+    "stage": "booking_admin",
+    "response_type": "wrong_info",
+    "channel": "email",
+    "what_sought": "appointment"
+  },
+  "174166f5459900792018e31d04cecbd6": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "email",
+    "what_sought": "treatment_update"
+  },
+  "f8c98d0bbdd4315e71908b76333c805f": {
+    "stage": "complaint",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "complaint_response"
+  },
+  "4a72bd12c0ff1ec62a0c30fce0b967d9": {
+    "stage": "pre_appointment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "general_info"
+  },
+  "d7d186fb3bf4424d2f5bc9fbb62eb779": {
+    "stage": "pre_appointment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "general_info"
+  },
+  "84f9f3cb966f8ef3f67021884c9a59cd": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "test_results"
+  },
+  "d9684730957ac61ecb30aef103ff5504": {
+    "stage": "during_treatment",
+    "response_type": "slow_response",
+    "channel": "phone",
+    "what_sought": "treatment_update"
+  },
+  "1819293ed16d2609e8ab5d62478dfcb4": {
+    "stage": "post_treatment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "aftercare"
+  },
+  "5a8eacd9907c697497319fc3b9c258cf": {
+    "stage": "booking_admin",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "appointment"
+  },
+  "e596ef8580f02b905623a34a805406c7": {
+    "stage": "complaint",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "complaint_response"
+  },
+  "959817748c78408d1443fa724c8be1c8": {
+    "stage": "pre_appointment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "general_info"
+  },
+  "d35b308629a7431eefdd5ddb2b4f7468": {
+    "stage": "pre_appointment",
+    "response_type": "other",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "89a648dc8834026892188cc8eec8e4cd": {
+    "stage": "complaint",
+    "response_type": "no_response",
+    "channel": "in_person",
+    "what_sought": "complaint_response"
+  },
+  "e9cef37c529ab7229756888d0440db2c": {
+    "stage": "pre_appointment",
+    "response_type": "other",
+    "channel": "phone",
+    "what_sought": "general_info"
+  },
+  "a05920f0056a4d91e856eca69fef7b7f": {
+    "stage": "during_treatment",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "treatment_update"
+  },
+  "da14cffc3afd72057330752308ad5eb5": {
+    "stage": "pre_appointment",
+    "response_type": "slow_response",
+    "channel": "phone",
+    "what_sought": "general_info"
+  },
+  "355304deba8898323920d7699694373b": {
+    "stage": "pre_appointment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "general_info"
+  },
+  "e9ef82a9039ad5b3b25e2f28b9330c8a": {
+    "stage": "pre_appointment",
+    "response_type": "other",
+    "channel": "in_person",
+    "what_sought": "general_info"
+  },
+  "2c5035a829ef4265910945596a0a7133": {
+    "stage": "pre_appointment",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "general_info"
+  },
+  "ccfeb980f99d8bbd59c774e111144f71": {
+    "stage": "complaint",
+    "response_type": "other",
+    "channel": "email",
+    "what_sought": "complaint_response"
+  },
+  "7972d4b035e9123cdbf0759d206c6355": {
+    "stage": "booking_admin",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "appointment"
+  },
+  "ed650a7960a54cca354030a982c5c13a": {
+    "stage": "booking_admin",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "appointment"
+  },
+  "ca8e6e2ff38b32ffd0e17f6d3d730ea2": {
+    "stage": "during_treatment",
+    "response_type": "slow_response",
+    "channel": "phone",
+    "what_sought": "treatment_update"
+  },
+  "6fb09bff2509153dd29815388cebb0e6": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "d43714b4545280327d2212a8efd514ca": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "email",
+    "what_sought": "financial_info"
+  },
+  "871da29c4bb1ba3fced8452485dedb91": {
+    "stage": "booking_admin",
+    "response_type": "slow_response",
+    "channel": "email",
+    "what_sought": "appointment"
+  },
+  "a7408b807bbf283eaceee95eaa801a8c": {
+    "stage": "pre_appointment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "financial_info"
+  },
+  "f8b91e4a13c45031c8ded96f52be249b": {
+    "stage": "pre_appointment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "general_info"
+  },
+  "9f7a80f92664f3740838450c234e6dc4": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "aftercare"
+  },
+  "0c9677163af6b21efd2d86f51842b2b0": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "treatment_update"
+  },
+  "0f0f9fa73edb8342b12d8cc2c2b0fafd": {
+    "stage": "pre_appointment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "general_info"
+  },
+  "6ba3c49ce7dfa43c94f67fa47caea7b6": {
+    "stage": "booking_admin",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "appointment"
+  },
+  "e558a703cdf06438b70930bdef080354": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "b18c8750558bb5fb2d56c19b6b0dc77b": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "26019e4bfff46a0674c482596ee8e3c4": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "13fcb0fbf835f0214d29f9c765f0f55a": {
+    "stage": "pre_appointment",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "general_info"
+  },
+  "9e3b70c582da292e738b1649b4bedf58": {
+    "stage": "post_treatment",
+    "response_type": "other",
+    "channel": "in_person",
+    "what_sought": "complaint_response"
+  },
+  "8000be5777c9c61f9a011d3950f941e9": {
+    "stage": "post_treatment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "complaint_response"
+  },
+  "3f0dc02b758cebdc0a29e4e264daca74": {
+    "stage": "pre_appointment",
+    "response_type": "other",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "454499cbb15505f4f8fa2a8880821b0c": {
+    "stage": "booking_admin",
+    "response_type": "slow_response",
+    "channel": "email",
+    "what_sought": "appointment"
+  },
+  "f00ba7dd2d56eb6381d852bfad0833d3": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "150bd9a4cca9d985eb79ca91e8facaac": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "treatment_update"
+  },
+  "bc68a39210ff2705b11752079c299d1e": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "6ab4a0a5e2820d2eb2aa55f808894cc8": {
+    "stage": "complaint",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "complaint_response"
+  },
+  "c0a0bf418f0e9bc5d6df2c120fe05d2b": {
+    "stage": "post_treatment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "aftercare"
+  },
+  "03ea159b4e94ceffee618cf11e039ca7": {
+    "stage": "pre_appointment",
+    "response_type": "wrong_info",
+    "channel": "email",
+    "what_sought": "general_info"
+  },
+  "886b2850722cbfbc12b6e354c78bc180": {
+    "stage": "booking_admin",
+    "response_type": "slow_response",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "271eab9e8617fff09a77884e170c5c85": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "financial_info"
+  },
+  "3768ad5978dad53600ac4e88b13ad9f6": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "unclear",
+    "what_sought": "aftercare"
+  },
+  "593ee1b1cc6682150036228f0cb92605": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "51acc0a43279da170b74fa6c45cdf851": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "unclear",
+    "what_sought": "aftercare"
+  },
+  "aa9234c17b46d163fce4e54432a311a5": {
+    "stage": "pre_appointment",
+    "response_type": "wrong_info",
+    "channel": "email",
+    "what_sought": "appointment"
+  },
+  "edd86988aba827165de473f299dd076e": {
+    "stage": "complaint",
+    "response_type": "other",
+    "channel": "email",
+    "what_sought": "complaint_response"
+  },
+  "370b3edafb15f5ded131b53a62bfcb7b": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "email",
+    "what_sought": "test_results"
+  },
+  "69f78ba4af9a656abd3749da6f133203": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "bfc4933083b4eb9b0abdf317a408bfa1": {
+    "stage": "booking_admin",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "9c5e23e6d65a875c90b712ef543f42f9": {
+    "stage": "pre_appointment",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "14e541b0ae3fc21310c9314cbc878357": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "email",
+    "what_sought": "treatment_update"
+  },
+  "8c378a76554a460b7b2f127a490bcc80": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "b9990cd9e5f410557b80783d8ac883e0": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "treatment_update"
+  },
+  "a56d34a0c6b457322715ae3bcad2b4fe": {
+    "stage": "booking_admin",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "6fd71893bbcb808e898113665dc17e6f": {
+    "stage": "pre_appointment",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "appointment"
+  },
+  "a16140dfe45a3d9c45e6d940ce281684": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "treatment_update"
+  },
+  "83ce203f87b8d48267dc416ac25da54c": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "test_results"
+  },
+  "217af70b126047302193cd3a7a279a2b": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "aedea00059c5ed73b91e7262909f1102": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "treatment_update"
+  },
+  "b601933c87541b3fd046cc9f8771f30e": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "treatment_update"
+  },
+  "8d55807f8c2317a3630f49ae55a258fd": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "email",
+    "what_sought": "treatment_update"
+  },
+  "de61b33648d6b6f4f868856246d2b27c": {
+    "stage": "pre_appointment",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "financial_info"
+  },
+  "9d7c00ed3d6c12234d16b4efaf4d6c46": {
+    "stage": "pre_appointment",
+    "response_type": "slow_response",
+    "channel": "email",
+    "what_sought": "appointment"
+  },
+  "7261134ed49cf9ca39cf04fb3d00f105": {
+    "stage": "pre_appointment",
+    "response_type": "slow_response",
+    "channel": "phone",
+    "what_sought": "general_info"
+  },
+  "57e473c9af2060037c1d93175ea659f2": {
+    "stage": "complaint",
+    "response_type": "no_response",
+    "channel": "unclear",
+    "what_sought": "complaint_response"
+  },
+  "4243939d0c2fbd2400fd624f93964838": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "email",
+    "what_sought": "test_results"
+  },
+  "3a24b7dcc6efaca2789913d907dd097a": {
+    "stage": "during_treatment",
+    "response_type": "slow_response",
+    "channel": "unclear",
+    "what_sought": "treatment_update"
+  },
+  "3809595868f716bc7f16e2570f7a5a7f": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "unclear",
+    "what_sought": "financial_info"
+  },
+  "bc015779c23d8e28b4341867d7612389": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "financial_info"
+  },
+  "2590d888bc700125e72d0c176d6b0000": {
+    "stage": "pre_appointment",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "general_info"
+  },
+  "dd7aac8bb3bf61ff352f668a85c086b2": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "financial_info"
+  },
+  "1c64029b39c97d9c4efd4cfe82be5ac2": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "d30a53966f66a2ffea6e2f64ca518181": {
+    "stage": "complaint",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "complaint_response"
+  },
+  "e16ddf70c73074671ed9d2eb46f356bb": {
+    "stage": "booking_admin",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "7ba1aa374a3ad014699442c0ab4dbc40": {
+    "stage": "post_treatment",
+    "response_type": "other",
+    "channel": "email",
+    "what_sought": "treatment_update"
+  },
+  "3223b973c2ebe3a22bc3f7dedc46f6ce": {
+    "stage": "booking_admin",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "6d9c1623b2e224730982cf2a83611435": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "treatment_update"
+  },
+  "ec80a9dac2acabc1e0ae2fc67010d7c0": {
+    "stage": "booking_admin",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "e2655154a1b6d0995a863763775be329": {
+    "stage": "post_treatment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "financial_info"
+  },
+  "23aac25e2e7518496fa1a12c7e03f64e": {
+    "stage": "post_treatment",
+    "response_type": "other",
+    "channel": "phone",
+    "what_sought": "financial_info"
+  },
+  "bbd441b0115e3be3f17b45e375a68955": {
+    "stage": "booking_admin",
+    "response_type": "slow_response",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "858467eae70ae0ef1a04f81d9ae0e966": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "aftercare"
+  },
+  "db7e9f35df8625de80acc3a6b4d5bfa0": {
+    "stage": "pre_appointment",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "dafc552a9fa634f6d9dd2a8e2c3d9130": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "email",
+    "what_sought": "test_results"
+  },
+  "c7578ee55412c4df50ceab509b9e974b": {
+    "stage": "booking_admin",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "47712ae58d8fe69e2976c63fae900cd2": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "financial_info"
+  },
+  "cea5c3aa55db1596812deb544ea1326f": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "c3ea5364a98a44faeea7b0e6c86482d4": {
+    "stage": "booking_admin",
+    "response_type": "slow_response",
+    "channel": "unclear",
+    "what_sought": "appointment"
+  },
+  "12315110aef02eadfc158dd3806e4bf9": {
+    "stage": "pre_appointment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "general_info"
+  },
+  "f5e415b06a5ed946b72a724bf53d38da": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "3a40d3f1ec067961fbf1b9e3469d3d27": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "c77310a65c2570ef2c6a7401a9e02e36": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "d9938ea6dbba36f916431b326c38bc0a": {
+    "stage": "complaint",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "complaint_response"
+  },
+  "f22f315b3d339bfbc8842f008aedf8ee": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "treatment_update"
+  },
+  "b9cc3bc07fc00605d3f006a39536c854": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "general_info"
+  },
+  "6b8a8e10002874ff2f16b56001dca944": {
+    "stage": "complaint",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "complaint_response"
+  },
+  "f68b9b763e0c6d9f1045868fa05b8cd0": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "financial_info"
+  },
+  "21c9b9b02408c0267608197b9f14ce08": {
+    "stage": "pre_appointment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "appointment"
+  },
+  "9ab8318d46eac4f12226ab3cd0c9783c": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "in_person",
+    "what_sought": "financial_info"
+  },
+  "a6f28d02a112450d4c5994507124b965": {
+    "stage": "booking_admin",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "appointment"
+  },
+  "18b3ac4575f5f7f1ff1314b0d151361b": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "email",
+    "what_sought": "financial_info"
+  },
+  "95fb983d4167f8bfa9865b6ca7328218": {
+    "stage": "complaint",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "complaint_response"
+  },
+  "7d382759188ca2a82ebaa362a5dcae26": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "treatment_update"
+  },
+  "8303399e1db9d2e53e556c9f0af0034d": {
+    "stage": "post_treatment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "aftercare"
+  },
+  "61c152b66fa563a7182d397cd263b9be": {
+    "stage": "booking_admin",
+    "response_type": "other",
+    "channel": "in_person",
+    "what_sought": "appointment"
+  },
+  "703b835a988a298eb5fbaf63c0b2badc": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "10b5d72bcac0229258126ca0c4644134": {
+    "stage": "post_treatment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "aftercare"
+  },
+  "87a19b39dacf423700248587154affd3": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "email",
+    "what_sought": "other"
+  },
+  "1ca4f50797aacbe031a684d8c76e0469": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "9c252fb2974d0c37735bd9775d8196ea": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "email",
+    "what_sought": "treatment_update"
+  },
+  "39b45bf6b4019dd0f74d72553c2682a8": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "financial_info"
+  },
+  "98ef467645c7ff2ccb39bae43bb54a7c": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "financial_info"
+  },
+  "0c01848f1984eeaa618ef5a7ab5ef91d": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "email",
+    "what_sought": "financial_info"
+  },
+  "104a2c9d645dd685b7fc75926a63db03": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "email",
+    "what_sought": "test_results"
+  },
+  "a6cd2acf40668fe51c20761e8b1466e3": {
+    "stage": "booking_admin",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "2960dca3e6bd91ee7567fe700080af73": {
+    "stage": "booking_admin",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "financial_info"
+  },
+  "3d671d399a570362ba1bc5b9fa00c41b": {
+    "stage": "complaint",
+    "response_type": "no_response",
+    "channel": "unclear",
+    "what_sought": "complaint_response"
+  },
+  "061daa5fd1a778d2bf4e188d8cdfee06": {
+    "stage": "pre_appointment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "general_info"
+  },
+  "04257728d89abdb403ee9ebb6355b8ca": {
+    "stage": "booking_admin",
+    "response_type": "no_response",
+    "channel": "unclear",
+    "what_sought": "appointment"
+  },
+  "4db2e74996fd1f46f08de3a9ad5a85df": {
+    "stage": "booking_admin",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "financial_info"
+  },
+  "02073a89c36af40c4392404d7b7437f9": {
+    "stage": "booking_admin",
+    "response_type": "wrong_info",
+    "channel": "email",
+    "what_sought": "appointment"
+  },
+  "de147b04d351034e85f0ea176ad0a5d6": {
+    "stage": "booking_admin",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "66e0f6c9e5f4cb64cc4b87ff08230cc6": {
+    "stage": "booking_admin",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "c8ffb825e3cfc82097b0fb06f86d5280": {
+    "stage": "pre_appointment",
+    "response_type": "other",
+    "channel": "phone",
+    "what_sought": "general_info"
+  },
+  "84643af628e05054ac46069b02441529": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "c72efa2497a5ea64e058c8f441f4eac5": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "07064231dee4cf710f77a34eff8536ea": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "dceee5c6c5b59f33e349ca627f051698": {
+    "stage": "booking_admin",
+    "response_type": "other",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "11ae95c9f83d7384204ba098f62ee5f7": {
+    "stage": "complaint",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "complaint_response"
+  },
+  "40a715afbf14c58cbb9cc4623edebaaf": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "a03c66ab145887b333e431ff5eb5be07": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "ba9fc7184aa19385e3c53da49a3b3fff": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "a2ef5374b15618c5ce6808651fc7fd55": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "test_results"
+  },
+  "4105d487b566e17a2fd5ca7c9e6f96a0": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "in_person",
+    "what_sought": "other"
+  },
+  "12ad7a350d23b5f27ab6ecfc82525556": {
+    "stage": "complaint",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "financial_info"
+  },
+  "104351b814069fcd6afeb1f3dd174644": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "4a8b8f80cf19fe270a93ef33c6beff08": {
+    "stage": "post_treatment",
+    "response_type": "other",
+    "channel": "in_person",
+    "what_sought": "test_results"
+  },
+  "f45ed970f81b7dd2d1aa4d61493146ff": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "e1806046b7d8b4e2ff78a250b5aafb5c": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "a729af74e639e564caf2fa0e2f6a578c": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "8244bcd9553ab335e530c4fd0973111c": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "6513e5a9ed93fe15e9ba8a21d9895480": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "test_results"
+  },
+  "b9e8c301a2d5e702174b9af0977850b7": {
+    "stage": "complaint",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "complaint_response"
+  },
+  "3aa4189b45c6b500ed4d6d2e97365ed4": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "0c1bcce72f52a0e64af5fd1721175313": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "286f0d6f71e58e173eb0f258981e93bf": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "55849de840e4bde15cd563b3bf7b6041": {
+    "stage": "post_treatment",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "fd65eb1cb3605f5576ad9e2214f37123": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "ff2c3dcdab1e0a19b869b478ff16d6f9": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "bd8072832cbeeba0b08c563d82e4e0b3": {
+    "stage": "complaint",
+    "response_type": "other",
+    "channel": "email",
+    "what_sought": "complaint_response"
+  },
+  "8e4795f204d8e4bece72918c48231e39": {
+    "stage": "pre_appointment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "financial_info"
+  },
+  "92d4f343c1dd07d200e6e565ce196f1d": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "10f4abf3f2429af3290dec0c68eaa140": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "unclear",
+    "what_sought": "aftercare"
+  },
+  "41a3a71d35e75d44028a34a5e956ffce": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "treatment_update"
+  },
+  "90419532df8358185c0b77556cb462b6": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "8d68b6f8d57fc5419bd99caf55a0d029": {
+    "stage": "pre_appointment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "appointment"
+  },
+  "41a0a62b61da9dab838b535bcbfe94ea": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "aftercare"
+  },
+  "1a59374a85e83cd841a0194b298b40c7": {
+    "stage": "pre_appointment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "general_info"
+  },
+  "2d29e4396e2c8ac670bccd3aac7dce77": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "8a34971b20812b6e8cfb8f63ab827226": {
+    "stage": "booking_admin",
+    "response_type": "wrong_info",
+    "channel": "email",
+    "what_sought": "appointment"
+  },
+  "4ae0b72f076421c760185ce51816b6fb": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "6f41aaef943024beff2d3091931cbede": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "e29b8084b7bd276dc70dbadfbc9590cb": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "46edfc82d8da979366c730ede5044b8a": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "test_results"
+  },
+  "9a204da918162b93f9e922205e4d735c": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "treatment_update"
+  },
+  "06d571f04d6d0735f177f09fc9ca57bf": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "37d55f2d57f3b9ff7c15961af46f6ad4": {
+    "stage": "complaint",
+    "response_type": "other",
+    "channel": "email",
+    "what_sought": "complaint_response"
+  },
+  "4ad4ab4a4a9ac8630550cb4d2850b308": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "0a5fc0a131cb448cdc2bd66fac8d0ff4": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "in_person",
+    "what_sought": "test_results"
+  },
+  "3301dcb9a9cc4b7fb7a40616951afff2": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "unclear",
+    "what_sought": "aftercare"
+  },
+  "1c5c9e7092c90748753621111885d2d2": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "financial_info"
+  },
+  "45dd84c99e43b8b3db1e6da47d2cc168": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "financial_info"
+  },
+  "404aed101ba320f5620719d0951bb09b": {
+    "stage": "complaint",
+    "response_type": "other",
+    "channel": "email",
+    "what_sought": "complaint_response"
+  },
+  "4a3363cc1ef75055a8587c84d2c6c6c5": {
+    "stage": "pre_appointment",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "general_info"
+  },
+  "c559addcd8b3888119c20ebe86339789": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "d12f92dcb32726a36eca93f916260677": {
+    "stage": "booking_admin",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "2016037d86bab8cb13a2d1e4972a2f3b": {
+    "stage": "pre_appointment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "general_info"
+  },
+  "8352f66c45f7ecafe25fd4ab83164b5f": {
+    "stage": "pre_appointment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "financial_info"
+  },
+  "5082f97c8f7674e45e534ebbcda0b15c": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "unclear",
+    "what_sought": "complaint_response"
+  },
+  "c1cc86796ef82a9d0b93d6e8eebc40d0": {
+    "stage": "pre_appointment",
+    "response_type": "other",
+    "channel": "phone",
+    "what_sought": "general_info"
+  },
+  "c11db6c1a2af1d14bbd6e0fa9a31ac1f": {
+    "stage": "complaint",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "complaint_response"
+  },
+  "63b5505a7b26c4e321ebdaf8bc44800b": {
+    "stage": "complaint",
+    "response_type": "other",
+    "channel": "in_person",
+    "what_sought": "complaint_response"
+  },
+  "93d4a61a37da9aaf336dee4c1a79cc18": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "e74bcacd1b31f80caa2659d7cad7a9e3": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "ca36db10dd64a120539bd867af74cc57": {
+    "stage": "during_treatment",
+    "response_type": "slow_response",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "c477a002fbc1629736de22e37701ac36": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "4c4ff27c8a48e13fd8f57dbe1dd79d37": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "treatment_update"
+  },
+  "d8d489ba03e1bb610e6ee05d81514d4c": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "6b723a45769974cccaff131b06572085": {
+    "stage": "booking_admin",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "appointment"
+  },
+  "f02e36ed21d848de0a8869a6d75e0ce9": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "unclear",
+    "what_sought": "complaint_response"
+  },
+  "bfff142145313fc30251c53232d1587f": {
+    "stage": "pre_appointment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "general_info"
+  },
+  "e8da66c3db4a694ad88f435c4c25954c": {
+    "stage": "pre_appointment",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "30b113ffab4c6b1b26f8b80bec11625d": {
+    "stage": "pre_appointment",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "general_info"
+  },
+  "f21d94f35e77450ff117f1c6de20afe4": {
+    "stage": "booking_admin",
+    "response_type": "other",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "8a12733fd2df31d7e1c47cb55f57cb21": {
+    "stage": "booking_admin",
+    "response_type": "no_response",
+    "channel": "unclear",
+    "what_sought": "appointment"
+  },
+  "61ce1194bcf561d06bae0cc82ef21214": {
+    "stage": "pre_appointment",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "754a3c3f9ed2866e0c374f7cd6d333b7": {
+    "stage": "complaint",
+    "response_type": "no_response",
+    "channel": "in_person",
+    "what_sought": "complaint_response"
+  },
+  "4ec2f0dc66342e1092dab387768cf13d": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "phone",
+    "what_sought": "financial_info"
+  },
+  "156ab79bf05302d7a954cfd59dd1e59d": {
+    "stage": "booking_admin",
+    "response_type": "wrong_info",
+    "channel": "email",
+    "what_sought": "appointment"
+  },
+  "9d012da5fabbe79fbaf1a1dac3543cc4": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "040a3244b5b677f30ddd98aefacdab6a": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "financial_info"
+  },
+  "e5febb3cea74ac23ea5f70a5762e53ac": {
+    "stage": "pre_appointment",
+    "response_type": "other",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "f19adbddf46c1f9afdebe282bb18f7e0": {
+    "stage": "complaint",
+    "response_type": "other",
+    "channel": "in_person",
+    "what_sought": "complaint_response"
+  },
+  "4ce995e6123af794dd29849f972cabd1": {
+    "stage": "booking_admin",
+    "response_type": "other",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "5fdaea611800000e92c26a2ece79c25b": {
+    "stage": "booking_admin",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "18ddc1da1fb31d9bcff81f77dac4e2a8": {
+    "stage": "pre_appointment",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "general_info"
+  },
+  "8cf36b17c2cf53925cece5eaceb1361b": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "treatment_update"
+  },
+  "0c33d5651d5859ba54c40e3dbc84236e": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "unclear",
+    "what_sought": "financial_info"
+  },
+  "908a50df1373c9d1e6edd828668a2acd": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "35c2e123b0562824b3e579218d47ce84": {
+    "stage": "booking_admin",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "3e84be79dcb76248d2f2c074e6ee3bb7": {
+    "stage": "booking_admin",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "appointment"
+  },
+  "e27db4b9cac4d9e47617a07929ad9792": {
+    "stage": "during_treatment",
+    "response_type": "slow_response",
+    "channel": "email",
+    "what_sought": "treatment_update"
+  },
+  "867abf0579d3d7d299503acced45490e": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "d5e0fd7a84c32f03a03fa7fbcf564a17": {
+    "stage": "complaint",
+    "response_type": "other",
+    "channel": "unclear",
+    "what_sought": "complaint_response"
+  },
+  "d81043a576aa7787f8907fa93148dae2": {
+    "stage": "pre_appointment",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "general_info"
+  },
+  "82e87ed85618178257134238027af77f": {
+    "stage": "booking_admin",
+    "response_type": "slow_response",
+    "channel": "email",
+    "what_sought": "financial_info"
+  },
+  "f3ae60c06411e50ed08f237165b8f9da": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "e0402040b1aa44257a9356df11a49695": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "financial_info"
+  },
+  "1ba16cc35d9da12c999165e51874146a": {
+    "stage": "complaint",
+    "response_type": "other",
+    "channel": "email",
+    "what_sought": "complaint_response"
+  },
+  "0b189a4d06255ac7c0b69dfff2220e46": {
+    "stage": "complaint",
+    "response_type": "other",
+    "channel": "email",
+    "what_sought": "complaint_response"
+  },
+  "d88568929e48085fd6da89da124652e2": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "email",
+    "what_sought": "financial_info"
+  },
+  "fc27906c490902121af36d8652d3b0db": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "email",
+    "what_sought": "financial_info"
+  },
+  "d0e05a94423e0ce5a92532369b7a75d9": {
+    "stage": "booking_admin",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "e31af15884afb3ea4711babff2382457": {
+    "stage": "during_treatment",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "treatment_update"
+  },
+  "3a2aedf4be4f3118856a2efc01af8ada": {
+    "stage": "booking_admin",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "2a02f4014446d7781cd6a0858055377a": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "9f68527f42a1d5e98bf55a016dbfbc94": {
+    "stage": "booking_admin",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "fc83bfa7207486c920ade8f0768094c8": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "d36777f1a83a70140755b93669e85484": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "75a5df5937c07f7134012ab8136fac3f": {
+    "stage": "during_treatment",
+    "response_type": "slow_response",
+    "channel": "unclear",
+    "what_sought": "treatment_update"
+  },
+  "a32ed46602c01b1ca17286422c5266b7": {
+    "stage": "booking_admin",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "1bbf07f929bdd7c2fbc0b9bcacef12a9": {
+    "stage": "booking_admin",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "52a629460871e9f4cb44579f10b77af3": {
+    "stage": "booking_admin",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "40c9fb9f5e930881dac6377132ab6ceb": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "478a988d58d8987bdcc7abe621069d6c": {
+    "stage": "pre_appointment",
+    "response_type": "other",
+    "channel": "phone",
+    "what_sought": "general_info"
+  },
+  "d58ad544dc9aced4eb92410ec8637066": {
+    "stage": "pre_appointment",
+    "response_type": "slow_response",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "3b4d898f7e28e2d97a9f1039d141fd51": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "2ab4eadfc1098d1e9c3edd95d208ca6e": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "email",
+    "what_sought": "test_results"
+  },
+  "d2d775c7100d150f92083ac240c65d26": {
+    "stage": "booking_admin",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "appointment"
+  },
+  "95f7792f8f6b6bf2a6cd1827a1a4969e": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "09b38edcef54deeaebbfb7227e965d4f": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "48c5f5715bc5e2db409da6f626ed400b": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "8c8e006ea497156ef781b5761e9a355b": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "78485cbbadfe522faf7299dfa4883a08": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "407c45afc8e0876f6e2e9aeca80a323e": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "f3f2a811354d5cd2333ffa45b5db060c": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "eaba93e16bb4e9a11dd3e0a7e782ba4a": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "37b5e78601c17d72c9b1a814b6a59914": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "e991878b29f79ebe82d38899b7c74a98": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "ed457a5488db59fb45bb0716402cf20a": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "6aac8960818fe47ba75ef8f0cc5ca23f": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "d2dd1338e7f6b733589f122cb21cb431": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "088378872ee4523f5c14db72fd8c333a": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "93ac3bbea23b80db40909779549018e3": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "38425b58495442b2dc95a65fe8dca417": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "2cdfe452b2830a09aa9d129281ea7395": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "6f5e15fc723901e9fbd6b4320573074c": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "e220f393a3774bca37557b4f17be27e0": {
+    "stage": "booking_admin",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "appointment"
+  },
+  "1ddfa21177b33ab5953d564a1a5bc533": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "80ed7ec83df85a6c0d5a2651ff5357f8": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "1650d981b148f12defc1991392c69119": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "8706d6e185e386c58902c5c9a5b80fbe": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "test_results"
+  },
+  "343acd5883e064ae33384b8adae03f3e": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "6be204cced0fd118d3451aa2e317d262": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "c9d50d55d3821c9ae300420a9eab5434": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "bce8c38afca524c4f5ebbd35ae005299": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "email",
+    "what_sought": "test_results"
+  },
+  "ebb65546d41cbee7d36f228113805f75": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "c24af7f3c4839dba0c9fff8c0f02bc34": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "email",
+    "what_sought": "test_results"
+  },
+  "82e37e6a6c8891859f3f24f8c914e5e0": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "f01c95916dac0aad6695612341806224": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "1f6a08369ea48fa56a170c752b8befc6": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "test_results"
+  },
+  "a4d1f636b7a3d8da8fc2ad30fb0f10e7": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "d760ee064dad30775f4ef618d85caef8": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "test_results"
+  },
+  "b89ed7f6ed3758aa2750b7b37c4efc6e": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "email",
+    "what_sought": "test_results"
+  },
+  "6fd4109196ff3deced1208ef90f3c1aa": {
+    "stage": "booking_admin",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "33bbcf679cbbb6c64609b64397e2d7d2": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "245ef6613616fae2fd7833eeaa31f99d": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "email",
+    "what_sought": "test_results"
+  },
+  "a41fc24ed1f4d7c7635f8bf394711d0e": {
+    "stage": "booking_admin",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "f19bd5db4bdd1fb341e6bde1b7270740": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "c5bafb3cae94754a11916f26027b2cc7": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "in_person",
+    "what_sought": "test_results"
+  },
+  "622de68b66da9cd9197fe12c6ebb288c": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "d8264b8d795afc4f8450f58fdc9caf00": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "email",
+    "what_sought": "test_results"
+  },
+  "12558bb6ef224c224d4487e8c6487e0a": {
+    "stage": "booking_admin",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "fd943289461ac4a5ea07b6870a5e9333": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "email",
+    "what_sought": "test_results"
+  },
+  "15308cc0b6fd70874d0d8b0b57362d70": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "treatment_update"
+  },
+  "2085a4f430dbf7aa80ad514912132217": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "test_results"
+  },
+  "b4d14a49a201d58d021fe67754a49eb6": {
+    "stage": "booking_admin",
+    "response_type": "no_response",
+    "channel": "email",
+    "what_sought": "appointment"
+  },
+  "33832dd3636a8f013ebbb095da807432": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "d951331edda3bbe188b4a2b1f998f13a": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "f360f674221d3307cbe1dbcbb17ecb60": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "6768dfe56c036db9b5ddd1acc73526d3": {
+    "stage": "booking_admin",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "financial_info"
+  },
+  "41a8b93ba037238a40f29b2cb0afedac": {
+    "stage": "pre_appointment",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "general_info"
+  },
+  "a356d5becf1ab76fe825e1bbda379399": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "2583b52a87526348e0faa8944b0b4e36": {
+    "stage": "complaint",
+    "response_type": "other",
+    "channel": "phone",
+    "what_sought": "complaint_response"
+  },
+  "73bca67918d48e608dea41c2c624732a": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "f7b011f44aa056a22958f3f0c2aa5c2e": {
+    "stage": "during_treatment",
+    "response_type": "other",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "706022f76da424e1a73f4a8707760d7a": {
+    "stage": "booking_admin",
+    "response_type": "other",
+    "channel": "phone",
+    "what_sought": "financial_info"
+  },
+  "622635ca13574a4b4e44ee7f2b896a21": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "2cb6eac0553fab38adb9389c2b3abc7b": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "8d9b56d85bc5768e3342d8b1ad14f8dc": {
+    "stage": "post_treatment",
+    "response_type": "other",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "211551edac8b0bc84ff5d01092ee7777": {
+    "stage": "booking_admin",
+    "response_type": "slow_response",
+    "channel": "phone",
+    "what_sought": "appointment"
+  },
+  "2a5339cbe86f68a4a5f4de804a15505c": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "9431ad901f55fb6b8becfc27a5267283": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "ce932a632dbd60f02b82fcf87d499005": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "3571abc5904755b5b74e4a21a8021bed": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "551a8870b1ebbf170e9d4c6ee2892576": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "5ea498fca4e497e9c23ea4685f1d7023": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "treatment_update"
+  },
+  "e9a296928a29a93b89d75332d4a53be3": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "576609d63d0215a13fc9929a28821dd3": {
+    "stage": "during_treatment",
+    "response_type": "slow_response",
+    "channel": "phone",
+    "what_sought": "test_results"
+  },
+  "4ea72d61463a50cd919bf6f539770892": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "unclear",
+    "what_sought": "financial_info"
+  },
+  "5b2496dc5c5b0df0ab76c0348e5d0559": {
+    "stage": "post_treatment",
+    "response_type": "wrong_info",
+    "channel": "email",
+    "what_sought": "test_results"
+  },
+  "a9ae21cf78ac0d15116ae830df477456": {
+    "stage": "post_treatment",
+    "response_type": "slow_response",
+    "channel": "email",
+    "what_sought": "test_results"
+  },
+  "d15e39f627525be619e5ccd1429aa02b": {
+    "stage": "during_treatment",
+    "response_type": "slow_response",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "858f70a684e7d14fe3e18c624867cccf": {
+    "stage": "during_treatment",
+    "response_type": "slow_response",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "7a8d44a3e52a6451ac9c27fd6071ad38": {
+    "stage": "during_treatment",
+    "response_type": "no_response",
+    "channel": "unclear",
+    "what_sought": "test_results"
+  },
+  "86b802d659205653c17767b60de08064": {
+    "stage": "post_treatment",
+    "response_type": "no_response",
+    "channel": "in_person",
+    "what_sought": "aftercare"
+  },
+  "ace671b3a6f9a8fa2569ad140090203d": {
+    "stage": "booking_admin",
+    "response_type": "wrong_info",
+    "channel": "phone",
+    "what_sought": "financial_info"
+  },
+  "2e02215d7653f70fbcaff84ba585995c": {
+    "stage": "during_treatment",
+    "response_type": "wrong_info",
+    "channel": "in_person",
+    "what_sought": "financial_info"
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "clinic": "Assisted Reproduction & Gynaecology Centre",
+  "review_count": 39,
+  "categories": [
+    {
+      "name": "Treatment Quality",
+      "count": 8,
+      "pct": 20.5,
+      "severity": "high",
+      "quotes": [
+        "experience did not reflect the same standard",
+        "aggressive approach rather than careful practices",
+        "treatments are extreme and dangerous"
+      ]
+    },
+    {
+      "name": "Value for Money",
+      "count": 8,
+      "pct": 20.5,
+      "severity": "high",
+      "quotes": [
+        "purely money making enterprise",
+        "single blood test costs £2,200",
+        "selling hope"
+      ]
+    },
+    {
+      "name": "Booking & Admin",
+      "count": 5,
+      "pct": 12.8,
+      "severity": "medium",
+      "quotes": [
+        "appointment that never happened",
+        "consultant didn’t write the consultation outcome correctly",
+        "Very disorganised, too Manuel"
+      ]
+    },
+    {
+      "name": "Staff Attitude",
+      "count": 5,
+      "pct": 12.8,
+      "severity": "high",
+      "quotes": [
+        "treat women like money-making objects",
+        "rude staff",
+        "treat people terribly"
+      ]
+    },
+    {
+      "name": "Communication",
+      "count": 4,
+      "pct": 10.3,
+      "severity": "high",
+      "quotes": [
+        "very poor communication and management",
+        "Communication is terrible",
+        "do not listen to patient concerns"
+      ]
+    },
+    {
+      "name": "Doctor / Consultant",
+      "count": 3,
+      "pct": 7.7,
+      "severity": "high",
+      "quotes": [
+        "doctors are so disorganised and frantic",
+        "never saw the doctor not even once",
+        "doctor did not introduce herself nor say hello"
+      ]
+    },
+    {
+      "name": "Facilities",
+      "count": 3,
+      "pct": 7.7,
+      "severity": "medium",
+      "quotes": [
+        "Communication and environment are terrible",
+        "Paper printed medical records",
+        "make you feel like cattle"
+      ]
+    },
+    {
+      "name": "Other",
+      "count": 3,
+      "pct": 7.7,
+      "severity": "medium",
+      "quotes": [
+        "uses Ecourier to transport essential medical samples",
+        "Avoid this place",
+        "initially had a very positive experience"
+      ]
+    }
+  ],
+  "summary": "Patients at the Assisted Reproduction & Gynaecology Centre are most dissatisfied with treatment quality and value for money, each making up 21% of complaints. Booking issues, staff attitude, and poor communication were also common concerns, though less frequent."
+}

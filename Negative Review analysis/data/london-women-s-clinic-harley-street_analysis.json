@@ -1,0 +1,113 @@
+{
+  "clinic": "London Women's Clinic - Harley Street",
+  "review_count": 66,
+  "categories": [
+    {
+      "name": "Treatment Quality",
+      "count": 21,
+      "pct": 31.8,
+      "severity": "high",
+      "quotes": [
+        "success rate of this clinic for my age, 40yo, is literally 0",
+        "told I might have a suspected unicornuate uterus",
+        "serious missteps were taken"
+      ]
+    },
+    {
+      "name": "Communication",
+      "count": 13,
+      "pct": 19.7,
+      "severity": "high",
+      "quotes": [
+        "communication from this place has been abysmal",
+        "initial process of getting the appointment was fine",
+        "never being able to contact anyone"
+      ]
+    },
+    {
+      "name": "Staff Attitude",
+      "count": 8,
+      "pct": 12.1,
+      "severity": "high",
+      "quotes": [
+        "rudest, most unprofessional, and least helpful",
+        "more then rude",
+        "attitude from the staff is horrible"
+      ]
+    },
+    {
+      "name": "Billing & Invoicing",
+      "count": 6,
+      "pct": 9.1,
+      "severity": "high",
+      "quotes": [
+        "taken 3 unauthorised payments",
+        "paid £570 upfront for tests",
+        "payment was so unclear"
+      ]
+    },
+    {
+      "name": "Booking & Admin",
+      "count": 5,
+      "pct": 7.6,
+      "severity": "high",
+      "quotes": [
+        "only month I could do it",
+        "lost our personal information",
+        "Unorganized and no cooperation between people"
+      ]
+    },
+    {
+      "name": "Other",
+      "count": 4,
+      "pct": 6.1,
+      "severity": "high",
+      "quotes": [
+        "2 terrible experiences at this clinic",
+        "terrible service from this clinic",
+        "common complaints and they are true"
+      ]
+    },
+    {
+      "name": "Value for Money",
+      "count": 4,
+      "pct": 6.1,
+      "severity": "high",
+      "quotes": [
+        "very expensive and dont bother to get back to you",
+        "Paid lots of money for the 'ovulation tracking scan'",
+        "one of the more expensive options"
+      ]
+    },
+    {
+      "name": "Doctor / Consultant",
+      "count": 3,
+      "pct": 4.5,
+      "severity": "high",
+      "quotes": [
+        "only saw her twice in person",
+        "laughed at me down the phone",
+        "insensitivity of the doctor"
+      ]
+    },
+    {
+      "name": "Waiting Times",
+      "count": 1,
+      "pct": 1.5,
+      "severity": "high",
+      "quotes": [
+        "Clinic does not open at weekends"
+      ]
+    },
+    {
+      "name": "Facilities",
+      "count": 1,
+      "pct": 1.5,
+      "severity": "medium",
+      "quotes": [
+        "Receptionist not wearing a mask"
+      ]
+    }
+  ],
+  "summary": "\"Patients at London Women's Clinic - Harley Street were most dissatisfied with treatment quality (32% of complaints) and communication (20%). Other concerns included staff attitude (12%), billing (9%), and booking/admin issues (8%).\""
+}

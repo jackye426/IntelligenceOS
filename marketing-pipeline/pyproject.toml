@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "marketing-pipeline"
+version = "0.1.0"
+description = "DocMap marketing intelligence pipeline (TikTok-first)"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "httpx",
+  "openai",
+  "pydantic>=2",
+  "python-dotenv",
+  "supabase",
+]
+
+[project.optional-dependencies]
+media = ["yt-dlp", "faster-whisper"]
+ocr = ["opencv-python-headless", "pytesseract"]
+
+[project.scripts]
+marketing-pipeline = "marketing_pipeline.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -1,0 +1,73 @@
+{
+  "clinic": "Fertility Plus",
+  "review_count": 11,
+  "categories": [
+    {
+      "name": "Doctor / Consultant",
+      "count": 4,
+      "pct": 36.4,
+      "severity": "high",
+      "quotes": [
+        "I'm honestly so disappointed at how out of touch and impersonal",
+        "I thought he was heartless and cold but very direct",
+        "he told me the outcome was 'between me and my God'"
+      ]
+    },
+    {
+      "name": "Treatment Quality",
+      "count": 2,
+      "pct": 18.2,
+      "severity": "high",
+      "quotes": [
+        "Medical negligence by Fertility Plus has caused harm",
+        "not recommended to go off my birth control"
+      ]
+    },
+    {
+      "name": "Billing & Invoicing",
+      "count": 1,
+      "pct": 9.1,
+      "severity": "high",
+      "quotes": [
+        "sent my account to debt collection agencies"
+      ]
+    },
+    {
+      "name": "Communication",
+      "count": 1,
+      "pct": 9.1,
+      "severity": "high",
+      "quotes": [
+        "Nobody answers their phone"
+      ]
+    },
+    {
+      "name": "Other",
+      "count": 1,
+      "pct": 9.1,
+      "severity": "low",
+      "quotes": [
+        "We don't recognise your name perhaps you intended to leave this rating for another clinic"
+      ]
+    },
+    {
+      "name": "Booking & Admin",
+      "count": 1,
+      "pct": 9.1,
+      "severity": "high",
+      "quotes": [
+        "Unfriendly service on the phone and over email"
+      ]
+    },
+    {
+      "name": "Value for Money",
+      "count": 1,
+      "pct": 9.1,
+      "severity": "medium",
+      "quotes": [
+        "paid £715 for the Couple Fertility Assessment Package"
+      ]
+    }
+  ],
+  "summary": "Patients at Fertility Plus are most dissatisfied with their doctors or consultants, accounting for over a third of complaints, followed by concerns about treatment quality. Other issues like billing, communication, and miscellaneous problems were less frequent but still noted."
+}

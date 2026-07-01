@@ -1,0 +1,191 @@
+{
+  "total_classified": 566,
+  "stage": {
+    "post_treatment": {
+      "count": 180,
+      "pct": 31.8,
+      "quotes": [
+        "We were patients at Evewell in 2024 for private fertility investigations.\n\nIn November 2025, our daughter was born sleeping. Post mortem results confirmed …",
+        "My experience at the Evewell overall was poor. We had testing and two unnecessary rounds of treatment, which was expensive, stressful and emotionally draining. Unfortunately I had endometriosis which ",
+        "Was a lot more expensive than quoted as there were expensive add-ons that we were not told about  (ie: 2 minute scans at £200 a time, medication at £500 at time!). After 2 failed attempts our money ru"
+      ]
+    },
+    "during_treatment": {
+      "count": 177,
+      "pct": 31.3,
+      "quotes": [
+        "I found The Evewell disorganised, chaotic, and worryingly unresponsive. Nurses frequently sent urgent instructions at the end of the day, making it impossible to clarify errors or ask questions. On on",
+        "Sadly had a bad experience with this clinic. The consultant we saw was very nice and understanding but apart from that this clinic for me was such a let down! The unnecessary delays for simple things ",
+        "3 years later and I still have ptsd from this place. Money hungry people. Will push random things you don’t need on you I.E in my case icsi, just  for extra money no actual science behind it. Unsucces"
+      ]
+    },
+    "pre_appointment": {
+      "count": 81,
+      "pct": 14.3,
+      "quotes": [
+        "Clearly some people have a good experience with this clinic however we did not. We tried to start the process in February this year and got some tests done and then had a rushed consultation with the ",
+        "The communication of this place was absolutely abysmal. It started right at the very beginning when we registered with the clinic - incorrect names and DOB on forms and ‘missed’ emails leading to a de",
+        "Disappointing experience. Many of the doctors that work there are not on the Specialist Register.  The admin staff take ages to return emails, the phone is never answered and voicemails are not return"
+      ]
+    },
+    "booking_admin": {
+      "count": 76,
+      "pct": 13.4,
+      "quotes": [
+        "Tried to cancel my appointment with this clinic.\nPhone is never answered or is dropped. The admin staff got my date of birth wrong and they couldn’t even find my appointment and kept asking if I was c",
+        "If i could give The Evewell a 0 star i would. Three different telephone/video appointments were made (and confirmed in writing) and on all occasions the calls had not been correctly scheduled and the ",
+        "Paid them a deposit last year for an appointment that never happened due to lack of information (not) communicated by staff at ARGC. Was told I'd get a refund but am still waiting on the money. Very d"
+      ]
+    },
+    "complaint": {
+      "count": 51,
+      "pct": 9.0,
+      "quotes": [
+        "I am sad to leave this review after many years at ARGC. I will start by saying that the admin staff and nurses are amazing. Unfortunately the doctors are so disorganised and frantic that no one knows ",
+        "Terrible experience! Trust me when I say, do not use this company. Communication is terrible, service is terrible, constantly being told different things by different people. At so many occasions we w",
+        "Absolutely appalling. Different Dr’s every time. Changing doses every time. The administration of my care is worse than non existent. When they try they get it completely wrong. I’m still waiting sinc"
+      ]
+    },
+    "other": {
+      "count": 1,
+      "pct": 0.2,
+      "quotes": [
+        "Terrible communication"
+      ]
+    }
+  },
+  "response_type": {
+    "wrong_info": {
+      "count": 211,
+      "pct": 37.3,
+      "quotes": [
+        "I found The Evewell disorganised, chaotic, and worryingly unresponsive. Nurses frequently sent urgent instructions at the end of the day, making it impossible to clarify errors or ask questions. On on",
+        "Sadly had a bad experience with this clinic. The consultant we saw was very nice and understanding but apart from that this clinic for me was such a let down! The unnecessary delays for simple things ",
+        "Tried to cancel my appointment with this clinic.\nPhone is never answered or is dropped. The admin staff got my date of birth wrong and they couldn’t even find my appointment and kept asking if I was c"
+      ]
+    },
+    "other": {
+      "count": 126,
+      "pct": 22.3,
+      "quotes": [
+        "We were patients at Evewell in 2024 for private fertility investigations.\n\nIn November 2025, our daughter was born sleeping. Post mortem results confirmed …",
+        "We had an unsuccessful round of IVF at the Evewell in July 2022.\nIVF clinics are really in the business of selling hope. When people are spending upwards of £10k on a round of IVF there should be far ",
+        "Awful - there is very poor communication and management of patients' mental health.  It is an enterprise designed to make a profit from women and family's desperation and misery."
+      ]
+    },
+    "no_response": {
+      "count": 126,
+      "pct": 22.3,
+      "quotes": [
+        "Clearly some people have a good experience with this clinic however we did not. We tried to start the process in February this year and got some tests done and then had a rushed consultation with the ",
+        "My experience at the Evewell overall was poor. We had testing and two unnecessary rounds of treatment, which was expensive, stressful and emotionally draining. Unfortunately I had endometriosis which ",
+        "Disappointing experience. Many of the doctors that work there are not on the Specialist Register.  The admin staff take ages to return emails, the phone is never answered and voicemails are not return"
+      ]
+    },
+    "slow_response": {
+      "count": 103,
+      "pct": 18.2,
+      "quotes": [
+        "We started our initial conversation at the Evewell one year ago. The communication was so bad that we wasted a lot of time on waiting (usually 3-5 weeks for a doctor’s letter after consultation, 4-5 w",
+        "Disappointing.\n\nThe wait times and bedside manner are just as disappointing as the NHS and when I am spending hundreds of pounds for a service I expect better.  Most disappointingly, the doctor did no",
+        "I am still waiting for my treatment and might change my feedback later, but I have to tell that if a donor is required, you need to deal with “the lab”, which seems like a separate set up with little "
+      ]
+    }
+  },
+  "channel": {
+    "unclear": {
+      "count": 153,
+      "pct": 27.0
+    },
+    "phone": {
+      "count": 144,
+      "pct": 25.4
+    },
+    "in_person": {
+      "count": 138,
+      "pct": 24.4
+    },
+    "email": {
+      "count": 125,
+      "pct": 22.1
+    },
+    "coordinator": {
+      "count": 6,
+      "pct": 1.1
+    }
+  },
+  "what_sought": {
+    "treatment_update": {
+      "count": 151,
+      "pct": 26.7,
+      "quotes": [
+        "I found The Evewell disorganised, chaotic, and worryingly unresponsive. Nurses frequently sent urgent instructions at the end of the day, making it impossible to clarify errors or ask questions. On on",
+        "I was quite unhappy when my doctor abruptly departed the clinic in the middle of my treatment. I had only gotten an impersonal email as a form of communication. Following this, I saw multiple doctors,",
+        "I decided on the Evewell because I was looking for a clinic that would offer one to one care. As they are one of the most expensive clinics and they promised this I had high hopes. After my first appo"
+      ]
+    },
+    "test_results": {
+      "count": 120,
+      "pct": 21.2,
+      "quotes": [
+        "Sadly had a bad experience with this clinic. The consultant we saw was very nice and understanding but apart from that this clinic for me was such a let down! The unnecessary delays for simple things ",
+        "The worst clinic I've ever seen! Extremely rude! The doctor made me\nfeel extremely uncomfortable every time, only cared about money. Was unorganised too as they lost my blood results which was inconve",
+        "We started our initial conversation at the Evewell one year ago. The communication was so bad that we wasted a lot of time on waiting (usually 3-5 weeks for a doctor’s letter after consultation, 4-5 w"
+      ]
+    },
+    "appointment": {
+      "count": 80,
+      "pct": 14.1,
+      "quotes": [
+        "Tried to cancel my appointment with this clinic.\nPhone is never answered or is dropped. The admin staff got my date of birth wrong and they couldn’t even find my appointment and kept asking if I was c",
+        "Disappointing experience. Many of the doctors that work there are not on the Specialist Register.  The admin staff take ages to return emails, the phone is never answered and voicemails are not return",
+        "Very sad that I started my treatment here!\nLong waiting! Never able to see the main doctor. Half of the time the phone services are not available.\nFor the price I’m paying I would expect to have bette"
+      ]
+    },
+    "financial_info": {
+      "count": 71,
+      "pct": 12.5,
+      "quotes": [
+        "If i could give The Evewell a 0 star i would. Three different telephone/video appointments were made (and confirmed in writing) and on all occasions the calls had not been correctly scheduled and the ",
+        "3 years later and I still have ptsd from this place. Money hungry people. Will push random things you don’t need on you I.E in my case icsi, just  for extra money no actual science behind it. Unsucces",
+        "Thoroughly unimpressed. No direct communication with my doctor which was so frustrating. My doctor also didn’t do any scans himself so relied on communication which was awful. The timings were missed "
+      ]
+    },
+    "complaint_response": {
+      "count": 54,
+      "pct": 9.5,
+      "quotes": [
+        "I am sad to leave this review after many years at ARGC. I will start by saying that the admin staff and nurses are amazing. Unfortunately the doctors are so disorganised and frantic that no one knows ",
+        "Terrible experience! Trust me when I say, do not use this company. Communication is terrible, service is terrible, constantly being told different things by different people. At so many occasions we w",
+        "Absolutely appalling. Different Dr’s every time. Changing doses every time. The administration of my care is worse than non existent. When they try they get it completely wrong. I’m still waiting sinc"
+      ]
+    },
+    "general_info": {
+      "count": 49,
+      "pct": 8.7,
+      "quotes": [
+        "Clearly some people have a good experience with this clinic however we did not. We tried to start the process in February this year and got some tests done and then had a rushed consultation with the ",
+        "The communication of this place was absolutely abysmal. It started right at the very beginning when we registered with the clinic - incorrect names and DOB on forms and ‘missed’ emails leading to a de",
+        "The clinic might be very good but I am very disappointed by the accessibility of its services. I have sent out multiple emails and also tried to book an appointment via telephone call but I was always"
+      ]
+    },
+    "aftercare": {
+      "count": 30,
+      "pct": 5.3,
+      "quotes": [
+        "We were patients at Evewell in 2024 for private fertility investigations.\n\nIn November 2025, our daughter was born sleeping. Post mortem results confirmed …",
+        "My experience at the Evewell overall was poor. We had testing and two unnecessary rounds of treatment, which was expensive, stressful and emotionally draining. Unfortunately I had endometriosis which ",
+        "Was a lot more expensive than quoted as there were expensive add-ons that we were not told about  (ie: 2 minute scans at £200 a time, medication at £500 at time!). After 2 failed attempts our money ru"
+      ]
+    },
+    "other": {
+      "count": 11,
+      "pct": 1.9,
+      "quotes": [
+        "We had an unsuccessful round of IVF at the ARGC in Jan 2022.\nIVF clinics are really in the business of selling hope. When people are spending upwards of £10k on a round of IVF there should be far more",
+        "I have been a patient at Create Fertility since September 2024, and I am now in the process of moving my embryos to another clinic. I feel it’s important to share my experience so that others are full",
+        "Unacceptably brutal, it was not necessary. Since we have moved on somewhere else and it is going well. It felt that some consultants and member of staff have lost sense of reality. As others we also f"
+      ]
+    }
+  }
+}

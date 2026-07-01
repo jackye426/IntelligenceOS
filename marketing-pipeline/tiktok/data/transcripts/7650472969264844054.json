@@ -1,0 +1,50 @@
+{
+  "video_id": "7650472969264844054",
+  "source_media": "7650472969264844054.mp4",
+  "whisper_model": "tiny",
+  "language": "en",
+  "duration_after_vad": 62.6720625,
+  "full_text": "Work like symptoms. Work out what's typical, what isn't sick of. Work it out. Go to one of the end of the UK, fantastic. There's some really good resources. You'll and have a look at work like symptoms. Look at yourself and say, okay, what's happening? What's happening to me? And then go to somebody and say, but this is what's happening to me. Can you help? But just keep that clean up and on the door. Don't be scared. There are a lot of them out there who want help. I'm going to help. I'm going to help. I'm going to help.",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 8.0,
+      "text": "Work like symptoms. Work out what's typical, what isn't sick of. Work it out."
+    },
+    {
+      "start": 8.0,
+      "end": 12.0,
+      "text": "Go to one of the end of the UK, fantastic. There's some really good resources."
+    },
+    {
+      "start": 12.0,
+      "end": 16.0,
+      "text": "You'll and have a look at work like symptoms. Look at yourself and say,"
+    },
+    {
+      "start": 16.0,
+      "end": 20.0,
+      "text": "okay, what's happening? What's happening to me? And then go to somebody and say,"
+    },
+    {
+      "start": 20.0,
+      "end": 24.0,
+      "text": "but this is what's happening to me. Can you help? But just keep that clean up and on the door."
+    },
+    {
+      "start": 24.0,
+      "end": 28.0,
+      "text": "Don't be scared. There are a lot of them out there who want help."
+    },
+    {
+      "start": 28.0,
+      "end": 32.0,
+      "text": "I'm going to help. I'm going to help."
+    },
+    {
+      "start": 58.0,
+      "end": 62.0,
+      "text": "I'm going to help."
+    }
+  ]
+}

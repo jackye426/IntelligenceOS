@@ -1,0 +1,35 @@
+{
+  "video_id": "7641554459755089154",
+  "source_media": "7641554459755089154.mp4",
+  "whisper_model": "small",
+  "language": "en",
+  "duration_after_vad": 26.913375,
+  "full_text": "Excision, not ablation, because it's ablation only takes the surface, it's like skimming, it's like skimming something. If your plaster's gone on the wall, skimming it is not going to make any difference because it's still going to blow, yeah? Same difference. Endometriosis is too deep to skim over the top of it, because it will hide, it will hide in the foals like that.",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 9.92,
+      "text": "Excision, not ablation, because it's ablation only takes the surface, it's like skimming,"
+    },
+    {
+      "start": 9.92,
+      "end": 14.68,
+      "text": "it's like skimming something. If your plaster's gone on the wall, skimming it is not going"
+    },
+    {
+      "start": 14.68,
+      "end": 20.92,
+      "text": "to make any difference because it's still going to blow, yeah? Same difference. Endometriosis"
+    },
+    {
+      "start": 20.92,
+      "end": 25.88,
+      "text": "is too deep to skim over the top of it, because it will hide, it will hide in the"
+    },
+    {
+      "start": 25.88,
+      "end": 28.56,
+      "text": "foals like that."
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "clinic": "London Medical",
+  "review_count": 21,
+  "categories": [
+    {
+      "name": "Doctor / Consultant",
+      "count": 4,
+      "pct": 19.0,
+      "severity": "high",
+      "quotes": [
+        "Nikos Stamos no good, disrespectful",
+        "preoccupied far, far more with my money than with my care",
+        "less diabetic specialist and more government lawyer"
+      ]
+    },
+    {
+      "name": "Other",
+      "count": 3,
+      "pct": 14.3,
+      "severity": "medium",
+      "quotes": [
+        "my review wasn’t available to the public anymore",
+        "Avoid like the plague",
+        "Thank you for leaving a review"
+      ]
+    },
+    {
+      "name": "Value for Money",
+      "count": 3,
+      "pct": 14.3,
+      "severity": "high",
+      "quotes": [
+        "they are interested only in your money",
+        "take 300£ to seat on chair to listen the doctor",
+        "took my 295 pounds to sit there and lecture me"
+      ]
+    },
+    {
+      "name": "Booking & Admin",
+      "count": 2,
+      "pct": 9.5,
+      "severity": "high",
+      "quotes": [
+        "chasing them to send my medical records for WEEKS",
+        "last minute cancellation of travel vaccination booking"
+      ]
+    },
+    {
+      "name": "Staff Attitude",
+      "count": 2,
+      "pct": 9.5,
+      "severity": "high",
+      "quotes": [
+        "accounts department manager and the reception manager Lindell Dawson",
+        "nurses, reception staff are quite rude and surly"
+      ]
+    },
+    {
+      "name": "Communication",
+      "count": 2,
+      "pct": 9.5,
+      "severity": "high",
+      "quotes": [
+        "nothing is being done honestly",
+        "Communication was quick"
+      ]
+    },
+    {
+      "name": "Billing & Invoicing",
+      "count": 2,
+      "pct": 9.5,
+      "severity": "high",
+      "quotes": [
+        "value their cancellation fee policy more than a long term client",
+        "they have not given me the main medication required"
+      ]
+    },
+    {
+      "name": "Waiting Times",
+      "count": 2,
+      "pct": 9.5,
+      "severity": "high",
+      "quotes": [
+        "waited an extra 15 minutes for the appointment",
+        "had to wait 1.5 hours with my 5 yr old daughter"
+      ]
+    },
+    {
+      "name": "Treatment Quality",
+      "count": 1,
+      "pct": 4.8,
+      "severity": "low",
+      "quotes": [
+        "very well looked after clinically"
+      ]
+    }
+  ],
+  "summary": "Patients at London Medical were most dissatisfied with doctors/consultants (19% of complaints) and issues like \"Other,\" \"Value for Money,\" and \"Booking & Admin\" (14% each). Staff attitude also drew complaints (10%), with 21 negative reviews in total."
+}

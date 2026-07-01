@@ -1,0 +1,58 @@
+{
+  "clinic": "The Birth Company London, HCA",
+  "review_count": 16,
+  "categories": [
+    {
+      "name": "Staff Attitude",
+      "count": 8,
+      "pct": 50.0,
+      "severity": "high",
+      "quotes": [
+        "unprofessional and rude behavior",
+        "rude, abrupt and her delivery of the results was very confusing",
+        "extremely unhelpful and was not in the least interested to answer our questions"
+      ]
+    },
+    {
+      "name": "Other",
+      "count": 3,
+      "pct": 18.8,
+      "severity": "low",
+      "quotes": [
+        "Was not a good experience for me",
+        "Avoid ! I shall be raising a formal complaint",
+        "Thank you for taking the time to feedback to us"
+      ]
+    },
+    {
+      "name": "Booking & Admin",
+      "count": 2,
+      "pct": 12.5,
+      "severity": "high",
+      "quotes": [
+        "felt totally misled",
+        "consistently make mistakes with their booking system"
+      ]
+    },
+    {
+      "name": "Treatment Quality",
+      "count": 2,
+      "pct": 12.5,
+      "severity": "high",
+      "quotes": [
+        "results were inconclusive and they need to repeat the test",
+        "she dismissed me by saying that she sees everything on the stomach scan"
+      ]
+    },
+    {
+      "name": "Communication",
+      "count": 1,
+      "pct": 6.2,
+      "severity": "high",
+      "quotes": [
+        "asked the transfer date, while it was natural conception"
+      ]
+    }
+  ],
+  "summary": "Half of the negative reviews about The Birth Company London, HCA cite poor staff attitude as the main issue, while other complaints include booking problems, treatment quality, and communication. These 16 complaints highlight recurring dissatisfaction, particularly with how staff interact with patients."
+}

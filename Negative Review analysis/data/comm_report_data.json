@@ -1,0 +1,1383 @@
+{
+  "meta": {
+    "total_reviews": 1145,
+    "comm_reviews_keyword": 591,
+    "comm_reviews_classified": 566,
+    "comm_pct_of_all": 51.6,
+    "rating_breakdown": {
+      "1": 478,
+      "2": 72,
+      "3": 41
+    }
+  },
+  "stage": [
+    {
+      "name": "during_treatment",
+      "count": 177,
+      "pct": 31.3,
+      "dominant_response": "wrong_info",
+      "response_breakdown": {
+        "wrong_info": {
+          "count": 100,
+          "pct": 56.5,
+          "is_dominant": true
+        },
+        "no_response": {
+          "count": 11,
+          "pct": 6.2,
+          "is_dominant": false
+        },
+        "slow_response": {
+          "count": 16,
+          "pct": 9.0,
+          "is_dominant": false
+        },
+        "other": {
+          "count": 50,
+          "pct": 28.2,
+          "is_dominant": false
+        }
+      },
+      "top_sought": [
+        {
+          "name": "treatment_update",
+          "count": 141
+        },
+        {
+          "name": "financial_info",
+          "count": 16
+        },
+        {
+          "name": "test_results",
+          "count": 12
+        }
+      ]
+    },
+    {
+      "name": "post_treatment",
+      "count": 180,
+      "pct": 31.8,
+      "dominant_response": "slow_response",
+      "response_breakdown": {
+        "wrong_info": {
+          "count": 39,
+          "pct": 21.7,
+          "is_dominant": false
+        },
+        "no_response": {
+          "count": 49,
+          "pct": 27.2,
+          "is_dominant": false
+        },
+        "slow_response": {
+          "count": 70,
+          "pct": 38.9,
+          "is_dominant": true
+        },
+        "other": {
+          "count": 22,
+          "pct": 12.2,
+          "is_dominant": false
+        }
+      },
+      "top_sought": [
+        {
+          "name": "test_results",
+          "count": 105
+        },
+        {
+          "name": "aftercare",
+          "count": 30
+        },
+        {
+          "name": "financial_info",
+          "count": 25
+        }
+      ]
+    },
+    {
+      "name": "booking_admin",
+      "count": 76,
+      "pct": 13.4,
+      "dominant_response": "wrong_info",
+      "response_breakdown": {
+        "wrong_info": {
+          "count": 33,
+          "pct": 43.4,
+          "is_dominant": true
+        },
+        "no_response": {
+          "count": 25,
+          "pct": 32.9,
+          "is_dominant": false
+        },
+        "slow_response": {
+          "count": 10,
+          "pct": 13.2,
+          "is_dominant": false
+        },
+        "other": {
+          "count": 8,
+          "pct": 10.5,
+          "is_dominant": false
+        }
+      },
+      "top_sought": [
+        {
+          "name": "appointment",
+          "count": 59
+        },
+        {
+          "name": "financial_info",
+          "count": 16
+        },
+        {
+          "name": "test_results",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "name": "pre_appointment",
+      "count": 81,
+      "pct": 14.3,
+      "dominant_response": "wrong_info",
+      "response_breakdown": {
+        "wrong_info": {
+          "count": 36,
+          "pct": 44.4,
+          "is_dominant": true
+        },
+        "no_response": {
+          "count": 23,
+          "pct": 28.4,
+          "is_dominant": false
+        },
+        "slow_response": {
+          "count": 7,
+          "pct": 8.6,
+          "is_dominant": false
+        },
+        "other": {
+          "count": 15,
+          "pct": 18.5,
+          "is_dominant": false
+        }
+      },
+      "top_sought": [
+        {
+          "name": "general_info",
+          "count": 48
+        },
+        {
+          "name": "appointment",
+          "count": 19
+        },
+        {
+          "name": "financial_info",
+          "count": 12
+        }
+      ]
+    },
+    {
+      "name": "complaint",
+      "count": 51,
+      "pct": 9.0,
+      "dominant_response": "other",
+      "response_breakdown": {
+        "wrong_info": {
+          "count": 3,
+          "pct": 5.9,
+          "is_dominant": false
+        },
+        "no_response": {
+          "count": 18,
+          "pct": 35.3,
+          "is_dominant": false
+        },
+        "slow_response": {
+          "count": 0,
+          "pct": 0.0,
+          "is_dominant": false
+        },
+        "other": {
+          "count": 30,
+          "pct": 58.8,
+          "is_dominant": true
+        }
+      },
+      "top_sought": [
+        {
+          "name": "complaint_response",
+          "count": 49
+        },
+        {
+          "name": "financial_info",
+          "count": 2
+        }
+      ]
+    }
+  ],
+  "response_type": [
+    {
+      "name": "wrong_info",
+      "count": 211,
+      "pct": 37.3
+    },
+    {
+      "name": "no_response",
+      "count": 126,
+      "pct": 22.3
+    },
+    {
+      "name": "slow_response",
+      "count": 103,
+      "pct": 18.2
+    },
+    {
+      "name": "other",
+      "count": 126,
+      "pct": 22.3
+    }
+  ],
+  "channel": [
+    {
+      "name": "phone",
+      "count": 144,
+      "pct": 25.4,
+      "top_response": "no_response",
+      "top_response_pct": 34.7
+    },
+    {
+      "name": "email",
+      "count": 125,
+      "pct": 22.1,
+      "top_response": "no_response",
+      "top_response_pct": 36.0
+    },
+    {
+      "name": "in_person",
+      "count": 138,
+      "pct": 24.4,
+      "top_response": "wrong_info",
+      "top_response_pct": 68.8
+    },
+    {
+      "name": "coordinator",
+      "count": 6,
+      "pct": 1.1,
+      "top_response": "slow_response",
+      "top_response_pct": 50.0
+    },
+    {
+      "name": "unclear",
+      "count": 153,
+      "pct": 27.0,
+      "top_response": "other",
+      "top_response_pct": 30.7
+    }
+  ],
+  "what_sought": [
+    {
+      "name": "treatment_update",
+      "count": 151,
+      "pct": 26.7
+    },
+    {
+      "name": "test_results",
+      "count": 120,
+      "pct": 21.2
+    },
+    {
+      "name": "appointment",
+      "count": 80,
+      "pct": 14.1
+    },
+    {
+      "name": "financial_info",
+      "count": 71,
+      "pct": 12.5
+    },
+    {
+      "name": "complaint_response",
+      "count": 54,
+      "pct": 9.5
+    },
+    {
+      "name": "general_info",
+      "count": 49,
+      "pct": 8.7
+    },
+    {
+      "name": "aftercare",
+      "count": 30,
+      "pct": 5.3
+    },
+    {
+      "name": "other",
+      "count": 11,
+      "pct": 1.9
+    }
+  ],
+  "top_combinations": [
+    {
+      "stage": "during_treatment",
+      "response_type": "wrong_info",
+      "what_sought": "treatment_update",
+      "count": 82,
+      "pct": 14.5
+    },
+    {
+      "stage": "post_treatment",
+      "response_type": "slow_response",
+      "what_sought": "test_results",
+      "count": 57,
+      "pct": 10.1
+    },
+    {
+      "stage": "during_treatment",
+      "response_type": "other",
+      "what_sought": "treatment_update",
+      "count": 40,
+      "pct": 7.1
+    },
+    {
+      "stage": "complaint",
+      "response_type": "other",
+      "what_sought": "complaint_response",
+      "count": 29,
+      "pct": 5.1
+    },
+    {
+      "stage": "booking_admin",
+      "response_type": "wrong_info",
+      "what_sought": "appointment",
+      "count": 26,
+      "pct": 4.6
+    },
+    {
+      "stage": "post_treatment",
+      "response_type": "no_response",
+      "what_sought": "test_results",
+      "count": 24,
+      "pct": 4.2
+    },
+    {
+      "stage": "pre_appointment",
+      "response_type": "wrong_info",
+      "what_sought": "general_info",
+      "count": 22,
+      "pct": 3.9
+    },
+    {
+      "stage": "post_treatment",
+      "response_type": "wrong_info",
+      "what_sought": "test_results",
+      "count": 20,
+      "pct": 3.5
+    },
+    {
+      "stage": "booking_admin",
+      "response_type": "no_response",
+      "what_sought": "appointment",
+      "count": 19,
+      "pct": 3.4
+    },
+    {
+      "stage": "complaint",
+      "response_type": "no_response",
+      "what_sought": "complaint_response",
+      "count": 17,
+      "pct": 3.0
+    },
+    {
+      "stage": "post_treatment",
+      "response_type": "no_response",
+      "what_sought": "aftercare",
+      "count": 14,
+      "pct": 2.5
+    },
+    {
+      "stage": "during_treatment",
+      "response_type": "wrong_info",
+      "what_sought": "financial_info",
+      "count": 13,
+      "pct": 2.3
+    },
+    {
+      "stage": "pre_appointment",
+      "response_type": "no_response",
+      "what_sought": "general_info",
+      "count": 12,
+      "pct": 2.1
+    },
+    {
+      "stage": "pre_appointment",
+      "response_type": "other",
+      "what_sought": "general_info",
+      "count": 11,
+      "pct": 1.9
+    },
+    {
+      "stage": "post_treatment",
+      "response_type": "other",
+      "what_sought": "aftercare",
+      "count": 10,
+      "pct": 1.8
+    }
+  ],
+  "clinic_profiles": [
+    {
+      "clinic": "The Regenerative Clinic",
+      "total_comm": 78,
+      "stages": {
+        "during_treatment": {
+          "count": 7,
+          "pct": 9.0
+        },
+        "post_treatment": {
+          "count": 60,
+          "pct": 76.9
+        },
+        "booking_admin": {
+          "count": 9,
+          "pct": 11.5
+        },
+        "pre_appointment": {
+          "count": 1,
+          "pct": 1.3
+        },
+        "complaint": {
+          "count": 1,
+          "pct": 1.3
+        }
+      },
+      "top_stage": "post_treatment",
+      "top_stage_pct": 76.9
+    },
+    {
+      "clinic": "CRGH (The Centre for Reproductive and Genetic Health)",
+      "total_comm": 48,
+      "stages": {
+        "during_treatment": {
+          "count": 11,
+          "pct": 22.9
+        },
+        "post_treatment": {
+          "count": 7,
+          "pct": 14.6
+        },
+        "booking_admin": {
+          "count": 8,
+          "pct": 16.7
+        },
+        "pre_appointment": {
+          "count": 14,
+          "pct": 29.2
+        },
+        "complaint": {
+          "count": 8,
+          "pct": 16.7
+        }
+      },
+      "top_stage": "pre_appointment",
+      "top_stage_pct": 29.2
+    },
+    {
+      "clinic": "Create Fertility - St. Paul's",
+      "total_comm": 40,
+      "stages": {
+        "during_treatment": {
+          "count": 17,
+          "pct": 42.5
+        },
+        "post_treatment": {
+          "count": 7,
+          "pct": 17.5
+        },
+        "booking_admin": {
+          "count": 2,
+          "pct": 5.0
+        },
+        "pre_appointment": {
+          "count": 6,
+          "pct": 15.0
+        },
+        "complaint": {
+          "count": 8,
+          "pct": 20.0
+        }
+      },
+      "top_stage": "during_treatment",
+      "top_stage_pct": 42.5
+    },
+    {
+      "clinic": "London Women's Clinic - Harley Street",
+      "total_comm": 33,
+      "stages": {
+        "during_treatment": {
+          "count": 10,
+          "pct": 30.3
+        },
+        "post_treatment": {
+          "count": 7,
+          "pct": 21.2
+        },
+        "booking_admin": {
+          "count": 3,
+          "pct": 9.1
+        },
+        "pre_appointment": {
+          "count": 8,
+          "pct": 24.2
+        },
+        "complaint": {
+          "count": 5,
+          "pct": 15.2
+        }
+      },
+      "top_stage": "during_treatment",
+      "top_stage_pct": 30.3
+    },
+    {
+      "clinic": "Harley Street Fertility Clinic",
+      "total_comm": 28,
+      "stages": {
+        "during_treatment": {
+          "count": 10,
+          "pct": 35.7
+        },
+        "post_treatment": {
+          "count": 3,
+          "pct": 10.7
+        },
+        "booking_admin": {
+          "count": 5,
+          "pct": 17.9
+        },
+        "pre_appointment": {
+          "count": 6,
+          "pct": 21.4
+        },
+        "complaint": {
+          "count": 3,
+          "pct": 10.7
+        }
+      },
+      "top_stage": "during_treatment",
+      "top_stage_pct": 35.7
+    },
+    {
+      "clinic": "The Lister Fertility Clinic",
+      "total_comm": 24,
+      "stages": {
+        "during_treatment": {
+          "count": 13,
+          "pct": 54.2
+        },
+        "post_treatment": {
+          "count": 6,
+          "pct": 25.0
+        },
+        "booking_admin": {
+          "count": 2,
+          "pct": 8.3
+        },
+        "pre_appointment": {
+          "count": 3,
+          "pct": 12.5
+        },
+        "complaint": {
+          "count": 0,
+          "pct": 0.0
+        }
+      },
+      "top_stage": "during_treatment",
+      "top_stage_pct": 54.2
+    },
+    {
+      "clinic": "Outpatient 84 Harley Street",
+      "total_comm": 24,
+      "stages": {
+        "during_treatment": {
+          "count": 4,
+          "pct": 16.7
+        },
+        "post_treatment": {
+          "count": 6,
+          "pct": 25.0
+        },
+        "booking_admin": {
+          "count": 5,
+          "pct": 20.8
+        },
+        "pre_appointment": {
+          "count": 5,
+          "pct": 20.8
+        },
+        "complaint": {
+          "count": 4,
+          "pct": 16.7
+        }
+      },
+      "top_stage": "post_treatment",
+      "top_stage_pct": 25.0
+    },
+    {
+      "clinic": "King's Fertility",
+      "total_comm": 22,
+      "stages": {
+        "during_treatment": {
+          "count": 6,
+          "pct": 27.3
+        },
+        "post_treatment": {
+          "count": 7,
+          "pct": 31.8
+        },
+        "booking_admin": {
+          "count": 4,
+          "pct": 18.2
+        },
+        "pre_appointment": {
+          "count": 3,
+          "pct": 13.6
+        },
+        "complaint": {
+          "count": 2,
+          "pct": 9.1
+        }
+      },
+      "top_stage": "post_treatment",
+      "top_stage_pct": 31.8
+    },
+    {
+      "clinic": "Hormone Health",
+      "total_comm": 22,
+      "stages": {
+        "during_treatment": {
+          "count": 8,
+          "pct": 36.4
+        },
+        "post_treatment": {
+          "count": 10,
+          "pct": 45.5
+        },
+        "booking_admin": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "pre_appointment": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "complaint": {
+          "count": 4,
+          "pct": 18.2
+        }
+      },
+      "top_stage": "post_treatment",
+      "top_stage_pct": 45.5
+    },
+    {
+      "clinic": "The Evewell - Harley Street",
+      "total_comm": 21,
+      "stages": {
+        "during_treatment": {
+          "count": 10,
+          "pct": 47.6
+        },
+        "post_treatment": {
+          "count": 4,
+          "pct": 19.0
+        },
+        "booking_admin": {
+          "count": 2,
+          "pct": 9.5
+        },
+        "pre_appointment": {
+          "count": 5,
+          "pct": 23.8
+        },
+        "complaint": {
+          "count": 0,
+          "pct": 0.0
+        }
+      },
+      "top_stage": "during_treatment",
+      "top_stage_pct": 47.6
+    },
+    {
+      "clinic": "Assisted Reproduction & Gynaecology Centre",
+      "total_comm": 21,
+      "stages": {
+        "during_treatment": {
+          "count": 11,
+          "pct": 52.4
+        },
+        "post_treatment": {
+          "count": 5,
+          "pct": 23.8
+        },
+        "booking_admin": {
+          "count": 1,
+          "pct": 4.8
+        },
+        "pre_appointment": {
+          "count": 2,
+          "pct": 9.5
+        },
+        "complaint": {
+          "count": 2,
+          "pct": 9.5
+        }
+      },
+      "top_stage": "during_treatment",
+      "top_stage_pct": 52.4
+    },
+    {
+      "clinic": "LIPS Healthcare",
+      "total_comm": 18,
+      "stages": {
+        "during_treatment": {
+          "count": 6,
+          "pct": 33.3
+        },
+        "post_treatment": {
+          "count": 3,
+          "pct": 16.7
+        },
+        "booking_admin": {
+          "count": 4,
+          "pct": 22.2
+        },
+        "pre_appointment": {
+          "count": 2,
+          "pct": 11.1
+        },
+        "complaint": {
+          "count": 3,
+          "pct": 16.7
+        }
+      },
+      "top_stage": "during_treatment",
+      "top_stage_pct": 33.3
+    },
+    {
+      "clinic": "Dottore London",
+      "total_comm": 15,
+      "stages": {
+        "during_treatment": {
+          "count": 5,
+          "pct": 33.3
+        },
+        "post_treatment": {
+          "count": 6,
+          "pct": 40.0
+        },
+        "booking_admin": {
+          "count": 1,
+          "pct": 6.7
+        },
+        "pre_appointment": {
+          "count": 2,
+          "pct": 13.3
+        },
+        "complaint": {
+          "count": 1,
+          "pct": 6.7
+        }
+      },
+      "top_stage": "post_treatment",
+      "top_stage_pct": 40.0
+    },
+    {
+      "clinic": "Chiswick Outpatients",
+      "total_comm": 15,
+      "stages": {
+        "during_treatment": {
+          "count": 3,
+          "pct": 20.0
+        },
+        "post_treatment": {
+          "count": 4,
+          "pct": 26.7
+        },
+        "booking_admin": {
+          "count": 6,
+          "pct": 40.0
+        },
+        "pre_appointment": {
+          "count": 2,
+          "pct": 13.3
+        },
+        "complaint": {
+          "count": 0,
+          "pct": 0.0
+        }
+      },
+      "top_stage": "booking_admin",
+      "top_stage_pct": 40.0
+    },
+    {
+      "clinic": "London Medical",
+      "total_comm": 12,
+      "stages": {
+        "during_treatment": {
+          "count": 4,
+          "pct": 33.3
+        },
+        "post_treatment": {
+          "count": 2,
+          "pct": 16.7
+        },
+        "booking_admin": {
+          "count": 3,
+          "pct": 25.0
+        },
+        "pre_appointment": {
+          "count": 1,
+          "pct": 8.3
+        },
+        "complaint": {
+          "count": 2,
+          "pct": 16.7
+        }
+      },
+      "top_stage": "during_treatment",
+      "top_stage_pct": 33.3
+    },
+    {
+      "clinic": "The Medical Chambers Kensington",
+      "total_comm": 12,
+      "stages": {
+        "during_treatment": {
+          "count": 1,
+          "pct": 8.3
+        },
+        "post_treatment": {
+          "count": 4,
+          "pct": 33.3
+        },
+        "booking_admin": {
+          "count": 5,
+          "pct": 41.7
+        },
+        "pre_appointment": {
+          "count": 1,
+          "pct": 8.3
+        },
+        "complaint": {
+          "count": 1,
+          "pct": 8.3
+        }
+      },
+      "top_stage": "booking_admin",
+      "top_stage_pct": 41.7
+    },
+    {
+      "clinic": "London Women's Clinic - London Bridge",
+      "total_comm": 11,
+      "stages": {
+        "during_treatment": {
+          "count": 7,
+          "pct": 63.6
+        },
+        "post_treatment": {
+          "count": 3,
+          "pct": 27.3
+        },
+        "booking_admin": {
+          "count": 1,
+          "pct": 9.1
+        },
+        "pre_appointment": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "complaint": {
+          "count": 0,
+          "pct": 0.0
+        }
+      },
+      "top_stage": "during_treatment",
+      "top_stage_pct": 63.6
+    },
+    {
+      "clinic": "The Fertility Academy",
+      "total_comm": 10,
+      "stages": {
+        "during_treatment": {
+          "count": 5,
+          "pct": 50.0
+        },
+        "post_treatment": {
+          "count": 2,
+          "pct": 20.0
+        },
+        "booking_admin": {
+          "count": 1,
+          "pct": 10.0
+        },
+        "pre_appointment": {
+          "count": 1,
+          "pct": 10.0
+        },
+        "complaint": {
+          "count": 1,
+          "pct": 10.0
+        }
+      },
+      "top_stage": "during_treatment",
+      "top_stage_pct": 50.0
+    },
+    {
+      "clinic": "CRGH City",
+      "total_comm": 9,
+      "stages": {
+        "during_treatment": {
+          "count": 1,
+          "pct": 11.1
+        },
+        "post_treatment": {
+          "count": 3,
+          "pct": 33.3
+        },
+        "booking_admin": {
+          "count": 4,
+          "pct": 44.4
+        },
+        "pre_appointment": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "complaint": {
+          "count": 1,
+          "pct": 11.1
+        }
+      },
+      "top_stage": "booking_admin",
+      "top_stage_pct": 44.4
+    },
+    {
+      "clinic": "Aria Fertility",
+      "total_comm": 8,
+      "stages": {
+        "during_treatment": {
+          "count": 4,
+          "pct": 50.0
+        },
+        "post_treatment": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "booking_admin": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "pre_appointment": {
+          "count": 3,
+          "pct": 37.5
+        },
+        "complaint": {
+          "count": 1,
+          "pct": 12.5
+        }
+      },
+      "top_stage": "during_treatment",
+      "top_stage_pct": 50.0
+    },
+    {
+      "clinic": "The Birth Company London, HCA",
+      "total_comm": 7,
+      "stages": {
+        "during_treatment": {
+          "count": 5,
+          "pct": 71.4
+        },
+        "post_treatment": {
+          "count": 1,
+          "pct": 14.3
+        },
+        "booking_admin": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "pre_appointment": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "complaint": {
+          "count": 1,
+          "pct": 14.3
+        }
+      },
+      "top_stage": "during_treatment",
+      "top_stage_pct": 71.4
+    },
+    {
+      "clinic": "Kensington International Clinic - La Maison Medicale",
+      "total_comm": 7,
+      "stages": {
+        "during_treatment": {
+          "count": 1,
+          "pct": 14.3
+        },
+        "post_treatment": {
+          "count": 2,
+          "pct": 28.6
+        },
+        "booking_admin": {
+          "count": 3,
+          "pct": 42.9
+        },
+        "pre_appointment": {
+          "count": 1,
+          "pct": 14.3
+        },
+        "complaint": {
+          "count": 0,
+          "pct": 0.0
+        }
+      },
+      "top_stage": "booking_admin",
+      "top_stage_pct": 42.9
+    },
+    {
+      "clinic": "Messina Clinic",
+      "total_comm": 7,
+      "stages": {
+        "during_treatment": {
+          "count": 3,
+          "pct": 42.9
+        },
+        "post_treatment": {
+          "count": 2,
+          "pct": 28.6
+        },
+        "booking_admin": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "pre_appointment": {
+          "count": 1,
+          "pct": 14.3
+        },
+        "complaint": {
+          "count": 1,
+          "pct": 14.3
+        }
+      },
+      "top_stage": "during_treatment",
+      "top_stage_pct": 42.9
+    },
+    {
+      "clinic": "Avenues",
+      "total_comm": 6,
+      "stages": {
+        "during_treatment": {
+          "count": 1,
+          "pct": 16.7
+        },
+        "post_treatment": {
+          "count": 2,
+          "pct": 33.3
+        },
+        "booking_admin": {
+          "count": 1,
+          "pct": 16.7
+        },
+        "pre_appointment": {
+          "count": 2,
+          "pct": 33.3
+        },
+        "complaint": {
+          "count": 0,
+          "pct": 0.0
+        }
+      },
+      "top_stage": "pre_appointment",
+      "top_stage_pct": 33.3
+    },
+    {
+      "clinic": "The Evewell - West London",
+      "total_comm": 6,
+      "stages": {
+        "during_treatment": {
+          "count": 2,
+          "pct": 33.3
+        },
+        "post_treatment": {
+          "count": 2,
+          "pct": 33.3
+        },
+        "booking_admin": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "pre_appointment": {
+          "count": 2,
+          "pct": 33.3
+        },
+        "complaint": {
+          "count": 0,
+          "pct": 0.0
+        }
+      },
+      "top_stage": "pre_appointment",
+      "top_stage_pct": 33.3
+    },
+    {
+      "clinic": "Fertility Plus",
+      "total_comm": 6,
+      "stages": {
+        "during_treatment": {
+          "count": 2,
+          "pct": 33.3
+        },
+        "post_treatment": {
+          "count": 2,
+          "pct": 33.3
+        },
+        "booking_admin": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "pre_appointment": {
+          "count": 2,
+          "pct": 33.3
+        },
+        "complaint": {
+          "count": 0,
+          "pct": 0.0
+        }
+      },
+      "top_stage": "during_treatment",
+      "top_stage_pct": 33.3
+    },
+    {
+      "clinic": "108 Harley Street",
+      "total_comm": 6,
+      "stages": {
+        "during_treatment": {
+          "count": 2,
+          "pct": 33.3
+        },
+        "post_treatment": {
+          "count": 2,
+          "pct": 33.3
+        },
+        "booking_admin": {
+          "count": 1,
+          "pct": 16.7
+        },
+        "pre_appointment": {
+          "count": 1,
+          "pct": 16.7
+        },
+        "complaint": {
+          "count": 0,
+          "pct": 0.0
+        }
+      },
+      "top_stage": "post_treatment",
+      "top_stage_pct": 33.3
+    },
+    {
+      "clinic": "Harley Street Dr",
+      "total_comm": 6,
+      "stages": {
+        "during_treatment": {
+          "count": 1,
+          "pct": 16.7
+        },
+        "post_treatment": {
+          "count": 1,
+          "pct": 16.7
+        },
+        "booking_admin": {
+          "count": 1,
+          "pct": 16.7
+        },
+        "pre_appointment": {
+          "count": 3,
+          "pct": 50.0
+        },
+        "complaint": {
+          "count": 0,
+          "pct": 0.0
+        }
+      },
+      "top_stage": "pre_appointment",
+      "top_stage_pct": 50.0
+    },
+    {
+      "clinic": "Harley Street Gynaecology",
+      "total_comm": 5,
+      "stages": {
+        "during_treatment": {
+          "count": 3,
+          "pct": 60.0
+        },
+        "post_treatment": {
+          "count": 2,
+          "pct": 40.0
+        },
+        "booking_admin": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "pre_appointment": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "complaint": {
+          "count": 0,
+          "pct": 0.0
+        }
+      },
+      "top_stage": "during_treatment",
+      "top_stage_pct": 60.0
+    },
+    {
+      "clinic": "Queen's Clinic",
+      "total_comm": 5,
+      "stages": {
+        "during_treatment": {
+          "count": 1,
+          "pct": 20.0
+        },
+        "post_treatment": {
+          "count": 3,
+          "pct": 60.0
+        },
+        "booking_admin": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "pre_appointment": {
+          "count": 1,
+          "pct": 20.0
+        },
+        "complaint": {
+          "count": 0,
+          "pct": 0.0
+        }
+      },
+      "top_stage": "post_treatment",
+      "top_stage_pct": 60.0
+    },
+    {
+      "clinic": "London Gynaecology - Moorgate",
+      "total_comm": 4,
+      "stages": {
+        "during_treatment": {
+          "count": 3,
+          "pct": 75.0
+        },
+        "post_treatment": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "booking_admin": {
+          "count": 1,
+          "pct": 25.0
+        },
+        "pre_appointment": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "complaint": {
+          "count": 0,
+          "pct": 0.0
+        }
+      },
+      "top_stage": "during_treatment",
+      "top_stage_pct": 75.0
+    },
+    {
+      "clinic": "IVF Hammersmith",
+      "total_comm": 4,
+      "stages": {
+        "during_treatment": {
+          "count": 3,
+          "pct": 75.0
+        },
+        "post_treatment": {
+          "count": 1,
+          "pct": 25.0
+        },
+        "booking_admin": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "pre_appointment": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "complaint": {
+          "count": 0,
+          "pct": 0.0
+        }
+      },
+      "top_stage": "during_treatment",
+      "top_stage_pct": 75.0
+    },
+    {
+      "clinic": "Ten Harley Street",
+      "total_comm": 4,
+      "stages": {
+        "during_treatment": {
+          "count": 1,
+          "pct": 25.0
+        },
+        "post_treatment": {
+          "count": 2,
+          "pct": 50.0
+        },
+        "booking_admin": {
+          "count": 1,
+          "pct": 25.0
+        },
+        "pre_appointment": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "complaint": {
+          "count": 0,
+          "pct": 0.0
+        }
+      },
+      "top_stage": "post_treatment",
+      "top_stage_pct": 50.0
+    },
+    {
+      "clinic": "Balance My Hormones",
+      "total_comm": 3,
+      "stages": {
+        "during_treatment": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "post_treatment": {
+          "count": 2,
+          "pct": 66.7
+        },
+        "booking_admin": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "pre_appointment": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "complaint": {
+          "count": 1,
+          "pct": 33.3
+        }
+      },
+      "top_stage": "post_treatment",
+      "top_stage_pct": 66.7
+    }
+  ]
+}

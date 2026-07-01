@@ -1,0 +1,40 @@
+{
+  "video_id": "7644863912545881366",
+  "source_media": "7644863912545881366.mp4",
+  "whisper_model": "small",
+  "language": "en",
+  "duration_after_vad": 20.318875,
+  "full_text": "The benefits of MRI depends on who's reading it. If you've got it, the radiologist needs to have an interest in it. If you're having an MRI, it must be with a radiologist who has an understanding of endometriosis and knows what they're looking for. Otherwise, they'll miss it. Same when it comes to surgery.",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 6.0,
+      "text": "The benefits of MRI depends on who's reading it."
+    },
+    {
+      "start": 6.0,
+      "end": 10.0,
+      "text": "If you've got it, the radiologist needs to have an interest in it."
+    },
+    {
+      "start": 10.0,
+      "end": 13.0,
+      "text": "If you're having an MRI, it must be with a radiologist"
+    },
+    {
+      "start": 13.0,
+      "end": 16.0,
+      "text": "who has an understanding of endometriosis and knows what they're looking for."
+    },
+    {
+      "start": 16.0,
+      "end": 18.0,
+      "text": "Otherwise, they'll miss it."
+    },
+    {
+      "start": 18.0,
+      "end": 20.0,
+      "text": "Same when it comes to surgery."
+    }
+  ]
+}

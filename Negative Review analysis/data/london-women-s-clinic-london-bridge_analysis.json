@@ -1,0 +1,91 @@
+{
+  "clinic": "London Women's Clinic - London Bridge",
+  "review_count": 27,
+  "categories": [
+    {
+      "name": "Treatment Quality",
+      "count": 7,
+      "pct": 25.9,
+      "severity": "high",
+      "quotes": [
+        "eggs had already started releasing",
+        "advice was vague",
+        "convinced I had something"
+      ]
+    },
+    {
+      "name": "Other",
+      "count": 6,
+      "pct": 22.2,
+      "severity": "high",
+      "quotes": [
+        "makes a fortune selling donated eggs",
+        "Hideous. Clinically poor.",
+        "negative reviews going by my experience"
+      ]
+    },
+    {
+      "name": "Staff Attitude",
+      "count": 3,
+      "pct": 11.1,
+      "severity": "high",
+      "quotes": [
+        "poor you patronizing",
+        "receptionist was so rude",
+        "no help and no support"
+      ]
+    },
+    {
+      "name": "Communication",
+      "count": 3,
+      "pct": 11.1,
+      "severity": "medium",
+      "quotes": [
+        "no further information mentioned",
+        "Communication from them is terrible",
+        "no detailed investigation or explanation"
+      ]
+    },
+    {
+      "name": "Booking & Admin",
+      "count": 3,
+      "pct": 11.1,
+      "severity": "medium",
+      "quotes": [
+        "DOB on the forms were incorrect",
+        "running late, not clear on services",
+        "coordination within teams is extremely poor"
+      ]
+    },
+    {
+      "name": "Waiting Times",
+      "count": 2,
+      "pct": 7.4,
+      "severity": "high",
+      "quotes": [
+        "missed my ovulation",
+        "over 48 hrs from surge"
+      ]
+    },
+    {
+      "name": "Doctor / Consultant",
+      "count": 2,
+      "pct": 7.4,
+      "severity": "high",
+      "quotes": [
+        "he no longer worked for the clinic",
+        "regret ever giving them any money"
+      ]
+    },
+    {
+      "name": "Billing & Invoicing",
+      "count": 1,
+      "pct": 3.7,
+      "severity": "high",
+      "quotes": [
+        "still sending me invoices for medications"
+      ]
+    }
+  ],
+  "summary": "\"Patients at London Women's Clinic - London Bridge were most dissatisfied with treatment quality (26% of complaints) and other unspecified issues (22%). Smaller concerns included staff attitude, communication, and booking/admin, each making up 11% of complaints.\""
+}

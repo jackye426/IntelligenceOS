@@ -1,0 +1,21 @@
+{
+  "clinic": "Bridge Clinic London",
+  "reviews": [
+    {
+      "rating": 1,
+      "date": "4 months ago",
+      "text": "I can’t describe the Stress and bad experience I went through to this clinic.\nI pay a lot of money for nothing. I did all the exam scan blood test and they say after one month I’m gonna send by email all the medicine you need but they …"
+    },
+    {
+      "rating": 1,
+      "date": "a month ago",
+      "text": "Wouldn’t waste your time. We have tried and failed to arrange an initial consultation with this ‘clinic’. They had confirmed four appointments by email, and failed to call on both occasions, despite having mine and my partners number. Tried …"
+    },
+    {
+      "rating": 1,
+      "date": "2 months ago",
+      "text": "Absolutely dying at all these fake reviews as this useless clinic tries to rebrand. Came back here as, even two years on from making the huge mistake to use this clinic, we are still having to chase paperwork due to their complete …"
+    }
+  ],
+  "total_negative": 3
+}

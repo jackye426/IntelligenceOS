@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+{% block title %}Private Outpatient Footprint — {{ generated_at[:10] }}{% endblock %}
+{% block content %}
+
+<style>
+  .tally-table th, .tally-table td { text-align: right; }
+  .tally-table th:first-child, .tally-table td:first-child { text-align: left; }
+  .bar-wrap { background: #e9ecef; border-radius: 3px; height: 10px; min-width: 80px; display: inline-block; vertical-align: middle; }
+  .bar-fill { height: 10px; border-radius: 3px; display: inline-block; }
+  .share-cell { white-space: nowrap; }
+  .slots-table td { text-align: right; }
+  .slots-table td:first-child, .slots-table td:nth-child(2), .slots-table td:nth-child(3) { text-align: left; }
+  .dot-full   { color: #198754; font-weight: 700; }
+  .dot-partial { color: #fd7e14; font-weight: 700; }
+  .dot-low    { color: #dc3545; font-weight: 700; }
+  .layer-label { display: inline-block; background: #495057; color: #fff; font-size: 0.72rem; font-weight: 700; padding: 0.15em 0.5em; border-radius: 3px; margin-right: 0.4rem; letter-spacing: 0.03em; vertical-align: middle; }
+  .consultant-section { background: #fff; border: 1px solid #dee2e6; border-radius: 6px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; }
+  .consultant-section h2 { border-bottom: 2px solid #dee2e6; padding-bottom: 0.4rem; margin-top: 0; }
+  .loc-badge { display: inline-block; background: #e7f1ff; color: #084298; border: 1px solid #b6d4fe; border-radius: 4px; padding: 0.2em 0.55em; font-size: 0.82rem; margin: 0.15rem 0.2rem 0.15rem 0; }
+  .day-badge  { display: inline-block; background: #f0f0f0; border: 1px solid #ced4da; border-radius: 4px; padding: 0.2em 0.5em; font-size: 0.82rem; margin: 0.15rem 0.2rem 0.15rem 0; }
+  .stat-box   { display: inline-block; background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 5px; padding: 0.4rem 0.8rem; margin: 0.25rem 0.4rem 0.25rem 0; text-align: center; }
+  .stat-box .val { font-size: 1.4rem; font-weight: 700; line-height: 1.2; }
+  .stat-box .lbl { font-size: 0.72rem; color: #6c757d; }
+  .share-big  { font-size: 2rem; font-weight: 700; }
+  .no-data-list { color: #6c757d; font-size: 0.88rem; }
+  .tally-total td { font-weight: 700; border-top: 2px solid #495057; background: #f1f3f5; }
+</style>
+
+<h1>Private Outpatient Footprint</h1>
+<div class="meta">
+  Generated: {{ generated_at }} &nbsp;|&nbsp; Analysis window: {{ window_start }} to {{ window_end }} ({{ window_days }} days)
+</div>
+
+<div class="disclaimer">
+  <strong>Scope:</strong> This report measures publicly visible HCA online slot supply against a hypothetical
+  5-day full-time outpatient schedule. It is <strong>not a utilisation rate</strong> — utilisation
+  (booked&nbsp;/&nbsp;capacity) requires slot disappearance history accumulated over multiple scrape runs.
+  Theoretical capacity per consultant uses the <em>maximum observed slots on any single clinic date</em>
+  within the analysis window as the per-session capacity benchmark.
+</div>
+
+{# ── COMBINED TALLY ─────────────────────────────────────────────────── #}
+<div class="section">
+  <h2>Combined tally — {{ active_count }} consultants with visible slots</h2>
+  <table class="tally-table">
+    <thead>
+      <tr>
+        <th>Consultant</th>
+        <th>Active days/wk</th>
+        <th>Max slots/day</th>
+        <th>Obs. slots/wk</th>
+        <th>Theor. slots/wk</th>
+        <th>Share of theoretical</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for b in benchmarks %}
+      <tr>
+        <td><a href="#{{ b.slug }}">{{ b.consultant_name }}</a></td>
+        <td>{{ "%.1f"|format(b.avg_clinic_days_per_week) }}</td>
+        <td>{{ b.max_slots_per_clinic_day }}</td>
+        <td>{{ "%.1f"|format(b.observed_slots_per_week) }}</td>
+        <td>{{ b.theoretical_slots_per_week }}</td>
+        <td class="share-cell">
+          <span style="display:inline-block;width:3.2rem;text-align:right;font-weight:600;">{{ "%.1f"|format(b.visible_hca_capacity_share_pct) }}%</span>
+          &nbsp;
+          <span class="bar-wrap">
+            <span class="bar-fill" style="width:{{ [b.visible_hca_capacity_share_pct, 100]|min }}%;background:{{ share_color(b.visible_hca_capacity_share_pct) }};"></span>
+          </span>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot>
+      <tr class="tally-total">
+        <td>TOTAL ({{ active_count }} consultants)</td>
+        <td></td>
+        <td></td>
+        <td>{{ "%.1f"|format(total_observed_per_week) }}</td>
+        <td>{{ total_theoretical_per_week }}</td>
+        <td class="share-cell">
+          <span style="display:inline-block;width:3.2rem;text-align:right;font-weight:600;">{{ "%.1f"|format(combined_share_pct) }}%</span>
+          &nbsp;
+          <span class="bar-wrap">
+            <span class="bar-fill" style="width:{{ [combined_share_pct, 100]|min }}%;background:{{ share_color(combined_share_pct) }};"></span>
+          </span>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+  {% if no_data_names %}
+  <p class="no-data-list"><strong>No visible slots ({{ no_data_names|length }}):</strong> {{ no_data_names|join(", ") }}</p>
+  {% endif %}
+</div>
+
+{# ── PER-CONSULTANT SECTIONS ─────────────────────────────────────────── #}
+{% for b in benchmarks %}
+<div class="consultant-section" id="{{ b.slug }}">
+  <h2>{{ b.consultant_name }}</h2>
+
+  {# Layer 1 #}
+  <p>
+    <span class="layer-label">LAYER 1</span>
+    <strong>Clinic-day footprint</strong>
+  </p>
+  <div>
+    {% for d in b.days_of_week_active %}<span class="day-badge">{{ d }}</span>{% endfor %}
+    &nbsp;&nbsp;
+    {% for loc in b.unique_locations %}<span class="loc-badge">{{ loc }}</span>{% endfor %}
+  </div>
+  <div style="margin-top:0.75rem;">
+    <div class="stat-box">
+      <div class="val">{{ b.clinic_dates|length }}</div>
+      <div class="lbl">clinic days in window</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">{{ "%.1f"|format(b.avg_clinic_days_per_week) }}</div>
+      <div class="lbl">avg days / week</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">5</div>
+      <div class="lbl">theoretical full-time days/wk</div>
+    </div>
+  </div>
+
+  {# Layer 2 #}
+  <p style="margin-top:1.25rem;">
+    <span class="layer-label">LAYER 2</span>
+    <strong>Slot supply per clinic day</strong>
+  </p>
+  <div style="margin-bottom:0.75rem;">
+    <div class="stat-box">
+      <div class="val">{{ b.max_slots_per_clinic_day }}</div>
+      <div class="lbl">max slots / day</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">{{ b.median_slots_per_clinic_day|int }}</div>
+      <div class="lbl">median slots / day</div>
+    </div>
+  </div>
+  <table class="slots-table">
+    <thead>
+      <tr><th>Date</th><th>Day</th><th>Location</th><th>Visible slots</th><th>Availability remaining</th></tr>
+    </thead>
+    <tbody>
+      {% for row in b.clinic_date_rows %}
+      <tr>
+        <td>{{ row.date }}</td>
+        <td>{{ row.dow }}</td>
+        <td>{{ row.location }}</td>
+        <td>{{ row.count }}</td>
+        <td>
+          {% if row.fill_pct >= 75 %}<span class="dot-full">&#9632;</span>
+          {% elif row.fill_pct >= 30 %}<span class="dot-partial">&#9632;</span>
+          {% else %}<span class="dot-low">&#9632;</span>{% endif %}
+          &nbsp;{{ "%.0f"|format(row.fill_pct) }}% remaining
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  {# Layer 3 #}
+  <p style="margin-top:1.25rem;">
+    <span class="layer-label">LAYER 3</span>
+    <strong>Theoretical capacity benchmark</strong>
+  </p>
+  <div>
+    <div class="stat-box">
+      <div class="val share-big" style="color:{{ share_color(b.visible_hca_capacity_share_pct) }};">{{ "%.1f"|format(b.visible_hca_capacity_share_pct) }}%</div>
+      <div class="lbl">share of theoretical full-time capacity</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">{{ "%.1f"|format(b.observed_slots_per_week) }}</div>
+      <div class="lbl">observed visible slots / wk</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">{{ b.theoretical_slots_per_week }}</div>
+      <div class="lbl">theoretical slots / wk<br><small style="font-weight:400;">5d &times; {{ b.max_slots_per_clinic_day }} slots/day</small></div>
+    </div>
+    {% if b.slots_per_week %}
+    <div class="stat-box">
+      <div class="val">{{ b.weekly_range }}</div>
+      <div class="lbl">range across individual weeks</div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,62 @@
+[
+  {
+    "cid": "7637172228399825686",
+    "text": "You are an amazing woman-thank you so much for sharing🥰 So true, fatigue is so overlooked, especially when nothing shows up in bloods. GP has always wanted to say 'how is your life style.' Never hear the facts because trained to hear- Alcohol, not looking after yourself! xx",
+    "digg_count": 4,
+    "reply_comment_total": 0,
+    "create_time": 1778167737,
+    "themes": [
+      "validation_gratitude"
+    ],
+    "sentiment": {
+      "stance": "agree_validate",
+      "primary_emotion": "gratitude_hope",
+      "toxicity_spam_flag": false
+    }
+  },
+  {
+    "cid": "7640946260581024520",
+    "text": "I spend 70% of my time in bed I get tired just sweeping my room",
+    "digg_count": 0,
+    "reply_comment_total": 0,
+    "create_time": 1779046449,
+    "themes": [
+      "personal_story"
+    ],
+    "sentiment": {
+      "stance": "personal_story",
+      "primary_emotion": "neutral",
+      "toxicity_spam_flag": false
+    }
+  },
+  {
+    "cid": "7637876501233025814",
+    "text": "I’ve had two huge surgeries. Had the hysterectomy for Adeno in the end. I can sleep for days and still tired.",
+    "digg_count": 1,
+    "reply_comment_total": 0,
+    "create_time": 1778331720,
+    "themes": [
+      "other_uncategorized"
+    ],
+    "sentiment": {
+      "stance": "personal_story",
+      "primary_emotion": "neutral",
+      "toxicity_spam_flag": false
+    }
+  },
+  {
+    "cid": "7637571429336204054",
+    "text": "Living with endo for 30 years… has lighted, then told I had it but then lied and said we got it all it won’t come back. 10 yrs of not being believed, went private , whole insides stuck and bowel resection and hysterectomy. Year on, still in pain - the bleeding ! One thing stopped 🥺",
+    "digg_count": 1,
+    "reply_comment_total": 0,
+    "create_time": 1778260685,
+    "themes": [
+      "personal_story"
+    ],
+    "sentiment": {
+      "stance": "personal_story",
+      "primary_emotion": "neutral",
+      "toxicity_spam_flag": false
+    }
+  }
+]

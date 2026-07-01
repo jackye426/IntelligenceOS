@@ -1,0 +1,81 @@
+{
+  "refreshed_at": "2026-06-05T10:40:32.657405+00:00",
+  "since": "2026-04-20",
+  "catalog_count": 36,
+  "already_had_transcript": 20,
+  "attempted_new": 16,
+  "results": [
+    {
+      "video_id": "7647574808162487574",
+      "status": "transcribe_error",
+      "error": "DLL load failed while importing layout: An Application Control policy has blocked this file."
+    },
+    {
+      "video_id": "7647091030986165526",
+      "status": "transcribe_error",
+      "error": "DLL load failed while importing tokenizers: An Application Control policy has blocked this file."
+    },
+    {
+      "video_id": "7645351638957313302",
+      "status": "transcribed",
+      "chars": 1190
+    },
+    {
+      "video_id": "7644863912545881366",
+      "status": "transcribed",
+      "chars": 307
+    },
+    {
+      "video_id": "7644580086208859414",
+      "status": "transcribed",
+      "chars": 1584
+    },
+    {
+      "video_id": "7644218706028956950",
+      "status": "transcribed",
+      "chars": 914
+    },
+    {
+      "video_id": "7641917387201187094",
+      "status": "skipped_carousel_or_no_speech"
+    },
+    {
+      "video_id": "7641554459755089154",
+      "status": "transcribed",
+      "chars": 373
+    },
+    {
+      "video_id": "7638883805494889750",
+      "status": "skipped_carousel_or_no_speech"
+    },
+    {
+      "video_id": "7638541093646191894",
+      "status": "transcribed",
+      "chars": 766
+    },
+    {
+      "video_id": "7637061986777402646",
+      "status": "skipped_carousel_or_no_speech"
+    },
+    {
+      "video_id": "7636091017875197207",
+      "status": "skipped_carousel_or_no_speech"
+    },
+    {
+      "video_id": "7635716747869424918",
+      "status": "skipped_carousel_or_no_speech"
+    },
+    {
+      "video_id": "7634984535372942614",
+      "status": "skipped_carousel_or_no_speech"
+    },
+    {
+      "video_id": "7634568172330421526",
+      "status": "skipped_carousel_or_no_speech"
+    },
+    {
+      "video_id": "7631307430890048790",
+      "status": "skipped_carousel_or_no_speech"
+    }
+  ]
+}

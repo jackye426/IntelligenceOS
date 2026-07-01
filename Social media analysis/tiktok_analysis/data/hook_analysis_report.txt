@@ -1,0 +1,266 @@
+# Docmap TikTok — Hook Analysis
+# Spoken hook = first sentence of Whisper ASR transcript
+# Text hook   = first sentence of TikTok caption/description
+# Videos: 39
+
+======================================================================
+  2026-06-14  |   views
+  https://www.tiktok.com/@docmap/video/7650472969264844054
+
+  SPOKEN HOOK:  Work like symptoms.
+  TEXT HOOK:    If you are hitting a wall getting a diagnosis for endometriosis, this one is for you.
+======================================================================
+  2026-06-14  |   views
+  https://www.tiktok.com/@docmap/video/7650491657414085910
+
+  SPOKEN HOOK:  Do you think you have endometres of denomyosis?
+  TEXT HOOK:    Did you know you can see an endometriosis Clinical Nurse Specialist (CNS) online?
+======================================================================
+  2026-06-13  |   views
+  https://www.tiktok.com/@docmap/video/7650466482173791510
+
+  SPOKEN HOOK:  I would be very surprised to know what you said, no.
+  TEXT HOOK:    Always ask for your surgical photos after a laparoscopy.
+======================================================================
+  2026-06-13  |   views
+  https://www.tiktok.com/@docmap/video/7650479358867492118
+
+  SPOKEN HOOK:  If you're needing to use really strong pain killers, get help.
+  TEXT HOOK:    Painful periods are often one of the first and most well-known symptoms of endometriosis.
+======================================================================
+  2026-06-12  |   views
+  https://www.tiktok.com/@docmap/video/7650429101584469270
+
+  SPOKEN HOOK:  This is purely diagnostic.
+  TEXT HOOK:    A 30-minute laparoscopy that found nothing doesn't mean nothing is there.
+======================================================================
+  2026-06-12  |   views
+  https://www.tiktok.com/@docmap/video/7650465917700279574
+
+  SPOKEN HOOK:  the first response and it still is and it's just so sad is his periods get used to it.
+  TEXT HOOK:    9 years.
+======================================================================
+  2026-06-12  |   views
+  https://www.tiktok.com/@docmap/video/7650467196187036950
+
+  SPOKEN HOOK:  Are you going to look at my diaphragm?
+  TEXT HOOK:    Before your laparoscopy, there are questions you should be asking your surgeon and most people don't know what they are.
+======================================================================
+  2026-06-11  |   views
+  https://www.tiktok.com/@docmap/video/7650157296907062550
+
+  SPOKEN HOOK:  I had my stuff thrown on your own and the train was full and then you know seats and they tried to look to prime up to me and said that he will find me and see if you've got a land on your own.
+  TEXT HOOK:    Did you know that if you have endometriosis, you're eligible for a Hidden Disabilities Sunflower lanyard?
+======================================================================
+  2026-06-10  |   views
+  https://www.tiktok.com/@docmap/video/7649808436883967254
+
+  SPOKEN HOOK:  I would say Lester G, Lester G is always, I did a study a year ago, I was asked to do a presentation about my clinic at BSG and called, and I did it and I thought it was boring.
+  TEXT HOOK:    The pain is real, it's debilitating, and it deserves to be talked about.
+======================================================================
+  2026-06-05  |   views
+  https://www.tiktok.com/@docmap/video/7647939769464278275
+
+  SPOKEN HOOK:  I just got on the pill when I was a laughing to kind of tackle that that went on until 15 and the word and do it truces was then brought up on iron tablets, calories and so much blood, like I'd be having to change all the time and bed sheets and mattresses and no one kind of thought it was like, oh, it's just heavy pain for periods.
+  TEXT HOOK:    We’ll put you on the pill, that will sort you out.
+======================================================================
+  2026-06-04  |  937 views
+  https://www.tiktok.com/@docmap/video/7647574808162487574
+
+  SPOKEN HOOK:  It was actually the day before I started high school.
+  TEXT HOOK:    We all have bad periods, you just have to get used to it.
+======================================================================
+  2026-06-03  |  2,241 views
+  https://www.tiktok.com/@docmap/video/7647091030986165526
+
+  SPOKEN HOOK:  MRI is good in studies it comes with sort of a relatively equal comparison to transvaginal scan the benefit of transvaginal scan is it's cheaper and it's more accessible however it does depend on the 
+  TEXT HOOK:    A negative MRI does NOT mean you're in the clear!
+======================================================================
+  2026-05-29  |  1,024 views
+  https://www.tiktok.com/@docmap/video/7645351638957313302
+
+  SPOKEN HOOK:  Endo events is basically a community-led advocacy-based project essentially so it's a complete non-profit organisation which is set up essentially to help people with chronic illnesses in particular p
+  TEXT HOOK:    @Laura | Women’s Health Creator struggled with her own endometriosis symptoms and found herself building a community around it on TikTok.
+======================================================================
+  2026-05-28  |  17,500 views
+  https://www.tiktok.com/@docmap/video/7644863912545881366
+
+  SPOKEN HOOK:  The benefits of MRI depends on who's reading it.
+  TEXT HOOK:    Your MRI is only as useful as the person reading it.
+======================================================================
+  2026-05-27  |  806 views
+  https://www.tiktok.com/@docmap/video/7644580086208859414
+
+  SPOKEN HOOK:  I had a really good job.
+  TEXT HOOK:    Endometriosis takes.
+======================================================================
+  2026-05-26  |  643 views
+  https://www.tiktok.com/@docmap/video/7644218706028956950
+
+  SPOKEN HOOK:  Do you have questions about endometriosis or adenomyosis?
+  TEXT HOOK:    Did you know you can see an endometriosis Clinical Nurse Specialist (CNS) online?
+======================================================================
+  2026-05-25  |  883 views
+  https://www.tiktok.com/@docmap/video/7643867792634154262
+
+  SPOKEN HOOK:  whatever your experience in right to don't document it.
+  TEXT HOOK:    Do you document your endo symptoms?
+======================================================================
+  2026-05-24  |  833 views
+  https://www.tiktok.com/@docmap/video/7643525601353075990
+
+  SPOKEN HOOK:  I asked I, I, to tell me what I should say to my GP to get referred to an antimiotross specialist.
+  TEXT HOOK:    Al can be a powerful tool when navigating endometriosis, if you know how to use it.
+======================================================================
+  2026-05-21  |  1,159 views
+  https://www.tiktok.com/@docmap/video/7642386611526716694
+
+  SPOKEN HOOK:  You know, to trust your own body, to trust your own intuition, you know, your body better than anyone else.
+  TEXT HOOK:    Dismissed.
+======================================================================
+  2026-05-19  |  8,374 views
+  https://www.tiktok.com/@docmap/video/7641554459755089154
+
+  SPOKEN HOOK:  Excision, not ablation, because it's ablation only takes the surface, it's like skimming, it's like skimming something.
+  TEXT HOOK:    Excision, not ablation.
+======================================================================
+  2026-05-18  |  1,159 views
+  https://www.tiktok.com/@docmap/video/7641128554654256387
+
+  SPOKEN HOOK:  Last question, one, six, right.
+  TEXT HOOK:    Replying to @KLF2511 why your pain after the endometriosis surgery might get worse.
+======================================================================
+  2026-05-18  |  2,066 views
+  https://www.tiktok.com/@docmap/video/7641301413062102294
+
+  SPOKEN HOOK:  So, MRI, can I have overdiagnosis underdiagnosis andometrosis?
+  TEXT HOOK:    You asked, Liz answered!
+======================================================================
+  2026-05-15  |  1,117 views
+  https://www.tiktok.com/@docmap/video/7640094039668296982
+
+  SPOKEN HOOK:  And somebody has asked, was there a conclusion that laparoscopic was far less successful than a full open surgery as far the condition worsening versus being better treated down the road?
+  TEXT HOOK:    Replying to @amorphousblob
+======================================================================
+  2026-05-15  |  9,595 views
+  https://www.tiktok.com/@docmap/video/7640116261598350614
+
+  SPOKEN HOOK:  I had my surgery with a general gynecologist and surgery for 30 minutes, told her there was no end or impenetra in my head, nor photos taken to take for specialists.
+  TEXT HOOK:    Replying to @Alice O'Neil
+======================================================================
+  2026-05-14  |  1,305 views
+  https://www.tiktok.com/@docmap/video/7639651293883206935
+
+  SPOKEN HOOK:  The next question was, what if you ask for a 360 and you say no?
+  TEXT HOOK:    Replying to @Bec really good question!
+======================================================================
+  2026-05-14  |  1,050 views
+  https://www.tiktok.com/@docmap/video/7639676954576276758
+
+  SPOKEN HOOK:  When are you asking for this just before are we sending life beforehand?
+  TEXT HOOK:    Replying to @celine forrest
+======================================================================
+  2026-05-14  |  1,343 views
+  https://www.tiktok.com/@docmap/video/7639773005035375894
+
+  SPOKEN HOOK:  does endow in the pouch, don't let's get worse over time.
+  TEXT HOOK:    Replying to @Shell McPhee
+======================================================================
+  2026-05-13  |  1,024 views
+  https://www.tiktok.com/@docmap/video/7639345448112672022
+
+  SPOKEN HOOK:  Hi, good afternoon everybody.
+  TEXT HOOK:    We had another chat with Liz to answer some of your questions about the 360-degree assessment.
+======================================================================
+  2026-05-11  |  1,158 views
+  https://www.tiktok.com/@docmap/video/7638541093646191894
+
+  SPOKEN HOOK:  The research that's going on, the fact that I know so many people that give a damn about it, that really want to make a difference, and that people are being empowered to also help themselves.
+  TEXT HOOK:    It's not all doom and gloom.
+======================================================================
+  2026-05-07  |  2,612 views
+  https://www.tiktok.com/@docmap/video/7637168703532027158
+
+  SPOKEN HOOK:  I would say lethargy.
+  TEXT HOOK:    Endometriosis isn't just about painful periods.
+======================================================================
+  2026-04-30  |  2,997 views
+  https://www.tiktok.com/@docmap/video/7634579404131241239
+
+  SPOKEN HOOK:  benefits of MRI depends on who's reading it.
+  TEXT HOOK:    Replying to @user8575620225727  Many of you have asked about the MRI
+======================================================================
+  2026-04-29  |  1,106 views
+  https://www.tiktok.com/@docmap/video/7634274846117104918
+
+  SPOKEN HOOK:  There's not enough education about it.
+  TEXT HOOK:    Why does it take 9 years on average to get an endometriosis diagnosis in the UK?
+======================================================================
+  2026-04-28  |  1,952 views
+  https://www.tiktok.com/@docmap/video/7633862545228434710
+
+  SPOKEN HOOK:  So it's simple and complicated.
+  TEXT HOOK:    9 years.
+======================================================================
+  2026-04-27  |  1,068 views
+  https://www.tiktok.com/@docmap/video/7633495707416235286
+
+  SPOKEN HOOK:  If someone has suspicion that they have endometriosis, but they're kind of hitting the wall What would you tell them now?
+  TEXT HOOK:    Hitting a wall getting a diagnosis for endometriosis?
+======================================================================
+  2026-04-24  |  5,682 views
+  https://www.tiktok.com/@docmap/video/7632321370080152854
+
+  SPOKEN HOOK:  God, you look so pretty when you tell me that you love me I wish that I could lie, but my mind gets in the way I know you think it all, always way too self aware Oh, we could never be together, but it
+  TEXT HOOK:    You have approximately 8 minutes to tell your GP what's wrong, but how do you get it right?
+======================================================================
+  2026-04-23  |  1,423 views
+  https://www.tiktok.com/@docmap/video/7632002231339928854
+
+  SPOKEN HOOK:  If you're needing to use really strong pain killers, get help.
+  TEXT HOOK:    Periods can be painful, but if you need strong painkillers to be able to function?
+======================================================================
+  2026-04-21  |  9,982 views
+  https://www.tiktok.com/@docmap/video/7631220659770690818
+
+  SPOKEN HOOK:  Excision, not ablation.
+  TEXT HOOK:    Responding to a question from today: Can someone explain why excision, not ablation?
+======================================================================
+  2026-04-20  |  325,700 views
+  https://www.tiktok.com/@docmap/video/7630900114982210838
+
+  SPOKEN HOOK:  If you have a laparoscopy of somebody who doesn't know what they're looking for, they'll miss it.
+  TEXT HOOK:    This is for anyone heading into laparoscopic surgery for endo, or those currently on the waiting list.
+======================================================================
+    |   views
+  https://www.tiktok.com/@docmap/video/7629626326927805718
+
+  SPOKEN HOOK:  See, this is the good news of social media.
+  TEXT HOOK:    From a heartbreaking diagnosis to a community of 30k people (from this week!).
+
+======================================================================
+# A/B PAIRS — same content, different hook
+# (MRI example highlighted below)
+
+  --- MRI — who reads it matters ---
+      17,500 views  |  2026-05-28  |  https://www.tiktok.com/@docmap/video/7644863912545881366
+    SPOKEN: The benefits of MRI depends on who's reading it.
+    TEXT:   Your MRI is only as useful as the person reading it.
+
+       2,997 views  |  2026-04-30  |  https://www.tiktok.com/@docmap/video/7634579404131241239
+    SPOKEN: benefits of MRI depends on who's reading it.
+    TEXT:   Replying to @user8575620225727  Many of you have asked about the MRI
+
+       2,066 views  |  2026-05-18  |  https://www.tiktok.com/@docmap/video/7641301413062102294
+    SPOKEN: So, MRI, can I have overdiagnosis underdiagnosis andometrosis?
+    TEXT:   You asked, Liz answered!
+
+  --- Excision vs ablation ---
+       9,982 views  |  2026-04-21  |  https://www.tiktok.com/@docmap/video/7631220659770690818
+    SPOKEN: Excision, not ablation.
+    TEXT:   Responding to a question from today: Can someone explain why excision, not ablation?
+
+       8,374 views  |  2026-05-19  |  https://www.tiktok.com/@docmap/video/7641554459755089154
+    SPOKEN: Excision, not ablation, because it's ablation only takes the surface, it's like skimming, it's like skimming something.
+    TEXT:   Excision, not ablation.
+

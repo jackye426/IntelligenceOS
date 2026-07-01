@@ -1,0 +1,110 @@
+{
+  "id": "7638883805494889750",
+  "formats": [
+    {
+      "format_id": "audio",
+      "url": "https://v77.tiktokcdn-eu.com/1f17945603e902fc352dca999a78d9c1/6a23f8b1/video/tos/useast2a/tos-useast2a-v-27dcd7/oYnRgd3wRBbogUoEFa4RlEvAkps2M4K9KHeoIo/?a=1233&bti=ODszNWYuMDE6&&bt=62&ft=.NpOcInz7ThE8XCGXq8Zmo&mime_type=audio_mpeg&rc=O2c2aGYzZWQ7aWY7ZWhnZEBpM2RveWdram41NTMzNzU8M0BgMWMxMmNjNWAxMjA1MDRfYSNjNS0uNGphZTJgLS1kMTZzcw%3D%3D&vvpl=1&l=20260605103805DF92C0FB6B271F1BCFC9&btag=e00048000",
+      "ext": "mp3",
+      "acodec": "mp3",
+      "vcodec": "none",
+      "protocol": "https",
+      "audio_ext": "mp3",
+      "video_ext": "none",
+      "vbr": 0,
+      "abr": null,
+      "tbr": null,
+      "resolution": "audio only",
+      "aspect_ratio": null,
+      "filesize_approx": null,
+      "http_headers": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-us,en;q=0.5",
+        "Sec-Fetch-Mode": "navigate",
+        "Referer": "https://www.tiktok.com/@docmap/video/7638883805494889750"
+      },
+      "format": "audio - audio only"
+    }
+  ],
+  "subtitles": {},
+  "http_headers": {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "en-us,en;q=0.5",
+    "Sec-Fetch-Mode": "navigate",
+    "Referer": "https://www.tiktok.com/@docmap/video/7638883805494889750"
+  },
+  "channel": "docmap",
+  "channel_id": "MS4wLjABAAAAFJURMLSR0Pg7ewlOr04kHpZUsz75ua2wQVK37080oHzNn_-Oy_nrVhtTz2GuyTZg",
+  "uploader": "docmap",
+  "uploader_id": "7566624635910554626",
+  "channel_url": "https://www.tiktok.com/@MS4wLjABAAAAFJURMLSR0Pg7ewlOr04kHpZUsz75ua2wQVK37080oHzNn_-Oy_nrVhtTz2GuyTZg",
+  "uploader_url": "https://www.tiktok.com/@docmap",
+  "track": "sonido original",
+  "artists": [
+    "CANCIONES"
+  ],
+  "duration": 36,
+  "title": "Endo affects 1 in 10 women. The average diagnosis takes 9 years. It's...",
+  "description": "Endo affects 1 in 10 women. The average diagnosis takes 9 years. It's on the list of the 20 most painful diseases. There is no cure. This is endometriosis. And it's not just a period problem. It's a symptom of something bigger: women's health has been overlooked for centuries. There's even a term for it -bikini medicine - the medical assumption that women are just like men, except for the parts a bikini covers. Everything else? Ignored. We can do better. If you're struggling with endo and don't know where to start, message us on WhatsApp. We're not doctors, but we'll help point you in the right direction. Link in BIO",
+  "timestamp": 1778566246,
+  "view_count": 638,
+  "like_count": 29,
+  "repost_count": 0,
+  "comment_count": 0,
+  "save_count": 5,
+  "thumbnails": [
+    {
+      "id": "cover",
+      "url": "https://p19-common-sign.tiktokcdn-eu.com/tos-no1a-i-photomode-no/81d62f60e4e341d584a5eff7ce9636d9~tplv-photomode-image.jpeg?dr=10375&x-expires=1780826400&x-signature=j7cxlRS57aWbNeXJM%2FoFCRzqAUg%3D&t=4d5b0474&ps=13740610&shp=81f88b70&shcp=9b759fb9&idc=no1a&ftpl=1",
+      "preference": -1
+    },
+    {
+      "id": "originCover",
+      "url": "https://p19-common-sign.tiktokcdn-eu.com/tos-no1a-i-photomode-no/81d62f60e4e341d584a5eff7ce9636d9~tplv-photomode-image.jpeg?dr=10375&x-expires=1780826400&x-signature=j7cxlRS57aWbNeXJM%2FoFCRzqAUg%3D&t=4d5b0474&ps=13740610&shp=81f88b70&shcp=9b759fb9&idc=no1a&ftpl=1",
+      "preference": -1
+    }
+  ],
+  "webpage_url": "https://www.tiktok.com/@docmap/video/7638883805494889750",
+  "original_url": "https://www.tiktok.com/@docmap/video/7638883805494889750",
+  "webpage_url_basename": "7638883805494889750",
+  "webpage_url_domain": "tiktok.com",
+  "extractor": "TikTok",
+  "extractor_key": "TikTok",
+  "playlist": null,
+  "playlist_index": null,
+  "thumbnail": "https://p19-common-sign.tiktokcdn-eu.com/tos-no1a-i-photomode-no/81d62f60e4e341d584a5eff7ce9636d9~tplv-photomode-image.jpeg?dr=10375&x-expires=1780826400&x-signature=j7cxlRS57aWbNeXJM%2FoFCRzqAUg%3D&t=4d5b0474&ps=13740610&shp=81f88b70&shcp=9b759fb9&idc=no1a&ftpl=1",
+  "display_id": "7638883805494889750",
+  "fulltitle": "Endo affects 1 in 10 women. The average diagnosis takes 9 years. It's...",
+  "duration_string": "36",
+  "upload_date": "20260512",
+  "release_year": null,
+  "artist": "CANCIONES",
+  "requested_subtitles": null,
+  "_has_drm": null,
+  "epoch": 1780655885,
+  "format_id": "audio",
+  "url": "https://v77.tiktokcdn-eu.com/1f17945603e902fc352dca999a78d9c1/6a23f8b1/video/tos/useast2a/tos-useast2a-v-27dcd7/oYnRgd3wRBbogUoEFa4RlEvAkps2M4K9KHeoIo/?a=1233&bti=ODszNWYuMDE6&&bt=62&ft=.NpOcInz7ThE8XCGXq8Zmo&mime_type=audio_mpeg&rc=O2c2aGYzZWQ7aWY7ZWhnZEBpM2RveWdram41NTMzNzU8M0BgMWMxMmNjNWAxMjA1MDRfYSNjNS0uNGphZTJgLS1kMTZzcw%3D%3D&vvpl=1&l=20260605103805DF92C0FB6B271F1BCFC9&btag=e00048000",
+  "ext": "mp3",
+  "acodec": "mp3",
+  "vcodec": "none",
+  "protocol": "https",
+  "audio_ext": "mp3",
+  "video_ext": "none",
+  "vbr": 0,
+  "abr": null,
+  "tbr": null,
+  "resolution": "audio only",
+  "aspect_ratio": null,
+  "filesize_approx": null,
+  "format": "audio - audio only",
+  "_filename": "C:\\Users\\yulon\\Desktop\\Current Projects\\Social media analysis\\tiktok_analysis\\data\\yt_meta\\7638883805494889750",
+  "filename": "C:\\Users\\yulon\\Desktop\\Current Projects\\Social media analysis\\tiktok_analysis\\data\\yt_meta\\7638883805494889750",
+  "_type": "video",
+  "_version": {
+    "version": "2026.03.17",
+    "current_git_head": null,
+    "release_git_head": "04d6974f502bbdfaed72c624344f262e30ad9708",
+    "repository": "yt-dlp/yt-dlp"
+  }
+}

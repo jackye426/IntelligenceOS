@@ -1,0 +1,64 @@
+{
+  "clinic": "Harley Street Gynaecology",
+  "review_count": 9,
+  "categories": [
+    {
+      "name": "Staff Attitude",
+      "count": 2,
+      "pct": 22.2,
+      "severity": "high",
+      "quotes": [
+        "The secretary’s communication is poor",
+        "Staff is knowledgeable and helpful"
+      ]
+    },
+    {
+      "name": "Treatment Quality",
+      "count": 2,
+      "pct": 22.2,
+      "severity": "high",
+      "quotes": [
+        "Mr Khan gave me an incorrect prescription",
+        "the experience has been far below my expectations"
+      ]
+    },
+    {
+      "name": "Other",
+      "count": 2,
+      "pct": 22.2,
+      "severity": "high",
+      "quotes": [
+        "felt ripped off and intimidated",
+        "You must experience their service!"
+      ]
+    },
+    {
+      "name": "Billing & Invoicing",
+      "count": 1,
+      "pct": 11.1,
+      "severity": "high",
+      "quotes": [
+        "I was double charged for my blood tests"
+      ]
+    },
+    {
+      "name": "Doctor / Consultant",
+      "count": 1,
+      "pct": 11.1,
+      "severity": "medium",
+      "quotes": [
+        "he hadn’t all of read my test results"
+      ]
+    },
+    {
+      "name": "Value for Money",
+      "count": 1,
+      "pct": 11.1,
+      "severity": "high",
+      "quotes": [
+        "I didn’t receive any service or my exam"
+      ]
+    }
+  ],
+  "summary": "Patients at Harley Street Gynaecology are most dissatisfied with staff attitude, treatment quality, and other unspecified issues, each making up 22% of complaints. Billing and doctor-related concerns were less frequent, accounting for 11% each of the total 9 negative reviews."
+}

@@ -1,0 +1,3 @@
+[0.0-6.3] benefits of MRI depends on who's reading it. If you've got it, if the radiologist needs to have
+[6.3-11.2] an interest, if you're having an MRI it must be with the radiologist who has an understanding
+[11.2-17.2] of endometriosis and knows what they're looking for. Otherwise they'll miss it. Same when it comes to surgery.

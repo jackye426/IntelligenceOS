@@ -1,0 +1,66 @@
+{
+  "clinic": "Queen's Clinic",
+  "review_count": 11,
+  "categories": [
+    {
+      "name": "Staff Attitude",
+      "count": 3,
+      "pct": 27.3,
+      "severity": "high",
+      "quotes": [
+        "complete rudeness and paid consultation fee",
+        "Rude people, they just want to trick you",
+        "nurse was rude and judgmental"
+      ]
+    },
+    {
+      "name": "Billing & Invoicing",
+      "count": 2,
+      "pct": 18.2,
+      "severity": "high",
+      "quotes": [
+        "zero support for invoice breakdown",
+        "two weeks of calling for invoice"
+      ]
+    },
+    {
+      "name": "Waiting Times",
+      "count": 2,
+      "pct": 18.2,
+      "severity": "medium",
+      "quotes": [
+        "instead of waiting for NHS appointment",
+        "faster results from the NHS"
+      ]
+    },
+    {
+      "name": "Other",
+      "count": 2,
+      "pct": 18.2,
+      "severity": "low",
+      "quotes": [
+        "negativity without comment",
+        "fake review"
+      ]
+    },
+    {
+      "name": "Treatment Quality",
+      "count": 1,
+      "pct": 9.1,
+      "severity": "high",
+      "quotes": [
+        "pay money i'll do ultrasound"
+      ]
+    },
+    {
+      "name": "Value for Money",
+      "count": 1,
+      "pct": 9.1,
+      "severity": "high",
+      "quotes": [
+        "almost 500£ for 1 examination"
+      ]
+    }
+  ],
+  "summary": "Patients at Queen's Clinic are most dissatisfied with staff attitude, which accounts for 27% of complaints, followed by billing, waiting times, and other issues. Treatment quality complaints are the least common, making up only 9% of negative feedback."
+}

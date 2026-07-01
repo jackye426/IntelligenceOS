@@ -1,0 +1,80 @@
+{
+  "clinic": "Kensington International Clinic - La Maison Medicale",
+  "review_count": 19,
+  "categories": [
+    {
+      "name": "Treatment Quality",
+      "count": 4,
+      "pct": 21.1,
+      "severity": "high",
+      "quotes": [
+        "Waste of money. 2 sessions ZERO IMPROVEMENT",
+        "Not even matching the basic hygiene standards",
+        "told me I was simply anxious and had hives"
+      ]
+    },
+    {
+      "name": "Other",
+      "count": 4,
+      "pct": 21.1,
+      "severity": "medium",
+      "quotes": [
+        "No follow-up with tests",
+        "consider this review to be defamatory",
+        "consider this review to be defamatory"
+      ]
+    },
+    {
+      "name": "Booking & Admin",
+      "count": 3,
+      "pct": 15.8,
+      "severity": "high",
+      "quotes": [
+        "doctor didn’t turn up at all",
+        "cancelled the appointment, blaming the management",
+        "mainly online appointments for the rhumatology department"
+      ]
+    },
+    {
+      "name": "Value for Money",
+      "count": 3,
+      "pct": 15.8,
+      "severity": "high",
+      "quotes": [
+        "Like I paid for nothing",
+        "I might as well have thrown my £120 in the bin",
+        "£120 for a 20-minute general practitioner consultation"
+      ]
+    },
+    {
+      "name": "Staff Attitude",
+      "count": 2,
+      "pct": 10.5,
+      "severity": "high",
+      "quotes": [
+        "unprofessional and disgusting the man who answered the phone",
+        "Very rude staff"
+      ]
+    },
+    {
+      "name": "Doctor / Consultant",
+      "count": 2,
+      "pct": 10.5,
+      "severity": "high",
+      "quotes": [
+        "Pushy and doesn't listen",
+        "diagnosis was rushed and curt"
+      ]
+    },
+    {
+      "name": "Communication",
+      "count": 1,
+      "pct": 5.3,
+      "severity": "high",
+      "quotes": [
+        "still haven't heard anything about my test results"
+      ]
+    }
+  ],
+  "summary": "\"Patients at Kensington International Clinic - La Maison Medicale are most dissatisfied with treatment quality and other unspecified issues (21% each), followed by booking/admin problems and poor value for money (16% each). Staff attitude complaints make up 11% of the 19 total negative reviews.\""
+}

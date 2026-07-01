@@ -1,0 +1,38 @@
+# Dependencies and builds
+node_modules/
+.next/
+out/
+dist/
+build/
+tsconfig.tsbuildinfo
+
+# Local secrets
+.env
+.env.local
+.env.*
+!.env.example
+.env.*.local
+.env.production
+.env.staging
+**/.env
+**/.env.*
+!**/.env.example
+**/credentials/
+**/credentials.json
+**/token.json
+*.pem
+*.key
+
+# Python/cache artifacts
+__pycache__/
+.pytest_cache/
+*.pyc
+*.egg-info/
+
+# Logs and local scratch
+*.log
+Untitled
+
+# TikTok marketing pipeline local media
+marketing-pipeline/tiktok/data/media/
+marketing-pipeline/tiktok/data/ocr/

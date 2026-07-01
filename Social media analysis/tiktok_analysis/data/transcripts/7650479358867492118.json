@@ -1,0 +1,90 @@
+{
+  "video_id": "7650479358867492118",
+  "source_media": "7650479358867492118.mp4",
+  "whisper_model": "tiny",
+  "language": "en",
+  "duration_after_vad": 35.6905,
+  "full_text": "If you're needing to use really strong pain killers, get help. If you're passing out on day one, in your end school, then your friends and your teachers should be noticing it and say, this ain't normal. I never passed out on my period ever, but I know lots of people who do. So we need people going into schools and educating. Because this is not something you get 18 and 21. This can start when you are 11 and 12. They will impact on your education, it will impact on your ability to socialize, you really speak fans, it will get you labeled. And the girls don't want to be labeled. They don't want to be distanced in anybody else. So these are all the other factors, which are grown in there as well.",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 3.32,
+      "text": "If you're needing to use really strong pain killers, get help."
+    },
+    {
+      "start": 3.32,
+      "end": 6.08,
+      "text": "If you're passing out on day one, in your end school,"
+    },
+    {
+      "start": 6.08,
+      "end": 9.12,
+      "text": "then your friends and your teachers should be noticing it"
+    },
+    {
+      "start": 9.12,
+      "end": 10.76,
+      "text": "and say, this ain't normal."
+    },
+    {
+      "start": 10.76,
+      "end": 13.16,
+      "text": "I never passed out on my period ever,"
+    },
+    {
+      "start": 13.16,
+      "end": 14.32,
+      "text": "but I know lots of people who do."
+    },
+    {
+      "start": 14.32,
+      "end": 17.36,
+      "text": "So we need people going into schools and educating."
+    },
+    {
+      "start": 17.36,
+      "end": 20.0,
+      "text": "Because this is not something you get 18 and 21."
+    },
+    {
+      "start": 20.0,
+      "end": 22.28,
+      "text": "This can start when you are 11 and 12."
+    },
+    {
+      "start": 22.28,
+      "end": 24.04,
+      "text": "They will impact on your education,"
+    },
+    {
+      "start": 24.04,
+      "end": 26.92,
+      "text": "it will impact on your ability to socialize,"
+    },
+    {
+      "start": 26.92,
+      "end": 29.4,
+      "text": "you really speak fans, it will get you labeled."
+    },
+    {
+      "start": 29.4,
+      "end": 30.96,
+      "text": "And the girls don't want to be labeled."
+    },
+    {
+      "start": 30.96,
+      "end": 32.52,
+      "text": "They don't want to be distanced in anybody else."
+    },
+    {
+      "start": 32.52,
+      "end": 33.96,
+      "text": "So these are all the other factors,"
+    },
+    {
+      "start": 33.96,
+      "end": 35.52,
+      "text": "which are grown in there as well."
+    }
+  ]
+}

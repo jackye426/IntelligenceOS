@@ -1,0 +1,75 @@
+{
+  "video_id": "7630900114982210838",
+  "source_media": "7630900114982210838.mp4",
+  "whisper_model": "small",
+  "language": "en",
+  "duration_after_vad": 67.4089375,
+  "full_text": "If you have a laparoscopy of somebody who doesn't know what they're looking for, they'll miss it. You need to do what we call a 360 degree assessment, and I think everyone should ask for this. I tell every patient, wherever you're going to have surgery with, say, I want to have a 360 degree assessment, I want to have pictures to show that you've looked at my diaphragm, checked whether I've got thoracic endo, checked all my bowels, checked my appendix, checked my ovaries, checked my uterus to bladder, and then uterus to pouch of Douglas, checked the bowel, moved the bowel around, checked to see whether I've got any hiding, because if you have rect vaginal endo, which is endometriosis, sitting in the pouch of Douglas. So imagine, imagine that's the pouch of Douglas. You can see that. Okay, so imagine if I elevate that like that, okay, and I had a spot in there. You can't see it when it's like that. When I open it up like that, you can see it, and that's what people need to do. You need to elevate the pouch of Douglas, so that's the first thing, and then excision, not ablation.",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 8.0,
+      "text": "If you have a laparoscopy of somebody who doesn't know what they're looking for, they'll miss it."
+    },
+    {
+      "start": 8.0,
+      "end": 13.0,
+      "text": "You need to do what we call a 360 degree assessment, and I think everyone should ask for this."
+    },
+    {
+      "start": 13.0,
+      "end": 19.0,
+      "text": "I tell every patient, wherever you're going to have surgery with, say, I want to have a 360 degree assessment,"
+    },
+    {
+      "start": 19.0,
+      "end": 22.0,
+      "text": "I want to have pictures to show that you've looked at my diaphragm,"
+    },
+    {
+      "start": 22.0,
+      "end": 26.0,
+      "text": "checked whether I've got thoracic endo, checked all my bowels, checked my appendix,"
+    },
+    {
+      "start": 26.0,
+      "end": 32.0,
+      "text": "checked my ovaries, checked my uterus to bladder, and then uterus to pouch of Douglas,"
+    },
+    {
+      "start": 32.0,
+      "end": 36.0,
+      "text": "checked the bowel, moved the bowel around, checked to see whether I've got any hiding,"
+    },
+    {
+      "start": 36.0,
+      "end": 41.0,
+      "text": "because if you have rect vaginal endo, which is endometriosis, sitting in the pouch of Douglas."
+    },
+    {
+      "start": 41.0,
+      "end": 46.0,
+      "text": "So imagine, imagine that's the pouch of Douglas. You can see that."
+    },
+    {
+      "start": 46.0,
+      "end": 55.0,
+      "text": "Okay, so imagine if I elevate that like that, okay, and I had a spot in there."
+    },
+    {
+      "start": 55.0,
+      "end": 60.0,
+      "text": "You can't see it when it's like that. When I open it up like that, you can see it,"
+    },
+    {
+      "start": 60.0,
+      "end": 63.0,
+      "text": "and that's what people need to do. You need to elevate the pouch of Douglas,"
+    },
+    {
+      "start": 63.0,
+      "end": 67.0,
+      "text": "so that's the first thing, and then excision, not ablation."
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "video_id": "7639773005035375894",
+  "source_media": "7639773005035375894.mp4",
+  "whisper_model": "tiny",
+  "language": "en",
+  "duration_after_vad": 12.3311875,
+  "full_text": "does endow in the pouch, don't let's get worse over time. All engine materials, as if it's not managed or doesn't respond very well to surgical procedure, can't get worse over time. Irrespective of where it is.",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 2.72,
+      "text": "does endow in the pouch, don't let's get worse over time."
+    },
+    {
+      "start": 2.72,
+      "end": 7.52,
+      "text": "All engine materials, as if it's not managed or doesn't respond very well to surgical"
+    },
+    {
+      "start": 7.52,
+      "end": 11.2,
+      "text": "procedure, can't get worse over time."
+    },
+    {
+      "start": 11.2,
+      "end": 12.16,
+      "text": "Irrespective of where it is."
+    }
+  ]
+}

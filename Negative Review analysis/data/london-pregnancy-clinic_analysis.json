@@ -1,0 +1,34 @@
+{
+  "clinic": "London Pregnancy Clinic",
+  "review_count": 3,
+  "categories": [
+    {
+      "name": "Treatment Quality",
+      "count": 1,
+      "pct": 33.3,
+      "severity": "high",
+      "quotes": [
+        "Inexperienced people attempting multiple times for simple blood test sampling"
+      ]
+    },
+    {
+      "name": "Staff Attitude",
+      "count": 1,
+      "pct": 33.3,
+      "severity": "high",
+      "quotes": [
+        "A chaos"
+      ]
+    },
+    {
+      "name": "Other",
+      "count": 1,
+      "pct": 33.3,
+      "severity": "medium",
+      "quotes": [
+        "share my thoughts about my experience"
+      ]
+    }
+  ],
+  "summary": "Patients at London Pregnancy Clinic are dissatisfied, with equal complaints about treatment quality, staff attitude, and other issues, each making up a third of the negative feedback. The clinic has only three negative reviews in total."
+}

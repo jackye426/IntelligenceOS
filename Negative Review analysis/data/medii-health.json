@@ -1,0 +1,16 @@
+{
+  "clinic": "MEDii Health",
+  "reviews": [
+    {
+      "rating": 2,
+      "date": "3 months ago",
+      "text": "I visited MEDii Health in London and was disappointed with the level of professionalism during my appointment.\n\nAlthough the clinic is registered with the CQC, the doctor I saw did not display a clear name badge or provide his GMC registration number, which made it difficult to verify his professional credentials. In the UK it is standard practice for doctors to identify themselves clearly.  ￼\n\nAdditionally, I was not informed in advance that paying with a Chinese bank card would incur an extra handling fee. This fee was only revealed at the point of payment, and no detailed receipt or itemised invoice was provided. Clear and fair communication about fees is essential in private healthcare.\n\nOverall, I expected a more transparent and professional experience from a private clinic."
+    },
+    {
+      "rating": 3,
+      "date": "Edited 2 years ago",
+      "text": "Got the reference range on my blood test results wrong and showed one of my numbers as abnormal, had to retake another test which was completed unnecessary, and I spotted the discrepancies myself ...\n\nThey however dealt with the issue quite well and refunded me plus voucher for next time. Hope theyve tighten up internal process now"
+    }
+  ],
+  "total_negative": 2
+}

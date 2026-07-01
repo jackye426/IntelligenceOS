@@ -1,0 +1,44 @@
+{
+  "clinic": "Miss Claire Mellon & Associates",
+  "review_count": 5,
+  "categories": [
+    {
+      "name": "Doctor / Consultant",
+      "count": 2,
+      "pct": 40.0,
+      "severity": "high",
+      "quotes": [
+        "potential negative impact on many other women",
+        "left disappointed and shocked by the comment"
+      ]
+    },
+    {
+      "name": "Value for Money",
+      "count": 1,
+      "pct": 20.0,
+      "severity": "high",
+      "quotes": [
+        "fees that exceed any insurance premium for no reason"
+      ]
+    },
+    {
+      "name": "Treatment Quality",
+      "count": 1,
+      "pct": 20.0,
+      "severity": "high",
+      "quotes": [
+        "most traumatic experience I ever had at the gynaecologist"
+      ]
+    },
+    {
+      "name": "Booking & Admin",
+      "count": 1,
+      "pct": 20.0,
+      "severity": "high",
+      "quotes": [
+        "Appointments cancelled at short notice"
+      ]
+    }
+  ],
+  "summary": "Patients at Miss Claire Mellon & Associates are most dissatisfied with the doctor/consultant, accounting for 40% of complaints, while issues with value, treatment quality, and booking each made up 20% of the negative feedback. Overall, there were just five negative reviews, but the doctor/consultant stood out as the main concern."
+}

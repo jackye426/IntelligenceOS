@@ -1,0 +1,77 @@
+{
+  "clinic": "Messina Clinic",
+  "review_count": 18,
+  "categories": [
+    {
+      "name": "Treatment Quality",
+      "count": 6,
+      "pct": 33.3,
+      "severity": "high",
+      "quotes": [
+        "question qualification of the doctors",
+        "Dr Caroline didn’t even take my blood pressure",
+        "prescribed medication that I could have found on the pharmacy shelves"
+      ]
+    },
+    {
+      "name": "Other",
+      "count": 4,
+      "pct": 22.2,
+      "severity": "low",
+      "quotes": [
+        "useless experience, a waste of money and time",
+        "request for feedback",
+        "attempt to improve service"
+      ]
+    },
+    {
+      "name": "Communication",
+      "count": 2,
+      "pct": 11.1,
+      "severity": "high",
+      "quotes": [
+        "kept questioning my personal life",
+        "never received a response"
+      ]
+    },
+    {
+      "name": "Billing & Invoicing",
+      "count": 2,
+      "pct": 11.1,
+      "severity": "high",
+      "quotes": [
+        "pay for the consultation and then have to pay for a follow-up appointment",
+        "pay for a follow-up appointment in less than 15 days"
+      ]
+    },
+    {
+      "name": "Doctor / Consultant",
+      "count": 2,
+      "pct": 11.1,
+      "severity": "high",
+      "quotes": [
+        "Dr. Flavio Messina is a star",
+        "Dr. Caroline — excellent"
+      ]
+    },
+    {
+      "name": "Waiting Times",
+      "count": 1,
+      "pct": 5.6,
+      "severity": "high",
+      "quotes": [
+        "delay of more than 35 minutes"
+      ]
+    },
+    {
+      "name": "Staff Attitude",
+      "count": 1,
+      "pct": 5.6,
+      "severity": "high",
+      "quotes": [
+        "said there was no risk of my daughter having parasites"
+      ]
+    }
+  ],
+  "summary": "Patients at Messina Clinic are most dissatisfied with treatment quality, which accounts for a third of all complaints. Other common issues include communication, billing, and doctor-related concerns, but these make up smaller portions of complaints."
+}

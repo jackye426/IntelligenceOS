@@ -1,0 +1,54 @@
+{
+  "clinic": "The Evewell - West London",
+  "review_count": 7,
+  "categories": [
+    {
+      "name": "Treatment Quality",
+      "count": 3,
+      "pct": 42.9,
+      "severity": "medium",
+      "quotes": [
+        "completely unprepared for how painful and overwhelming it would be",
+        "consultation didn’t address the main issue we had",
+        "no follow up after care"
+      ]
+    },
+    {
+      "name": "Communication",
+      "count": 1,
+      "pct": 14.3,
+      "severity": "high",
+      "quotes": [
+        "communication was vague, with no clear explanations"
+      ]
+    },
+    {
+      "name": "Doctor / Consultant",
+      "count": 1,
+      "pct": 14.3,
+      "severity": "high",
+      "quotes": [
+        "Dr wattar sold us a dream"
+      ]
+    },
+    {
+      "name": "Billing & Invoicing",
+      "count": 1,
+      "pct": 14.3,
+      "severity": "medium",
+      "quotes": [
+        "quoted two incorrect figures for two different services"
+      ]
+    },
+    {
+      "name": "Booking & Admin",
+      "count": 1,
+      "pct": 14.3,
+      "severity": "medium",
+      "quotes": [
+        "had to chase for appointments, follow ups"
+      ]
+    }
+  ],
+  "summary": "Patients at The Evewell - West London were most dissatisfied with treatment quality, which made up 43% of complaints. Other issues like communication, doctor interactions, billing, and booking were less frequent but still noted."
+}

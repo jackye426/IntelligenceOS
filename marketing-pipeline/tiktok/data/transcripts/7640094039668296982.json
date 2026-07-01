@@ -1,0 +1,75 @@
+{
+  "video_id": "7640094039668296982",
+  "source_media": "7640094039668296982.mp4",
+  "whisper_model": "tiny",
+  "language": "en",
+  "duration_after_vad": 59.0033125,
+  "full_text": "And somebody has asked, was there a conclusion that laparoscopic was far less successful than a full open surgery as far the condition worsening versus being better treated down the road? Not in my experience laparoscopic is key whole surgery. Open surgery is a big incision across your kosher tummy. So immediately the healing takes a lot longer. You can't see with laparoscope is like looking through something with 3,000% improvement in your eye exposure whereas a laparotomy which is an open procedure and looking at it with my bare eyes. And I've terrible eyesight. So you can't see it nearly as well. The other beauty of laparoscopic surgery is that you use your instruments to feel the tissue and you can actually feel where they have normal tissue is. Sometimes when you can't even see it you can feel it and it feels quite rough and gritty makes that a tick tick sound when you touch it.",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 5.7,
+      "text": "And somebody has asked, was there a conclusion that laparoscopic was far less"
+    },
+    {
+      "start": 5.7,
+      "end": 10.0,
+      "text": "successful than a full open surgery as far the condition worsening versus being"
+    },
+    {
+      "start": 10.0,
+      "end": 14.68,
+      "text": "better treated down the road? Not in my experience laparoscopic is key"
+    },
+    {
+      "start": 14.68,
+      "end": 18.54,
+      "text": "whole surgery. Open surgery is a big incision across your"
+    },
+    {
+      "start": 18.54,
+      "end": 25.72,
+      "text": "kosher tummy. So immediately the healing takes a lot longer. You can't see"
+    },
+    {
+      "start": 25.72,
+      "end": 30.68,
+      "text": "with laparoscope is like looking through something with 3,000%"
+    },
+    {
+      "start": 30.68,
+      "end": 35.58,
+      "text": "improvement in your eye exposure whereas a laparotomy which is an open"
+    },
+    {
+      "start": 35.58,
+      "end": 41.08,
+      "text": "procedure and looking at it with my bare eyes. And I've terrible eyesight. So you"
+    },
+    {
+      "start": 41.08,
+      "end": 45.2,
+      "text": "can't see it nearly as well. The other beauty of laparoscopic surgery is that"
+    },
+    {
+      "start": 45.2,
+      "end": 49.16,
+      "text": "you use your instruments to feel the tissue and you can actually feel where"
+    },
+    {
+      "start": 49.16,
+      "end": 52.68,
+      "text": "they have normal tissue is. Sometimes when you can't even see it you can"
+    },
+    {
+      "start": 52.68,
+      "end": 57.72,
+      "text": "feel it and it feels quite rough and gritty makes that a tick tick"
+    },
+    {
+      "start": 57.72,
+      "end": 59.68,
+      "text": "sound when you touch it."
+    }
+  ]
+}

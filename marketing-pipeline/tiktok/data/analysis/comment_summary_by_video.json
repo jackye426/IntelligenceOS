@@ -1,0 +1,760 @@
+[
+  {
+    "video_id": "7629626326927805718",
+    "n_fetched": 0,
+    "themes": {},
+    "note": "no comments returned"
+  },
+  {
+    "video_id": "7630900114982210838",
+    "n_fetched": 321,
+    "theme_distribution": {
+      "personal_story": 114,
+      "other_uncategorized": 111,
+      "general_question": 62,
+      "post_op_experience": 45,
+      "advocacy_what_to_ask": 37,
+      "pouch_anatomy_question": 37,
+      "validation_gratitude": 27,
+      "imaging_mri": 26,
+      "humor_reaction": 13,
+      "system_frustration": 4
+    },
+    "random_stratum_n": 100,
+    "random_stratum_theme_distribution": {
+      "personal_story": 39,
+      "other_uncategorized": 32,
+      "post_op_experience": 21,
+      "general_question": 15,
+      "advocacy_what_to_ask": 13,
+      "pouch_anatomy_question": 12,
+      "validation_gratitude": 11,
+      "imaging_mri": 7,
+      "humor_reaction": 6,
+      "system_frustration": 1
+    },
+    "stance_distribution": {
+      "statement": 82,
+      "personal_story": 191,
+      "question": 26,
+      "agree_validate": 22
+    },
+    "emotion_distribution": {
+      "neutral": 266,
+      "distress_frustration": 25,
+      "gratitude_hope": 23,
+      "humor": 7
+    }
+  },
+  {
+    "video_id": "7631220659770690818",
+    "n_fetched": 10,
+    "theme_distribution": {
+      "personal_story": 4,
+      "validation_gratitude": 3,
+      "advocacy_what_to_ask": 2,
+      "system_frustration": 1,
+      "other_uncategorized": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "agree_validate": 4,
+      "personal_story": 5,
+      "statement": 1
+    },
+    "emotion_distribution": {
+      "gratitude_hope": 4,
+      "neutral": 6
+    }
+  },
+  {
+    "video_id": "7631307430890048790",
+    "n_fetched": 2,
+    "theme_distribution": {
+      "other_uncategorized": 1,
+      "general_question": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "question": 2
+    },
+    "emotion_distribution": {
+      "neutral": 2
+    }
+  },
+  {
+    "video_id": "7632002231339928854",
+    "n_fetched": 3,
+    "theme_distribution": {
+      "personal_story": 2,
+      "pouch_anatomy_question": 1,
+      "other_uncategorized": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "agree_validate": 2,
+      "personal_story": 1
+    },
+    "emotion_distribution": {
+      "neutral": 3
+    }
+  },
+  {
+    "video_id": "7632321370080152854",
+    "n_fetched": 0,
+    "themes": {},
+    "note": "no comments returned"
+  },
+  {
+    "video_id": "7633495707416235286",
+    "n_fetched": 0,
+    "themes": {},
+    "note": "no comments returned"
+  },
+  {
+    "video_id": "7633862545228434710",
+    "n_fetched": 0,
+    "themes": {},
+    "note": "no comments returned"
+  },
+  {
+    "video_id": "7634274846117104918",
+    "n_fetched": 1,
+    "theme_distribution": {
+      "imaging_mri": 1,
+      "personal_story": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "personal_story": 1
+    },
+    "emotion_distribution": {
+      "neutral": 1
+    }
+  },
+  {
+    "video_id": "7634568172330421526",
+    "n_fetched": 0,
+    "themes": {},
+    "note": "no comments returned"
+  },
+  {
+    "video_id": "7634579404131241239",
+    "n_fetched": 5,
+    "theme_distribution": {
+      "imaging_mri": 5,
+      "personal_story": 3,
+      "general_question": 2,
+      "humor_reaction": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "personal_story": 4,
+      "question": 1
+    },
+    "emotion_distribution": {
+      "neutral": 5
+    }
+  },
+  {
+    "video_id": "7634984535372942614",
+    "n_fetched": 0,
+    "themes": {},
+    "note": "no comments returned"
+  },
+  {
+    "video_id": "7635716747869424918",
+    "n_fetched": 0,
+    "themes": {},
+    "note": "no comments returned"
+  },
+  {
+    "video_id": "7636091017875197207",
+    "n_fetched": 0,
+    "themes": {},
+    "note": "no comments returned"
+  },
+  {
+    "video_id": "7637061986777402646",
+    "n_fetched": 2,
+    "theme_distribution": {
+      "other_uncategorized": 1,
+      "personal_story": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "statement": 1,
+      "personal_story": 1
+    },
+    "emotion_distribution": {
+      "neutral": 2
+    }
+  },
+  {
+    "video_id": "7637168703532027158",
+    "n_fetched": 4,
+    "theme_distribution": {
+      "personal_story": 2,
+      "validation_gratitude": 1,
+      "other_uncategorized": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "agree_validate": 1,
+      "personal_story": 3
+    },
+    "emotion_distribution": {
+      "gratitude_hope": 1,
+      "neutral": 3
+    }
+  },
+  {
+    "video_id": "7638541093646191894",
+    "n_fetched": 1,
+    "theme_distribution": {
+      "other_uncategorized": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "statement": 1
+    },
+    "emotion_distribution": {
+      "neutral": 1
+    }
+  },
+  {
+    "video_id": "7638883805494889750",
+    "n_fetched": 0,
+    "themes": {},
+    "note": "no comments returned"
+  },
+  {
+    "video_id": "7639345448112672022",
+    "n_fetched": 5,
+    "theme_distribution": {
+      "validation_gratitude": 3,
+      "other_uncategorized": 2,
+      "advocacy_what_to_ask": 1,
+      "post_op_experience": 1,
+      "imaging_mri": 1,
+      "personal_story": 1,
+      "general_question": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "agree_validate": 3,
+      "personal_story": 1,
+      "statement": 1
+    },
+    "emotion_distribution": {
+      "gratitude_hope": 2,
+      "neutral": 2,
+      "distress_frustration": 1
+    }
+  },
+  {
+    "video_id": "7639651293883206935",
+    "n_fetched": 3,
+    "theme_distribution": {
+      "validation_gratitude": 1,
+      "other_uncategorized": 1,
+      "post_op_experience": 1,
+      "personal_story": 1,
+      "general_question": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "agree_validate": 1,
+      "statement": 1,
+      "personal_story": 1
+    },
+    "emotion_distribution": {
+      "gratitude_hope": 1,
+      "neutral": 2
+    }
+  },
+  {
+    "video_id": "7639676954576276758",
+    "n_fetched": 0,
+    "themes": {},
+    "note": "no comments returned"
+  },
+  {
+    "video_id": "7639773005035375894",
+    "n_fetched": 3,
+    "theme_distribution": {
+      "personal_story": 2,
+      "post_op_experience": 1,
+      "general_question": 1,
+      "humor_reaction": 1,
+      "pouch_anatomy_question": 1,
+      "imaging_mri": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "personal_story": 3
+    },
+    "emotion_distribution": {
+      "neutral": 2,
+      "humor": 1
+    }
+  },
+  {
+    "video_id": "7640094039668296982",
+    "n_fetched": 0,
+    "themes": {},
+    "note": "no comments returned"
+  },
+  {
+    "video_id": "7640116261598350614",
+    "n_fetched": 10,
+    "theme_distribution": {
+      "personal_story": 5,
+      "other_uncategorized": 4,
+      "imaging_mri": 2,
+      "advocacy_what_to_ask": 2,
+      "general_question": 2
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "personal_story": 7,
+      "statement": 2,
+      "question": 1
+    },
+    "emotion_distribution": {
+      "neutral": 8,
+      "distress_frustration": 2
+    }
+  },
+  {
+    "video_id": "7641128554654256387",
+    "n_fetched": 4,
+    "theme_distribution": {
+      "other_uncategorized": 2,
+      "general_question": 1,
+      "advocacy_what_to_ask": 1,
+      "post_op_experience": 1,
+      "personal_story": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "question": 1,
+      "personal_story": 2,
+      "statement": 1
+    },
+    "emotion_distribution": {
+      "neutral": 3,
+      "distress_frustration": 1
+    }
+  },
+  {
+    "video_id": "7641301413062102294",
+    "n_fetched": 3,
+    "theme_distribution": {
+      "imaging_mri": 2,
+      "personal_story": 2,
+      "other_uncategorized": 1,
+      "advocacy_what_to_ask": 1,
+      "post_op_experience": 1,
+      "validation_gratitude": 1,
+      "general_question": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "personal_story": 2,
+      "agree_validate": 1
+    },
+    "emotion_distribution": {
+      "neutral": 2,
+      "distress_frustration": 1
+    }
+  },
+  {
+    "video_id": "7641554459755089154",
+    "n_fetched": 1,
+    "theme_distribution": {
+      "personal_story": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "personal_story": 1
+    },
+    "emotion_distribution": {
+      "neutral": 1
+    }
+  },
+  {
+    "video_id": "7641917387201187094",
+    "n_fetched": 2,
+    "theme_distribution": {
+      "other_uncategorized": 1,
+      "personal_story": 1,
+      "general_question": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "personal_story": 2
+    },
+    "emotion_distribution": {
+      "neutral": 2
+    }
+  },
+  {
+    "video_id": "7642386611526716694",
+    "n_fetched": 2,
+    "theme_distribution": {
+      "other_uncategorized": 2
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "statement": 2
+    },
+    "emotion_distribution": {
+      "neutral": 2
+    }
+  },
+  {
+    "video_id": "7643525601353075990",
+    "n_fetched": 1,
+    "theme_distribution": {
+      "system_frustration": 1,
+      "humor_reaction": 1,
+      "validation_gratitude": 1,
+      "personal_story": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "agree_validate": 1
+    },
+    "emotion_distribution": {
+      "humor": 1
+    }
+  },
+  {
+    "video_id": "7643867792634154262",
+    "n_fetched": 1,
+    "theme_distribution": {
+      "other_uncategorized": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "statement": 1
+    },
+    "emotion_distribution": {
+      "neutral": 1
+    }
+  },
+  {
+    "video_id": "7644218706028956950",
+    "n_fetched": 2,
+    "theme_distribution": {
+      "general_question": 1,
+      "other_uncategorized": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "question": 2
+    },
+    "emotion_distribution": {
+      "neutral": 2
+    }
+  },
+  {
+    "video_id": "7644580086208859414",
+    "n_fetched": 0,
+    "themes": {},
+    "note": "no comments returned"
+  },
+  {
+    "video_id": "7644863912545881366",
+    "n_fetched": 16,
+    "theme_distribution": {
+      "imaging_mri": 8,
+      "other_uncategorized": 7,
+      "personal_story": 6,
+      "post_op_experience": 2,
+      "advocacy_what_to_ask": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "personal_story": 12,
+      "statement": 3,
+      "question": 1
+    },
+    "emotion_distribution": {
+      "neutral": 13,
+      "distress_frustration": 3
+    }
+  },
+  {
+    "video_id": "7645351638957313302",
+    "n_fetched": 3,
+    "theme_distribution": {
+      "other_uncategorized": 2,
+      "personal_story": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "personal_story": 2,
+      "statement": 1
+    },
+    "emotion_distribution": {
+      "neutral": 2,
+      "gratitude_hope": 1
+    }
+  },
+  {
+    "video_id": "7647091030986165526",
+    "n_fetched": 5,
+    "theme_distribution": {
+      "imaging_mri": 4,
+      "post_op_experience": 2,
+      "advocacy_what_to_ask": 1,
+      "other_uncategorized": 1,
+      "personal_story": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "personal_story": 5
+    },
+    "emotion_distribution": {
+      "neutral": 5
+    }
+  },
+  {
+    "video_id": "7647574808162487574",
+    "n_fetched": 1,
+    "theme_distribution": {
+      "personal_story": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "personal_story": 1
+    },
+    "emotion_distribution": {
+      "neutral": 1
+    }
+  },
+  {
+    "video_id": "7647939769464278275",
+    "n_fetched": 0,
+    "themes": {},
+    "note": "no comments returned"
+  },
+  {
+    "video_id": "7649808436883967254",
+    "n_fetched": 54,
+    "theme_distribution": {
+      "other_uncategorized": 38,
+      "personal_story": 9,
+      "post_op_experience": 4,
+      "system_frustration": 3,
+      "validation_gratitude": 1,
+      "imaging_mri": 1,
+      "humor_reaction": 1,
+      "general_question": 1
+    },
+    "random_stratum_n": 34,
+    "random_stratum_theme_distribution": {
+      "other_uncategorized": 25,
+      "personal_story": 6,
+      "system_frustration": 2,
+      "humor_reaction": 1,
+      "imaging_mri": 1,
+      "general_question": 1
+    },
+    "stance_distribution": {
+      "statement": 20,
+      "personal_story": 33,
+      "agree_validate": 1
+    },
+    "emotion_distribution": {
+      "neutral": 47,
+      "distress_frustration": 5,
+      "gratitude_hope": 1,
+      "humor": 1
+    }
+  },
+  {
+    "video_id": "7650157296907062550",
+    "n_fetched": 1,
+    "theme_distribution": {
+      "personal_story": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "personal_story": 1
+    },
+    "emotion_distribution": {
+      "neutral": 1
+    }
+  },
+  {
+    "video_id": "7650429101584469270",
+    "n_fetched": 10,
+    "theme_distribution": {
+      "personal_story": 6,
+      "general_question": 4,
+      "other_uncategorized": 2,
+      "post_op_experience": 1,
+      "advocacy_what_to_ask": 1,
+      "imaging_mri": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "personal_story": 6,
+      "question": 2,
+      "statement": 2
+    },
+    "emotion_distribution": {
+      "neutral": 10
+    }
+  },
+  {
+    "video_id": "7650465917700279574",
+    "n_fetched": 1,
+    "theme_distribution": {
+      "other_uncategorized": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "statement": 1
+    },
+    "emotion_distribution": {
+      "neutral": 1
+    }
+  },
+  {
+    "video_id": "7650466482173791510",
+    "n_fetched": 16,
+    "theme_distribution": {
+      "other_uncategorized": 7,
+      "personal_story": 5,
+      "general_question": 4,
+      "advocacy_what_to_ask": 3,
+      "system_frustration": 2,
+      "humor_reaction": 2,
+      "post_op_experience": 1,
+      "imaging_mri": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "personal_story": 11,
+      "question": 1,
+      "statement": 4
+    },
+    "emotion_distribution": {
+      "neutral": 15,
+      "distress_frustration": 1
+    }
+  },
+  {
+    "video_id": "7650467196187036950",
+    "n_fetched": 6,
+    "theme_distribution": {
+      "personal_story": 5,
+      "general_question": 2,
+      "validation_gratitude": 2,
+      "advocacy_what_to_ask": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "personal_story": 4,
+      "agree_validate": 2
+    },
+    "emotion_distribution": {
+      "neutral": 3,
+      "gratitude_hope": 2,
+      "distress_frustration": 1
+    }
+  },
+  {
+    "video_id": "7650472969264844054",
+    "n_fetched": 1,
+    "theme_distribution": {
+      "general_question": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "personal_story": 1
+    },
+    "emotion_distribution": {
+      "neutral": 1
+    }
+  },
+  {
+    "video_id": "7650479358867492118",
+    "n_fetched": 2,
+    "theme_distribution": {
+      "other_uncategorized": 2
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "statement": 2
+    },
+    "emotion_distribution": {
+      "neutral": 2
+    }
+  },
+  {
+    "video_id": "7650483052963040534",
+    "n_fetched": 1,
+    "theme_distribution": {
+      "other_uncategorized": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "statement": 1
+    },
+    "emotion_distribution": {
+      "neutral": 1
+    }
+  },
+  {
+    "video_id": "7650491657414085910",
+    "n_fetched": 2,
+    "theme_distribution": {
+      "general_question": 2
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "question": 2
+    },
+    "emotion_distribution": {
+      "neutral": 2
+    }
+  }
+]

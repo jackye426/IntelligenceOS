@@ -1,0 +1,21 @@
+{
+  "clinic": "London Pregnancy Clinic",
+  "reviews": [
+    {
+      "rating": 1,
+      "date": "6 months ago",
+      "text": "Strongly recommended not to do any blood test here. Inexperienced people attempting multiple times for simple blood test sampling. Unsure of other services they offer but blood test, do elsewhere for your safety!"
+    },
+    {
+      "rating": 2,
+      "date": "11 months ago",
+      "text": "A chaos. I’m happy I came for a blood test only, and can’t imagine staying with this clinic for any other procedures or treatments.\nI saw at least 4 members of staff there and I was the only patient, but for some …"
+    },
+    {
+      "rating": 2,
+      "date": "a year ago",
+      "text": "It has taken me a while to write this review as I have mostly been focusing on my ongoing pregnancy, however I did want to come back and share my thoughts about my experience with the London Pregnancy Clinic. …"
+    }
+  ],
+  "total_negative": 3
+}

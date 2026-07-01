@@ -1,0 +1,55 @@
+{
+  "video_id": "7638541093646191894",
+  "source_media": "7638541093646191894.mp4",
+  "whisper_model": "small",
+  "language": "en",
+  "duration_after_vad": 50.829875,
+  "full_text": "The research that's going on, the fact that I know so many people that give a damn about it, that really want to make a difference, and that people are being empowered to also help themselves. There is more help out there. There's tools out there. There's ways of getting information. Sometimes you may need guidance towards that information, but the information is there. There are ways to improve it. Unfortunately, it is a condition which may take a while to settle and may always be a problem, but there are ways of adapting so that you can have a good quality of life, maximise your quality of life and your ability to function. That's what I and everyone I know want to do. That's our prime drive, maximise maximum quality of life, maximum ability to function.",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 9.0,
+      "text": "The research that's going on, the fact that I know so many people that give a damn about"
+    },
+    {
+      "start": 9.0,
+      "end": 15.28,
+      "text": "it, that really want to make a difference, and that people are being empowered to also"
+    },
+    {
+      "start": 15.28,
+      "end": 20.2,
+      "text": "help themselves. There is more help out there. There's tools out there. There's ways of"
+    },
+    {
+      "start": 20.2,
+      "end": 24.24,
+      "text": "getting information. Sometimes you may need guidance towards that information, but the"
+    },
+    {
+      "start": 24.24,
+      "end": 31.24,
+      "text": "information is there. There are ways to improve it. Unfortunately, it is a condition which"
+    },
+    {
+      "start": 31.24,
+      "end": 37.12,
+      "text": "may take a while to settle and may always be a problem, but there are ways of adapting"
+    },
+    {
+      "start": 37.12,
+      "end": 41.16,
+      "text": "so that you can have a good quality of life, maximise your quality of life and your ability"
+    },
+    {
+      "start": 41.16,
+      "end": 47.48,
+      "text": "to function. That's what I and everyone I know want to do. That's our prime drive,"
+    },
+    {
+      "start": 47.48,
+      "end": 50.56,
+      "text": "maximise maximum quality of life, maximum ability to function."
+    }
+  ]
+}

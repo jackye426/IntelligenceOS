@@ -1,0 +1,47 @@
+[
+  {
+    "cid": "7646270981557568278",
+    "text": "Hey 🫶🏻",
+    "digg_count": 1,
+    "reply_comment_total": 0,
+    "create_time": 1780286294,
+    "themes": [
+      "other_uncategorized"
+    ],
+    "sentiment": {
+      "stance": "statement",
+      "primary_emotion": "neutral",
+      "toxicity_spam_flag": false
+    }
+  },
+  {
+    "cid": "7645385717991932694",
+    "text": "This is amazing, I just done my dissertation on endo ! X",
+    "digg_count": 1,
+    "reply_comment_total": 0,
+    "create_time": 1780080089,
+    "themes": [
+      "personal_story"
+    ],
+    "sentiment": {
+      "stance": "personal_story",
+      "primary_emotion": "gratitude_hope",
+      "toxicity_spam_flag": false
+    }
+  },
+  {
+    "cid": "7646502116403659542",
+    "text": "I love thisss",
+    "digg_count": 1,
+    "reply_comment_total": 1,
+    "create_time": 1780340019,
+    "themes": [
+      "other_uncategorized"
+    ],
+    "sentiment": {
+      "stance": "personal_story",
+      "primary_emotion": "neutral",
+      "toxicity_spam_flag": false
+    }
+  }
+]

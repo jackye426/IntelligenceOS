@@ -1,0 +1,115 @@
+{
+  "video_id": "7644218706028956950",
+  "source_media": "7644218706028956950.mp4",
+  "whisper_model": "small",
+  "language": "en",
+  "duration_after_vad": 47.9041875,
+  "full_text": "Do you have questions about endometriosis or adenomyosis? Do you think you have endometriosis or adenomyosis? Have you been told but you don't really understand or you just don't know where to go next for help? Then we have developed a clinic which is available online which will help you get to the next step and to understand how your symptoms are affecting you. What are the options of your management whether it be medical or surgical or any other techniques such as physiotherapy? Through this clinic, you will be assessed, you will be asked about your pain levels, what investigations have you had done? Are you feeling tired all the time? And then after that, we'll come up with a plan to help make you feel better, to help you understand your symptoms better and to give you options of how best to manage you which suits your lifestyle and improves your quality of life and your activities of daily living.",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 3.12,
+      "text": "Do you have questions about endometriosis or adenomyosis?"
+    },
+    {
+      "start": 3.12,
+      "end": 5.52,
+      "text": "Do you think you have endometriosis or adenomyosis?"
+    },
+    {
+      "start": 5.52,
+      "end": 8.0,
+      "text": "Have you been told but you don't really understand"
+    },
+    {
+      "start": 8.0,
+      "end": 10.9,
+      "text": "or you just don't know where to go next for help?"
+    },
+    {
+      "start": 10.9,
+      "end": 14.12,
+      "text": "Then we have developed a clinic which is available online"
+    },
+    {
+      "start": 14.12,
+      "end": 16.68,
+      "text": "which will help you get to the next step"
+    },
+    {
+      "start": 16.68,
+      "end": 20.0,
+      "text": "and to understand how your symptoms are affecting you."
+    },
+    {
+      "start": 20.0,
+      "end": 21.6,
+      "text": "What are the options of your management"
+    },
+    {
+      "start": 21.6,
+      "end": 24.28,
+      "text": "whether it be medical or surgical"
+    },
+    {
+      "start": 24.28,
+      "end": 26.76,
+      "text": "or any other techniques such as physiotherapy?"
+    },
+    {
+      "start": 26.76,
+      "end": 29.04,
+      "text": "Through this clinic, you will be assessed,"
+    },
+    {
+      "start": 29.04,
+      "end": 30.88,
+      "text": "you will be asked about your pain levels,"
+    },
+    {
+      "start": 30.88,
+      "end": 32.88,
+      "text": "what investigations have you had done?"
+    },
+    {
+      "start": 32.88,
+      "end": 34.4,
+      "text": "Are you feeling tired all the time?"
+    },
+    {
+      "start": 34.4,
+      "end": 36.76,
+      "text": "And then after that, we'll come up with a plan"
+    },
+    {
+      "start": 36.76,
+      "end": 38.4,
+      "text": "to help make you feel better,"
+    },
+    {
+      "start": 38.4,
+      "end": 40.72,
+      "text": "to help you understand your symptoms better"
+    },
+    {
+      "start": 40.72,
+      "end": 43.2,
+      "text": "and to give you options of how best to manage you"
+    },
+    {
+      "start": 43.2,
+      "end": 44.64,
+      "text": "which suits your lifestyle"
+    },
+    {
+      "start": 44.64,
+      "end": 46.12,
+      "text": "and improves your quality of life"
+    },
+    {
+      "start": 46.12,
+      "end": 48.04,
+      "text": "and your activities of daily living."
+    }
+  ]
+}

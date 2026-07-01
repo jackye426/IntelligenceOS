@@ -1,0 +1,40 @@
+{
+  "video_id": "7649808436883967254",
+  "source_media": "7649808436883967254.mp4",
+  "whisper_model": "tiny",
+  "language": "en",
+  "duration_after_vad": 51.71225,
+  "full_text": "I would say Lester G, Lester G is always, I did a study a year ago, I was asked to do a presentation about my clinic at BSG and called, and I did it and I thought it was boring. So I've been taxed in 100 patients with 10 questions, 95% had the teeth, 70% had the disperointing of painful intercourse, 80% had the painful periods. That, and that again, is an issue because the teeth could be many things, and be that you'd be working too hard, it can be that you're not eating well, I've been dieting, you're drinking too much alcohol, it could be many, many things. And if the teeth would believe it's due to an ongoing inflammatory process in the body, which is a little ticking, it's like a drip in your roof. You know, which is going to make a seeding fall, but you don't really know it's there until the seeding falls down, that's what it is.",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 16.0,
+      "text": "I would say Lester G, Lester G is always, I did a study a year ago, I was asked to do a presentation about my clinic at BSG and called, and I did it and I thought it was boring."
+    },
+    {
+      "start": 16.0,
+      "end": 27.0,
+      "text": "So I've been taxed in 100 patients with 10 questions, 95% had the teeth, 70% had the disperointing of painful intercourse, 80% had the painful periods."
+    },
+    {
+      "start": 27.0,
+      "end": 33.0,
+      "text": "That, and that again, is an issue because the teeth could be many things, and be that you'd be working too hard, it can be that you're not eating well,"
+    },
+    {
+      "start": 33.0,
+      "end": 36.0,
+      "text": "I've been dieting, you're drinking too much alcohol, it could be many, many things."
+    },
+    {
+      "start": 36.0,
+      "end": 45.0,
+      "text": "And if the teeth would believe it's due to an ongoing inflammatory process in the body, which is a little ticking, it's like a drip in your roof."
+    },
+    {
+      "start": 45.0,
+      "end": 51.0,
+      "text": "You know, which is going to make a seeding fall, but you don't really know it's there until the seeding falls down, that's what it is."
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "clinic": "The Evewell - Harley Street",
+  "review_count": 34,
+  "categories": [
+    {
+      "name": "Communication",
+      "count": 7,
+      "pct": 20.6,
+      "severity": "high",
+      "quotes": [
+        "incorrect names and DOB on forms",
+        "my doctor abruptly departed the clinic in the middle of my treatment",
+        "no direct communication with my doctor"
+      ]
+    },
+    {
+      "name": "Treatment Quality",
+      "count": 6,
+      "pct": 17.6,
+      "severity": "high",
+      "quotes": [
+        "prescribed hormone patches they already knew I was allergic to",
+        "wasted my two best embryos on 2 pointless rounds",
+        "had endometriosis which was overlooked"
+      ]
+    },
+    {
+      "name": "Booking & Admin",
+      "count": 5,
+      "pct": 14.7,
+      "severity": "high",
+      "quotes": [
+        "admin staff got my date of birth wrong",
+        "admin staff take ages to return emails",
+        "three different telephone/video appointments were made and not scheduled"
+      ]
+    },
+    {
+      "name": "Other",
+      "count": 4,
+      "pct": 11.8,
+      "severity": "high",
+      "quotes": [
+        "our daughter was born sleeping",
+        "they seem to focus more on IVF",
+        "all of these clinics are shameless"
+      ]
+    },
+    {
+      "name": "Value for Money",
+      "count": 4,
+      "pct": 11.8,
+      "severity": "high",
+      "quotes": [
+        "push random things you don’t need on you for extra money",
+        "a lot more expensive than quoted as there were expensive add-ons",
+        "having to pay over £500 to see a random doctor"
+      ]
+    },
+    {
+      "name": "Waiting Times",
+      "count": 3,
+      "pct": 8.8,
+      "severity": "medium",
+      "quotes": [
+        "unnecessary delays for simple things like blood tests",
+        "long waiting! Never able to see the main doctor",
+        "wasted a lot of time on waiting"
+      ]
+    },
+    {
+      "name": "Doctor / Consultant",
+      "count": 3,
+      "pct": 8.8,
+      "severity": "medium",
+      "quotes": [
+        "the Doctor who came across as dismissive and disinterested",
+        "appointment with Mr Davis felt very rushed",
+        "very upset by my treatment"
+      ]
+    },
+    {
+      "name": "Billing & Invoicing",
+      "count": 1,
+      "pct": 2.9,
+      "severity": "medium",
+      "quotes": [
+        "incorrect invoicing but the worst is forgetting to send the right prescriptions"
+      ]
+    },
+    {
+      "name": "Staff Attitude",
+      "count": 1,
+      "pct": 2.9,
+      "severity": "high",
+      "quotes": [
+        "the doctor made me feel extremely uncomfortable every time"
+      ]
+    }
+  ],
+  "summary": "Patients at The Evewell - Harley Street were most dissatisfied with poor communication (21% of complaints) and treatment quality (18%). Other common concerns included booking/admin issues (15%), value for money (12%), and miscellaneous problems (12%)."
+}

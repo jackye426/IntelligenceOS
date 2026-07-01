@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DocMap Clinic Outreach Intelligence</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Primary">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">D</span>
+          <div>
+            <strong>DocMap</strong>
+            <span>Clinic Intelligence</span>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="Sections">
+          <button class="nav-item active" data-view="accounts" title="Accounts">
+            <span aria-hidden="true">A</span>
+            <span>Accounts</span>
+          </button>
+          <button class="nav-item" data-view="pipeline" title="Pipeline">
+            <span aria-hidden="true">P</span>
+            <span>Pipeline</span>
+          </button>
+          <button class="nav-item" data-view="research" title="Research">
+            <span aria-hidden="true">R</span>
+            <span>Research</span>
+          </button>
+          <button class="nav-item" data-view="outreach" title="Outreach">
+            <span aria-hidden="true">O</span>
+            <span>Outreach</span>
+          </button>
+        </nav>
+
+        <div class="sidebar-footer">
+          <span class="status-dot"></span>
+          <span>Internal only</span>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Human reviewed clinic outreach</p>
+            <h1 id="viewTitle">Accounts</h1>
+          </div>
+          <div class="toolbar" role="toolbar" aria-label="Workspace actions">
+            <button class="icon-button" id="newAccountButton" title="New account" aria-label="New account">+</button>
+            <button class="icon-button" id="exportButton" title="Export account JSON" aria-label="Export account JSON">E</button>
+          </div>
+        </header>
+
+        <section class="notice" id="reviewNotice">
+          <strong>Review gate:</strong>
+          <span>No outreach is sent automatically. Drafts require owner approval.</span>
+        </section>
+
+        <section class="view active" id="accountsView" aria-labelledby="viewTitle">
+          <div class="split-layout">
+            <section class="panel account-list-panel" aria-label="Clinic accounts">
+              <div class="panel-header">
+                <h2>Clinic Accounts</h2>
+                <input id="searchInput" type="search" placeholder="Search clinics" aria-label="Search clinics" />
+              </div>
+              <div class="account-list" id="accountList"></div>
+            </section>
+
+            <section class="account-detail" id="accountDetail" aria-label="Selected clinic"></section>
+          </div>
+        </section>
+
+        <section class="view" id="pipelineView" aria-labelledby="viewTitle">
+          <div class="pipeline-board" id="pipelineBoard"></div>
+        </section>
+
+        <section class="view" id="researchView" aria-labelledby="viewTitle">
+          <div class="research-grid">
+            <section class="panel">
+              <div class="panel-header">
+                <h2>Research Run</h2>
+                <button class="text-button" id="runResearchButton">Queue review run</button>
+              </div>
+              <form class="research-form" id="researchForm">
+                <label>
+                  Clinic name
+                  <input name="clinicName" required />
+                </label>
+                <label>
+                  Clinic website URL
+                  <input name="website" type="url" required />
+                </label>
+                <label>
+                  Known contact
+                  <input name="knownContact" />
+                </label>
+                <label>
+                  Manual notes
+                  <textarea name="notes" rows="6"></textarea>
+                </label>
+              </form>
+            </section>
+
+            <section class="panel evidence-panel">
+              <div class="panel-header">
+                <h2>Evidence Ledger</h2>
+                <span id="evidenceCount"></span>
+              </div>
+              <div id="evidenceLedger" class="evidence-list"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="outreachView" aria-labelledby="viewTitle">
+          <div class="outreach-layout">
+            <section class="panel composer">
+              <div class="panel-header">
+                <h2>Draft Outreach</h2>
+                <div class="segmented" role="tablist" aria-label="Tone">
+                  <button class="active" data-tone="direct">Direct</button>
+                  <button data-tone="warm">Warm</button>
+                  <button data-tone="brief">Brief</button>
+                </div>
+              </div>
+              <label>
+                Subject
+                <input id="draftSubject" />
+              </label>
+              <label>
+                Body
+                <textarea id="draftBody" rows="14"></textarea>
+              </label>
+              <div class="composer-actions">
+                <button class="text-button" id="regenerateDraftButton">Regenerate from evidence</button>
+                <button class="primary-button" id="approveDraftButton">Mark approved</button>
+              </div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-header">
+                <h2>Claim Checks</h2>
+                <span id="claimStatus"></span>
+              </div>
+              <div id="claimChecks" class="claim-list"></div>
+            </section>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="accountDialog">
+      <form method="dialog" id="accountForm" class="dialog-form">
+        <header>
+          <h2>New Clinic Account</h2>
+          <button class="icon-button" value="cancel" title="Close" aria-label="Close">x</button>
+        </header>
+        <label>
+          Clinic name
+          <input name="name" required />
+        </label>
+        <label>
+          Website URL
+          <input name="website" type="url" required />
+        </label>
+        <label>
+          Owner
+          <input name="owner" required value="Internal team" />
+        </label>
+        <label>
+          Notes
+          <textarea name="notes" rows="4"></textarea>
+        </label>
+        <footer>
+          <button class="text-button" value="cancel">Cancel</button>
+          <button class="primary-button" value="default">Create</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

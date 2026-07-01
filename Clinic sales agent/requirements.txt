@@ -1,0 +1,13 @@
+playwright
+beautifulsoup4
+trafilatura
+readability-lxml
+pandas
+openai
+python-dotenv
+lxml
+requests
+psycopg2-binary
+google-api-python-client
+google-auth-oauthlib
+google-auth-httplib2

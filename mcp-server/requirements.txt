@@ -1,0 +1,8 @@
+mcp
+httpx
+openai
+python-dotenv
+supabase
+pydantic
+uvicorn
+starlette

@@ -1,0 +1,126 @@
+{
+  "sub_themes": [
+    {
+      "name": "Unresponsiveness to Patient Inquiries",
+      "count": 120,
+      "pct": 34.78,
+      "severity": "high",
+      "description": "Patients report repeated failures to respond to emails, calls, or messages, leading to delays in treatment and frustration.",
+      "quotes": [
+        "Despite me then emailing Evewell multiple times asking what the next steps were and whether treatment could go ahead after sending them the requested information, they just never responded to any communication about treatment.",
+        "The only communication Evewell responded to was emails where I requested copies of the tests I did with them so that I could use them elsewhere.",
+        "Phone is never answered or is dropped. The admin staff got my date of birth wrong and they couldn’t even find my appointment."
+      ]
+    },
+    {
+      "name": "Lack of Follow-Up After Procedures or Concerns",
+      "count": 95,
+      "pct": 27.54,
+      "severity": "high",
+      "description": "Clinics fail to follow up with patients after procedures, adverse reactions, or when patients raise concerns, leaving them feeling abandoned.",
+      "quotes": [
+        "I had to use one anyway, and despite informing them of the reaction I can have, no one followed up or checked if I was ok.",
+        "After a negative test we weren’t given any appointments and had to make endless calls just to get another consult.",
+        "The lack of follow up after a traumatic round of treatment which ended up with the hospitalisation of my wife, who had severe OHSS from an egg collection, is disgusting."
+      ]
+    },
+    {
+      "name": "Inconsistent or Conflicting Information",
+      "count": 85,
+      "pct": 24.64,
+      "severity": "high",
+      "description": "Patients receive contradictory information from different staff members, leading to confusion and mistrust.",
+      "quotes": [
+        "We were lied to about that they hadn’t received them yet, even though they had told us they’d received the results a few weeks prior but it was a letter from the consultant they were waiting for.",
+        "Terrible communication thoughout our entire IVF journey. Still chasing SAR request after 33 days of consent submission, told every time I call that someone will call back but never does.",
+        "Conflicting information between the scanning nurse and the nurses."
+      ]
+    },
+    {
+      "name": "Poor Appointment Management",
+      "count": 70,
+      "pct": 20.29,
+      "severity": "medium",
+      "description": "Frequent appointment cancellations, rescheduling without notice, and long wait times disrupt patient care.",
+      "quotes": [
+        "Dates for appointments I had were changed several times by them/appointment booked on days I said I was not available so had to chase them to correct it.",
+        "Three different telephone/video appointments were made (and confirmed in writing) and on all occasions the calls had not been correctly scheduled and the clinic failed to call.",
+        "The time of our Zoom consultation was changed by email at 4pm the day before without actually checking if it was convenient for us."
+      ]
+    },
+    {
+      "name": "Rushed or Dismissive Consultations",
+      "count": 65,
+      "pct": 18.84,
+      "severity": "medium",
+      "description": "Patients feel consultations are hurried, with little time for questions or thorough explanations, leading to dissatisfaction.",
+      "quotes": [
+        "The consultant we saw was very nice and understanding but apart from that this clinic for me was such a let down!",
+        "The doctor made me feel extremely uncomfortable every time, only cared about money. Was unorganised too as they lost my blood results which was inconvenient.",
+        "The consultant didn’t write the consultation outcome correctly which resulted in incorrect timing of meds."
+      ]
+    },
+    {
+      "name": "Lack of Transparency in Costs",
+      "count": 60,
+      "pct": 17.39,
+      "severity": "high",
+      "description": "Patients encounter unexpected or hidden fees, with costs often exceeding initial quotes, leading to financial stress.",
+      "quotes": [
+        "Was a lot more expensive than quoted as there were expensive add-ons that we were not told about.",
+        "Told us it will cost around £6000-£8000. At the end we paid £15,000 for nothing.",
+        "We purchased three IVF cycles based on the advertised price, but ended up paying nearly double due to constant extra charges—especially for scans."
+      ]
+    },
+    {
+      "name": "Inadequate Handling of Complaints",
+      "count": 50,
+      "pct": 14.49,
+      "severity": "medium",
+      "description": "Complaints are ignored, dismissed, or met with defensive responses, exacerbating patient frustration.",
+      "quotes": [
+        "I submitted an official complaint after returning from treatment abroad. The response I received was defensive, inaccurate in parts, and did not acknowledge the stress caused by their poor communication and administration.",
+        "I lodged a complaint with them but there was no response of course.",
+        "I have submitted a formal complaint to them and this has not been responded to."
+      ]
+    },
+    {
+      "name": "Unprofessional Staff Behavior",
+      "count": 45,
+      "pct": 13.04,
+      "severity": "medium",
+      "description": "Patients report rude, dismissive, or unprofessional interactions with staff, undermining trust in the clinic.",
+      "quotes": [
+        "The reception staff I experienced weren’t very professional. One time I had an appointment, checked in with them and I was just passed a card machine with a payment on it to pay, without a word.",
+        "The sonographer wasn't too friendly and late for the appointment. She was so in a rush at the end to go on to her next appointment that she rushed to do my blood test and didn't do it properly.",
+        "The morning of my egg collections, one of the nurses yelled at me because 1 page in my file was not filled in."
+      ]
+    },
+    {
+      "name": "Failure to Provide Timely Test Results",
+      "count": 40,
+      "pct": 11.59,
+      "severity": "medium",
+      "description": "Delays in receiving test results or reports cause anxiety and disrupt treatment timelines.",
+      "quotes": [
+        "We had to chase the clinic for several results.",
+        "It took nearly two months for a follow up call discussing a AMH result.",
+        "5 weeks later, no one contacted me so I decided to give them a call, they told me to send an email, I’ve sent one and I am still waiting for response."
+      ]
+    },
+    {
+      "name": "Lack of Continuity in Care",
+      "count": 35,
+      "pct": 10.14,
+      "severity": "medium",
+      "description": "Patients see different doctors or nurses at each visit, leading to fragmented care and repeated explanations.",
+      "quotes": [
+        "You see a different Dr at every appointment leading to a lack of consistency.",
+        "I was not able to speak to anyone clinical to gather more insight.",
+        "The main issue is with how they treat people. You are just a number."
+      ]
+    }
+  ],
+  "overall_finding": "The reviews highlight systemic communication failures across London's gynaecology and fertility clinics, with unresponsiveness to patient inquiries and lack of follow-up being the most severe and frequent issues. Patients frequently encounter inconsistent information, poor appointment management, and rushed consultations, leading to mistrust and frustration. Financial transparency is another critical problem, with many patients facing unexpected costs. Complaints are often ignored, and unprofessional staff behavior further exacerbates patient dissatisfaction. These issues collectively undermine patient confidence and care quality in these clinics.",
+  "total_comm_reviews": 345
+}

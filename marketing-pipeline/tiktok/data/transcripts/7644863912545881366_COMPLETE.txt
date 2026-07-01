@@ -1,0 +1,9 @@
+video_id: 7644863912545881366
+url: https://www.tiktok.com/@docmap/video/7644863912545881366
+
+## Spoken transcript (Whisper automatic speech recognition, English)
+The benefits of MRI depends on who's reading it. If you've got it, the radiologist needs to have an interest in it. If you're having an MRI, it must be with a radiologist who has an understanding of endometriosis and knows what they're looking for. Otherwise, they'll miss it. Same when it comes to surgery.
+
+## TikTok title and description (verbatim from post metadata)
+
+Your MRI is only as useful as the person reading it. For endo, that matters more than most people reglize.  #endometriosis #endoawareness

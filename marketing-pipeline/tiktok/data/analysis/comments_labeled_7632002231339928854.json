@@ -1,0 +1,48 @@
+[
+  {
+    "cid": "7632416265189049091",
+    "text": "Girls need to understand it’s not embarrassing to talk about your periods too. Awareness on what is not normal is needed. I put up with this for too long before finding out I had endometriosis.",
+    "digg_count": 1,
+    "reply_comment_total": 0,
+    "create_time": 1777060401,
+    "themes": [
+      "pouch_anatomy_question",
+      "personal_story"
+    ],
+    "sentiment": {
+      "stance": "agree_validate",
+      "primary_emotion": "neutral",
+      "toxicity_spam_flag": false
+    }
+  },
+  {
+    "cid": "7632005198500725526",
+    "text": "Great idea to bring education into schools, it is much needed! xx",
+    "digg_count": 1,
+    "reply_comment_total": 1,
+    "create_time": 1776964702,
+    "themes": [
+      "other_uncategorized"
+    ],
+    "sentiment": {
+      "stance": "agree_validate",
+      "primary_emotion": "neutral",
+      "toxicity_spam_flag": false
+    }
+  },
+  {
+    "cid": "7632387309841777430",
+    "text": "women's health has a long way to go before it's really truly in hand. I'm stage 4 fibrotic endometriosis. as a kid I had to go home on the first day of my period. as I got older I would have an episode every few months where I'd be vomiting then.pass out. I think maybe I had endo for the whole time",
+    "digg_count": 1,
+    "reply_comment_total": 0,
+    "create_time": 1777053667,
+    "themes": [
+      "personal_story"
+    ],
+    "sentiment": {
+      "stance": "personal_story",
+      "primary_emotion": "neutral",
+      "toxicity_spam_flag": false
+    }
+  }
+]

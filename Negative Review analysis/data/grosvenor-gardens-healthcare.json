@@ -1,0 +1,26 @@
+{
+  "clinic": "Grosvenor Gardens Healthcare",
+  "reviews": [
+    {
+      "rating": 1,
+      "date": "3 months ago",
+      "text": "Had an awful experience at this clinic.\n\nIn response to the clinic’s reply: my appointment was in winter 2024, not three …"
+    },
+    {
+      "rating": 1,
+      "date": "8 months ago",
+      "text": "After our first visit we really rated Grosvenor Gardens. From there we decided we would like to pay for a NIPT exam. On the brochure it states that these exams can be done at the earliest 9 weeks but it is recommended to do them a bit later …"
+    },
+    {
+      "rating": 1,
+      "date": "a year ago",
+      "text": "Please read before you go. Her response is utterly false.\n\nI came for a scan with Dr. Tezcan, who delivered bad news in a blunt and …"
+    },
+    {
+      "rating": 1,
+      "date": "2 years ago",
+      "text": "I begged her to talk on the phone. I paid 500£ for my consultation including blood tests and ultrasound scan, the only thing I got from her is a mail saying that I should increase the dose of my medicine. I wanted to talk with her on the …"
+    }
+  ],
+  "total_negative": 4
+}

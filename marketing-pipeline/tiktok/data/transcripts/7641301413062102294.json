@@ -1,0 +1,50 @@
+{
+  "video_id": "7641301413062102294",
+  "source_media": "7641301413062102294.mp4",
+  "whisper_model": "tiny",
+  "language": "en",
+  "duration_after_vad": 43.8175,
+  "full_text": "So, MRI, can I have overdiagnosis underdiagnosis andometrosis? Is this true? Well, I would say MRI is particularly effective for identifying endometrosis, which affects the bowel above the rectal sigmoid junction. Trans vaginal scan is far more effective in our practice at least in assessing everything else in the pelvis. MRI is the only available resource in many places though, for assessing for rectal vaginal endometrosis, and therefore depends on the quality of the assessment and the analysis of the information which is gained through the MRI, and that depends on user interpretation. But we're working on it, there's a lot of education going on, and it's rapidly improving.",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 6.32,
+      "text": "So, MRI, can I have overdiagnosis underdiagnosis andometrosis? Is this true?"
+    },
+    {
+      "start": 6.32,
+      "end": 13.2,
+      "text": "Well, I would say MRI is particularly effective for identifying endometrosis, which affects"
+    },
+    {
+      "start": 13.2,
+      "end": 19.36,
+      "text": "the bowel above the rectal sigmoid junction. Trans vaginal scan is far more effective in our"
+    },
+    {
+      "start": 19.36,
+      "end": 26.64,
+      "text": "practice at least in assessing everything else in the pelvis. MRI is the only available resource in"
+    },
+    {
+      "start": 26.72,
+      "end": 31.68,
+      "text": "many places though, for assessing for rectal vaginal endometrosis, and therefore depends on the"
+    },
+    {
+      "start": 31.68,
+      "end": 36.4,
+      "text": "quality of the assessment and the analysis of the information which is gained through the MRI,"
+    },
+    {
+      "start": 36.4,
+      "end": 40.56,
+      "text": "and that depends on user interpretation. But we're working on it, there's a lot of"
+    },
+    {
+      "start": 40.56,
+      "end": 43.76,
+      "text": "education going on, and it's rapidly improving."
+    }
+  ]
+}

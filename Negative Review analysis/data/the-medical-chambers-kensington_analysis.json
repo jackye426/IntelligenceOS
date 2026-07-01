@@ -1,0 +1,90 @@
+{
+  "clinic": "The Medical Chambers Kensington",
+  "review_count": 22,
+  "categories": [
+    {
+      "name": "Staff Attitude",
+      "count": 5,
+      "pct": 22.7,
+      "severity": "high",
+      "quotes": [
+        "terrible reception/admin service",
+        "embarassing my wife when she pulled the pampers",
+        "no patience nor empathy for kids"
+      ]
+    },
+    {
+      "name": "Treatment Quality",
+      "count": 4,
+      "pct": 18.2,
+      "severity": "high",
+      "quotes": [
+        "shockingly superficial, and the interaction dismissive",
+        "diagnosed that I don't have an ear infection",
+        "paid 300 quid blood test they lost in transit"
+      ]
+    },
+    {
+      "name": "Billing & Invoicing",
+      "count": 3,
+      "pct": 13.6,
+      "severity": "high",
+      "quotes": [
+        "invoiced hundreds of pounds extra for tests I never had",
+        "charge my card, without giving me even a month delay",
+        "charge you £2 for a mask"
+      ]
+    },
+    {
+      "name": "Booking & Admin",
+      "count": 3,
+      "pct": 13.6,
+      "severity": "medium",
+      "quotes": [
+        "Poor admin meant we had issues with our insurance",
+        "appointment cancelled and was not informed",
+        "they used the card anyway"
+      ]
+    },
+    {
+      "name": "Value for Money",
+      "count": 3,
+      "pct": 13.6,
+      "severity": "high",
+      "quotes": [
+        "spent a total of £775",
+        "repeat the same blood tests And scans",
+        "not transparent about their test prices"
+      ]
+    },
+    {
+      "name": "Communication",
+      "count": 2,
+      "pct": 9.1,
+      "severity": "high",
+      "quotes": [
+        "very very difficult with slow response times",
+        "never returned his call and Dr GARDETTE never responded"
+      ]
+    },
+    {
+      "name": "Doctor / Consultant",
+      "count": 1,
+      "pct": 4.5,
+      "severity": "high",
+      "quotes": [
+        "she was that vague, didn't raise a concern"
+      ]
+    },
+    {
+      "name": "Waiting Times",
+      "count": 1,
+      "pct": 4.5,
+      "severity": "medium",
+      "quotes": [
+        "never had an on time appointment"
+      ]
+    }
+  ],
+  "summary": "Patients at The Medical Chambers Kensington are most dissatisfied with staff attitude (23% of complaints) and treatment quality (18%), with billing, booking, and value for money also common concerns. These five issues account for all 22 negative reviews."
+}

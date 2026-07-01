@@ -1,0 +1,8 @@
+apscheduler
+httpx
+openai
+python-dotenv
+supabase
+pydantic
+pandas
+-e ../marketing-pipeline

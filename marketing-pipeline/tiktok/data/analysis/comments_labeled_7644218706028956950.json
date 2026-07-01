@@ -1,0 +1,32 @@
+[
+  {
+    "cid": "7650753764394042135",
+    "text": "How can a appointment be booked please?",
+    "digg_count": 0,
+    "reply_comment_total": 2,
+    "create_time": 1781329989,
+    "themes": [
+      "general_question"
+    ],
+    "sentiment": {
+      "stance": "question",
+      "primary_emotion": "neutral",
+      "toxicity_spam_flag": false
+    }
+  },
+  {
+    "cid": "7649700559847752470",
+    "text": "How much does it cost",
+    "digg_count": 0,
+    "reply_comment_total": 1,
+    "create_time": 1781084742,
+    "themes": [
+      "other_uncategorized"
+    ],
+    "sentiment": {
+      "stance": "question",
+      "primary_emotion": "neutral",
+      "toxicity_spam_flag": false
+    }
+  }
+]

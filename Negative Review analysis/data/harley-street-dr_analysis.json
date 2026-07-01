@@ -1,0 +1,77 @@
+{
+  "clinic": "Harley Street Dr",
+  "review_count": 20,
+  "categories": [
+    {
+      "name": "Treatment Quality",
+      "count": 7,
+      "pct": 35.0,
+      "severity": "high",
+      "quotes": [
+        "saw no noticeable improvement",
+        "used the cheapest and maybe even expired product",
+        "made me look like I'm sleeping with my eyes open"
+      ]
+    },
+    {
+      "name": "Doctor / Consultant",
+      "count": 5,
+      "pct": 25.0,
+      "severity": "high",
+      "quotes": [
+        "justifying it based on your ethnicity",
+        "concerned about use of derma fillers",
+        "calls this man a CHARLATAN"
+      ]
+    },
+    {
+      "name": "Booking & Admin",
+      "count": 2,
+      "pct": 10.0,
+      "severity": "high",
+      "quotes": [
+        "told it was canceled after we had already arrived",
+        "I was ghosted, even after following up multiple times"
+      ]
+    },
+    {
+      "name": "Billing & Invoicing",
+      "count": 2,
+      "pct": 10.0,
+      "severity": "high",
+      "quotes": [
+        "try to hide prices from you",
+        "cleaver way of retaining initial consultation"
+      ]
+    },
+    {
+      "name": "Other",
+      "count": 2,
+      "pct": 10.0,
+      "severity": "high",
+      "quotes": [
+        "HORRIBLE NIGHTMARE",
+        "Run from there"
+      ]
+    },
+    {
+      "name": "Staff Attitude",
+      "count": 1,
+      "pct": 5.0,
+      "severity": "high",
+      "quotes": [
+        "very bad attitude and wasn't helpful"
+      ]
+    },
+    {
+      "name": "Facilities",
+      "count": 1,
+      "pct": 5.0,
+      "severity": "low",
+      "quotes": [
+        "spotless and very very pretty"
+      ]
+    }
+  ],
+  "summary": "Patients at Harley Street Dr are most dissatisfied with treatment quality (35% of complaints) and doctor/consultant issues (25%), making up over half of all negative feedback. Booking, billing, and other concerns each account for 10% of complaints, but are less frequent issues."
+}

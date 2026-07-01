@@ -1,0 +1,16 @@
+{
+  "clinic": "London Diagnostic Centre",
+  "reviews": [
+    {
+      "rating": 1,
+      "date": "a year ago",
+      "text": "Appalling Experience – Utterly Unacceptable\n\nMy experience at The London Diagnostic Centre on 10th March at 7 PM was nothing …"
+    },
+    {
+      "rating": 3,
+      "date": "a year ago",
+      "text": "Effortless service up to when my stitches were to come out and after my walk in centre visit to have my stitches removed one site wasn't healing so was told to get them to have a look of which they didn't want to know. I mean how long would it have taken them just to have a quick look?"
+    }
+  ],
+  "total_negative": 2
+}

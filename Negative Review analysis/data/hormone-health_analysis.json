@@ -1,0 +1,102 @@
+{
+  "clinic": "Hormone Health",
+  "review_count": 55,
+  "categories": [
+    {
+      "name": "Staff Attitude",
+      "count": 13,
+      "pct": 23.6,
+      "severity": "high",
+      "quotes": [
+        "reception was rude",
+        "cold and distant",
+        "incredibly cold"
+      ]
+    },
+    {
+      "name": "Treatment Quality",
+      "count": 12,
+      "pct": 21.8,
+      "severity": "high",
+      "quotes": [
+        "completely different numbers",
+        "super minimalistic with not details",
+        "completely missed the diagnosis"
+      ]
+    },
+    {
+      "name": "Booking & Admin",
+      "count": 6,
+      "pct": 10.9,
+      "severity": "medium",
+      "quotes": [
+        "still waiting after 72 hours",
+        "advised to set up another appointment",
+        "website has issues with its booking system"
+      ]
+    },
+    {
+      "name": "Billing & Invoicing",
+      "count": 6,
+      "pct": 10.9,
+      "severity": "high",
+      "quotes": [
+        "paid for a service I did not receive",
+        "pushing me to pay",
+        "playing on people’s h"
+      ]
+    },
+    {
+      "name": "Other",
+      "count": 5,
+      "pct": 9.1,
+      "severity": "low",
+      "quotes": [
+        "safety issues",
+        "Infringement of IP",
+        "so much verification"
+      ]
+    },
+    {
+      "name": "Doctor / Consultant",
+      "count": 3,
+      "pct": 5.5,
+      "severity": "high",
+      "quotes": [
+        "stay away!!",
+        "zero concern or commitment",
+        "explained findings right away"
+      ]
+    },
+    {
+      "name": "Waiting Times",
+      "count": 2,
+      "pct": 3.6,
+      "severity": "medium",
+      "quotes": [
+        "waited 20 minutes",
+        "2 week waiting list"
+      ]
+    },
+    {
+      "name": "Facilities",
+      "count": 2,
+      "pct": 3.6,
+      "severity": "medium",
+      "quotes": [
+        "Dirty, depressing",
+        "basement location"
+      ]
+    },
+    {
+      "name": "Communication",
+      "count": 1,
+      "pct": 1.8,
+      "severity": "high",
+      "quotes": [
+        "cut the line in your face"
+      ]
+    }
+  ],
+  "summary": "Patients at Hormone Health are most dissatisfied with staff attitude (24% of complaints) and treatment quality (22%), which together make up nearly half of all negative feedback. Other common issues include booking, admin, and billing, each accounting for 11% of complaints."
+}

@@ -1,0 +1,9 @@
+video_id: 7634579404131241239
+url: https://www.tiktok.com/@docmap/video/7634579404131241239
+
+## Spoken transcript (Whisper automatic speech recognition, English)
+benefits of MRI depends on who's reading it. If you've got it, if the radiologist needs to have an interest, if you're having an MRI it must be with the radiologist who has an understanding of endometriosis and knows what they're looking for. Otherwise they'll miss it. Same when it comes to surgery.
+
+## TikTok title and description (verbatim from post metadata)
+
+Replying to @user8575620225727  Many of you have asked about the MRI

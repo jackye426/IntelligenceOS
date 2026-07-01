@@ -1,0 +1,35 @@
+{
+  "clinic": "Grosvenor Gardens Healthcare - Victoria",
+  "review_count": 4,
+  "categories": [
+    {
+      "name": "Billing & Invoicing",
+      "count": 2,
+      "pct": 50.0,
+      "severity": "high",
+      "quotes": [
+        "did not inform me that the price was £355",
+        "unable to pay before receiving my results"
+      ]
+    },
+    {
+      "name": "Staff Attitude",
+      "count": 1,
+      "pct": 25.0,
+      "severity": "medium",
+      "quotes": [
+        "asked about my reproductive plans in a way that seemed to assume"
+      ]
+    },
+    {
+      "name": "Doctor / Consultant",
+      "count": 1,
+      "pct": 25.0,
+      "severity": "high",
+      "quotes": [
+        "delivered bad news in a blunt and insensitive manner"
+      ]
+    }
+  ],
+  "summary": "Patients at Grosvenor Gardens Healthcare - Victoria are most dissatisfied with billing and invoicing issues, which make up half of the complaints. The remaining complaints are split between staff attitude and doctor-related concerns."
+}

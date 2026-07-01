@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Availability Decay — {{ consultant_name }}{% endblock %}
+{% block content %}
+<h1>{{ consultant_name }}</h1>
+<div class="meta">
+  Generated: {{ generated_at }} &nbsp;|&nbsp; Reference date: {{ reference_date }}
+</div>
+
+<div class="disclaimer">
+  <strong>Scope:</strong> This report tracks publicly visible online appointment availability on HCA consultant
+  booking flows. It compares published consultant availability against observed online bookable slots and estimates
+  how much online appointment inventory remains visible as appointment dates approach. It should be interpreted as
+  a proxy for public online availability, not as a measure of true consultant utilisation, office hours, or actual
+  unbooked appointment rates.
+</div>
+
+{% for m in metrics_list %}
+<div class="section">
+  <h2>{{ m.location_name }} &mdash; {{ m.funding_route }}</h2>
+
+  <table>
+    <tr><th>Metric</th><th>Value</th></tr>
+    <tr><td>Total unique slots observed</td><td>{{ m.total_unique_slots_observed }}</td></tr>
+    <tr><td>Max visible slots (next 30 days)</td><td>{{ m.max_visible_slots_30d }}</td></tr>
+    <tr><td>Max visible slots (next 60 days)</td><td>{{ m.max_visible_slots_60d }}</td></tr>
+    <tr><td>Earliest available slot</td><td>
+      {% if m.earliest_available_slot %}<span class="badge badge-visible">{{ m.earliest_available_slot }}</span>
+      {% else %}<span class="null-value">none visible</span>{% endif %}
+    </td></tr>
+    <tr><td>Furthest available slot</td><td>
+      {% if m.furthest_available_slot %}{{ m.furthest_available_slot }}
+      {% else %}<span class="null-value">none visible</span>{% endif %}
+    </td></tr>
+  </table>
+
+  <h3>Slots visible within T-windows</h3>
+  <table>
+    <tr>
+      <th>T-window</th>
+      <th>Slots visible</th>
+      <th>% still visible (historical)</th>
+    </tr>
+    {% for days in t_windows %}
+    <tr>
+      <td>T-{{ days }}d {% if days == 2 %}(T-48h){% endif %}</td>
+      <td>{{ m.slots_within_t_windows.get(days, 0) }}</td>
+      <td>
+        {% set pct = m.pct_visible_at_t_windows.get(days) %}
+        {% if pct is none %}
+          <span class="null-value">insufficient history</span>
+        {% else %}
+          {{ pct }}%
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% else %}
+<p>No metrics data available yet. Run at least one scrape first.</p>
+{% endfor %}
+{% endblock %}

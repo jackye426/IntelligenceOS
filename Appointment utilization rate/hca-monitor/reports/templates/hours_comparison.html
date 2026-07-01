@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Published Hours vs Online Slots — {{ consultant_name }}{% endblock %}
+{% block content %}
+<h1>Published Hours vs Online Slots</h1>
+<p class="meta">Consultant: <strong>{{ consultant_name }}</strong> &nbsp;|&nbsp; Generated: {{ generated_at }}</p>
+
+<div class="disclaimer">
+  Published consulting hours are extracted from the HCA consultant profile page.
+  Observed slots are the appointment times actually available in the public online booking flow.
+  Gaps between published hours and observed slots do not imply unutilised capacity —
+  slots may exist via phone booking, private secretaries, or other routes not tracked here.
+</div>
+
+{% for comp in comparisons %}
+<div class="section">
+  <h2>{{ comp.location_name }}</h2>
+  <table>
+    <tr><th>Attribute</th><th>Value</th></tr>
+    <tr><td>Published days</td><td>
+      {% if comp.published_days %}{{ comp.published_days | join(', ') }}
+      {% else %}<span class="null-value">not listed on profile</span>{% endif %}
+    </td></tr>
+    <tr><td>Published hours</td><td>
+      {% if comp.published_hours %}{{ comp.published_hours }}
+      {% else %}<span class="null-value">not listed on profile</span>{% endif %}
+    </td></tr>
+    <tr><td>Days with online slots observed</td><td>
+      {% if comp.days_with_observed_slots %}{{ comp.days_with_observed_slots | join(', ') }}
+      {% else %}<span class="null-value">none</span>{% endif %}
+    </td></tr>
+    <tr><td>Earliest observed slot time</td><td>{{ comp.earliest_observed_time or '—' }}</td></tr>
+    <tr><td>Latest observed slot time</td><td>{{ comp.latest_observed_time or '—' }}</td></tr>
+    <tr><td>Total slots observed</td><td>{{ comp.total_slots_observed }}</td></tr>
+  </table>
+
+  {% if comp.days_published_not_observed %}
+  <p><strong>Days published but no online slots seen:</strong>
+    {{ comp.days_published_not_observed | join(', ') }}</p>
+  {% endif %}
+  {% if comp.days_observed_not_published %}
+  <p><strong>Days with online slots not in published schedule:</strong>
+    {{ comp.days_observed_not_published | join(', ') }}</p>
+  {% endif %}
+
+  <h3>Slot count by day of week</h3>
+  <table>
+    <tr>{% for day in day_names %}<th>{{ day[:3] }}</th>{% endfor %}</tr>
+    <tr>{% for day in day_names %}<td>{{ comp.slot_count_by_day.get(day, 0) }}</td>{% endfor %}</tr>
+  </table>
+
+  <p><em>{{ comp.interpretation.split('\n')[-1] }}</em></p>
+</div>
+{% else %}
+<p>No location data available.</p>
+{% endfor %}
+{% endblock %}

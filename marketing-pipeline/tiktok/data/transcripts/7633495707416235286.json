@@ -1,0 +1,50 @@
+{
+  "video_id": "7633495707416235286",
+  "source_media": "7633495707416235286.mp4",
+  "whisper_model": "small",
+  "language": "en",
+  "duration_after_vad": 42.6565,
+  "full_text": "If someone has suspicion that they have endometriosis, but they're kind of hitting the wall What would you tell them now? Like what's the next step or what's something they should they should know? Work out your symptoms. Work out what's typical, what isn't typical. Work it out. Go to one in the end of UK It's fantastic. There's some really good resources. Go and have a look, but work out your symptoms Look at yourself and say, okay, what's happening? What's happening to me and then go to somebody and say this is what's happening to me. Can you help? But just keep on, keep knocking on the doors You know, don't despair. There are a lot of us out there who want to help. Those people who want to help So, or you can come and see me in help and I do virtual clinic as well",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 4.68,
+      "text": "If someone has suspicion that they have endometriosis, but they're kind of hitting the wall"
+    },
+    {
+      "start": 4.8,
+      "end": 10.72,
+      "text": "What would you tell them now? Like what's the next step or what's something they should they should know?"
+    },
+    {
+      "start": 10.72,
+      "end": 16.72,
+      "text": "Work out your symptoms. Work out what's typical, what isn't typical. Work it out. Go to one in the end of UK"
+    },
+    {
+      "start": 16.72,
+      "end": 21.96,
+      "text": "It's fantastic. There's some really good resources. Go and have a look, but work out your symptoms"
+    },
+    {
+      "start": 22.2,
+      "end": 27.92,
+      "text": "Look at yourself and say, okay, what's happening? What's happening to me and then go to somebody and say"
+    },
+    {
+      "start": 27.92,
+      "end": 32.08,
+      "text": "this is what's happening to me. Can you help? But just keep on, keep knocking on the doors"
+    },
+    {
+      "start": 32.08,
+      "end": 37.08,
+      "text": "You know, don't despair. There are a lot of us out there who want to help. Those people who want to help"
+    },
+    {
+      "start": 37.08,
+      "end": 41.48,
+      "text": "So, or you can come and see me in help and I do virtual clinic as well"
+    }
+  ]
+}

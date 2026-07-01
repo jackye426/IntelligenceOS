@@ -1,0 +1,82 @@
+{
+  "total_reviews": 1145,
+  "bottlenecks": [
+    {
+      "name": "Unanswered inbound contacts",
+      "evidence": 500,
+      "description": "Phones never answered, emails ignored, voicemails unreturned. First point of contact fails entirely.",
+      "stage": "Pre-appointment / Booking",
+      "severity": "high",
+      "chatbot_can_solve": true,
+      "solution": "Capture every inbound enquiry 24/7, answer FAQs, route to the right person, confirm receipt instantly.",
+      "must_have": true
+    },
+    {
+      "name": "Mid-treatment communication gap",
+      "evidence": 328,
+      "description": "Patients in active treatment cycles cannot get clarity on next steps, medication, or results. Staff flooded with reactive queries.",
+      "stage": "During treatment",
+      "severity": "high",
+      "chatbot_can_solve": true,
+      "solution": "Proactive milestone-triggered updates. Patient asks \"what do I do next?\" — chatbot answers from protocol without involving a nurse.",
+      "must_have": true
+    },
+    {
+      "name": "Appointment booking errors",
+      "evidence": 195,
+      "description": "Appointments booked on wrong dates, cancelled without notice, admin records incorrect. Patients arrive to find no record of them.",
+      "stage": "Booking & Admin",
+      "severity": "high",
+      "chatbot_can_solve": true,
+      "solution": "Automated booking confirmation, reminders, structured rescheduling. Patient self-serves; errors caught before they happen.",
+      "must_have": true
+    },
+    {
+      "name": "Test results not delivered",
+      "evidence": 120,
+      "description": "Patients waiting weeks for results with no proactive notification. Generates high-volume inbound chasing calls.",
+      "stage": "During & post-treatment",
+      "severity": "high",
+      "chatbot_can_solve": true,
+      "solution": "Automated result-ready notification with next steps. Eliminates the chase entirely.",
+      "must_have": true
+    },
+    {
+      "name": "Financial transparency at enquiry stage",
+      "evidence": 151,
+      "description": "Patients quoted one price, billed another. Hidden add-ons not disclosed. Generates disputes and 1-star reviews.",
+      "stage": "Pre-appointment / Post-treatment",
+      "severity": "medium",
+      "chatbot_can_solve": true,
+      "solution": "Upfront cost breakdown in the chatbot enquiry flow. Quotes the likely range, explains add-ons, sets expectations before booking.",
+      "must_have": false
+    },
+    {
+      "name": "Post-treatment follow-up absent",
+      "evidence": 210,
+      "description": "After procedures, patients hear nothing. No aftercare instructions, no check-in, no results follow-up.",
+      "stage": "Post-treatment",
+      "severity": "medium",
+      "chatbot_can_solve": true,
+      "solution": "Automated post-procedure workflow: aftercare instructions day 1, check-in day 3, results notification when ready.",
+      "must_have": false
+    }
+  ],
+  "not_solvable": [
+    {
+      "name": "Treatment Quality",
+      "count": 175,
+      "reason": "Clinical issue — requires better protocols and clinician training"
+    },
+    {
+      "name": "Staff Attitude",
+      "count": 133,
+      "reason": "Management / HR issue — no chatbot can fix a dismissive consultant"
+    },
+    {
+      "name": "Doctor / Consultant",
+      "count": 86,
+      "reason": "Clinical quality — outside scope of automation"
+    }
+  ]
+}

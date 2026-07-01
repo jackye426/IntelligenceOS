@@ -1,0 +1,16 @@
+{
+  "clinic": "London Fertility Clinic",
+  "reviews": [
+    {
+      "rating": 1,
+      "date": "3 months ago",
+      "text": "I do not recommend London Fertility Clinic based on my experience with their organisation, punctuality, and communication.\n\nI booked a private consultation costing £250 and experienced serious issues on two separate occasions.\n\nThe first appointment was delayed by around 30 minutes. I waited infront of my laptop but did not receive the Zoom link or any update. I had to send multiple follow-up emails and also tried calling, but received no answer. Only after I chased several times did they eventually contact me to apologise. This was a clear waste of my time and felt highly unprofessional for a paid private consultation. There was no real remediation for the inconvenience caused.\n\nThe second appointment was even worse. The consultation was delayed again — this time by approximately 45 minutes. I received no apology, no acknowledgement, and no communication at the time of the appointment despite following up twice by email to ask when it would start. In the end, no consultation was attended at all. I requested a full refund, and only then did I receive a response.\n\nIt is unacceptable for a private clinic charging £250 per consultation to manage appointments in this way and to show such disregard for patients’ time. Appointment scheduling and time management are the responsibility of the clinic, and patients should not be left waiting without updates or clear communication.\n\nI also found it very unclear why the clinic insisted on online consultations when I repeatedly expressed a preference for a face-to-face appointment. The communication around this felt vague, and even basic details such as the clinic setup and process were not clearly explained, which added to the overall sense of disorganisation.\n\nOverall, I found the experience disorganised, unprofessional, and stressful. I would not recommend this clinic based on how my appointments were handled."
+    },
+    {
+      "rating": 1,
+      "date": "a year ago",
+      "text": "Called to enquire about insurance coverage and came across the rudest receptionist. Very bad customer service."
+    }
+  ],
+  "total_negative": 2
+}

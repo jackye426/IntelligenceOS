@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}HCA Appointment Monitor{% endblock %}</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 0; padding: 1.5rem 2rem; background: #f8f9fa; color: #212529; }
+    h1 { font-size: 1.6rem; margin-bottom: 0.25rem; }
+    h2 { font-size: 1.2rem; margin-top: 2rem; border-bottom: 2px solid #dee2e6; padding-bottom: 0.4rem; }
+    h3 { font-size: 1rem; margin-top: 1.5rem; }
+    .meta { color: #6c757d; font-size: 0.85rem; margin-bottom: 1.5rem; }
+    .disclaimer { background: #fff3cd; border: 1px solid #ffc107; border-radius: 4px; padding: 0.75rem 1rem; font-size: 0.85rem; margin-bottom: 1.5rem; }
+    table { border-collapse: collapse; width: 100%; margin-bottom: 1rem; background: #fff; }
+    th, td { padding: 0.5rem 0.75rem; border: 1px solid #dee2e6; text-align: left; font-size: 0.9rem; }
+    th { background: #e9ecef; font-weight: 600; }
+    tr:hover { background: #f1f3f5; }
+    .badge { display: inline-block; padding: 0.2em 0.5em; border-radius: 3px; font-size: 0.8rem; font-weight: 600; }
+    .badge-visible { background: #d4edda; color: #155724; }
+    .badge-disappeared { background: #f8d7da; color: #721c24; }
+    .badge-expired { background: #fff3cd; color: #856404; }
+    .badge-unknown { background: #e2e3e5; color: #383d41; }
+    .section { background: #fff; border: 1px solid #dee2e6; border-radius: 6px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; }
+    .null-value { color: #adb5bd; font-style: italic; }
+  </style>
+</head>
+<body>
+{% block content %}{% endblock %}
+</body>
+</html>

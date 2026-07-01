@@ -1,0 +1,40 @@
+{
+  "video_id": "7631220659770690818",
+  "source_media": "7631220659770690818.mp4",
+  "whisper_model": "small",
+  "language": "en",
+  "duration_after_vad": 30.349875,
+  "full_text": "Excision, not ablation. Ablation only takes the surface. It's like skimming something. If you need, if your plaster's gone on the wall, skimming it is not going to make any difference is it, because it's still going to blow. Yeah? Same difference. Endometriosis is too deep to skim over the top of it. It goes too deep. Hi, my name is Liz Bruin. I am an Endometriosis Clinical Specialist. I was the very first Endometriosis nurse since 2006 in Wales.",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 8.4,
+      "text": "Excision, not ablation. Ablation only takes the surface. It's like skimming something."
+    },
+    {
+      "start": 8.4,
+      "end": 12.72,
+      "text": "If you need, if your plaster's gone on the wall, skimming it is not going to make any"
+    },
+    {
+      "start": 12.72,
+      "end": 18.44,
+      "text": "difference is it, because it's still going to blow. Yeah? Same difference. Endometriosis"
+    },
+    {
+      "start": 18.44,
+      "end": 21.64,
+      "text": "is too deep to skim over the top of it. It goes too deep."
+    },
+    {
+      "start": 21.64,
+      "end": 27.24,
+      "text": "Hi, my name is Liz Bruin. I am an Endometriosis Clinical Specialist. I was the very first"
+    },
+    {
+      "start": 27.24,
+      "end": 30.28,
+      "text": "Endometriosis nurse since 2006 in Wales."
+    }
+  ]
+}

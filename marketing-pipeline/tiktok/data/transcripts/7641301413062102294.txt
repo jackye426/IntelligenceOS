@@ -1,0 +1,8 @@
+[0.0-6.3] So, MRI, can I have overdiagnosis underdiagnosis andometrosis? Is this true?
+[6.3-13.2] Well, I would say MRI is particularly effective for identifying endometrosis, which affects
+[13.2-19.4] the bowel above the rectal sigmoid junction. Trans vaginal scan is far more effective in our
+[19.4-26.6] practice at least in assessing everything else in the pelvis. MRI is the only available resource in
+[26.7-31.7] many places though, for assessing for rectal vaginal endometrosis, and therefore depends on the
+[31.7-36.4] quality of the assessment and the analysis of the information which is gained through the MRI,
+[36.4-40.6] and that depends on user interpretation. But we're working on it, there's a lot of
+[40.6-43.8] education going on, and it's rapidly improving.

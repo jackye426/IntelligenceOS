@@ -1,0 +1,111 @@
+{
+  "clinic": "Outpatient 84 Harley Street",
+  "review_count": 66,
+  "categories": [
+    {
+      "name": "Other",
+      "count": 16,
+      "pct": 24.2,
+      "severity": "low",
+      "quotes": [
+        "degrading over the last few years",
+        "biggest miracle of medical a world",
+        "hiding Kulsoom Nawaz and giving her corrupt husband a cover"
+      ]
+    },
+    {
+      "name": "Booking & Admin",
+      "count": 11,
+      "pct": 16.7,
+      "severity": "high",
+      "quotes": [
+        "no one knows anything, the room that was supposed to be ready",
+        "spent hours talking to the stuff over the phone",
+        "no appointment scheduled for me"
+      ]
+    },
+    {
+      "name": "Staff Attitude",
+      "count": 11,
+      "pct": 16.7,
+      "severity": "high",
+      "quotes": [
+        "raised her voice and shouted at us",
+        "Unqualified staff unables to interpret their own test result",
+        "nurses are very inefficient"
+      ]
+    },
+    {
+      "name": "Treatment Quality",
+      "count": 9,
+      "pct": 13.6,
+      "severity": "high",
+      "quotes": [
+        "my skin had not changed",
+        "No conclusive evidence as to what was wrong",
+        "ended up with a huge hole in my nose"
+      ]
+    },
+    {
+      "name": "Communication",
+      "count": 8,
+      "pct": 12.1,
+      "severity": "high",
+      "quotes": [
+        "no way to contact management regarding complaints",
+        "no response yet. Phoned on 8 different days",
+        "Never got any response for my blood tests’ result"
+      ]
+    },
+    {
+      "name": "Billing & Invoicing",
+      "count": 5,
+      "pct": 7.6,
+      "severity": "medium",
+      "quotes": [
+        "received another invoice six months later",
+        "hospital owes me £3000",
+        "sent 3 invoices"
+      ]
+    },
+    {
+      "name": "Waiting Times",
+      "count": 2,
+      "pct": 3.0,
+      "severity": "high",
+      "quotes": [
+        "kept waiting over an hour for an appointment",
+        "Waiting time 6 hours in total"
+      ]
+    },
+    {
+      "name": "Facilities",
+      "count": 2,
+      "pct": 3.0,
+      "severity": "high",
+      "quotes": [
+        "Inpatient wards have nursing shortages",
+        "old facilities"
+      ]
+    },
+    {
+      "name": "Value for Money",
+      "count": 1,
+      "pct": 1.5,
+      "severity": "high",
+      "quotes": [
+        "charged 3000GBP for a 20 min intervention"
+      ]
+    },
+    {
+      "name": "Doctor / Consultant",
+      "count": 1,
+      "pct": 1.5,
+      "severity": "high",
+      "quotes": [
+        "couldn’t get a word in during the consultation"
+      ]
+    }
+  ],
+  "summary": "Patients at Outpatient 84 Harley Street were most dissatisfied with general issues (\"Other,\" 24%) and problems related to booking/admin and staff attitude (17% each). Treatment quality (14%) and communication (12%) were also common concerns in the 66 negative reviews."
+}

@@ -1,0 +1,111 @@
+{
+  "id": "7637061986777402646",
+  "formats": [
+    {
+      "format_id": "audio",
+      "url": "https://sf77-ies-music-sg.tiktokcdn.com/obj/tos-alisg-ve-2774/ogxtQuFh6IDPGkOC7SagfeE6pEMnZPnBQ1sIjB",
+      "ext": "m4a",
+      "acodec": "aac",
+      "vcodec": "none",
+      "protocol": "https",
+      "audio_ext": "m4a",
+      "video_ext": "none",
+      "vbr": 0,
+      "abr": null,
+      "tbr": null,
+      "resolution": "audio only",
+      "aspect_ratio": null,
+      "filesize_approx": null,
+      "http_headers": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-us,en;q=0.5",
+        "Sec-Fetch-Mode": "navigate",
+        "Referer": "https://www.tiktok.com/@docmap/video/7637061986777402646"
+      },
+      "format": "audio - audio only"
+    }
+  ],
+  "subtitles": {},
+  "http_headers": {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "en-us,en;q=0.5",
+    "Sec-Fetch-Mode": "navigate",
+    "Referer": "https://www.tiktok.com/@docmap/video/7637061986777402646"
+  },
+  "channel": "docmap",
+  "channel_id": "MS4wLjABAAAAFJURMLSR0Pg7ewlOr04kHpZUsz75ua2wQVK37080oHzNn_-Oy_nrVhtTz2GuyTZg",
+  "uploader": "docmap",
+  "uploader_id": "7566624635910554626",
+  "channel_url": "https://www.tiktok.com/@MS4wLjABAAAAFJURMLSR0Pg7ewlOr04kHpZUsz75ua2wQVK37080oHzNn_-Oy_nrVhtTz2GuyTZg",
+  "uploader_url": "https://www.tiktok.com/@docmap",
+  "track": "Venus and Flower",
+  "album": "Venus and Flower",
+  "artists": [
+    "Austin Farwell"
+  ],
+  "duration": 60,
+  "title": "Period pain that ruins your day is not something to push through, it'...",
+  "description": "Period pain that ruins your day is not something to push through, it's something to investigate. Conditions like endometriosis are more common than you think, and earlier diagnosis changes everything. Save this and share it with someone who needs to hear this 💕",
+  "timestamp": 1778142067,
+  "view_count": 614,
+  "like_count": 46,
+  "repost_count": 0,
+  "comment_count": 2,
+  "save_count": 5,
+  "thumbnails": [
+    {
+      "id": "cover",
+      "url": "https://p16-common-sign.tiktokcdn-eu.com/tos-no1a-i-photomode-no/e73601d5efd84269bdde199e53495214~tplv-photomode-image.jpeg?dr=10375&x-expires=1780826400&x-signature=GNZP6JobyLA84zcc2xAs6lGebJ4%3D&t=4d5b0474&ps=13740610&shp=81f88b70&shcp=9b759fb9&idc=no1a&ftpl=1",
+      "preference": -1
+    },
+    {
+      "id": "originCover",
+      "url": "https://p16-common-sign.tiktokcdn-eu.com/tos-no1a-i-photomode-no/e73601d5efd84269bdde199e53495214~tplv-photomode-image.jpeg?dr=10375&x-expires=1780826400&x-signature=GNZP6JobyLA84zcc2xAs6lGebJ4%3D&t=4d5b0474&ps=13740610&shp=81f88b70&shcp=9b759fb9&idc=no1a&ftpl=1",
+      "preference": -1
+    }
+  ],
+  "webpage_url": "https://www.tiktok.com/@docmap/video/7637061986777402646",
+  "original_url": "https://www.tiktok.com/@docmap/video/7637061986777402646",
+  "webpage_url_basename": "7637061986777402646",
+  "webpage_url_domain": "tiktok.com",
+  "extractor": "TikTok",
+  "extractor_key": "TikTok",
+  "playlist": null,
+  "playlist_index": null,
+  "thumbnail": "https://p16-common-sign.tiktokcdn-eu.com/tos-no1a-i-photomode-no/e73601d5efd84269bdde199e53495214~tplv-photomode-image.jpeg?dr=10375&x-expires=1780826400&x-signature=GNZP6JobyLA84zcc2xAs6lGebJ4%3D&t=4d5b0474&ps=13740610&shp=81f88b70&shcp=9b759fb9&idc=no1a&ftpl=1",
+  "display_id": "7637061986777402646",
+  "fulltitle": "Period pain that ruins your day is not something to push through, it'...",
+  "duration_string": "1:00",
+  "upload_date": "20260507",
+  "release_year": null,
+  "artist": "Austin Farwell",
+  "requested_subtitles": null,
+  "_has_drm": null,
+  "epoch": 1780655917,
+  "format_id": "audio",
+  "url": "https://sf77-ies-music-sg.tiktokcdn.com/obj/tos-alisg-ve-2774/ogxtQuFh6IDPGkOC7SagfeE6pEMnZPnBQ1sIjB",
+  "ext": "m4a",
+  "acodec": "aac",
+  "vcodec": "none",
+  "protocol": "https",
+  "audio_ext": "m4a",
+  "video_ext": "none",
+  "vbr": 0,
+  "abr": null,
+  "tbr": null,
+  "resolution": "audio only",
+  "aspect_ratio": null,
+  "filesize_approx": null,
+  "format": "audio - audio only",
+  "_filename": "C:\\Users\\yulon\\Desktop\\Current Projects\\Social media analysis\\tiktok_analysis\\data\\yt_meta\\7637061986777402646",
+  "filename": "C:\\Users\\yulon\\Desktop\\Current Projects\\Social media analysis\\tiktok_analysis\\data\\yt_meta\\7637061986777402646",
+  "_type": "video",
+  "_version": {
+    "version": "2026.03.17",
+    "current_git_head": null,
+    "release_git_head": "04d6974f502bbdfaed72c624344f262e30ad9708",
+    "repository": "yt-dlp/yt-dlp"
+  }
+}

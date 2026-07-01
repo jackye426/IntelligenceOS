@@ -1,0 +1,648 @@
+[
+  {
+    "video_id": "7630900114982210838",
+    "short_label": "7630900114982210838",
+    "hook_verbatim_opening": "If you have a laparoscopy of somebody who doesn't know what they're looking for, they'll miss it.",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "If you have a laparoscopy of somebody who doesn't know what they're looking for, they'll miss it.",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 5,
+    "tone_tags": [
+      "system_critique",
+      "urgency_advocacy"
+    ],
+    "cta_type": "link_in_bio_booking",
+    "topic_overlap_note": "Unique: intra-op 360 checklist + pouch of Douglas demo; high surgical literacy."
+  },
+  {
+    "video_id": "7649808436883967254",
+    "short_label": "The pain is real, it's debilitating, and it deserves to be t",
+    "hook_verbatim_opening": "I would say Lester G, Lester G is always, I did a study a year ago, I was asked to do a presentation about my clinic at BSG and called, and I did it and I thought it was boring.",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "I would say Lester G, Lester G is always, I did a study a year ago, I was asked to do a presentation about my clinic at BSG and called, and I did it and I thought it was boring.",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [],
+    "cta_type": "question_prompt",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7650466482173791510",
+    "short_label": "Always ask for your surgical photos after a laparoscopy.  Al",
+    "hook_verbatim_opening": "I would be very surprised to know what you said, no.",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "I would be very surprised to know what you said, no.",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [],
+    "cta_type": "link_in_bio_booking",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7644863912545881366",
+    "short_label": "7644863912545881366",
+    "hook_verbatim_opening": "The benefits of MRI depends on who's reading it.",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "The benefits of MRI depends on who's reading it.",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [
+      "system_critique"
+    ],
+    "cta_type": "question_prompt",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7631220659770690818",
+    "short_label": "7631220659770690818",
+    "hook_verbatim_opening": "Excision, not ablation. Ablation only takes the surface. It's like skimming something.",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "rule_meme_style",
+    "promise_first_10s": "Excision, not ablation. Ablation only takes the surface. It's like skimming something.",
+    "info_architecture": "faq_response",
+    "specificity_score_1_5": 4,
+    "tone_tags": [
+      "analogy_teach"
+    ],
+    "cta_type": "question_prompt",
+    "topic_overlap_note": "Overlaps viral clip (excision); shorter analogy-led."
+  },
+  {
+    "video_id": "7640116261598350614",
+    "short_label": "7640116261598350614",
+    "hook_verbatim_opening": "I had my surgery with a general gynecologist and surgery for 30 minutes,",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "I had my surgery with a general gynecologist and surgery for 30 minutes,",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [],
+    "cta_type": "question_prompt",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7650429101584469270",
+    "short_label": "A 30-minute laparoscopy that found nothing doesn't mean noth",
+    "hook_verbatim_opening": "This is purely diagnostic. I would suggest that everybody should give photos and",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "This is purely diagnostic. I would suggest that everybody should give photos and",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [],
+    "cta_type": "question_prompt",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7641554459755089154",
+    "short_label": "7641554459755089154",
+    "hook_verbatim_opening": "Excision, not ablation, because it's ablation only takes the surface, it's like skimming,",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "rule_meme_style",
+    "promise_first_10s": "Excision, not ablation, because it's ablation only takes the surface, it's like skimming,",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [
+      "analogy_teach"
+    ],
+    "cta_type": "link_in_bio_booking",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7650467196187036950",
+    "short_label": "Before your laparoscopy, there are questions you should be a",
+    "hook_verbatim_opening": "Are you going to look at my diaphragm? Are you going to look at my appendix? Are you going",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "Are you going to look at my diaphragm? Are you going to look at my appendix? Are you going",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [],
+    "cta_type": "link_in_bio_booking",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7636091017875197207",
+    "short_label": "7636091017875197207",
+    "hook_verbatim_opening": "This one is for everyone dealing with endo belly 💕 #endometriosis #endobelly",
+    "hook_window": "description_fallback_no_clear_speech",
+    "hook_classification": "symptom_identity_validation",
+    "promise_first_10s": "This one is for everyone dealing with endo belly 💕 #endometriosis #endobelly",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [],
+    "cta_type": "question_prompt",
+    "topic_overlap_note": "Symptom identity (endo belly); longform."
+  },
+  {
+    "video_id": "7631307430890048790",
+    "short_label": "7631307430890048790",
+    "hook_verbatim_opening": "It was surprising to us how few people know about enda nurses and the ways they can help",
+    "hook_window": "description_fallback_no_clear_speech",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "It was surprising to us how few people know about enda nurses and the ways they can help",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [],
+    "cta_type": "question_prompt",
+    "topic_overlap_note": "Intro carousel; less procedural detail."
+  },
+  {
+    "video_id": "7632321370080152854",
+    "short_label": "7632321370080152854",
+    "hook_verbatim_opening": "God, you look so pretty when you tell me that you love me",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "time_constraint_gp",
+    "promise_first_10s": "God, you look so pretty when you tell me that you love me",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [
+      "system_critique"
+    ],
+    "cta_type": "whatsapp_message",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7634579404131241239",
+    "short_label": "7634579404131241239",
+    "hook_verbatim_opening": "benefits of MRI depends on who's reading it. If you've got it, if the radiologist needs to have",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "benefits of MRI depends on who's reading it. If you've got it, if the radiologist needs to have",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [
+      "system_critique"
+    ],
+    "cta_type": "question_prompt",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7650479358867492118",
+    "short_label": "Painful periods are often one of the first and most well-kno",
+    "hook_verbatim_opening": "If you're needing to use really strong pain killers, get help.",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "If you're needing to use really strong pain killers, get help.",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [],
+    "cta_type": "link_in_bio_booking",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7637168703532027158",
+    "short_label": "7637168703532027158",
+    "hook_verbatim_opening": "I would say lethargy. I did a study years ago. I was asked to do a presentation about",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "I would say lethargy. I did a study years ago. I was asked to do a presentation about",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [],
+    "cta_type": "link_in_bio_booking",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7647091030986165526",
+    "short_label": "7647091030986165526",
+    "hook_verbatim_opening": "MRI is good in studies it comes with sort of a relatively equal comparison to",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "MRI is good in studies it comes with sort of a relatively equal comparison to",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [],
+    "cta_type": "question_prompt",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7641301413062102294",
+    "short_label": "7641301413062102294",
+    "hook_verbatim_opening": "So, MRI, can I have overdiagnosis underdiagnosis andometrosis? Is this true?",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "So, MRI, can I have overdiagnosis underdiagnosis andometrosis? Is this true?",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [],
+    "cta_type": "question_prompt",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7650483052963040534",
+    "short_label": "It's a common misconception that an MRI provides a definitiv",
+    "hook_verbatim_opening": "It's a common misconception that an MRI provides a definitive yes or no for endometriosis",
+    "hook_window": "description_fallback_no_clear_speech",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "It's a common misconception that an MRI provides a definitive yes or no for endometriosis",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [],
+    "cta_type": "question_prompt",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7650157296907062550",
+    "short_label": "Did you know that if you have endometriosis, you're eligible",
+    "hook_verbatim_opening": "I had my stuff thrown on your own and the train was full and then you know seats and they",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "I had my stuff thrown on your own and the train was full and then you know seats and they",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [],
+    "cta_type": "question_prompt",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7633862545228434710",
+    "short_label": "7633862545228434710",
+    "hook_verbatim_opening": "So it's simple and complicated.",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "stat_shock",
+    "promise_first_10s": "So it's simple and complicated.",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 4,
+    "tone_tags": [
+      "system_critique"
+    ],
+    "cta_type": "link_in_bio_booking",
+    "topic_overlap_note": "Overlaps 7634274846117104918 (9-year delay series)."
+  },
+  {
+    "video_id": "7632002231339928854",
+    "short_label": "7632002231339928854",
+    "hook_verbatim_opening": "If you're needing to use really strong pain killers,",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "If you're needing to use really strong pain killers,",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [],
+    "cta_type": "link_in_bio_booking",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7639773005035375894",
+    "short_label": "7639773005035375894",
+    "hook_verbatim_opening": "does endow in the pouch, don't let's get worse over time.",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "does endow in the pouch, don't let's get worse over time.",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [],
+    "cta_type": "question_prompt",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7639651293883206935",
+    "short_label": "7639651293883206935",
+    "hook_verbatim_opening": "The next question was, what if you ask for a 360 and you say no? Well, and they say no, I would be",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "The next question was, what if you ask for a 360 and you say no? Well, and they say no, I would be",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [],
+    "cta_type": "question_prompt",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7635716747869424918",
+    "short_label": "7635716747869424918",
+    "hook_verbatim_opening": "8 minutes",
+    "hook_window": "description_fallback_no_clear_speech",
+    "hook_classification": "time_constraint_gp",
+    "promise_first_10s": "8 minutes",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [
+      "system_critique"
+    ],
+    "cta_type": "whatsapp_message",
+    "topic_overlap_note": "Service-led (WhatsApp) vs Liz clinical series."
+  },
+  {
+    "video_id": "7641917387201187094",
+    "short_label": "7641917387201187094",
+    "hook_verbatim_opening": "An endometriosis nurse, or Clinical Nurse Specialist (CNS), is someone like a diabetic nurse - a dedicated specialist who supports patients in managing a complex, long-term condition",
+    "hook_window": "description_fallback_no_clear_speech",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "An endometriosis nurse, or Clinical Nurse Specialist (CNS), is someone like a diabetic nurse - a dedicated specialist who supports patients in managing a complex, long-term condition",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [],
+    "cta_type": "question_prompt",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7642386611526716694",
+    "short_label": "7642386611526716694",
+    "hook_verbatim_opening": "You know, to trust your own body, to trust your own intuition, you know, your body better than anyone else.",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "You know, to trust your own body, to trust your own intuition, you know, your body better than anyone else.",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [
+      "validation_vulnerability"
+    ],
+    "cta_type": "question_prompt",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7641128554654256387",
+    "short_label": "7641128554654256387",
+    "hook_verbatim_opening": "Last question, one, six, right.",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "Last question, one, six, right.",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [],
+    "cta_type": "question_prompt",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7638541093646191894",
+    "short_label": "7638541093646191894",
+    "hook_verbatim_opening": "The research that's going on, the fact that I know so many people that give a damn about",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "The research that's going on, the fact that I know so many people that give a damn about",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [],
+    "cta_type": "link_in_bio_booking",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7640094039668296982",
+    "short_label": "7640094039668296982",
+    "hook_verbatim_opening": "And somebody has asked, was there a conclusion that laparoscopic was far less",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "And somebody has asked, was there a conclusion that laparoscopic was far less",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [],
+    "cta_type": "question_prompt",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7634274846117104918",
+    "short_label": "7634274846117104918",
+    "hook_verbatim_opening": "There's not enough education about it. It is better. There are guidelines out there but",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "stat_shock",
+    "promise_first_10s": "There's not enough education about it. It is better. There are guidelines out there but",
+    "info_architecture": "sequel_explainer",
+    "specificity_score_1_5": 4,
+    "tone_tags": [
+      "system_critique"
+    ],
+    "cta_type": "question_prompt",
+    "topic_overlap_note": "Part 2 same arc as 7633862545228434710."
+  },
+  {
+    "video_id": "7634568172330421526",
+    "short_label": "7634568172330421526",
+    "hook_verbatim_opening": "Painful intercourse is one of the most common symptoms of endometriosis and one of the most dismissed",
+    "hook_window": "description_fallback_no_clear_speech",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "Painful intercourse is one of the most common symptoms of endometriosis and one of the most dismissed",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [
+      "validation_vulnerability"
+    ],
+    "cta_type": "question_prompt",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7633495707416235286",
+    "short_label": "7633495707416235286",
+    "hook_verbatim_opening": "If someone has suspicion that they have endometriosis, but they're kind of hitting the wall",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "If someone has suspicion that they have endometriosis, but they're kind of hitting the wall",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [
+      "analogy_teach"
+    ],
+    "cta_type": "whatsapp_message",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7639676954576276758",
+    "short_label": "7639676954576276758",
+    "hook_verbatim_opening": "When are you asking for this just before are we sending life beforehand? I was, as I said earlier, I would have this as part of your discussion that you have when you're in your appointment with your medical professional",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "When are you asking for this just before are we sending life beforehand? I was, as I said earlier, I would have this as part of your discussion that you have when you're in your appointment with your medical professional.",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [],
+    "cta_type": "question_prompt",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7650472969264844054",
+    "short_label": "If you are hitting a wall getting a diagnosis for endometrio",
+    "hook_verbatim_opening": "Work like symptoms. Work out what's typical, what isn't sick of. Work it out.",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "Work like symptoms. Work out what's typical, what isn't sick of. Work it out.",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [
+      "analogy_teach"
+    ],
+    "cta_type": "link_in_bio_booking",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7645351638957313302",
+    "short_label": "7645351638957313302",
+    "hook_verbatim_opening": "Endo events is basically a community-led advocacy-based project essentially so it's a complete",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "Endo events is basically a community-led advocacy-based project essentially so it's a complete",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [
+      "validation_vulnerability"
+    ],
+    "cta_type": "question_prompt",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7639345448112672022",
+    "short_label": "7639345448112672022",
+    "hook_verbatim_opening": "Hi, good afternoon everybody. It's Lizzie Brewing here again.",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "Hi, good afternoon everybody. It's Lizzie Brewing here again.",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [],
+    "cta_type": "link_in_bio_booking",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7650491657414085910",
+    "short_label": "Did you know you can see an endometriosis Clinical Nurse Spe",
+    "hook_verbatim_opening": "Do you think you have endometres of denomyosis?",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "Do you think you have endometres of denomyosis?",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [],
+    "cta_type": "link_in_bio_booking",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7647574808162487574",
+    "short_label": "7647574808162487574",
+    "hook_verbatim_opening": "It was actually the day before I started high school. I got my period, so that was just",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "It was actually the day before I started high school. I got my period, so that was just",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [],
+    "cta_type": "question_prompt",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7643867792634154262",
+    "short_label": "7643867792634154262",
+    "hook_verbatim_opening": "whatever your experience in right to don't document it. I am Laura and I am a women's health advocate",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "whatever your experience in right to don't document it. I am Laura and I am a women's health advocate",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [
+      "validation_vulnerability"
+    ],
+    "cta_type": "whatsapp_message",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7643525601353075990",
+    "short_label": "7643525601353075990",
+    "hook_verbatim_opening": "I asked I, I, to tell me what I should say to my GP to get referred to an antimiotross",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "I asked I, I, to tell me what I should say to my GP to get referred to an antimiotross",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [],
+    "cta_type": "question_prompt",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7644580086208859414",
+    "short_label": "7644580086208859414",
+    "hook_verbatim_opening": "I had a really good job. I went to university. I was doing all of those things but when I got",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "I had a really good job. I went to university. I was doing all of those things but when I got",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [
+      "validation_vulnerability"
+    ],
+    "cta_type": "question_prompt",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7647939769464278275",
+    "short_label": "We’ll put you on the pill, that will sort you out. This is j",
+    "hook_verbatim_opening": "I just got on the pill when I was a laughing to kind of tackle that that went on until 15 and the",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "I just got on the pill when I was a laughing to kind of tackle that that went on until 15 and the",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [],
+    "cta_type": "question_prompt",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7644218706028956950",
+    "short_label": "7644218706028956950",
+    "hook_verbatim_opening": "Do you have questions about endometriosis or adenomyosis?",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "Do you have questions about endometriosis or adenomyosis?",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [],
+    "cta_type": "link_in_bio_booking",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7638883805494889750",
+    "short_label": "7638883805494889750",
+    "hook_verbatim_opening": "Endo affects 1 in 10 women",
+    "hook_window": "description_fallback_no_clear_speech",
+    "hook_classification": "stat_shock",
+    "promise_first_10s": "Endo affects 1 in 10 women",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [],
+    "cta_type": "whatsapp_message",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7637061986777402646",
+    "short_label": "7637061986777402646",
+    "hook_verbatim_opening": "Period pain that ruins your day is not something to push through, it's something to investigate",
+    "hook_window": "description_fallback_no_clear_speech",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "Period pain that ruins your day is not something to push through, it's something to investigate",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [],
+    "cta_type": "question_prompt",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7650465917700279574",
+    "short_label": "9 years. That's how long it takes, on average, to get an end",
+    "hook_verbatim_opening": "the first response and it still is and it's just so sad is his periods get used to it.",
+    "hook_window": "opening_under_3s",
+    "hook_classification": "stat_shock",
+    "promise_first_10s": "the first response and it still is and it's just so sad is his periods get used to it.",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [
+      "system_critique"
+    ],
+    "cta_type": "question_prompt",
+    "topic_overlap_note": ""
+  },
+  {
+    "video_id": "7634984535372942614",
+    "short_label": "7634984535372942614",
+    "hook_verbatim_opening": "in 10 women has endometriosis",
+    "hook_window": "description_fallback_no_clear_speech",
+    "hook_classification": "bold_claim_procedure",
+    "promise_first_10s": "in 10 women has endometriosis",
+    "info_architecture": "expert_monologue",
+    "specificity_score_1_5": 3,
+    "tone_tags": [],
+    "cta_type": "question_prompt",
+    "topic_overlap_note": ""
+  }
+]

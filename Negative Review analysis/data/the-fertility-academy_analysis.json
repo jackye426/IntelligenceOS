@@ -1,0 +1,67 @@
+{
+  "clinic": "The Fertility Academy",
+  "review_count": 13,
+  "categories": [
+    {
+      "name": "Doctor / Consultant",
+      "count": 4,
+      "pct": 30.8,
+      "severity": "high",
+      "quotes": [
+        "extremely expensive 170+ pounds",
+        "very little into account your past history",
+        "no specific or useful recommendations"
+      ]
+    },
+    {
+      "name": "Treatment Quality",
+      "count": 3,
+      "pct": 23.1,
+      "severity": "high",
+      "quotes": [
+        "3 unsuccessful IVF cycles",
+        "ended up in A&E with OHSS",
+        "medication that was not suitable"
+      ]
+    },
+    {
+      "name": "Booking & Admin",
+      "count": 2,
+      "pct": 15.4,
+      "severity": "high",
+      "quotes": [
+        "misunderstanding with the contact information",
+        "she did a mistake"
+      ]
+    },
+    {
+      "name": "Staff Attitude",
+      "count": 2,
+      "pct": 15.4,
+      "severity": "high",
+      "quotes": [
+        "zero help or support",
+        "unapologetic and nonchalantly"
+      ]
+    },
+    {
+      "name": "Other",
+      "count": 1,
+      "pct": 7.7,
+      "severity": "low",
+      "quotes": [
+        "Pleaae do not respond"
+      ]
+    },
+    {
+      "name": "Waiting Times",
+      "count": 1,
+      "pct": 7.7,
+      "severity": "high",
+      "quotes": [
+        "doctor constantly late"
+      ]
+    }
+  ],
+  "summary": "Patients at The Fertility Academy are most dissatisfied with doctors/consultants (31% of complaints) and treatment quality (23%), making up over half of all negative feedback. Booking issues, staff attitude, and other concerns were less frequent but still notable."
+}

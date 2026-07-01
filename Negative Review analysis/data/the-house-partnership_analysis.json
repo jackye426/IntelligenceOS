@@ -1,0 +1,16 @@
+{
+  "clinic": "The House Partnership",
+  "review_count": 1,
+  "categories": [
+    {
+      "name": "Doctor / Consultant",
+      "count": 1,
+      "pct": 100.0,
+      "severity": "high",
+      "quotes": [
+        "Amy had no plan or perspective"
+      ]
+    }
+  ],
+  "summary": "Patient dissatisfaction at The House Partnership is minimal, with only one negative review targeting a doctor or consultant. Overall, complaints are extremely low, representing just 1% of total reviews."
+}

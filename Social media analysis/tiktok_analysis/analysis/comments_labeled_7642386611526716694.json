@@ -1,0 +1,32 @@
+[
+  {
+    "cid": "7642386995994723094",
+    "text": "You are your own biggest advocate 🫶🏻",
+    "digg_count": 1,
+    "reply_comment_total": 0,
+    "create_time": 1779381905,
+    "themes": [
+      "other_uncategorized"
+    ],
+    "sentiment": {
+      "stance": "statement",
+      "primary_emotion": "neutral",
+      "toxicity_spam_flag": false
+    }
+  },
+  {
+    "cid": "7642421686964699926",
+    "text": "🫶🏻",
+    "digg_count": 1,
+    "reply_comment_total": 0,
+    "create_time": 1779389973,
+    "themes": [
+      "other_uncategorized"
+    ],
+    "sentiment": {
+      "stance": "statement",
+      "primary_emotion": "neutral",
+      "toxicity_spam_flag": false
+    }
+  }
+]

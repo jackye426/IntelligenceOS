@@ -1,0 +1,49 @@
+{
+  "clinic": "Avenues",
+  "review_count": 10,
+  "categories": [
+    {
+      "name": "Communication",
+      "count": 3,
+      "pct": 30.0,
+      "severity": "high",
+      "quotes": [
+        "Very disappointed in the communication",
+        "lack of transparency in communication",
+        "consultants use the app for all medication updates"
+      ]
+    },
+    {
+      "name": "Billing & Invoicing",
+      "count": 3,
+      "pct": 30.0,
+      "severity": "high",
+      "quotes": [
+        "failed to make me aware that they freeze FOUR eggs per straw",
+        "failed to refund the money",
+        "fertility clinics hide costs in their policies"
+      ]
+    },
+    {
+      "name": "Other",
+      "count": 3,
+      "pct": 30.0,
+      "severity": "high",
+      "quotes": [
+        "very unprofessional and unsafe clinic",
+        "I’ve gone with 1",
+        "Predatory and deeply troubling experience"
+      ]
+    },
+    {
+      "name": "Aftercare",
+      "count": 1,
+      "pct": 10.0,
+      "severity": "medium",
+      "quotes": [
+        "left us in the ditch after the first cycle"
+      ]
+    }
+  ],
+  "summary": "Patients at Avenues are most dissatisfied with communication, billing, and other unspecified issues, each making up 30% of complaints, while aftercare concerns are less common at 10%. These four areas account for all 10 negative reviews."
+}

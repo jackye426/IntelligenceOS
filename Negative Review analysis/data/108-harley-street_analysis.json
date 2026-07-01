@@ -1,0 +1,80 @@
+{
+  "clinic": "108 Harley Street",
+  "review_count": 19,
+  "categories": [
+    {
+      "name": "Booking & Admin",
+      "count": 5,
+      "pct": 26.3,
+      "severity": "medium",
+      "quotes": [
+        "delay in receiving confirmation letter",
+        "appointment was cancelled one hour before my surgery",
+        "took more than 2 days to send results"
+      ]
+    },
+    {
+      "name": "Doctor / Consultant",
+      "count": 3,
+      "pct": 15.8,
+      "severity": "medium",
+      "quotes": [
+        "brusque to the point of bullying",
+        "consultation with the doctor last like 7 minutes",
+        "consultant in question looked at the existing report"
+      ]
+    },
+    {
+      "name": "Staff Attitude",
+      "count": 3,
+      "pct": 15.8,
+      "severity": "high",
+      "quotes": [
+        "was given males despite asking for women practitioners",
+        "very rude and inconsiderate staff",
+        "rude front office staff"
+      ]
+    },
+    {
+      "name": "Other",
+      "count": 3,
+      "pct": 15.8,
+      "severity": "low",
+      "quotes": [
+        "no compassion, unprofessional amateurs",
+        "banal customer research",
+        "apologise for not getting back sooner"
+      ]
+    },
+    {
+      "name": "Facilities",
+      "count": 2,
+      "pct": 10.5,
+      "severity": "medium",
+      "quotes": [
+        "room was so unprofessional",
+        "machines are old"
+      ]
+    },
+    {
+      "name": "Treatment Quality",
+      "count": 2,
+      "pct": 10.5,
+      "severity": "high",
+      "quotes": [
+        "consultation was very short",
+        "procedure was done so poorly"
+      ]
+    },
+    {
+      "name": "Billing & Invoicing",
+      "count": 1,
+      "pct": 5.3,
+      "severity": "high",
+      "quotes": [
+        "ask for card details despite having insurance"
+      ]
+    }
+  ],
+  "summary": "Patients at 108 Harley Street are most dissatisfied with booking and admin issues, which make up 26% of complaints, followed by concerns about doctors, staff attitude, and other issues. Facilities complaints are the least common, accounting for just 11% of negative feedback."
+}

@@ -1,0 +1,221 @@
+{
+  "top_themes": [
+    {
+      "name": "Treatment Quality",
+      "affected_clinics": [
+        "The Evewell - Harley Street",
+        "Assisted Reproduction & Gynaecology Centre",
+        "Create Fertility - St. Paul's",
+        "The Birth Company London, HCA",
+        "London Gynaecology - Moorgate",
+        "London Pregnancy Clinic",
+        "London Gynaecology - Harley Street",
+        "The Fertility Academy",
+        "Miss Claire Mellon & Associates",
+        "Harley Street Gynaecology",
+        "The Lister Fertility Clinic",
+        "The Evewell - West London",
+        "London Women's Clinic - Harley Street",
+        "London Women's Clinic - London Bridge",
+        "Harley Street Fertility Clinic",
+        "CRGH (The Centre for Reproductive and Genetic Health)",
+        "Fertility Plus",
+        "King's Fertility",
+        "IVF Hammersmith",
+        "Aria Fertility",
+        "Bridge Clinic London",
+        "Create Fertility",
+        "Bader Medical Institute of London",
+        "The Medical Chambers Kensington",
+        "Kensington International Clinic - La Maison Medicale",
+        "Hormone Health",
+        "MEDii Health",
+        "Messina Clinic",
+        "Harley Street Dr",
+        "Outpatient 84 Harley Street"
+      ],
+      "prevalence": "high",
+      "description": "Treatment Quality is the most recurring theme, appearing in the top themes of nearly all clinics, indicating its critical importance to patients."
+    },
+    {
+      "name": "Staff Attitude",
+      "affected_clinics": [
+        "Assisted Reproduction & Gynaecology Centre",
+        "The Birth Company London, HCA",
+        "London Gynaecology - Harley Street",
+        "The Fertility Academy",
+        "Harley Street Gynaecology",
+        "London Pregnancy Clinic",
+        "The Lister Fertility Clinic",
+        "London Women's Clinic - Harley Street",
+        "London Women's Clinic - London Bridge",
+        "Harley Street Fertility Clinic",
+        "CRGH (The Centre for Reproductive and Genetic Health)",
+        "King's Fertility",
+        "London Fertility Clinic",
+        "Aria Fertility",
+        "Queen's Clinic",
+        "ObGyn Matters",
+        "Grosvenor Gardens Healthcare - Belgravia",
+        "108 Harley Street",
+        "Balance My Hormones",
+        "Ten Harley Street",
+        "Bader Medical Institute of London",
+        "The Medical Chambers Kensington",
+        "Hormone Health",
+        "LIPS Healthcare",
+        "Chiswick Outpatients",
+        "London Diagnostic Centre",
+        "Grosvenor Gardens Healthcare - Victoria"
+      ],
+      "prevalence": "high",
+      "description": "Staff Attitude is another highly recurring theme, reflecting the significant impact of staff behavior and interaction on patient experience."
+    },
+    {
+      "name": "Communication",
+      "affected_clinics": [
+        "The Evewell - Harley Street",
+        "Create Fertility - St. Paul's",
+        "Avenues",
+        "The Evewell - West London",
+        "London Women's Clinic - Harley Street",
+        "London Women's Clinic - London Bridge",
+        "Fertility Plus",
+        "King's Fertility",
+        "London Fertility Clinic",
+        "IVF Hammersmith",
+        "Aria Fertility",
+        "Acorn Fertility",
+        "Grosvenor Gardens Healthcare - Belgravia",
+        "Grosvenor Gardens Healthcare",
+        "Balance My Hormones",
+        "Messina Clinic",
+        "The Regenerative Clinic",
+        "Chiswick Outpatients"
+      ],
+      "prevalence": "medium",
+      "description": "Communication is a common theme, highlighting the importance of clear and effective information exchange between clinics and patients."
+    },
+    {
+      "name": "Booking & Admin",
+      "affected_clinics": [
+        "The Evewell - Harley Street",
+        "Assisted Reproduction & Gynaecology Centre",
+        "The Birth Company London, HCA",
+        "The Fertility Academy",
+        "Miss Claire Mellon & Associates",
+        "Harley Street Fertility Clinic",
+        "CRGH (The Centre for Reproductive and Genetic Health)",
+        "King's Fertility",
+        "Bridge Clinic London",
+        "Create Fertility",
+        "Grosvenor Gardens Healthcare - Belgravia",
+        "108 Harley Street",
+        "London Medical",
+        "The Medical Chambers Kensington",
+        "Hormone Health",
+        "Dottore London",
+        "Harley Street Dr",
+        "Outpatient 84 Harley Street",
+        "LIPS Healthcare",
+        "Chiswick Outpatients",
+        "The Regenerative Clinic",
+        "London Medical"
+      ],
+      "prevalence": "medium",
+      "description": "Booking & Admin processes are frequently mentioned, suggesting that administrative efficiency is a key factor in patient satisfaction."
+    },
+    {
+      "name": "Doctor / Consultant",
+      "affected_clinics": [
+        "London Gynaecology - Moorgate",
+        "London Gynaecology - Harley Street",
+        "The Fertility Academy",
+        "Miss Claire Mellon & Associates",
+        "The Lister Fertility Clinic",
+        "The Evewell - West London",
+        "Fertility Plus",
+        "MEDii Health",
+        "108 Harley Street",
+        "Grosvenor Gardens Healthcare",
+        "Balance My Hormones",
+        "Ten Harley Street",
+        "Dottore London",
+        "Harley Street Dr",
+        "The House Partnership",
+        "Grosvenor Gardens Healthcare - Victoria",
+        "London Medical"
+      ],
+      "prevalence": "medium",
+      "description": "The role and quality of doctors or consultants are significant themes, emphasizing their influence on patient trust and outcomes."
+    },
+    {
+      "name": "Billing & Invoicing",
+      "affected_clinics": [
+        "Avenues",
+        "London Gynaecology - Moorgate",
+        "The Lister Fertility Clinic",
+        "Harley Street Gynaecology",
+        "The Evewell - West London",
+        "London Women's Clinic - Harley Street",
+        "Fertility Plus",
+        "Aria Fertility",
+        "Queen's Clinic",
+        "Bridge Clinic London",
+        "Grosvenor Gardens Healthcare - Belgravia",
+        "The Medical Chambers Kensington",
+        "Messina Clinic",
+        "Harley Street Dr",
+        "LIPS Healthcare",
+        "Grosvenor Gardens Healthcare - Victoria"
+      ],
+      "prevalence": "medium",
+      "description": "Billing & Invoicing is a notable theme, indicating that transparency and fairness in financial matters are important to patients."
+    },
+    {
+      "name": "Value for Money",
+      "affected_clinics": [
+        "Assisted Reproduction & Gynaecology Centre",
+        "Create Fertility - St. Paul's",
+        "London Gynaecology - Moorgate",
+        "Miss Claire Mellon & Associates",
+        "Kensington International Clinic - La Maison Medicale",
+        "CRGH City",
+        "Grosvenor Gardens Healthcare",
+        "London Medical"
+      ],
+      "prevalence": "low",
+      "description": "Value for Money is mentioned by several clinics, reflecting patient concerns about cost-effectiveness and affordability."
+    },
+    {
+      "name": "Waiting Times",
+      "affected_clinics": [
+        "London Gynaecology - Harley Street",
+        "IVF Hammersmith",
+        "Queen's Clinic",
+        "Ten Harley Street",
+        "Chiswick Outpatients",
+        "The Regenerative Clinic"
+      ],
+      "prevalence": "low",
+      "description": "Waiting Times are a concern for some patients, indicating that delays can negatively impact their experience."
+    },
+    {
+      "name": "Aftercare",
+      "affected_clinics": [
+        "Avenues"
+      ],
+      "prevalence": "low",
+      "description": "Aftercare is rarely mentioned, suggesting it may not be a primary focus in patient feedback."
+    },
+    {
+      "name": "Facilities",
+      "affected_clinics": [
+        "Harley Street Fertility Clinic"
+      ],
+      "prevalence": "low",
+      "description": "Facilities are seldom highlighted, indicating that physical environment may be less critical compared to other factors."
+    }
+  ],
+  "overall_summary": "The analysis reveals that Treatment Quality and Staff Attitude are the most prevalent themes across London gynaecology and fertility clinics, underscoring their importance in patient satisfaction. Communication and Booking & Admin also feature prominently, reflecting the need for efficient processes and clear information exchange. Other themes like Doctor / Consultant, Billing & Invoicing, and Value for Money, while less frequent, still play significant roles in shaping patient experiences. Themes such as Waiting Times, Aftercare, and Facilities are mentioned less often, suggesting they are secondary concerns for most patients."
+}

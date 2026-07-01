@@ -1,0 +1,2641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Private Outpatient Footprint — 2026-05-10</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 0; padding: 1.5rem 2rem; background: #f8f9fa; color: #212529; }
+    h1 { font-size: 1.6rem; margin-bottom: 0.25rem; }
+    h2 { font-size: 1.2rem; margin-top: 2rem; border-bottom: 2px solid #dee2e6; padding-bottom: 0.4rem; }
+    h3 { font-size: 1rem; margin-top: 1.5rem; }
+    .meta { color: #6c757d; font-size: 0.85rem; margin-bottom: 1.5rem; }
+    .disclaimer { background: #fff3cd; border: 1px solid #ffc107; border-radius: 4px; padding: 0.75rem 1rem; font-size: 0.85rem; margin-bottom: 1.5rem; }
+    table { border-collapse: collapse; width: 100%; margin-bottom: 1rem; background: #fff; }
+    th, td { padding: 0.5rem 0.75rem; border: 1px solid #dee2e6; text-align: left; font-size: 0.9rem; }
+    th { background: #e9ecef; font-weight: 600; }
+    tr:hover { background: #f1f3f5; }
+    .badge { display: inline-block; padding: 0.2em 0.5em; border-radius: 3px; font-size: 0.8rem; font-weight: 600; }
+    .badge-visible { background: #d4edda; color: #155724; }
+    .badge-disappeared { background: #f8d7da; color: #721c24; }
+    .badge-expired { background: #fff3cd; color: #856404; }
+    .badge-unknown { background: #e2e3e5; color: #383d41; }
+    .section { background: #fff; border: 1px solid #dee2e6; border-radius: 6px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; }
+    .null-value { color: #adb5bd; font-style: italic; }
+  </style>
+</head>
+<body>
+
+
+<style>
+  .tally-table th, .tally-table td { text-align: right; }
+  .tally-table th:first-child, .tally-table td:first-child { text-align: left; }
+  .bar-wrap { background: #e9ecef; border-radius: 3px; height: 10px; min-width: 80px; display: inline-block; vertical-align: middle; }
+  .bar-fill { height: 10px; border-radius: 3px; display: inline-block; }
+  .share-cell { white-space: nowrap; }
+  .slots-table td { text-align: right; }
+  .slots-table td:first-child, .slots-table td:nth-child(2), .slots-table td:nth-child(3) { text-align: left; }
+  .dot-full   { color: #198754; font-weight: 700; }
+  .dot-partial { color: #fd7e14; font-weight: 700; }
+  .dot-low    { color: #dc3545; font-weight: 700; }
+  .layer-label { display: inline-block; background: #495057; color: #fff; font-size: 0.72rem; font-weight: 700; padding: 0.15em 0.5em; border-radius: 3px; margin-right: 0.4rem; letter-spacing: 0.03em; vertical-align: middle; }
+  .consultant-section { background: #fff; border: 1px solid #dee2e6; border-radius: 6px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; }
+  .consultant-section h2 { border-bottom: 2px solid #dee2e6; padding-bottom: 0.4rem; margin-top: 0; }
+  .loc-badge { display: inline-block; background: #e7f1ff; color: #084298; border: 1px solid #b6d4fe; border-radius: 4px; padding: 0.2em 0.55em; font-size: 0.82rem; margin: 0.15rem 0.2rem 0.15rem 0; }
+  .day-badge  { display: inline-block; background: #f0f0f0; border: 1px solid #ced4da; border-radius: 4px; padding: 0.2em 0.5em; font-size: 0.82rem; margin: 0.15rem 0.2rem 0.15rem 0; }
+  .stat-box   { display: inline-block; background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 5px; padding: 0.4rem 0.8rem; margin: 0.25rem 0.4rem 0.25rem 0; text-align: center; }
+  .stat-box .val { font-size: 1.4rem; font-weight: 700; line-height: 1.2; }
+  .stat-box .lbl { font-size: 0.72rem; color: #6c757d; }
+  .share-big  { font-size: 2rem; font-weight: 700; }
+  .no-data-list { color: #6c757d; font-size: 0.88rem; }
+  .tally-total td { font-weight: 700; border-top: 2px solid #495057; background: #f1f3f5; }
+</style>
+
+<h1>Private Outpatient Footprint</h1>
+<div class="meta">
+  Generated: 2026-05-10 20:13:40 BST &nbsp;|&nbsp; Analysis window: 2026-05-10 to 2026-07-09 (60 days)
+</div>
+
+<div class="disclaimer">
+  <strong>Scope:</strong> This report measures publicly visible HCA online slot supply against a hypothetical
+  5-day full-time outpatient schedule. It is <strong>not a utilisation rate</strong> — utilisation
+  (booked&nbsp;/&nbsp;capacity) requires slot disappearance history accumulated over multiple scrape runs.
+  Theoretical capacity per consultant uses the <em>maximum observed slots on any single clinic date</em>
+  within the analysis window as the per-session capacity benchmark.
+</div>
+
+
+<div class="section">
+  <h2>Combined tally — 12 consultants with visible slots</h2>
+  <table class="tally-table">
+    <thead>
+      <tr>
+        <th>Consultant</th>
+        <th>Active days/wk</th>
+        <th>Max slots/day</th>
+        <th>Obs. slots/wk</th>
+        <th>Theor. slots/wk</th>
+        <th>Share of theoretical</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr>
+        <td><a href="#eleni_mavrides">Eleni Mavrides</a></td>
+        <td>3.0</td>
+        <td>26</td>
+        <td>46.1</td>
+        <td>130</td>
+        <td class="share-cell">
+          <span style="display:inline-block;width:3.2rem;text-align:right;font-weight:600;">35.5%</span>
+          &nbsp;
+          <span class="bar-wrap">
+            <span class="bar-fill" style="width:35.5%;background:#0dcaf0;"></span>
+          </span>
+        </td>
+      </tr>
+      
+      <tr>
+        <td><a href="#nadine_di_donato">Nadine Di Donato</a></td>
+        <td>1.9</td>
+        <td>27</td>
+        <td>40.7</td>
+        <td>135</td>
+        <td class="share-cell">
+          <span style="display:inline-block;width:3.2rem;text-align:right;font-weight:600;">30.1%</span>
+          &nbsp;
+          <span class="bar-wrap">
+            <span class="bar-fill" style="width:30.1%;background:#0dcaf0;"></span>
+          </span>
+        </td>
+      </tr>
+      
+      <tr>
+        <td><a href="#elias_kovoor">Elias Kovoor</a></td>
+        <td>2.5</td>
+        <td>22</td>
+        <td>39.8</td>
+        <td>110</td>
+        <td class="share-cell">
+          <span style="display:inline-block;width:3.2rem;text-align:right;font-weight:600;">36.2%</span>
+          &nbsp;
+          <span class="bar-wrap">
+            <span class="bar-fill" style="width:36.2%;background:#0dcaf0;"></span>
+          </span>
+        </td>
+      </tr>
+      
+      <tr>
+        <td><a href="#nitish_narvekar">Nitish Narvekar</a></td>
+        <td>1.3</td>
+        <td>30</td>
+        <td>23.0</td>
+        <td>150</td>
+        <td class="share-cell">
+          <span style="display:inline-block;width:3.2rem;text-align:right;font-weight:600;">15.3%</span>
+          &nbsp;
+          <span class="bar-wrap">
+            <span class="bar-fill" style="width:15.3%;background:#6ea8fe;"></span>
+          </span>
+        </td>
+      </tr>
+      
+      <tr>
+        <td><a href="#michael_adamczyk">Michael Adamczyk</a></td>
+        <td>0.9</td>
+        <td>19</td>
+        <td>13.0</td>
+        <td>95</td>
+        <td class="share-cell">
+          <span style="display:inline-block;width:3.2rem;text-align:right;font-weight:600;">13.7%</span>
+          &nbsp;
+          <span class="bar-wrap">
+            <span class="bar-fill" style="width:13.7%;background:#adb5bd;"></span>
+          </span>
+        </td>
+      </tr>
+      
+      <tr>
+        <td><a href="#zeiad_el_gizawy">Zeiad El Gizawy</a></td>
+        <td>0.9</td>
+        <td>16</td>
+        <td>11.1</td>
+        <td>80</td>
+        <td class="share-cell">
+          <span style="display:inline-block;width:3.2rem;text-align:right;font-weight:600;">13.9%</span>
+          &nbsp;
+          <span class="bar-wrap">
+            <span class="bar-fill" style="width:13.9%;background:#adb5bd;"></span>
+          </span>
+        </td>
+      </tr>
+      
+      <tr>
+        <td><a href="#yousri_afifi">Yousri Afifi</a></td>
+        <td>0.8</td>
+        <td>12</td>
+        <td>9.1</td>
+        <td>60</td>
+        <td class="share-cell">
+          <span style="display:inline-block;width:3.2rem;text-align:right;font-weight:600;">15.2%</span>
+          &nbsp;
+          <span class="bar-wrap">
+            <span class="bar-fill" style="width:15.2%;background:#6ea8fe;"></span>
+          </span>
+        </td>
+      </tr>
+      
+      <tr>
+        <td><a href="#jeffrey_ahmed">Jeffrey Ahmed</a></td>
+        <td>0.6</td>
+        <td>8</td>
+        <td>3.9</td>
+        <td>40</td>
+        <td class="share-cell">
+          <span style="display:inline-block;width:3.2rem;text-align:right;font-weight:600;">9.8%</span>
+          &nbsp;
+          <span class="bar-wrap">
+            <span class="bar-fill" style="width:9.8%;background:#adb5bd;"></span>
+          </span>
+        </td>
+      </tr>
+      
+      <tr>
+        <td><a href="#shaheen_khazali">Shaheen Khazali</a></td>
+        <td>0.7</td>
+        <td>11</td>
+        <td>3.7</td>
+        <td>55</td>
+        <td class="share-cell">
+          <span style="display:inline-block;width:3.2rem;text-align:right;font-weight:600;">6.7%</span>
+          &nbsp;
+          <span class="bar-wrap">
+            <span class="bar-fill" style="width:6.7%;background:#ced4da;"></span>
+          </span>
+        </td>
+      </tr>
+      
+      <tr>
+        <td><a href="#tom_holland">Tom Holland</a></td>
+        <td>0.3</td>
+        <td>10</td>
+        <td>2.2</td>
+        <td>50</td>
+        <td class="share-cell">
+          <span style="display:inline-block;width:3.2rem;text-align:right;font-weight:600;">4.4%</span>
+          &nbsp;
+          <span class="bar-wrap">
+            <span class="bar-fill" style="width:4.4%;background:#ced4da;"></span>
+          </span>
+        </td>
+      </tr>
+      
+      <tr>
+        <td><a href="#vasileios_minas">Vasileios Minas</a></td>
+        <td>0.5</td>
+        <td>6</td>
+        <td>2.0</td>
+        <td>30</td>
+        <td class="share-cell">
+          <span style="display:inline-block;width:3.2rem;text-align:right;font-weight:600;">6.7%</span>
+          &nbsp;
+          <span class="bar-wrap">
+            <span class="bar-fill" style="width:6.7%;background:#ced4da;"></span>
+          </span>
+        </td>
+      </tr>
+      
+      <tr>
+        <td><a href="#sujata_gupta">Sujata Gupta</a></td>
+        <td>0.3</td>
+        <td>3</td>
+        <td>0.6</td>
+        <td>15</td>
+        <td class="share-cell">
+          <span style="display:inline-block;width:3.2rem;text-align:right;font-weight:600;">4.0%</span>
+          &nbsp;
+          <span class="bar-wrap">
+            <span class="bar-fill" style="width:4.0%;background:#ced4da;"></span>
+          </span>
+        </td>
+      </tr>
+      
+    </tbody>
+    <tfoot>
+      <tr class="tally-total">
+        <td>TOTAL (12 consultants)</td>
+        <td></td>
+        <td></td>
+        <td>195.2</td>
+        <td>950</td>
+        <td class="share-cell">
+          <span style="display:inline-block;width:3.2rem;text-align:right;font-weight:600;">20.5%</span>
+          &nbsp;
+          <span class="bar-wrap">
+            <span class="bar-fill" style="width:20.5%;background:#6ea8fe;"></span>
+          </span>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+  
+  <p class="no-data-list"><strong>No visible slots (9):</strong> Arvind Vashisht, Denis Tsepov, Ertan Saridogan, Ilyas Arshad, Janice Rymer, Mohan Kumar, Nahid Gul, Suku George, Tariq Miskry</p>
+  
+</div>
+
+
+
+<div class="consultant-section" id="eleni_mavrides">
+  <h2>Eleni Mavrides</h2>
+
+  
+  <p>
+    <span class="layer-label">LAYER 1</span>
+    <strong>Clinic-day footprint</strong>
+  </p>
+  <div>
+    <span class="day-badge">Friday</span><span class="day-badge">Monday</span><span class="day-badge">Thursday</span><span class="day-badge">Tuesday</span>
+    &nbsp;&nbsp;
+    <span class="loc-badge">Portland Women &amp; Children Hospital</span>
+  </div>
+  <div style="margin-top:0.75rem;">
+    <div class="stat-box">
+      <div class="val">26</div>
+      <div class="lbl">clinic days in window</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">3.0</div>
+      <div class="lbl">avg days / week</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">5</div>
+      <div class="lbl">theoretical full-time days/wk</div>
+    </div>
+  </div>
+
+  
+  <p style="margin-top:1.25rem;">
+    <span class="layer-label">LAYER 2</span>
+    <strong>Slot supply per clinic day</strong>
+  </p>
+  <div style="margin-bottom:0.75rem;">
+    <div class="stat-box">
+      <div class="val">26</div>
+      <div class="lbl">max slots / day</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">14</div>
+      <div class="lbl">median slots / day</div>
+    </div>
+  </div>
+  <table class="slots-table">
+    <thead>
+      <tr><th>Date</th><th>Day</th><th>Location</th><th>Visible slots</th><th>Availability remaining</th></tr>
+    </thead>
+    <tbody>
+      
+      <tr>
+        <td>2026-05-11</td>
+        <td>Monday</td>
+        <td>Portland Women &amp; Children Hospital</td>
+        <td>1</td>
+        <td>
+          <span class="dot-low">&#9632;</span>
+          &nbsp;4% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-05-14</td>
+        <td>Thursday</td>
+        <td>Portland Women &amp; Children Hospital</td>
+        <td>5</td>
+        <td>
+          <span class="dot-low">&#9632;</span>
+          &nbsp;19% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-05-15</td>
+        <td>Friday</td>
+        <td>Portland Women &amp; Children Hospital</td>
+        <td>5</td>
+        <td>
+          <span class="dot-low">&#9632;</span>
+          &nbsp;19% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-05-19</td>
+        <td>Tuesday</td>
+        <td>Portland Women &amp; Children Hospital</td>
+        <td>16</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;62% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-05-21</td>
+        <td>Thursday</td>
+        <td>Portland Women &amp; Children Hospital</td>
+        <td>16</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;62% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-05-22</td>
+        <td>Friday</td>
+        <td>Portland Women &amp; Children Hospital</td>
+        <td>6</td>
+        <td>
+          <span class="dot-low">&#9632;</span>
+          &nbsp;23% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-05-26</td>
+        <td>Tuesday</td>
+        <td>Portland Women &amp; Children Hospital</td>
+        <td>17</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;65% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-05-28</td>
+        <td>Thursday</td>
+        <td>Portland Women &amp; Children Hospital</td>
+        <td>17</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;65% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-05-29</td>
+        <td>Friday</td>
+        <td>Portland Women &amp; Children Hospital</td>
+        <td>12</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;46% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-01</td>
+        <td>Monday</td>
+        <td>Portland Women &amp; Children Hospital</td>
+        <td>9</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;35% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-04</td>
+        <td>Thursday</td>
+        <td>Portland Women &amp; Children Hospital</td>
+        <td>23</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;88% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-05</td>
+        <td>Friday</td>
+        <td>Portland Women &amp; Children Hospital</td>
+        <td>13</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;50% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-08</td>
+        <td>Monday</td>
+        <td>Portland Women &amp; Children Hospital</td>
+        <td>8</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;31% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-11</td>
+        <td>Thursday</td>
+        <td>Portland Women &amp; Children Hospital</td>
+        <td>23</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;88% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-12</td>
+        <td>Friday</td>
+        <td>Portland Women &amp; Children Hospital</td>
+        <td>11</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;42% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-16</td>
+        <td>Tuesday</td>
+        <td>Portland Women &amp; Children Hospital</td>
+        <td>25</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;96% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-18</td>
+        <td>Thursday</td>
+        <td>Portland Women &amp; Children Hospital</td>
+        <td>24</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;92% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-19</td>
+        <td>Friday</td>
+        <td>Portland Women &amp; Children Hospital</td>
+        <td>11</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;42% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-23</td>
+        <td>Tuesday</td>
+        <td>Portland Women &amp; Children Hospital</td>
+        <td>23</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;88% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-25</td>
+        <td>Thursday</td>
+        <td>Portland Women &amp; Children Hospital</td>
+        <td>26</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;100% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-26</td>
+        <td>Friday</td>
+        <td>Portland Women &amp; Children Hospital</td>
+        <td>13</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;50% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-30</td>
+        <td>Tuesday</td>
+        <td>Portland Women &amp; Children Hospital</td>
+        <td>23</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;88% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-07-02</td>
+        <td>Thursday</td>
+        <td>Portland Women &amp; Children Hospital</td>
+        <td>24</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;92% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-07-03</td>
+        <td>Friday</td>
+        <td>Portland Women &amp; Children Hospital</td>
+        <td>10</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;38% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-07-06</td>
+        <td>Monday</td>
+        <td>Portland Women &amp; Children Hospital</td>
+        <td>9</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;35% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-07-09</td>
+        <td>Thursday</td>
+        <td>Portland Women &amp; Children Hospital</td>
+        <td>25</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;96% remaining
+        </td>
+      </tr>
+      
+    </tbody>
+  </table>
+
+  
+  <p style="margin-top:1.25rem;">
+    <span class="layer-label">LAYER 3</span>
+    <strong>Theoretical capacity benchmark</strong>
+  </p>
+  <div>
+    <div class="stat-box">
+      <div class="val share-big" style="color:#0dcaf0;">35.5%</div>
+      <div class="lbl">share of theoretical full-time capacity</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">46.1</div>
+      <div class="lbl">observed visible slots / wk</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">130</div>
+      <div class="lbl">theoretical slots / wk<br><small style="font-weight:400;">5d &times; 26 slots/day</small></div>
+    </div>
+    
+    <div class="stat-box">
+      <div class="val">11–62</div>
+      <div class="lbl">range across individual weeks</div>
+    </div>
+    
+  </div>
+</div>
+
+<div class="consultant-section" id="nadine_di_donato">
+  <h2>Nadine Di Donato</h2>
+
+  
+  <p>
+    <span class="layer-label">LAYER 1</span>
+    <strong>Clinic-day footprint</strong>
+  </p>
+  <div>
+    <span class="day-badge">Friday</span><span class="day-badge">Monday</span><span class="day-badge">Saturday</span><span class="day-badge">Thursday</span>
+    &nbsp;&nbsp;
+    <span class="loc-badge">16 Devonshire Street</span><span class="loc-badge">The Harley Street Clinic at Devonshire Street</span><span class="loc-badge">Women’s Health Centre</span>
+  </div>
+  <div style="margin-top:0.75rem;">
+    <div class="stat-box">
+      <div class="val">16</div>
+      <div class="lbl">clinic days in window</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">1.9</div>
+      <div class="lbl">avg days / week</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">5</div>
+      <div class="lbl">theoretical full-time days/wk</div>
+    </div>
+  </div>
+
+  
+  <p style="margin-top:1.25rem;">
+    <span class="layer-label">LAYER 2</span>
+    <strong>Slot supply per clinic day</strong>
+  </p>
+  <div style="margin-bottom:0.75rem;">
+    <div class="stat-box">
+      <div class="val">27</div>
+      <div class="lbl">max slots / day</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">21</div>
+      <div class="lbl">median slots / day</div>
+    </div>
+  </div>
+  <table class="slots-table">
+    <thead>
+      <tr><th>Date</th><th>Day</th><th>Location</th><th>Visible slots</th><th>Availability remaining</th></tr>
+    </thead>
+    <tbody>
+      
+      <tr>
+        <td>2026-05-16</td>
+        <td>Saturday</td>
+        <td>16 Devonshire Street</td>
+        <td>17</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;63% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-05-22</td>
+        <td>Friday</td>
+        <td>Women’s Health Centre</td>
+        <td>22</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;81% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-05-23</td>
+        <td>Saturday</td>
+        <td>The Harley Street Clinic at Devonshire Street</td>
+        <td>20</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;74% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-05-30</td>
+        <td>Saturday</td>
+        <td>16 Devonshire Street</td>
+        <td>18</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;67% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-04</td>
+        <td>Thursday</td>
+        <td>Women’s Health Centre</td>
+        <td>20</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;74% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-05</td>
+        <td>Friday</td>
+        <td>Women’s Health Centre</td>
+        <td>27</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;100% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-06</td>
+        <td>Saturday</td>
+        <td>Women’s Health Centre</td>
+        <td>21</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;78% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-08</td>
+        <td>Monday</td>
+        <td>Women’s Health Centre</td>
+        <td>26</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;96% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-13</td>
+        <td>Saturday</td>
+        <td>The Harley Street Clinic at Devonshire Street</td>
+        <td>21</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;78% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-18</td>
+        <td>Thursday</td>
+        <td>Women’s Health Centre</td>
+        <td>20</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;74% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-19</td>
+        <td>Friday</td>
+        <td>Women’s Health Centre</td>
+        <td>27</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;100% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-20</td>
+        <td>Saturday</td>
+        <td>The Harley Street Clinic at Devonshire Street</td>
+        <td>21</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;78% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-27</td>
+        <td>Saturday</td>
+        <td>16 Devonshire Street</td>
+        <td>21</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;78% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-07-02</td>
+        <td>Thursday</td>
+        <td>Women’s Health Centre</td>
+        <td>20</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;74% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-07-03</td>
+        <td>Friday</td>
+        <td>Women’s Health Centre</td>
+        <td>27</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;100% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-07-04</td>
+        <td>Saturday</td>
+        <td>Women’s Health Centre</td>
+        <td>21</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;78% remaining
+        </td>
+      </tr>
+      
+    </tbody>
+  </table>
+
+  
+  <p style="margin-top:1.25rem;">
+    <span class="layer-label">LAYER 3</span>
+    <strong>Theoretical capacity benchmark</strong>
+  </p>
+  <div>
+    <div class="stat-box">
+      <div class="val share-big" style="color:#0dcaf0;">30.1%</div>
+      <div class="lbl">share of theoretical full-time capacity</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">40.7</div>
+      <div class="lbl">observed visible slots / wk</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">135</div>
+      <div class="lbl">theoretical slots / wk<br><small style="font-weight:400;">5d &times; 27 slots/day</small></div>
+    </div>
+    
+    <div class="stat-box">
+      <div class="val">17–68</div>
+      <div class="lbl">range across individual weeks</div>
+    </div>
+    
+  </div>
+</div>
+
+<div class="consultant-section" id="elias_kovoor">
+  <h2>Elias Kovoor</h2>
+
+  
+  <p>
+    <span class="layer-label">LAYER 1</span>
+    <strong>Clinic-day footprint</strong>
+  </p>
+  <div>
+    <span class="day-badge">Monday</span><span class="day-badge">Thursday</span><span class="day-badge">Tuesday</span><span class="day-badge">Wednesday</span>
+    &nbsp;&nbsp;
+    <span class="loc-badge">HCA UK Canary Wharf</span><span class="loc-badge">HCA UK City of London at 120 Old Broad Street</span><span class="loc-badge">HCA UK at The Shard</span>
+  </div>
+  <div style="margin-top:0.75rem;">
+    <div class="stat-box">
+      <div class="val">21</div>
+      <div class="lbl">clinic days in window</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">2.5</div>
+      <div class="lbl">avg days / week</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">5</div>
+      <div class="lbl">theoretical full-time days/wk</div>
+    </div>
+  </div>
+
+  
+  <p style="margin-top:1.25rem;">
+    <span class="layer-label">LAYER 2</span>
+    <strong>Slot supply per clinic day</strong>
+  </p>
+  <div style="margin-bottom:0.75rem;">
+    <div class="stat-box">
+      <div class="val">22</div>
+      <div class="lbl">max slots / day</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">16</div>
+      <div class="lbl">median slots / day</div>
+    </div>
+  </div>
+  <table class="slots-table">
+    <thead>
+      <tr><th>Date</th><th>Day</th><th>Location</th><th>Visible slots</th><th>Availability remaining</th></tr>
+    </thead>
+    <tbody>
+      
+      <tr>
+        <td>2026-05-13</td>
+        <td>Wednesday</td>
+        <td>HCA UK at The Shard</td>
+        <td>8</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;36% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-05-14</td>
+        <td>Thursday</td>
+        <td>HCA UK City of London at 120 Old Broad Street</td>
+        <td>18</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;82% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-05-18</td>
+        <td>Monday</td>
+        <td>HCA UK at The Shard</td>
+        <td>16</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;73% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-05-19</td>
+        <td>Tuesday</td>
+        <td>HCA UK Canary Wharf</td>
+        <td>16</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;73% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-05-20</td>
+        <td>Wednesday</td>
+        <td>HCA UK at The Shard</td>
+        <td>16</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;73% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-05-28</td>
+        <td>Thursday</td>
+        <td>HCA UK City of London at 120 Old Broad Street</td>
+        <td>18</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;82% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-01</td>
+        <td>Monday</td>
+        <td>HCA UK at The Shard</td>
+        <td>16</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;73% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-02</td>
+        <td>Tuesday</td>
+        <td>HCA UK Canary Wharf</td>
+        <td>16</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;73% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-03</td>
+        <td>Wednesday</td>
+        <td>HCA UK at The Shard</td>
+        <td>16</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;73% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-10</td>
+        <td>Wednesday</td>
+        <td>HCA UK at The Shard</td>
+        <td>16</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;73% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-11</td>
+        <td>Thursday</td>
+        <td>HCA UK City of London at 120 Old Broad Street</td>
+        <td>17</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;77% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-17</td>
+        <td>Wednesday</td>
+        <td>HCA UK at The Shard</td>
+        <td>16</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;73% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-24</td>
+        <td>Wednesday</td>
+        <td>HCA UK at The Shard</td>
+        <td>16</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;73% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-25</td>
+        <td>Thursday</td>
+        <td>HCA UK Canary Wharf</td>
+        <td>22</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;100% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-29</td>
+        <td>Monday</td>
+        <td>HCA UK at The Shard</td>
+        <td>16</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;73% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-30</td>
+        <td>Tuesday</td>
+        <td>HCA UK Canary Wharf</td>
+        <td>16</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;73% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-07-01</td>
+        <td>Wednesday</td>
+        <td>HCA UK at The Shard</td>
+        <td>16</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;73% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-07-06</td>
+        <td>Monday</td>
+        <td>HCA UK at The Shard</td>
+        <td>16</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;73% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-07-07</td>
+        <td>Tuesday</td>
+        <td>HCA UK Canary Wharf</td>
+        <td>16</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;73% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-07-08</td>
+        <td>Wednesday</td>
+        <td>HCA UK at The Shard</td>
+        <td>16</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;73% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-07-09</td>
+        <td>Thursday</td>
+        <td>HCA UK City of London at 120 Old Broad Street</td>
+        <td>18</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;82% remaining
+        </td>
+      </tr>
+      
+    </tbody>
+  </table>
+
+  
+  <p style="margin-top:1.25rem;">
+    <span class="layer-label">LAYER 3</span>
+    <strong>Theoretical capacity benchmark</strong>
+  </p>
+  <div>
+    <div class="stat-box">
+      <div class="val share-big" style="color:#0dcaf0;">36.2%</div>
+      <div class="lbl">share of theoretical full-time capacity</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">39.8</div>
+      <div class="lbl">observed visible slots / wk</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">110</div>
+      <div class="lbl">theoretical slots / wk<br><small style="font-weight:400;">5d &times; 22 slots/day</small></div>
+    </div>
+    
+    <div class="stat-box">
+      <div class="val">16–66</div>
+      <div class="lbl">range across individual weeks</div>
+    </div>
+    
+  </div>
+</div>
+
+<div class="consultant-section" id="nitish_narvekar">
+  <h2>Nitish Narvekar</h2>
+
+  
+  <p>
+    <span class="layer-label">LAYER 1</span>
+    <strong>Clinic-day footprint</strong>
+  </p>
+  <div>
+    <span class="day-badge">Monday</span><span class="day-badge">Wednesday</span>
+    &nbsp;&nbsp;
+    <span class="loc-badge">HCA UK Canary Wharf</span><span class="loc-badge">HCA UK at The Shard</span>
+  </div>
+  <div style="margin-top:0.75rem;">
+    <div class="stat-box">
+      <div class="val">11</div>
+      <div class="lbl">clinic days in window</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">1.3</div>
+      <div class="lbl">avg days / week</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">5</div>
+      <div class="lbl">theoretical full-time days/wk</div>
+    </div>
+  </div>
+
+  
+  <p style="margin-top:1.25rem;">
+    <span class="layer-label">LAYER 2</span>
+    <strong>Slot supply per clinic day</strong>
+  </p>
+  <div style="margin-bottom:0.75rem;">
+    <div class="stat-box">
+      <div class="val">30</div>
+      <div class="lbl">max slots / day</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">18</div>
+      <div class="lbl">median slots / day</div>
+    </div>
+  </div>
+  <table class="slots-table">
+    <thead>
+      <tr><th>Date</th><th>Day</th><th>Location</th><th>Visible slots</th><th>Availability remaining</th></tr>
+    </thead>
+    <tbody>
+      
+      <tr>
+        <td>2026-05-11</td>
+        <td>Monday</td>
+        <td>HCA UK Canary Wharf</td>
+        <td>2</td>
+        <td>
+          <span class="dot-low">&#9632;</span>
+          &nbsp;7% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-05-20</td>
+        <td>Wednesday</td>
+        <td>HCA UK at The Shard</td>
+        <td>1</td>
+        <td>
+          <span class="dot-low">&#9632;</span>
+          &nbsp;3% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-05-27</td>
+        <td>Wednesday</td>
+        <td>HCA UK at The Shard</td>
+        <td>24</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;80% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-03</td>
+        <td>Wednesday</td>
+        <td>HCA UK at The Shard</td>
+        <td>16</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;53% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-08</td>
+        <td>Monday</td>
+        <td>HCA UK Canary Wharf</td>
+        <td>18</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;60% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-10</td>
+        <td>Wednesday</td>
+        <td>HCA UK at The Shard</td>
+        <td>29</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;97% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-17</td>
+        <td>Wednesday</td>
+        <td>HCA UK at The Shard</td>
+        <td>13</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;43% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-22</td>
+        <td>Monday</td>
+        <td>HCA UK Canary Wharf</td>
+        <td>18</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;60% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-24</td>
+        <td>Wednesday</td>
+        <td>HCA UK at The Shard</td>
+        <td>30</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;100% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-07-01</td>
+        <td>Wednesday</td>
+        <td>HCA UK at The Shard</td>
+        <td>16</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;53% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-07-08</td>
+        <td>Wednesday</td>
+        <td>HCA UK at The Shard</td>
+        <td>30</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;100% remaining
+        </td>
+      </tr>
+      
+    </tbody>
+  </table>
+
+  
+  <p style="margin-top:1.25rem;">
+    <span class="layer-label">LAYER 3</span>
+    <strong>Theoretical capacity benchmark</strong>
+  </p>
+  <div>
+    <div class="stat-box">
+      <div class="val share-big" style="color:#6ea8fe;">15.3%</div>
+      <div class="lbl">share of theoretical full-time capacity</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">23.0</div>
+      <div class="lbl">observed visible slots / wk</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">150</div>
+      <div class="lbl">theoretical slots / wk<br><small style="font-weight:400;">5d &times; 30 slots/day</small></div>
+    </div>
+    
+    <div class="stat-box">
+      <div class="val">1–48</div>
+      <div class="lbl">range across individual weeks</div>
+    </div>
+    
+  </div>
+</div>
+
+<div class="consultant-section" id="michael_adamczyk">
+  <h2>Michael Adamczyk</h2>
+
+  
+  <p>
+    <span class="layer-label">LAYER 1</span>
+    <strong>Clinic-day footprint</strong>
+  </p>
+  <div>
+    <span class="day-badge">Friday</span>
+    &nbsp;&nbsp;
+    <span class="loc-badge">Battersea and Nine Elms Outpatients</span><span class="loc-badge">Women’s Health Centre - 272 Kings Road</span>
+  </div>
+  <div style="margin-top:0.75rem;">
+    <div class="stat-box">
+      <div class="val">8</div>
+      <div class="lbl">clinic days in window</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">0.9</div>
+      <div class="lbl">avg days / week</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">5</div>
+      <div class="lbl">theoretical full-time days/wk</div>
+    </div>
+  </div>
+
+  
+  <p style="margin-top:1.25rem;">
+    <span class="layer-label">LAYER 2</span>
+    <strong>Slot supply per clinic day</strong>
+  </p>
+  <div style="margin-bottom:0.75rem;">
+    <div class="stat-box">
+      <div class="val">19</div>
+      <div class="lbl">max slots / day</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">17</div>
+      <div class="lbl">median slots / day</div>
+    </div>
+  </div>
+  <table class="slots-table">
+    <thead>
+      <tr><th>Date</th><th>Day</th><th>Location</th><th>Visible slots</th><th>Availability remaining</th></tr>
+    </thead>
+    <tbody>
+      
+      <tr>
+        <td>2026-05-15</td>
+        <td>Friday</td>
+        <td>Women’s Health Centre - 272 Kings Road</td>
+        <td>2</td>
+        <td>
+          <span class="dot-low">&#9632;</span>
+          &nbsp;11% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-05-22</td>
+        <td>Friday</td>
+        <td>Battersea and Nine Elms Outpatients</td>
+        <td>2</td>
+        <td>
+          <span class="dot-low">&#9632;</span>
+          &nbsp;11% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-05-29</td>
+        <td>Friday</td>
+        <td>Women’s Health Centre - 272 Kings Road</td>
+        <td>16</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;84% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-05</td>
+        <td>Friday</td>
+        <td>Battersea and Nine Elms Outpatients</td>
+        <td>16</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;84% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-12</td>
+        <td>Friday</td>
+        <td>Women’s Health Centre - 272 Kings Road</td>
+        <td>18</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;95% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-19</td>
+        <td>Friday</td>
+        <td>Battersea and Nine Elms Outpatients</td>
+        <td>19</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;100% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-26</td>
+        <td>Friday</td>
+        <td>Women’s Health Centre - 272 Kings Road</td>
+        <td>19</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;100% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-07-03</td>
+        <td>Friday</td>
+        <td>Battersea and Nine Elms Outpatients</td>
+        <td>19</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;100% remaining
+        </td>
+      </tr>
+      
+    </tbody>
+  </table>
+
+  
+  <p style="margin-top:1.25rem;">
+    <span class="layer-label">LAYER 3</span>
+    <strong>Theoretical capacity benchmark</strong>
+  </p>
+  <div>
+    <div class="stat-box">
+      <div class="val share-big" style="color:#adb5bd;">13.7%</div>
+      <div class="lbl">share of theoretical full-time capacity</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">13.0</div>
+      <div class="lbl">observed visible slots / wk</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">95</div>
+      <div class="lbl">theoretical slots / wk<br><small style="font-weight:400;">5d &times; 19 slots/day</small></div>
+    </div>
+    
+    <div class="stat-box">
+      <div class="val">2–19</div>
+      <div class="lbl">range across individual weeks</div>
+    </div>
+    
+  </div>
+</div>
+
+<div class="consultant-section" id="zeiad_el_gizawy">
+  <h2>Zeiad El Gizawy</h2>
+
+  
+  <p>
+    <span class="layer-label">LAYER 1</span>
+    <strong>Clinic-day footprint</strong>
+  </p>
+  <div>
+    <span class="day-badge">Monday</span><span class="day-badge">Wednesday</span>
+    &nbsp;&nbsp;
+    <span class="loc-badge">The Harborne Hospital</span><span class="loc-badge">The Wilmslow Hospital</span>
+  </div>
+  <div style="margin-top:0.75rem;">
+    <div class="stat-box">
+      <div class="val">8</div>
+      <div class="lbl">clinic days in window</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">0.9</div>
+      <div class="lbl">avg days / week</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">5</div>
+      <div class="lbl">theoretical full-time days/wk</div>
+    </div>
+  </div>
+
+  
+  <p style="margin-top:1.25rem;">
+    <span class="layer-label">LAYER 2</span>
+    <strong>Slot supply per clinic day</strong>
+  </p>
+  <div style="margin-bottom:0.75rem;">
+    <div class="stat-box">
+      <div class="val">16</div>
+      <div class="lbl">max slots / day</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">14</div>
+      <div class="lbl">median slots / day</div>
+    </div>
+  </div>
+  <table class="slots-table">
+    <thead>
+      <tr><th>Date</th><th>Day</th><th>Location</th><th>Visible slots</th><th>Availability remaining</th></tr>
+    </thead>
+    <tbody>
+      
+      <tr>
+        <td>2026-05-11</td>
+        <td>Monday</td>
+        <td>The Wilmslow Hospital</td>
+        <td>1</td>
+        <td>
+          <span class="dot-low">&#9632;</span>
+          &nbsp;6% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-08</td>
+        <td>Monday</td>
+        <td>The Wilmslow Hospital</td>
+        <td>5</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;31% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-17</td>
+        <td>Wednesday</td>
+        <td>The Harborne Hospital</td>
+        <td>12</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;75% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-22</td>
+        <td>Monday</td>
+        <td>The Wilmslow Hospital</td>
+        <td>13</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;81% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-24</td>
+        <td>Wednesday</td>
+        <td>The Harborne Hospital</td>
+        <td>16</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;100% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-07-01</td>
+        <td>Wednesday</td>
+        <td>The Harborne Hospital</td>
+        <td>16</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;100% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-07-06</td>
+        <td>Monday</td>
+        <td>The Wilmslow Hospital</td>
+        <td>16</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;100% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-07-08</td>
+        <td>Wednesday</td>
+        <td>The Harborne Hospital</td>
+        <td>16</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;100% remaining
+        </td>
+      </tr>
+      
+    </tbody>
+  </table>
+
+  
+  <p style="margin-top:1.25rem;">
+    <span class="layer-label">LAYER 3</span>
+    <strong>Theoretical capacity benchmark</strong>
+  </p>
+  <div>
+    <div class="stat-box">
+      <div class="val share-big" style="color:#adb5bd;">13.9%</div>
+      <div class="lbl">share of theoretical full-time capacity</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">11.1</div>
+      <div class="lbl">observed visible slots / wk</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">80</div>
+      <div class="lbl">theoretical slots / wk<br><small style="font-weight:400;">5d &times; 16 slots/day</small></div>
+    </div>
+    
+    <div class="stat-box">
+      <div class="val">1–32</div>
+      <div class="lbl">range across individual weeks</div>
+    </div>
+    
+  </div>
+</div>
+
+<div class="consultant-section" id="yousri_afifi">
+  <h2>Yousri Afifi</h2>
+
+  
+  <p>
+    <span class="layer-label">LAYER 1</span>
+    <strong>Clinic-day footprint</strong>
+  </p>
+  <div>
+    <span class="day-badge">Tuesday</span>
+    &nbsp;&nbsp;
+    <span class="loc-badge">The Harborne Hospital</span>
+  </div>
+  <div style="margin-top:0.75rem;">
+    <div class="stat-box">
+      <div class="val">7</div>
+      <div class="lbl">clinic days in window</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">0.8</div>
+      <div class="lbl">avg days / week</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">5</div>
+      <div class="lbl">theoretical full-time days/wk</div>
+    </div>
+  </div>
+
+  
+  <p style="margin-top:1.25rem;">
+    <span class="layer-label">LAYER 2</span>
+    <strong>Slot supply per clinic day</strong>
+  </p>
+  <div style="margin-bottom:0.75rem;">
+    <div class="stat-box">
+      <div class="val">12</div>
+      <div class="lbl">max slots / day</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">12</div>
+      <div class="lbl">median slots / day</div>
+    </div>
+  </div>
+  <table class="slots-table">
+    <thead>
+      <tr><th>Date</th><th>Day</th><th>Location</th><th>Visible slots</th><th>Availability remaining</th></tr>
+    </thead>
+    <tbody>
+      
+      <tr>
+        <td>2026-05-12</td>
+        <td>Tuesday</td>
+        <td>The Harborne Hospital</td>
+        <td>6</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;50% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-02</td>
+        <td>Tuesday</td>
+        <td>The Harborne Hospital</td>
+        <td>12</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;100% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-09</td>
+        <td>Tuesday</td>
+        <td>The Harborne Hospital</td>
+        <td>12</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;100% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-16</td>
+        <td>Tuesday</td>
+        <td>The Harborne Hospital</td>
+        <td>12</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;100% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-23</td>
+        <td>Tuesday</td>
+        <td>The Harborne Hospital</td>
+        <td>12</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;100% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-30</td>
+        <td>Tuesday</td>
+        <td>The Harborne Hospital</td>
+        <td>12</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;100% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-07-07</td>
+        <td>Tuesday</td>
+        <td>The Harborne Hospital</td>
+        <td>12</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;100% remaining
+        </td>
+      </tr>
+      
+    </tbody>
+  </table>
+
+  
+  <p style="margin-top:1.25rem;">
+    <span class="layer-label">LAYER 3</span>
+    <strong>Theoretical capacity benchmark</strong>
+  </p>
+  <div>
+    <div class="stat-box">
+      <div class="val share-big" style="color:#6ea8fe;">15.2%</div>
+      <div class="lbl">share of theoretical full-time capacity</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">9.1</div>
+      <div class="lbl">observed visible slots / wk</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">60</div>
+      <div class="lbl">theoretical slots / wk<br><small style="font-weight:400;">5d &times; 12 slots/day</small></div>
+    </div>
+    
+    <div class="stat-box">
+      <div class="val">6–12</div>
+      <div class="lbl">range across individual weeks</div>
+    </div>
+    
+  </div>
+</div>
+
+<div class="consultant-section" id="jeffrey_ahmed">
+  <h2>Jeffrey Ahmed</h2>
+
+  
+  <p>
+    <span class="layer-label">LAYER 1</span>
+    <strong>Clinic-day footprint</strong>
+  </p>
+  <div>
+    <span class="day-badge">Monday</span>
+    &nbsp;&nbsp;
+    <span class="loc-badge">Women’s Health Centre - 272 Kings Road</span>
+  </div>
+  <div style="margin-top:0.75rem;">
+    <div class="stat-box">
+      <div class="val">5</div>
+      <div class="lbl">clinic days in window</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">0.6</div>
+      <div class="lbl">avg days / week</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">5</div>
+      <div class="lbl">theoretical full-time days/wk</div>
+    </div>
+  </div>
+
+  
+  <p style="margin-top:1.25rem;">
+    <span class="layer-label">LAYER 2</span>
+    <strong>Slot supply per clinic day</strong>
+  </p>
+  <div style="margin-bottom:0.75rem;">
+    <div class="stat-box">
+      <div class="val">8</div>
+      <div class="lbl">max slots / day</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">8</div>
+      <div class="lbl">median slots / day</div>
+    </div>
+  </div>
+  <table class="slots-table">
+    <thead>
+      <tr><th>Date</th><th>Day</th><th>Location</th><th>Visible slots</th><th>Availability remaining</th></tr>
+    </thead>
+    <tbody>
+      
+      <tr>
+        <td>2026-05-18</td>
+        <td>Monday</td>
+        <td>Women’s Health Centre - 272 Kings Road</td>
+        <td>1</td>
+        <td>
+          <span class="dot-low">&#9632;</span>
+          &nbsp;12% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-08</td>
+        <td>Monday</td>
+        <td>Women’s Health Centre - 272 Kings Road</td>
+        <td>8</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;100% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-15</td>
+        <td>Monday</td>
+        <td>Women’s Health Centre - 272 Kings Road</td>
+        <td>8</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;100% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-22</td>
+        <td>Monday</td>
+        <td>Women’s Health Centre - 272 Kings Road</td>
+        <td>8</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;100% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-07-06</td>
+        <td>Monday</td>
+        <td>Women’s Health Centre - 272 Kings Road</td>
+        <td>8</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;100% remaining
+        </td>
+      </tr>
+      
+    </tbody>
+  </table>
+
+  
+  <p style="margin-top:1.25rem;">
+    <span class="layer-label">LAYER 3</span>
+    <strong>Theoretical capacity benchmark</strong>
+  </p>
+  <div>
+    <div class="stat-box">
+      <div class="val share-big" style="color:#adb5bd;">9.8%</div>
+      <div class="lbl">share of theoretical full-time capacity</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">3.9</div>
+      <div class="lbl">observed visible slots / wk</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">40</div>
+      <div class="lbl">theoretical slots / wk<br><small style="font-weight:400;">5d &times; 8 slots/day</small></div>
+    </div>
+    
+    <div class="stat-box">
+      <div class="val">1–8</div>
+      <div class="lbl">range across individual weeks</div>
+    </div>
+    
+  </div>
+</div>
+
+<div class="consultant-section" id="shaheen_khazali">
+  <h2>Shaheen Khazali</h2>
+
+  
+  <p>
+    <span class="layer-label">LAYER 1</span>
+    <strong>Clinic-day footprint</strong>
+  </p>
+  <div>
+    <span class="day-badge">Monday</span><span class="day-badge">Tuesday</span>
+    &nbsp;&nbsp;
+    <span class="loc-badge">The Lister Hospital</span>
+  </div>
+  <div style="margin-top:0.75rem;">
+    <div class="stat-box">
+      <div class="val">6</div>
+      <div class="lbl">clinic days in window</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">0.7</div>
+      <div class="lbl">avg days / week</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">5</div>
+      <div class="lbl">theoretical full-time days/wk</div>
+    </div>
+  </div>
+
+  
+  <p style="margin-top:1.25rem;">
+    <span class="layer-label">LAYER 2</span>
+    <strong>Slot supply per clinic day</strong>
+  </p>
+  <div style="margin-bottom:0.75rem;">
+    <div class="stat-box">
+      <div class="val">11</div>
+      <div class="lbl">max slots / day</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">4</div>
+      <div class="lbl">median slots / day</div>
+    </div>
+  </div>
+  <table class="slots-table">
+    <thead>
+      <tr><th>Date</th><th>Day</th><th>Location</th><th>Visible slots</th><th>Availability remaining</th></tr>
+    </thead>
+    <tbody>
+      
+      <tr>
+        <td>2026-05-12</td>
+        <td>Tuesday</td>
+        <td>The Lister Hospital</td>
+        <td>1</td>
+        <td>
+          <span class="dot-low">&#9632;</span>
+          &nbsp;9% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-16</td>
+        <td>Tuesday</td>
+        <td>The Lister Hospital</td>
+        <td>1</td>
+        <td>
+          <span class="dot-low">&#9632;</span>
+          &nbsp;9% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-23</td>
+        <td>Tuesday</td>
+        <td>The Lister Hospital</td>
+        <td>4</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;36% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-29</td>
+        <td>Monday</td>
+        <td>The Lister Hospital</td>
+        <td>4</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;36% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-30</td>
+        <td>Tuesday</td>
+        <td>The Lister Hospital</td>
+        <td>11</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;100% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-07-07</td>
+        <td>Tuesday</td>
+        <td>The Lister Hospital</td>
+        <td>11</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;100% remaining
+        </td>
+      </tr>
+      
+    </tbody>
+  </table>
+
+  
+  <p style="margin-top:1.25rem;">
+    <span class="layer-label">LAYER 3</span>
+    <strong>Theoretical capacity benchmark</strong>
+  </p>
+  <div>
+    <div class="stat-box">
+      <div class="val share-big" style="color:#ced4da;">6.7%</div>
+      <div class="lbl">share of theoretical full-time capacity</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">3.7</div>
+      <div class="lbl">observed visible slots / wk</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">55</div>
+      <div class="lbl">theoretical slots / wk<br><small style="font-weight:400;">5d &times; 11 slots/day</small></div>
+    </div>
+    
+    <div class="stat-box">
+      <div class="val">1–15</div>
+      <div class="lbl">range across individual weeks</div>
+    </div>
+    
+  </div>
+</div>
+
+<div class="consultant-section" id="tom_holland">
+  <h2>Tom Holland</h2>
+
+  
+  <p>
+    <span class="layer-label">LAYER 1</span>
+    <strong>Clinic-day footprint</strong>
+  </p>
+  <div>
+    <span class="day-badge">Tuesday</span>
+    &nbsp;&nbsp;
+    <span class="loc-badge">Women’s Health Centre</span>
+  </div>
+  <div style="margin-top:0.75rem;">
+    <div class="stat-box">
+      <div class="val">3</div>
+      <div class="lbl">clinic days in window</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">0.3</div>
+      <div class="lbl">avg days / week</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">5</div>
+      <div class="lbl">theoretical full-time days/wk</div>
+    </div>
+  </div>
+
+  
+  <p style="margin-top:1.25rem;">
+    <span class="layer-label">LAYER 2</span>
+    <strong>Slot supply per clinic day</strong>
+  </p>
+  <div style="margin-bottom:0.75rem;">
+    <div class="stat-box">
+      <div class="val">10</div>
+      <div class="lbl">max slots / day</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">8</div>
+      <div class="lbl">median slots / day</div>
+    </div>
+  </div>
+  <table class="slots-table">
+    <thead>
+      <tr><th>Date</th><th>Day</th><th>Location</th><th>Visible slots</th><th>Availability remaining</th></tr>
+    </thead>
+    <tbody>
+      
+      <tr>
+        <td>2026-06-16</td>
+        <td>Tuesday</td>
+        <td>Women’s Health Centre</td>
+        <td>1</td>
+        <td>
+          <span class="dot-low">&#9632;</span>
+          &nbsp;10% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-23</td>
+        <td>Tuesday</td>
+        <td>Women’s Health Centre</td>
+        <td>8</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;80% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-07-07</td>
+        <td>Tuesday</td>
+        <td>Women’s Health Centre</td>
+        <td>10</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;100% remaining
+        </td>
+      </tr>
+      
+    </tbody>
+  </table>
+
+  
+  <p style="margin-top:1.25rem;">
+    <span class="layer-label">LAYER 3</span>
+    <strong>Theoretical capacity benchmark</strong>
+  </p>
+  <div>
+    <div class="stat-box">
+      <div class="val share-big" style="color:#ced4da;">4.4%</div>
+      <div class="lbl">share of theoretical full-time capacity</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">2.2</div>
+      <div class="lbl">observed visible slots / wk</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">50</div>
+      <div class="lbl">theoretical slots / wk<br><small style="font-weight:400;">5d &times; 10 slots/day</small></div>
+    </div>
+    
+    <div class="stat-box">
+      <div class="val">1–10</div>
+      <div class="lbl">range across individual weeks</div>
+    </div>
+    
+  </div>
+</div>
+
+<div class="consultant-section" id="vasileios_minas">
+  <h2>Vasileios Minas</h2>
+
+  
+  <p>
+    <span class="layer-label">LAYER 1</span>
+    <strong>Clinic-day footprint</strong>
+  </p>
+  <div>
+    <span class="day-badge">Wednesday</span>
+    &nbsp;&nbsp;
+    <span class="loc-badge">Women’s Health Centre - 272 Kings Road</span>
+  </div>
+  <div style="margin-top:0.75rem;">
+    <div class="stat-box">
+      <div class="val">4</div>
+      <div class="lbl">clinic days in window</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">0.5</div>
+      <div class="lbl">avg days / week</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">5</div>
+      <div class="lbl">theoretical full-time days/wk</div>
+    </div>
+  </div>
+
+  
+  <p style="margin-top:1.25rem;">
+    <span class="layer-label">LAYER 2</span>
+    <strong>Slot supply per clinic day</strong>
+  </p>
+  <div style="margin-bottom:0.75rem;">
+    <div class="stat-box">
+      <div class="val">6</div>
+      <div class="lbl">max slots / day</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">5</div>
+      <div class="lbl">median slots / day</div>
+    </div>
+  </div>
+  <table class="slots-table">
+    <thead>
+      <tr><th>Date</th><th>Day</th><th>Location</th><th>Visible slots</th><th>Availability remaining</th></tr>
+    </thead>
+    <tbody>
+      
+      <tr>
+        <td>2026-05-20</td>
+        <td>Wednesday</td>
+        <td>Women’s Health Centre - 272 Kings Road</td>
+        <td>1</td>
+        <td>
+          <span class="dot-low">&#9632;</span>
+          &nbsp;17% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-03</td>
+        <td>Wednesday</td>
+        <td>Women’s Health Centre - 272 Kings Road</td>
+        <td>5</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;83% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-17</td>
+        <td>Wednesday</td>
+        <td>Women’s Health Centre - 272 Kings Road</td>
+        <td>5</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;83% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-07-01</td>
+        <td>Wednesday</td>
+        <td>Women’s Health Centre - 272 Kings Road</td>
+        <td>6</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;100% remaining
+        </td>
+      </tr>
+      
+    </tbody>
+  </table>
+
+  
+  <p style="margin-top:1.25rem;">
+    <span class="layer-label">LAYER 3</span>
+    <strong>Theoretical capacity benchmark</strong>
+  </p>
+  <div>
+    <div class="stat-box">
+      <div class="val share-big" style="color:#ced4da;">6.7%</div>
+      <div class="lbl">share of theoretical full-time capacity</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">2.0</div>
+      <div class="lbl">observed visible slots / wk</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">30</div>
+      <div class="lbl">theoretical slots / wk<br><small style="font-weight:400;">5d &times; 6 slots/day</small></div>
+    </div>
+    
+    <div class="stat-box">
+      <div class="val">1–6</div>
+      <div class="lbl">range across individual weeks</div>
+    </div>
+    
+  </div>
+</div>
+
+<div class="consultant-section" id="sujata_gupta">
+  <h2>Sujata Gupta</h2>
+
+  
+  <p>
+    <span class="layer-label">LAYER 1</span>
+    <strong>Clinic-day footprint</strong>
+  </p>
+  <div>
+    <span class="day-badge">Tuesday</span>
+    &nbsp;&nbsp;
+    <span class="loc-badge">The Wilmslow Hospital</span>
+  </div>
+  <div style="margin-top:0.75rem;">
+    <div class="stat-box">
+      <div class="val">3</div>
+      <div class="lbl">clinic days in window</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">0.3</div>
+      <div class="lbl">avg days / week</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">5</div>
+      <div class="lbl">theoretical full-time days/wk</div>
+    </div>
+  </div>
+
+  
+  <p style="margin-top:1.25rem;">
+    <span class="layer-label">LAYER 2</span>
+    <strong>Slot supply per clinic day</strong>
+  </p>
+  <div style="margin-bottom:0.75rem;">
+    <div class="stat-box">
+      <div class="val">3</div>
+      <div class="lbl">max slots / day</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">1</div>
+      <div class="lbl">median slots / day</div>
+    </div>
+  </div>
+  <table class="slots-table">
+    <thead>
+      <tr><th>Date</th><th>Day</th><th>Location</th><th>Visible slots</th><th>Availability remaining</th></tr>
+    </thead>
+    <tbody>
+      
+      <tr>
+        <td>2026-06-16</td>
+        <td>Tuesday</td>
+        <td>The Wilmslow Hospital</td>
+        <td>3</td>
+        <td>
+          <span class="dot-full">&#9632;</span>
+          
+          &nbsp;100% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-06-23</td>
+        <td>Tuesday</td>
+        <td>The Wilmslow Hospital</td>
+        <td>1</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;33% remaining
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-07-07</td>
+        <td>Tuesday</td>
+        <td>The Wilmslow Hospital</td>
+        <td>1</td>
+        <td>
+          <span class="dot-partial">&#9632;</span>
+          
+          &nbsp;33% remaining
+        </td>
+      </tr>
+      
+    </tbody>
+  </table>
+
+  
+  <p style="margin-top:1.25rem;">
+    <span class="layer-label">LAYER 3</span>
+    <strong>Theoretical capacity benchmark</strong>
+  </p>
+  <div>
+    <div class="stat-box">
+      <div class="val share-big" style="color:#ced4da;">4.0%</div>
+      <div class="lbl">share of theoretical full-time capacity</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">0.6</div>
+      <div class="lbl">observed visible slots / wk</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">15</div>
+      <div class="lbl">theoretical slots / wk<br><small style="font-weight:400;">5d &times; 3 slots/day</small></div>
+    </div>
+    
+    <div class="stat-box">
+      <div class="val">1–3</div>
+      <div class="lbl">range across individual weeks</div>
+    </div>
+    
+  </div>
+</div>
+
+
+
+</body>
+</html>

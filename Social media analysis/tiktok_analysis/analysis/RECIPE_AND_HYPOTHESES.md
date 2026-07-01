@@ -1,0 +1,123 @@
+# Docmap TikTok cohort: performance synthesis (8 videos)
+
+Analysis run: metrics and transcripts refreshed via `yt-dlp`, speech-to-text via `faster-whisper` **small** (CPU, `beam_size=5`), comments via TikTok web `comment/list` API (top-level only; thread replies sit under `reply_comment_total` and are not fully exported here).
+
+**Transcript files per video** (under [`../data/transcripts/`](../data/transcripts/)): `{id}.txt`, `{id}.json`, `{id}_FULL.txt`, and `{id}_COMPLETE.txt` are written only when Whisper returns **usable speech** (carousel / music-only posts are skipped—no stub files). `{id}_COMPLETE.txt` adds TikTok title/description to the spoken transcript for the videos that have real ASR output.
+
+Primary quantitative source of truth: [`../data/metrics_refresh.json`](../data/metrics_refresh.json). Transcript rubric: [`feature_matrix.json`](feature_matrix.json). Comment coding: [`comment_summary_by_video.json`](comment_summary_by_video.json) and per-video `comments_labeled_*.json`.
+
+## 1. Performance scorecard (refreshed public counts)
+
+Sorted by views. Rates are per 1,000 views.
+
+| Video | Topic (short) | Views | Likes/1k | Comments/1k | Shares/1k | Saves/1k | Dur (s) |
+|-------|---------------|------:|---------:|------------:|----------:|---------:|--------:|
+| 7630900114982210838 | Liz: laparoscopy “360” + pouch of Douglas | 239,000 | 80.8 | 1.92 | 13.17 | 55.4 | 67 |
+| 7631220659770690818 | Excision vs ablation (analogy) | 8,844 | 35.3 | 1.47 | 5.54 | 19.1 | 30 |
+| 7636091017875197207 | Endo belly | 6,209 | 17.7 | 0.00 | 1.29 | 1.29 | 233 |
+| 7631307430890048790 | Liz intro / endo nurse (carousel) | 5,492 | 24.2 | 0.73 | 1.46 | 8.0 | 39 |
+| 7633862545228434710 | 9-year delay (part 1) | 1,728 | 58.4 | 0.00 | 0.00 | 9.8 | 80 |
+| 7635716747869424918 | 8-min GP + WhatsApp prep | 1,140 | 24.6 | 0.00 | 3.51 | 7.0 | 39 |
+| 7629626326927805718 | Amy community / 30k | 1,005 | 10.0 | 0.00 | 1.99 | 1.0 | 50 |
+| 7634274846117104918 | 9-year delay (part 2) | 990 | 48.5 | 1.01 | 1.01 | 3.0 | 60 |
+
+**Positive deviant:** `7630900114982210838` dominates on raw reach and on **saves/1k** and **shares/1k**—strong “bookmark / send to someone” behaviour, not just passive views.
+
+**Interpretation guardrail:** TikTok does not expose first-24h velocity in this pipeline; algorithmic push and external reshares are unobserved confounders. Claims below are **hypotheses** with confidence tags.
+
+## 2. Transcript feature matrix (uniform rubric)
+
+See [`feature_matrix.json`](feature_matrix.json). Summary of what differs for the outlier:
+
+- **Hook (0–3s):** Immediate procedural stakes — if the surgeon does not know what to look for during laparoscopy, they “miss it.” This is a **fear × competence** frame, not a brand or awareness frame.
+- **Specificity:** Stepwise anatomical checklist (diaphragm, bowel, ovaries, pouch of Douglas) and a **visual mental model** (“elevate” the cul-de-sac to see hidden disease). Specificity score capped at 5/5 in the rubric.
+- **Closing:** Lands on **“excision, not ablation”** — ties back to a high-salience debate in the endo community, matching comment themes.
+
+**Contrast pair (same expert, different packaging):**
+
+- `7630900114982210838` (67s, checklist + anatomy demo) vs `7631220659770690818` (30s, plaster/skimming analogy). The shorter analogy clip **still does well on engagement rate** but is an order of magnitude lower on **absolute views**. Plausible read: the longer clip combines **novel operational detail** + **shareable “take this to your surgeon” utility**; the short clip is easier to finish but narrower algorithmic seeding or less “save-worthy” density.
+
+**Contrast pair (same “9-year delay” arc):**
+
+- Part 1 (`7633862545228434710`, 80s) vs Part 2 (`7634274846117104918`, 60s). Part 1 has ~1.7× the views and **much higher likes/1k**; neither shows public comments in API/tracker. Difference may be **hook clarity** (on-camera “simple and complicated” vs drier education opening in part 2) and **first-frame/title** synergy — worth A/B testing on future multi-part series.
+
+**Service-led vs clinical-led:**
+
+- `7635716747869424918` (WhatsApp / GP prep) underperforms on views vs Liz clinical explainers despite a strong **time pressure** hook in the caption. Hypothesis (medium confidence): **utility is credible but trust/curiosity peaks on clinician expertise clips** in this cohort; service CTAs may need a clinician face + one concrete checklist item before the product ask.
+
+**Carousel / weak speech-to-text:**
+
+- `7636091017875197207` and `7635716747869424918` produced sparse transcripts (on-screen text / music-heavy). Hooks in the feature matrix fall back to **description text**; interpret those rows with caution.
+
+## 3. Comments: themes and top-comment sentiment
+
+Fetched sample sizes: **237** top-level comments for `7630900114982210838`; **9** for `7631220659770690818`; **2** for `7631307430890048790`; **1** for `7634274846117104918`; **0** returned by API for others (may still have thread engagement off-device). For videos with enough comments, `comment_summary_by_video.json` also includes a **random stratum** (up to 100 comments excluding top-20-by-likes) so theme counts are not driven only by viral top comments.
+
+### 3.1 The viral clip (`7630900114982210838`)
+
+Automated theme tags (overlapping; see script for keyword rules):
+
+- **Personal stories** and **questions** dominate stances — viewers use the video to **compare their surgical experience** against an ideal standard.
+- Top liked comments (structured sentiment in `top_comments_labeled.json`):
+
+  - **System frustration** (“degree in medicine and do it myself”) — massive likes; signals **moral-emotional resonance** with perceived abandonment.
+  - **Post-op distress** (“had mine 6 months ago and pain is worse”) — validates the fear implied by the opening hook.
+  - **Advocacy gap** (“why do we have to tell them”) — aligns with the video’s implicit “you must ask for a 360” thesis.
+  - **Anatomy curiosity** (“pouch of who?”) — shows the clip **teaches jargon** that people repeat and joke about (secondary meme vector).
+
+**Spam/promo caveat:** Some high-like comments may be product spam; moderation and manual down-weighting are advised before treating every top comment as organic insight.
+
+### 3.2 Excision explainer (`7631220659770690818`)
+
+Small-N but **gratitude-heavy** tone in comments; requests for **written patient-facing checklists** appear — the audience wants **portable advocacy artifacts** (letter template, bullet list) not only video.
+
+## 4. Ranked hypotheses (why the laparoscopy clip outperformed)
+
+| ID | Hypothesis | Confidence | Evidence |
+|----|------------|------------|----------|
+| H1 | **Procedural specificity + “ask your team for X”** creates **save/share utility** in a high-anxiety decision moment (surgery). | High | Highest saves/1k and shares/1k in cohort; comments ask “what if they say no?” and share botched lap stories. |
+| H2 | **Anatomical demo** (pouch of Douglas / “elevate”) makes an abstract standard **visual and memorable**, increasing comment questions and meme reactions. | Medium–high | Repeated “pouch” jokes/questions; transcript centers on hidden lesions. |
+| H3 | **Closing tie-in** to **excision vs ablation** taps an existing community debate, encouraging tag-a-friend behaviour among people mid-research. | Medium | Matches top comments on incomplete surgeries and ablation regret patterns. |
+| H4 | **Length (~67s)** allows a full “problem → checklist → demonstration → punchline” arc vs 30s analogy-only clip. | Medium | Paired comparison with `7631220659770690818` views gap; also confounded by posting time. |
+| H5 | **Pure service CTAs** without a parallel **clinical teaching moment** under-index on views in this sample. | Low–medium | WhatsApp prep clip weak on views vs Liz explainers; many confounders (creative, sound, FYP mix). |
+
+## 5. Anti-patterns observed in this cohort
+
+- **Soft interview open** (“Thank you for joining us today”) on `7631307430890048790` pairs with **mid-tier reach** and practical comments about **price/location** — may signal **B2C friction** rather than broad FYP curiosity.
+- **Zero-comment surface** on several uploads does **not** always mean failure: `7633862545228434710` has strong **likes/1k** with no public comments — possibly **sensitive** or **fully self-explanatory** content consumed passively.
+- **Long duration with weak spoken hook** (`7636091017875197207`) may dilute retention if on-screen storytelling does not match audio; likes/1k are moderate vs shorter Liz clips.
+
+## 6. Recipe: what to replicate next (non-negotiables + patterns)
+
+**Non-negotiables (health + brand):**
+
+- Keep **clinical framing accurate**; pair expert monologue with **patient advocacy language** (“questions you can ask”) rather than definitive medical promises.
+- Monitor comments for **spam supplements** and **individual medical advice requests**; pin a **safe triage comment** where appropriate.
+
+**Winning patterns to reuse:**
+
+1. **Open with a competence gap that implies risk** (“If the person doing X doesn’t know what to look for, they’ll miss it”) → likely boosts **saves** among pre-op viewers. *Risk:* anxiety spike; mitigate with **one sentence of empowerment** (“here’s what to ask”).
+2. **Teach one **named anatomical bottleneck** + **movement/procedure** people can picture** (elevate, rotate, map) → boosts **comments/questions** and meme repetition.
+3. **End with a **community wedge topic** (excision vs ablation, imaging limits, GP time)** → encourages **shares** within advocate networks.
+4. **Offer a **portable artifact** in the caption or follow-up** (checklist PNG, “copy-paste questions”) → addresses explicit comment demand seen on the excision clip.
+
+## 7. Next A/B tests (primary KPI each)
+
+1. **Hook test (same script body):** Fear-first (“they’ll miss it”) vs **empowerment-first** (“three checks to make sure nothing is missed”) — **Primary KPI:** saves/1k.
+2. **Length test:** 35–45s cut vs **60–75s** full checklist — **Primary KPI:** average watch time % (from TikTok Studio) + saves/1k.
+3. **CTA test:** Link-in-bio for **consult** vs **downloadable checklist** (email/WhatsApp) — **Primary KPI:** comment quality (manual code) + save rate.
+4. **Series structure:** Part 1 **stat shock** (9 years) vs Part 1 **single patient question** — **Primary KPI:** completion rate on part 2.
+5. **Service clip:** WhatsApp offer **after** 20s of Liz checklist vs **cold open** on product — **Primary KPI:** clicks + **negative sentiment** in comments (manual spot-check).
+
+## 8. How to reproduce
+
+From `tiktok_analysis/`:
+
+```text
+pip install -r requirements.txt
+python scripts/run_pipeline.py
+python scripts/fetch_comments.py
+python scripts/build_analysis.py
+```
+
+Outputs land in `data/` and `analysis/`.

@@ -1,0 +1,601 @@
+{
+  "total_reviews": 1070,
+  "automatable": 717,
+  "not_automatable": 353,
+  "ownership_gap_count": 48,
+  "primary_label_counts": {
+    "not_automatable": 353,
+    "financial_transparency": 130,
+    "results_delivery": 122,
+    "treatment_coordination": 108,
+    "complaint_handling": 93,
+    "appointment_management": 88,
+    "inbound_access": 71,
+    "admin_records": 58,
+    "pre_visit_information": 27,
+    "post_treatment_followup": 20
+  },
+  "patient_stage_counts": {
+    "treatment": 361,
+    "consultation": 172,
+    "complaint": 113,
+    "post_treatment": 108,
+    "booking": 93,
+    "billing": 92,
+    "enquiry": 76,
+    "pre_visit": 46,
+    "unclear": 5,
+    "pre_enquiry": 4
+  },
+  "automation_tier_counts": {
+    "workflow_solvable": 558,
+    "not_solvable": 360,
+    "human_assisted": 86,
+    "bot_solvable": 62,
+    "insight_only": 4
+  },
+  "product_surfaces": [
+    {
+      "product_surface": "financial_consent_flow",
+      "count": 148,
+      "pct": 13.8,
+      "must_have_score": 22.3,
+      "avg_severity": 3.9,
+      "avg_commercial_relevance": 4.5,
+      "automation_tier_score": 3.9,
+      "stage_spread": 6,
+      "top_primary_labels": [
+        {
+          "label": "financial_transparency",
+          "count": 130
+        },
+        {
+          "label": "pre_visit_information",
+          "count": 13
+        },
+        {
+          "label": "admin_records",
+          "count": 3
+        }
+      ],
+      "top_stages": [
+        {
+          "stage": "billing",
+          "count": 85
+        },
+        {
+          "stage": "pre_visit",
+          "count": 25
+        },
+        {
+          "stage": "treatment",
+          "count": 13
+        }
+      ],
+      "top_root_causes": [
+        {
+          "cause": "hidden add-ons",
+          "count": 33
+        },
+        {
+          "cause": "no proactive update",
+          "count": 10
+        },
+        {
+          "cause": "no pricing transparency",
+          "count": 8
+        },
+        {
+          "cause": "hidden charges",
+          "count": 7
+        },
+        {
+          "cause": "hidden costs",
+          "count": 5
+        }
+      ],
+      "quotes": [
+        {
+          "clinic": "The Evewell - Harley Street",
+          "quote": "Will push random things you don’t need on you"
+        },
+        {
+          "clinic": "The Evewell - Harley Street",
+          "quote": "expensive add-ons that we were not told about"
+        },
+        {
+          "clinic": "The Evewell - Harley Street",
+          "quote": "pay over £500 to see a random doctor"
+        },
+        {
+          "clinic": "Assisted Reproduction & Gynaecology Centre",
+          "quote": "My wife was recommended unnecessary procedures"
+        },
+        {
+          "clinic": "Assisted Reproduction & Gynaecology Centre",
+          "quote": "a single blood test costs £2,200"
+        }
+      ]
+    },
+    {
+      "product_surface": "booking_ops_layer",
+      "count": 127,
+      "pct": 11.9,
+      "must_have_score": 21.2,
+      "avg_severity": 3.4,
+      "avg_commercial_relevance": 3.8,
+      "automation_tier_score": 4.0,
+      "stage_spread": 7,
+      "top_primary_labels": [
+        {
+          "label": "appointment_management",
+          "count": 85
+        },
+        {
+          "label": "admin_records",
+          "count": 40
+        },
+        {
+          "label": "pre_visit_information",
+          "count": 1
+        }
+      ],
+      "top_stages": [
+        {
+          "stage": "booking",
+          "count": 76
+        },
+        {
+          "stage": "treatment",
+          "count": 18
+        },
+        {
+          "stage": "consultation",
+          "count": 12
+        }
+      ],
+      "top_root_causes": [
+        {
+          "cause": "no proactive update",
+          "count": 13
+        },
+        {
+          "cause": "data errors",
+          "count": 12
+        },
+        {
+          "cause": "no ownership",
+          "count": 12
+        },
+        {
+          "cause": "no response SLA",
+          "count": 9
+        },
+        {
+          "cause": "lost records",
+          "count": 6
+        }
+      ],
+      "quotes": [
+        {
+          "clinic": "The Evewell - Harley Street",
+          "quote": "The admin staff got my date of birth wrong"
+        },
+        {
+          "clinic": "The Evewell - Harley Street",
+          "quote": "Incorrect names and DOB on forms"
+        },
+        {
+          "clinic": "The Evewell - Harley Street",
+          "quote": "The appointment with Mr Davis felt very rushed"
+        },
+        {
+          "clinic": "The Evewell - Harley Street",
+          "quote": "Three different telephone/video appointments were made"
+        },
+        {
+          "clinic": "The Evewell - Harley Street",
+          "quote": "forgetting to send the right prescriptions"
+        }
+      ]
+    },
+    {
+      "product_surface": "patient_pathway_coordinator",
+      "count": 262,
+      "pct": 24.5,
+      "must_have_score": 21.1,
+      "avg_severity": 4.1,
+      "avg_commercial_relevance": 4.2,
+      "automation_tier_score": 3.8,
+      "stage_spread": 4,
+      "top_primary_labels": [
+        {
+          "label": "results_delivery",
+          "count": 122
+        },
+        {
+          "label": "treatment_coordination",
+          "count": 105
+        },
+        {
+          "label": "post_treatment_followup",
+          "count": 19
+        }
+      ],
+      "top_stages": [
+        {
+          "stage": "treatment",
+          "count": 151
+        },
+        {
+          "stage": "post_treatment",
+          "count": 95
+        },
+        {
+          "stage": "consultation",
+          "count": 11
+        }
+      ],
+      "top_root_causes": [
+        {
+          "cause": "no proactive update",
+          "count": 130
+        },
+        {
+          "cause": "no ownership",
+          "count": 17
+        },
+        {
+          "cause": "no response SLA",
+          "count": 13
+        },
+        {
+          "cause": "no aftercare",
+          "count": 8
+        },
+        {
+          "cause": "no internal checking",
+          "count": 4
+        }
+      ],
+      "quotes": [
+        {
+          "clinic": "The Evewell - Harley Street",
+          "quote": "Nurses frequently sent urgent instructions at the end of the day"
+        },
+        {
+          "clinic": "The Evewell - Harley Street",
+          "quote": "We had to chase the clinic for several results"
+        },
+        {
+          "clinic": "The Evewell - Harley Street",
+          "quote": "I have experienced multiple miscarriages"
+        },
+        {
+          "clinic": "The Evewell - Harley Street",
+          "quote": "Administrative errors on Evewell's part"
+        },
+        {
+          "clinic": "The Evewell - Harley Street",
+          "quote": "I had only gotten an impersonal email"
+        }
+      ]
+    },
+    {
+      "product_surface": "out_of_scope",
+      "count": 356,
+      "pct": 33.3,
+      "must_have_score": 20.8,
+      "avg_severity": 3.9,
+      "avg_commercial_relevance": 3.9,
+      "automation_tier_score": 0.0,
+      "stage_spread": 8,
+      "top_primary_labels": [
+        {
+          "label": "not_automatable",
+          "count": 352
+        },
+        {
+          "label": "treatment_coordination",
+          "count": 3
+        },
+        {
+          "label": "complaint_handling",
+          "count": 1
+        }
+      ],
+      "top_stages": [
+        {
+          "stage": "treatment",
+          "count": 175
+        },
+        {
+          "stage": "consultation",
+          "count": 136
+        },
+        {
+          "stage": "complaint",
+          "count": 15
+        }
+      ],
+      "top_root_causes": [
+        {
+          "cause": "clinical quality",
+          "count": 182
+        },
+        {
+          "cause": "staff personality",
+          "count": 31
+        },
+        {
+          "cause": "facilities",
+          "count": 13
+        },
+        {
+          "cause": "poor patient care",
+          "count": 7
+        },
+        {
+          "cause": "staff behavior",
+          "count": 7
+        }
+      ],
+      "quotes": [
+        {
+          "clinic": "The Evewell - Harley Street",
+          "quote": "Our daughter was born sleeping"
+        },
+        {
+          "clinic": "The Evewell - Harley Street",
+          "quote": "Don’t expect anyone to care at the Evewell"
+        },
+        {
+          "clinic": "The Evewell - Harley Street",
+          "quote": "Unfortunately I had endometriosis which was overlooked"
+        },
+        {
+          "clinic": "The Evewell - Harley Street",
+          "quote": "focus more on IVF"
+        },
+        {
+          "clinic": "The Evewell - Harley Street",
+          "quote": "mismanagement of sperm and embryos"
+        }
+      ]
+    },
+    {
+      "product_surface": "inbound_manager",
+      "count": 78,
+      "pct": 7.3,
+      "must_have_score": 19.1,
+      "avg_severity": 3.4,
+      "avg_commercial_relevance": 4.1,
+      "automation_tier_score": 4.6,
+      "stage_spread": 4,
+      "top_primary_labels": [
+        {
+          "label": "inbound_access",
+          "count": 69
+        },
+        {
+          "label": "pre_visit_information",
+          "count": 7
+        },
+        {
+          "label": "admin_records",
+          "count": 2
+        }
+      ],
+      "top_stages": [
+        {
+          "stage": "enquiry",
+          "count": 64
+        },
+        {
+          "stage": "booking",
+          "count": 5
+        },
+        {
+          "stage": "pre_visit",
+          "count": 4
+        }
+      ],
+      "top_root_causes": [
+        {
+          "cause": "no response SLA",
+          "count": 55
+        },
+        {
+          "cause": "poor customer service training",
+          "count": 2
+        },
+        {
+          "cause": "no call handling",
+          "count": 1
+        },
+        {
+          "cause": "unanswered phone calls",
+          "count": 1
+        },
+        {
+          "cause": "unclear payment process",
+          "count": 1
+        }
+      ],
+      "quotes": [
+        {
+          "clinic": "The Evewell - Harley Street",
+          "quote": "Despite me then emailing Evewell multiple times"
+        },
+        {
+          "clinic": "The Evewell - Harley Street",
+          "quote": "The phone is never answered and voicemails are not returned"
+        },
+        {
+          "clinic": "The Evewell - Harley Street",
+          "quote": "multiple emails and telephone calls unanswered"
+        },
+        {
+          "clinic": "The Evewell - Harley Street",
+          "quote": "phone services are not available"
+        },
+        {
+          "clinic": "The Evewell - Harley Street",
+          "quote": "never answer their phone"
+        }
+      ]
+    },
+    {
+      "product_surface": "complaint_triage_monitor",
+      "count": 94,
+      "pct": 8.8,
+      "must_have_score": 14.8,
+      "avg_severity": 3.4,
+      "avg_commercial_relevance": 3.7,
+      "automation_tier_score": 3.7,
+      "stage_spread": 1,
+      "top_primary_labels": [
+        {
+          "label": "complaint_handling",
+          "count": 91
+        },
+        {
+          "label": "admin_records",
+          "count": 2
+        },
+        {
+          "label": "inbound_access",
+          "count": 1
+        }
+      ],
+      "top_stages": [
+        {
+          "stage": "complaint",
+          "count": 88
+        },
+        {
+          "stage": "pre_visit",
+          "count": 1
+        },
+        {
+          "stage": "treatment",
+          "count": 1
+        }
+      ],
+      "top_root_causes": [
+        {
+          "cause": "no response SLA",
+          "count": 30
+        },
+        {
+          "cause": "generic response",
+          "count": 6
+        },
+        {
+          "cause": "failure to identify patient",
+          "count": 5
+        },
+        {
+          "cause": "no ownership",
+          "count": 5
+        },
+        {
+          "cause": "no follow-up",
+          "count": 5
+        }
+      ],
+      "quotes": [
+        {
+          "clinic": "The Evewell - Harley Street",
+          "quote": "they don't care anymore"
+        },
+        {
+          "clinic": "Assisted Reproduction & Gynaecology Centre",
+          "quote": "I lodged a complaint with them"
+        },
+        {
+          "clinic": "Assisted Reproduction & Gynaecology Centre",
+          "quote": "Communication is terrible, service is terrible"
+        },
+        {
+          "clinic": "Assisted Reproduction & Gynaecology Centre",
+          "quote": "do not listen to patient concerns"
+        },
+        {
+          "clinic": "Create Fertility - St. Paul's",
+          "quote": "still waiting on a refund from over 6 months ago"
+        }
+      ]
+    },
+    {
+      "product_surface": "clinic_intelligence",
+      "count": 5,
+      "pct": 0.5,
+      "must_have_score": 10.4,
+      "avg_severity": 2.6,
+      "avg_commercial_relevance": 3.0,
+      "automation_tier_score": 2.8,
+      "stage_spread": 1,
+      "top_primary_labels": [
+        {
+          "label": "admin_records",
+          "count": 3
+        },
+        {
+          "label": "not_automatable",
+          "count": 1
+        },
+        {
+          "label": "pre_visit_information",
+          "count": 1
+        }
+      ],
+      "top_stages": [
+        {
+          "stage": "complaint",
+          "count": 4
+        },
+        {
+          "stage": "pre_enquiry",
+          "count": 1
+        }
+      ],
+      "top_root_causes": [
+        {
+          "cause": "no patient record system",
+          "count": 3
+        },
+        {
+          "cause": "consistent negative experiences",
+          "count": 1
+        },
+        {
+          "cause": "misleading information",
+          "count": 1
+        }
+      ],
+      "quotes": [
+        {
+          "clinic": "London Women's Clinic - Harley Street",
+          "quote": "similar experience to many"
+        },
+        {
+          "clinic": "Harley Street Fertility Clinic",
+          "quote": "we have no record of you as a patient"
+        },
+        {
+          "clinic": "Harley Street Fertility Clinic",
+          "quote": "We couldn't find you in our patient database"
+        },
+        {
+          "clinic": "Harley Street Fertility Clinic",
+          "quote": "we found no records of a patient with your name"
+        },
+        {
+          "clinic": "Harley Street Dr",
+          "quote": "concerned about derma fillers"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "clinic": "CRGH (The Centre for Reproductive and Genetic Health)",
+  "review_count": 89,
+  "categories": [
+    {
+      "name": "Staff Attitude",
+      "count": 17,
+      "pct": 19.1,
+      "severity": "medium",
+      "quotes": [
+        "rude staff",
+        "rude and unhelpful",
+        "rude sales person"
+      ]
+    },
+    {
+      "name": "Other",
+      "count": 15,
+      "pct": 16.9,
+      "severity": "medium",
+      "quotes": [
+        "feel completely misled",
+        "lacks a personal touch",
+        "horrendous clinic"
+      ]
+    },
+    {
+      "name": "Booking & Admin",
+      "count": 12,
+      "pct": 13.5,
+      "severity": "high",
+      "quotes": [
+        "Booking appointments is an absolute nightmare",
+        "before and after work scans not available",
+        "changed my appointments without me knowing"
+      ]
+    },
+    {
+      "name": "Treatment Quality",
+      "count": 11,
+      "pct": 12.4,
+      "severity": "high",
+      "quotes": [
+        "Incorrect stimulation protocol",
+        "most painful egg retrieval experiences",
+        "no support no explanation"
+      ]
+    },
+    {
+      "name": "Communication",
+      "count": 11,
+      "pct": 12.4,
+      "severity": "high",
+      "quotes": [
+        "dont communicate, misplace information",
+        "Poor Communication and Post-Care Negligence",
+        "disorganised and the staff very disorganised"
+      ]
+    },
+    {
+      "name": "Billing & Invoicing",
+      "count": 11,
+      "pct": 12.4,
+      "severity": "high",
+      "quotes": [
+        "hounded by debt collectors",
+        "unexpected invoices the day before appointments",
+        "finance department"
+      ]
+    },
+    {
+      "name": "Doctor / Consultant",
+      "count": 4,
+      "pct": 4.5,
+      "severity": "high",
+      "quotes": [
+        "no proper measurements taken",
+        "consultant felt let by other staff",
+        "misread some of our notes"
+      ]
+    },
+    {
+      "name": "Value for Money",
+      "count": 4,
+      "pct": 4.5,
+      "severity": "high",
+      "quotes": [
+        "Very expensive, not attentive",
+        "charge extortionate amounts",
+        "only care about taking your money"
+      ]
+    },
+    {
+      "name": "Waiting Times",
+      "count": 3,
+      "pct": 3.4,
+      "severity": "medium",
+      "quotes": [
+        "had to wait for 5 hours",
+        "appointments that are over 50 minutes late",
+        "had to wait 40 minutes past my appointment time"
+      ]
+    },
+    {
+      "name": "Facilities",
+      "count": 1,
+      "pct": 1.1,
+      "severity": "medium",
+      "quotes": [
+        "visibly ill receptionist working"
+      ]
+    }
+  ],
+  "summary": "Patients at CRGH are most dissatisfied with staff attitude, which accounts for 19% of complaints, followed by issues like booking, treatment quality, and communication. These top five complaint categories make up 73% of all negative feedback from 89 total reviews."
+}

@@ -1,0 +1,20 @@
+{
+  "updated_at": "2026-07-01T10:02:38.986438+00:00",
+  "playbooks": [
+    {
+      "slug": "content-instruction.md",
+      "path": "C:\\Users\\yulon\\Desktop\\Current Projects\\Intelligence OS\\marketing-pipeline\\tiktok\\data\\playbooks\\content-instruction.md",
+      "status": "approved"
+    },
+    {
+      "slug": "viral-format.md",
+      "path": "C:\\Users\\yulon\\Desktop\\Current Projects\\Intelligence OS\\marketing-pipeline\\tiktok\\data\\playbooks\\viral-format.md",
+      "status": "approved"
+    },
+    {
+      "slug": "recipe-2026-06.md",
+      "path": "C:\\Users\\yulon\\Desktop\\Current Projects\\Intelligence OS\\marketing-pipeline\\tiktok\\data\\playbooks\\evidence\\recipe-2026-06.md",
+      "status": "approved"
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "clinic": "London Gynaecology - Moorgate",
+  "review_count": 8,
+  "categories": [
+    {
+      "name": "Treatment Quality",
+      "count": 3,
+      "pct": 37.5,
+      "severity": "high",
+      "quotes": [
+        "standard of care was extremely poor",
+        "clear misdiagnosis",
+        "The procedure gone really badly"
+      ]
+    },
+    {
+      "name": "Doctor / Consultant",
+      "count": 2,
+      "pct": 25.0,
+      "severity": "medium",
+      "quotes": [
+        "lacking in medical knowledge",
+        "doctor seems to be busy"
+      ]
+    },
+    {
+      "name": "Value for Money",
+      "count": 1,
+      "pct": 12.5,
+      "severity": "medium",
+      "quotes": [
+        "lack of transparency on pricing"
+      ]
+    },
+    {
+      "name": "Billing & Invoicing",
+      "count": 1,
+      "pct": 12.5,
+      "severity": "high",
+      "quotes": [
+        "charged my insurance for a HPV vaccine package"
+      ]
+    },
+    {
+      "name": "Staff Attitude",
+      "count": 1,
+      "pct": 12.5,
+      "severity": "medium",
+      "quotes": [
+        "receptionist Justina, and some other managers unpleasant"
+      ]
+    }
+  ],
+  "summary": "Patients at London Gynaecology - Moorgate are most dissatisfied with treatment quality, which accounts for 38% of complaints, followed by issues with doctors (25%). Other concerns include value for money, billing, and staff attitude, each making up 12% of the negative feedback."
+}

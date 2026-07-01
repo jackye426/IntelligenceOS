@@ -1,0 +1,90 @@
+{
+  "clinic": "CRGH City",
+  "review_count": 21,
+  "categories": [
+    {
+      "name": "Value for Money",
+      "count": 4,
+      "pct": 19.0,
+      "severity": "high",
+      "quotes": [
+        "close to £15,000 spent",
+        "Hidden fees and no success",
+        "Robbed of our savings"
+      ]
+    },
+    {
+      "name": "Communication",
+      "count": 4,
+      "pct": 19.0,
+      "severity": "high",
+      "quotes": [
+        "ignoring my messages",
+        "do not give you the full information",
+        "No answers to any emails for 2 days"
+      ]
+    },
+    {
+      "name": "Booking & Admin",
+      "count": 3,
+      "pct": 14.3,
+      "severity": "high",
+      "quotes": [
+        "finance team are not in touch with the front office",
+        "never informed about takeover happening",
+        "had to wait a while for genetic testing"
+      ]
+    },
+    {
+      "name": "Treatment Quality",
+      "count": 3,
+      "pct": 14.3,
+      "severity": "high",
+      "quotes": [
+        "2 failed cycle after paying a lot of money",
+        "frustrated and disappointed after our attempt IVF cycle",
+        "destroy our embryo without our consent"
+      ]
+    },
+    {
+      "name": "Billing & Invoicing",
+      "count": 2,
+      "pct": 9.5,
+      "severity": "high",
+      "quotes": [
+        "bombard you with payment reminders",
+        "Annual fees deducted twice"
+      ]
+    },
+    {
+      "name": "Doctor / Consultant",
+      "count": 2,
+      "pct": 9.5,
+      "severity": "high",
+      "quotes": [
+        "ultrasound follicle tracking consultation lasted less than one minute",
+        "Dr was extremely rude and inconsiderate"
+      ]
+    },
+    {
+      "name": "Waiting Times",
+      "count": 2,
+      "pct": 9.5,
+      "severity": "high",
+      "quotes": [
+        "Waiting several weeks for responses",
+        "getting appointments when you need them is difficult"
+      ]
+    },
+    {
+      "name": "Staff Attitude",
+      "count": 1,
+      "pct": 4.8,
+      "severity": "high",
+      "quotes": [
+        "Too much attitude problem"
+      ]
+    }
+  ],
+  "summary": "Patients at CRGH City were most dissatisfied with value for money and communication, each making up 19% of complaints, followed by booking/admin and treatment quality at 14%. Billing issues were less common, accounting for 10% of complaints."
+}

@@ -1,0 +1,94 @@
+{
+  "clinic": "The Regenerative Clinic",
+  "review_count": 145,
+  "categories": [
+    {
+      "name": "Waiting Times",
+      "count": 34,
+      "pct": 23.4,
+      "severity": "high",
+      "quotes": [
+        "didn’t send one of the results at all",
+        "took 4 days to get the results",
+        "delay was massive"
+      ]
+    },
+    {
+      "name": "Booking & Admin",
+      "count": 14,
+      "pct": 9.7,
+      "severity": "high",
+      "quotes": [
+        "system on the day of testing was utterly shambolic",
+        "Information confusing",
+        "no one picked up the phone or replied my multiple emails"
+      ]
+    },
+    {
+      "name": "Other",
+      "count": 14,
+      "pct": 9.7,
+      "severity": "low",
+      "quotes": [
+        "Website explicitly claims to provide the correct PCR test",
+        "sends the results with a date of birth 1911",
+        "certificate they provide does not have a QR Code"
+      ]
+    },
+    {
+      "name": "Communication",
+      "count": 8,
+      "pct": 5.5,
+      "severity": "high",
+      "quotes": [
+        "nobody got back to me",
+        "no response to any of the inquiries",
+        "advised incorrect information by one of their representatives"
+      ]
+    },
+    {
+      "name": "Treatment Quality",
+      "count": 8,
+      "pct": 5.5,
+      "severity": "high",
+      "quotes": [
+        "simply milk money and return negative tests",
+        "They literally ruined my entire vacations",
+        "Staff member need proper training"
+      ]
+    },
+    {
+      "name": "Staff Attitude",
+      "count": 8,
+      "pct": 5.5,
+      "severity": "high",
+      "quotes": [
+        "labelled as a ‘Rude customer’",
+        "condescending, argont and cheeky",
+        "extremely rude and borderline racist"
+      ]
+    },
+    {
+      "name": "Billing & Invoicing",
+      "count": 7,
+      "pct": 4.8,
+      "severity": "high",
+      "quotes": [
+        "only give 50% refund",
+        "Never sent kit",
+        "they don’t give fully refund"
+      ]
+    },
+    {
+      "name": "Value for Money",
+      "count": 2,
+      "pct": 1.4,
+      "severity": "high",
+      "quotes": [
+        "Very bad service and expensive",
+        "most expensive PCR tests in London"
+      ]
+    }
+  ],
+  "summary": "Patients at The Regenerative Clinic are most dissatisfied with long waiting times, which account for nearly a quarter of complaints, while issues with booking, admin, and other concerns also contribute significantly to their frustration."
+}

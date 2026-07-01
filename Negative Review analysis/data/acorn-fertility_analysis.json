@@ -1,0 +1,16 @@
+{
+  "clinic": "Acorn Fertility",
+  "review_count": 1,
+  "categories": [
+    {
+      "name": "Communication",
+      "count": 1,
+      "pct": 100.0,
+      "severity": "high",
+      "quotes": [
+        "poor response, quite neglecting behaviour"
+      ]
+    }
+  ],
+  "summary": "Patients at Acorn Fertility expressed dissatisfaction primarily due to communication issues, with all negative reviews citing this problem. Only one complaint was recorded, but it highlighted a significant concern."
+}

@@ -1,0 +1,49 @@
+[
+  {
+    "cid": "7640608196457038614",
+    "text": "Thank you very much for this 😊",
+    "digg_count": 0,
+    "reply_comment_total": 0,
+    "create_time": 1778967739,
+    "themes": [
+      "validation_gratitude"
+    ],
+    "sentiment": {
+      "stance": "agree_validate",
+      "primary_emotion": "gratitude_hope",
+      "toxicity_spam_flag": false
+    }
+  },
+  {
+    "cid": "7639813308266431254",
+    "text": "Great info🥰",
+    "digg_count": 0,
+    "reply_comment_total": 0,
+    "create_time": 1778782663,
+    "themes": [
+      "other_uncategorized"
+    ],
+    "sentiment": {
+      "stance": "statement",
+      "primary_emotion": "neutral",
+      "toxicity_spam_flag": false
+    }
+  },
+  {
+    "cid": "7639659325795533590",
+    "text": "I asked them to remove my hernia (was told my colorectal specialist that it’s routine to remove after laparoscopy) and to remove my Lutheral cyst as I was getting severe pain and they said they couldn’t find my hernia and that the cyst shouldn’t be causing me paid so they didn’t remove it?????",
+    "digg_count": 0,
+    "reply_comment_total": 0,
+    "create_time": 1778746831,
+    "themes": [
+      "post_op_experience",
+      "personal_story",
+      "general_question"
+    ],
+    "sentiment": {
+      "stance": "personal_story",
+      "primary_emotion": "neutral",
+      "toxicity_spam_flag": false
+    }
+  }
+]

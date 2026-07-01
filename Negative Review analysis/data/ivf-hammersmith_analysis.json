@@ -1,0 +1,44 @@
+{
+  "clinic": "IVF Hammersmith",
+  "review_count": 5,
+  "categories": [
+    {
+      "name": "Communication",
+      "count": 2,
+      "pct": 40.0,
+      "severity": "high",
+      "quotes": [
+        "left waiting 3 months for answers",
+        "had to repeat our story from scratch"
+      ]
+    },
+    {
+      "name": "Treatment Quality",
+      "count": 1,
+      "pct": 20.0,
+      "severity": "high",
+      "quotes": [
+        "acting like crooks instead of doctors"
+      ]
+    },
+    {
+      "name": "Other",
+      "count": 1,
+      "pct": 20.0,
+      "severity": "high",
+      "quotes": [
+        "very bad system"
+      ]
+    },
+    {
+      "name": "Waiting Times",
+      "count": 1,
+      "pct": 20.0,
+      "severity": "high",
+      "quotes": [
+        "rushed through appointments"
+      ]
+    }
+  ],
+  "summary": "Patients at IVF Hammersmith were most dissatisfied with communication, which made up 40% of complaints, while treatment quality, waiting times, and other issues each accounted for 20% of negative feedback. The clinic received 5 negative reviews in total."
+}

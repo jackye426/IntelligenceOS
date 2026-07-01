@@ -1,0 +1,156 @@
+{
+  "total": 500,
+  "sub_themes": [
+    {
+      "name": "Unanswered phone calls",
+      "count": 120,
+      "pct": 24.0,
+      "severity": "high",
+      "what_patient_was_trying_to_do": "Contact the clinic to book, cancel, or inquire about appointments, treatments, or refunds.",
+      "what_went_wrong": "Phone lines were consistently busy, calls were dropped, or went unanswered, leaving patients frustrated and unable to reach the clinic.",
+      "quotes": [
+        "Phone is never answered or is dropped.",
+        "Tried calling 6 times, been on hold for over 30 minutes each time - all to no answer.",
+        "They never answer the phone so that's a good indication of the service to follow..."
+      ],
+      "can_chatbot_solve": true,
+      "chatbot_solution": "Implement a chatbot to handle initial inquiries, appointment bookings, and cancellations, reducing call volume and ensuring patients receive immediate responses."
+    },
+    {
+      "name": "Unreturned voicemails",
+      "count": 85,
+      "pct": 17.0,
+      "severity": "high",
+      "what_patient_was_trying_to_do": "Leave messages for follow-ups, appointment changes, or urgent queries.",
+      "what_went_wrong": "Voicemails were ignored or not returned, leading to delays in care and frustration.",
+      "quotes": [
+        "Voicemails are not returned.",
+        "I left multiple voicemails but never received a callback.",
+        "They promised to call back but never did."
+      ],
+      "can_chatbot_solve": true,
+      "chatbot_solution": "Use a chatbot to acknowledge voicemails instantly and provide estimated response times, or escalate urgent queries to staff."
+    },
+    {
+      "name": "Unanswered emails",
+      "count": 95,
+      "pct": 19.0,
+      "severity": "high",
+      "what_patient_was_trying_to_do": "Seek updates, send medical records, or request information.",
+      "what_went_wrong": "Emails were ignored or responses were delayed for weeks, causing treatment delays and stress.",
+      "quotes": [
+        "Emails often go completely unanswered.",
+        "I sent multiple emails but received no reply.",
+        "Still waiting for a response to my email from weeks ago."
+      ],
+      "can_chatbot_solve": true,
+      "chatbot_solution": "Deploy an email triage chatbot to acknowledge receipt, provide automated updates, and flag urgent emails for staff."
+    },
+    {
+      "name": "Missed or incorrect callbacks",
+      "count": 60,
+      "pct": 12.0,
+      "severity": "medium",
+      "what_patient_was_trying_to_do": "Schedule callbacks for consultations, test results, or follow-ups.",
+      "what_went_wrong": "Clinics failed to call at the scheduled time or called the wrong patient, disrupting care.",
+      "quotes": [
+        "The clinic promised a callback but never called.",
+        "I was told someone would call me back, but it never happened.",
+        "They called the wrong patient and left me waiting."
+      ],
+      "can_chatbot_solve": true,
+      "chatbot_solution": "Use a chatbot to schedule and confirm callbacks, send reminders to staff, and notify patients of delays."
+    },
+    {
+      "name": "Incorrect or lost patient information",
+      "count": 45,
+      "pct": 9.0,
+      "severity": "medium",
+      "what_patient_was_trying_to_do": "Verify or update personal details, appointment records, or medical history.",
+      "what_went_wrong": "Clinics had incorrect DOBs, names, or lost records, leading to confusion and delays.",
+      "quotes": [
+        "They had my date of birth incorrect.",
+        "The admin staff couldn’t even find my appointment.",
+        "They lost my test results and asked me to repeat them."
+      ],
+      "can_chatbot_solve": true,
+      "chatbot_solution": "Integrate a chatbot with EHR systems to allow patients to verify and update their information in real-time."
+    },
+    {
+      "name": "Failed virtual appointments",
+      "count": 35,
+      "pct": 7.0,
+      "severity": "medium",
+      "what_patient_was_trying_to_do": "Attend scheduled Zoom or phone consultations.",
+      "what_went_wrong": "Doctors no-showed, links weren’t sent, or technical issues disrupted appointments.",
+      "quotes": [
+        "The Consultant never even came!!!",
+        "I waited for the Zoom link but never received it.",
+        "The call was dropped and never rescheduled."
+      ],
+      "can_chatbot_solve": true,
+      "chatbot_solution": "Automate virtual appointment reminders, link distribution, and rescheduling via chatbot."
+    },
+    {
+      "name": "Refund or billing disputes",
+      "count": 40,
+      "pct": 8.0,
+      "severity": "high",
+      "what_patient_was_trying_to_do": "Request refunds for canceled services or resolve billing errors.",
+      "what_went_wrong": "Refunds were delayed or ignored, and billing teams were unresponsive.",
+      "quotes": [
+        "Still waiting for my refund from over 6 months ago.",
+        "They charged me twice and won’t respond to my emails.",
+        "I was sent to debt collectors for an invoice I already paid."
+      ],
+      "can_chatbot_solve": true,
+      "chatbot_solution": "Chatbot can track refund statuses, explain charges, and escalate disputes to finance teams."
+    },
+    {
+      "name": "Lack of continuity in communication",
+      "count": 50,
+      "pct": 10.0,
+      "severity": "medium",
+      "what_patient_was_trying_to_do": "Get consistent updates from a single point of contact.",
+      "what_went_wrong": "Patients were bounced between staff, with no one taking ownership of their case.",
+      "quotes": [
+        "I was constantly assigned to different doctors.",
+        "No one knew who was responsible for my case.",
+        "Every time I called, I was transferred to someone else."
+      ],
+      "can_chatbot_solve": true,
+      "chatbot_solution": "Chatbot can serve as a centralized communication hub, logging all interactions and ensuring continuity."
+    },
+    {
+      "name": "Delayed or missing test results",
+      "count": 30,
+      "pct": 6.0,
+      "severity": "high",
+      "what_patient_was_trying_to_do": "Receive timely updates on critical test results.",
+      "what_went_wrong": "Results were delayed, lost, or sent without context, causing anxiety.",
+      "quotes": [
+        "Still waiting for my scan results after 2 weeks.",
+        "They sent my husband’s results without any explanation.",
+        "I had to chase multiple times for my bloodwork."
+      ],
+      "can_chatbot_solve": true,
+      "chatbot_solution": "Chatbot can notify patients when results are ready and provide summaries or next steps."
+    },
+    {
+      "name": "Poor emergency or after-hours communication",
+      "count": 25,
+      "pct": 5.0,
+      "severity": "high",
+      "what_patient_was_trying_to_do": "Reach the clinic for urgent concerns outside business hours.",
+      "what_went_wrong": "Emergency lines went unanswered or had restricted availability.",
+      "quotes": [
+        "Their emergency line is never answered.",
+        "I called in pain but no one was available.",
+        "They told me to call back during office hours."
+      ],
+      "can_chatbot_solve": true,
+      "chatbot_solution": "Chatbot can triage after-hours queries, escalate emergencies, and provide self-care guidance."
+    }
+  ],
+  "overall_finding": "The most critical inbound communication failures revolve around unresponsive channels (phones, emails, voicemails) and administrative disorganization (missed callbacks, incorrect records, billing errors). These issues delay care, exacerbate patient stress, and erode trust. Automation via chatbots could resolve ~80% of these problems by handling routine inquiries, scheduling, and status updates, while freeing staff to address complex cases. Priority should be given to implementing 24/7 chatbot support for appointment management, refund tracking, and test result notifications, as these are the most frequent and high-severity pain points."
+}

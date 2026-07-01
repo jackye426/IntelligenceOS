@@ -1,0 +1,70 @@
+{
+  "video_id": "7637168703532027158",
+  "source_media": "7637168703532027158.mp4",
+  "whisper_model": "small",
+  "language": "en",
+  "duration_after_vad": 63.69375,
+  "full_text": "I would say lethargy. I did a study years ago. I was asked to do a presentation about my clinic at the BSG in Caulf and I did it and I thought it was boring. So I've texted 100 patients. Guess how many replied? With 10 questions. 100%. 100% replied. 100 women. 95% had fatigue. I gave them all the symptoms. What did they have? 70% had dysparonia, painful intercourse. 80% had painful periods. And that again is an issue because fatigue could be many things. It could be that you've been working too hard. It could be that you're not eating well, been dieting, you're drinking too much alcohol. You know it could be many many things and the fatigue we believe is due to like an ongoing inflammatory process in the body which is a low ticking. It's like a drip in your roof you know which is going to make your ceiling fall but you don't really know it's there until the ceiling falls down. That's what it is.",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 9.84,
+      "text": "I would say lethargy. I did a study years ago. I was asked to do a presentation about"
+    },
+    {
+      "start": 9.84,
+      "end": 15.48,
+      "text": "my clinic at the BSG in Caulf and I did it and I thought it was boring. So I've texted"
+    },
+    {
+      "start": 15.48,
+      "end": 25.24,
+      "text": "100 patients. Guess how many replied? With 10 questions. 100%. 100% replied. 100 women."
+    },
+    {
+      "start": 25.56,
+      "end": 32.08,
+      "text": "95% had fatigue. I gave them all the symptoms. What did they have? 70% had"
+    },
+    {
+      "start": 32.08,
+      "end": 36.92,
+      "text": "dysparonia, painful intercourse. 80% had painful periods. And that again is an"
+    },
+    {
+      "start": 36.92,
+      "end": 40.96,
+      "text": "issue because fatigue could be many things. It could be that you've been"
+    },
+    {
+      "start": 40.96,
+      "end": 44.28,
+      "text": "working too hard. It could be that you're not eating well, been dieting, you're"
+    },
+    {
+      "start": 44.28,
+      "end": 48.28,
+      "text": "drinking too much alcohol. You know it could be many many things and the"
+    },
+    {
+      "start": 48.28,
+      "end": 52.76,
+      "text": "fatigue we believe is due to like an ongoing inflammatory process in the"
+    },
+    {
+      "start": 52.76,
+      "end": 57.64,
+      "text": "body which is a low ticking. It's like a drip in your roof you know which is"
+    },
+    {
+      "start": 57.64,
+      "end": 61.12,
+      "text": "going to make your ceiling fall but you don't really know it's there until the"
+    },
+    {
+      "start": 61.12,
+      "end": 65.12,
+      "text": "ceiling falls down. That's what it is."
+    }
+  ]
+}

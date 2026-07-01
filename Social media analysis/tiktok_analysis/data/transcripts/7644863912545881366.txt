@@ -1,0 +1,6 @@
+[0.0-6.0] The benefits of MRI depends on who's reading it.
+[6.0-10.0] If you've got it, the radiologist needs to have an interest in it.
+[10.0-13.0] If you're having an MRI, it must be with a radiologist
+[13.0-16.0] who has an understanding of endometriosis and knows what they're looking for.
+[16.0-18.0] Otherwise, they'll miss it.
+[18.0-20.0] Same when it comes to surgery.

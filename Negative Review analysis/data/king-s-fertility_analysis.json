@@ -1,0 +1,91 @@
+{
+  "clinic": "King's Fertility",
+  "review_count": 27,
+  "categories": [
+    {
+      "name": "Staff Attitude",
+      "count": 6,
+      "pct": 22.2,
+      "severity": "high",
+      "quotes": [
+        "insensitive, unprofessional and inappropriate",
+        "harass me, insinuating I was here uninvited",
+        "act really busy. Once payments gone thru they are available when ever needed"
+      ]
+    },
+    {
+      "name": "Communication",
+      "count": 5,
+      "pct": 18.5,
+      "severity": "medium",
+      "quotes": [
+        "follow-up appointment was forgotten about and never offered",
+        "each Doctor would say something different",
+        "No reason was given for the cause of the ivf procedures failure"
+      ]
+    },
+    {
+      "name": "Treatment Quality",
+      "count": 4,
+      "pct": 14.8,
+      "severity": "high",
+      "quotes": [
+        "did not feel there was adequate shared decision-making",
+        "several issues that had been missed",
+        "put me on highest dose of stims to fry my eggs"
+      ]
+    },
+    {
+      "name": "Booking & Admin",
+      "count": 4,
+      "pct": 14.8,
+      "severity": "medium",
+      "quotes": [
+        "received no confirmation email",
+        "still waiting 26 days later for notes",
+        "told different information about the number and format of bookings"
+      ]
+    },
+    {
+      "name": "Doctor / Consultant",
+      "count": 3,
+      "pct": 11.1,
+      "severity": "medium",
+      "quotes": [
+        "constantly assigned to different doctors",
+        "consultation with Mr Kuhan Rajah gave a 5–10% IVF success estimate",
+        "not great at communication with me during my IVF cycle"
+      ]
+    },
+    {
+      "name": "Billing & Invoicing",
+      "count": 2,
+      "pct": 7.4,
+      "severity": "high",
+      "quotes": [
+        "paid for an initial couple’s consultation yet to this day, I have not received any actual fertility treatment",
+        "unable to attain results, to decipher them and I am still awaiting a refund"
+      ]
+    },
+    {
+      "name": "Waiting Times",
+      "count": 2,
+      "pct": 7.4,
+      "severity": "high",
+      "quotes": [
+        "waiting more than 30 mins for a blood test",
+        "waiting for 4 months for an appointment"
+      ]
+    },
+    {
+      "name": "Other",
+      "count": 1,
+      "pct": 3.7,
+      "severity": "low",
+      "quotes": [
+        "We're sorry to see that you have scored us a 1"
+      ]
+    }
+  ],
+  "summary": "Patients at King's Fertility are most dissatisfied with staff attitude (22% of complaints) and communication (19%), making up over 40% of all negative feedback. Other common issues include treatment quality, booking/admin problems, and doctor-related concerns, though these were less frequent."
+}

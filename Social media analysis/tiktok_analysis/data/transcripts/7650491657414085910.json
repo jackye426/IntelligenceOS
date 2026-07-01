@@ -1,0 +1,80 @@
+{
+  "video_id": "7650491657414085910",
+  "source_media": "7650491657414085910.mp4",
+  "whisper_model": "tiny",
+  "language": "en",
+  "duration_after_vad": 62.625625,
+  "full_text": "Do you think you have endometres of denomyosis? Have you been told, but you don't really understand or you just don't know where to go next for help? Then we have developed a clinic which is available online which will help you get to the next step and to understand how your symptoms are affecting you. What are the options of your management whether it be medical or surgical or any other techniques such as physiotherapy? You'll come up with a plan to help make you feel better to help you understand your symptoms better and to give you options of how best to manage you. Which suits you lifestyle, and includes your quality of life and your activities of daily life.",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 2.28,
+      "text": "Do you think you have endometres of denomyosis?"
+    },
+    {
+      "start": 2.28,
+      "end": 4.44,
+      "text": "Have you been told, but you don't really understand"
+    },
+    {
+      "start": 4.44,
+      "end": 7.32,
+      "text": "or you just don't know where to go next for help?"
+    },
+    {
+      "start": 7.32,
+      "end": 10.16,
+      "text": "Then we have developed a clinic which is available online"
+    },
+    {
+      "start": 10.16,
+      "end": 12.52,
+      "text": "which will help you get to the next step"
+    },
+    {
+      "start": 12.52,
+      "end": 15.72,
+      "text": "and to understand how your symptoms are affecting you."
+    },
+    {
+      "start": 15.72,
+      "end": 17.52,
+      "text": "What are the options of your management"
+    },
+    {
+      "start": 17.52,
+      "end": 19.6,
+      "text": "whether it be medical or surgical"
+    },
+    {
+      "start": 19.6,
+      "end": 22.2,
+      "text": "or any other techniques such as physiotherapy?"
+    },
+    {
+      "start": 22.2,
+      "end": 25.08,
+      "text": "You'll come up with a plan to help make you feel better"
+    },
+    {
+      "start": 25.08,
+      "end": 27.52,
+      "text": "to help you understand your symptoms better"
+    },
+    {
+      "start": 27.52,
+      "end": 29.96,
+      "text": "and to give you options of how best to manage you."
+    },
+    {
+      "start": 29.96,
+      "end": 31.56,
+      "text": "Which suits you lifestyle,"
+    },
+    {
+      "start": 31.56,
+      "end": 34.96,
+      "text": "and includes your quality of life and your activities of daily life."
+    }
+  ]
+}

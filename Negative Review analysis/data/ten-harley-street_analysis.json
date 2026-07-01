@@ -1,0 +1,76 @@
+{
+  "clinic": "Ten Harley Street",
+  "review_count": 16,
+  "categories": [
+    {
+      "name": "Other",
+      "count": 6,
+      "pct": 37.5,
+      "severity": "low",
+      "quotes": [
+        "Careful",
+        "Hard to get to and bad parking",
+        "Very busy clinic with lots of patients"
+      ]
+    },
+    {
+      "name": "Waiting Times",
+      "count": 3,
+      "pct": 18.8,
+      "severity": "high",
+      "quotes": [
+        "Minimum waiting time is one or even two hours",
+        "waited over an hour to be told I could still have to wait another hour",
+        "Waiting time is unacceptable"
+      ]
+    },
+    {
+      "name": "Staff Attitude",
+      "count": 2,
+      "pct": 12.5,
+      "severity": "high",
+      "quotes": [
+        "she's of oriental decent with dyed /whitish greyish hair, don't like the way she talks to other staff members",
+        "staff rude they kept the deposit"
+      ]
+    },
+    {
+      "name": "Doctor / Consultant",
+      "count": 2,
+      "pct": 12.5,
+      "severity": "high",
+      "quotes": [
+        "Very poor service from doctor who was late for my appointment",
+        "told me I probably had the shakes because I felt intimidated by him"
+      ]
+    },
+    {
+      "name": "Booking & Admin",
+      "count": 1,
+      "pct": 6.2,
+      "severity": "high",
+      "quotes": [
+        "arrogance and bigotry of Phyllis Ross"
+      ]
+    },
+    {
+      "name": "Value for Money",
+      "count": 1,
+      "pct": 6.2,
+      "severity": "high",
+      "quotes": [
+        "extortionately overpriced at £800"
+      ]
+    },
+    {
+      "name": "Facilities",
+      "count": 1,
+      "pct": 6.2,
+      "severity": "low",
+      "quotes": [
+        "Plush and efficient offices"
+      ]
+    }
+  ],
+  "summary": "Patients at Ten Harley Street were most dissatisfied with general issues (\"Other\"), which made up 38% of complaints, followed by waiting times (19%). Fewer complaints involved staff attitude, doctors, and booking/admin, each under 13% of the total 16 negative reviews."
+}

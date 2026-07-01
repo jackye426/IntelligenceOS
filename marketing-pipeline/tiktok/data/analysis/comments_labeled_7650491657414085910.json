@@ -1,0 +1,32 @@
+[
+  {
+    "cid": "7651575268452598550",
+    "text": "How much does a chat with Liz cost? I’m in the uk",
+    "digg_count": 0,
+    "reply_comment_total": 1,
+    "create_time": 1781521214,
+    "themes": [
+      "general_question"
+    ],
+    "sentiment": {
+      "stance": "question",
+      "primary_emotion": "neutral",
+      "toxicity_spam_flag": false
+    }
+  },
+  {
+    "cid": "7651274833675207446",
+    "text": "Could someone from another country get your help?",
+    "digg_count": 1,
+    "reply_comment_total": 2,
+    "create_time": 1781451268,
+    "themes": [
+      "general_question"
+    ],
+    "sentiment": {
+      "stance": "question",
+      "primary_emotion": "neutral",
+      "toxicity_spam_flag": false
+    }
+  }
+]

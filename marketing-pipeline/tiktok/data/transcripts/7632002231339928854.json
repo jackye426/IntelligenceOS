@@ -1,0 +1,105 @@
+{
+  "video_id": "7632002231339928854",
+  "source_media": "7632002231339928854.mp4",
+  "whisper_model": "small",
+  "language": "en",
+  "duration_after_vad": 35.783375,
+  "full_text": "If you're needing to use really strong pain killers, get help. Get help, 100%. If you're passing out on day one and you're in school, then your friends and your teachers should be noticing it and saying, this ain't normal. I never passed out on my period ever, but I know lots of people who do. So we need people going into schools and educating because this is not something you get at 18 and 21. This can start when you are 11 and 12 and it will impact on your education, your ability to socialize, your ability to make friends. It'll get you labeled and the girls don't want to be labeled. They don't want to be different to everybody else. So these are all the other factors which are brought in there as well.",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 2.72,
+      "text": "If you're needing to use really strong pain killers,"
+    },
+    {
+      "start": 2.72,
+      "end": 3.56,
+      "text": "get help."
+    },
+    {
+      "start": 3.56,
+      "end": 5.12,
+      "text": "Get help, 100%."
+    },
+    {
+      "start": 5.12,
+      "end": 7.84,
+      "text": "If you're passing out on day one and you're in school,"
+    },
+    {
+      "start": 7.84,
+      "end": 10.88,
+      "text": "then your friends and your teachers should be noticing it"
+    },
+    {
+      "start": 10.88,
+      "end": 12.52,
+      "text": "and saying, this ain't normal."
+    },
+    {
+      "start": 12.52,
+      "end": 14.92,
+      "text": "I never passed out on my period ever,"
+    },
+    {
+      "start": 14.92,
+      "end": 16.04,
+      "text": "but I know lots of people who do."
+    },
+    {
+      "start": 16.04,
+      "end": 19.12,
+      "text": "So we need people going into schools and educating"
+    },
+    {
+      "start": 19.12,
+      "end": 21.76,
+      "text": "because this is not something you get at 18 and 21."
+    },
+    {
+      "start": 21.76,
+      "end": 24.04,
+      "text": "This can start when you are 11 and 12"
+    },
+    {
+      "start": 24.04,
+      "end": 25.76,
+      "text": "and it will impact on your education,"
+    },
+    {
+      "start": 25.76,
+      "end": 27.0,
+      "text": "your ability to socialize,"
+    },
+    {
+      "start": 27.0,
+      "end": 28.28,
+      "text": "your ability to make friends."
+    },
+    {
+      "start": 28.28,
+      "end": 29.52,
+      "text": "It'll get you labeled"
+    },
+    {
+      "start": 29.52,
+      "end": 31.12,
+      "text": "and the girls don't want to be labeled."
+    },
+    {
+      "start": 31.12,
+      "end": 32.68,
+      "text": "They don't want to be different to everybody else."
+    },
+    {
+      "start": 32.68,
+      "end": 34.16,
+      "text": "So these are all the other factors"
+    },
+    {
+      "start": 34.16,
+      "end": 35.96,
+      "text": "which are brought in there as well."
+    }
+  ]
+}

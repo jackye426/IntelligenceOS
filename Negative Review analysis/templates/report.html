@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harley Street Clinics — Negative Review Analysis</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --border: #e2e8f0;
+    --text: #1e293b;
+    --muted: #64748b;
+    --accent: #3b82f6;
+    --accent-light: #eff6ff;
+    --red: #ef4444;
+    --orange: #f97316;
+    --yellow: #eab308;
+    --green: #22c55e;
+    --radius: 10px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+  /* Layout */
+  .page { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
+  .section { margin-bottom: 40px; }
+
+  /* Header */
+  .header { background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%); color: white; padding: 40px; border-radius: var(--radius); margin-bottom: 40px; }
+  .header h1 { font-size: 28px; font-weight: 700; margin-bottom: 6px; }
+  .header p { opacity: 0.85; font-size: 15px; }
+  .header-meta { display: flex; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
+  .header-meta span { background: rgba(255,255,255,0.15); padding: 6px 14px; border-radius: 20px; font-size: 14px; }
+
+  /* Section headings */
+  h2 { font-size: 20px; font-weight: 700; margin-bottom: 16px; color: var(--text); border-left: 4px solid var(--accent); padding-left: 12px; }
+  h3 { font-size: 16px; font-weight: 600; margin-bottom: 12px; color: var(--text); }
+
+  /* Cards */
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px; }
+  .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; text-align: center; }
+  .stat-card .num { font-size: 36px; font-weight: 800; color: var(--accent); line-height: 1; }
+  .stat-card .label { font-size: 13px; color: var(--muted); margin-top: 6px; }
+
+  /* Summary box */
+  .summary-box { background: var(--accent-light); border-left: 4px solid var(--accent); padding: 20px 24px; border-radius: 0 var(--radius) var(--radius) 0; margin-bottom: 32px; }
+  .summary-box p { font-size: 15px; line-height: 1.7; color: #1e3a5f; }
+
+  /* Top themes grid */
+  .themes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 32px; }
+  .theme-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; }
+  .theme-card .theme-name { font-weight: 700; font-size: 15px; margin-bottom: 6px; }
+  .theme-card .theme-desc { font-size: 13px; color: var(--muted); margin-bottom: 10px; }
+  .theme-tag { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 10px; margin: 2px; }
+  .theme-tag-high { background: #fee2e2; color: #991b1b; }
+  .theme-tag-medium { background: #ffedd5; color: #9a3412; }
+  .theme-tag-low { background: #fef9c3; color: #713f12; }
+  .prevalence-badge { font-size: 11px; font-weight: 600; padding: 2px 10px; border-radius: 20px; display: inline-block; margin-bottom: 8px; }
+  .prevalence-high { background: #fee2e2; color: #b91c1c; }
+  .prevalence-medium { background: #ffedd5; color: #c2410c; }
+  .prevalence-low { background: #fef9c3; color: #92400e; }
+
+  /* Chart section */
+  .chart-wrapper { position: relative; height: 380px; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* Heatmap */
+  .heatmap-container { overflow-x: auto; }
+  table.heatmap { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.heatmap th { background: #f1f5f9; padding: 10px 12px; text-align: left; font-weight: 600; white-space: nowrap; border-bottom: 2px solid var(--border); }
+  table.heatmap td { padding: 8px 12px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  table.heatmap tr:hover td { background: #f8fafc; }
+  .hm-cell { text-align: center; border-radius: 4px; min-width: 40px; display: inline-block; padding: 2px 6px; font-weight: 600; font-size: 12px; }
+  .clinic-name-col { max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
+  .total-col { color: var(--muted); font-weight: 600; }
+
+  /* Per-clinic accordions */
+  details { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 12px; background: var(--card); overflow: hidden; }
+  details summary { padding: 16px 20px; cursor: pointer; font-weight: 600; font-size: 15px; display: flex; align-items: center; justify-content: space-between; list-style: none; user-select: none; }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::after { content: "▼"; font-size: 12px; color: var(--muted); transition: transform 0.2s; }
+  details[open] summary::after { transform: rotate(180deg); }
+  details summary:hover { background: #f8fafc; }
+  .clinic-detail-body { padding: 20px; border-top: 1px solid var(--border); }
+  .clinic-summary-text { font-size: 14px; color: var(--muted); margin-bottom: 20px; font-style: italic; border-left: 3px solid var(--border); padding-left: 12px; }
+  .badge { display: inline-block; font-size: 12px; padding: 2px 10px; border-radius: 20px; font-weight: 600; margin-left: 8px; }
+  .badge-count { background: #e0e7ff; color: #3730a3; }
+  .badge-total { background: #f1f5f9; color: var(--muted); font-weight: 400; }
+
+  /* Category list */
+  .cat-list { list-style: none; }
+  .cat-item { padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .cat-item:last-child { border-bottom: none; }
+  .cat-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+  .cat-name { font-weight: 600; font-size: 14px; }
+  .cat-meta { display: flex; align-items: center; gap: 10px; }
+  .cat-pct { font-weight: 700; color: var(--accent); font-size: 14px; }
+  .progress-bar { height: 6px; background: #e2e8f0; border-radius: 3px; margin-bottom: 8px; }
+  .progress-fill { height: 100%; border-radius: 3px; }
+  .sev-high { background: var(--red); }
+  .sev-medium { background: var(--orange); }
+  .sev-low { background: var(--yellow); }
+  .quotes { list-style: none; }
+  .quotes li { font-size: 13px; color: #475569; padding: 4px 0 4px 14px; border-left: 2px solid #cbd5e1; margin-bottom: 4px; font-style: italic; }
+
+  /* Rating stars */
+  .stars { color: #f59e0b; font-size: 13px; }
+  .star-count { font-size: 11px; margin-left: 4px; color: var(--muted); }
+
+  /* Clinic detail layout */
+  .clinic-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 768px) { .clinic-two-col { grid-template-columns: 1fr; } }
+  .pie-wrapper { position: relative; height: 280px; max-width: 320px; }
+
+  /* Raw data table */
+  .data-table-wrap { overflow-x: auto; }
+  table.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.data-table th { background: #f1f5f9; padding: 10px 12px; text-align: left; font-weight: 600; border-bottom: 2px solid var(--border); position: sticky; top: 0; }
+  table.data-table td { padding: 8px 12px; border-bottom: 1px solid #f1f5f9; vertical-align: top; }
+  table.data-table tr:hover td { background: #f8fafc; }
+  .rating-1 { color: #b91c1c; font-weight: 700; }
+  .rating-2 { color: #c2410c; font-weight: 700; }
+  .rating-3 { color: #ca8a04; font-weight: 700; }
+  .review-text { max-width: 500px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+
+  /* Filter bar */
+  .filter-bar { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+  .filter-bar input, .filter-bar select { padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 14px; background: var(--card); }
+  .filter-bar input { flex: 1; min-width: 200px; }
+
+  /* Communication deep dive */
+  .comm-theme { padding: 18px 0; }
+  .comm-theme-border { border-bottom: 1px solid var(--border); }
+  .comm-theme-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .comm-theme-left { display: flex; align-items: center; gap: 10px; }
+  .comm-theme-right { display: flex; align-items: center; gap: 12px; }
+  .comm-name { font-weight: 700; font-size: 15px; }
+  .comm-count { font-size: 13px; color: var(--muted); }
+  .comm-pct { font-weight: 800; font-size: 16px; color: var(--accent); min-width: 44px; text-align: right; }
+  .sev-dot-high { width: 10px; height: 10px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
+  .sev-dot-medium { width: 10px; height: 10px; border-radius: 50%; background: var(--orange); flex-shrink: 0; }
+  .sev-dot-low { width: 10px; height: 10px; border-radius: 50%; background: var(--yellow); flex-shrink: 0; }
+  .comm-bar-wrap { height: 6px; background: #e2e8f0; border-radius: 3px; margin-bottom: 10px; }
+  .comm-bar { height: 100%; border-radius: 3px; transition: width 0.3s; }
+  .comm-desc { font-size: 13px; color: #475569; margin-bottom: 8px; }
+  .comm-quotes { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+  .comm-quotes li { font-size: 13px; color: #475569; padding-left: 14px; border-left: 2px solid #cbd5e1; font-style: italic; }
+
+  /* Footer */
+  .footer { text-align: center; font-size: 12px; color: var(--muted); padding: 32px 0 16px; border-top: 1px solid var(--border); margin-top: 40px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── Header ─────────────────────────────────────────────────────────── -->
+  <div class="header">
+    <h1>Harley Street Clinics — Negative Review Analysis</h1>
+    <p>Patient dissatisfaction themes extracted from Google Maps reviews</p>
+    <div class="header-meta">
+      <span>📅 {{ report_date }}</span>
+      <span>🏥 {{ clinics_count }} clinics analysed</span>
+      <span>💬 {{ total_reviews }} negative reviews</span>
+      {% if top_complaint != "N/A" %}<span>⚠️ Top issue: {{ top_complaint }}</span>{% endif %}
+    </div>
+  </div>
+
+  <!-- ── Executive Summary ───────────────────────────────────────────────── -->
+  {% if overall_summary %}
+  <div class="section">
+    <h2>Executive Summary</h2>
+    <div class="summary-box"><p>{{ overall_summary }}</p></div>
+  </div>
+  {% endif %}
+
+  <!-- ── Stats ──────────────────────────────────────────────────────────── -->
+  <div class="card-grid">
+    <div class="stat-card">
+      <div class="num">{{ clinics_count }}</div>
+      <div class="label">Clinics Analysed</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">{{ total_reviews }}</div>
+      <div class="label">Negative Reviews (≤3★)</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">{{ sorted_cats | length }}</div>
+      <div class="label">Complaint Categories Found</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">{{ top_themes | length }}</div>
+      <div class="label">Cross-Clinic Themes</div>
+    </div>
+  </div>
+
+  <!-- ── Top Cross-Clinic Themes ────────────────────────────────────────── -->
+  {% if top_themes %}
+  <div class="section">
+    <h2>Recurring Themes Across Clinics</h2>
+    <div class="themes-grid">
+      {% for theme in top_themes %}
+      <div class="theme-card">
+        <span class="prevalence-badge prevalence-{{ theme.prevalence | default('medium') }}">
+          {{ theme.prevalence | default('medium') | capitalize }} prevalence
+        </span>
+        <div class="theme-name">{{ theme.name }}</div>
+        <div class="theme-desc">{{ theme.description }}</div>
+        <div>
+          {% for clinic in theme.affected_clinics %}
+          <span class="theme-tag theme-tag-{{ theme.prevalence | default('medium') }}">{{ clinic }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- ── Overall Complaint Distribution Chart ───────────────────────────── -->
+  {% if sorted_cats %}
+  <div class="section">
+    <h2>Overall Complaint Distribution</h2>
+    <div class="card">
+      <div class="chart-wrapper">
+        <canvas id="barChart"></canvas>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- ── Heatmap ────────────────────────────────────────────────────────── -->
+  {% if heatmap_rows and heatmap_cols %}
+  <div class="section">
+    <h2>Clinic × Category Heatmap</h2>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Numbers show how many negative reviews mention each category. Darker = more complaints.</p>
+    <div class="card heatmap-container">
+      <table class="heatmap">
+        <thead>
+          <tr>
+            <th>Clinic</th>
+            <th title="Total negative reviews">Total ★≤3</th>
+            {% for col in heatmap_cols %}<th>{{ col }}</th>{% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in heatmap_rows %}
+          <tr>
+            <td class="clinic-name-col" title="{{ row.clinic }}">{{ row.clinic }}</td>
+            <td class="total-col">{{ row.total }}</td>
+            {% for col in heatmap_cols %}
+            {% set val = row.cells[col] %}
+            {% set mx = col_max[col] %}
+            {% if val > 0 %}
+              {% set intensity = (val / mx * 0.85 + 0.15) if mx > 0 else 0 %}
+              <td><span class="hm-cell" style="background: rgba(239,68,68,{{ intensity }});color:{{ '#fff' if intensity > 0.5 else '#7f1d1d' }}">{{ val }}</span></td>
+            {% else %}
+              <td><span class="hm-cell" style="color:#cbd5e1">—</span></td>
+            {% endif %}
+            {% endfor %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- ── Per-Clinic Deep Dive ───────────────────────────────────────────── -->
+  {% if clinics %}
+  <div class="section">
+    <h2>Per-Clinic Deep Dive</h2>
+    {% for clinic in clinics %}
+    <details {% if loop.index == 1 %}open{% endif %}>
+      <summary>
+        <span>
+          {{ clinic.clinic }}
+          <span class="badge badge-count">{{ clinic.review_count }} negative reviews</span>
+        </span>
+      </summary>
+      <div class="clinic-detail-body">
+        {% if clinic.summary %}
+        <div class="clinic-summary-text">{{ clinic.summary }}</div>
+        {% endif %}
+
+        {% if clinic.categories %}
+        <div class="clinic-two-col">
+          <!-- Category list -->
+          <div>
+            <h3>Complaint Breakdown</h3>
+            <ul class="cat-list">
+              {% for cat in clinic.categories %}
+              <li class="cat-item">
+                <div class="cat-header">
+                  <span class="cat-name">{{ cat.name }}</span>
+                  <span class="cat-meta">
+                    <span class="cat-pct">{{ cat.pct }}%</span>
+                    <span style="font-size:12px;color:var(--muted)">{{ cat.count }} reviews</span>
+                  </span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill sev-{{ cat.severity | default('medium') }}" style="width:{{ cat.pct }}%"></div>
+                </div>
+                {% if cat.quotes %}
+                <ul class="quotes">
+                  {% for q in cat.quotes %}<li>"{{ q }}"</li>{% endfor %}
+                </ul>
+                {% endif %}
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+          <!-- Pie chart -->
+          <div>
+            <h3>Distribution</h3>
+            <div class="pie-wrapper">
+              <canvas id="pie_{{ loop.index }}"></canvas>
+            </div>
+          </div>
+        </div>
+        {% else %}
+        <p style="color:var(--muted);font-size:14px;">No category data available.</p>
+        {% endif %}
+      </div>
+    </details>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <!-- ── Product Opportunity Map ──────────────────────────────────────── -->
+  {% if opportunity_data %}
+  {% set od = opportunity_data %}
+  <div class="section">
+    <h2>Product Opportunity Map</h2>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:20px;">
+      Per-review LLM classification of {{ od.total_reviews }} reviews.
+      Each review labelled with primary label, patient stage, automation tier, root cause, and product surface.
+      Counts are real — every review gets one label, we aggregate ourselves.
+    </p>
+
+    <!-- Summary stats -->
+    <div class="card-grid" style="margin-bottom:28px;">
+      <div class="stat-card">
+        <div class="num">{{ od.total_reviews }}</div>
+        <div class="label">Reviews classified</div>
+      </div>
+      <div class="stat-card">
+        <div class="num" style="color:#22c55e;">{{ od.automatable }}</div>
+        <div class="label">Automatable ({{ (od.automatable / od.total_reviews * 100)|round(0)|int }}%)</div>
+      </div>
+      <div class="stat-card">
+        <div class="num" style="color:var(--muted);">{{ od.not_automatable }}</div>
+        <div class="label">Out of scope — clinical/staff ({{ (od.not_automatable / od.total_reviews * 100)|round(0)|int }}%)</div>
+      </div>
+      <div class="stat-card">
+        <div class="num" style="color:var(--orange);">{{ od.ownership_gap_count }}</div>
+        <div class="label">Reviews citing no ownership / patient chasing</div>
+      </div>
+    </div>
+
+    <!-- Product surface ranking -->
+    {% set surface_labels = {
+      'financial_consent_flow': 'Financial Consent Flow',
+      'booking_ops_layer': 'Booking Ops Layer',
+      'patient_pathway_coordinator': 'Patient Pathway Coordinator',
+      'inbound_manager': 'Inbound Manager',
+      'complaint_triage_monitor': 'Complaint Triage Monitor',
+      'clinic_intelligence': 'Clinic Intelligence',
+      'out_of_scope': 'Out of Scope'
+    } %}
+    {% set surface_groups = {
+      'inbound_manager': 'front_door',
+      'patient_pathway_coordinator': 'coordination',
+      'complaint_triage_monitor': 'closure',
+      'financial_consent_flow': 'expectation',
+      'booking_ops_layer': 'expectation',
+      'clinic_intelligence': 'insight',
+      'out_of_scope': 'oos'
+    } %}
+    {% set group_labels = {
+      'front_door': 'Front-Door Failures',
+      'coordination': 'Coordination Failures',
+      'closure': 'Closure Failures',
+      'expectation': 'Expectation Failures',
+      'insight': 'Intelligence Only',
+      'oos': 'Out of Scope'
+    } %}
+    {% set group_colors = {
+      'front_door': '#3b82f6',
+      'coordination': '#8b5cf6',
+      'closure': '#f97316',
+      'expectation': '#ef4444',
+      'insight': '#94a3b8',
+      'oos': '#cbd5e1'
+    } %}
+    {% set group_descs = {
+      'front_door': 'Patients cannot reach or get answers from the clinic.',
+      'coordination': 'Patients do not know what happens next in their treatment.',
+      'closure': 'Results, aftercare, and complaints are never closed.',
+      'expectation': 'Pricing, process, and financial terms are unclear or misleading.',
+      'insight': 'Useful for clinic reporting; not directly actionable.',
+      'oos': 'Clinical quality, staff personality, facilities — outside automation scope.'
+    } %}
+
+    <!-- Summary table -->
+    <div class="card" style="margin-bottom:28px;">
+      <h3 style="margin-bottom:14px;">Ranked by Must-Have Score</h3>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:14px;">Must-have score = frequency + avg severity + commercial relevance + automation tier + patient stage spread (max ~25)</p>
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="background:#f1f5f9;">
+            <th style="text-align:left;padding:8px 12px;border-bottom:2px solid var(--border);">Product Surface</th>
+            <th style="text-align:left;padding:8px 12px;border-bottom:2px solid var(--border);">Failure type</th>
+            <th style="text-align:center;padding:8px 12px;border-bottom:2px solid var(--border);">Reviews</th>
+            <th style="text-align:center;padding:8px 12px;border-bottom:2px solid var(--border);">%</th>
+            <th style="text-align:center;padding:8px 12px;border-bottom:2px solid var(--border);">Must-Have</th>
+            <th style="text-align:center;padding:8px 12px;border-bottom:2px solid var(--border);">Avg Severity</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for s in od.product_surfaces if s.product_surface != 'out_of_scope' %}
+          {% set grp = surface_groups.get(s.product_surface, 'insight') %}
+          {% set col = group_colors.get(grp, '#94a3b8') %}
+          <tr style="border-bottom:1px solid #f1f5f9;">
+            <td style="padding:8px 12px;font-weight:700;border-left:3px solid {{ col }};">
+              {{ surface_labels.get(s.product_surface, s.product_surface) }}
+            </td>
+            <td style="padding:8px 12px;font-size:12px;color:var(--muted);">{{ group_labels.get(grp,'') }}</td>
+            <td style="padding:8px 12px;text-align:center;font-weight:700;">{{ s.count }}</td>
+            <td style="padding:8px 12px;text-align:center;color:var(--muted);">{{ s.pct }}%</td>
+            <td style="padding:8px 12px;text-align:center;font-weight:800;color:{{ col }};">{{ s.must_have_score }}</td>
+            <td style="padding:8px 12px;text-align:center;">{{ s.avg_severity }} / 5</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Per-surface deep dives -->
+    {% set dives = od.get('deep_dives', {}) %}
+    {% for s in od.product_surfaces if s.product_surface not in ['out_of_scope', 'clinic_intelligence'] %}
+    {% set grp = surface_groups.get(s.product_surface, 'insight') %}
+    {% set col = group_colors.get(grp, '#94a3b8') %}
+    {% set dive = dives.get(s.product_surface, {}) %}
+    <details style="border:1px solid var(--border);border-radius:var(--radius);margin-bottom:12px;background:var(--card);overflow:hidden;">
+      <summary style="padding:16px 20px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;list-style:none;user-select:none;font-weight:600;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background=''">
+        <span style="display:flex;align-items:center;gap:12px;">
+          <span style="width:4px;height:24px;background:{{ col }};border-radius:2px;display:inline-block;flex-shrink:0;"></span>
+          <span>
+            {{ surface_labels.get(s.product_surface, s.product_surface) }}
+            <span style="font-size:12px;font-weight:400;color:var(--muted);margin-left:8px;">{{ group_labels.get(grp,'') }} · {{ s.count }} reviews · must-have {{ s.must_have_score }}</span>
+          </span>
+        </span>
+        <span style="font-size:12px;color:var(--muted);">▼</span>
+      </summary>
+      <div style="padding:20px;border-top:1px solid var(--border);">
+
+        {% if dive.headline_finding %}
+        <div style="background:#f8fafc;border-left:4px solid {{ col }};padding:14px 16px;border-radius:0 8px 8px 0;margin-bottom:16px;">
+          <p style="font-size:14px;color:var(--text);">{{ dive.headline_finding }}</p>
+        </div>
+        {% endif %}
+
+        {% if dive.buyer_pitch %}
+        <div style="background:#f0fdf4;border-radius:8px;padding:12px 16px;margin-bottom:20px;">
+          <span style="font-size:11px;font-weight:700;color:#166534;text-transform:uppercase;letter-spacing:0.5px;">Buyer pitch</span>
+          <p style="font-size:13px;color:#166534;margin-top:4px;">{{ dive.buyer_pitch }}</p>
+        </div>
+        {% endif %}
+
+        <!-- Top root causes -->
+        {% if s.top_root_causes %}
+        <div style="margin-bottom:16px;">
+          <span style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;">Top root causes</span>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;">
+            {% for rc in s.top_root_causes[:5] %}
+            <span style="background:#f1f5f9;border:1px solid var(--border);padding:3px 10px;border-radius:12px;font-size:12px;color:#475569;">
+              {{ rc.cause }} <span style="color:var(--muted);">({{ rc.count }})</span>
+            </span>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Sub-themes from deep dive -->
+        {% if dive.sub_themes %}
+        <h3 style="font-size:14px;margin-bottom:12px;">Specific failure modes</h3>
+        {% for t in dive.sub_themes %}
+        <div style="padding:12px 0;border-bottom:1px solid #f1f5f9;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
+            <span style="font-weight:600;font-size:14px;">{{ t.name }}</span>
+            <span style="font-weight:700;color:{{ col }};font-size:14px;white-space:nowrap;margin-left:12px;">{{ t.count }} reviews</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px;">
+            <div>
+              <span style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;">What's failing</span>
+              <p style="font-size:13px;color:#475569;margin-top:2px;">{{ t.what_is_failing }}</p>
+            </div>
+            <div>
+              <span style="font-size:11px;font-weight:700;color:#166534;text-transform:uppercase;">Product fix</span>
+              <p style="font-size:13px;color:#166534;margin-top:2px;">{{ t.product_fix }}</p>
+            </div>
+          </div>
+          {% for q in t.get('quotes', [])[:2] %}
+          <div style="font-size:12px;color:#64748b;font-style:italic;padding:4px 0 4px 12px;border-left:2px solid #e2e8f0;">"{{ q }}"</div>
+          {% endfor %}
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        <!-- Sample quotes -->
+        {% if s.quotes %}
+        <div style="margin-top:16px;">
+          <span style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;">Sample evidence quotes</span>
+          <ul style="list-style:none;margin-top:8px;">
+            {% for q in s.quotes %}
+            <li style="font-size:13px;color:#475569;padding:4px 0 4px 14px;border-left:2px solid {{ col }};margin-bottom:4px;font-style:italic;">
+              "{{ q.quote }}" <span style="color:var(--muted);font-style:normal;">— {{ q.clinic }}</span>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+
+      </div>
+    </details>
+    {% endfor %}
+
+    <!-- Out of scope note -->
+    <div class="card" style="border-left:4px solid #cbd5e1;margin-top:8px;">
+      <p style="font-size:13px;font-weight:600;color:var(--muted);margin-bottom:4px;">Out of scope — {{ od.not_automatable }} reviews ({{ (od.not_automatable / od.total_reviews * 100)|round(0)|int }}%)</p>
+      <p style="font-size:13px;color:var(--muted);">Clinical quality, treatment outcomes, staff personality, and facilities. These are management and clinical problems — no product layer addresses them.</p>
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- ── Bottleneck Opportunities ─────────────────────────────────────── -->
+  {% if bottleneck_data %}
+  <div class="section">
+    <h2>Bottleneck Opportunities — Where Automation Has Impact</h2>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:20px;">
+      Operational failures identified from {{ bottleneck_data.total_reviews }} negative reviews.
+      Ranked by evidence volume. Must-haves are failures so severe patients leave 1-star reviews because of them.
+    </p>
+
+    <div style="margin-bottom:28px;">
+      <h3 style="margin-bottom:14px;color:#b91c1c;">Must-Have Solutions</h3>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        {% for b in bottleneck_data.bottlenecks if b.must_have %}
+        <div class="card" style="border-left:4px solid #ef4444;">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+            <div style="flex:1;min-width:260px;">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+                <span style="font-size:15px;font-weight:700;">{{ b.name }}</span>
+                <span style="background:#fee2e2;color:#b91c1c;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;">MUST HAVE</span>
+              </div>
+              <p style="font-size:13px;color:#475569;margin-bottom:8px;">{{ b.description }}</p>
+              <p style="font-size:12px;color:var(--muted);">Stage: {{ b.stage }}</p>
+            </div>
+            <div style="text-align:right;min-width:120px;">
+              <div style="font-size:28px;font-weight:800;color:#ef4444;line-height:1;">{{ b.evidence }}</div>
+              <div style="font-size:11px;color:var(--muted);">evidence signals</div>
+            </div>
+          </div>
+          <div style="margin-top:12px;background:#f0fdf4;border-radius:6px;padding:10px 14px;">
+            <span style="font-size:11px;font-weight:700;color:#166534;text-transform:uppercase;letter-spacing:0.5px;">Chatbot solution</span>
+            <p style="font-size:13px;color:#166534;margin-top:3px;">{{ b.solution }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div style="margin-bottom:28px;">
+      <h3 style="margin-bottom:14px;color:#c2410c;">High-Value Opportunities</h3>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        {% for b in bottleneck_data.bottlenecks if not b.must_have %}
+        <div class="card" style="border-left:4px solid #f97316;">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+            <div style="flex:1;min-width:260px;">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+                <span style="font-size:15px;font-weight:700;">{{ b.name }}</span>
+                <span style="background:#ffedd5;color:#c2410c;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;">HIGH VALUE</span>
+              </div>
+              <p style="font-size:13px;color:#475569;margin-bottom:8px;">{{ b.description }}</p>
+              <p style="font-size:12px;color:var(--muted);">Stage: {{ b.stage }}</p>
+            </div>
+            <div style="text-align:right;min-width:120px;">
+              <div style="font-size:28px;font-weight:800;color:#f97316;line-height:1;">{{ b.evidence }}</div>
+              <div style="font-size:11px;color:var(--muted);">evidence signals</div>
+            </div>
+          </div>
+          <div style="margin-top:12px;background:#f0fdf4;border-radius:6px;padding:10px 14px;">
+            <span style="font-size:11px;font-weight:700;color:#166534;text-transform:uppercase;letter-spacing:0.5px;">Chatbot solution</span>
+            <p style="font-size:13px;color:#166534;margin-top:3px;">{{ b.solution }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    {% if bottleneck_data.not_solvable %}
+    <div class="card" style="border-left:4px solid #94a3b8;">
+      <h3 style="margin-bottom:10px;color:var(--muted);">Outside Scope — Not Solvable by Automation</h3>
+      {% for item in bottleneck_data.not_solvable %}
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px;">
+        <span style="font-weight:600;">{{ item.name }} ({{ item.count }} reviews)</span>
+        <span style="color:var(--muted);max-width:60%;">{{ item.reason }}</span>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  <!-- ── Inbound Deep Dive ──────────────────────────────────────────────── -->
+  {% if inbound_deep_dive %}
+  <div class="section">
+    <h2>Inbound Communication Deep Dive</h2>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">
+      {{ inbound_deep_dive.total }} reviews where patients tried to reach the clinic by phone, email, or message — and failed.
+      Every sub-theme below is solvable with an inbound manager or chatbot.
+    </p>
+    {% if inbound_deep_dive.overall_finding %}
+    <div class="summary-box" style="margin-bottom:24px;">
+      <p>{{ inbound_deep_dive.overall_finding }}</p>
+    </div>
+    {% endif %}
+    <div class="card">
+      {% for theme in inbound_deep_dive.sub_themes %}
+      <div class="comm-theme {% if not loop.last %}comm-theme-border{% endif %}">
+        <div class="comm-theme-header">
+          <div class="comm-theme-left">
+            <span class="sev-dot-{{ theme.severity }}"></span>
+            <span class="comm-name">{{ theme.name }}</span>
+            {% if theme.can_chatbot_solve %}
+            <span style="background:#dcfce7;color:#166534;font-size:10px;font-weight:700;padding:1px 7px;border-radius:8px;margin-left:6px;">AUTOMATABLE</span>
+            {% endif %}
+          </div>
+          <div class="comm-theme-right">
+            <span class="comm-count">{{ theme.count }} reviews</span>
+            <span class="comm-pct">{{ theme.pct }}%</span>
+          </div>
+        </div>
+        <div class="comm-bar-wrap">
+          <div class="comm-bar sev-{{ theme.severity }}" style="width:{{ [theme.pct * 4, 100]|min }}%"></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:8px;">
+          <div>
+            <span style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;">Patient was trying to</span>
+            <p style="font-size:13px;color:#475569;margin-top:2px;">{{ theme.what_patient_was_trying_to_do }}</p>
+          </div>
+          <div>
+            <span style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;">What went wrong</span>
+            <p style="font-size:13px;color:#475569;margin-top:2px;">{{ theme.what_went_wrong }}</p>
+          </div>
+        </div>
+        {% if theme.chatbot_solution %}
+        <div style="background:#f0fdf4;border-radius:6px;padding:8px 12px;margin-bottom:8px;">
+          <span style="font-size:11px;font-weight:700;color:#166534;text-transform:uppercase;">Solution</span>
+          <p style="font-size:13px;color:#166534;margin-top:2px;">{{ theme.chatbot_solution }}</p>
+        </div>
+        {% endif %}
+        {% if theme.quotes %}
+        <ul class="comm-quotes">
+          {% for q in theme.quotes %}<li>"{{ q }}"</li>{% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- ── Communication Deep Dive ──────────────────────────────────────────────── -->
+  {% if comm_deep_dive %}
+  <div class="section">
+    <h2>Communication Deep Dive</h2>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">
+      Communication was the top complaint theme. This section breaks down exactly what patients were unhappy about,
+      drawn from {{ comm_deep_dive.total_comm_reviews }} reviews across all clinics.
+    </p>
+
+    {% if comm_deep_dive.overall_finding %}
+    <div class="summary-box" style="margin-bottom:24px;">
+      <p>{{ comm_deep_dive.overall_finding }}</p>
+    </div>
+    {% endif %}
+
+    <div class="card">
+      {% for theme in comm_deep_dive.sub_themes %}
+      <div class="comm-theme {% if not loop.last %}comm-theme-border{% endif %}">
+        <div class="comm-theme-header">
+          <div class="comm-theme-left">
+            <span class="comm-severity sev-dot-{{ theme.severity }}"></span>
+            <span class="comm-name">{{ theme.name }}</span>
+          </div>
+          <div class="comm-theme-right">
+            <span class="comm-count">{{ theme.count }} reviews</span>
+            <span class="comm-pct">{{ theme.pct }}%</span>
+          </div>
+        </div>
+        <div class="comm-bar-wrap">
+          <div class="comm-bar sev-{{ theme.severity }}" style="width:{{ [theme.pct * 4, 100] | min }}%"></div>
+        </div>
+        <p class="comm-desc">{{ theme.description }}</p>
+        {% if theme.quotes %}
+        <ul class="comm-quotes">
+          {% for q in theme.quotes %}<li>"{{ q }}"</li>{% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- ── Communication Cross-Tab Analysis ─────────────────────────────── -->
+  {% if comm_analysis %}
+  {% set ca = comm_analysis %}
+  {% set cm = ca.meta %}
+  <div class="section">
+    <h2>Communication Analysis — Cross-Tabulations</h2>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:20px;">
+      Based on per-review LLM classification of {{ cm.comm_reviews_classified }} reviews.
+      Every review received individual labels for stage, response type, channel, and what was sought.
+      Counts are real — computed by aggregating labels, not estimated.
+    </p>
+
+    <!-- Volume headline -->
+    <div class="card-grid" style="margin-bottom:24px;">
+      <div class="stat-card">
+        <div class="num">{{ cm.total_reviews }}</div>
+        <div class="label">Total reviews scraped (≤3★)</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">{{ cm.comm_reviews_keyword }}</div>
+        <div class="label">Communication-related ({{ cm.comm_pct_of_all }}% of all reviews)</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">{{ cm.comm_reviews_classified }}</div>
+        <div class="label">Per-review labelled by LLM</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">{{ cm.rating_breakdown.get('1', 0) }}</div>
+        <div class="label">1-star comm reviews ({{ (cm.rating_breakdown.get('1',0) / cm.comm_reviews_keyword * 100)|round(0)|int }}%)</div>
+      </div>
+    </div>
+
+    <!-- Rating breakdown of comm reviews -->
+    <div class="card" style="margin-bottom:24px;">
+      <h3 style="margin-bottom:14px;">Rating breakdown of communication reviews</h3>
+      <table style="width:100%;font-size:13px;border-collapse:collapse;">
+        {% for star in ['1','2','3'] %}
+        {% set n = cm.rating_breakdown.get(star, 0) %}
+        {% set p = (n / cm.comm_reviews_keyword * 100)|round(1) %}
+        <tr>
+          <td style="width:60px;padding:4px 8px 4px 0;font-weight:700;">{{ star }}★</td>
+          <td style="width:60px;color:var(--muted);padding:4px 8px;">{{ n }}</td>
+          <td style="padding:4px 0;">
+            <div style="background:#e2e8f0;border-radius:3px;height:8px;">
+              <div style="width:{{ p }}%;background:{% if star=='1' %}#ef4444{% elif star=='2' %}#f97316{% else %}#eab308{% endif %};height:8px;border-radius:3px;"></div>
+            </div>
+          </td>
+          <td style="width:50px;text-align:right;color:var(--muted);font-size:12px;padding-left:8px;">{{ p }}%</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+
+    <!-- Stage × Response type matrix -->
+    <div class="card" style="margin-bottom:24px;">
+      <h3 style="margin-bottom:6px;">Where in the journey does communication fail — and how?</h3>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:14px;">Each cell shows count and % of that stage's reviews. The dominant failure mode per stage is highlighted.</p>
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead>
+            <tr style="background:#f1f5f9;">
+              <th style="text-align:left;padding:8px 12px;border-bottom:2px solid #e2e8f0;">Stage</th>
+              <th style="padding:8px 12px;border-bottom:2px solid #e2e8f0;text-align:center;">Total</th>
+              <th style="padding:8px 12px;border-bottom:2px solid #e2e8f0;text-align:center;">Wrong info</th>
+              <th style="padding:8px 12px;border-bottom:2px solid #e2e8f0;text-align:center;">No response</th>
+              <th style="padding:8px 12px;border-bottom:2px solid #e2e8f0;text-align:center;">Slow response</th>
+              <th style="padding:8px 12px;border-bottom:2px solid #e2e8f0;text-align:center;">Other</th>
+              <th style="padding:8px 12px;border-bottom:2px solid #e2e8f0;text-align:left;">Top thing sought</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for s in ca.stage %}
+            {% set row_total = s.count %}
+            <tr style="border-bottom:1px solid #f1f5f9;">
+              <td style="padding:8px 12px;font-weight:600;">{{ s.name.replace('_',' ').title() }}</td>
+              <td style="padding:8px 12px;text-align:center;font-weight:700;color:var(--accent);">{{ s.count }}<span style="font-size:11px;color:var(--muted);margin-left:3px;">({{ s.pct }}%)</span></td>
+              {% for rt in ['wrong_info','no_response','slow_response','other'] %}
+              {% set cell = s.response_breakdown[rt] %}
+              <td style="padding:8px 12px;text-align:center;{% if cell.is_dominant %}font-weight:700;background:#fef9c3;{% endif %}">
+                {{ cell.count }}<span style="font-size:11px;color:var(--muted);margin-left:2px;">({{ cell.pct }}%)</span>
+              </td>
+              {% endfor %}
+              <td style="padding:8px 12px;font-size:12px;color:#475569;">
+                {% if s.top_sought %}{{ s.top_sought[0].name.replace('_',' ') }} ({{ s.top_sought[0].count }}){% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Channel × Response type -->
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="card">
+        <h3 style="margin-bottom:14px;">Channel breakdown</h3>
+        <table style="width:100%;font-size:13px;border-collapse:collapse;">
+          <thead>
+            <tr style="background:#f1f5f9;">
+              <th style="text-align:left;padding:6px 8px;">Channel</th>
+              <th style="text-align:center;padding:6px 8px;">Count</th>
+              <th style="text-align:center;padding:6px 8px;">%</th>
+              <th style="text-align:left;padding:6px 8px;">Dominant failure</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for ch in ca.channel %}
+            {% if ch.count > 0 %}
+            <tr style="border-bottom:1px solid #f1f5f9;">
+              <td style="padding:6px 8px;font-weight:600;">{{ ch.name.replace('_',' ').title() }}</td>
+              <td style="padding:6px 8px;text-align:center;">{{ ch.count }}</td>
+              <td style="padding:6px 8px;text-align:center;color:var(--muted);">{{ ch.pct }}%</td>
+              <td style="padding:6px 8px;font-size:12px;color:#475569;">{{ ch.top_response.replace('_',' ') }} ({{ ch.top_response_pct }}%)</td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h3 style="margin-bottom:14px;">What were patients trying to get?</h3>
+        {% for ws in ca.what_sought %}
+        {% if ws.count > 0 %}
+        <div style="margin-bottom:8px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:3px;">
+            <span style="font-size:13px;font-weight:600;">{{ ws.name.replace('_',' ').title() }}</span>
+            <span style="font-size:13px;color:var(--accent);font-weight:700;">{{ ws.count }} <span style="color:var(--muted);font-weight:400;">({{ ws.pct }}%)</span></span>
+          </div>
+          <div style="background:#e2e8f0;border-radius:3px;height:5px;">
+            <div style="width:{{ [ws.pct * 2.5, 100]|min }}%;background:#3b82f6;height:5px;border-radius:3px;"></div>
+          </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Top 15 combinations -->
+    <div class="card" style="margin-bottom:24px;">
+      <h3 style="margin-bottom:6px;">Top failure scenarios (stage + response type + what sought)</h3>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:14px;">The most common three-way combinations across all {{ cm.comm_reviews_classified }} labelled reviews.</p>
+      <table style="width:100%;font-size:13px;border-collapse:collapse;">
+        <thead>
+          <tr style="background:#f1f5f9;">
+            <th style="text-align:center;padding:6px 10px;border-bottom:2px solid #e2e8f0;">#</th>
+            <th style="text-align:left;padding:6px 10px;border-bottom:2px solid #e2e8f0;">Stage</th>
+            <th style="text-align:left;padding:6px 10px;border-bottom:2px solid #e2e8f0;">Response type</th>
+            <th style="text-align:left;padding:6px 10px;border-bottom:2px solid #e2e8f0;">What sought</th>
+            <th style="text-align:center;padding:6px 10px;border-bottom:2px solid #e2e8f0;">Reviews</th>
+            <th style="text-align:center;padding:6px 10px;border-bottom:2px solid #e2e8f0;">% of comm</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for combo in ca.top_combinations %}
+          <tr style="border-bottom:1px solid #f1f5f9;{% if loop.index == 1 %}background:#fffbeb;font-weight:600;{% endif %}">
+            <td style="text-align:center;padding:6px 10px;color:var(--muted);">{{ loop.index }}</td>
+            <td style="padding:6px 10px;">{{ combo.stage.replace('_',' ').title() }}</td>
+            <td style="padding:6px 10px;">{{ combo.response_type.replace('_',' ').title() }}</td>
+            <td style="padding:6px 10px;">{{ combo.what_sought.replace('_',' ').title() }}</td>
+            <td style="text-align:center;padding:6px 10px;font-weight:700;">{{ combo.count }}</td>
+            <td style="text-align:center;padding:6px 10px;color:var(--accent);">{{ combo.pct }}%</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Clinic communication profiles -->
+    <div class="card">
+      <h3 style="margin-bottom:6px;">Clinic communication profiles</h3>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:14px;">How each clinic's communication failures distribute across the patient journey. Clinics with fewer than 3 labelled comm reviews excluded.</p>
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;font-size:12px;">
+          <thead>
+            <tr style="background:#f1f5f9;">
+              <th style="text-align:left;padding:6px 10px;border-bottom:2px solid #e2e8f0;">Clinic</th>
+              <th style="text-align:center;padding:6px 10px;border-bottom:2px solid #e2e8f0;">Comm reviews</th>
+              <th style="text-align:center;padding:6px 10px;border-bottom:2px solid #e2e8f0;">During Tx</th>
+              <th style="text-align:center;padding:6px 10px;border-bottom:2px solid #e2e8f0;">Post Tx</th>
+              <th style="text-align:center;padding:6px 10px;border-bottom:2px solid #e2e8f0;">Booking</th>
+              <th style="text-align:center;padding:6px 10px;border-bottom:2px solid #e2e8f0;">Pre-appt</th>
+              <th style="text-align:center;padding:6px 10px;border-bottom:2px solid #e2e8f0;">Complaint</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for cp in ca.clinic_profiles %}
+            <tr style="border-bottom:1px solid #f1f5f9;">
+              <td style="padding:5px 10px;font-weight:600;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="{{ cp.clinic }}">{{ cp.clinic }}</td>
+              <td style="text-align:center;padding:5px 10px;font-weight:700;color:var(--accent);">{{ cp.total_comm }}</td>
+              {% for s in ['during_treatment','post_treatment','booking_admin','pre_appointment','complaint'] %}
+              {% set cell = cp.stages[s] %}
+              <td style="text-align:center;padding:5px 10px;{% if cp.top_stage == s %}font-weight:700;background:#fef9c3;{% endif %}">
+                {% if cell.count > 0 %}{{ cell.count }}<span style="font-size:10px;color:var(--muted);"> ({{ cell.pct }}%)</span>{% else %}<span style="color:#cbd5e1;">—</span>{% endif %}
+              </td>
+              {% endfor %}
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- ── Raw Reviews Table ─────────────────────────────────────────────── -->
+  <div class="section">
+    <h2>Raw Negative Reviews</h2>
+    <div class="filter-bar">
+      <input type="text" id="filterText" placeholder="Search review text…" oninput="filterTable()">
+      <select id="filterClinic" onchange="filterTable()">
+        <option value="">All clinics</option>
+        {% for clinic in all_clinics %}
+        {% if clinic.review_count %}
+        <option value="{{ clinic.clinic }}">{{ clinic.clinic }}</option>
+        {% endif %}
+        {% endfor %}
+      </select>
+      <select id="filterRating" onchange="filterTable()">
+        <option value="">All ratings</option>
+        <option value="1">★☆☆☆☆  1 star</option>
+        <option value="2">★★☆☆☆  2 stars</option>
+        <option value="3">★★★☆☆  3 stars</option>
+      </select>
+    </div>
+    <div class="card data-table-wrap">
+      <table class="data-table" id="reviewTable">
+        <thead>
+          <tr>
+            <th>Rating</th>
+            <th>Clinic</th>
+            <th>Date</th>
+            <th>Review</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for clinic in all_clinics %}
+          {% for review in clinic.reviews %}
+          <tr data-clinic="{{ clinic.clinic }}" data-rating="{{ review.rating }}">
+            <td class="rating-{{ review.rating }}">{{ '★' * review.rating }}{{ '☆' * (5 - review.rating) }}</td>
+            <td style="white-space:nowrap;max-width:160px;overflow:hidden;text-overflow:ellipsis" title="{{ clinic.clinic }}">{{ clinic.clinic }}</td>
+            <td style="white-space:nowrap;color:var(--muted)">{{ review.date }}</td>
+            <td><div class="review-text">{{ review.text }}</div></td>
+          </tr>
+          {% endfor %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="footer">
+    Generated {{ report_date }} at {{ generated_at }} · Harley Street Negative Review Analysis
+  </div>
+</div>
+
+<script>
+// ── Bar chart ─────────────────────────────────────────────────────────────
+const barCtx = document.getElementById('barChart');
+if (barCtx) {
+  new Chart(barCtx, {
+    type: 'bar',
+    data: {
+      labels: {{ chart_labels }},
+      datasets: [{
+        label: 'Total mentions across all clinics',
+        data: {{ chart_data }},
+        backgroundColor: {{ chart_colors }},
+        borderRadius: 5,
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => ` ${ctx.raw} mentions` } }
+      },
+      scales: {
+        x: { beginAtZero: true, grid: { color: '#f1f5f9' } },
+        y: { grid: { display: false } }
+      }
+    }
+  });
+}
+
+// ── Per-clinic pie charts ────────────────────────────────────────────────
+{% for clinic in clinics %}
+(function() {
+  const ctx = document.getElementById('pie_{{ loop.index }}');
+  if (!ctx) return;
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: {{ clinic._pie_labels }},
+      datasets: [{
+        data: {{ clinic._pie_data }},
+        backgroundColor: {{ clinic._pie_colors }},
+        borderWidth: 2,
+        borderColor: '#fff',
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'bottom', labels: { font: { size: 11 }, boxWidth: 12 } },
+        tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.raw} reviews` } }
+      }
+    }
+  });
+})();
+{% endfor %}
+
+// ── Table filter ──────────────────────────────────────────────────────────
+function filterTable() {
+  const text = document.getElementById('filterText').value.toLowerCase();
+  const clinic = document.getElementById('filterClinic').value;
+  const rating = document.getElementById('filterRating').value;
+  const rows = document.querySelectorAll('#reviewTable tbody tr');
+  rows.forEach(row => {
+    const matchText = !text || row.textContent.toLowerCase().includes(text);
+    const matchClinic = !clinic || row.dataset.clinic === clinic;
+    const matchRating = !rating || row.dataset.rating === rating;
+    row.style.display = (matchText && matchClinic && matchRating) ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>

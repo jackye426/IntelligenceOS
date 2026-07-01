@@ -1,0 +1,25 @@
+{
+  "clinic": "London Fertility Clinic",
+  "review_count": 2,
+  "categories": [
+    {
+      "name": "Communication",
+      "count": 1,
+      "pct": 50.0,
+      "severity": "high",
+      "quotes": [
+        "did not receive the Zoom link or any update"
+      ]
+    },
+    {
+      "name": "Staff Attitude",
+      "count": 1,
+      "pct": 50.0,
+      "severity": "high",
+      "quotes": [
+        "rudest receptionist"
+      ]
+    }
+  ],
+  "summary": "\"Patients at London Fertility Clinic expressed dissatisfaction primarily with communication and staff attitude, each accounting for half of the negative feedback. Only two complaints were recorded in total.\""
+}

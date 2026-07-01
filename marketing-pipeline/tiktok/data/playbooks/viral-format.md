@@ -1,0 +1,1 @@
+Look for moments where the expert gives a specific patient action around a high-stakes situation, such as what to ask before surgery, why a scan or laparoscopy may miss endo, what symptoms are not normal, or what to say to finally be taken seriously.

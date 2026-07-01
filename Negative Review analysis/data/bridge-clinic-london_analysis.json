@@ -1,0 +1,34 @@
+{
+  "clinic": "Bridge Clinic London",
+  "review_count": 3,
+  "categories": [
+    {
+      "name": "Treatment Quality",
+      "count": 1,
+      "pct": 33.3,
+      "severity": "high",
+      "quotes": [
+        "Stress and bad experience"
+      ]
+    },
+    {
+      "name": "Booking & Admin",
+      "count": 1,
+      "pct": 33.3,
+      "severity": "high",
+      "quotes": [
+        "failed to call on both occasions"
+      ]
+    },
+    {
+      "name": "Billing & Invoicing",
+      "count": 1,
+      "pct": 33.3,
+      "severity": "high",
+      "quotes": [
+        "chase paperwork"
+      ]
+    }
+  ],
+  "summary": "\"Patients at Bridge Clinic London expressed dissatisfaction equally across Treatment Quality, Booking & Admin, and Billing & Invoicing, with each category receiving one negative review. These three complaints made up all reported issues.\""
+}

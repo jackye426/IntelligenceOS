@@ -1,0 +1,33 @@
+[
+  {
+    "cid": "7641928349007233795",
+    "text": "I got assigned an endometriosis nurse at the end of last year. She's fantastic however she is based over 200 miles away and covers a massive area. I agree with Liz, everyone with endo deserves a local endo nurse!",
+    "digg_count": 1,
+    "reply_comment_total": 0,
+    "create_time": 1779275121,
+    "themes": [
+      "other_uncategorized"
+    ],
+    "sentiment": {
+      "stance": "personal_story",
+      "primary_emotion": "neutral",
+      "toxicity_spam_flag": false
+    }
+  },
+  {
+    "cid": "7643255446459073302",
+    "text": "Hi Liz - Am I able to message this page with some questions for you please? I had ablation on bilateral utero sacral endometriosis over 10 years ago 😬",
+    "digg_count": 0,
+    "reply_comment_total": 0,
+    "create_time": 1779584148,
+    "themes": [
+      "personal_story",
+      "general_question"
+    ],
+    "sentiment": {
+      "stance": "personal_story",
+      "primary_emotion": "neutral",
+      "toxicity_spam_flag": false
+    }
+  }
+]

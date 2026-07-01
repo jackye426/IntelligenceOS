@@ -1,0 +1,35 @@
+{
+  "video_id": "7632321370080152854",
+  "source_media": "7632321370080152854.m4a",
+  "whisper_model": "small",
+  "language": "en",
+  "duration_after_vad": 29.860875,
+  "full_text": "God, you look so pretty when you tell me that you love me I wish that I could lie, but my mind gets in the way I know you think it all, always way too self aware Oh, we could never be together, but it's nice to play pretend I wish that I could lie, but I'm way too self aware",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 6.64,
+      "text": "God, you look so pretty when you tell me that you love me"
+    },
+    {
+      "start": 6.64,
+      "end": 12.56,
+      "text": "I wish that I could lie, but my mind gets in the way"
+    },
+    {
+      "start": 12.56,
+      "end": 18.0,
+      "text": "I know you think it all, always way too self aware"
+    },
+    {
+      "start": 18.0,
+      "end": 24.4,
+      "text": "Oh, we could never be together, but it's nice to play pretend"
+    },
+    {
+      "start": 24.4,
+      "end": 29.92,
+      "text": "I wish that I could lie, but I'm way too self aware"
+    }
+  ]
+}

@@ -1,0 +1,342 @@
+{
+  "financial_consent_flow": {
+    "sub_themes": [
+      {
+        "name": "Hidden Costs & Lack of Transparency",
+        "count": 32,
+        "pct": 40.0,
+        "what_is_failing": "Clinics fail to disclose full costs upfront, surprise patients with add-ons, and provide unclear pricing structures.",
+        "product_fix": "Implement real-time cost calculators with itemized breakdowns, mandatory pre-treatment cost disclosures, and digital consent flows with pricing locks.",
+        "buyer_pitch": "Reduce patient attrition and complaints by 50% with transparent pricing tools that build trust before treatment begins.",
+        "quotes": [
+          "Was a lot more expensive than quoted as there were expensive add-ons that we were not told about",
+          "We purchased three IVF cycles based on the advertised price, but ended up paying nearly double due to constant extra charges",
+          "Not transparent with billing, load up cost in a very opaque way until you are at a point where it's not possible to change provider"
+        ]
+      },
+      {
+        "name": "Billing/Refund Failures",
+        "count": 22,
+        "pct": 27.5,
+        "what_is_failing": "Systemic issues with overcharging, duplicate billing, delayed refunds, and aggressive debt collection despite payments being made.",
+        "product_fix": "Automated payment reconciliation systems with audit trails, refund SLA tracking, and integrated dispute resolution workflows.",
+        "buyer_pitch": "Eliminate revenue leakage and legal risks with foolproof payment tracking that satisfies regulators and patients.",
+        "quotes": [
+          "Still waiting to receive the call about the refund",
+          "No clinical issues, but once a refund was due the administrative side at HCA fell apart",
+          "Paid all bills on time instead of a proper due diligence they sent my account to debt collection agencies"
+        ]
+      },
+      {
+        "name": "Predatory Upselling",
+        "count": 18,
+        "pct": 22.5,
+        "what_is_failing": "Patients report being pressured into unnecessary procedures/tests purely for revenue generation without medical justification.",
+        "product_fix": "AI-powered treatment plan validation that flags non-evidence-based recommendations and requires second-opinion documentation.",
+        "buyer_pitch": "Protect your clinic's reputation with compliance guardrails that prevent profit-driven over-treatment allegations.",
+        "quotes": [
+          "Will push random things you don’t need on you I.E in my case icsi, just for extra money no actual science behind it",
+          "My wife was recommended unnecessary procedures at the wrong time which were evidently only being suggested so that could charge us more money",
+          "They always apply low doses to get few number of eggs unless I had to many follicles but they want you to repeat the process two or three times"
+        ]
+      },
+      {
+        "name": "Financial Exploitation of Vulnerable Patients",
+        "count": 15,
+        "pct": 18.75,
+        "what_is_failing": "Taking advantage of patients' emotional distress with high-pressure sales tactics and non-refundable deposits.",
+        "product_fix": "Ethical pricing frameworks with cooling-off periods, hardship programs, and mandatory financial counseling sessions.",
+        "buyer_pitch": "Differentiate your clinic as patient-first with ethical financial policies that reduce churn to competitors.",
+        "quotes": [
+          "The way they make money is due to desperation of couple in getting a child",
+          "It feels like all they care about is the money rather than their patients",
+          "If you want to throw money away, you can go to them"
+        ]
+      },
+      {
+        "name": "Admin/Finance Staff Hostility",
+        "count": 12,
+        "pct": 15.0,
+        "what_is_failing": "Finance teams described as aggressive, unempathetic, and unresponsive compared to medical staff.",
+        "product_fix": "Specialized CRM training for finance teams with patient-sensitive communication protocols and escalation paths.",
+        "buyer_pitch": "Turn your finance team from liability to asset with compassionate billing practices that improve patient retention.",
+        "quotes": [
+          "The finance team on the other hand are extremely aggressive",
+          "Admin and support were painful at every step",
+          "Urgent!!! PLEASE AVOID THIS CLINIC"
+        ]
+      }
+    ],
+    "headline_finding": "The core failure is systemic financial toxicity - clinics prioritize revenue extraction over patient care through opaque pricing, aggressive billing, and medically unnecessary upsells. This erodes trust in an already emotionally vulnerable patient population, driving attrition and reputational damage.",
+    "buyer_pitch": "Our financial consent platform transforms revenue cycles from patient grievances into trust-building differentiators - implementing transparent pricing, ethical billing safeguards, and compliance guardrails that reduce complaints while increasing treatment completion rates."
+  },
+  "booking_ops_layer": {
+    "sub_themes": [
+      {
+        "name": "Administrative Errors",
+        "count": 32,
+        "pct": 40.0,
+        "what_is_failing": "Incorrect patient details (e.g., DOB, names), lost/misplaced files, double bookings, and failure to update records.",
+        "product_fix": "Implement a centralized digital patient management system with automated data validation, real-time updates, and audit trails to reduce human error.",
+        "buyer_pitch": "Eliminate costly administrative mistakes and patient frustration with a foolproof system that ensures accuracy and efficiency.",
+        "quotes": [
+          "The admin staff got my date of birth wrong and they couldn’t even find my appointment...",
+          "DOB on the forms were incorrect and we were not able to update it ourselves..."
+        ]
+      },
+      {
+        "name": "Poor Communication",
+        "count": 28,
+        "pct": 35.0,
+        "what_is_failing": "Unanswered calls, missed emails, lack of appointment confirmations, and conflicting information between staff.",
+        "product_fix": "Deploy an integrated communication platform with automated reminders, multi-channel messaging (SMS/email), and a patient portal for transparency.",
+        "buyer_pitch": "Turn chaotic communication into a seamless experience, reducing no-shows and building patient trust.",
+        "quotes": [
+          "Phone is never answered or is dropped...",
+          "They had confirmed four appointments by email, and failed to call on both occasions..."
+        ]
+      },
+      {
+        "name": "Scheduling Failures",
+        "count": 25,
+        "pct": 31.25,
+        "what_is_failing": "Last-minute cancellations, no-shows by clinicians, excessive wait times, and lack of after-hours/weekend availability.",
+        "product_fix": "AI-powered dynamic scheduling tool with buffer time optimization, staff availability sync, and patient self-rescheduling options.",
+        "buyer_pitch": "Maximize clinic revenue and patient satisfaction by eliminating scheduling bottlenecks and wasted time.",
+        "quotes": [
+          "3 hours to see a nurse?? The whole industry seems to be completely unregulated and understaffed...",
+          "Had to wait 40 minutes past my appointment time, no explanation or apology given..."
+        ]
+      },
+      {
+        "name": "Billing & Invoicing Issues",
+        "count": 12,
+        "pct": 15.0,
+        "what_is_failing": "Incorrect charges, delayed refunds, hidden costs, and payment processing errors.",
+        "product_fix": "Automated billing system with pre-treatment cost breakdowns, real-time insurance verification, and integrated payment tracking.",
+        "buyer_pitch": "Stop revenue leakage and patient disputes with transparent, error-free financial workflows.",
+        "quotes": [
+          "They have admitted fault for a data breach and my solicitor is dealing with this...",
+          "Loads of errors all the time with invoices and medication subscriptions..."
+        ]
+      },
+      {
+        "name": "Data Security Breaches",
+        "count": 8,
+        "pct": 10.0,
+        "what_is_failing": "Mishandling of sensitive patient data, sending incorrect medical records, and lack of secure systems.",
+        "product_fix": "HIPAA/GDPR-compliant encrypted record system with role-based access controls and breach alerts.",
+        "buyer_pitch": "Protect your clinic from legal risks and reputational damage with military-grade data security.",
+        "quotes": [
+          "They sent all my private medical details to other patients...",
+          "Colossal data breach - I did egg removal and storage... something that I share with very few people..."
+        ]
+      }
+    ],
+    "headline_finding": "The core failure across clinics is a breakdown in operational coordination, where siloed systems and manual processes lead to cascading errors in administration, communication, and scheduling. Patients experience this as a lack of professionalism, while clinics suffer reputational and financial losses.",
+    "buyer_pitch": "Our integrated clinic operations platform eliminates 80% of negative reviews by fixing administrative chaos at the source—automating workflows, ensuring data accuracy, and providing patients with real-time transparency. This translates to higher retention, better online ratings, and increased revenue per patient."
+  },
+  "patient_pathway_coordinator": {
+    "sub_themes": [
+      {
+        "name": "Poor Communication",
+        "count": 25,
+        "pct": 31.25,
+        "what_is_failing": "Lack of timely, clear, and consistent communication between staff and patients, leading to confusion, missed instructions, and emotional distress.",
+        "product_fix": "Implement a centralized communication platform with automated reminders, real-time updates, and a single point of contact for patients.",
+        "buyer_pitch": "Reduce patient frustration and improve satisfaction by ensuring seamless, transparent communication throughout their journey.",
+        "quotes": [
+          "Nurses frequently sent urgent instructions at the end of the day, making it impossible to clarify errors or ask questions.",
+          "The communication was so bad that we wasted a lot of time on waiting (usually 3-5 weeks for a doctor’s letter after consultation)."
+        ]
+      },
+      {
+        "name": "Lack of Continuity in Care",
+        "count": 18,
+        "pct": 22.5,
+        "what_is_failing": "Patients see different doctors/nurses at each visit, leading to repeated explanations, inconsistent advice, and a lack of personalized care.",
+        "product_fix": "Assign a dedicated care team per patient with shared notes and protocols to ensure continuity.",
+        "buyer_pitch": "Boost patient trust and outcomes by providing consistent, personalized care from a familiar team.",
+        "quotes": [
+          "I ended up seeing several doctors and it was very frustrating as they weren’t communicating with each other.",
+          "You see a different doctor at each appointment so there is absolutely no point in choosing your doctor."
+        ]
+      },
+      {
+        "name": "Administrative Errors & Delays",
+        "count": 15,
+        "pct": 18.75,
+        "what_is_failing": "Frequent mistakes in scheduling, test results, and medication timing disrupt treatment cycles.",
+        "product_fix": "Digitize workflows with error-checking algorithms and automated tracking for tests/results.",
+        "buyer_pitch": "Eliminate costly delays and errors with streamlined, foolproof administrative processes.",
+        "quotes": [
+          "They had to repeat blood tests, which was incredibly costly.",
+          "The unnecessary delays for simple things like blood tests took weeks."
+        ]
+      },
+      {
+        "name": "Negligent Aftercare",
+        "count": 12,
+        "pct": 15.0,
+        "what_is_failing": "Patients feel abandoned after failed cycles or procedures with no follow-up support.",
+        "product_fix": "Automated post-treatment check-ins and mandatory counseling sessions integrated into care plans.",
+        "buyer_pitch": "Demonstrate compassion and retain patients even through setbacks with proactive aftercare.",
+        "quotes": [
+          "After a negative test we weren’t given any appointments and had to make endless calls just to get another consult.",
+          "There is no after care service not even a phone call to ask how am I coping."
+        ]
+      },
+      {
+        "name": "Financial Exploitation",
+        "count": 10,
+        "pct": 12.5,
+        "what_is_failing": "Patients perceive pressure to pay for unnecessary tests/treatments without clear justification.",
+        "product_fix": "Transparent cost breakdowns and AI-driven treatment recommendations based on proven efficacy.",
+        "buyer_pitch": "Build trust and reduce attrition by aligning financial incentives with patient success.",
+        "quotes": [
+          "All they care about is getting money from their patients and not providing guidance.",
+          "Personally, it felt like we were constantly pushed to spend more on tests."
+        ]
+      }
+    ],
+    "headline_finding": "The core failure is a fragmented patient journey where poor coordination between staff, systems, and departments leads to preventable errors, emotional harm, and lost revenue. Clinics lack standardized protocols to ensure continuity, communication, and accountability at each step.",
+    "buyer_pitch": "Our solution integrates your clinic’s workflows into a patient-centric platform that prevents errors, ensures continuity, and automates follow-ups—reducing complaints while increasing successful outcomes and retention."
+  },
+  "inbound_manager": {
+    "sub_themes": [
+      {
+        "name": "Poor Communication & Responsiveness",
+        "count": 45,
+        "pct": 57.7,
+        "what_is_failing": "Clinic staff (admin/reception) are unresponsive to calls, emails, or voicemails, leading to missed appointments, delays in treatment, and patient frustration.",
+        "product_fix": "Implement an AI-powered omnichannel inbound manager that consolidates calls, emails, and messages into a single dashboard with automated triage, prioritization (e.g., emergency flags), and SLA-based escalation for unanswered queries.",
+        "buyer_pitch": "Reduce patient attrition by ensuring no inquiry falls through the cracks. Our system guarantees 100% response rates with audit trails.",
+        "quotes": [
+          "The admin staff take ages to return emails, the phone is never answered and voicemails are not returned.",
+          "Impossible to get through on the phone... emails often go completely unanswered.",
+          "Tried calling 6 times, been on hold for over 30 minutes each time - all to no answer."
+        ]
+      },
+      {
+        "name": "Rude/Untrained Frontline Staff",
+        "count": 22,
+        "pct": 28.2,
+        "what_is_failing": "Receptionists and phone operators exhibit dismissive, patronizing, or unprofessional behavior, exacerbating patient stress during sensitive fertility journeys.",
+        "product_fix": "Deploy conversational AI for initial patient interactions (call handling, FAQs) with human escalation only for complex cases. Supplement with staff training modules on empathy-driven communication.",
+        "buyer_pitch": "Transform patient first impressions with consistent, polite interactions—AI handles routine queries while your team focuses on high-value care.",
+        "quotes": [
+          "The person on the phone was incredibly rude and patronising.",
+          "Very bad experience on the phone, caller had a very bad attitude.",
+          "‘Computer says no’ approach. Made me feel most unwelcome."
+        ]
+      },
+      {
+        "name": "Disorganized Appointment Management",
+        "count": 18,
+        "pct": 23.1,
+        "what_is_failing": "Double bookings, no-shows by clinicians, and lack of transparency in scheduling (e.g., forced prepayments without clarity).",
+        "product_fix": "Integrated scheduling system with real-time clinician availability, automated reminders (SMS/email), and pay-after-confirmation workflows.",
+        "buyer_pitch": "Eliminate scheduling chaos and lost revenue from no-shows with dynamic booking that syncs with your team’s calendars.",
+        "quotes": [
+          "Booked a starter phone consult... not attended by clinic.",
+          "Required to make a PayPal payment before understanding appointment availability.",
+          "Left waiting 20 mins despite visible staff ignoring us."
+        ]
+      },
+      {
+        "name": "Lack of Information Transparency",
+        "count": 12,
+        "pct": 15.4,
+        "what_is_failing": "Patients struggle to access basic details like costs, treatment steps, or clinician credentials upfront.",
+        "product_fix": "Patient portal with standardized treatment pathways, pricing calculators, and verified clinician profiles (credentials, success rates).",
+        "buyer_pitch": "Build trust before the first consultation—provide self-service access to critical information that reduces repetitive inquiries.",
+        "quotes": [
+          "No photos, credentials, or experience details for practitioners.",
+          "Costs quoted were double what we expected.",
+          "They don’t provide the patient with enough information."
+        ]
+      },
+      {
+        "name": "Billing & Financial Pressures",
+        "count": 9,
+        "pct": 11.5,
+        "what_is_failing": "Aggressive billing practices (e.g., surprise fees) and perceived prioritization of revenue over care.",
+        "product_fix": "Automated cost estimators with breakdowns by treatment phase and real-time insurance eligibility checks.",
+        "buyer_pitch": "Turn billing from a pain point into a differentiator—transparent pricing builds loyalty and reduces disputes.",
+        "quotes": [
+          "They do everything to get extra money instead of focusing on patient care.",
+          "Financial department is the only proactive one!",
+          "High volumes mean high revenues so INVEST IN YOUR CUSTOMER SUPPORT."
+        ]
+      }
+    ],
+    "headline_finding": "Clinics are losing patients due to systemic communication breakdowns—57% of negative reviews cite unresponsive staff and poor call/email handling. Frontline interactions lack empathy, compounding stress during vulnerable fertility journeys.",
+    "buyer_pitch": "Our inbound manager solution cuts patient attrition by 30%+ by ensuring no inquiry goes unanswered, while AI handles routine queries to free staff for high-touch care. Transparent scheduling and pricing build trust before treatment even begins."
+  },
+  "complaint_triage_monitor": {
+    "sub_themes": [
+      {
+        "name": "Poor Communication",
+        "count": 25,
+        "pct": 31.25,
+        "what_is_failing": "Lack of clear, consistent, and timely communication between clinics and patients, leading to confusion, frustration, and mistrust.",
+        "product_fix": "Implement a centralized communication platform with automated updates, clear timelines, and a single point of contact for patients.",
+        "buyer_pitch": "Improve patient satisfaction and reduce complaints by ensuring transparent and consistent communication throughout their journey.",
+        "quotes": [
+          "Communication is terrible, service is terrible, constantly being told different things by different people.",
+          "Absolutely no communication between us and the staff at all."
+        ]
+      },
+      {
+        "name": "Disorganization",
+        "count": 18,
+        "pct": 22.5,
+        "what_is_failing": "Clinics are losing patient records, mixing up results, and failing to coordinate care, leading to errors and delays.",
+        "product_fix": "Introduce a digital record management system with strict protocols for data handling and regular audits to ensure accuracy.",
+        "buyer_pitch": "Eliminate costly errors and improve efficiency with a foolproof system for managing patient records and treatment plans.",
+        "quotes": [
+          "They lost my blood results which was inconvenient.",
+          "Create Fertility have sent me a full patient records of someone else."
+        ]
+      },
+      {
+        "name": "Rude/Unprofessional Staff",
+        "count": 15,
+        "pct": 18.75,
+        "what_is_failing": "Patients report being treated rudely, dismissively, or unprofessionally by staff, including doctors and receptionists.",
+        "product_fix": "Staff training programs focused on empathy, patient-centered care, and conflict resolution, with regular feedback loops.",
+        "buyer_pitch": "Enhance your clinic's reputation and patient retention by ensuring every interaction is professional and compassionate.",
+        "quotes": [
+          "Extremely rude! The doctor made me feel extremely uncomfortable.",
+          "Rude, unkind and unprofessional. They treat you like you're a burden to them."
+        ]
+      },
+      {
+        "name": "Financial Exploitation",
+        "count": 12,
+        "pct": 15.0,
+        "what_is_failing": "Patients feel clinics prioritize money over care, with hidden fees, lack of refunds, and poor service post-payment.",
+        "product_fix": "Transparent pricing tools and payment plans, with clear contracts and a dedicated financial liaison for patients.",
+        "buyer_pitch": "Build trust and reduce disputes by offering clear, fair pricing and financial support options upfront.",
+        "quotes": [
+          "Once they get your money, they don't care anymore.",
+          "They do not have a care in the world just want more money out of us."
+        ]
+      },
+      {
+        "name": "Lack of Accountability",
+        "count": 10,
+        "pct": 12.5,
+        "what_is_failing": "Clinics fail to address complaints, dismiss patient concerns, or blame patients for errors.",
+        "product_fix": "A complaint triage system with escalation paths, timelines for resolution, and regular reporting to management.",
+        "buyer_pitch": "Turn complaints into opportunities for improvement with a structured, responsive system that shows patients they're heard.",
+        "quotes": [
+          "We have contacted you directly and investigated your case... we cannot identify any error made on behalf of The Birth Company team.",
+          "They had no interest in what I had to say. All they care about is making money."
+        ]
+      }
+    ],
+    "headline_finding": "The core operational failure across these clinics is a systemic lack of patient-centered care, driven by poor communication, disorganization, and a focus on revenue over outcomes. This erodes trust and leads to high dissatisfaction, as patients feel ignored, mistreated, and financially exploited during vulnerable moments.",
+    "buyer_pitch": "Our solution transforms your clinic into a patient-first operation by fixing communication gaps, streamlining record-keeping, and training staff to deliver compassionate care. This will reduce complaints, improve outcomes, and ultimately boost your reputation and revenue."
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "clinic": "LIPS Healthcare",
+  "review_count": 23,
+  "categories": [
+    {
+      "name": "Other",
+      "count": 6,
+      "pct": 26.1,
+      "severity": "low",
+      "quotes": [
+        "Wasted journey",
+        "low range of product",
+        "misleading people when it comes to health costs"
+      ]
+    },
+    {
+      "name": "Billing & Invoicing",
+      "count": 4,
+      "pct": 17.4,
+      "severity": "high",
+      "quotes": [
+        "have not refunded me anything yet",
+        "threatened debt collection",
+        "charged an additional £103 without this being clearly explained"
+      ]
+    },
+    {
+      "name": "Staff Attitude",
+      "count": 4,
+      "pct": 17.4,
+      "severity": "high",
+      "quotes": [
+        "DO NOT USE THIS SERVICE!",
+        "Arrogant, unprofessional, and utterly careless",
+        "Receptionists very rude"
+      ]
+    },
+    {
+      "name": "Booking & Admin",
+      "count": 3,
+      "pct": 13.0,
+      "severity": "high",
+      "quotes": [
+        "doctor’s schedule was not up to date",
+        "received a call later to say the time is not available",
+        "administrative incompetence"
+      ]
+    },
+    {
+      "name": "Treatment Quality",
+      "count": 2,
+      "pct": 8.7,
+      "severity": "high",
+      "quotes": [
+        "sent away without treatment",
+        "severe adverse effects — chest hea"
+      ]
+    },
+    {
+      "name": "Value for Money",
+      "count": 2,
+      "pct": 8.7,
+      "severity": "high",
+      "quotes": [
+        "selling the medicine at over £30",
+        "charged me around £300 for the treatment"
+      ]
+    },
+    {
+      "name": "Communication",
+      "count": 1,
+      "pct": 4.3,
+      "severity": "medium",
+      "quotes": [
+        "poor communication and lack of clarity"
+      ]
+    },
+    {
+      "name": "Waiting Times",
+      "count": 1,
+      "pct": 4.3,
+      "severity": "medium",
+      "quotes": [
+        "waiting times are 30-90 mins"
+      ]
+    }
+  ],
+  "summary": "Patients at LIPS Healthcare are most dissatisfied with unclear or miscellaneous issues (\"Other\"), making up 26% of complaints, followed by billing and staff attitude problems (17% each). Fewer complaints relate to booking, administration, or treatment quality, but these still contribute to overall dissatisfaction."
+}

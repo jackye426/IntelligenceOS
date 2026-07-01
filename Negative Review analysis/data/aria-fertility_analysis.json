@@ -1,0 +1,66 @@
+{
+  "clinic": "Aria Fertility",
+  "review_count": 13,
+  "categories": [
+    {
+      "name": "Treatment Quality",
+      "count": 5,
+      "pct": 38.5,
+      "severity": "medium",
+      "quotes": [
+        "systemic failures in care and ethics",
+        "directors are not present, have too many clients",
+        "initially pleasant interactions"
+      ]
+    },
+    {
+      "name": "Communication",
+      "count": 3,
+      "pct": 23.1,
+      "severity": "medium",
+      "quotes": [
+        "incredibly rude and patronising",
+        "sending results without context",
+        "Poor Communication"
+      ]
+    },
+    {
+      "name": "Staff Attitude",
+      "count": 2,
+      "pct": 15.4,
+      "severity": "high",
+      "quotes": [
+        "unprofessional and disorganized",
+        "bad service"
+      ]
+    },
+    {
+      "name": "Billing & Invoicing",
+      "count": 1,
+      "pct": 7.7,
+      "severity": "medium",
+      "quotes": [
+        "received an invoice for £500 unexpectedly"
+      ]
+    },
+    {
+      "name": "Booking & Admin",
+      "count": 1,
+      "pct": 7.7,
+      "severity": "high",
+      "quotes": [
+        "didn't make it clear whether it was online or offline"
+      ]
+    },
+    {
+      "name": "Other",
+      "count": 1,
+      "pct": 7.7,
+      "severity": "low",
+      "quotes": [
+        "unable to find any record of your visit"
+      ]
+    }
+  ],
+  "summary": "Patients at Aria Fertility were most dissatisfied with treatment quality (38% of complaints) and communication (23%), making up over half of all negative feedback. Other concerns included staff attitude, billing, and administrative issues, but these were far less common."
+}

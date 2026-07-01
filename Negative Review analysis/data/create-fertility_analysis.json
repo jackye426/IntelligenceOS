@@ -1,0 +1,25 @@
+{
+  "clinic": "Create Fertility",
+  "review_count": 2,
+  "categories": [
+    {
+      "name": "Treatment Quality",
+      "count": 1,
+      "pct": 50.0,
+      "severity": "high",
+      "quotes": [
+        "neglectful, had oversights, inconsistent"
+      ]
+    },
+    {
+      "name": "Booking & Admin",
+      "count": 1,
+      "pct": 50.0,
+      "severity": "high",
+      "quotes": [
+        "decided to cancel our 3-cycle package"
+      ]
+    }
+  ],
+  "summary": "\"Patients at Create Fertility expressed dissatisfaction primarily with treatment quality and booking/admin processes, each accounting for half of the negative feedback. With only two complaints total, concerns were split evenly between these two areas.\""
+}

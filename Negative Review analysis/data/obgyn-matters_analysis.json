@@ -1,0 +1,25 @@
+{
+  "clinic": "ObGyn Matters",
+  "review_count": 2,
+  "categories": [
+    {
+      "name": "Staff Attitude",
+      "count": 1,
+      "pct": 50.0,
+      "severity": "high",
+      "quotes": [
+        "very rude staff"
+      ]
+    },
+    {
+      "name": "Other",
+      "count": 1,
+      "pct": 50.0,
+      "severity": "high",
+      "quotes": [
+        "Not a good service"
+      ]
+    }
+  ],
+  "summary": "Patients at ObGyn Matters are dissatisfied, with half complaining about staff attitude and the other half citing other issues. Only two negative reviews were found, but both highlight areas needing improvement."
+}

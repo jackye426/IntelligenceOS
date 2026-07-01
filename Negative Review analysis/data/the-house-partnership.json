@@ -1,0 +1,11 @@
+{
+  "clinic": "The House Partnership",
+  "reviews": [
+    {
+      "rating": 1,
+      "date": "a day ago",
+      "text": "The psychologist I saw Amy had no plan or perspective. I think she was very inexperienced. I wouldn’t go back here"
+    }
+  ],
+  "total_negative": 1
+}

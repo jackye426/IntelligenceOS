@@ -1,0 +1,113 @@
+{
+  "clinic": "The Lister Fertility Clinic",
+  "review_count": 47,
+  "categories": [
+    {
+      "name": "Treatment Quality",
+      "count": 18,
+      "pct": 38.3,
+      "severity": "high",
+      "quotes": [
+        "repeatedly let down",
+        "experience so far has been quite disappointing",
+        "complete and utter lack of professionalism"
+      ]
+    },
+    {
+      "name": "Doctor / Consultant",
+      "count": 6,
+      "pct": 12.8,
+      "severity": "high",
+      "quotes": [
+        "see a different doctor at each appointment",
+        "see at every appointment a different doctor or nurse",
+        "would never go back here"
+      ]
+    },
+    {
+      "name": "Billing & Invoicing",
+      "count": 5,
+      "pct": 10.6,
+      "severity": "high",
+      "quotes": [
+        "not once got told about having to pay £250",
+        "they assured me all was fine",
+        "slow and unresponsive when money needs returning"
+      ]
+    },
+    {
+      "name": "Other",
+      "count": 4,
+      "pct": 8.5,
+      "severity": "low",
+      "quotes": [
+        "Colossal data breach",
+        "thank you for leaving a rating",
+        "thank you for leaving a rating"
+      ]
+    },
+    {
+      "name": "Waiting Times",
+      "count": 3,
+      "pct": 6.4,
+      "severity": "high",
+      "quotes": [
+        "waiting 1-2 hours for each appointment",
+        "waiting times appalling",
+        "3 hours to see a nurse"
+      ]
+    },
+    {
+      "name": "Communication",
+      "count": 3,
+      "pct": 6.4,
+      "severity": "high",
+      "quotes": [
+        "doctor was hard to communicate with",
+        "just don't answer the phone",
+        "Poor administration, poor communication"
+      ]
+    },
+    {
+      "name": "Staff Attitude",
+      "count": 3,
+      "pct": 6.4,
+      "severity": "high",
+      "quotes": [
+        "rude and unproffesional manner",
+        "treated very poorly by the phlebotomist",
+        "receptionist is quite rude and unprofessional"
+      ]
+    },
+    {
+      "name": "Booking & Admin",
+      "count": 3,
+      "pct": 6.4,
+      "severity": "high",
+      "quotes": [
+        "required to make a paypal payment before anyone contacted me",
+        "Cancelled appointments at last minute",
+        "can't book appointments on the phone"
+      ]
+    },
+    {
+      "name": "Value for Money",
+      "count": 1,
+      "pct": 2.1,
+      "severity": "high",
+      "quotes": [
+        "service is awful and there is no attention to detail"
+      ]
+    },
+    {
+      "name": "Facilities",
+      "count": 1,
+      "pct": 2.1,
+      "severity": "medium",
+      "quotes": [
+        "rooms are generous"
+      ]
+    }
+  ],
+  "summary": "Patients at The Lister Fertility Clinic were most dissatisfied with treatment quality (38% of complaints) and interactions with doctors (13%). Other concerns included billing (11%), miscellaneous issues (9%), and long waiting times (6%)."
+}

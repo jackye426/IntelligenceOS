@@ -1,0 +1,88 @@
+{
+  "clinic": "Chiswick Outpatients",
+  "review_count": 25,
+  "categories": [
+    {
+      "name": "Booking & Admin",
+      "count": 7,
+      "pct": 28.0,
+      "severity": "high",
+      "quotes": [
+        "very poor handling of appointment",
+        "waste of time due to their extremely poor administration team",
+        "waiting for a call back since Thurs"
+      ]
+    },
+    {
+      "name": "Waiting Times",
+      "count": 6,
+      "pct": 24.0,
+      "severity": "high",
+      "quotes": [
+        "took me a month to get an appointment",
+        "30 mins on hold",
+        "got seen quicker in an NHS hospital"
+      ]
+    },
+    {
+      "name": "Communication",
+      "count": 4,
+      "pct": 16.0,
+      "severity": "high",
+      "quotes": [
+        "no one ever picks up the phone",
+        "can't get through to anyone",
+        "no one answers the phone"
+      ]
+    },
+    {
+      "name": "Staff Attitude",
+      "count": 2,
+      "pct": 8.0,
+      "severity": "high",
+      "quotes": [
+        "quite a challenge to get some information from the nurses",
+        "reception are quite rude"
+      ]
+    },
+    {
+      "name": "Treatment Quality",
+      "count": 2,
+      "pct": 8.0,
+      "severity": "high",
+      "quotes": [
+        "nurse did not follow correct procedures",
+        "only got one page report letter full of medical terms"
+      ]
+    },
+    {
+      "name": "Value for Money",
+      "count": 2,
+      "pct": 8.0,
+      "severity": "high",
+      "quotes": [
+        "£850 for a wrist MRI",
+        "the pricing is outrageous"
+      ]
+    },
+    {
+      "name": "Billing & Invoicing",
+      "count": 1,
+      "pct": 4.0,
+      "severity": "high",
+      "quotes": [
+        "fast to take your money, slow to respond"
+      ]
+    },
+    {
+      "name": "Facilities",
+      "count": 1,
+      "pct": 4.0,
+      "severity": "high",
+      "quotes": [
+        "lost my chest X-ray"
+      ]
+    }
+  ],
+  "summary": "\"Patients at Chiswick Outpatients were most dissatisfied with booking and admin issues (28%) and long waiting times (24%). Other complaints included poor communication (16%), staff attitude (8%), and treatment quality (8%).\""
+}

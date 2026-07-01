@@ -1,0 +1,111 @@
+{
+  "id": "7635716747869424918",
+  "formats": [
+    {
+      "format_id": "audio",
+      "url": "https://sf77-ies-music-sg.tiktokcdn.com/obj/tos-alisg-ve-2774/ocX7EuRngmhZCQzbpdYU1sFnt7BfQzfOBJTmDk",
+      "ext": "m4a",
+      "acodec": "aac",
+      "vcodec": "none",
+      "protocol": "https",
+      "audio_ext": "m4a",
+      "video_ext": "none",
+      "vbr": 0,
+      "abr": null,
+      "tbr": null,
+      "resolution": "audio only",
+      "aspect_ratio": null,
+      "filesize_approx": null,
+      "http_headers": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-us,en;q=0.5",
+        "Sec-Fetch-Mode": "navigate",
+        "Referer": "https://www.tiktok.com/@docmap/video/7635716747869424918"
+      },
+      "format": "audio - audio only"
+    }
+  ],
+  "subtitles": {},
+  "http_headers": {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "en-us,en;q=0.5",
+    "Sec-Fetch-Mode": "navigate",
+    "Referer": "https://www.tiktok.com/@docmap/video/7635716747869424918"
+  },
+  "channel": "docmap",
+  "channel_id": "MS4wLjABAAAAFJURMLSR0Pg7ewlOr04kHpZUsz75ua2wQVK37080oHzNn_-Oy_nrVhtTz2GuyTZg",
+  "uploader": "docmap",
+  "uploader_id": "7566624635910554626",
+  "channel_url": "https://www.tiktok.com/@MS4wLjABAAAAFJURMLSR0Pg7ewlOr04kHpZUsz75ua2wQVK37080oHzNn_-Oy_nrVhtTz2GuyTZg",
+  "uploader_url": "https://www.tiktok.com/@docmap",
+  "track": "Sands of Time",
+  "album": "Ticking Time",
+  "artists": [
+    "Sir Douglas Martin"
+  ],
+  "duration": 39,
+  "title": "8 minutes. That's sometimes all you get with your GP. If you think yo...",
+  "description": "8 minutes. That's sometimes all you get with your GP. If you think you have endometriosis, that's nowhere near enough time to explain everything you're feeling. If you need help to get ready for your appointment, send us a WhatsApp message and we'll help you organise your notes, symptoms and questions so you walk in prepared and nothing gets left out. Your data stays in WhatsApp, nothing is stored or shared. Ever.",
+  "timestamp": 1777828852,
+  "view_count": 1296,
+  "like_count": 30,
+  "repost_count": 4,
+  "comment_count": 0,
+  "save_count": 8,
+  "thumbnails": [
+    {
+      "id": "cover",
+      "url": "https://p16-common-sign.tiktokcdn-eu.com/tos-no1a-i-photomode-no/f32af51738184c86b95a6cc89a1475e2~tplv-photomode-image.jpeg?dr=10375&x-expires=1780826400&x-signature=ic9oBrMCSaCUYwvOYDkU5YnTjLI%3D&t=4d5b0474&ps=13740610&shp=81f88b70&shcp=9b759fb9&idc=no1a&ftpl=1",
+      "preference": -1
+    },
+    {
+      "id": "originCover",
+      "url": "https://p16-common-sign.tiktokcdn-eu.com/tos-no1a-i-photomode-no/f32af51738184c86b95a6cc89a1475e2~tplv-photomode-image.jpeg?dr=10375&x-expires=1780826400&x-signature=ic9oBrMCSaCUYwvOYDkU5YnTjLI%3D&t=4d5b0474&ps=13740610&shp=81f88b70&shcp=9b759fb9&idc=no1a&ftpl=1",
+      "preference": -1
+    }
+  ],
+  "webpage_url": "https://www.tiktok.com/@docmap/video/7635716747869424918",
+  "original_url": "https://www.tiktok.com/@docmap/video/7635716747869424918",
+  "webpage_url_basename": "7635716747869424918",
+  "webpage_url_domain": "tiktok.com",
+  "extractor": "TikTok",
+  "extractor_key": "TikTok",
+  "playlist": null,
+  "playlist_index": null,
+  "thumbnail": "https://p16-common-sign.tiktokcdn-eu.com/tos-no1a-i-photomode-no/f32af51738184c86b95a6cc89a1475e2~tplv-photomode-image.jpeg?dr=10375&x-expires=1780826400&x-signature=ic9oBrMCSaCUYwvOYDkU5YnTjLI%3D&t=4d5b0474&ps=13740610&shp=81f88b70&shcp=9b759fb9&idc=no1a&ftpl=1",
+  "display_id": "7635716747869424918",
+  "fulltitle": "8 minutes. That's sometimes all you get with your GP. If you think yo...",
+  "duration_string": "39",
+  "upload_date": "20260503",
+  "release_year": null,
+  "artist": "Sir Douglas Martin",
+  "requested_subtitles": null,
+  "_has_drm": null,
+  "epoch": 1780655994,
+  "format_id": "audio",
+  "url": "https://sf77-ies-music-sg.tiktokcdn.com/obj/tos-alisg-ve-2774/ocX7EuRngmhZCQzbpdYU1sFnt7BfQzfOBJTmDk",
+  "ext": "m4a",
+  "acodec": "aac",
+  "vcodec": "none",
+  "protocol": "https",
+  "audio_ext": "m4a",
+  "video_ext": "none",
+  "vbr": 0,
+  "abr": null,
+  "tbr": null,
+  "resolution": "audio only",
+  "aspect_ratio": null,
+  "filesize_approx": null,
+  "format": "audio - audio only",
+  "_filename": "C:\\Users\\yulon\\Desktop\\Current Projects\\Social media analysis\\tiktok_analysis\\data\\yt_meta\\7635716747869424918",
+  "filename": "C:\\Users\\yulon\\Desktop\\Current Projects\\Social media analysis\\tiktok_analysis\\data\\yt_meta\\7635716747869424918",
+  "_type": "video",
+  "_version": {
+    "version": "2026.03.17",
+    "current_git_head": null,
+    "release_git_head": "04d6974f502bbdfaed72c624344f262e30ad9708",
+    "repository": "yt-dlp/yt-dlp"
+  }
+}

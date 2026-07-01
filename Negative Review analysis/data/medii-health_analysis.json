@@ -1,0 +1,25 @@
+{
+  "clinic": "MEDii Health",
+  "review_count": 2,
+  "categories": [
+    {
+      "name": "Doctor / Consultant",
+      "count": 1,
+      "pct": 50.0,
+      "severity": "high",
+      "quotes": [
+        "did not display a clear name badge"
+      ]
+    },
+    {
+      "name": "Treatment Quality",
+      "count": 1,
+      "pct": 50.0,
+      "severity": "medium",
+      "quotes": [
+        "Got the reference range on my blood test results wrong"
+      ]
+    }
+  ],
+  "summary": "Patients at MEDii Health are dissatisfied, with half complaining about doctors/consultants and half about treatment quality, based on two negative reviews. The small sample size suggests limited but notable concerns."
+}

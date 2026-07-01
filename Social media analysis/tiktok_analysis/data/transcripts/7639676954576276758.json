@@ -1,0 +1,20 @@
+{
+  "video_id": "7639676954576276758",
+  "source_media": "7639676954576276758.mp4",
+  "whisper_model": "tiny",
+  "language": "en",
+  "duration_after_vad": 28.4923125,
+  "full_text": "When are you asking for this just before are we sending life beforehand? I was, as I said earlier, I would have this as part of your discussion that you have when you're in your appointment with your medical professional. I think it is part of the process. Consensus is very, very important to us as clinicians and that starts on the minute we start talking to you about the surgical procedure, okay? So it's reasonable to discuss at that point and it can be discussed again at any other time.",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 12.0,
+      "text": "When are you asking for this just before are we sending life beforehand? I was, as I said earlier, I would have this as part of your discussion that you have when you're in your appointment with your medical professional."
+    },
+    {
+      "start": 12.0,
+      "end": 28.0,
+      "text": "I think it is part of the process. Consensus is very, very important to us as clinicians and that starts on the minute we start talking to you about the surgical procedure, okay? So it's reasonable to discuss at that point and it can be discussed again at any other time."
+    }
+  ]
+}

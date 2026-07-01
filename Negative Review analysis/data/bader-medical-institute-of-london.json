@@ -1,0 +1,16 @@
+{
+  "clinic": "Bader Medical Institute of London",
+  "reviews": [
+    {
+      "rating": 3,
+      "date": "a year ago",
+      "text": "Had a good experience with Dr Bader and his team they were all very nice and looked after me very well before and after the surgery. Only reason I didn’t give 5 stars is because I gave my bracelet to one of the members of staff to keep in the safe as no jewellery is allowed on while the surgery is being performed. After my surgery I was sent home without my bracelet and when I emailed the office asking for my item back they were quite unhelpful saying there was no bracelet and there was nothing they could do about it. This was disappointing as it was an expensive piece of jewellery and I had spent a lot of money on the surgery. Apart from that I’m happy with the results and think Dr Bader did a great job."
+    },
+    {
+      "rating": 3,
+      "date": "a year ago",
+      "text": "I bought 3 laser sessions, and during the last session the doctor asked me to come back and he would do the 3. I told him it was the last one and he said I could schedule more, in front of the lady who supervises the appointments, that is, with a witness. I went on a trip, and when I got back I contacted the clinic to explain and they told me I was lying. It was absurd. This was a mistake that should not happen."
+    }
+  ],
+  "total_negative": 2
+}

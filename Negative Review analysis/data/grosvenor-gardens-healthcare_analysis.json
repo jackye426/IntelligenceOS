@@ -1,0 +1,43 @@
+{
+  "clinic": "Grosvenor Gardens Healthcare",
+  "review_count": 4,
+  "categories": [
+    {
+      "name": "Other",
+      "count": 1,
+      "pct": 25.0,
+      "severity": "high",
+      "quotes": [
+        "Had an awful experience"
+      ]
+    },
+    {
+      "name": "Value for Money",
+      "count": 1,
+      "pct": 25.0,
+      "severity": "medium",
+      "quotes": [
+        "pay for a NIPT exam"
+      ]
+    },
+    {
+      "name": "Doctor / Consultant",
+      "count": 1,
+      "pct": 25.0,
+      "severity": "high",
+      "quotes": [
+        "delivered bad news in a blunt"
+      ]
+    },
+    {
+      "name": "Communication",
+      "count": 1,
+      "pct": 25.0,
+      "severity": "high",
+      "quotes": [
+        "I begged her to talk on the phone"
+      ]
+    }
+  ],
+  "summary": "Patients at Grosvenor Gardens Healthcare expressed equal dissatisfaction across four areas: value for money, doctor/consultant quality, communication, and other unspecified issues, with each category making up 25% of the four total complaints. No single issue dominated the negative feedback."
+}

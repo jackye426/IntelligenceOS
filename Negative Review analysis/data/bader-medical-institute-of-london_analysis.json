@@ -1,0 +1,25 @@
+{
+  "clinic": "Bader Medical Institute of London",
+  "review_count": 2,
+  "categories": [
+    {
+      "name": "Staff Attitude",
+      "count": 1,
+      "pct": 50.0,
+      "severity": "high",
+      "quotes": [
+        "they were quite unhelpful saying there was no bracelet"
+      ]
+    },
+    {
+      "name": "Treatment Quality",
+      "count": 1,
+      "pct": 50.0,
+      "severity": "high",
+      "quotes": [
+        "they told me I was lying"
+      ]
+    }
+  ],
+  "summary": "Patients at Bader Medical Institute of London are dissatisfied, with complaints evenly split between poor staff attitude and low treatment quality. Only two negative reviews were recorded, each highlighting one of these issues."
+}

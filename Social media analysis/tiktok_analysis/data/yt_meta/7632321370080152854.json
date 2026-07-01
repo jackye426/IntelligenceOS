@@ -1,0 +1,111 @@
+{
+  "id": "7632321370080152854",
+  "formats": [
+    {
+      "format_id": "audio",
+      "url": "https://sf19-checkout.tiktokcdn.com/obj/tos-alisg-ve-2774/okCJDfrGaE2gYRwQCOTAFCZnQfzeFIUmcDByUB",
+      "ext": "m4a",
+      "acodec": "aac",
+      "vcodec": "none",
+      "protocol": "https",
+      "audio_ext": "m4a",
+      "video_ext": "none",
+      "vbr": 0,
+      "abr": null,
+      "tbr": null,
+      "resolution": "audio only",
+      "aspect_ratio": null,
+      "filesize_approx": null,
+      "http_headers": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-us,en;q=0.5",
+        "Sec-Fetch-Mode": "navigate",
+        "Referer": "https://www.tiktok.com/@docmap/video/7632321370080152854"
+      },
+      "format": "audio - audio only"
+    }
+  ],
+  "subtitles": {},
+  "http_headers": {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "en-us,en;q=0.5",
+    "Sec-Fetch-Mode": "navigate",
+    "Referer": "https://www.tiktok.com/@docmap/video/7632321370080152854"
+  },
+  "channel": "docmap",
+  "channel_id": "MS4wLjABAAAAFJURMLSR0Pg7ewlOr04kHpZUsz75ua2wQVK37080oHzNn_-Oy_nrVhtTz2GuyTZg",
+  "uploader": "docmap",
+  "uploader_id": "7566624635910554626",
+  "channel_url": "https://www.tiktok.com/@MS4wLjABAAAAFJURMLSR0Pg7ewlOr04kHpZUsz75ua2wQVK37080oHzNn_-Oy_nrVhtTz2GuyTZg",
+  "uploader_url": "https://www.tiktok.com/@docmap",
+  "track": "Self Aware",
+  "album": "Self Aware",
+  "artists": [
+    "Temper City"
+  ],
+  "duration": 29,
+  "title": "You have approximately 8 minutes to tell your GP what's wrong, but ho...",
+  "description": "You have approximately 8 minutes to tell your GP what's wrong, but how do you get it right? None of us enjoy going to the doctor, and the time pressure makes things worse.  You have one chance to explain your problem properly, otherwise you risk being dismissed. So what makes the difference?  Details. Make notes about your symptoms and be as specific as you can. If you're not sure where to start, we can help. We specialise in supporting patients with endometriosis, so if you're struggling to put together clear notes before your next appointment, just drop us a WhatsApp message. Link in bio.",
+  "timestamp": 1777038303,
+  "view_count": 5682,
+  "like_count": 116,
+  "repost_count": 6,
+  "comment_count": 0,
+  "save_count": 67,
+  "thumbnails": [
+    {
+      "id": "cover",
+      "url": "https://p16-common-sign.tiktokcdn-eu.com/tos-no1a-i-photomode-no/5169b3475cb3418883a8c133ddd8d9dc~tplv-photomode-image.jpeg?dr=10375&x-expires=1780826400&x-signature=2fYEcYjYyi8NRFG7gowb%2FI%2BgWzo%3D&t=4d5b0474&ps=13740610&shp=81f88b70&shcp=9b759fb9&idc=no1a&ftpl=1",
+      "preference": -1
+    },
+    {
+      "id": "originCover",
+      "url": "https://p16-common-sign.tiktokcdn-eu.com/tos-no1a-i-photomode-no/5169b3475cb3418883a8c133ddd8d9dc~tplv-photomode-image.jpeg?dr=10375&x-expires=1780826400&x-signature=2fYEcYjYyi8NRFG7gowb%2FI%2BgWzo%3D&t=4d5b0474&ps=13740610&shp=81f88b70&shcp=9b759fb9&idc=no1a&ftpl=1",
+      "preference": -1
+    }
+  ],
+  "webpage_url": "https://www.tiktok.com/@docmap/video/7632321370080152854",
+  "original_url": "https://www.tiktok.com/@docmap/video/7632321370080152854",
+  "webpage_url_basename": "7632321370080152854",
+  "webpage_url_domain": "tiktok.com",
+  "extractor": "TikTok",
+  "extractor_key": "TikTok",
+  "playlist": null,
+  "playlist_index": null,
+  "thumbnail": "https://p16-common-sign.tiktokcdn-eu.com/tos-no1a-i-photomode-no/5169b3475cb3418883a8c133ddd8d9dc~tplv-photomode-image.jpeg?dr=10375&x-expires=1780826400&x-signature=2fYEcYjYyi8NRFG7gowb%2FI%2BgWzo%3D&t=4d5b0474&ps=13740610&shp=81f88b70&shcp=9b759fb9&idc=no1a&ftpl=1",
+  "display_id": "7632321370080152854",
+  "fulltitle": "You have approximately 8 minutes to tell your GP what's wrong, but ho...",
+  "duration_string": "29",
+  "upload_date": "20260424",
+  "release_year": null,
+  "artist": "Temper City",
+  "requested_subtitles": null,
+  "_has_drm": null,
+  "epoch": 1780656307,
+  "format_id": "audio",
+  "url": "https://sf19-checkout.tiktokcdn.com/obj/tos-alisg-ve-2774/okCJDfrGaE2gYRwQCOTAFCZnQfzeFIUmcDByUB",
+  "ext": "m4a",
+  "acodec": "aac",
+  "vcodec": "none",
+  "protocol": "https",
+  "audio_ext": "m4a",
+  "video_ext": "none",
+  "vbr": 0,
+  "abr": null,
+  "tbr": null,
+  "resolution": "audio only",
+  "aspect_ratio": null,
+  "filesize_approx": null,
+  "format": "audio - audio only",
+  "_filename": "C:\\Users\\yulon\\Desktop\\Current Projects\\Social media analysis\\tiktok_analysis\\data\\yt_meta\\7632321370080152854",
+  "filename": "C:\\Users\\yulon\\Desktop\\Current Projects\\Social media analysis\\tiktok_analysis\\data\\yt_meta\\7632321370080152854",
+  "_type": "video",
+  "_version": {
+    "version": "2026.03.17",
+    "current_git_head": null,
+    "release_git_head": "04d6974f502bbdfaed72c624344f262e30ad9708",
+    "repository": "yt-dlp/yt-dlp"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "video_id": "7650429101584469270",
+  "source_media": "7650429101584469270.mp4",
+  "whisper_model": "tiny",
+  "language": "en",
+  "duration_after_vad": 51.3871875,
+  "full_text": "This is purely diagnostic. I would suggest that everybody should give photos and should give a detailed analysis of what they have observed during the procedure to the patient to help them understand whether or not it was they found nothing abnormal. You still need photos to show it. I think the photos, as I said earlier, are a crucial part of the care package when you do not have a specific surgery. Okay, because it gives you something to relate to. And some people won't have it though when they have pain, but they won't have endometreuses or maybe we're operating on you a bit too young and we still can see it. Okay, so I would ask for a second opinion if that was a case, because you'd like to pure diagnose it. And if it was 30 minutes for the whole procedure, it was very quick.",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 10.28,
+      "text": "This is purely diagnostic. I would suggest that everybody should give photos and"
+    },
+    {
+      "start": 10.28,
+      "end": 14.6,
+      "text": "should give a detailed analysis of what they have observed during the procedure to the"
+    },
+    {
+      "start": 14.6,
+      "end": 20.08,
+      "text": "patient to help them understand whether or not it was they found nothing abnormal."
+    },
+    {
+      "start": 20.08,
+      "end": 24.4,
+      "text": "You still need photos to show it. I think the photos, as I said earlier, are a crucial"
+    },
+    {
+      "start": 24.4,
+      "end": 28.68,
+      "text": "part of the care package when you do not have a specific surgery. Okay, because it gives"
+    },
+    {
+      "start": 28.68,
+      "end": 33.16,
+      "text": "you something to relate to. And some people won't have it though when they have"
+    },
+    {
+      "start": 33.16,
+      "end": 37.36,
+      "text": "pain, but they won't have endometreuses or maybe we're operating on you a bit too"
+    },
+    {
+      "start": 37.36,
+      "end": 42.96,
+      "text": "young and we still can see it. Okay, so I would ask for a second opinion if that was"
+    },
+    {
+      "start": 42.96,
+      "end": 46.56,
+      "text": "a case, because you'd like to pure diagnose it. And if it was 30 minutes for the whole"
+    },
+    {
+      "start": 46.56,
+      "end": 50.72,
+      "text": "procedure, it was very quick."
+    }
+  ]
+}

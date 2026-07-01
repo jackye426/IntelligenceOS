@@ -1,0 +1,102 @@
+{
+  "clinic": "Create Fertility - St. Paul's",
+  "review_count": 87,
+  "categories": [
+    {
+      "name": "Other",
+      "count": 11,
+      "pct": 12.6,
+      "severity": "low",
+      "quotes": [
+        "Very disappointing",
+        "overall experience was disappointing",
+        "unable to identify you as a patient"
+      ]
+    },
+    {
+      "name": "Treatment Quality",
+      "count": 6,
+      "pct": 6.9,
+      "severity": "high",
+      "quotes": [
+        "never had any advice from them on that point",
+        "second unsuccessful round of IVF",
+        "first experience doing a round of IVF"
+      ]
+    },
+    {
+      "name": "Value for Money",
+      "count": 4,
+      "pct": 4.6,
+      "severity": "high",
+      "quotes": [
+        "full of fraudsters beware",
+        "Don't wast your money here",
+        "you can’t find anyone responsible"
+      ]
+    },
+    {
+      "name": "Communication",
+      "count": 4,
+      "pct": 4.6,
+      "severity": "high",
+      "quotes": [
+        "Very poor and unprofessional communication",
+        "poor communication, a complete lack of coordination",
+        "Terrible communication thoughout our entire IVF journey"
+      ]
+    },
+    {
+      "name": "Doctor / Consultant",
+      "count": 4,
+      "pct": 4.6,
+      "severity": "low",
+      "quotes": [
+        "consultants seems do not be receptive or well informed",
+        "coordinator, Isobel, has been outstanding",
+        "nurse in the Hertfordshire clinic was very kind"
+      ]
+    },
+    {
+      "name": "Booking & Admin",
+      "count": 3,
+      "pct": 3.4,
+      "severity": "high",
+      "quotes": [
+        "sent me a full patient records of someone else",
+        "your patient coordinator won’t email you back",
+        "Admin and support were painful at every step"
+      ]
+    },
+    {
+      "name": "Billing & Invoicing",
+      "count": 2,
+      "pct": 2.3,
+      "severity": "high",
+      "quotes": [
+        "ended up paying nearly double due to constant extra charges",
+        "disappointment with the annual storage payment process"
+      ]
+    },
+    {
+      "name": "Staff Attitude",
+      "count": 2,
+      "pct": 2.3,
+      "severity": "high",
+      "quotes": [
+        "seen by different people each time",
+        "Rude, unkind and unprofessional"
+      ]
+    },
+    {
+      "name": "Waiting Times",
+      "count": 1,
+      "pct": 1.1,
+      "severity": "high",
+      "quotes": [
+        "Long unnecessary waiting times"
+      ]
+    }
+  ],
+  "summary": "Patients at Create Fertility - St. Paul's were most dissatisfied with general issues (\"Other\" complaints, 11 reviews) and treatment quality (6 reviews), though concerns about value, communication, and doctors were also noted. Out of 87 negative reviews, these top five categories accounted for 35% of complaints."
+}

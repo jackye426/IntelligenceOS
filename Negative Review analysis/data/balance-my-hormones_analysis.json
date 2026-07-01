@@ -1,0 +1,43 @@
+{
+  "clinic": "Balance My Hormones",
+  "review_count": 4,
+  "categories": [
+    {
+      "name": "Billing & Invoicing",
+      "count": 1,
+      "pct": 25.0,
+      "severity": "high",
+      "quotes": [
+        "errors all the time with invoices"
+      ]
+    },
+    {
+      "name": "Staff Attitude",
+      "count": 1,
+      "pct": 25.0,
+      "severity": "high",
+      "quotes": [
+        "edit your rude reply out"
+      ]
+    },
+    {
+      "name": "Communication",
+      "count": 1,
+      "pct": 25.0,
+      "severity": "medium",
+      "quotes": [
+        "not answered my emails in over a week"
+      ]
+    },
+    {
+      "name": "Doctor / Consultant",
+      "count": 1,
+      "pct": 25.0,
+      "severity": "low",
+      "quotes": [
+        "excellent doctor"
+      ]
+    }
+  ],
+  "summary": "Patients at Balance My Hormones express dissatisfaction equally across billing, staff attitude, communication, and doctor quality, with each issue making up 25% of the 4 total complaints. No single problem stands out as the main concern."
+}

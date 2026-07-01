@@ -1,0 +1,62 @@
+{
+  "clinic": "London Gynaecology - Harley Street",
+  "review_count": 7,
+  "categories": [
+    {
+      "name": "Treatment Quality",
+      "count": 2,
+      "pct": 28.6,
+      "severity": "high",
+      "quotes": [
+        "procedure under the NHS was more thorough",
+        "medically and administratively incompetent"
+      ]
+    },
+    {
+      "name": "Waiting Times",
+      "count": 1,
+      "pct": 14.3,
+      "severity": "high",
+      "quotes": [
+        "appalled by my experience"
+      ]
+    },
+    {
+      "name": "Staff Attitude",
+      "count": 1,
+      "pct": 14.3,
+      "severity": "low",
+      "quotes": [
+        "radiographers and assistants were very friendly"
+      ]
+    },
+    {
+      "name": "Doctor / Consultant",
+      "count": 1,
+      "pct": 14.3,
+      "severity": "medium",
+      "quotes": [
+        "showed a little bit more empathy"
+      ]
+    },
+    {
+      "name": "Communication",
+      "count": 1,
+      "pct": 14.3,
+      "severity": "high",
+      "quotes": [
+        "rushed the entire thing"
+      ]
+    },
+    {
+      "name": "Value for Money",
+      "count": 1,
+      "pct": 14.3,
+      "severity": "medium",
+      "quotes": [
+        "did not feel like I got value"
+      ]
+    }
+  ],
+  "summary": "Patients at London Gynaecology - Harley Street are most dissatisfied with treatment quality, which accounts for nearly a third of complaints, while other issues like waiting times, staff attitude, and communication each make up a smaller portion of concerns. Overall, there are relatively few negative reviews, but treatment quality stands out as the main problem."
+}

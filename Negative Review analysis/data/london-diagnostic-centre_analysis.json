@@ -1,0 +1,17 @@
+{
+  "clinic": "London Diagnostic Centre",
+  "review_count": 2,
+  "categories": [
+    {
+      "name": "Staff Attitude",
+      "count": 2,
+      "pct": 100.0,
+      "severity": "high",
+      "quotes": [
+        "Appalling Experience – Utterly Unacceptable",
+        "didn't want to know"
+      ]
+    }
+  ],
+  "summary": "Patients at London Diagnostic Centre are unhappy, with all complaints focused on poor staff attitude. There were only two negative reviews total, both citing this issue."
+}

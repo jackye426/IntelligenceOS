@@ -1,0 +1,111 @@
+{
+  "id": "7636091017875197207",
+  "formats": [
+    {
+      "format_id": "audio",
+      "url": "https://sf77-ies-music-sg.tiktokcdn.com/obj/tos-alisg-ve-2774/oAowIJ5tCDE5TgmDsgcBfFq4KBQimMEfZYCIdQ",
+      "ext": "m4a",
+      "acodec": "aac",
+      "vcodec": "none",
+      "protocol": "https",
+      "audio_ext": "m4a",
+      "video_ext": "none",
+      "vbr": 0,
+      "abr": null,
+      "tbr": null,
+      "resolution": "audio only",
+      "aspect_ratio": null,
+      "filesize_approx": null,
+      "http_headers": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-us,en;q=0.5",
+        "Sec-Fetch-Mode": "navigate",
+        "Referer": "https://www.tiktok.com/@docmap/video/7636091017875197207"
+      },
+      "format": "audio - audio only"
+    }
+  ],
+  "subtitles": {},
+  "http_headers": {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "en-us,en;q=0.5",
+    "Sec-Fetch-Mode": "navigate",
+    "Referer": "https://www.tiktok.com/@docmap/video/7636091017875197207"
+  },
+  "channel": "docmap",
+  "channel_id": "MS4wLjABAAAAFJURMLSR0Pg7ewlOr04kHpZUsz75ua2wQVK37080oHzNn_-Oy_nrVhtTz2GuyTZg",
+  "uploader": "docmap",
+  "uploader_id": "7566624635910554626",
+  "channel_url": "https://www.tiktok.com/@MS4wLjABAAAAFJURMLSR0Pg7ewlOr04kHpZUsz75ua2wQVK37080oHzNn_-Oy_nrVhtTz2GuyTZg",
+  "uploader_url": "https://www.tiktok.com/@docmap",
+  "track": "Our Love Was Beautiful - Instrumental Version",
+  "album": "In Winter",
+  "artists": [
+    "Straight White Teeth"
+  ],
+  "duration": 233,
+  "title": "This one is for everyone dealing with endo belly 💕 #endometriosis #en...",
+  "description": "This one is for everyone dealing with endo belly 💕 #endometriosis #endobelly ",
+  "timestamp": 1777915992,
+  "view_count": 7138,
+  "like_count": 127,
+  "repost_count": 8,
+  "comment_count": 0,
+  "save_count": 12,
+  "thumbnails": [
+    {
+      "id": "cover",
+      "url": "https://p16-common-sign.tiktokcdn-eu.com/tos-no1a-i-photomode-no/2f5f9899954c4bc382666d55fee24983~tplv-photomode-image.jpeg?dr=10375&x-expires=1780826400&x-signature=RxvNGiyN%2BBlJ8CWY%2BFI6dBOXZcM%3D&t=4d5b0474&ps=13740610&shp=81f88b70&shcp=9b759fb9&idc=no1a&ftpl=1",
+      "preference": -1
+    },
+    {
+      "id": "originCover",
+      "url": "https://p16-common-sign.tiktokcdn-eu.com/tos-no1a-i-photomode-no/2f5f9899954c4bc382666d55fee24983~tplv-photomode-image.jpeg?dr=10375&x-expires=1780826400&x-signature=RxvNGiyN%2BBlJ8CWY%2BFI6dBOXZcM%3D&t=4d5b0474&ps=13740610&shp=81f88b70&shcp=9b759fb9&idc=no1a&ftpl=1",
+      "preference": -1
+    }
+  ],
+  "webpage_url": "https://www.tiktok.com/@docmap/video/7636091017875197207",
+  "original_url": "https://www.tiktok.com/@docmap/video/7636091017875197207",
+  "webpage_url_basename": "7636091017875197207",
+  "webpage_url_domain": "tiktok.com",
+  "extractor": "TikTok",
+  "extractor_key": "TikTok",
+  "playlist": null,
+  "playlist_index": null,
+  "thumbnail": "https://p16-common-sign.tiktokcdn-eu.com/tos-no1a-i-photomode-no/2f5f9899954c4bc382666d55fee24983~tplv-photomode-image.jpeg?dr=10375&x-expires=1780826400&x-signature=RxvNGiyN%2BBlJ8CWY%2BFI6dBOXZcM%3D&t=4d5b0474&ps=13740610&shp=81f88b70&shcp=9b759fb9&idc=no1a&ftpl=1",
+  "display_id": "7636091017875197207",
+  "fulltitle": "This one is for everyone dealing with endo belly 💕 #endometriosis #en...",
+  "duration_string": "3:53",
+  "upload_date": "20260504",
+  "release_year": null,
+  "artist": "Straight White Teeth",
+  "requested_subtitles": null,
+  "_has_drm": null,
+  "epoch": 1780655940,
+  "format_id": "audio",
+  "url": "https://sf77-ies-music-sg.tiktokcdn.com/obj/tos-alisg-ve-2774/oAowIJ5tCDE5TgmDsgcBfFq4KBQimMEfZYCIdQ",
+  "ext": "m4a",
+  "acodec": "aac",
+  "vcodec": "none",
+  "protocol": "https",
+  "audio_ext": "m4a",
+  "video_ext": "none",
+  "vbr": 0,
+  "abr": null,
+  "tbr": null,
+  "resolution": "audio only",
+  "aspect_ratio": null,
+  "filesize_approx": null,
+  "format": "audio - audio only",
+  "_filename": "C:\\Users\\yulon\\Desktop\\Current Projects\\Social media analysis\\tiktok_analysis\\data\\yt_meta\\7636091017875197207",
+  "filename": "C:\\Users\\yulon\\Desktop\\Current Projects\\Social media analysis\\tiktok_analysis\\data\\yt_meta\\7636091017875197207",
+  "_type": "video",
+  "_version": {
+    "version": "2026.03.17",
+    "current_git_head": null,
+    "release_git_head": "04d6974f502bbdfaed72c624344f262e30ad9708",
+    "repository": "yt-dlp/yt-dlp"
+  }
+}

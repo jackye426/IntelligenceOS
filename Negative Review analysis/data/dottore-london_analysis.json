@@ -1,0 +1,99 @@
+{
+  "clinic": "Dottore London",
+  "review_count": 31,
+  "categories": [
+    {
+      "name": "Doctor / Consultant",
+      "count": 9,
+      "pct": 29.0,
+      "severity": "high",
+      "quotes": [
+        "completely uninterested/unengaged during my visit",
+        "report of my visit, there was some of fake information",
+        "appointment was rushed and the doctor didn’t seem professional"
+      ]
+    },
+    {
+      "name": "Value for Money",
+      "count": 6,
+      "pct": 19.4,
+      "severity": "high",
+      "quotes": [
+        "paid £300 for the first visit, got a treatment that didn’t work",
+        "paid £80 for a bioimpedance test, expecting comprehensive analysis",
+        "gynecological examination was literally nonexistent"
+      ]
+    },
+    {
+      "name": "Booking & Admin",
+      "count": 5,
+      "pct": 16.1,
+      "severity": "high",
+      "quotes": [
+        "gave me twice in a row the wrong prescription",
+        "receptionist was unhelpful",
+        "eight days after payment, shipment had still not been made"
+      ]
+    },
+    {
+      "name": "Other",
+      "count": 3,
+      "pct": 9.7,
+      "severity": "medium",
+      "quotes": [
+        "never set foot in there again",
+        "poor service",
+        "write a formal email"
+      ]
+    },
+    {
+      "name": "Staff Attitude",
+      "count": 2,
+      "pct": 6.5,
+      "severity": "high",
+      "quotes": [
+        "most annoyed, arrogant and not welcoming receptionists",
+        "little customer service attention"
+      ]
+    },
+    {
+      "name": "Communication",
+      "count": 2,
+      "pct": 6.5,
+      "severity": "high",
+      "quotes": [
+        "tried to contact the doctor via mail for guidance",
+        "difficult to get in touch with your doctor"
+      ]
+    },
+    {
+      "name": "Treatment Quality",
+      "count": 2,
+      "pct": 6.5,
+      "severity": "high",
+      "quotes": [
+        "created wounds that were too deep",
+        "whole thing lasted two minutes"
+      ]
+    },
+    {
+      "name": "Facilities",
+      "count": 1,
+      "pct": 3.2,
+      "severity": "low",
+      "quotes": [
+        "dietist with broken scale"
+      ]
+    },
+    {
+      "name": "Waiting Times",
+      "count": 1,
+      "pct": 3.2,
+      "severity": "high",
+      "quotes": [
+        "month of waiting and multiple calls"
+      ]
+    }
+  ],
+  "summary": "Patients at Dottore London were most dissatisfied with doctors/consultants (29% of complaints) and perceived poor value for money (19%). Other common issues included booking/admin problems (16%), miscellaneous concerns (10%), and staff attitude (6%)."
+}

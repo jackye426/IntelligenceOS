@@ -1,0 +1,22 @@
+[
+  {
+    "_comment": "PLACEHOLDER — replace with real API response from headful network capture",
+    "_instructions": "Run: python run_once.py --dump-network (headless=false) and copy the slot API response here",
+    "startTime": "2025-07-10T09:00:00+01:00",
+    "endTime": "2025-07-10T09:30:00+01:00",
+    "available": true,
+    "price": 250,
+    "consultantId": "PLACEHOLDER",
+    "locationId": "PLACEHOLDER",
+    "slotId": "PLACEHOLDER-001"
+  },
+  {
+    "startTime": "2025-07-10T10:00:00+01:00",
+    "endTime": "2025-07-10T10:30:00+01:00",
+    "available": true,
+    "price": 250,
+    "consultantId": "PLACEHOLDER",
+    "locationId": "PLACEHOLDER",
+    "slotId": "PLACEHOLDER-002"
+  }
+]

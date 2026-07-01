@@ -1,0 +1,52 @@
+{
+  "clinic": "Harley Street Fertility Clinic",
+  "review_count": 55,
+  "categories": [
+    {
+      "name": "Booking & Admin",
+      "count": 1,
+      "pct": 1.8,
+      "severity": "high",
+      "quotes": [
+        "double check appointments as I turned up once after booking"
+      ]
+    },
+    {
+      "name": "Staff Attitude",
+      "count": 1,
+      "pct": 1.8,
+      "severity": "low",
+      "quotes": [
+        "Staff friendly"
+      ]
+    },
+    {
+      "name": "Treatment Quality",
+      "count": 1,
+      "pct": 1.8,
+      "severity": "low",
+      "quotes": [
+        "this is great clinic"
+      ]
+    },
+    {
+      "name": "Facilities",
+      "count": 1,
+      "pct": 1.8,
+      "severity": "medium",
+      "quotes": [
+        "reception area was milling with people - zero privacy"
+      ]
+    },
+    {
+      "name": "Other",
+      "count": 1,
+      "pct": 1.8,
+      "severity": "low",
+      "quotes": [
+        "thank you for providing us with a review"
+      ]
+    }
+  ],
+  "summary": "\"Patients at Harley Street Fertility Clinic expressed dissatisfaction across multiple areas, including booking, staff attitude, treatment quality, and facilities, with 55 total negative reviews. However, each specific complaint category had only a small share (2%) of the total complaints.\""
+}
