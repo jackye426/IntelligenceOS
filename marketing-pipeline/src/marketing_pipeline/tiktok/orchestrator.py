@@ -27,6 +27,7 @@ from marketing_pipeline.tiktok.stages.extract_onscreen_hook import (
     extract_onscreen_hook,
     run_ocr_for_video,
 )
+from marketing_pipeline.tiktok.stages.fetch_catalog import fetch_catalog
 from marketing_pipeline.tiktok.stages.import_playbooks import import_playbooks
 from marketing_pipeline.tiktok.stages.parse_master_transcripts import parse_master_transcripts
 from marketing_pipeline.tiktok.stages.rebuild_comment_analysis import rebuild_comment_analysis
@@ -207,7 +208,8 @@ def run_refresh(
     skip_comments: bool = False,
     download_for_ocr: bool = True,
 ) -> dict:
-    run_legacy_refresh(since=since, skip_transcribe=skip_transcribe)
+    catalog_result = fetch_catalog(since=since)
+    run_legacy_refresh(since=since, skip_transcribe=skip_transcribe, skip_catalog=True)
     copied = copy_legacy_artifacts()
 
     ocr_counts = {"skipped": True}
@@ -219,6 +221,7 @@ def run_refresh(
         comment_result = run_refresh_comments()
 
     result = run_export()
+    result["catalog"] = catalog_result
     result["copied"] = copied
     result["ocr"] = ocr_counts
     result["comments_pipeline"] = comment_result

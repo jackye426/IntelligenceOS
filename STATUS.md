@@ -1,89 +1,47 @@
 # DocMap Intelligence OS Status
 
-Last updated: 2026-07-03 (milestone 2 complete)
+Last updated: 2026-07-03 (master plan execution — phase 1)
 
-## What This Project Is
+**Master plan:** [`docs/MASTER_PLAN.md`](docs/MASTER_PLAN.md) | **Deploy:** [`docs/DEPLOY.md`](docs/DEPLOY.md)
 
-DocMap Intelligence OS is an internal data and agent workspace for clinic/practitioner outreach, marketing intelligence, and operational search. The main app is a Next.js + Supabase product with account, research, pipeline, outreach, and chat/ask surfaces. Around it are specialist agent/data areas for doctors, clinics, TikTok/social analysis, carousel generation, appointment monitoring, and MCP access.
+**GitHub:** [jackye426/IntelligenceOS](https://github.com/jackye426/IntelligenceOS)
 
-The MCP server is the interaction layer over the data: it lets assistants query, search, summarize, and reason over Supabase-backed knowledge. Scheduled or routine data collection lives in workers/pipelines; MCP exposes the resulting data and insights.
+## Master plan progress
 
-## What We Have
+| Phase | Status |
+|-------|--------|
+| **A** Ops + deploy | A5 done; A3/A4 need Railway setup (see DEPLOY.md); A1/A2 human |
+| **B** TikTok M3 | B1 partial, B5–B7 done; B2–B4 legacy transcribe/compile remain |
+| **C** Instagram | Not started (fresh-fetch module) |
+| **D** Gmail MCP | **Done** — `draft_outreach_email` (draft-only, `confirmed` required) |
+| **E** Agents | Not started |
+| **F** Vercel | `vercel.json` ready; deploy pending |
 
-- `app/`, `lib/`, `worker/`: the core Next.js app, API routes, OpenRouter helpers, Supabase helpers, and background jobs.
-- `sql/`: Supabase schema migrations for clinic intelligence, embeddings, doctor outreach, and MCP source metadata.
-- `mcp-server/`: MCP tools for knowledge search, practitioner search/status, content performance, patient demand patterns, appointment availability, weekly briefing, **TikTok marketing insights**, and **TikTok content briefing**.
-- `data-worker/`: scheduled ingestion for Instagram content tracker, TikTok marketing pipeline (via package), and HCA appointment data.
-- `marketing-pipeline/`: TikTok-first marketing intelligence package (CLI, stages, dataset export, Supabase sync).
-- `Doctors Sales Agent/`: practitioner/outreach tooling, including upload scripts for the `integrated_practitioner_with_phin` dataset.
-- `Social media analysis/tiktok_analysis/`: legacy TikTok scripts (refresh only; canonical data under `marketing-pipeline/tiktok/data/`).
-- `Carousel agents V2/`: carousel ideation/generation tooling plus Instagram slide dataset and OCR-oriented utilities.
+## New MCP tools (2026-07-03)
 
-**GitHub:** [jackye426/IntelligenceOS](https://github.com/jackye426/IntelligenceOS) (`main` branch)
+- `find_ab_tests` — filtered A/B hook tests
+- `suggest_next_tiktok_angles` — ranked angles from comment analysis
+- `draft_outreach_email` — Gmail draft only (`GMAIL_*` env on Railway)
 
-## TikTok Marketing Pipeline
+## TikTok pipeline
 
-### Milestone 1 (shipped)
-- Package CLI: `export`, `analyze`, `refresh`, `sync-supabase`
-- 39 videos → `tiktok_marketing_dataset.json` → Supabase `content_posts` + embeddings
-- MCP: `get_tiktok_marketing_insights`
+- **M1 + M2:** complete (33/39 on-screen hooks)
+- **M3 partial:** `fetch_catalog` in package; legacy `--skip-catalog`; weekly OCR cron
+- **Tests:** 8/8 passing
 
-### Milestone 2 (complete — 2026-07-03)
-- **OCR:** vision LLM (`google/gemini-3-flash-preview`) on ffmpeg frames → **33/39 on-screen hooks** (85%)
-- **Comments:** `refresh-comments` → 48 videos, 505 comments → `ALL_COMMENTS.txt` + `marketing_comment_digest` embeddings
-- **Playbooks:** `import-playbooks` + `sync-playbooks` → `marketing_playbook` embeddings
-- **Legacy unify:** `compile_complete_transcripts.py` reads `comments_raw/` by default (`--live-comments` for API)
-- **MCP:** `get_tiktok_content_briefing` (performance + strategy + audience search)
-- **Cron:** `refresh-comments` → `export` → `sync-supabase` → `sync-playbooks`
+## Data worker (prod config)
 
-### CLI reference
-
-```bash
-python -m marketing_pipeline tiktok export
-python -m marketing_pipeline tiktok refresh-comments
-python -m marketing_pipeline tiktok ocr-hooks [--force]
-python -m marketing_pipeline tiktok sync-supabase
-python -m marketing_pipeline tiktok sync-playbooks
-python -m marketing_pipeline tiktok import-playbooks
-python -m marketing_pipeline tiktok refresh --since 2026-04-20
+Set on Railway:
+```
+SKIP_CONTENT_TRACKER=true
+SKIP_HCA=true
 ```
 
-## Test Results (2026-07-03)
+Cron: daily TikTok sync 03:30 UTC; weekly full refresh + OCR Sun 02:00 UTC.
 
-| Test | Result |
-|------|--------|
-| `pytest marketing-pipeline/tests/` | **6/6 passed** |
-| `ocr-hooks --force` | 39 processed, **33 with_hook**, 0 errors |
-| `export` | 39 videos, 4 A/B pairs, 33 onscreen_hooks |
-| `sync-supabase` | 39 rows updated, 34 embeddings written |
-| MCP `/health` | `{"status":"ok","service":"docmap-mcp"}` |
+## Next steps (human)
 
-**Live Supabase:** 39 TikTok `content_posts`; embeddings across `content_post`, `tiktok_transcript`, `tiktok_comment_batch`, `marketing_playbook`, `marketing_comment_digest`.
-
-## Current Marketing Data Loop
-
-```
-refresh-comments → export → sync-supabase → sync-playbooks → MCP
-(weekly) refresh + ocr-hooks for new videos
-```
-
-Canonical on-disk sources:
-- `marketing-pipeline/tiktok/data/transcripts/ALL_COMPLETE_TRANSCRIPTS.txt`
-- `marketing-pipeline/tiktok/data/exports/ALL_COMMENTS.txt`
-- `marketing-pipeline/tiktok/data/playbooks/`
-- `marketing-pipeline/tiktok/data/exports/tiktok_marketing_dataset.json`
-
-## To Do (milestone 3+)
-
-### TikTok
-1. Port full `refresh` stages into the package (reduce legacy script dependence).
-2. Add MCP tools: `find_ab_tests`, `suggest_next_tiktok_angles`.
-3. Optional `sql/005_tiktok_marketing.sql` if JSONB metadata becomes limiting.
-
-### Instagram / carousels
-4. Build `marketing-pipeline/instagram/` module.
-5. Re-run `scripts/ingest-content-tracker.py` if Instagram rows needed in `content_posts`.
-
-### Platform / ops
-6. Deploy `mcp-server` and `data-worker` to Railway (or equivalent).
-7. Add `draft_outreach_email` MCP tool (Gmail integration).
+1. **A1** — Rotate credentials if any were exposed
+2. **A3/A4** — Deploy MCP + data-worker per `docs/DEPLOY.md`
+3. **F1** — Deploy Next.js to Vercel
+4. Set `GMAIL_*` on MCP Railway service for draft tool

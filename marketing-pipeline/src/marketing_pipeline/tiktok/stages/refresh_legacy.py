@@ -55,7 +55,12 @@ def copy_legacy_artifacts() -> dict[str, int]:
     return counts
 
 
-def run_legacy_refresh(*, since: str = "2026-04-20", skip_transcribe: bool = False) -> None:
+def run_legacy_refresh(
+    *,
+    since: str = "2026-04-20",
+    skip_transcribe: bool = False,
+    skip_catalog: bool = False,
+) -> None:
     script = config.LEGACY_SCRIPTS / "refresh_docmap.py"
     if not script.exists():
         raise FileNotFoundError(f"Legacy refresh script not found: {script}")
@@ -63,4 +68,6 @@ def run_legacy_refresh(*, since: str = "2026-04-20", skip_transcribe: bool = Fal
     cmd = [sys.executable, str(script), "--since", since]
     if skip_transcribe:
         cmd.append("--skip-transcribe")
+    if skip_catalog:
+        cmd.append("--skip-catalog")
     subprocess.check_call(cmd, cwd=str(config.LEGACY_TIKTOK_ROOT))

@@ -39,3 +39,6 @@ MCP_ALLOWED_ORIGINS = [
 MCP_MAX_SENSITIVITY = _getenv("MCP_MAX_SENSITIVITY", default="confidential")
 HOST = _getenv("MCP_HOST", default="0.0.0.0")
 PORT = int(_getenv("MCP_PORT", "8000"))
+GMAIL_CLIENT_ID = _getenv("GMAIL_CLIENT_ID")
+GMAIL_CLIENT_SECRET = _getenv("GMAIL_CLIENT_SECRET")
+GMAIL_REFRESH_TOKEN = _getenv("GMAIL_REFRESH_TOKEN")

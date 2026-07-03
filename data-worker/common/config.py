@@ -31,6 +31,13 @@ PRACTITIONERS_TABLE = _getenv(
     "SUPABASE_PRACTITIONERS_TABLE", default="integrated_practitioner_with_phin"
 )
 
+SKIP_CONTENT_TRACKER = _getenv("SKIP_CONTENT_TRACKER", default="false").lower() in {
+    "1",
+    "true",
+    "yes",
+}
+SKIP_HCA = _getenv("SKIP_HCA", default="false").lower() in {"1", "true", "yes"}
+
 CONTENT_TRACKER_CSV = REPO_ROOT / (
     "Social media analysis/Marketing - Content - Tracker - Content Tracker (3).csv"
 )

@@ -54,8 +54,24 @@ Pair with:
 
 - `get_tiktok_content_briefing`
 - `get_tiktok_marketing_insights`
+- `find_ab_tests`
+- `suggest_next_tiktok_angles`
 - `search_knowledge` with `entity_type: marketing_playbook`
 - `search_knowledge` with `entity_type: marketing_comment_digest`
+
+## Outreach drafts (privileged)
+
+- "Draft an outreach email to `[practitioner]` about `[topic]` — show me the text first before creating the draft."
+
+Pair with:
+
+- `draft_outreach_email` — **requires `confirmed: true`** after you approve subject and body. Creates a Gmail draft only; never sends.
+
+Rules:
+
+1. Always show draft text to the human first.
+2. Only call the tool after explicit approval with `confirmed: true`.
+3. Never send email automatically.
 
 ## Appointment availability
 
@@ -96,5 +112,5 @@ When answering from MCP tools:
 
 ## Out of scope (for now)
 
-- `draft_outreach_email` is not enabled until privileged tools are explicitly turned on after review.
 - Raw patient conversation ingestion requires a separate privacy review.
+- Carousel Supabase ingest is deferred (supervised, post master plan).

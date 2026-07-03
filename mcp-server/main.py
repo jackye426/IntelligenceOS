@@ -27,6 +27,9 @@ from tools.get_clinic_briefing import get_clinic_briefing  # noqa: E402
 from tools.get_content_performance import get_content_performance  # noqa: E402
 from tools.get_tiktok_marketing_insights import get_tiktok_marketing_insights  # noqa: E402
 from tools.get_tiktok_content_briefing import get_tiktok_content_briefing  # noqa: E402
+from tools.find_ab_tests import find_ab_tests  # noqa: E402
+from tools.suggest_next_tiktok_angles import suggest_next_tiktok_angles  # noqa: E402
+from tools.draft_outreach_email import draft_outreach_email  # noqa: E402
 from tools.get_patient_demand_patterns import get_patient_demand_patterns  # noqa: E402
 from tools.get_practitioner_status import get_practitioner_status  # noqa: E402
 from tools.get_weekly_briefing import get_weekly_briefing  # noqa: E402
@@ -90,6 +93,46 @@ def get_tiktok_marketing_insights_tool(limit: int = 10):
 def get_tiktok_content_briefing_tool(topic: str | None = None, limit: int = 5):
     """Return TikTok performance, strategy playbooks, and audience comment themes in one briefing."""
     return get_tiktok_content_briefing(topic=topic, limit=limit)
+
+
+@mcp.tool()
+def find_ab_tests_tool(
+    min_views: int = 0,
+    hook_source: str | None = None,
+    since: str | None = None,
+    limit: int = 20,
+):
+    """Return TikTok A/B hook tests with optional filters (views, hook_source, since date)."""
+    return find_ab_tests(
+        min_views=min_views,
+        hook_source=hook_source,
+        since=since,
+        limit=limit,
+    )
+
+
+@mcp.tool()
+def suggest_next_tiktok_angles_tool(limit: int = 15, min_post_saves_per_1k: float = 0.0):
+    """Suggest next TikTok angles ranked from high-performing post comment analysis."""
+    return suggest_next_tiktok_angles(limit=limit, min_post_saves_per_1k=min_post_saves_per_1k)
+
+
+@mcp.tool()
+def draft_outreach_email_tool(
+    subject: str,
+    body: str,
+    confirmed: bool = False,
+    to_email: str | None = None,
+    practitioner_id: str | None = None,
+):
+    """Create a Gmail draft for outreach (never sends). Requires confirmed=true after human review."""
+    return draft_outreach_email(
+        subject=subject,
+        body=body,
+        to_email=to_email,
+        confirmed=confirmed,
+        practitioner_id=practitioner_id,
+    )
 
 
 @mcp.tool()

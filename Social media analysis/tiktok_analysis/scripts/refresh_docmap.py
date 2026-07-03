@@ -43,6 +43,7 @@ def main() -> None:
     ap.add_argument("--since", default="2026-04-20", help="UTC date filter YYYY-MM-DD")
     ap.add_argument("--skip-transcribe", action="store_true")
     ap.add_argument("--skip-compile", action="store_true")
+    ap.add_argument("--skip-catalog", action="store_true", help="Skip catalog fetch (already done by package)")
     ap.add_argument("--whisper-model", default="small")
     args = ap.parse_args()
 
@@ -50,15 +51,18 @@ def main() -> None:
     rp = load_module("run_pipeline", SCRIPTS / "run_pipeline.py")
 
     slug = args.since.replace("-", "")
-    print(f"=== 1/4 Fetch @docmap catalog (since {args.since} UTC) ===", flush=True)
-    subprocess.check_call(
-        [
-            sys.executable,
-            str(SCRIPTS / "fetch_docmap_catalog.py"),
-            "--since",
-            args.since,
-        ]
-    )
+    if not args.skip_catalog:
+        print(f"=== 1/4 Fetch @docmap catalog (since {args.since} UTC) ===", flush=True)
+        subprocess.check_call(
+            [
+                sys.executable,
+                str(SCRIPTS / "fetch_docmap_catalog.py"),
+                "--since",
+                args.since,
+            ]
+        )
+    else:
+        print("=== 1/4 Catalog fetch skipped (package) ===", flush=True)
 
     catalog_path = DATA / f"docmap_catalog_since_{slug}.json"
     catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
