@@ -30,6 +30,7 @@ os.environ.setdefault("WHISPER_MODEL", config.WHISPER_MODEL)
 from apscheduler.schedulers.blocking import BlockingScheduler  # noqa: E402
 from apscheduler.triggers.cron import CronTrigger  # noqa: E402
 
+import marketing_pipeline.bootstrap as _bootstrap_mod  # noqa: E402
 from marketing_pipeline.bootstrap import ensure_pipeline_data  # noqa: E402
 from marketing_pipeline.tiktok.orchestrator import (  # noqa: E402
     run_export,
@@ -118,6 +119,7 @@ def _run_tiktok_pipeline(*, full_refresh: bool = False, include_ocr: bool = Fals
 
 
 def main() -> None:
+    logger.info("marketing_pipeline.bootstrap at %s", _bootstrap_mod.__file__)
     bootstrap = ensure_pipeline_data()
     logger.info("Pipeline data: %s", bootstrap)
     if bootstrap.get("error"):

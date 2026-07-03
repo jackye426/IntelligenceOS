@@ -5,4 +5,5 @@ python-dotenv
 supabase
 pydantic
 pandas
-marketing-pipeline[media] @ git+https://github.com/jackye426/IntelligenceOS.git@main#subdirectory=marketing-pipeline
+# Pin commit hash — bump when marketing-pipeline changes (busts Railway pip layer cache).
+marketing-pipeline[media] @ git+https://github.com/jackye426/IntelligenceOS.git@904ac67#subdirectory=marketing-pipeline
