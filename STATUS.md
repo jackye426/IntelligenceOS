@@ -10,7 +10,7 @@ Last updated: 2026-07-03 (B2–B4 TikTok legacy port complete)
 
 | Phase | Status |
 |-------|--------|
-| **A** Ops + deploy | A5 done; A3/A4 need Railway setup (see DEPLOY.md); A1/A2 human |
+| **A** Ops + deploy | A5 done; MCP live at `mcp.docmap.co.uk`; A3/A4 data-worker pending |
 | **B** TikTok M3 | **B1–B7 done** (B8 optional/deferred) |
 | **C** Instagram | Not started (fresh-fetch module) |
 | **D** Gmail MCP | **Done** — `draft_outreach_email` (draft-only, `confirmed` required) |

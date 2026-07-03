@@ -5,7 +5,7 @@ This guide explains how internal team members connect Claude Desktop (or another
 ## Prerequisites
 
 - An internal MCP auth token (stored in the team password manager, not in this repo)
-- The hosted MCP URL from Railway (placeholder: `https://docmap-mcp-production.up.railway.app/mcp`)
+- Hosted MCP URL: **`https://mcp.docmap.co.uk/mcp`**
 - Supabase migrations `001` through `004` applied in the shared project
 
 ## Environment variables (Railway — MCP service)
@@ -61,7 +61,7 @@ Add a remote MCP server entry (exact UI varies by Claude Desktop version):
 {
   "mcpServers": {
     "docmap-intelligence": {
-      "url": "https://YOUR-RAILWAY-MCP-URL/mcp",
+      "url": "https://mcp.docmap.co.uk/mcp",
       "headers": {
         "Authorization": "Bearer YOUR_MCP_AUTH_TOKEN"
       }
@@ -73,7 +73,7 @@ Add a remote MCP server entry (exact UI varies by Claude Desktop version):
 ## Health check
 
 ```bash
-curl http://127.0.0.1:8000/health
+curl https://mcp.docmap.co.uk/health
 ```
 
 Authenticated MCP requests must include:

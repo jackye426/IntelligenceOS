@@ -1,0 +1,7 @@
+# Railway reads this when service Root Directory = data-worker
+[build]
+builder = "nixpacks"
+
+[deploy]
+startCommand = "python main.py"
+restartPolicyType = "ON_FAILURE"

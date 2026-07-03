@@ -1,10 +1,10 @@
 [phases.setup]
-nixPkgs = ["python311", "ffmpeg"]
+nixPkgs = ["python311", "ffmpeg", "git"]
 
 [phases.install]
 cmds = [
   "pip install -r requirements.txt",
-  "pip install -e ../marketing-pipeline[media]",
+  "pip install \"marketing-pipeline[media] @ git+https://github.com/jackye426/IntelligenceOS.git@main#subdirectory=marketing-pipeline\"",
 ]
 
 [start]

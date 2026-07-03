@@ -1,0 +1,8 @@
+node_modules
+.next
+.git
+**/__pycache__
+**/.pytest_cache
+**/*.pyc
+marketing-pipeline/tiktok/data/media
+Social media analysis
