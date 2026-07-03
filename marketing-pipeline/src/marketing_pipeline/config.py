@@ -48,5 +48,5 @@ OPENROUTER_API_KEY = _getenv("OPENROUTER_API_KEY")
 OPENROUTER_EMBEDDING_MODEL = _getenv(
     "OPENROUTER_EMBEDDING_MODEL", default="openai/text-embedding-3-small"
 )
-MODEL_OCR = _getenv("MODEL_OCR", default="google/gemini-2.0-flash-001")
+MODEL_OCR = _getenv("MODEL_OCR", default="google/gemini-3-flash-preview")
 FFMPEG_PATH = _getenv("FFMPEG_PATH", default="ffmpeg")

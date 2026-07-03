@@ -26,7 +26,7 @@ python -m marketing_pipeline tiktok sync-playbooks              # embed playbook
 python -m marketing_pipeline tiktok import-playbooks              # copy Downloads strategy docs
 ```
 
-**OCR requirements:** ffmpeg on PATH (or `FFMPEG_PATH`), `OPENROUTER_API_KEY`, optional `MODEL_OCR` (default `google/gemini-2.0-flash-001`). Install media tools: `pip install -e ".[media]"`.
+**OCR requirements:** ffmpeg on PATH (or `FFMPEG_PATH`), `OPENROUTER_API_KEY`, optional `MODEL_OCR` (default `google/gemini-3-flash-preview`). Install media tools: `pip install -e ".[media]"`.
 
 ## Data layout
 
@@ -41,6 +41,16 @@ Canonical artifacts live under `marketing-pipeline/tiktok/data/`:
 - `ocr/` — frame cache + OCR JSON (gitignored)
 - `exports/tiktok_marketing_dataset.json` — sync input
 
-Legacy `Social media analysis/tiktok_analysis/` is used only by `refresh` until fully ported.
+Legacy `Social media analysis/tiktok_analysis/` is used only by `refresh` until fully ported. `compile_complete_transcripts.py` reads `comments_raw/` by default (use `--live-comments` to hit the TikTok API).
+
+## Milestone 2 status (complete)
+
+| Phase | Status |
+|-------|--------|
+| A — OCR pipeline | **Complete** — 33/39 on-screen hooks populated |
+| B — Comments loop | `refresh-comments` + digest + embeddings |
+| C — Playbooks | `import-playbooks` + `sync-playbooks` |
+| D — MCP briefing | `get_tiktok_content_briefing` |
+| E — Ops | Cron, tests (5/5), STATUS.md |
 
 Instagram module: see `src/marketing_pipeline/instagram/README.md`.

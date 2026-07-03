@@ -58,6 +58,8 @@ def ocr_image(path: Path, *, model: str | None = None) -> dict:
     headers = {
         "Authorization": f"Bearer {config.OPENROUTER_API_KEY}",
         "Content-Type": "application/json",
+        "HTTP-Referer": "https://docmap.co",
+        "X-Title": "DocMap Intelligence OS",
     }
     with httpx.Client(timeout=httpx.Timeout(180.0, connect=60.0)) as client:
         response = client.post(

@@ -1,6 +1,6 @@
 {
   "dataset_version": "2",
-  "generated_at": "2026-07-01T10:03:36.301412+00:00",
+  "generated_at": "2026-07-03T01:57:05.591221+00:00",
   "videos": {
     "7650491657414085910": {
       "post": {
@@ -107,9 +107,9 @@
         "video_id": "7650491657414085910",
         "spoken_hook": "Do you think you have endometres of denomyosis?",
         "caption_hook": "Did you know you can see an endometriosis Clinical Nurse Specialist (CNS) online?",
-        "onscreen_hook": null,
-        "hook_source": "spoken",
-        "confidence": 1.0
+        "onscreen_hook": "endometriosis",
+        "hook_source": "ocr",
+        "confidence": 0.5
       },
       "comments": [
         {
@@ -229,9 +229,9 @@
         "video_id": "7650472969264844054",
         "spoken_hook": "Work like symptoms.",
         "caption_hook": "If you are hitting a wall getting a diagnosis for endometriosis, this one is for you.",
-        "onscreen_hook": null,
-        "hook_source": "spoken",
-        "confidence": 1.0
+        "onscreen_hook": "If you suspect you have endometriosis here is what should you know",
+        "hook_source": "ocr",
+        "confidence": 0.5
       },
       "comments": [
         {
@@ -379,9 +379,9 @@
         "video_id": "7650479358867492118",
         "spoken_hook": "If you're needing to use really strong pain killers, get help.",
         "caption_hook": "Painful periods are often one of the first and most well-known symptoms of endometriosis.",
-        "onscreen_hook": null,
-        "hook_source": "spoken",
-        "confidence": 1.0
+        "onscreen_hook": "Endometriosis can start younger than you think needing to use Here is what parents should know",
+        "hook_source": "ocr",
+        "confidence": 0.5
       },
       "comments": [
         {
@@ -513,9 +513,9 @@
         "video_id": "7650466482173791510",
         "spoken_hook": "I would be very surprised to know what you said, no.",
         "caption_hook": "Always ask for your surgical photos after a laparoscopy.",
-        "onscreen_hook": null,
-        "hook_source": "spoken",
-        "confidence": 1.0
+        "onscreen_hook": "If you are getting endo surgery, always ask for photos Here is why",
+        "hook_source": "ocr",
+        "confidence": 0.5
       },
       "comments": [
         {
@@ -831,9 +831,9 @@
         "video_id": "7650467196187036950",
         "spoken_hook": "Are you going to look at my diaphragm?",
         "caption_hook": "Before your laparoscopy, there are questions you should be asking your surgeon and most people don't know what they are.",
-        "onscreen_hook": null,
-        "hook_source": "spoken",
-        "confidence": 1.0
+        "onscreen_hook": "Is your surgeon checking these areas for your endo surgery?",
+        "hook_source": "ocr",
+        "confidence": 0.5
       },
       "comments": [
         {
@@ -1062,9 +1062,9 @@
         "video_id": "7650465917700279574",
         "spoken_hook": "the first response and it still is and it's just so sad is his periods get used to it.",
         "caption_hook": "9 years.",
-        "onscreen_hook": null,
-        "hook_source": "spoken",
-        "confidence": 1.0
+        "onscreen_hook": "It takes 9 years To get diagnosed with endometriosis. Here is why response, and",
+        "hook_source": "ocr",
+        "confidence": 0.5
       },
       "comments": [
         {
@@ -1180,9 +1180,9 @@
         "video_id": "7650429101584469270",
         "spoken_hook": "This is purely diagnostic.",
         "caption_hook": "A 30-minute laparoscopy that found nothing doesn't mean nothing is there.",
-        "onscreen_hook": null,
-        "hook_source": "spoken",
-        "confidence": 1.0
+        "onscreen_hook": "If they found no endo after a 30-min surgery Watch this first",
+        "hook_source": "ocr",
+        "confidence": 0.5
       },
       "comments": [
         {
@@ -1419,9 +1419,9 @@
         "video_id": "7650157296907062550",
         "spoken_hook": "I had my stuff thrown on your own and the train was full and then you know seats and they tried to look to prime up to me and said that he will find me and see if you've got a land on your own.",
         "caption_hook": "Did you know that if you have endometriosis, you're eligible for a Hidden Disabilities Sunflower lanyard?",
-        "onscreen_hook": null,
-        "hook_source": "spoken",
-        "confidence": 1.0
+        "onscreen_hook": "Hidden Disabilities Badge for Endometriosis and the train",
+        "hook_source": "ocr",
+        "confidence": 0.5
       },
       "comments": [
         {
@@ -1517,9 +1517,9 @@
         "video_id": "7649808436883967254",
         "spoken_hook": "I would say Lester G, Lester G is always, I did a study a year ago, I was asked to do a presentation about my clinic at BSG and called, and I did it and I thought it was boring.",
         "caption_hook": "The pain is real, it's debilitating, and it deserves to be talked about.",
-        "onscreen_hook": null,
-        "hook_source": "spoken",
-        "confidence": 1.0
+        "onscreen_hook": "This is the most overlooked endometriosis symptom. Endometriosis nurse explains why",
+        "hook_source": "ocr",
+        "confidence": 0.5
       },
       "comments": [
         {
@@ -2104,9 +2104,9 @@
         "video_id": "7647939769464278275",
         "spoken_hook": "I just got on the pill when I was a laughing to kind of tackle that that went on until 15 and the word and do it truces was then brought up on iron tablets, calories and so much blood, like I'd be having to change all the time and bed sheets and matt",
         "caption_hook": "We’ll put you on the pill, that will sort you out.",
-        "onscreen_hook": null,
-        "hook_source": "spoken",
-        "confidence": 1.0
+        "onscreen_hook": "She was put on the pill at the age of 11 when I was 11. To treat her period problem",
+        "hook_source": "ocr",
+        "confidence": 0.5
       },
       "comments": [],
       "comment_analysis": null,
@@ -2277,9 +2277,9 @@
         "video_id": "7647574808162487574",
         "spoken_hook": "It was actually the day before I started high school.",
         "caption_hook": "We all have bad periods, you just have to get used to it.",
-        "onscreen_hook": null,
-        "hook_source": "spoken",
-        "confidence": 1.0
+        "onscreen_hook": "Endo & teens First symptoms at the age of 11 Ayla's story",
+        "hook_source": "ocr",
+        "confidence": 0.5
       },
       "comments": [
         {
@@ -2440,9 +2440,9 @@
         "video_id": "7647091030986165526",
         "spoken_hook": "MRI is good in studies it comes with sort of a relatively equal comparison to transvaginal scan the benefit of transvaginal scan is it's cheaper and it's more accessible however it does depend on the skill of the person using it like with everything",
         "caption_hook": "A negative MRI does NOT mean you're in the clear!",
-        "onscreen_hook": null,
-        "hook_source": "spoken",
-        "confidence": 1.0
+        "onscreen_hook": "If you are having a scan for endometriosis, don't panic if it comes back normal Watch this",
+        "hook_source": "ocr",
+        "confidence": 0.5
       },
       "comments": [
         {
@@ -2634,9 +2634,9 @@
         "video_id": "7645351638957313302",
         "spoken_hook": "Endo events is basically a community-led advocacy-based project essentially so it's a complete non-profit organisation which is set up essentially to help people with chronic illnesses in particular people with endocrosis and basically this come abou",
         "caption_hook": "@Laura | Women’s Health Creator struggled with her own endometriosis symptoms and found herself building a community around it on TikTok.",
-        "onscreen_hook": null,
-        "hook_source": "spoken",
-        "confidence": 1.0
+        "onscreen_hook": "Your Endo Events endo events",
+        "hook_source": "ocr",
+        "confidence": 0.5
       },
       "comments": [
         {
@@ -2756,9 +2756,9 @@
         "video_id": "7644863912545881366",
         "spoken_hook": "The benefits of MRI depends on who's reading it.",
         "caption_hook": "Your MRI is only as useful as the person reading it.",
-        "onscreen_hook": null,
-        "hook_source": "spoken",
-        "confidence": 1.0
+        "onscreen_hook": "Still in pain after endo surgery? Watch this",
+        "hook_source": "ocr",
+        "confidence": 0.5
       },
       "comments": [
         {
@@ -3122,9 +3122,9 @@
         "video_id": "7644580086208859414",
         "spoken_hook": "I had a really good job.",
         "caption_hook": "Endometriosis takes.",
-        "onscreen_hook": null,
-        "hook_source": "spoken",
-        "confidence": 1.0
+        "onscreen_hook": "to university.",
+        "hook_source": "ocr",
+        "confidence": 0.5
       },
       "comments": [],
       "comment_analysis": null,
@@ -3270,9 +3270,9 @@
         "video_id": "7644218706028956950",
         "spoken_hook": "Do you have questions about endometriosis or adenomyosis?",
         "caption_hook": "Did you know you can see an endometriosis Clinical Nurse Specialist (CNS) online?",
-        "onscreen_hook": null,
-        "hook_source": "spoken",
-        "confidence": 1.0
+        "onscreen_hook": "endometriosis",
+        "hook_source": "ocr",
+        "confidence": 0.5
       },
       "comments": [
         {
@@ -3453,9 +3453,9 @@
         "video_id": "7643867792634154262",
         "spoken_hook": "whatever your experience in right to don't document it.",
         "caption_hook": "Do you document your endo symptoms?",
-        "onscreen_hook": null,
-        "hook_source": "spoken",
-        "confidence": 1.0
+        "onscreen_hook": "Documenting is your power to get the right diagnosis experiencing",
+        "hook_source": "ocr",
+        "confidence": 0.5
       },
       "comments": [
         {
@@ -3666,9 +3666,9 @@
         "video_id": "7643525601353075990",
         "spoken_hook": "I asked I, I, to tell me what I should say to my GP to get referred to an antimiotross specialist.",
         "caption_hook": "Al can be a powerful tool when navigating endometriosis, if you know how to use it.",
-        "onscreen_hook": null,
-        "hook_source": "spoken",
-        "confidence": 1.0
+        "onscreen_hook": "I asked ai",
+        "hook_source": "ocr",
+        "confidence": 0.5
       },
       "comments": [
         {
@@ -3854,9 +3854,9 @@
         "video_id": "7642386611526716694",
         "spoken_hook": "You know, to trust your own body, to trust your own intuition, you know, your body better than anyone else.",
         "caption_hook": "Dismissed.",
-        "onscreen_hook": null,
-        "hook_source": "spoken",
-        "confidence": 1.0
+        "onscreen_hook": "How did you find out that you might have endometriosis?",
+        "hook_source": "ocr",
+        "confidence": 0.5
       },
       "comments": [
         {
@@ -3958,9 +3958,9 @@
         "video_id": "7641554459755089154",
         "spoken_hook": "Excision, not ablation, because it's ablation only takes the surface, it's like skimming, it's like skimming something.",
         "caption_hook": "Excision, not ablation.",
-        "onscreen_hook": null,
-        "hook_source": "spoken",
-        "confidence": 1.0
+        "onscreen_hook": "If you are getting endo surgery, ask for excision, not ablation. Here's why",
+        "hook_source": "ocr",
+        "confidence": 0.5
       },
       "comments": [
         {
@@ -4078,9 +4078,9 @@
         "video_id": "7641301413062102294",
         "spoken_hook": "So, MRI, can I have overdiagnosis underdiagnosis andometrosis?",
         "caption_hook": "You asked, Liz answered!",
-        "onscreen_hook": null,
-        "hook_source": "spoken",
-        "confidence": 1.0
+        "onscreen_hook": "Jade 🎗️ My endo specialist told me and mri can either over diagnose or under diagnose endometriosis, is that true? 4-30 Reply",
+        "hook_source": "ocr",
+        "confidence": 0.5
       },
       "comments": [
         {
@@ -4287,9 +4287,9 @@
         "video_id": "7641128554654256387",
         "spoken_hook": "Last question, one, six, right.",
         "caption_hook": "Replying to @KLF2511 why your pain after the endometriosis surgery might get worse.",
-        "onscreen_hook": null,
-        "hook_source": "spoken",
-        "confidence": 1.0
+        "onscreen_hook": "Reply to KLF2511's comment I had mine 6 months ago and now my pain in worse. Anyone else?",
+        "hook_source": "ocr",
+        "confidence": 0.5
       },
       "comments": [
         {
@@ -4715,9 +4715,9 @@
         "video_id": "7640094039668296982",
         "spoken_hook": "And somebody has asked, was there a conclusion that laparoscopic was far less successful than a full open surgery as far the condition worsening versus being better treated down the road?",
         "caption_hook": "Replying to @amorphousblob",
-        "onscreen_hook": null,
-        "hook_source": "spoken",
-        "confidence": 1.0
+        "onscreen_hook": "Reply to amorphousblob's comment wasn't there a conclusion that Laproscopic was far less successful than a full on open surgery as far as the condition worsening vs being better treated down the road?",
+        "hook_source": "ocr",
+        "confidence": 0.5
       },
       "comments": [],
       "comment_analysis": null,
@@ -5369,9 +5369,9 @@
         "video_id": "7638541093646191894",
         "spoken_hook": "The research that's going on, the fact that I know so many people that give a damn about it, that really want to make a difference, and that people are being empowered to also help themselves.",
         "caption_hook": "It's not all doom and gloom.",
-        "onscreen_hook": null,
-        "hook_source": "spoken",
-        "confidence": 1.0
+        "onscreen_hook": "What gives you hope in endometriosis care right now? We have asked our Endo nurse Liz",
+        "hook_source": "ocr",
+        "confidence": 0.5
       },
       "comments": [
         {
@@ -5497,9 +5497,9 @@
         "video_id": "7637168703532027158",
         "spoken_hook": "I would say lethargy.",
         "caption_hook": "Endometriosis isn't just about painful periods.",
-        "onscreen_hook": null,
-        "hook_source": "spoken",
-        "confidence": 1.0
+        "onscreen_hook": "This is the most overlooked endometriosis symptom. An Endo nurse explains why so many people miss it.",
+        "hook_source": "ocr",
+        "confidence": 0.5
       },
       "comments": [
         {
@@ -5617,9 +5617,9 @@
         "video_id": "7634579404131241239",
         "spoken_hook": "benefits of MRI depends on who's reading it.",
         "caption_hook": "Replying to @user8575620225727  Many of you have asked about the MRI",
-        "onscreen_hook": null,
-        "hook_source": "spoken",
-        "confidence": 1.0
+        "onscreen_hook": "Reply to user8575620225727's comment Is it better to have an MRI first before a laparoscopy ? The benefits of M R I. Depends on wh",
+        "hook_source": "ocr",
+        "confidence": 0.5
       },
       "comments": [
         {
@@ -5832,9 +5832,9 @@
         "video_id": "7634274846117104918",
         "spoken_hook": "There's not enough education about it.",
         "caption_hook": "Why does it take 9 years on average to get an endometriosis diagnosis in the UK?",
-        "onscreen_hook": null,
-        "hook_source": "spoken",
-        "confidence": 1.0
+        "onscreen_hook": "It take 9 years on average to get diagnosed with endometriosis Here is why",
+        "hook_source": "ocr",
+        "confidence": 0.5
       },
       "comments": [
         {
@@ -6050,9 +6050,9 @@
         "video_id": "7633862545228434710",
         "spoken_hook": "So it's simple and complicated.",
         "caption_hook": "9 years.",
-        "onscreen_hook": null,
-        "hook_source": "spoken",
-        "confidence": 1.0
+        "onscreen_hook": "It takes 9 years on average to get diagnosed with endometriosis Here is why Part 1",
+        "hook_source": "ocr",
+        "confidence": 0.5
       },
       "comments": [],
       "comment_analysis": null,
@@ -6133,9 +6133,9 @@
         "video_id": "7633495707416235286",
         "spoken_hook": "If someone has suspicion that they have endometriosis, but they're kind of hitting the wall What would you tell them now?",
         "caption_hook": "Hitting a wall getting a diagnosis for endometriosis?",
-        "onscreen_hook": null,
-        "hook_source": "spoken",
-        "confidence": 1.0
+        "onscreen_hook": "that they have",
+        "hook_source": "ocr",
+        "confidence": 0.5
       },
       "comments": [],
       "comment_analysis": null,
@@ -6339,9 +6339,9 @@
         "video_id": "7632002231339928854",
         "spoken_hook": "If you're needing to use really strong pain killers, get help.",
         "caption_hook": "Periods can be painful, but if you need strong painkillers to be able to function?",
-        "onscreen_hook": null,
-        "hook_source": "spoken",
-        "confidence": 1.0
+        "onscreen_hook": "If you're needing",
+        "hook_source": "ocr",
+        "confidence": 0.5
       },
       "comments": [
         {
@@ -6466,9 +6466,9 @@
         "video_id": "7631220659770690818",
         "spoken_hook": "Excision, not ablation.",
         "caption_hook": "Responding to a question from today: Can someone explain why excision, not ablation?",
-        "onscreen_hook": null,
-        "hook_source": "spoken",
-        "confidence": 1.0
+        "onscreen_hook": "Excision vs. Ablation Here's what the endo nurse wants you to know",
+        "hook_source": "ocr",
+        "confidence": 0.5
       },
       "comments": [
         {
@@ -6722,9 +6722,9 @@
         "video_id": "7630900114982210838",
         "spoken_hook": "If you have a laparoscopy of somebody who doesn't know what they're looking for, they'll miss it.",
         "caption_hook": "This is for anyone heading into laparoscopic surgery for endo, or those currently on the waiting list.",
-        "onscreen_hook": null,
-        "hook_source": "spoken",
-        "confidence": 1.0
+        "onscreen_hook": "If you're getting a laparoscopy for endo, watch this first",
+        "hook_source": "ocr",
+        "confidence": 0.5
       },
       "comments": [
         {
@@ -7362,9 +7362,9 @@
         "video_id": "7629626326927805718",
         "spoken_hook": "See, this is the good news of social media.",
         "caption_hook": "From a heartbreaking diagnosis to a community of 30k people (from this week!).",
-        "onscreen_hook": null,
-        "hook_source": "spoken",
-        "confidence": 1.0
+        "onscreen_hook": "SEE, THIS IS THE GOOD USE",
+        "hook_source": "ocr",
+        "confidence": 0.5
       },
       "comments": [],
       "comment_analysis": null,
@@ -7377,7 +7377,7 @@
       "video_a": "7644863912545881366",
       "video_b": "7634579404131241239",
       "similarity_basis": "known_pair",
-      "hook_difference": "A: The benefits of MRI depends on who's reading it. | B: benefits of MRI depends on who's reading it.",
+      "hook_difference": "A: Still in pain after endo surgery? Watch this | B: Reply to user8575620225727's comment Is it better to have an MRI first before a laparoscopy ? The benefits of M R I. Dep",
       "performance_difference": {
         "views_delta": 14503,
         "saves_per_1k_delta": 7.45,
@@ -7390,7 +7390,7 @@
       "video_a": "7644863912545881366",
       "video_b": "7641301413062102294",
       "similarity_basis": "known_pair",
-      "hook_difference": "A: The benefits of MRI depends on who's reading it. | B: So, MRI, can I have overdiagnosis underdiagnosis andometrosis?",
+      "hook_difference": "A: Still in pain after endo surgery? Watch this | B: Jade 🎗️ My endo specialist told me and mri can either over diagnose or under diagnose endometriosis, is that true? 4-30 ",
       "performance_difference": {
         "views_delta": 15434,
         "saves_per_1k_delta": 13.49,
@@ -7403,7 +7403,7 @@
       "video_a": "7634579404131241239",
       "video_b": "7641301413062102294",
       "similarity_basis": "known_pair",
-      "hook_difference": "A: benefits of MRI depends on who's reading it. | B: So, MRI, can I have overdiagnosis underdiagnosis andometrosis?",
+      "hook_difference": "A: Reply to user8575620225727's comment Is it better to have an MRI first before a laparoscopy ? The benefits of M R I. Dep | B: Jade 🎗️ My endo specialist told me and mri can either over diagnose or under diagnose endometriosis, is that true? 4-30 ",
       "performance_difference": {
         "views_delta": 931,
         "saves_per_1k_delta": 6.04,
@@ -7416,7 +7416,7 @@
       "video_a": "7641554459755089154",
       "video_b": "7631220659770690818",
       "similarity_basis": "known_pair",
-      "hook_difference": "A: Excision, not ablation, because it's ablation only takes the surface, it's like skimming, it's like skimming something. | B: Excision, not ablation.",
+      "hook_difference": "A: If you are getting endo surgery, ask for excision, not ablation. Here's why | B: Excision vs. Ablation Here's what the endo nurse wants you to know",
       "performance_difference": {
         "views_delta": -1608,
         "saves_per_1k_delta": -2.21,
