@@ -7,9 +7,42 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
+_PKG_DIR = Path(__file__).resolve().parent
+
+
+def _getenv(*names: str, default: str = "") -> str:
+    for name in names:
+        value = os.getenv(name)
+        if value:
+            return value
+    return default
+
+
+def _dev_package_root() -> Path:
+    """marketing-pipeline/ when running from src layout."""
+    return _PKG_DIR.parent.parent
+
+
+def _resolve_data_root() -> Path:
+    explicit = _getenv("MARKETING_DATA_DIR")
+    if explicit:
+        root = Path(explicit)
+        root.mkdir(parents=True, exist_ok=True)
+        return root
+
+    dev_data = _dev_package_root() / "tiktok" / "data"
+    if dev_data.is_dir():
+        return dev_data
+
+    # Railway / pip install: writable default (mount a volume here in prod)
+    cache = Path("/app/marketing-data")
+    cache.mkdir(parents=True, exist_ok=True)
+    return cache
+
+
 REPO_ROOT = Path(__file__).resolve().parents[3]
-PACKAGE_ROOT = Path(__file__).resolve().parents[2]
-DATA_ROOT = PACKAGE_ROOT / "tiktok" / "data"
+PACKAGE_ROOT = _dev_package_root()
+DATA_ROOT = _resolve_data_root()
 
 load_dotenv(REPO_ROOT / ".env.local")
 load_dotenv(REPO_ROOT / ".env")
@@ -33,14 +66,6 @@ DATASET_JSON = EXPORTS_DIR / "tiktok_marketing_dataset.json"
 ALL_COMMENTS_TXT = EXPORTS_DIR / "ALL_COMMENTS.txt"
 DATASET_VERSION = "2"
 COMMENT_STALE_DAYS = 7
-
-
-def _getenv(*names: str, default: str = "") -> str:
-    for name in names:
-        value = os.getenv(name)
-        if value:
-            return value
-    return default
 
 
 SUPABASE_URL = _getenv("SUPABASE_URL", "NEXT_PUBLIC_SUPABASE_URL")

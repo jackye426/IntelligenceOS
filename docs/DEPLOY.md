@@ -31,7 +31,9 @@ Railway’s `data-worker` root build **cannot** see `../marketing-pipeline` (sib
 
 ### Option A — Nixpacks (required: Root Directory = `data-worker`)
 
-`nixpacks.toml` installs `marketing-pipeline` from GitHub `main` + `yt-dlp`. **Do not enable Dockerfile** for this service — there is no `Dockerfile` in `data-worker/` (a monorepo Dockerfile needs repo-root context and breaks with `COPY marketing-pipeline`).
+`nixpacks.toml` installs `marketing-pipeline[media]` (yt-dlp + faster-whisper) from GitHub `main`.
+
+**Do not enable Dockerfile** for this service.
 
 1. In the same Railway project → **+ New** → **GitHub Repo** → `jackye426/IntelligenceOS`
 2. **Settings → General → Root Directory** = `data-worker`
@@ -41,11 +43,16 @@ Railway’s `data-worker` root build **cannot** see `../marketing-pipeline` (sib
    - `OPENROUTER_API_KEY`
    - `SKIP_CONTENT_TRACKER=true`
    - `SKIP_HCA=true`
-5. Deploy → check logs for `Data worker ready` and cron registration
+   - `MARKETING_DATA_DIR=/app/marketing-data` — **mount a Railway volume** here
+   - `WHISPER_MODEL=small` (optional)
+   - `SKIP_TRANSCRIBE=false` (default; set `true` to disable Whisper on worker)
+5. Deploy → logs should show `Transcription enabled on worker` and `Data worker ready`
 
 **Cron (UTC):**
-- Daily 03:30 — TikTok `refresh-comments` → export → sync
-- Weekly Sun 02:00 — full `refresh` + OCR
+- Daily 03:30 — comments → **transcribe new videos** → export → sync → playbooks
+- Weekly Sun 02:00 — full refresh (catalog, stats, transcribe, OCR) → export → sync
+
+**Volume (recommended):** Mount persistent storage at `/app/marketing-data` so transcripts survive redeploys. First boot seeds from GitHub `main` if empty.
 
 ## Vercel: Next.js app
 

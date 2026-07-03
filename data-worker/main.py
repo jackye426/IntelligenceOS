@@ -7,19 +7,31 @@ Run locally:
 
 Production (Railway):
   Set SKIP_CONTENT_TRACKER=true and SKIP_HCA=true for TikTok-only cron.
+  Set MARKETING_DATA_DIR to a mounted volume path for persistent transcripts.
+  Transcription runs on worker when SKIP_TRANSCRIBE is not true.
 """
 
 from __future__ import annotations
 
 import logging
+import os
 import signal
 import sys
 from pathlib import Path
 
-from apscheduler.schedulers.blocking import BlockingScheduler
-from apscheduler.triggers.cron import CronTrigger
+ROOT = Path(__file__).resolve().parent
+sys.path.insert(0, str(ROOT))
 
-from marketing_pipeline.tiktok.orchestrator import (
+from common import config  # noqa: E402
+
+os.environ.setdefault("MARKETING_DATA_DIR", config.MARKETING_DATA_DIR)
+os.environ.setdefault("WHISPER_MODEL", config.WHISPER_MODEL)
+
+from apscheduler.schedulers.blocking import BlockingScheduler  # noqa: E402
+from apscheduler.triggers.cron import CronTrigger  # noqa: E402
+
+from marketing_pipeline.bootstrap import ensure_pipeline_data  # noqa: E402
+from marketing_pipeline.tiktok.orchestrator import (  # noqa: E402
     run_export,
     run_ocr_batch,
     run_refresh,
@@ -27,13 +39,14 @@ from marketing_pipeline.tiktok.orchestrator import (
     run_sync_playbooks_cmd,
     run_sync_supabase,
 )
-
-ROOT = Path(__file__).resolve().parent
-sys.path.insert(0, str(ROOT))
+from marketing_pipeline.tiktok.stages.fetch_catalog import fetch_catalog  # noqa: E402
+from marketing_pipeline.tiktok.stages.refresh_videos import refresh_videos  # noqa: E402
+from marketing_pipeline.tiktok.stages.write_master_transcripts import (  # noqa: E402
+    write_master_transcripts,
+)
 
 from jobs.content_tracker import run_content_tracker  # noqa: E402
 from jobs.hca_sqlite import run_hca_migration  # noqa: E402
-from common import config  # noqa: E402
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 logger = logging.getLogger("data-worker")
@@ -53,13 +66,25 @@ def _safe(job_name: str, fn):
     return wrapper
 
 
+def _transcribe_new_videos() -> dict:
+    """Fetch catalog and transcribe any videos missing COMPLETE transcripts."""
+    fetch_catalog()
+    videos = refresh_videos(
+        skip_transcribe=False,
+        whisper_model=config.WHISPER_MODEL,
+        download_if_missing=True,
+    )
+    master = write_master_transcripts(refresh_metrics=False)
+    return {"videos": videos, "master": master}
+
+
 def _run_tiktok_pipeline(*, full_refresh: bool = False, include_ocr: bool = False) -> dict:
-    """Export + sync; optionally refresh comments or full catalog refresh."""
+    """Export + sync; refresh comments; transcribe new videos on worker."""
     result: dict = {}
 
     if full_refresh:
         result["refresh"] = run_refresh(
-            skip_transcribe=True,
+            skip_transcribe=config.SKIP_TRANSCRIBE,
             skip_ocr=not include_ocr,
         )
     else:
@@ -67,6 +92,12 @@ def _run_tiktok_pipeline(*, full_refresh: bool = False, include_ocr: bool = Fals
             result["comments"] = run_refresh_comments()
         except Exception as exc:
             logger.warning("refresh-comments failed: %s", exc)
+
+        if not config.SKIP_TRANSCRIBE:
+            try:
+                result["transcribe"] = _transcribe_new_videos()
+            except Exception as exc:
+                logger.exception("transcribe-new-videos failed: %s", exc)
 
     result["export"] = run_export()
     result["sync"] = run_sync_supabase()
@@ -87,6 +118,9 @@ def _run_tiktok_pipeline(*, full_refresh: bool = False, include_ocr: bool = Fals
 
 
 def main() -> None:
+    bootstrap = ensure_pipeline_data()
+    logger.info("Pipeline data: %s", bootstrap)
+
     scheduler = BlockingScheduler(timezone="UTC")
 
     if not config.SKIP_CONTENT_TRACKER:
@@ -125,6 +159,15 @@ def main() -> None:
         )
     else:
         logger.info("SKIP_HCA=true — HCA migration job disabled")
+
+    if config.SKIP_TRANSCRIBE:
+        logger.info("SKIP_TRANSCRIBE=true — worker will not run Whisper")
+    else:
+        logger.info(
+            "Transcription enabled on worker (model=%s, data=%s)",
+            config.WHISPER_MODEL,
+            config.MARKETING_DATA_DIR,
+        )
 
     def shutdown(_signum, _frame):
         logger.info("Shutting down scheduler")
