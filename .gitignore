@@ -37,3 +37,6 @@ Untitled
 marketing-pipeline/tiktok/data/media/
 marketing-pipeline/tiktok/data/ocr/
 marketing-pipeline/tiktok/data/yt_meta/
+
+# Legacy TikTok downloads (yt-dlp video/audio for local transcribe — not for git)
+Social media analysis/tiktok_analysis/audio/

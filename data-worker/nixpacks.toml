@@ -4,7 +4,8 @@ nixPkgs = ["python311", "ffmpeg", "git"]
 [phases.install]
 cmds = [
   "pip install -r requirements.txt",
-  "pip install \"marketing-pipeline[media] @ git+https://github.com/jackye426/IntelligenceOS.git@main#subdirectory=marketing-pipeline\"",
+  "pip install \"marketing-pipeline @ git+https://github.com/jackye426/IntelligenceOS.git@main#subdirectory=marketing-pipeline\"",
+  "pip install yt-dlp",
 ]
 
 [start]

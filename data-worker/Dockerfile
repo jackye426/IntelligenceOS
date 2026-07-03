@@ -7,7 +7,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends ffmpeg \
 WORKDIR /app
 
 COPY marketing-pipeline /app/marketing-pipeline
-RUN pip install --no-cache-dir -e "/app/marketing-pipeline[media]"
+RUN pip install --no-cache-dir -e "/app/marketing-pipeline" \
+ && pip install --no-cache-dir yt-dlp
 
 COPY data-worker /app/data-worker
 WORKDIR /app/data-worker
