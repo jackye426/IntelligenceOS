@@ -120,6 +120,10 @@ def _run_tiktok_pipeline(*, full_refresh: bool = False, include_ocr: bool = Fals
 def main() -> None:
     bootstrap = ensure_pipeline_data()
     logger.info("Pipeline data: %s", bootstrap)
+    if bootstrap.get("error"):
+        logger.warning(
+            "Pipeline seed failed — cron jobs may fail until MARKETING_DATA_DIR is populated"
+        )
 
     scheduler = BlockingScheduler(timezone="UTC")
 
