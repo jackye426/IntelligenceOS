@@ -1,6 +1,7 @@
-# Railway reads this when service Root Directory = data-worker
+# Railway: data-worker (Root Directory = data-worker, builder = Nixpacks)
 [build]
-builder = "nixpacks"
+builder = "NIXPACKS"
+nixpacksConfigPath = "nixpacks.toml"
 
 [deploy]
 startCommand = "python main.py"

@@ -29,25 +29,19 @@ Pre-flight decisions: see [`MASTER_PLAN.md`](MASTER_PLAN.md).
 
 Railway’s `data-worker` root build **cannot** see `../marketing-pipeline` (sibling folder is outside the build context). Use **one** of these options:
 
-### Option A — Nixpacks (keep Root Directory = `data-worker`)
+### Option A — Nixpacks (required: Root Directory = `data-worker`)
 
-Default in repo: `nixpacks.toml` installs `marketing-pipeline` from GitHub `main`.
+`nixpacks.toml` installs `marketing-pipeline` from GitHub `main` + `yt-dlp`. **Do not enable Dockerfile** for this service — there is no `Dockerfile` in `data-worker/` (a monorepo Dockerfile needs repo-root context and breaks with `COPY marketing-pipeline`).
 
 1. In the same Railway project → **+ New** → **GitHub Repo** → `jackye426/IntelligenceOS`
 2. **Settings → General → Root Directory** = `data-worker`
-3. Variables:
+3. **Settings → Build → Builder** = **Nixpacks** (not Dockerfile)
+4. Variables:
    - `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`
    - `OPENROUTER_API_KEY`
    - `SKIP_CONTENT_TRACKER=true`
    - `SKIP_HCA=true`
-4. Deploy → check logs for `Data worker ready` and cron registration
-
-### Option B — Dockerfile (same commit as deploy; recommended for prod)
-
-1. **Settings → General → Root Directory** = `.` (repo root, not `data-worker`)
-2. **Settings → Build → Builder** = Dockerfile
-3. **Dockerfile path** = `data-worker/Dockerfile`
-4. Same variables as Option A
+5. Deploy → check logs for `Data worker ready` and cron registration
 
 **Cron (UTC):**
 - Daily 03:30 — TikTok `refresh-comments` → export → sync
@@ -93,4 +87,4 @@ If the service is named after the repo (`IntelligenceOS`) and the build log show
 
 MCP build logs should show `pip install -r requirements.txt` and Python 3.11, not Node/Next.js.
 
-**Data worker:** `ERROR: ../marketing-pipeline is not a valid editable requirement` means Root Directory is `data-worker` but the old `requirements.txt` referenced a sibling path. Redeploy after pulling latest `main`, or switch to Dockerfile (Option B in DEPLOY.md).
+**Data worker:** `ERROR: ../marketing-pipeline is not a valid editable requirement` — use Root Directory `data-worker` + Nixpacks. **`"/marketing-pipeline": not found`** — Railway is using Dockerfile with a `data-worker`-only build context; set Builder to **Nixpacks** and redeploy.
