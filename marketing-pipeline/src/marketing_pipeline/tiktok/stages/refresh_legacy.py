@@ -1,16 +1,18 @@
-"""Run legacy refresh_docmap.py and copy artifacts into package data root."""
+"""Legacy refresh adapter — delegates to package-native stages."""
 
 from __future__ import annotations
 
 import shutil
-import subprocess
-import sys
 from pathlib import Path
 
 from marketing_pipeline import config
+from marketing_pipeline.tiktok.stages.fetch_catalog import fetch_catalog
+from marketing_pipeline.tiktok.stages.refresh_videos import refresh_videos
+from marketing_pipeline.tiktok.stages.write_master_transcripts import write_master_transcripts
 
 
 def copy_legacy_artifacts() -> dict[str, int]:
+    """One-way sync from legacy data/ into package data/ (migration helper)."""
     legacy = config.LEGACY_TIKTOK_ROOT / "data"
     counts: dict[str, int] = {}
 
@@ -18,6 +20,7 @@ def copy_legacy_artifacts() -> dict[str, int]:
         (legacy / "transcripts", config.TRANSCRIPTS_DIR),
         (legacy / "comments_raw", config.COMMENTS_RAW_DIR),
         (legacy / "analysis", config.ANALYSIS_DIR),
+        (legacy / "yt_meta", config.YT_META_DIR),
     ]
     for src_dir, dst_dir in mappings:
         if not src_dir.exists():
@@ -30,27 +33,17 @@ def copy_legacy_artifacts() -> dict[str, int]:
                 if target.exists():
                     shutil.rmtree(target)
                 shutil.copytree(item, target)
-            else:
+            elif not target.exists():
                 shutil.copy2(item, target)
             n += 1
         counts[str(dst_dir.name)] = n
 
-    catalog_src = legacy.parent / "analysis"
-    if catalog_src.exists():
-        config.ANALYSIS_DIR.mkdir(parents=True, exist_ok=True)
-        for path in catalog_src.glob("comments_labeled_*.json"):
-            shutil.copy2(path, config.ANALYSIS_DIR / path.name)
-
     for path in legacy.glob("docmap_catalog_*.json"):
         config.CATALOG_DIR.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(path, config.CATALOG_DIR / path.name)
+        target = config.CATALOG_DIR / path.name
+        if not target.exists():
+            shutil.copy2(path, target)
         counts["catalog"] = counts.get("catalog", 0) + 1
-
-    legacy_analysis = config.LEGACY_TIKTOK_ROOT / "analysis"
-    if legacy_analysis.exists():
-        config.ANALYSIS_DIR.mkdir(parents=True, exist_ok=True)
-        for path in legacy_analysis.iterdir():
-            shutil.copy2(path, config.ANALYSIS_DIR / path.name)
 
     return counts
 
@@ -60,14 +53,19 @@ def run_legacy_refresh(
     since: str = "2026-04-20",
     skip_transcribe: bool = False,
     skip_catalog: bool = False,
-) -> None:
-    script = config.LEGACY_SCRIPTS / "refresh_docmap.py"
-    if not script.exists():
-        raise FileNotFoundError(f"Legacy refresh script not found: {script}")
-
-    cmd = [sys.executable, str(script), "--since", since]
-    if skip_transcribe:
-        cmd.append("--skip-transcribe")
-    if skip_catalog:
-        cmd.append("--skip-catalog")
-    subprocess.check_call(cmd, cwd=str(config.LEGACY_TIKTOK_ROOT))
+    skip_compile: bool = False,
+    whisper_model: str | None = None,
+) -> dict:
+    """Deprecated shim — runs package-native refresh (no subprocess)."""
+    if not skip_catalog:
+        fetch_catalog(since=since)
+    video_result = refresh_videos(
+        since=since,
+        skip_transcribe=skip_transcribe,
+        whisper_model=whisper_model,
+        download_if_missing=True,
+    )
+    master_result: dict = {}
+    if not skip_compile:
+        master_result = write_master_transcripts(refresh_metrics=True)
+    return {"videos": video_result, "master": master_result}

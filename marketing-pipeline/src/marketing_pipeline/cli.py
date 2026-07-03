@@ -26,12 +26,12 @@ def _tiktok_parser(sub: argparse._SubParsersAction) -> None:
     tiktok_sub.add_parser("analyze", help="Run analysis and write dataset")
     tiktok_sub.add_parser("import-playbooks", help="Import strategy docs into playbooks/")
 
-    refresh = tiktok_sub.add_parser("refresh", help="Legacy refresh + OCR + comments + export")
+    refresh = tiktok_sub.add_parser("refresh", help="Catalog refresh + OCR + comments + export")
     refresh.add_argument("--since", default="2026-04-20")
     refresh.add_argument("--skip-transcribe", action="store_true")
     refresh.add_argument("--skip-ocr", action="store_true")
     refresh.add_argument("--skip-comments", action="store_true")
-    refresh.add_argument("--no-download", action="store_true", help="Skip yt-dlp download for OCR")
+    refresh.add_argument("--no-download", action="store_true", help="Skip yt-dlp media download for OCR only")
 
     refresh_comments = tiktok_sub.add_parser("refresh-comments", help="Fetch, label, compile comments")
     refresh_comments.add_argument("--force", action="store_true")

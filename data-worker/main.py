@@ -13,12 +13,20 @@ from __future__ import annotations
 
 import logging
 import signal
-import subprocess
 import sys
 from pathlib import Path
 
 from apscheduler.schedulers.blocking import BlockingScheduler
 from apscheduler.triggers.cron import CronTrigger
+
+from marketing_pipeline.tiktok.orchestrator import (
+    run_export,
+    run_ocr_batch,
+    run_refresh,
+    run_refresh_comments,
+    run_sync_playbooks_cmd,
+    run_sync_supabase,
+)
 
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
@@ -46,84 +54,36 @@ def _safe(job_name: str, fn):
 
 
 def _run_tiktok_pipeline(*, full_refresh: bool = False, include_ocr: bool = False) -> dict:
-    """Export + sync; optionally refresh comments or full legacy refresh."""
-    repo = config.REPO_ROOT
+    """Export + sync; optionally refresh comments or full catalog refresh."""
+    result: dict = {}
+
     if full_refresh:
-        refresh_cmd = [
-            sys.executable,
-            "-m",
-            "marketing_pipeline",
-            "tiktok",
-            "refresh",
-            "--skip-transcribe",
-        ]
-        if not include_ocr:
-            refresh_cmd.append("--skip-ocr")
-        refresh = subprocess.run(
-            refresh_cmd,
-            cwd=str(repo),
-            check=False,
-            capture_output=True,
-            text=True,
+        result["refresh"] = run_refresh(
+            skip_transcribe=True,
+            skip_ocr=not include_ocr,
         )
-        if refresh.returncode != 0:
-            raise RuntimeError(f"tiktok refresh failed: {refresh.stderr or refresh.stdout}")
     else:
-        comments = subprocess.run(
-            [sys.executable, "-m", "marketing_pipeline", "tiktok", "refresh-comments"],
-            cwd=str(repo),
-            check=False,
-            capture_output=True,
-            text=True,
-        )
-        if comments.returncode != 0:
-            logger.warning("refresh-comments failed: %s", comments.stderr or comments.stdout)
+        try:
+            result["comments"] = run_refresh_comments()
+        except Exception as exc:
+            logger.warning("refresh-comments failed: %s", exc)
 
-    export = subprocess.run(
-        [sys.executable, "-m", "marketing_pipeline", "tiktok", "export"],
-        cwd=str(repo),
-        check=False,
-        capture_output=True,
-        text=True,
-    )
-    if export.returncode != 0:
-        raise RuntimeError(f"tiktok export failed: {export.stderr or export.stdout}")
+    result["export"] = run_export()
+    result["sync"] = run_sync_supabase()
+    try:
+        result["playbooks"] = run_sync_playbooks_cmd()
+    except Exception as exc:
+        logger.warning("sync-playbooks failed: %s", exc)
+        result["playbooks"] = {"error": str(exc)}
 
-    sync = subprocess.run(
-        [sys.executable, "-m", "marketing_pipeline", "tiktok", "sync-supabase"],
-        cwd=str(repo),
-        check=False,
-        capture_output=True,
-        text=True,
-    )
-    if sync.returncode != 0:
-        raise RuntimeError(f"tiktok sync failed: {sync.stderr or sync.stdout}")
-
-    playbooks = subprocess.run(
-        [sys.executable, "-m", "marketing_pipeline", "tiktok", "sync-playbooks"],
-        cwd=str(repo),
-        check=False,
-        capture_output=True,
-        text=True,
-    )
-
-    ocr_result = ""
     if include_ocr and not full_refresh:
-        ocr = subprocess.run(
-            [sys.executable, "-m", "marketing_pipeline", "tiktok", "ocr-hooks"],
-            cwd=str(repo),
-            check=False,
-            capture_output=True,
-            text=True,
-        )
-        ocr_result = ocr.stdout.strip() if ocr.returncode == 0 else ocr.stderr
+        try:
+            result["ocr"] = run_ocr_batch()
+        except Exception as exc:
+            logger.warning("ocr-hooks failed: %s", exc)
+            result["ocr"] = {"error": str(exc)}
 
-    return {
-        "export": export.stdout.strip(),
-        "sync": sync.stdout.strip(),
-        "playbooks": playbooks.stdout.strip() if playbooks.returncode == 0 else playbooks.stderr,
-        "ocr": ocr_result,
-    }
+    return result
 
 
 def main() -> None:

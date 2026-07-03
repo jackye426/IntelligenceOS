@@ -24,6 +24,7 @@ ANALYSIS_DIR = DATA_ROOT / "analysis"
 EXPORTS_DIR = DATA_ROOT / "exports"
 MEDIA_DIR = DATA_ROOT / "media"
 OCR_CACHE_DIR = DATA_ROOT / "ocr"
+YT_META_DIR = DATA_ROOT / "yt_meta"
 PLAYBOOKS_DIR = DATA_ROOT / "playbooks"
 LEGACY_MEDIA_DIR = LEGACY_TIKTOK_ROOT / "audio"
 
@@ -50,3 +51,4 @@ OPENROUTER_EMBEDDING_MODEL = _getenv(
 )
 MODEL_OCR = _getenv("MODEL_OCR", default="google/gemini-3-flash-preview")
 FFMPEG_PATH = _getenv("FFMPEG_PATH", default="ffmpeg")
+WHISPER_MODEL = _getenv("WHISPER_MODEL", default="small")

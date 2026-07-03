@@ -31,7 +31,8 @@ from marketing_pipeline.tiktok.stages.fetch_catalog import fetch_catalog
 from marketing_pipeline.tiktok.stages.import_playbooks import import_playbooks
 from marketing_pipeline.tiktok.stages.parse_master_transcripts import parse_master_transcripts
 from marketing_pipeline.tiktok.stages.rebuild_comment_analysis import rebuild_comment_analysis
-from marketing_pipeline.tiktok.stages.refresh_legacy import copy_legacy_artifacts, run_legacy_refresh
+from marketing_pipeline.tiktok.stages.refresh_videos import refresh_videos
+from marketing_pipeline.tiktok.stages.write_master_transcripts import write_master_transcripts
 from marketing_pipeline.tiktok.stages.write_comments_digest import write_comments_digest
 from marketing_pipeline.tiktok.stages.write_outputs import ensure_master_transcripts, write_dataset
 from marketing_pipeline.tiktok.stages.download_media import download_media, resolve_media_path
@@ -106,7 +107,7 @@ def build_dataset() -> TikTokMarketingDataset:
             tdata = json.loads(transcript_json.read_text(encoding="utf-8"))
             if isinstance(tdata, dict):
                 segments = tdata.get("segments") or []
-                whisper_model = tdata.get("model")
+                whisper_model = tdata.get("model") or tdata.get("whisper_model")
 
         transcript = TikTokTranscript(
             video_id=video_id,
@@ -207,10 +208,15 @@ def run_refresh(
     skip_ocr: bool = False,
     skip_comments: bool = False,
     download_for_ocr: bool = True,
+    download_for_transcribe: bool = True,
 ) -> dict:
     catalog_result = fetch_catalog(since=since)
-    run_legacy_refresh(since=since, skip_transcribe=skip_transcribe, skip_catalog=True)
-    copied = copy_legacy_artifacts()
+    video_result = refresh_videos(
+        since=since,
+        skip_transcribe=skip_transcribe,
+        download_if_missing=download_for_transcribe,
+    )
+    master_result = write_master_transcripts(refresh_metrics=True)
 
     ocr_counts = {"skipped": True}
     if not skip_ocr:
@@ -222,7 +228,8 @@ def run_refresh(
 
     result = run_export()
     result["catalog"] = catalog_result
-    result["copied"] = copied
+    result["videos"] = video_result
+    result["master"] = master_result
     result["ocr"] = ocr_counts
     result["comments_pipeline"] = comment_result
     return result

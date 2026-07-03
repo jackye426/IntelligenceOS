@@ -1,6 +1,6 @@
 # DocMap Intelligence OS Status
 
-Last updated: 2026-07-03 (master plan execution — phase 1)
+Last updated: 2026-07-03 (B2–B4 TikTok legacy port complete)
 
 **Master plan:** [`docs/MASTER_PLAN.md`](docs/MASTER_PLAN.md) | **Deploy:** [`docs/DEPLOY.md`](docs/DEPLOY.md)
 
@@ -11,7 +11,7 @@ Last updated: 2026-07-03 (master plan execution — phase 1)
 | Phase | Status |
 |-------|--------|
 | **A** Ops + deploy | A5 done; A3/A4 need Railway setup (see DEPLOY.md); A1/A2 human |
-| **B** TikTok M3 | B1 partial, B5–B7 done; B2–B4 legacy transcribe/compile remain |
+| **B** TikTok M3 | **B1–B7 done** (B8 optional/deferred) |
 | **C** Instagram | Not started (fresh-fetch module) |
 | **D** Gmail MCP | **Done** — `draft_outreach_email` (draft-only, `confirmed` required) |
 | **E** Agents | Not started |
@@ -26,8 +26,8 @@ Last updated: 2026-07-03 (master plan execution — phase 1)
 ## TikTok pipeline
 
 - **M1 + M2:** complete (33/39 on-screen hooks)
-- **M3 partial:** `fetch_catalog` in package; legacy `--skip-catalog`; weekly OCR cron
-- **Tests:** 8/8 passing
+- **M3:** complete — package-native refresh (catalog, stats, transcribe, master compile); weekly OCR cron
+- **Tests:** 11/11 passing
 
 ## Data worker (prod config)
 

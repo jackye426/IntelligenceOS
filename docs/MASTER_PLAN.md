@@ -101,10 +101,10 @@ Vercel project: intelligence-os-app
 
 | ID | Task | Status | Complexity | Key files | Acceptance |
 |----|------|--------|------------|-----------|------------|
-| B1 | Port `fetch_docmap_catalog` → `fetch_catalog` (live fetch) | ✅ partial | M | `stages/fetch_catalog.py` | Package fetch + `--skip-catalog` on legacy refresh |
-| B2 | Port yt-dlp stats + Whisper transcribe from `run_pipeline.py` | ⬜ | L | `run_pipeline.py` → `stages/transcribe.py` | New videos get `*_COMPLETE.txt` + per-video JSON |
-| B3 | Port master compile → `write_master_transcripts.py` | ⬜ | M | `compile_complete_transcripts.py` → package stage | `ALL_COMPLETE_TRANSCRIPTS.txt` built from package only |
-| B4 | Retire `refresh_legacy.py` subprocess shim | ⬜ partial | S | `orchestrator.py`, `refresh_legacy.py` | Catalog native; transcribe/compile still legacy |
+| B1 | Port `fetch_docmap_catalog` → `fetch_catalog` (live fetch) | ✅ | M | `stages/fetch_catalog.py` | Package fetch; legacy `--skip-catalog` |
+| B2 | Port yt-dlp stats + Whisper transcribe from `run_pipeline.py` | ✅ | L | `stages/refresh_stats.py`, `transcribe_video.py`, `refresh_videos.py` | New videos get `*_COMPLETE.txt` + per-video JSON |
+| B3 | Port master compile → `write_master_transcripts.py` | ✅ | M | `stages/write_master_transcripts.py` | `ALL_COMPLETE_TRANSCRIPTS.txt` built from package only |
+| B4 | Retire legacy refresh subprocess shims | ✅ | S | `orchestrator.py`, `refresh_legacy.py`, `refresh_docmap.py`, `data-worker/main.py` | Package stages in-process; legacy scripts are thin wrappers |
 | B5 | MCP `find_ab_tests` | ✅ | S | `mcp-server/tools/find_ab_tests.py` | Filtered A/B pairs from `content_posts.metadata` |
 | B6 | MCP `suggest_next_tiktok_angles` | ✅ | S | `mcp-server/tools/suggest_next_tiktok_angles.py` | Ranked angles from comment analysis |
 | B7 | Schedule weekly full refresh + OCR in data-worker | ✅ | S | `data-worker/main.py` | Weekly Sun 02:00 UTC: full refresh + OCR |
@@ -114,9 +114,9 @@ Vercel project: intelligence-os-app
 
 | Stage | State |
 |-------|-------|
-| Catalog fetch | Legacy |
-| yt-dlp stats + Whisper | Legacy |
-| Master compile | Legacy (comments from cache) |
+| Catalog fetch | Ported (`fetch_catalog`) |
+| yt-dlp stats + Whisper | Ported (`refresh_stats`, `transcribe_video`, `refresh_videos`) |
+| Master compile | Ported (`write_master_transcripts`; legacy script is thin wrapper) |
 | Comments, OCR, hooks, A/B, sync | Ported |
 | Playbooks | Ported |
 
