@@ -27,17 +27,15 @@ Pre-flight decisions: see [`MASTER_PLAN.md`](MASTER_PLAN.md).
 
 ## Railway: data-worker
 
-Railway’s `data-worker` root build **cannot** see `../marketing-pipeline` (sibling folder is outside the build context). Use **one** of these options:
+Railway’s default builder is **Railpack** (Nixpacks is deprecated). Root Directory must be `data-worker` — not repo root.
 
-### Option A — Nixpacks (required: Root Directory = `data-worker`)
-
-`nixpacks.toml` installs `marketing-pipeline[media]` (yt-dlp + faster-whisper) from GitHub `main`.
+`requirements.txt` installs `marketing-pipeline[media]` from GitHub `main` (yt-dlp + faster-whisper). `Aptfile` adds `ffmpeg` and `git`.
 
 **Do not enable Dockerfile** for this service.
 
 1. In the same Railway project → **+ New** → **GitHub Repo** → `jackye426/IntelligenceOS`
 2. **Settings → General → Root Directory** = `data-worker`
-3. **Settings → Build → Builder** = **Nixpacks** (not Dockerfile)
+3. **Settings → Build → Builder** = **Railpack** (default; not Dockerfile)
 4. Variables:
    - `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`
    - `OPENROUTER_API_KEY`
@@ -92,6 +90,6 @@ If the service is named after the repo (`IntelligenceOS`) and the build log show
 2. **Settings → General → Root Directory** → set `mcp-server` (or `data-worker` for the worker).
 3. Click **Redeploy** (or delete the failed service and add a new one with the correct root).
 
-MCP build logs should show `pip install -r requirements.txt` and Python 3.11, not Node/Next.js.
+MCP build logs should show `pip install` and Python, not Node/Next.js.
 
-**Data worker:** `ERROR: ../marketing-pipeline is not a valid editable requirement` — use Root Directory `data-worker` + Nixpacks. **`"/marketing-pipeline": not found`** — Railway is using Dockerfile with a `data-worker`-only build context; set Builder to **Nixpacks** and redeploy.
+**Data worker:** use Root Directory `data-worker` + **Railpack**. If `marketing-pipeline` is missing at runtime, confirm `requirements.txt` includes the git dependency. **`"/marketing-pipeline": not found`** — Dockerfile was enabled with wrong context; use Railpack instead.

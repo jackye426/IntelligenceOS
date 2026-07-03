@@ -5,3 +5,4 @@ python-dotenv
 supabase
 pydantic
 pandas
+marketing-pipeline[media] @ git+https://github.com/jackye426/IntelligenceOS.git@main#subdirectory=marketing-pipeline

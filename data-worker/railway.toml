@@ -1,7 +1,6 @@
-# Railway: data-worker (Root Directory = data-worker, builder = Nixpacks)
+# Railway Railpack (default). Root Directory = data-worker.
 [build]
-builder = "NIXPACKS"
-nixpacksConfigPath = "nixpacks.toml"
+builder = "RAILPACK"
 
 [deploy]
 startCommand = "python main.py"
