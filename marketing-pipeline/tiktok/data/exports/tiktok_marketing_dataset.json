@@ -1,6 +1,6 @@
 {
   "dataset_version": "2",
-  "generated_at": "2026-07-03T01:57:05.591221+00:00",
+  "generated_at": "2026-07-03T05:17:20.675353+00:00",
   "videos": {
     "7650491657414085910": {
       "post": {
@@ -11,15 +11,15 @@
         "duration_sec": 62,
         "format_guess": "video",
         "metrics": {
-          "views": 1018,
-          "likes": 32,
-          "comments": 3,
-          "saves": 8,
-          "shares": 1,
+          "views": 1846,
+          "likes": 46,
+          "comments": 5,
+          "saves": 15,
+          "shares": 4,
           "duration_sec": 62,
-          "saves_per_1k_views": 7.86,
-          "comments_per_1k_views": 2.95,
-          "shares_per_1k_views": 0.98
+          "saves_per_1k_views": 8.13,
+          "comments_per_1k_views": 2.71,
+          "shares_per_1k_views": 2.17
         },
         "raw_metadata": {
           "catalog_title": "Did you know you can see an endometriosis Clinical Nurse Specialist (..."
@@ -163,15 +163,15 @@
         "duration_sec": 62,
         "format_guess": "video",
         "metrics": {
-          "views": 1032,
-          "likes": 38,
-          "comments": 1,
-          "saves": 10,
+          "views": 1462,
+          "likes": 43,
+          "comments": 2,
+          "saves": 13,
           "shares": 1,
           "duration_sec": 62,
-          "saves_per_1k_views": 9.69,
-          "comments_per_1k_views": 0.97,
-          "shares_per_1k_views": 0.97
+          "saves_per_1k_views": 8.89,
+          "comments_per_1k_views": 1.37,
+          "shares_per_1k_views": 0.68
         },
         "raw_metadata": {
           "catalog_title": "If you are hitting a wall getting a diagnosis for endometriosis, this..."
@@ -273,15 +273,15 @@
         "duration_sec": 35,
         "format_guess": "video",
         "metrics": {
-          "views": 2945,
-          "likes": 157,
-          "comments": 4,
-          "saves": 22,
-          "shares": 12,
+          "views": 3666,
+          "likes": 180,
+          "comments": 3,
+          "saves": 25,
+          "shares": 14,
           "duration_sec": 35,
-          "saves_per_1k_views": 7.47,
-          "comments_per_1k_views": 1.36,
-          "shares_per_1k_views": 4.07
+          "saves_per_1k_views": 6.82,
+          "comments_per_1k_views": 0.82,
+          "shares_per_1k_views": 3.82
         },
         "raw_metadata": {
           "catalog_title": "Painful periods are often one of the first and most well-known sympto..."
@@ -432,15 +432,15 @@
         "duration_sec": 55,
         "format_guess": "video",
         "metrics": {
-          "views": 19200,
-          "likes": 638,
-          "comments": 13,
-          "saves": 264,
-          "shares": 93,
+          "views": 32700,
+          "likes": 1185,
+          "comments": 24,
+          "saves": 487,
+          "shares": 155,
           "duration_sec": 55,
-          "saves_per_1k_views": 13.75,
-          "comments_per_1k_views": 0.68,
-          "shares_per_1k_views": 4.84
+          "saves_per_1k_views": 14.89,
+          "comments_per_1k_views": 0.73,
+          "shares_per_1k_views": 4.74
         },
         "raw_metadata": {
           "catalog_title": "Always ask for your surgical photos after a laparoscopy.  Always. Tho..."
@@ -750,15 +750,15 @@
         "duration_sec": 55,
         "format_guess": "video",
         "metrics": {
-          "views": 7857,
-          "likes": 315,
-          "comments": 6,
-          "saves": 320,
-          "shares": 64,
+          "views": 9449,
+          "likes": 369,
+          "comments": 10,
+          "saves": 374,
+          "shares": 78,
           "duration_sec": 55,
-          "saves_per_1k_views": 40.73,
-          "comments_per_1k_views": 0.76,
-          "shares_per_1k_views": 8.15
+          "saves_per_1k_views": 39.58,
+          "comments_per_1k_views": 1.06,
+          "shares_per_1k_views": 8.25
         },
         "raw_metadata": {
           "catalog_title": "Before your laparoscopy, there are questions you should be asking you..."
@@ -941,15 +941,15 @@
         "duration_sec": 92,
         "format_guess": "video",
         "metrics": {
-          "views": 593,
+          "views": 679,
           "likes": 26,
           "comments": 1,
-          "saves": 3,
-          "shares": 0,
+          "saves": 4,
+          "shares": 1,
           "duration_sec": 92,
-          "saves_per_1k_views": 5.06,
-          "comments_per_1k_views": 1.69,
-          "shares_per_1k_views": 0.0
+          "saves_per_1k_views": 5.89,
+          "comments_per_1k_views": 1.47,
+          "shares_per_1k_views": 1.47
         },
         "raw_metadata": {
           "catalog_title": "9 years. That's how long it takes, on average, to get an endometriosi..."
@@ -1104,15 +1104,15 @@
         "duration_sec": 51,
         "format_guess": "video",
         "metrics": {
-          "views": 9571,
-          "likes": 299,
-          "comments": 4,
-          "saves": 131,
-          "shares": 26,
+          "views": 14200,
+          "likes": 480,
+          "comments": 11,
+          "saves": 202,
+          "shares": 38,
           "duration_sec": 51,
-          "saves_per_1k_views": 13.69,
-          "comments_per_1k_views": 0.42,
-          "shares_per_1k_views": 2.72
+          "saves_per_1k_views": 14.23,
+          "comments_per_1k_views": 0.77,
+          "shares_per_1k_views": 2.68
         },
         "raw_metadata": {
           "catalog_title": "A 30-minute laparoscopy that found nothing doesn't mean nothing is th..."
@@ -1343,15 +1343,15 @@
         "duration_sec": 43,
         "format_guess": "video",
         "metrics": {
-          "views": 2047,
-          "likes": 88,
-          "comments": 0,
-          "saves": 11,
-          "shares": 7,
+          "views": 2433,
+          "likes": 98,
+          "comments": 1,
+          "saves": 14,
+          "shares": 8,
           "duration_sec": 43,
-          "saves_per_1k_views": 5.37,
-          "comments_per_1k_views": 0.0,
-          "shares_per_1k_views": 3.42
+          "saves_per_1k_views": 5.75,
+          "comments_per_1k_views": 0.41,
+          "shares_per_1k_views": 3.29
         },
         "raw_metadata": {
           "catalog_title": "Did you know that if you have endometriosis, you're eligible for a Hi..."
@@ -1461,15 +1461,15 @@
         "duration_sec": 51,
         "format_guess": "video",
         "metrics": {
-          "views": 58600,
-          "likes": 4420,
-          "comments": 72,
-          "saves": 816,
-          "shares": 474,
+          "views": 72700,
+          "likes": 5648,
+          "comments": 85,
+          "saves": 1057,
+          "shares": 571,
           "duration_sec": 51,
-          "saves_per_1k_views": 13.92,
-          "comments_per_1k_views": 1.23,
-          "shares_per_1k_views": 8.09
+          "saves_per_1k_views": 14.54,
+          "comments_per_1k_views": 1.17,
+          "shares_per_1k_views": 7.85
         },
         "raw_metadata": {
           "catalog_title": "The pain is real, it's debilitating, and it deserves to be talked abo..."
@@ -2008,15 +2008,15 @@
         "duration_sec": 84,
         "format_guess": "video",
         "metrics": {
-          "views": 752,
-          "likes": 38,
+          "views": 885,
+          "likes": 42,
           "comments": 0,
           "saves": 4,
           "shares": 1,
           "duration_sec": 84,
-          "saves_per_1k_views": 5.32,
+          "saves_per_1k_views": 4.52,
           "comments_per_1k_views": 0.0,
-          "shares_per_1k_views": 1.33
+          "shares_per_1k_views": 1.13
         },
         "raw_metadata": {
           "catalog_title": "We’ll put you on the pill, that will sort you out. This is just your ..."
@@ -2121,15 +2121,15 @@
         "duration_sec": 141,
         "format_guess": "video",
         "metrics": {
-          "views": 937,
-          "likes": 27,
-          "comments": 0,
-          "saves": 3,
-          "shares": 0,
+          "views": 1302,
+          "likes": 31,
+          "comments": 1,
+          "saves": 4,
+          "shares": 2,
           "duration_sec": 141,
-          "saves_per_1k_views": 3.2,
-          "comments_per_1k_views": 0.0,
-          "shares_per_1k_views": 0.0
+          "saves_per_1k_views": 3.07,
+          "comments_per_1k_views": 0.77,
+          "shares_per_1k_views": 1.54
         },
         "raw_metadata": {
           "catalog_title": "We all have bad periods, you just have to get used to it. Ayla first ..."
@@ -2319,15 +2319,15 @@
         "duration_sec": 95,
         "format_guess": "video",
         "metrics": {
-          "views": 2241,
-          "likes": 39,
-          "comments": 4,
-          "saves": 13,
-          "shares": 1,
+          "views": 3612,
+          "likes": 70,
+          "comments": 7,
+          "saves": 23,
+          "shares": 3,
           "duration_sec": 95,
-          "saves_per_1k_views": 5.8,
-          "comments_per_1k_views": 1.78,
-          "shares_per_1k_views": 0.45
+          "saves_per_1k_views": 6.37,
+          "comments_per_1k_views": 1.94,
+          "shares_per_1k_views": 0.83
         },
         "raw_metadata": {
           "catalog_title": "A negative MRI does NOT mean you're in the clear! MRI is powerful, es..."
@@ -2543,15 +2543,15 @@
         "duration_sec": 65,
         "format_guess": "video",
         "metrics": {
-          "views": 1024,
-          "likes": 17,
-          "comments": 3,
+          "views": 1178,
+          "likes": 21,
+          "comments": 4,
           "saves": 4,
           "shares": 3,
           "duration_sec": 65,
-          "saves_per_1k_views": 3.91,
-          "comments_per_1k_views": 2.93,
-          "shares_per_1k_views": 2.93
+          "saves_per_1k_views": 3.4,
+          "comments_per_1k_views": 3.4,
+          "shares_per_1k_views": 2.55
         },
         "raw_metadata": {
           "catalog_title": "@Laura | Women’s Health Creator struggled with her own endometriosis ..."
@@ -2700,15 +2700,15 @@
         "duration_sec": 20,
         "format_guess": "video",
         "metrics": {
-          "views": 17500,
-          "likes": 1072,
+          "views": 24400,
+          "likes": 1661,
           "comments": 27,
-          "saves": 253,
-          "shares": 88,
+          "saves": 391,
+          "shares": 117,
           "duration_sec": 20,
-          "saves_per_1k_views": 14.46,
-          "comments_per_1k_views": 1.54,
-          "shares_per_1k_views": 5.03
+          "saves_per_1k_views": 16.02,
+          "comments_per_1k_views": 1.11,
+          "shares_per_1k_views": 4.8
         },
         "raw_metadata": {
           "catalog_title": "Your MRI is only as useful as the person reading it. For endo, that m..."
@@ -2984,9 +2984,9 @@
           "role": "video_a",
           "learning": "MRI — who reads it matters",
           "performance_difference": {
-            "views_delta": 14503,
-            "saves_per_1k_delta": 7.45,
-            "likes_delta": 1001
+            "views_delta": 21357,
+            "saves_per_1k_delta": 9.12,
+            "likes_delta": 1589
           }
         },
         {
@@ -2995,9 +2995,9 @@
           "role": "video_a",
           "learning": "MRI — who reads it matters",
           "performance_difference": {
-            "views_delta": 15434,
-            "saves_per_1k_delta": 13.49,
-            "likes_delta": 1041
+            "views_delta": 21905,
+            "saves_per_1k_delta": 14.82,
+            "likes_delta": 1626
           }
         }
       ]
@@ -3011,15 +3011,15 @@
         "duration_sec": 79,
         "format_guess": "video",
         "metrics": {
-          "views": 806,
+          "views": 926,
           "likes": 32,
           "comments": 0,
           "saves": 2,
           "shares": 3,
           "duration_sec": 79,
-          "saves_per_1k_views": 2.48,
+          "saves_per_1k_views": 2.16,
           "comments_per_1k_views": 0.0,
-          "shares_per_1k_views": 3.72
+          "shares_per_1k_views": 3.24
         },
         "raw_metadata": {
           "catalog_title": "Endometriosis takes. It takes your time, your energy, and life as you..."
@@ -3139,15 +3139,15 @@
         "duration_sec": 47,
         "format_guess": "video",
         "metrics": {
-          "views": 643,
-          "likes": 31,
-          "comments": 0,
-          "saves": 14,
-          "shares": 2,
+          "views": 831,
+          "likes": 40,
+          "comments": 5,
+          "saves": 17,
+          "shares": 4,
           "duration_sec": 47,
-          "saves_per_1k_views": 21.77,
-          "comments_per_1k_views": 0.0,
-          "shares_per_1k_views": 3.11
+          "saves_per_1k_views": 20.46,
+          "comments_per_1k_views": 6.02,
+          "shares_per_1k_views": 4.81
         },
         "raw_metadata": {
           "catalog_title": "Did you know you can see an endometriosis Clinical Nurse Specialist (..."
@@ -3318,174 +3318,6 @@
       },
       "ab_pairs": []
     },
-    "7643867792634154262": {
-      "post": {
-        "video_id": "7643867792634154262",
-        "url": "https://www.tiktok.com/@docmap/video/7643867792634154262",
-        "posted_at": "2026-05-25T00:00:00+00:00",
-        "caption": "Do you document your endo symptoms? @Laura | Women’s Health Creator learned that writing everything down - bowel changes, pain levels, how her cycle affected her day - gave her the clarity and confidence to advocate for herself with every GP and specialist she saw. Your symptoms deserve to be taken seriously. Documenting them is how you make sure they are. Need help organising your notes before an appointment? We can help! Chat to us on WhatsApp.",
-        "duration_sec": 99,
-        "format_guess": "video",
-        "metrics": {
-          "views": 883,
-          "likes": 14,
-          "comments": 1,
-          "saves": 1,
-          "shares": 3,
-          "duration_sec": 99,
-          "saves_per_1k_views": 1.13,
-          "comments_per_1k_views": 1.13,
-          "shares_per_1k_views": 3.4
-        },
-        "raw_metadata": {
-          "catalog_title": "Do you document your endo symptoms? @Laura | Women’s Health Creator l..."
-        }
-      },
-      "transcript": {
-        "video_id": "7643867792634154262",
-        "full_text": "whatever your experience in right to don't document it. I am Laura and I am a women's health advocate and contact creator and I'm also a founder of your adult events which is a community-based project for people, struggling with chronic illnesses and endometrosis. So whenever I was going there was always asking for period love. There was always asking for like symptom love, bell love, everything. Anything that I experience I started writing to do. I also started writing down when I experienced it and what I was doing. Was it because I ate something? Was I during the period? Was it because I did exercise? Like whatever was going on, I documented it and I also documented how it affected me on a daily basis. So when I went into my appointments, I had a clear plan and a clear structure of a bright day and of all my symptoms and how it affected me. And I find explaining to a specialist or a GP of how your symptoms debilitate your effective really helps you that advocate because it's showing them and demonstrating them while you're struggling and while you need them to do something. So it's a lot better than just saying, I'm tired. You can say, I am that fatigued that I physically come and get up in the afternoon. You know, something like that. That's why I always say the mind-free things is right during the symptoms, document everything, take someone with you to appointments because it absolutely does help advocate for you and also write down a couple of questions that you want answered before you leave there. So whether that's what are the next steps what treatment plan I'm going to have and we're going to have any scans, what happens if like friends if you're having a lap? Ask the question, what happens if you don't find anything? Because you need to know what happens next. So it's like little things like that, writing everything down document and everything and taking it is always going to be the best way.",
-        "segments": [
-          {
-            "start": 0.0,
-            "end": 7.04,
-            "text": "whatever your experience in right to don't document it. I am Laura and I am a women's health advocate"
-          },
-          {
-            "start": 7.04,
-            "end": 12.64,
-            "text": "and contact creator and I'm also a founder of your adult events which is a community-based project"
-          },
-          {
-            "start": 12.64,
-            "end": 16.72,
-            "text": "for people, struggling with chronic illnesses and endometrosis. So whenever I was going there was"
-          },
-          {
-            "start": 16.72,
-            "end": 21.84,
-            "text": "always asking for period love. There was always asking for like symptom love, bell love, everything."
-          },
-          {
-            "start": 21.84,
-            "end": 26.56,
-            "text": "Anything that I experience I started writing to do. I also started writing down when I experienced it"
-          },
-          {
-            "start": 26.64,
-            "end": 30.72,
-            "text": "and what I was doing. Was it because I ate something? Was I during the period? Was it because I"
-          },
-          {
-            "start": 30.72,
-            "end": 36.08,
-            "text": "did exercise? Like whatever was going on, I documented it and I also documented how it affected me"
-          },
-          {
-            "start": 36.08,
-            "end": 41.2,
-            "text": "on a daily basis. So when I went into my appointments, I had a clear plan and a clear structure"
-          },
-          {
-            "start": 41.2,
-            "end": 47.68,
-            "text": "of a bright day and of all my symptoms and how it affected me. And I find explaining to a specialist or"
-          },
-          {
-            "start": 47.68,
-            "end": 53.76,
-            "text": "a GP of how your symptoms debilitate your effective really helps you that advocate because it's"
-          },
-          {
-            "start": 53.76,
-            "end": 58.0,
-            "text": "showing them and demonstrating them while you're struggling and while you need them to do something."
-          },
-          {
-            "start": 58.0,
-            "end": 64.24,
-            "text": "So it's a lot better than just saying, I'm tired. You can say, I am that fatigued that I physically"
-          },
-          {
-            "start": 64.24,
-            "end": 68.16,
-            "text": "come and get up in the afternoon. You know, something like that. That's why I always say the"
-          },
-          {
-            "start": 68.16,
-            "end": 72.88,
-            "text": "mind-free things is right during the symptoms, document everything, take someone with you to"
-          },
-          {
-            "start": 72.88,
-            "end": 77.92,
-            "text": "appointments because it absolutely does help advocate for you and also write down a couple of"
-          },
-          {
-            "start": 77.92,
-            "end": 81.44,
-            "text": "questions that you want answered before you leave there. So whether that's what are the next steps"
-          },
-          {
-            "start": 81.52,
-            "end": 86.0,
-            "text": "what treatment plan I'm going to have and we're going to have any scans, what happens if"
-          },
-          {
-            "start": 86.0,
-            "end": 90.88,
-            "text": "like friends if you're having a lap? Ask the question, what happens if you don't find anything?"
-          },
-          {
-            "start": 90.88,
-            "end": 95.12,
-            "text": "Because you need to know what happens next. So it's like little things like that, writing everything"
-          },
-          {
-            "start": 95.12,
-            "end": 98.72,
-            "text": "down document and everything and taking it is always going to be the best way."
-          }
-        ],
-        "model": null,
-        "status": "transcribed"
-      },
-      "hook": {
-        "video_id": "7643867792634154262",
-        "spoken_hook": "whatever your experience in right to don't document it.",
-        "caption_hook": "Do you document your endo symptoms?",
-        "onscreen_hook": "Documenting is your power to get the right diagnosis experiencing",
-        "hook_source": "ocr",
-        "confidence": 0.5
-      },
-      "comments": [
-        {
-          "video_id": "7643867792634154262",
-          "comment_id": "7643870204322120470",
-          "text": "Oh hey 👋🏻",
-          "likes": 0,
-          "replies": 0,
-          "created_at": null,
-          "themes": [
-            "other_uncategorized"
-          ]
-        }
-      ],
-      "comment_analysis": {
-        "video_id": "7643867792634154262",
-        "themes": [
-          "other_uncategorized"
-        ],
-        "questions": [],
-        "objections": [],
-        "content_requests": [],
-        "emotional_pattern": null,
-        "suggested_future_angles": [
-          "Audience interest in other uncategorized (1 comments)"
-        ],
-        "primary_theme": "other_uncategorized"
-      },
-      "ab_pairs": []
-    },
     "7643525601353075990": {
       "post": {
         "video_id": "7643525601353075990",
@@ -3495,15 +3327,15 @@
         "duration_sec": 80,
         "format_guess": "video",
         "metrics": {
-          "views": 833,
-          "likes": 14,
+          "views": 902,
+          "likes": 16,
           "comments": 1,
-          "saves": 3,
+          "saves": 4,
           "shares": 1,
           "duration_sec": 80,
-          "saves_per_1k_views": 3.6,
-          "comments_per_1k_views": 1.2,
-          "shares_per_1k_views": 1.2
+          "saves_per_1k_views": 4.43,
+          "comments_per_1k_views": 1.11,
+          "shares_per_1k_views": 1.11
         },
         "raw_metadata": {
           "catalog_title": "Al can be a powerful tool when navigating endometriosis, if you know ..."
@@ -3718,15 +3550,15 @@
         "duration_sec": 70,
         "format_guess": "video",
         "metrics": {
-          "views": 1159,
-          "likes": 29,
+          "views": 1231,
+          "likes": 30,
           "comments": 2,
           "saves": 3,
           "shares": 16,
           "duration_sec": 70,
-          "saves_per_1k_views": 2.59,
-          "comments_per_1k_views": 1.73,
-          "shares_per_1k_views": 13.81
+          "saves_per_1k_views": 2.44,
+          "comments_per_1k_views": 1.62,
+          "shares_per_1k_views": 13.0
         },
         "raw_metadata": {
           "catalog_title": "Dismissed. Pushed away.  Told it was just period pain. We sat down wi..."
@@ -3907,15 +3739,15 @@
         "duration_sec": 26,
         "format_guess": "video",
         "metrics": {
-          "views": 8374,
-          "likes": 187,
+          "views": 10100,
+          "likes": 242,
           "comments": 1,
-          "saves": 135,
-          "shares": 42,
+          "saves": 181,
+          "shares": 54,
           "duration_sec": 26,
-          "saves_per_1k_views": 16.12,
-          "comments_per_1k_views": 0.12,
-          "shares_per_1k_views": 5.02
+          "saves_per_1k_views": 17.92,
+          "comments_per_1k_views": 0.1,
+          "shares_per_1k_views": 5.35
         },
         "raw_metadata": {
           "catalog_title": "Excision, not ablation.  Liz Bruen, endometriosis CNS, explains why t..."
@@ -3996,9 +3828,9 @@
           "role": "video_a",
           "learning": "Excision vs ablation",
           "performance_difference": {
-            "views_delta": -1608,
-            "saves_per_1k_delta": -2.21,
-            "likes_delta": -151
+            "views_delta": -800,
+            "saves_per_1k_delta": -0.43,
+            "likes_delta": -117
           }
         }
       ]
@@ -4012,14 +3844,14 @@
         "duration_sec": 43,
         "format_guess": "video",
         "metrics": {
-          "views": 2066,
-          "likes": 31,
+          "views": 2495,
+          "likes": 35,
           "comments": 4,
-          "saves": 2,
+          "saves": 3,
           "shares": 0,
           "duration_sec": 43,
-          "saves_per_1k_views": 0.97,
-          "comments_per_1k_views": 1.94,
+          "saves_per_1k_views": 1.2,
+          "comments_per_1k_views": 1.6,
           "shares_per_1k_views": 0.0
         },
         "raw_metadata": {
@@ -4159,9 +3991,9 @@
           "role": "video_b",
           "learning": "MRI — who reads it matters",
           "performance_difference": {
-            "views_delta": 15434,
-            "saves_per_1k_delta": 13.49,
-            "likes_delta": 1041
+            "views_delta": 21905,
+            "saves_per_1k_delta": 14.82,
+            "likes_delta": 1626
           }
         },
         {
@@ -4170,9 +4002,9 @@
           "role": "video_b",
           "learning": "MRI — who reads it matters",
           "performance_difference": {
-            "views_delta": 931,
-            "saves_per_1k_delta": 6.04,
-            "likes_delta": 40
+            "views_delta": 548,
+            "saves_per_1k_delta": 5.7,
+            "likes_delta": 37
           }
         }
       ]
@@ -4186,15 +4018,15 @@
         "duration_sec": 49,
         "format_guess": "video",
         "metrics": {
-          "views": 1159,
-          "likes": 32,
+          "views": 1512,
+          "likes": 44,
           "comments": 6,
-          "saves": 8,
+          "saves": 14,
           "shares": 4,
           "duration_sec": 49,
-          "saves_per_1k_views": 6.9,
-          "comments_per_1k_views": 5.18,
-          "shares_per_1k_views": 3.45
+          "saves_per_1k_views": 9.26,
+          "comments_per_1k_views": 3.97,
+          "shares_per_1k_views": 2.65
         },
         "raw_metadata": {
           "catalog_title": "Replying to @KLF2511 why your pain after the endometriosis surgery mi..."
@@ -4373,15 +4205,15 @@
         "duration_sec": 58,
         "format_guess": "video",
         "metrics": {
-          "views": 9595,
-          "likes": 97,
-          "comments": 12,
-          "saves": 24,
-          "shares": 3,
+          "views": 11200,
+          "likes": 129,
+          "comments": 13,
+          "saves": 33,
+          "shares": 4,
           "duration_sec": 58,
-          "saves_per_1k_views": 2.5,
-          "comments_per_1k_views": 1.25,
-          "shares_per_1k_views": 0.31
+          "saves_per_1k_views": 2.95,
+          "comments_per_1k_views": 1.16,
+          "shares_per_1k_views": 0.36
         },
         "raw_metadata": {
           "catalog_title": "Replying to @Alice O'Neil"
@@ -4624,13 +4456,13 @@
         "duration_sec": 58,
         "format_guess": "video",
         "metrics": {
-          "views": 1117,
+          "views": 1165,
           "likes": 8,
           "comments": 0,
           "saves": 1,
           "shares": 0,
           "duration_sec": 58,
-          "saves_per_1k_views": 0.9,
+          "saves_per_1k_views": 0.86,
           "comments_per_1k_views": 0.0,
           "shares_per_1k_views": 0.0
         },
@@ -4732,14 +4564,14 @@
         "duration_sec": 12,
         "format_guess": "video",
         "metrics": {
-          "views": 1343,
-          "likes": 20,
-          "comments": 5,
+          "views": 1391,
+          "likes": 23,
+          "comments": 6,
           "saves": 4,
           "shares": 0,
           "duration_sec": 12,
-          "saves_per_1k_views": 2.98,
-          "comments_per_1k_views": 3.72,
+          "saves_per_1k_views": 2.88,
+          "comments_per_1k_views": 4.31,
           "shares_per_1k_views": 0.0
         },
         "raw_metadata": {
@@ -4859,13 +4691,13 @@
         "duration_sec": 28,
         "format_guess": "video",
         "metrics": {
-          "views": 1051,
+          "views": 1097,
           "likes": 10,
           "comments": 0,
           "saves": 1,
           "shares": 0,
           "duration_sec": 28,
-          "saves_per_1k_views": 0.95,
+          "saves_per_1k_views": 0.91,
           "comments_per_1k_views": 0.0,
           "shares_per_1k_views": 0.0
         },
@@ -4912,15 +4744,15 @@
         "duration_sec": 51,
         "format_guess": "video",
         "metrics": {
-          "views": 1305,
-          "likes": 22,
+          "views": 1369,
+          "likes": 23,
           "comments": 3,
-          "saves": 7,
+          "saves": 8,
           "shares": 2,
           "duration_sec": 51,
-          "saves_per_1k_views": 5.36,
-          "comments_per_1k_views": 2.3,
-          "shares_per_1k_views": 1.53
+          "saves_per_1k_views": 5.84,
+          "comments_per_1k_views": 2.19,
+          "shares_per_1k_views": 1.46
         },
         "raw_metadata": {
           "catalog_title": "Replying to @Bec really good question!"
@@ -5062,15 +4894,15 @@
         "duration_sec": 104,
         "format_guess": "video",
         "metrics": {
-          "views": 1025,
-          "likes": 27,
-          "comments": 5,
-          "saves": 14,
+          "views": 1066,
+          "likes": 28,
+          "comments": 6,
+          "saves": 17,
           "shares": 2,
           "duration_sec": 104,
-          "saves_per_1k_views": 13.66,
-          "comments_per_1k_views": 4.88,
-          "shares_per_1k_views": 1.95
+          "saves_per_1k_views": 15.95,
+          "comments_per_1k_views": 5.63,
+          "shares_per_1k_views": 1.88
         },
         "raw_metadata": {
           "catalog_title": "We had another chat with Liz to answer some of your questions about t..."
@@ -5298,15 +5130,15 @@
         "duration_sec": 50,
         "format_guess": "video",
         "metrics": {
-          "views": 1158,
+          "views": 1199,
           "likes": 49,
           "comments": 1,
           "saves": 5,
           "shares": 1,
           "duration_sec": 50,
-          "saves_per_1k_views": 4.32,
-          "comments_per_1k_views": 0.86,
-          "shares_per_1k_views": 0.86
+          "saves_per_1k_views": 4.17,
+          "comments_per_1k_views": 0.83,
+          "shares_per_1k_views": 0.83
         },
         "raw_metadata": {
           "catalog_title": "It's not all doom and gloom. Researchers are now describing endometri..."
@@ -5411,15 +5243,15 @@
         "duration_sec": 63,
         "format_guess": "video",
         "metrics": {
-          "views": 2612,
+          "views": 2688,
           "likes": 97,
           "comments": 4,
           "saves": 21,
           "shares": 7,
           "duration_sec": 63,
-          "saves_per_1k_views": 8.04,
-          "comments_per_1k_views": 1.53,
-          "shares_per_1k_views": 2.68
+          "saves_per_1k_views": 7.81,
+          "comments_per_1k_views": 1.49,
+          "shares_per_1k_views": 2.6
         },
         "raw_metadata": {
           "catalog_title": "Endometriosis isn't just about painful periods. Chronic fatigue is on..."
@@ -5576,15 +5408,15 @@
         "duration_sec": 17,
         "format_guess": "video",
         "metrics": {
-          "views": 2997,
-          "likes": 71,
+          "views": 3043,
+          "likes": 72,
           "comments": 8,
           "saves": 21,
           "shares": 7,
           "duration_sec": 17,
-          "saves_per_1k_views": 7.01,
-          "comments_per_1k_views": 2.67,
-          "shares_per_1k_views": 2.34
+          "saves_per_1k_views": 6.9,
+          "comments_per_1k_views": 2.63,
+          "shares_per_1k_views": 2.3
         },
         "raw_metadata": {
           "catalog_title": "Replying to @user8575620225727  Many of you have asked about the MRI"
@@ -5719,9 +5551,9 @@
           "role": "video_b",
           "learning": "MRI — who reads it matters",
           "performance_difference": {
-            "views_delta": 14503,
-            "saves_per_1k_delta": 7.45,
-            "likes_delta": 1001
+            "views_delta": 21357,
+            "saves_per_1k_delta": 9.12,
+            "likes_delta": 1589
           }
         },
         {
@@ -5730,9 +5562,9 @@
           "role": "video_a",
           "learning": "MRI — who reads it matters",
           "performance_difference": {
-            "views_delta": 931,
-            "saves_per_1k_delta": 6.04,
-            "likes_delta": 40
+            "views_delta": 548,
+            "saves_per_1k_delta": 5.7,
+            "likes_delta": 37
           }
         }
       ]
@@ -5746,15 +5578,15 @@
         "duration_sec": 60,
         "format_guess": "video",
         "metrics": {
-          "views": 1106,
+          "views": 1145,
           "likes": 51,
           "comments": 1,
           "saves": 4,
           "shares": 1,
           "duration_sec": 60,
-          "saves_per_1k_views": 3.62,
-          "comments_per_1k_views": 0.9,
-          "shares_per_1k_views": 0.9
+          "saves_per_1k_views": 3.49,
+          "comments_per_1k_views": 0.87,
+          "shares_per_1k_views": 0.87
         },
         "raw_metadata": {
           "catalog_title": "Why does it take 9 years on average to get an endometriosis diagnosis..."
@@ -5879,13 +5711,13 @@
         "duration_sec": 80,
         "format_guess": "video",
         "metrics": {
-          "views": 1952,
+          "views": 1989,
           "likes": 105,
           "comments": 0,
           "saves": 17,
           "shares": 0,
           "duration_sec": 80,
-          "saves_per_1k_views": 8.71,
+          "saves_per_1k_views": 8.55,
           "comments_per_1k_views": 0.0,
           "shares_per_1k_views": 0.0
         },
@@ -6058,89 +5890,6 @@
       "comment_analysis": null,
       "ab_pairs": []
     },
-    "7633495707416235286": {
-      "post": {
-        "video_id": "7633495707416235286",
-        "url": "https://www.tiktok.com/@docmap/video/7633495707416235286",
-        "posted_at": "2026-04-27T00:00:00+00:00",
-        "caption": "Hitting a wall getting a diagnosis for endometriosis? This one is for you. The best thing you can do is map out your symptoms. What is cyclical, what is not. Details like: this stops me from going to work or school or l'm passing out on day 1. Even if you think it's not important, write it down. And if you need help summarising your notes, or figuring out who to see privately, we have a WhatsApp just for that.  Link in bio.",
-        "duration_sec": 42,
-        "format_guess": "video",
-        "metrics": {
-          "views": 1068,
-          "likes": 26,
-          "comments": 0,
-          "saves": 8,
-          "shares": 1,
-          "duration_sec": 42,
-          "saves_per_1k_views": 7.49,
-          "comments_per_1k_views": 0.0,
-          "shares_per_1k_views": 0.94
-        },
-        "raw_metadata": {
-          "catalog_title": "Hitting a wall getting a diagnosis for endometriosis? This one is for..."
-        }
-      },
-      "transcript": {
-        "video_id": "7633495707416235286",
-        "full_text": "If someone has suspicion that they have endometriosis, but they're kind of hitting the wall What would you tell them now? Like what's the next step or what's something they should they should know? Work out your symptoms. Work out what's typical, what isn't typical. Work it out. Go to one in the end of UK It's fantastic. There's some really good resources. Go and have a look, but work out your symptoms Look at yourself and say, okay, what's happening? What's happening to me and then go to somebody and say this is what's happening to me. Can you help? But just keep on, keep knocking on the doors You know, don't despair. There are a lot of us out there who want to help. Those people who want to help So, or you can come and see me in help and I do virtual clinic as well",
-        "segments": [
-          {
-            "start": 0.0,
-            "end": 4.68,
-            "text": "If someone has suspicion that they have endometriosis, but they're kind of hitting the wall"
-          },
-          {
-            "start": 4.8,
-            "end": 10.72,
-            "text": "What would you tell them now? Like what's the next step or what's something they should they should know?"
-          },
-          {
-            "start": 10.72,
-            "end": 16.72,
-            "text": "Work out your symptoms. Work out what's typical, what isn't typical. Work it out. Go to one in the end of UK"
-          },
-          {
-            "start": 16.72,
-            "end": 21.96,
-            "text": "It's fantastic. There's some really good resources. Go and have a look, but work out your symptoms"
-          },
-          {
-            "start": 22.2,
-            "end": 27.92,
-            "text": "Look at yourself and say, okay, what's happening? What's happening to me and then go to somebody and say"
-          },
-          {
-            "start": 27.92,
-            "end": 32.08,
-            "text": "this is what's happening to me. Can you help? But just keep on, keep knocking on the doors"
-          },
-          {
-            "start": 32.08,
-            "end": 37.08,
-            "text": "You know, don't despair. There are a lot of us out there who want to help. Those people who want to help"
-          },
-          {
-            "start": 37.08,
-            "end": 41.48,
-            "text": "So, or you can come and see me in help and I do virtual clinic as well"
-          }
-        ],
-        "model": null,
-        "status": "transcribed"
-      },
-      "hook": {
-        "video_id": "7633495707416235286",
-        "spoken_hook": "If someone has suspicion that they have endometriosis, but they're kind of hitting the wall What would you tell them now?",
-        "caption_hook": "Hitting a wall getting a diagnosis for endometriosis?",
-        "onscreen_hook": "that they have",
-        "hook_source": "ocr",
-        "confidence": 0.5
-      },
-      "comments": [],
-      "comment_analysis": null,
-      "ab_pairs": []
-    },
     "7632321370080152854": {
       "post": {
         "video_id": "7632321370080152854",
@@ -6150,15 +5899,15 @@
         "duration_sec": 29,
         "format_guess": "carousel",
         "metrics": {
-          "views": 5682,
-          "likes": 116,
+          "views": 5753,
+          "likes": 117,
           "comments": 0,
-          "saves": 67,
-          "shares": 6,
+          "saves": 69,
+          "shares": 7,
           "duration_sec": 29,
-          "saves_per_1k_views": 11.79,
+          "saves_per_1k_views": 11.99,
           "comments_per_1k_views": 0.0,
-          "shares_per_1k_views": 1.06
+          "shares_per_1k_views": 1.22
         },
         "raw_metadata": {
           "catalog_title": "You have approximately 8 minutes to tell your GP what's wrong, but ho..."
@@ -6218,15 +5967,15 @@
         "duration_sec": 35,
         "format_guess": "video",
         "metrics": {
-          "views": 1423,
+          "views": 1453,
           "likes": 49,
           "comments": 4,
           "saves": 10,
           "shares": 1,
           "duration_sec": 35,
-          "saves_per_1k_views": 7.03,
-          "comments_per_1k_views": 2.81,
-          "shares_per_1k_views": 0.7
+          "saves_per_1k_views": 6.88,
+          "comments_per_1k_views": 2.75,
+          "shares_per_1k_views": 0.69
         },
         "raw_metadata": {
           "catalog_title": "Periods can be painful, but if you need strong painkillers to be able..."
@@ -6410,15 +6159,15 @@
         "duration_sec": 30,
         "format_guess": "video",
         "metrics": {
-          "views": 9982,
-          "likes": 338,
-          "comments": 13,
-          "saves": 183,
-          "shares": 60,
+          "views": 10900,
+          "likes": 359,
+          "comments": 15,
+          "saves": 200,
+          "shares": 64,
           "duration_sec": 30,
-          "saves_per_1k_views": 18.33,
-          "comments_per_1k_views": 1.3,
-          "shares_per_1k_views": 6.01
+          "saves_per_1k_views": 18.35,
+          "comments_per_1k_views": 1.38,
+          "shares_per_1k_views": 5.87
         },
         "raw_metadata": {
           "catalog_title": "Responding to a question from today: Can someone explain why excision..."
@@ -6615,9 +6364,9 @@
           "role": "video_b",
           "learning": "Excision vs ablation",
           "performance_difference": {
-            "views_delta": -1608,
-            "saves_per_1k_delta": -2.21,
-            "likes_delta": -151
+            "views_delta": -800,
+            "saves_per_1k_delta": -0.43,
+            "likes_delta": -117
           }
         }
       ]
@@ -6631,15 +6380,15 @@
         "duration_sec": 67,
         "format_guess": "video",
         "metrics": {
-          "views": 325700,
-          "likes": 26100,
-          "comments": 553,
-          "saves": 17780,
-          "shares": 4093,
+          "views": 379000,
+          "likes": 30400,
+          "comments": 604,
+          "saves": 20664,
+          "shares": 4679,
           "duration_sec": 67,
-          "saves_per_1k_views": 54.59,
-          "comments_per_1k_views": 1.7,
-          "shares_per_1k_views": 12.57
+          "saves_per_1k_views": 54.52,
+          "comments_per_1k_views": 1.59,
+          "shares_per_1k_views": 12.35
         },
         "raw_metadata": {
           "catalog_title": "This is for anyone heading into laparoscopic surgery for endo, or tho..."
@@ -7241,15 +6990,15 @@
         "duration_sec": 50,
         "format_guess": "video",
         "metrics": {
-          "views": 1035,
+          "views": 1046,
           "likes": 10,
           "comments": 0,
           "saves": 1,
           "shares": 2,
           "duration_sec": 50,
-          "saves_per_1k_views": 0.97,
+          "saves_per_1k_views": 0.96,
           "comments_per_1k_views": 0.0,
-          "shares_per_1k_views": 1.93
+          "shares_per_1k_views": 1.91
         },
         "raw_metadata": {
           "catalog_title": null
@@ -7369,6 +7118,257 @@
       "comments": [],
       "comment_analysis": null,
       "ab_pairs": []
+    },
+    "7633495707416235286": {
+      "post": {
+        "video_id": "7633495707416235286",
+        "url": "https://www.tiktok.com/@docmap/video/7633495707416235286",
+        "posted_at": null,
+        "caption": "Hitting a wall getting a diagnosis for endometriosis? This one is for you. The best thing you can do is map out your symptoms. What is cyclical, what is not. Details like: this stops me from going to work or school or l'm passing out on day 1. Even if you think it's not important, write it down. And if you need help summarising your notes, or figuring out who to see privately, we have a WhatsApp just for that.  Link in bio.",
+        "duration_sec": null,
+        "format_guess": "video",
+        "metrics": {
+          "views": null,
+          "likes": null,
+          "comments": null,
+          "saves": null,
+          "shares": null,
+          "duration_sec": null,
+          "saves_per_1k_views": null,
+          "comments_per_1k_views": null,
+          "shares_per_1k_views": null
+        },
+        "raw_metadata": {
+          "catalog_title": null
+        }
+      },
+      "transcript": {
+        "video_id": "7633495707416235286",
+        "full_text": "If someone has suspicion that they have endometriosis, but they're kind of hitting the wall What would you tell them now? Like what's the next step or what's something they should they should know? Work out your symptoms. Work out what's typical, what isn't typical. Work it out. Go to one in the end of UK It's fantastic. There's some really good resources. Go and have a look, but work out your symptoms Look at yourself and say, okay, what's happening? What's happening to me and then go to somebody and say this is what's happening to me. Can you help? But just keep on, keep knocking on the doors You know, don't despair. There are a lot of us out there who want to help. Those people who want to help So, or you can come and see me in help and I do virtual clinic as well",
+        "segments": [
+          {
+            "start": 0.0,
+            "end": 4.68,
+            "text": "If someone has suspicion that they have endometriosis, but they're kind of hitting the wall"
+          },
+          {
+            "start": 4.8,
+            "end": 10.72,
+            "text": "What would you tell them now? Like what's the next step or what's something they should they should know?"
+          },
+          {
+            "start": 10.72,
+            "end": 16.72,
+            "text": "Work out your symptoms. Work out what's typical, what isn't typical. Work it out. Go to one in the end of UK"
+          },
+          {
+            "start": 16.72,
+            "end": 21.96,
+            "text": "It's fantastic. There's some really good resources. Go and have a look, but work out your symptoms"
+          },
+          {
+            "start": 22.2,
+            "end": 27.92,
+            "text": "Look at yourself and say, okay, what's happening? What's happening to me and then go to somebody and say"
+          },
+          {
+            "start": 27.92,
+            "end": 32.08,
+            "text": "this is what's happening to me. Can you help? But just keep on, keep knocking on the doors"
+          },
+          {
+            "start": 32.08,
+            "end": 37.08,
+            "text": "You know, don't despair. There are a lot of us out there who want to help. Those people who want to help"
+          },
+          {
+            "start": 37.08,
+            "end": 41.48,
+            "text": "So, or you can come and see me in help and I do virtual clinic as well"
+          }
+        ],
+        "model": null,
+        "status": "transcribed"
+      },
+      "hook": {
+        "video_id": "7633495707416235286",
+        "spoken_hook": "If someone has suspicion that they have endometriosis, but they're kind of hitting the wall What would you tell them now?",
+        "caption_hook": "Hitting a wall getting a diagnosis for endometriosis?",
+        "onscreen_hook": "that they have",
+        "hook_source": "ocr",
+        "confidence": 0.5
+      },
+      "comments": [],
+      "comment_analysis": null,
+      "ab_pairs": []
+    },
+    "7643867792634154262": {
+      "post": {
+        "video_id": "7643867792634154262",
+        "url": "https://www.tiktok.com/@docmap/video/7643867792634154262",
+        "posted_at": null,
+        "caption": "Do you document your endo symptoms? @Laura | Women’s Health Creator learned that writing everything down - bowel changes, pain levels, how her cycle affected her day - gave her the clarity and confidence to advocate for herself with every GP and specialist she saw. Your symptoms deserve to be taken seriously. Documenting them is how you make sure they are. Need help organising your notes before an appointment? We can help! Chat to us on WhatsApp.",
+        "duration_sec": null,
+        "format_guess": "video",
+        "metrics": {
+          "views": null,
+          "likes": null,
+          "comments": null,
+          "saves": null,
+          "shares": null,
+          "duration_sec": null,
+          "saves_per_1k_views": null,
+          "comments_per_1k_views": null,
+          "shares_per_1k_views": null
+        },
+        "raw_metadata": {
+          "catalog_title": "Do you document your endo symptoms? @Laura | Women’s Health Creator l..."
+        }
+      },
+      "transcript": {
+        "video_id": "7643867792634154262",
+        "full_text": "whatever your experience in right to don't document it. I am Laura and I am a women's health advocate and contact creator and I'm also a founder of your adult events which is a community-based project for people, struggling with chronic illnesses and endometrosis. So whenever I was going there was always asking for period love. There was always asking for like symptom love, bell love, everything. Anything that I experience I started writing to do. I also started writing down when I experienced it and what I was doing. Was it because I ate something? Was I during the period? Was it because I did exercise? Like whatever was going on, I documented it and I also documented how it affected me on a daily basis. So when I went into my appointments, I had a clear plan and a clear structure of a bright day and of all my symptoms and how it affected me. And I find explaining to a specialist or a GP of how your symptoms debilitate your effective really helps you that advocate because it's showing them and demonstrating them while you're struggling and while you need them to do something. So it's a lot better than just saying, I'm tired. You can say, I am that fatigued that I physically come and get up in the afternoon. You know, something like that. That's why I always say the mind-free things is right during the symptoms, document everything, take someone with you to appointments because it absolutely does help advocate for you and also write down a couple of questions that you want answered before you leave there. So whether that's what are the next steps what treatment plan I'm going to have and we're going to have any scans, what happens if like friends if you're having a lap? Ask the question, what happens if you don't find anything? Because you need to know what happens next. So it's like little things like that, writing everything down document and everything and taking it is always going to be the best way.",
+        "segments": [
+          {
+            "start": 0.0,
+            "end": 7.04,
+            "text": "whatever your experience in right to don't document it. I am Laura and I am a women's health advocate"
+          },
+          {
+            "start": 7.04,
+            "end": 12.64,
+            "text": "and contact creator and I'm also a founder of your adult events which is a community-based project"
+          },
+          {
+            "start": 12.64,
+            "end": 16.72,
+            "text": "for people, struggling with chronic illnesses and endometrosis. So whenever I was going there was"
+          },
+          {
+            "start": 16.72,
+            "end": 21.84,
+            "text": "always asking for period love. There was always asking for like symptom love, bell love, everything."
+          },
+          {
+            "start": 21.84,
+            "end": 26.56,
+            "text": "Anything that I experience I started writing to do. I also started writing down when I experienced it"
+          },
+          {
+            "start": 26.64,
+            "end": 30.72,
+            "text": "and what I was doing. Was it because I ate something? Was I during the period? Was it because I"
+          },
+          {
+            "start": 30.72,
+            "end": 36.08,
+            "text": "did exercise? Like whatever was going on, I documented it and I also documented how it affected me"
+          },
+          {
+            "start": 36.08,
+            "end": 41.2,
+            "text": "on a daily basis. So when I went into my appointments, I had a clear plan and a clear structure"
+          },
+          {
+            "start": 41.2,
+            "end": 47.68,
+            "text": "of a bright day and of all my symptoms and how it affected me. And I find explaining to a specialist or"
+          },
+          {
+            "start": 47.68,
+            "end": 53.76,
+            "text": "a GP of how your symptoms debilitate your effective really helps you that advocate because it's"
+          },
+          {
+            "start": 53.76,
+            "end": 58.0,
+            "text": "showing them and demonstrating them while you're struggling and while you need them to do something."
+          },
+          {
+            "start": 58.0,
+            "end": 64.24,
+            "text": "So it's a lot better than just saying, I'm tired. You can say, I am that fatigued that I physically"
+          },
+          {
+            "start": 64.24,
+            "end": 68.16,
+            "text": "come and get up in the afternoon. You know, something like that. That's why I always say the"
+          },
+          {
+            "start": 68.16,
+            "end": 72.88,
+            "text": "mind-free things is right during the symptoms, document everything, take someone with you to"
+          },
+          {
+            "start": 72.88,
+            "end": 77.92,
+            "text": "appointments because it absolutely does help advocate for you and also write down a couple of"
+          },
+          {
+            "start": 77.92,
+            "end": 81.44,
+            "text": "questions that you want answered before you leave there. So whether that's what are the next steps"
+          },
+          {
+            "start": 81.52,
+            "end": 86.0,
+            "text": "what treatment plan I'm going to have and we're going to have any scans, what happens if"
+          },
+          {
+            "start": 86.0,
+            "end": 90.88,
+            "text": "like friends if you're having a lap? Ask the question, what happens if you don't find anything?"
+          },
+          {
+            "start": 90.88,
+            "end": 95.12,
+            "text": "Because you need to know what happens next. So it's like little things like that, writing everything"
+          },
+          {
+            "start": 95.12,
+            "end": 98.72,
+            "text": "down document and everything and taking it is always going to be the best way."
+          }
+        ],
+        "model": null,
+        "status": "transcribed"
+      },
+      "hook": {
+        "video_id": "7643867792634154262",
+        "spoken_hook": "whatever your experience in right to don't document it.",
+        "caption_hook": "Do you document your endo symptoms?",
+        "onscreen_hook": "Documenting is your power to get the right diagnosis experiencing",
+        "hook_source": "ocr",
+        "confidence": 0.5
+      },
+      "comments": [
+        {
+          "video_id": "7643867792634154262",
+          "comment_id": "7643870204322120470",
+          "text": "Oh hey 👋🏻",
+          "likes": 0,
+          "replies": 0,
+          "created_at": null,
+          "themes": [
+            "other_uncategorized"
+          ]
+        }
+      ],
+      "comment_analysis": {
+        "video_id": "7643867792634154262",
+        "themes": [
+          "other_uncategorized"
+        ],
+        "questions": [],
+        "objections": [],
+        "content_requests": [],
+        "emotional_pattern": null,
+        "suggested_future_angles": [
+          "Audience interest in other uncategorized (1 comments)"
+        ],
+        "primary_theme": "other_uncategorized"
+      },
+      "ab_pairs": []
     }
   },
   "ab_pairs": [
@@ -7379,9 +7379,9 @@
       "similarity_basis": "known_pair",
       "hook_difference": "A: Still in pain after endo surgery? Watch this | B: Reply to user8575620225727's comment Is it better to have an MRI first before a laparoscopy ? The benefits of M R I. Dep",
       "performance_difference": {
-        "views_delta": 14503,
-        "saves_per_1k_delta": 7.45,
-        "likes_delta": 1001
+        "views_delta": 21357,
+        "saves_per_1k_delta": 9.12,
+        "likes_delta": 1589
       },
       "learning": "MRI — who reads it matters"
     },
@@ -7392,9 +7392,9 @@
       "similarity_basis": "known_pair",
       "hook_difference": "A: Still in pain after endo surgery? Watch this | B: Jade 🎗️ My endo specialist told me and mri can either over diagnose or under diagnose endometriosis, is that true? 4-30 ",
       "performance_difference": {
-        "views_delta": 15434,
-        "saves_per_1k_delta": 13.49,
-        "likes_delta": 1041
+        "views_delta": 21905,
+        "saves_per_1k_delta": 14.82,
+        "likes_delta": 1626
       },
       "learning": "MRI — who reads it matters"
     },
@@ -7405,9 +7405,9 @@
       "similarity_basis": "known_pair",
       "hook_difference": "A: Reply to user8575620225727's comment Is it better to have an MRI first before a laparoscopy ? The benefits of M R I. Dep | B: Jade 🎗️ My endo specialist told me and mri can either over diagnose or under diagnose endometriosis, is that true? 4-30 ",
       "performance_difference": {
-        "views_delta": 931,
-        "saves_per_1k_delta": 6.04,
-        "likes_delta": 40
+        "views_delta": 548,
+        "saves_per_1k_delta": 5.7,
+        "likes_delta": 37
       },
       "learning": "MRI — who reads it matters"
     },
@@ -7418,9 +7418,9 @@
       "similarity_basis": "known_pair",
       "hook_difference": "A: If you are getting endo surgery, ask for excision, not ablation. Here's why | B: Excision vs. Ablation Here's what the endo nurse wants you to know",
       "performance_difference": {
-        "views_delta": -1608,
-        "saves_per_1k_delta": -2.21,
-        "likes_delta": -151
+        "views_delta": -800,
+        "saves_per_1k_delta": -0.43,
+        "likes_delta": -117
       },
       "learning": "Excision vs ablation"
     }
