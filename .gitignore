@@ -40,3 +40,8 @@ marketing-pipeline/tiktok/data/yt_meta/
 
 # Legacy TikTok downloads (yt-dlp video/audio for local transcribe — not for git)
 Social media analysis/tiktok_analysis/audio/
+
+# Ingestion pipeline raw drops + normalized staging (may contain PII)
+data/imports/
+data/staging/
+data/cache/

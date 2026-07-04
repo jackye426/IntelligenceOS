@@ -1,6 +1,6 @@
 # Execution Plan — Close-out Sprint (2026-07-04)
 
-**Overall Progress:** `17%` (Step 2 done)
+**Overall Progress:** `75%` (Steps 2–5 done; Step 6 awaits Vercel dashboard; Step 1 awaits key rotation)
 
 ## TLDR
 
@@ -27,31 +27,31 @@ Close the remaining gaps identified in the 2026-07-04 repo review: rotate expose
   - [x] 🟩 Reconcile `MASTER_PLAN.md`: A2 ✅ (tables verified via REST — 39 content_posts, 185 embeddings), A3 ✅ (/health 200), A4 ✅ (runs in `data_ingestion_runs`)
   - [x] 🟩 Update `STATUS.md` progress table + next steps
 
-- [ ] 🟥 **Step 3: Git hygiene for generated pipeline data**
-  - [ ] 🟥 Find and remove the remaining write to legacy `Social media analysis/tiktok_analysis/data/docmap_catalog_*.json` (write only to `marketing-pipeline/tiktok/data/catalog/`)
-  - [ ] 🟥 Commit current pipeline output churn (6 modified data files) as a data-refresh commit
-  - [ ] 🟥 Verify a fresh `tiktok refresh` run leaves the legacy dir untouched; `pytest marketing-pipeline/tests/` green
+- [x] 🟩 **Step 3: Git hygiene for generated pipeline data**
+  - [x] 🟩 Legacy write was `fetch_catalog(mirror_legacy=True)` default — flipped to `False` (opt-in for manual legacy scripts)
+  - [x] 🟩 Committed pipeline output churn (6 data files) as data-refresh commit
+  - [x] 🟩 `pytest marketing-pipeline/tests/` — 13/13 green; working tree clean
 
-- [ ] 🟥 **Step 4: P0 — Shared ingestion scaffold**
-  - [ ] 🟥 Create `data/imports/` + `data/staging/` layout; add to `.gitignore`
-  - [ ] 🟥 Scaffold `ingestion-pipeline/` package: `config.py` (paths from env), CLI entrypoint `python -m ingestion_pipeline`
-  - [ ] 🟥 Staging envelope Pydantic model + JSONL read/write with dedupe by `source_id`
-  - [ ] 🟥 Wire `shared/` modules: Supabase client, embeddings, hashing, chunking (reuse `data-worker/common/`), `ingestion_log`
-  - [ ] 🟥 `review` subcommands (list/approve/reject on `review_queue.jsonl`)
-  - [ ] 🟥 `sync all --dry-run` prints row counts without writing; runs log to `data_ingestion_runs`
-  - [ ] 🟥 Add ingestion env vars to `.env.example`
+- [x] 🟩 **Step 4: P0 — Shared ingestion scaffold**
+  - [x] 🟩 `data/imports/` + `data/staging/` created via config; gitignored (may contain PII)
+  - [x] 🟩 `ingestion-pipeline/` package: `config.py`, `python -m ingestion_pipeline` CLI, installed editable
+  - [x] 🟩 `StagingRecord` Pydantic envelope + JSONL merge deduped by `source_id` (hash change = update)
+  - [x] 🟩 `shared/` modules mirrored from `data-worker/common` + `marketing_pipeline/shared` (hash-skip embeddings)
+  - [x] 🟩 `review list|approve|reject` on `review_queue.jsonl`
+  - [x] 🟩 `sync clinic-csv --dry-run` + `sync all --dry-run` print counts, no writes; live runs log to `data_ingestion_runs`
+  - [x] 🟩 Ingestion env vars added to `.env.example`; tests 3/3 green
 
-- [ ] 🟥 **Step 5: P4 — Clinic sales CSV seed**
-  - [ ] 🟥 Inspect `Clinic sales agent/output/clinic_sales_results.csv` columns; document mapping in `DATA_INGESTION_PLANS.md`
-  - [ ] 🟥 `lanes/clinic_csv/parse.py` — CSV → staging envelope
-  - [ ] 🟥 `sync/clinic_accounts.py` — upsert by website_url/name fuzzy match; skip manual-edit overwrites; embed summary (`entity_type=clinic_account`)
-  - [ ] 🟥 CLI shim `scripts/ingest-clinic-sales-csv.py`; run once against Supabase
-  - [ ] 🟥 Verify: rows visible in `/accounts`, re-import idempotent, `search_knowledge(entity_type=clinic_account)` finds them
-  - [ ] 🟥 Check off MASTER_PLAN E2 + catalog A6 status
+- [x] 🟩 **Step 5: P4 — Clinic sales CSV seed**
+  - [x] 🟩 CSV inspected (44 cols, 1,831 rows; LLM columns empty); mapping documented in `DATA_INGESTION_PLANS.md`
+  - [x] 🟩 `lanes/clinic_csv/parse.py` — skips 165 pre-filtered hospitals; Doctify URL fallback for NOT NULL website_url
+  - [x] 🟩 `sync/clinic_accounts.py` — insert-only (name + Doctify-URL dedupe; no metadata column so manual edits always win); draft contacts; summary embeddings with retry/backoff
+  - [x] 🟩 Imported: **1,662 accounts, 606 draft contacts, 1,663 embedding chunks** (first run hit a local DNS drop mid-batch; re-run + insert-only repair completed it; both runs in `data_ingestion_runs`)
+  - [x] 🟩 Verified: re-run dry-run inserts 0 (idempotent); `match_documents(filter_type=clinic_account)` returns relevant clinics
+  - [x] 🟩 MASTER_PLAN E2 + catalog A6 updated
 
-- [ ] 🟥 **Step 6: F1 — Vercel deploy prep + deploy**
-  - [ ] 🟥 Verify local prod build passes (`next build`)
-  - [ ] 🟥 Confirm `vercel.json` excludes worker/mcp/marketing-pipeline paths per `docs/DEPLOY.md`
+- [ ] 🟨 **Step 6: F1 — Vercel deploy prep + deploy**
+  - [x] 🟩 `next build` passes — all routes compile (static login, dynamic app/API routes)
+  - [x] 🟩 Added `.vercelignore` excluding Python services + data dirs (`vercel.json` alone excluded nothing)
   - [ ] 🟥 Import repo to Vercel, set env (`SUPABASE_*`, `OPENROUTER_*`, `SESSION_PASSWORD`) — *human*
   - [ ] 🟥 Verify: login works, accounts/pipeline/Ask DocMap load against prod Supabase
   - [ ] 🟥 Check off F1; update `STATUS.md` + `docs/DEPLOY.md` if steps drifted

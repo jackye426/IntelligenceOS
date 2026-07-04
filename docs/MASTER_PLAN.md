@@ -164,7 +164,7 @@ Vercel project: intelligence-os-app
 | ID | Task | Status | Complexity | Key files | Acceptance |
 |----|------|--------|------------|-----------|------------|
 | E1 | Schedule WhatsApp → Supabase sync | ⬜ | S | `Doctors Sales Agent/scripts/sync_whatsapp_and_history_to_supabase.py` | Weekly cron in data-worker |
-| E2 | Ingest clinic sales CSV | ⬜ | M | `Clinic sales agent/output/clinic_sales_results.csv` | Script + optional `clinic_accounts` enrichment |
+| E2 | Ingest clinic sales CSV | ✅ 2026-07-04 | M | `ingestion-pipeline/`, `scripts/ingest-clinic-sales-csv.py` | 1,662 accounts + 606 draft contacts + embeddings in Supabase (P4 lane) |
 | E3 | Doctor outreach surface in Next.js (optional) | ⬜ defer | L | `app/(app)/practitioners/` | UI for `doctor_outreach` table |
 | E4 | Unified outreach model (clinic vs doctor) | ⬜ defer | L | `app/api/accounts/`, Doctors agent | Product boundary decision |
 
@@ -248,3 +248,4 @@ Phase A (Railway: MCP + worker)  ──► unblocks team MCP + TikTok cron
 | 2026-07-03 | Pre-flight | Locked: 2× Railway, no CSV/HCA in prod, carousels deferred, Gmail draft-only, Vercel app-only. |
 | 2026-07-03 | B,D,A5 | MCP find_ab_tests, suggest_angles, draft_outreach_email; fetch_catalog; worker SKIP flags + weekly cron; DEPLOY.md |
 | 2026-07-04 | A2–A4 | Verified: MCP live at `mcp.docmap.co.uk` (/health 200), data-worker on Railway logging to `data_ingestion_runs`, sql/001–004 tables confirmed (39 content_posts, 185 embeddings). Remaining: A1 rotation, Phase C/E, F1. See `docs/EXECUTION_PLAN_2026-07.md`. |
+| 2026-07-04 | E2, P0/P4 | `ingestion-pipeline/` package shipped (staging envelope, review queue, shared embed/sync modules). Clinic sales CSV imported: 1,662 accounts, 606 draft contacts, 1,663 embedding chunks. Legacy TikTok catalog mirror disabled by default. Vercel build verified + `.vercelignore` added. |

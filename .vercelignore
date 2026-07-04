@@ -1,0 +1,13 @@
+# Vercel builds the Next.js app only — exclude Python services and data dirs.
+data-worker
+mcp-server
+marketing-pipeline
+ingestion-pipeline
+archive
+Appointment utilization rate
+Carousel agents V2
+Clinic sales agent
+Doctors Sales Agent
+Negative Review analysis
+Social media analysis
+data

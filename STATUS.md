@@ -14,8 +14,8 @@ Last updated: 2026-07-04 (A2–A4 verified live; close-out sprint started — se
 | **B** TikTok M3 | **B1–B7 done** (B8 optional/deferred) |
 | **C** Instagram | Not started (fresh-fetch module) |
 | **D** Gmail MCP | **Done** — `draft_outreach_email` (draft-only, `confirmed` required) |
-| **E** Agents | Not started; P0 ingestion scaffold + P4 clinic CSV in progress |
-| **F** Vercel | `vercel.json` ready; deploy pending |
+| **E** Agents | **E2 done** — `ingestion-pipeline/` package + clinic CSV seed: 1,662 accounts, 606 draft contacts, embeddings live; E1 WhatsApp cron pending |
+| **F** Vercel | Build verified + `.vercelignore` added; dashboard import + env vars pending (human) |
 
 ## New MCP tools (2026-07-03)
 

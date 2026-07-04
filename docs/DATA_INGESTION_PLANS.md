@@ -495,15 +495,24 @@ Link embeddings: `metadata.clinic_account_id` / `practitioner_id` on each chunk 
    - Skip update if account.updated_at > import file mtime (optional flag)
 ```
 
-### Column mapping (adjust after inspecting CSV)
+### Column mapping (confirmed 2026-07-04 — implemented in `ingestion-pipeline/lanes/clinic_csv/`)
 
-| CSV column (expected) | `clinic_accounts` field |
-|-----------------------|-------------------------|
-| Clinic name | `name` |
-| Website | `website_url` |
-| Stage / status | `pipeline_stage` |
-| Notes / angle | `sales_angle` |
-| Contact email | `clinic_contacts.email` |
+CSV has 44 columns, 1,831 rows; LLM-enrichment columns (`fit_score`, `best_sales_angle`,
+`clinic_summary`, …) are all empty, so accounts keep DB defaults. Rows with
+`status=pre_filtered` (165 hospitals/NHS) are skipped unless `--include-filtered`.
+
+| CSV column | Destination |
+|------------|-------------|
+| `clinic_name` | `clinic_accounts.name` |
+| `website_url` (falls back to `doctify_profile_url` — column is NOT NULL) | `clinic_accounts.website_url` |
+| `cqc_registered_manager` | `clinic_contacts` (role "Registered Manager (CQC)", draft) |
+| `contact_email` | `clinic_contacts` (role "General enquiries", draft) |
+| `location`, `specialty_tags`, `doctify_about`, review/specialist counts | embed summary (`entity_type=clinic_account`) + embedding metadata |
+
+Dedupe: normalized name match, plus host+path match for Doctify URLs only —
+generic websites are shared across sibling clinics (HCA, Phoenix group), so
+URL-level dedupe would wrongly merge them. Insert-only: `clinic_accounts` has
+no metadata column, so existing rows are never updated (manual edits win).
 
 ### Files to create
 

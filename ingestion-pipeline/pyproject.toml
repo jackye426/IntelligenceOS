@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ingestion-pipeline"
+version = "0.1.0"
+description = "DocMap shared ingestion lanes (transcripts, emails, CSV seeds)"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "openai",
+  "pydantic>=2",
+  "python-dotenv",
+  "supabase",
+]
+
+[project.scripts]
+ingestion-pipeline = "ingestion_pipeline.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
