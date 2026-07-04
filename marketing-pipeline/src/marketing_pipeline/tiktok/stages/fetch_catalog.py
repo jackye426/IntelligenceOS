@@ -67,7 +67,7 @@ def fetch_catalog(
     *,
     since: str = "2026-04-20",
     cookies_from_browser: str | None = None,
-    mirror_legacy: bool = True,
+    mirror_legacy: bool = False,
 ) -> dict[str, int | str]:
     cutoff = parse_since(since)
     playlist = fetch_playlist(cookies_from_browser=cookies_from_browser)
@@ -82,6 +82,8 @@ def fetch_catalog(
     filtered.sort(key=lambda r: r["post_datetime_utc"], reverse=True)
 
     json_path = _write_catalog(filtered, since=since, dest_dir=config.CATALOG_DIR)
+    # Legacy mirror is opt-in only: package data/ is the single source of truth;
+    # pass mirror_legacy=True when manually running old Social media analysis scripts.
     if mirror_legacy:
         legacy_data = config.LEGACY_TIKTOK_ROOT / "data"
         _write_catalog(filtered, since=since, dest_dir=legacy_data)
