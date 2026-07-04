@@ -80,9 +80,9 @@ Vercel project: intelligence-os-app
 | ID | Task | Status | Complexity | Key files | Acceptance |
 |----|------|--------|------------|-----------|------------|
 | A1 | Rotate exposed Supabase / OpenRouter / Google credentials | ⬜ | S | `MCP_PLAN.md` Step 0 | New keys in Railway + `.env.local`; old keys revoked |
-| A2 | Confirm SQL 001–004 applied in prod Supabase | ⬜ | S | `sql/001`–`004` | Tables + `match_documents` exist; spot-check row counts |
-| A3 | Deploy `mcp-server` to Railway | ⬜ | M | `mcp-server/Procfile`, `main.py` | `/health` 200; auth required; team can connect Claude Desktop |
-| A4 | Deploy `data-worker` to Railway (TikTok cron only in prod) | ⬜ | M | `data-worker/Procfile`, `main.py` | Cron runs TikTok pipeline; logs to `data_ingestion_runs` |
+| A2 | Confirm SQL 001–004 applied in prod Supabase | ✅ 2026-07-04 | S | `sql/001`–`004` | Tables + `match_documents` exist; spot-check row counts |
+| A3 | Deploy `mcp-server` to Railway | ✅ | M | `mcp-server/Procfile`, `main.py` | `/health` 200; auth required; team can connect Claude Desktop |
+| A4 | Deploy `data-worker` to Railway (TikTok cron only in prod) | ✅ 2026-07-04 | M | `data-worker/Procfile`, `main.py` | Cron runs TikTok pipeline; logs to `data_ingestion_runs` |
 | A5 | Prod worker config: disable CSV/HCA jobs | ✅ | S | `data-worker/main.py`, `common/config.py` | `SKIP_CONTENT_TRACKER`, `SKIP_HCA` env flags; TikTok jobs only |
 
 **Implementation notes (A3–A5):**
@@ -247,3 +247,4 @@ Phase A (Railway: MCP + worker)  ──► unblocks team MCP + TikTok cron
 | 2026-07-03 | — | Master plan created. M1+M2 complete. |
 | 2026-07-03 | Pre-flight | Locked: 2× Railway, no CSV/HCA in prod, carousels deferred, Gmail draft-only, Vercel app-only. |
 | 2026-07-03 | B,D,A5 | MCP find_ab_tests, suggest_angles, draft_outreach_email; fetch_catalog; worker SKIP flags + weekly cron; DEPLOY.md |
+| 2026-07-04 | A2–A4 | Verified: MCP live at `mcp.docmap.co.uk` (/health 200), data-worker on Railway logging to `data_ingestion_runs`, sql/001–004 tables confirmed (39 content_posts, 185 embeddings). Remaining: A1 rotation, Phase C/E, F1. See `docs/EXECUTION_PLAN_2026-07.md`. |

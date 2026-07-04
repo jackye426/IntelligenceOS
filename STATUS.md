@@ -1,6 +1,6 @@
 # DocMap Intelligence OS Status
 
-Last updated: 2026-07-03 (B2–B4 TikTok legacy port complete)
+Last updated: 2026-07-04 (A2–A4 verified live; close-out sprint started — see [`docs/EXECUTION_PLAN_2026-07.md`](docs/EXECUTION_PLAN_2026-07.md))
 
 **Master plan:** [`docs/MASTER_PLAN.md`](docs/MASTER_PLAN.md) | **Deploy:** [`docs/DEPLOY.md`](docs/DEPLOY.md)
 
@@ -10,11 +10,11 @@ Last updated: 2026-07-03 (B2–B4 TikTok legacy port complete)
 
 | Phase | Status |
 |-------|--------|
-| **A** Ops + deploy | A5 done; MCP live at `mcp.docmap.co.uk`; A3/A4 data-worker pending |
+| **A** Ops + deploy | **A2–A5 done** — MCP live at `mcp.docmap.co.uk`; data-worker on Railway logging `data_ingestion_runs`; **A1 rotation pending (human)** |
 | **B** TikTok M3 | **B1–B7 done** (B8 optional/deferred) |
 | **C** Instagram | Not started (fresh-fetch module) |
 | **D** Gmail MCP | **Done** — `draft_outreach_email` (draft-only, `confirmed` required) |
-| **E** Agents | Not started |
+| **E** Agents | Not started; P0 ingestion scaffold + P4 clinic CSV in progress |
 | **F** Vercel | `vercel.json` ready; deploy pending |
 
 ## New MCP tools (2026-07-03)
@@ -41,7 +41,6 @@ Cron: daily TikTok sync 03:30 UTC; weekly full refresh + OCR Sun 02:00 UTC.
 
 ## Next steps (human)
 
-1. **A1** — Rotate credentials if any were exposed
-2. **A3/A4** — Deploy MCP + data-worker per `docs/DEPLOY.md`
-3. **F1** — Deploy Next.js to Vercel
-4. Set `GMAIL_*` on MCP Railway service for draft tool
+1. **A1** — Rotate credentials (Supabase, OpenRouter, Google) and update Railway/Vercel + `.env.local`
+2. **F1** — Import repo to Vercel + set env vars (build prep done in close-out sprint)
+3. Set `GMAIL_*` on MCP Railway service for draft tool
