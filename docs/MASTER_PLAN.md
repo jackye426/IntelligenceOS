@@ -247,5 +247,5 @@ Phase A (Railway: MCP + worker)  ──► unblocks team MCP + TikTok cron
 | 2026-07-03 | — | Master plan created. M1+M2 complete. |
 | 2026-07-03 | Pre-flight | Locked: 2× Railway, no CSV/HCA in prod, carousels deferred, Gmail draft-only, Vercel app-only. |
 | 2026-07-03 | B,D,A5 | MCP find_ab_tests, suggest_angles, draft_outreach_email; fetch_catalog; worker SKIP flags + weekly cron; DEPLOY.md |
-| 2026-07-04 | A2–A4 | Verified: MCP live at `mcp.docmap.co.uk` (/health 200), data-worker on Railway logging to `data_ingestion_runs`, sql/001–004 tables confirmed (39 content_posts, 185 embeddings). Remaining: A1 rotation, Phase C/E, F1. See `docs/EXECUTION_PLAN_2026-07.md`. |
+| 2026-07-04 | P4 + close-out | P0 ingestion-pipeline + clinic CSV import live (1,662 accounts, ~1,848 embeddings). MCP /health 200. 4 commits pending push. A1 rotation + F1 Vercel deploy remain. |
 | 2026-07-04 | E2, P0/P4 | `ingestion-pipeline/` package shipped (staging envelope, review queue, shared embed/sync modules). Clinic sales CSV imported: 1,662 accounts, 606 draft contacts, 1,663 embedding chunks. Legacy TikTok catalog mirror disabled by default. Vercel build verified + `.vercelignore` added. |
