@@ -54,15 +54,63 @@ Railway’s default builder is **Railpack** (Nixpacks is deprecated). Root Direc
 
 ## Vercel: Next.js app
 
-1. Import repo → framework Next.js (auto-detected)
-2. Variables:
-   - `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_URL`
-   - `SUPABASE_SERVICE_ROLE_KEY` (server routes only)
-   - `OPENROUTER_API_KEY`
-   - `SESSION_PASSWORD`
-3. Deploy → verify `/login` loads
+**Use the CLI from repo root** — the dashboard import flow may force Vercel Services
+(`data-worker`, `mcp-server`). Those stay on Railway only; do not add
+`experimentalServices` or multi-service `vercel.json`.
 
-**Not on Vercel:** Playwright worker (`worker/index.ts`) — run locally until a dedicated Railway worker is needed.
+### 1. Create project via CLI (PowerShell, repo root)
+
+```powershell
+npx vercel@latest login
+npx vercel@latest
+```
+
+Prompts:
+
+```text
+Link to existing project?  No
+Project name?             intelligence-os-web
+Detected Next.js          Yes
+Customize settings?       No
+```
+
+This links `.vercel/` locally (gitignored). Root `package.json` + `vercel.json` deploy as **Next.js only**.
+
+### 2. Environment variables
+
+Vercel dashboard → project **intelligence-os-web** → **Settings → Environment Variables** (Production):
+
+| Variable | Notes |
+|----------|--------|
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL |
+| `SUPABASE_URL` | Same URL |
+| `SUPABASE_KEY` | **Service role** — required (`lib/supabase.ts` reads this name) |
+| `SUPABASE_SERVICE_ROLE_KEY` | Same value (optional duplicate) |
+| `OPENROUTER_API_KEY` | Ask DocMap + embeddings |
+| `SESSION_PASSWORD` | Cookie signing (32+ chars) |
+| `INTERNAL_PASSWORD` | Password typed at `/login` |
+
+Optional: `OPENROUTER_MODEL`, `OPENROUTER_EMBEDDING_MODEL`, `SUPABASE_PRACTITIONERS_TABLE`.
+
+Do **not** set MCP/worker vars here unless you know you need them.
+
+### 3. Connect GitHub + production deploy
+
+```powershell
+npx vercel@latest git connect
+npx vercel@latest --prod
+```
+
+`git connect` uses the repo’s existing Git remote. Future pushes to `main` auto-deploy this project only.
+
+### 4. Verify
+
+- `/login` loads
+- Login with `INTERNAL_PASSWORD`
+- `/accounts` shows clinic rows (1,662 in prod)
+- `/pipeline`, `/ask` load
+
+**Not on Vercel:** `mcp-server/`, `data-worker/` (Railway), Playwright worker (`npm run worker` — local or future Railway worker).
 
 ## Post-deploy verification
 

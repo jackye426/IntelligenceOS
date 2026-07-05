@@ -1,5 +1,6 @@
 # Dependencies and builds
 node_modules/
+.vercel/
 .next/
 out/
 dist/
@@ -45,3 +46,6 @@ Social media analysis/tiktok_analysis/audio/
 data/imports/
 data/staging/
 data/cache/
+
+.vercel
+.env*
