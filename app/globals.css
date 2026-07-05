@@ -274,6 +274,7 @@ h3 {
   border-radius: 8px;
   background: var(--panel);
   box-shadow: var(--shadow);
+  min-width: 0;
 }
 
 .panel-header {
@@ -351,11 +352,15 @@ label {
   display: grid;
   grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
   gap: 18px;
+  align-items: start;
 }
 
 .account-list {
   display: grid;
   gap: 8px;
+  max-height: calc(100vh - 260px);
+  overflow-y: auto;
+  padding-right: 4px;
 }
 
 .account-card {
@@ -369,10 +374,14 @@ label {
   color: var(--ink);
   text-align: left;
   cursor: pointer;
+  min-width: 0;
 }
 
 .account-card strong {
   font-size: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .account-card.active,
@@ -380,85 +389,15 @@ label {
   border-color: var(--accent);
 }
 
-/* ── Account detail ──────────────────────────── */
-
-.account-detail {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--panel);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-}
-
-.detail-hero {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 16px;
-  padding: 20px;
-  border-bottom: 1px solid var(--line);
-  background: #fbfcfb;
-}
-
-.detail-hero h2 {
-  font-size: 24px;
-  margin-bottom: 6px;
-}
-
-.score {
-  display: grid;
-  width: 92px;
-  height: 92px;
-  place-items: center;
-  border-radius: 8px;
-  background: #17201d;
-  color: #ffffff;
-  text-align: center;
-}
-
-.score strong {
-  display: block;
-  font-size: 28px;
-}
-
-.detail-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
-  padding: 20px;
-}
-
-.section-box {
-  min-width: 0;
-}
-
-.section-box.full {
-  grid-column: 1 / -1;
-}
-
-/* ── Lists ───────────────────────────────────── */
-
-.list {
-  display: grid;
-  gap: 8px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.list li,
-.evidence-item,
-.claim-item {
-  padding: 10px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #ffffff;
-}
-
 .source-link {
   color: var(--blue);
   font-size: 12px;
   font-weight: 700;
   text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
 }
 
 /* ── Pipeline ────────────────────────────────── */

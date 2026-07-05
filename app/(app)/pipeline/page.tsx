@@ -35,31 +35,42 @@ export default function PipelinePage() {
       {loading ? (
         <p style={{ color: "var(--muted)" }}>Loading…</p>
       ) : (
-        <div className="pipeline-board" style={{ overflowX: "auto" }}>
-          {activeStages.map((stage) => {
-            const stageAccounts = accounts.filter((a) => a.pipeline_stage === stage);
-            return (
-              <section key={stage} className="pipeline-column">
-                <h2>
-                  {stage}
-                  <span className="pill">{stageAccounts.length}</span>
-                </h2>
-                {stageAccounts.map((a) => (
-                  <article key={a.id} className="deal-card">
-                    <a href={`/accounts?selected=${a.id}`} style={{ textDecoration: "none", color: "inherit" }}>
-                      <strong>{a.name}</strong>
-                    </a>
-                    {a.next_action && <span style={{ fontSize: "13px", color: "var(--muted)" }}>{a.next_action}</span>}
-                    <span className="meta-row">
-                      <span className="pill">Owner: {a.owner_user}</span>
-                      {a.next_action_due_at && <span className="pill">Due {a.next_action_due_at}</span>}
-                      <span className="pill">Fit {a.fit_score}</span>
-                    </span>
-                  </article>
-                ))}
-              </section>
-            );
-          })}
+    <div className="pipeline-board" style={{ overflowX: "auto", display: "flex", gap: "14px", alignItems: "flex-start" }}>
+      {activeStages.map((stage) => {
+        const stageAccounts = accounts.filter((a) => a.pipeline_stage === stage);
+        const displayLimit = 50;
+        const displayedAccounts = stageAccounts.slice(0, displayLimit);
+        const hiddenCount = stageAccounts.length - displayLimit;
+        
+        return (
+          <section key={stage} className="pipeline-column" style={{ minWidth: "260px", flexShrink: 0 }}>
+            <h2>
+              {stage}
+              <span className="pill">{stageAccounts.length}</span>
+            </h2>
+            <div style={{ display: "grid", gap: "10px", maxHeight: "calc(100vh - 200px)", overflowY: "auto", paddingRight: "4px" }}>
+              {displayedAccounts.map((a) => (
+                <article key={a.id} className="deal-card">
+                  <a href={`/accounts?selected=${a.id}`} style={{ textDecoration: "none", color: "inherit" }}>
+                    <strong style={{ display: "block", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{a.name}</strong>
+                  </a>
+                  {a.next_action && <span style={{ fontSize: "13px", color: "var(--muted)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", display: "block" }}>{a.next_action}</span>}
+                  <span className="meta-row">
+                    <span className="pill">Owner: {a.owner_user}</span>
+                    {a.next_action_due_at && <span className="pill">Due {a.next_action_due_at}</span>}
+                    <span className="pill">Fit {a.fit_score}</span>
+                  </span>
+                </article>
+              ))}
+              {hiddenCount > 0 && (
+                <div style={{ textAlign: "center", padding: "8px", fontSize: "12px", color: "var(--muted)", background: "var(--canvas)", borderRadius: "6px" }}>
+                  + {hiddenCount} more (use search)
+                </div>
+              )}
+            </div>
+          </section>
+        );
+      })}
 
           {activeStages.length === 0 && (
             <p style={{ color: "var(--muted)" }}>No accounts in the pipeline yet.</p>

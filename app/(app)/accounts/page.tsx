@@ -4,23 +4,33 @@ import { useState, useEffect, useCallback } from "react";
 import type { ClinicAccount } from "@/types/database";
 import AccountDetail from "@/components/AccountDetail";
 import NewAccountDialog from "@/components/NewAccountDialog";
+import { useDebounce } from "@/lib/hooks";
 
 export default function AccountsPage() {
   const [accounts, setAccounts] = useState<ClinicAccount[]>([]);
   const [query, setQuery] = useState("");
+  const debouncedQuery = useDebounce(query, 300);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [showDialog, setShowDialog] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const fetchAccounts = useCallback(async () => {
-    const res = await fetch(`/api/accounts${query ? `?q=${encodeURIComponent(query)}` : ""}`);
+    setLoading(true);
+    const res = await fetch(`/api/accounts${debouncedQuery ? `?q=${encodeURIComponent(debouncedQuery)}` : ""}`);
     const data = await res.json();
     setAccounts(data);
-    if (!selectedId && data.length > 0) setSelectedId(data[0].id);
+    
+    // Auto-select first item if current selection isn't in results
+    if (data.length > 0 && !data.some((a: ClinicAccount) => a.id === selectedId)) {
+      setSelectedId(data[0].id);
+    } else if (data.length === 0) {
+      setSelectedId(null);
+    }
+    
     setLoading(false);
-  }, [query, selectedId]);
+  }, [debouncedQuery, selectedId]);
 
-  useEffect(() => { fetchAccounts(); }, [fetchAccounts]);
+  useEffect(() => { fetchAccounts(); }, [debouncedQuery]); // Only re-fetch when debouncedQuery changes
 
   const handleCreated = (account: ClinicAccount) => {
     setAccounts((prev) => [account, ...prev]);

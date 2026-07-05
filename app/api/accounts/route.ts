@@ -6,6 +6,7 @@ import type { PipelineStage } from "@/types/database";
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const q = searchParams.get("q")?.trim();
+  const limit = parseInt(searchParams.get("limit") || "50", 10);
 
   let query = supabase
     .from("clinic_accounts")
@@ -21,7 +22,7 @@ export async function GET(req: Request) {
     query = query.ilike("name", `%${q}%`);
   }
 
-  const { data, error } = await query;
+  const { data, error } = await query.limit(limit);
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
   return NextResponse.json(data);
 }
