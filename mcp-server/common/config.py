@@ -39,6 +39,14 @@ MCP_ALLOWED_ORIGINS = [
     for origin in _getenv("MCP_ALLOWED_ORIGINS").split(",")
     if origin.strip()
 ]
+MCP_ALLOWED_HOSTS = [
+    host.strip()
+    for host in _getenv("MCP_ALLOWED_HOSTS").split(",")
+    if host.strip()
+]
+MCP_DNS_REBINDING_PROTECTION = _getenv(
+    "MCP_DNS_REBINDING_PROTECTION", default="true"
+).strip().lower() not in {"0", "false", "no", "off"}
 MCP_MAX_SENSITIVITY = _getenv("MCP_MAX_SENSITIVITY", default="confidential")
 HOST = _getenv("MCP_HOST", default="0.0.0.0")
 PORT = int(_getenv("MCP_PORT", "8000"))

@@ -23,6 +23,7 @@ sys.path.insert(0, str(ROOT))
 from common.auth import AuthMiddleware  # noqa: E402
 from common import config  # noqa: E402
 from common.mcp_instructions import MCP_SERVER_INSTRUCTIONS  # noqa: E402
+from common.transport_security import build_transport_security  # noqa: E402
 from tools.get_appointment_availability import get_appointment_availability  # noqa: E402
 from tools.get_ab_learnings import get_ab_learnings  # noqa: E402
 from tools.get_clinic_briefing import get_clinic_briefing  # noqa: E402
@@ -47,6 +48,7 @@ mcp = FastMCP(
     instructions=MCP_SERVER_INSTRUCTIONS,
     stateless_http=True,
     json_response=True,
+    transport_security=build_transport_security(),
 )
 
 
@@ -250,6 +252,8 @@ def main() -> None:
         host=config.HOST,
         port=config.PORT,
         reload=False,
+        proxy_headers=True,
+        forwarded_allow_ips="*",
     )
 
 

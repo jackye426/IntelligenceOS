@@ -18,6 +18,8 @@ This guide explains how internal team members connect Claude Desktop (or another
 | `OPENROUTER_EMBEDDING_MODEL` | Default: `openai/text-embedding-3-small` |
 | `MCP_AUTH_TOKEN` | Required bearer token for every request |
 | `MCP_ALLOWED_ORIGINS` | Comma-separated browser origins (optional) |
+| `MCP_ALLOWED_HOSTS` | Comma-separated Host headers for MCP SDK DNS rebinding (optional; defaults include `mcp.docmap.co.uk`) |
+| `MCP_DNS_REBINDING_PROTECTION` | Default `true`; set `false` only if behind trusted proxy + Bearer auth |
 | `MCP_MAX_SENSITIVITY` | Default: `confidential` |
 | `PORT` | Set automatically by Railway |
 
@@ -83,6 +85,32 @@ Authorization: Bearer <MCP_AUTH_TOKEN>
 ```
 
 Unauthenticated requests to `/mcp` return `401 Unauthorized`.
+
+## Troubleshooting
+
+### `421 Invalid Host header` / Claude "error connecting"
+
+MCP Python SDK 1.26+ blocks POST `/mcp` when the `Host` header is not allowlisted (DNS rebinding protection). GET `/health` can still return 200.
+
+**Fix (already in repo):** `mcp-server` sets `transport_security` with `mcp.docmap.co.uk` allowed. Redeploy the MCP Railway service after pulling latest `main`.
+
+**Railway env (optional):** add your `*.up.railway.app` hostname if testing without custom domain:
+
+```
+MCP_ALLOWED_HOSTS=mcp.docmap.co.uk,intelligenceos-production.up.railway.app
+```
+
+**Verify after deploy:**
+
+```bash
+python scripts/test_mcp_hosted.py
+```
+
+Expect `initialize: OK 200` (not HTTP 421).
+
+### Stale DNS CNAME
+
+If `mcp.docmap.co.uk` CNAME points to a deleted Railway service (`404 Application not found` on `*.up.railway.app`), regenerate the Railway domain in **Networking** and update the CNAME + TXT at your DNS provider.
 
 ## First-use verification
 
