@@ -50,11 +50,24 @@ Pair with:
 - "Give me a TikTok content briefing: what's working, what patients ask in comments, and what our playbook says to post next."
 - "What hook patterns are winning on TikTok and what should we film next for pre-surgery patients?"
 
+### Weekly hook A/B review ritual
+
+1. `get_tiktok_cohort(since=YYYY-MM-DD, sort_by="views", limit=50)` — recent batch + tiers
+2. `get_tiktok_marketing_insights(limit=15)` — winners by views, engagement, and saves/1k
+3. `find_ab_tests(since=YYYY-MM-DD, winner_by="views")` — hook A/B pairs; use `group_by_pair_id=true` for MRI-style clusters
+4. `get_tiktok_video(video_id)` — full caption, transcript, hooks, comment questions
+5. `suggest_hook_repackage(video_id)` — proposed hook swaps using top performers as reference
+6. `record_ab_learning(pair_id, learning, winner_video_id)` — persist approved learning
+
 Pair with:
 
 - `get_tiktok_content_briefing`
 - `get_tiktok_marketing_insights`
+- `get_tiktok_video`
+- `get_tiktok_cohort`
 - `find_ab_tests`
+- `suggest_hook_repackage`
+- `record_ab_learning` / `get_ab_learnings`
 - `suggest_next_tiktok_angles`
 - `search_knowledge` with `entity_type: marketing_playbook`
 - `search_knowledge` with `entity_type: marketing_comment_digest`

@@ -22,12 +22,18 @@ sys.path.insert(0, str(ROOT))
 
 from common.auth import AuthMiddleware  # noqa: E402
 from common import config  # noqa: E402
+from common.mcp_instructions import MCP_SERVER_INSTRUCTIONS  # noqa: E402
 from tools.get_appointment_availability import get_appointment_availability  # noqa: E402
+from tools.get_ab_learnings import get_ab_learnings  # noqa: E402
 from tools.get_clinic_briefing import get_clinic_briefing  # noqa: E402
 from tools.get_content_performance import get_content_performance  # noqa: E402
+from tools.get_tiktok_cohort import get_tiktok_cohort  # noqa: E402
 from tools.get_tiktok_marketing_insights import get_tiktok_marketing_insights  # noqa: E402
 from tools.get_tiktok_content_briefing import get_tiktok_content_briefing  # noqa: E402
+from tools.get_tiktok_video import get_tiktok_video  # noqa: E402
 from tools.find_ab_tests import find_ab_tests  # noqa: E402
+from tools.record_ab_learning import record_ab_learning  # noqa: E402
+from tools.suggest_hook_repackage import suggest_hook_repackage  # noqa: E402
 from tools.suggest_next_tiktok_angles import suggest_next_tiktok_angles  # noqa: E402
 from tools.draft_outreach_email import draft_outreach_email  # noqa: E402
 from tools.get_patient_demand_patterns import get_patient_demand_patterns  # noqa: E402
@@ -38,6 +44,7 @@ from tools.search_practitioners import search_practitioners  # noqa: E402
 
 mcp = FastMCP(
     "DocMap Intelligence OS",
+    instructions=MCP_SERVER_INSTRUCTIONS,
     stateless_http=True,
     json_response=True,
 )
@@ -49,7 +56,7 @@ def search_knowledge_tool(
     entity_type: str | None = None,
     match_count: int = 5,
 ):
-    """Search DocMap knowledge with cited chunks only."""
+    """Semantic search over DocMap embeddings. TikTok: entity_type tiktok_transcript | content_post | marketing_playbook | marketing_comment_digest."""
     return search_knowledge(query, entity_type=entity_type, match_count=match_count)
 
 
@@ -78,20 +85,48 @@ def get_patient_demand_patterns_tool(limit: int = 20):
 
 
 @mcp.tool()
-def get_content_performance_tool(platform: str | None = None, limit: int = 10):
-    """Return top-performing content posts."""
-    return get_content_performance(platform=platform, limit=limit)
+def get_content_performance_tool(
+    platform: str | None = None,
+    limit: int = 20,
+    sort_by: str = "views",
+):
+    """Top content posts. sort_by: views | likes | engagement | saves_per_1k | posted_at. Use platform=tiktok for full TikTok catalog."""
+    return get_content_performance(platform=platform, limit=limit, sort_by=sort_by)  # type: ignore[arg-type]
 
 
 @mcp.tool()
-def get_tiktok_marketing_insights_tool(limit: int = 10):
-    """Return TikTok marketing insights: top posts by saves/1k views, hooks, and A/B tests."""
-    return get_tiktok_marketing_insights(limit=limit)
+def get_tiktok_video_tool(video_id: str):
+    """Full TikTok video: caption, transcript, hooks (spoken/caption/onscreen), comment_analysis, A/B partners. Prefer over search_knowledge for one video."""
+    return get_tiktok_video(video_id)
+
+
+@mcp.tool()
+def get_tiktok_cohort_tool(
+    since: str | None = None,
+    until: str | None = None,
+    sort_by: str = "views",
+    limit: int = 50,
+    tier: str = "all",
+):
+    """Date-filtered TikTok posts with outperform/underperform tiers. sort_by: views | engagement | saves_per_1k | likes."""
+    return get_tiktok_cohort(
+        since=since,
+        until=until,
+        sort_by=sort_by,  # type: ignore[arg-type]
+        limit=limit,
+        tier=tier,  # type: ignore[arg-type]
+    )
+
+
+@mcp.tool()
+def get_tiktok_marketing_insights_tool(limit: int = 15, sort_by: str | None = None):
+    """Multi-metric TikTok rankings (views, engagement, saves/1k), cohort medians, and A/B tests. Raise limit for batch reviews."""
+    return get_tiktok_marketing_insights(limit=limit, sort_by=sort_by)  # type: ignore[arg-type]
 
 
 @mcp.tool()
 def get_tiktok_content_briefing_tool(topic: str | None = None, limit: int = 5):
-    """Return TikTok performance, strategy playbooks, and audience comment themes in one briefing."""
+    """Composite briefing: TikTok performance, playbooks, audience comment themes."""
     return get_tiktok_content_briefing(topic=topic, limit=limit)
 
 
@@ -100,21 +135,69 @@ def find_ab_tests_tool(
     min_views: int = 0,
     hook_source: str | None = None,
     since: str | None = None,
-    limit: int = 20,
+    limit: int = 50,
+    winner_by: str = "views",
+    group_by_pair_id: bool = False,
 ):
-    """Return TikTok A/B hook tests with optional filters (views, hook_source, since date)."""
+    """TikTok hook A/B pairs (same content, different hook). winner_by: views | saves_per_1k | engagement. Set group_by_pair_id=true for multi-arm clusters."""
     return find_ab_tests(
         min_views=min_views,
-        hook_source=hook_source,
+        hook_source=hook_source,  # type: ignore[arg-type]
         since=since,
         limit=limit,
+        winner_by=winner_by,  # type: ignore[arg-type]
+        group_by_pair_id=group_by_pair_id,
     )
 
 
 @mcp.tool()
 def suggest_next_tiktok_angles_tool(limit: int = 15, min_post_saves_per_1k: float = 0.0):
-    """Suggest next TikTok angles ranked from high-performing post comment analysis."""
+    """Suggest next TikTok angles from comment theme analysis on high-performing posts."""
     return suggest_next_tiktok_angles(limit=limit, min_post_saves_per_1k=min_post_saves_per_1k)
+
+
+@mcp.tool()
+def suggest_hook_repackage_tool(
+    video_id: str,
+    reference_video_id: str | None = None,
+    reference_sort_by: str = "views",
+):
+    """Propose hook swaps for an underperformer using top performers as reference (LLM). Human must approve before filming."""
+    return suggest_hook_repackage(
+        video_id,
+        reference_video_id=reference_video_id,
+        reference_sort_by=reference_sort_by,  # type: ignore[arg-type]
+    )
+
+
+@mcp.tool()
+def record_ab_learning_tool(
+    pair_id: str,
+    learning: str,
+    winner_video_id: str,
+    hook_pattern: str | None = None,
+    confidence: str = "medium",
+    loser_video_id: str | None = None,
+    reposted_as: str | None = None,
+    reviewed_by: str | None = None,
+):
+    """Persist approved A/B hook learning to Supabase on all videos in the pair."""
+    return record_ab_learning(
+        pair_id,
+        learning,
+        winner_video_id,
+        hook_pattern=hook_pattern,
+        confidence=confidence,  # type: ignore[arg-type]
+        loser_video_id=loser_video_id,
+        reposted_as=reposted_as,
+        reviewed_by=reviewed_by,
+    )
+
+
+@mcp.tool()
+def get_ab_learnings_tool(pair_id: str | None = None, since: str | None = None, limit: int = 50):
+    """List approved A/B hook learnings recorded via record_ab_learning."""
+    return get_ab_learnings(pair_id=pair_id, since=since, limit=limit)
 
 
 @mcp.tool()

@@ -17,6 +17,7 @@ from marketing_pipeline.shared.ingestion_log import finish_run, start_run
 from marketing_pipeline.shared.supabase_client import get_client
 from marketing_pipeline.tiktok.models import TikTokMarketingDataset, TikTokVideoRecord
 from marketing_pipeline.tiktok.stages.extract_hooks import resolve_primary_hook
+from marketing_pipeline.tiktok.stages.performance_tier import compute_performance_tiers
 
 JOB_NAME = "tiktok_marketing_sync"
 
@@ -29,7 +30,12 @@ def load_dataset(path: Path | None = None) -> TikTokMarketingDataset:
     return TikTokMarketingDataset.model_validate(data)
 
 
-def _post_payload(video_id: str, record: TikTokVideoRecord) -> dict[str, Any]:
+def _post_payload(
+    video_id: str,
+    record: TikTokVideoRecord,
+    *,
+    performance_tier: dict[str, Any] | None = None,
+) -> dict[str, Any]:
     post = record.post
     hook = record.hook
     primary_hook = resolve_primary_hook(hook)
@@ -56,6 +62,8 @@ def _post_payload(video_id: str, record: TikTokVideoRecord) -> dict[str, Any]:
     }
     if record.comment_analysis:
         metadata["comment_analysis"] = record.comment_analysis.model_dump()
+    if performance_tier:
+        metadata["performance_tier"] = performance_tier
 
     return {
         "platform": "tiktok",
@@ -215,9 +223,12 @@ def run_sync(
 
     try:
         counts["rows_seen"] = len(dataset.videos)
+        tiers = compute_performance_tiers(dataset)
 
         for video_id, record in dataset.videos.items():
-            payload = _post_payload(video_id, record)
+            payload = _post_payload(
+                video_id, record, performance_tier=tiers.get(video_id)
+            )
             post_id, inserted, embeds = _upsert_post(payload, skip_embed=skip_embed)
             post_ids.add(post_id)
             if inserted:

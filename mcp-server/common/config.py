@@ -27,6 +27,9 @@ OPENROUTER_API_KEY = _getenv("OPENROUTER_API_KEY")
 OPENROUTER_EMBEDDING_MODEL = _getenv(
     "OPENROUTER_EMBEDDING_MODEL", default="openai/text-embedding-3-small"
 )
+OPENROUTER_CHAT_MODEL = _getenv(
+    "OPENROUTER_CHAT_MODEL", "MODEL_MCP", default="anthropic/claude-sonnet-4"
+)
 PRACTITIONERS_TABLE = _getenv(
     "SUPABASE_PRACTITIONERS_TABLE", default="integrated_practitioner_with_phin"
 )

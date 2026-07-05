@@ -1,6 +1,6 @@
 {
   "dataset_version": "2",
-  "generated_at": "2026-07-03T05:17:20.675353+00:00",
+  "generated_at": "2026-07-05T16:43:22.397962+00:00",
   "videos": {
     "7650491657414085910": {
       "post": {
@@ -100,7 +100,7 @@
             "text": "and includes your quality of life and your activities of daily life."
           }
         ],
-        "model": null,
+        "model": "tiny",
         "status": "transcribed"
       },
       "hook": {
@@ -222,7 +222,7 @@
             "text": "I'm going to help."
           }
         ],
-        "model": null,
+        "model": "tiny",
         "status": "transcribed"
       },
       "hook": {
@@ -372,7 +372,7 @@
             "text": "which are grown in there as well."
           }
         ],
-        "model": null,
+        "model": "tiny",
         "status": "transcribed"
       },
       "hook": {
@@ -506,7 +506,7 @@
             "text": "Which are all very individual to each person."
           }
         ],
-        "model": null,
+        "model": "tiny",
         "status": "transcribed"
       },
       "hook": {
@@ -824,7 +824,7 @@
             "text": "reasonable discussion to have with your medical professional."
           }
         ],
-        "model": null,
+        "model": "tiny",
         "status": "transcribed"
       },
       "hook": {
@@ -1055,7 +1055,7 @@
             "text": "but you need to ask them. Are you need to listen to the answers? And that's the important thing."
           }
         ],
-        "model": null,
+        "model": "tiny",
         "status": "transcribed"
       },
       "hook": {
@@ -1173,7 +1173,7 @@
             "text": "procedure, it was very quick."
           }
         ],
-        "model": null,
+        "model": "tiny",
         "status": "transcribed"
       },
       "hook": {
@@ -1412,7 +1412,7 @@
             "text": "I do think it's a good thing."
           }
         ],
-        "model": null,
+        "model": "tiny",
         "status": "transcribed"
       },
       "hook": {
@@ -1510,7 +1510,7 @@
             "text": "You know, which is going to make a seeding fall, but you don't really know it's there until the seeding falls down, that's what it is."
           }
         ],
-        "model": null,
+        "model": "tiny",
         "status": "transcribed"
       },
       "hook": {
@@ -2097,7 +2097,7 @@
             "text": "it was just constant every excuse not to find out what was wrong with me and it made it really really hard."
           }
         ],
-        "model": null,
+        "model": "tiny",
         "status": "transcribed"
       },
       "hook": {
@@ -2270,7 +2270,7 @@
             "text": "definitely believe that for quite some time but it just got worse and worse and yeah."
           }
         ],
-        "model": null,
+        "model": "small",
         "status": "transcribed"
       },
       "hook": {
@@ -2433,7 +2433,7 @@
             "text": "investigations or further procedure with a colorectal surgeon"
           }
         ],
-        "model": null,
+        "model": "small",
         "status": "transcribed"
       },
       "hook": {
@@ -2627,7 +2627,7 @@
             "text": "to connect to get education through resources"
           }
         ],
-        "model": null,
+        "model": "small",
         "status": "transcribed"
       },
       "hook": {
@@ -2749,7 +2749,7 @@
             "text": "Same when it comes to surgery."
           }
         ],
-        "model": null,
+        "model": "small",
         "status": "transcribed"
       },
       "hook": {
@@ -2982,7 +2982,7 @@
           "pair_id": "mri-who-reads",
           "partner_video_id": "7634579404131241239",
           "role": "video_a",
-          "learning": "MRI — who reads it matters",
+          "learning": "On-screen hooks that stress who reads the MRI (not just having a scan) outperform generic MRI pain hooks.",
           "performance_difference": {
             "views_delta": 21357,
             "saves_per_1k_delta": 9.12,
@@ -2993,7 +2993,7 @@
           "pair_id": "mri-who-reads",
           "partner_video_id": "7641301413062102294",
           "role": "video_a",
-          "learning": "MRI — who reads it matters",
+          "learning": "On-screen hooks that stress who reads the MRI (not just having a scan) outperform generic MRI pain hooks.",
           "performance_difference": {
             "views_delta": 21905,
             "saves_per_1k_delta": 14.82,
@@ -3115,7 +3115,7 @@
             "text": "anyone can do it. Like I think anyone can do anything I want if they put the body to it."
           }
         ],
-        "model": null,
+        "model": "small",
         "status": "transcribed"
       },
       "hook": {
@@ -3263,7 +3263,7 @@
             "text": "and your activities of daily living."
           }
         ],
-        "model": null,
+        "model": "small",
         "status": "transcribed"
       },
       "hook": {
@@ -3491,7 +3491,7 @@
             "text": "What it did was it helped me get a second opinion with an endometrosis specialist."
           }
         ],
-        "model": null,
+        "model": "tiny",
         "status": "transcribed"
       },
       "hook": {
@@ -3679,7 +3679,7 @@
             "text": "And then after my life, they told me I hadn't to be process."
           }
         ],
-        "model": null,
+        "model": "tiny",
         "status": "transcribed"
       },
       "hook": {
@@ -3783,7 +3783,7 @@
             "text": "foals like that."
           }
         ],
-        "model": null,
+        "model": "small",
         "status": "transcribed"
       },
       "hook": {
@@ -3826,7 +3826,7 @@
           "pair_id": "excision-vs-ablation",
           "partner_video_id": "7631220659770690818",
           "role": "video_a",
-          "learning": "Excision vs ablation",
+          "learning": "Same excision vs ablation script; packaging with explicit 'ask for excision' hook vs analogy-first hook shifts saves and views.",
           "performance_difference": {
             "views_delta": -800,
             "saves_per_1k_delta": -0.43,
@@ -3903,7 +3903,7 @@
             "text": "education going on, and it's rapidly improving."
           }
         ],
-        "model": null,
+        "model": "tiny",
         "status": "transcribed"
       },
       "hook": {
@@ -3989,7 +3989,7 @@
           "pair_id": "mri-who-reads",
           "partner_video_id": "7644863912545881366",
           "role": "video_b",
-          "learning": "MRI — who reads it matters",
+          "learning": "On-screen hooks that stress who reads the MRI (not just having a scan) outperform generic MRI pain hooks.",
           "performance_difference": {
             "views_delta": 21905,
             "saves_per_1k_delta": 14.82,
@@ -4000,7 +4000,7 @@
           "pair_id": "mri-who-reads",
           "partner_video_id": "7634579404131241239",
           "role": "video_b",
-          "learning": "MRI — who reads it matters",
+          "learning": "On-screen hooks that stress who reads the MRI (not just having a scan) outperform generic MRI pain hooks.",
           "performance_difference": {
             "views_delta": 548,
             "saves_per_1k_delta": 5.7,
@@ -4112,7 +4112,7 @@
             "text": "Should I be looking at hormones, or should do I need to be reviewed by somebody else?"
           }
         ],
-        "model": null,
+        "model": "tiny",
         "status": "transcribed"
       },
       "hook": {
@@ -4289,7 +4289,7 @@
             "text": "then it was very quick."
           }
         ],
-        "model": null,
+        "model": "tiny",
         "status": "transcribed"
       },
       "hook": {
@@ -4540,7 +4540,7 @@
             "text": "sound when you touch it."
           }
         ],
-        "model": null,
+        "model": "tiny",
         "status": "transcribed"
       },
       "hook": {
@@ -4603,7 +4603,7 @@
             "text": "Irrespective of where it is."
           }
         ],
-        "model": null,
+        "model": "tiny",
         "status": "transcribed"
       },
       "hook": {
@@ -4720,7 +4720,7 @@
             "text": "I think it is part of the process. Consensus is very, very important to us as clinicians and that starts on the minute we start talking to you about the surgical procedure, okay? So it's reasonable to discuss at that point and it can be discussed again at any other time."
           }
         ],
-        "model": null,
+        "model": "tiny",
         "status": "transcribed"
       },
       "hook": {
@@ -4813,7 +4813,7 @@
             "text": "We show all very individual to each person."
           }
         ],
-        "model": null,
+        "model": "tiny",
         "status": "transcribed"
       },
       "hook": {
@@ -5018,7 +5018,7 @@
             "text": "And I think that's a perfectly reasonable discussion to have with your medical professional."
           }
         ],
-        "model": null,
+        "model": "tiny",
         "status": "transcribed"
       },
       "hook": {
@@ -5194,7 +5194,7 @@
             "text": "maximise maximum quality of life, maximum ability to function."
           }
         ],
-        "model": null,
+        "model": "small",
         "status": "transcribed"
       },
       "hook": {
@@ -5322,7 +5322,7 @@
             "text": "ceiling falls down. That's what it is."
           }
         ],
-        "model": null,
+        "model": "small",
         "status": "transcribed"
       },
       "hook": {
@@ -5442,7 +5442,7 @@
             "text": "of endometriosis and knows what they're looking for. Otherwise they'll miss it. Same when it comes to surgery."
           }
         ],
-        "model": null,
+        "model": "small",
         "status": "transcribed"
       },
       "hook": {
@@ -5549,7 +5549,7 @@
           "pair_id": "mri-who-reads",
           "partner_video_id": "7644863912545881366",
           "role": "video_b",
-          "learning": "MRI — who reads it matters",
+          "learning": "On-screen hooks that stress who reads the MRI (not just having a scan) outperform generic MRI pain hooks.",
           "performance_difference": {
             "views_delta": 21357,
             "saves_per_1k_delta": 9.12,
@@ -5560,7 +5560,7 @@
           "pair_id": "mri-who-reads",
           "partner_video_id": "7641301413062102294",
           "role": "video_a",
-          "learning": "MRI — who reads it matters",
+          "learning": "On-screen hooks that stress who reads the MRI (not just having a scan) outperform generic MRI pain hooks.",
           "performance_difference": {
             "views_delta": 548,
             "saves_per_1k_delta": 5.7,
@@ -5657,7 +5657,7 @@
             "text": "is individual but it's simple and complicated."
           }
         ],
-        "model": null,
+        "model": "small",
         "status": "transcribed"
       },
       "hook": {
@@ -5875,7 +5875,7 @@
             "text": "So there's that break in communication, I feel."
           }
         ],
-        "model": null,
+        "model": "small",
         "status": "transcribed"
       },
       "hook": {
@@ -5943,7 +5943,7 @@
             "text": "I wish that I could lie, but I'm way too self aware"
           }
         ],
-        "model": null,
+        "model": "small",
         "status": "transcribed"
       },
       "hook": {
@@ -6081,7 +6081,7 @@
             "text": "which are brought in there as well."
           }
         ],
-        "model": null,
+        "model": "small",
         "status": "transcribed"
       },
       "hook": {
@@ -6208,7 +6208,7 @@
             "text": "Endometriosis nurse since 2006 in Wales."
           }
         ],
-        "model": null,
+        "model": "small",
         "status": "transcribed"
       },
       "hook": {
@@ -6362,7 +6362,7 @@
           "pair_id": "excision-vs-ablation",
           "partner_video_id": "7641554459755089154",
           "role": "video_b",
-          "learning": "Excision vs ablation",
+          "learning": "Same excision vs ablation script; packaging with explicit 'ask for excision' hook vs analogy-first hook shifts saves and views.",
           "performance_difference": {
             "views_delta": -800,
             "saves_per_1k_delta": -0.43,
@@ -6464,7 +6464,7 @@
             "text": "so that's the first thing, and then excision, not ablation."
           }
         ],
-        "model": null,
+        "model": "small",
         "status": "transcribed"
       },
       "hook": {
@@ -7104,7 +7104,7 @@
             "text": "So as terrifying as it is, I absolutely love it."
           }
         ],
-        "model": null,
+        "model": "small",
         "status": "transcribed"
       },
       "hook": {
@@ -7187,7 +7187,7 @@
             "text": "So, or you can come and see me in help and I do virtual clinic as well"
           }
         ],
-        "model": null,
+        "model": "small",
         "status": "transcribed"
       },
       "hook": {
@@ -7330,7 +7330,7 @@
             "text": "down document and everything and taking it is always going to be the best way."
           }
         ],
-        "model": null,
+        "model": "tiny",
         "status": "transcribed"
       },
       "hook": {
@@ -7376,53 +7376,53 @@
       "pair_id": "mri-who-reads",
       "video_a": "7644863912545881366",
       "video_b": "7634579404131241239",
-      "similarity_basis": "known_pair",
+      "similarity_basis": "registry",
       "hook_difference": "A: Still in pain after endo surgery? Watch this | B: Reply to user8575620225727's comment Is it better to have an MRI first before a laparoscopy ? The benefits of M R I. Dep",
       "performance_difference": {
         "views_delta": 21357,
         "saves_per_1k_delta": 9.12,
         "likes_delta": 1589
       },
-      "learning": "MRI — who reads it matters"
+      "learning": "On-screen hooks that stress who reads the MRI (not just having a scan) outperform generic MRI pain hooks."
     },
     {
       "pair_id": "mri-who-reads",
       "video_a": "7644863912545881366",
       "video_b": "7641301413062102294",
-      "similarity_basis": "known_pair",
+      "similarity_basis": "registry",
       "hook_difference": "A: Still in pain after endo surgery? Watch this | B: Jade 🎗️ My endo specialist told me and mri can either over diagnose or under diagnose endometriosis, is that true? 4-30 ",
       "performance_difference": {
         "views_delta": 21905,
         "saves_per_1k_delta": 14.82,
         "likes_delta": 1626
       },
-      "learning": "MRI — who reads it matters"
+      "learning": "On-screen hooks that stress who reads the MRI (not just having a scan) outperform generic MRI pain hooks."
     },
     {
       "pair_id": "mri-who-reads",
       "video_a": "7634579404131241239",
       "video_b": "7641301413062102294",
-      "similarity_basis": "known_pair",
+      "similarity_basis": "registry",
       "hook_difference": "A: Reply to user8575620225727's comment Is it better to have an MRI first before a laparoscopy ? The benefits of M R I. Dep | B: Jade 🎗️ My endo specialist told me and mri can either over diagnose or under diagnose endometriosis, is that true? 4-30 ",
       "performance_difference": {
         "views_delta": 548,
         "saves_per_1k_delta": 5.7,
         "likes_delta": 37
       },
-      "learning": "MRI — who reads it matters"
+      "learning": "On-screen hooks that stress who reads the MRI (not just having a scan) outperform generic MRI pain hooks."
     },
     {
       "pair_id": "excision-vs-ablation",
       "video_a": "7641554459755089154",
       "video_b": "7631220659770690818",
-      "similarity_basis": "known_pair",
+      "similarity_basis": "registry",
       "hook_difference": "A: If you are getting endo surgery, ask for excision, not ablation. Here's why | B: Excision vs. Ablation Here's what the endo nurse wants you to know",
       "performance_difference": {
         "views_delta": -800,
         "saves_per_1k_delta": -0.43,
         "likes_delta": -117
       },
-      "learning": "Excision vs ablation"
+      "learning": "Same excision vs ablation script; packaging with explicit 'ask for excision' hook vs analogy-first hook shifts saves and views."
     }
   ]
 }

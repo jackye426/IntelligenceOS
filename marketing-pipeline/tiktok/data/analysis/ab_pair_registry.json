@@ -1,0 +1,33 @@
+{
+  "pairs": [
+    {
+      "pair_id": "mri-who-reads",
+      "label": "MRI — who reads it matters",
+      "video_ids": [
+        "7644863912545881366",
+        "7634579404131241239",
+        "7641301413062102294"
+      ],
+      "script_id": null,
+      "learning": "On-screen hooks that stress who reads the MRI (not just having a scan) outperform generic MRI pain hooks.",
+      "learning_status": "approved",
+      "hook_pattern": "Competence-gap fear + named stakeholder (who reads it)",
+      "confidence": "medium",
+      "notes": "3-way cluster — compare all pairwise edges"
+    },
+    {
+      "pair_id": "excision-vs-ablation",
+      "label": "Excision vs ablation — hook packaging",
+      "video_ids": [
+        "7641554459755089154",
+        "7631220659770690818"
+      ],
+      "script_id": null,
+      "learning": "Same excision vs ablation script; packaging with explicit 'ask for excision' hook vs analogy-first hook shifts saves and views.",
+      "learning_status": "approved",
+      "hook_pattern": "Direct surgical ask vs analogy opener",
+      "confidence": "medium",
+      "notes": ""
+    }
+  ]
+}

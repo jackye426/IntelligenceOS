@@ -1,4 +1,4 @@
-"""OpenRouter embedding client."""
+"""OpenRouter embedding and chat client."""
 
 from __future__ import annotations
 
@@ -31,3 +31,21 @@ def embed_text(text: str) -> list[float]:
     if not vector:
         raise RuntimeError("OpenRouter returned an empty embedding")
     return vector
+
+
+def chat_completion(
+    *,
+    system: str,
+    user: str,
+    model: str | None = None,
+    max_tokens: int = 1200,
+) -> str:
+    response = _get_client().chat.completions.create(
+        model=model or config.OPENROUTER_CHAT_MODEL,
+        messages=[
+            {"role": "system", "content": system},
+            {"role": "user", "content": user},
+        ],
+        max_tokens=max_tokens,
+    )
+    return (response.choices[0].message.content or "").strip()

@@ -12,11 +12,7 @@ from marketing_pipeline.tiktok.models import (
     TikTokVideoRecord,
 )
 
-# Known historical pairs from legacy extract_hooks.py
-KNOWN_PAIRS: list[tuple[str, list[str], str]] = [
-    ("mri-who-reads", ["7644863912545881366", "7634579404131241239", "7641301413062102294"], "MRI — who reads it matters"),
-    ("excision-vs-ablation", ["7641554459755089154", "7631220659770690818"], "Excision vs ablation"),
-]
+from marketing_pipeline.tiktok.stages.ab_pair_registry import load_registry_pairs
 
 
 def _body_after_hook(transcript: str | None) -> str:
@@ -93,11 +89,14 @@ def detect_ab_pairs(dataset: TikTokMarketingDataset) -> list[TikTokABPair]:
             )
         )
 
-    for pair_id, ids, label in KNOWN_PAIRS:
+    for entry in load_registry_pairs():
+        pair_id = str(entry.get("pair_id") or "")
+        ids = [str(v) for v in entry.get("video_ids") or []]
+        learning = entry.get("learning") or entry.get("label")
         present = [vid for vid in ids if vid in dataset.videos]
         for i in range(len(present)):
             for j in range(i + 1, len(present)):
-                add_pair(pair_id, present[i], present[j], "known_pair", learning=label)
+                add_pair(pair_id, present[i], present[j], "registry", learning=learning)
 
     video_ids = list(dataset.videos.keys())
     for i, vid_a in enumerate(video_ids):
