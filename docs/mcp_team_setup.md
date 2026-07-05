@@ -57,20 +57,46 @@ The local endpoint is `http://127.0.0.1:8000/mcp`.
 
 ## Claude Desktop configuration
 
-Add a remote MCP server entry (exact UI varies by Claude Desktop version):
+**Claude Desktop does not support `"url"` in `claude_desktop_config.json`.** It only accepts stdio servers (`command` + `args`). Use the **`mcp-remote`** bridge to connect to our hosted Streamable HTTP server.
+
+**Windows config file:** `%APPDATA%\Claude\claude_desktop_config.json`  
+**macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`
+
+Requires **Node.js 18+** on the machine (Claude Desktop uses system Node for `npx`).
 
 ```json
 {
   "mcpServers": {
     "docmap-intelligence": {
-      "url": "https://mcp.docmap.co.uk/mcp",
-      "headers": {
-        "Authorization": "Bearer YOUR_MCP_AUTH_TOKEN"
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote@latest",
+        "https://mcp.docmap.co.uk/mcp",
+        "--transport",
+        "http-only",
+        "--header",
+        "Authorization:${DOCMAP_MCP_AUTH}"
+      ],
+      "env": {
+        "DOCMAP_MCP_AUTH": "Bearer YOUR_MCP_AUTH_TOKEN"
       }
     }
   }
 }
 ```
+
+**Windows note:** put the full `Bearer …` value in `env`, not in `args` (Claude Desktop mangles spaces in args). Use `Authorization:${DOCMAP_MCP_AUTH}` with no space before `${…}`.
+
+Restart Claude Desktop completely after editing. You should see a hammer/tools icon when the connector loads.
+
+**Verify from terminal (optional):**
+
+```bash
+npx -y -p mcp-remote@latest mcp-remote-client https://mcp.docmap.co.uk/mcp --transport http-only --header "Authorization:Bearer YOUR_TOKEN"
+```
+
+Expect `Connected successfully!` and a tools list.
 
 ## Health check
 
@@ -87,6 +113,12 @@ Authorization: Bearer <MCP_AUTH_TOKEN>
 Unauthenticated requests to `/mcp` return `401 Unauthorized`.
 
 ## Troubleshooting
+
+### Claude "MCP server could not be loaded"
+
+**Cause:** `"url"` / `"headers"` entries in `claude_desktop_config.json` are **invalid** — Claude Desktop skips them at startup.
+
+**Fix:** Use the `mcp-remote` stdio bridge (see Claude Desktop configuration above). Do not use `"url"` directly.
 
 ### `421 Invalid Host header` / Claude "error connecting"
 
