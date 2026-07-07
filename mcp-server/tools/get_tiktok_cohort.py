@@ -10,6 +10,7 @@ from tools.tiktok_shared import (
     cohort_medians,
     fetch_tiktok_posts,
     filter_by_date,
+    library_stats,
     performance_tier,
     post_summary,
     rank_posts,
@@ -60,7 +61,13 @@ def get_tiktok_cohort(
             "cohort_size": len(cohort_rows),
             "posts": posts,
             "count": len(posts),
+            **library_stats(rows),
         }
+        if not posts and since and result.get("staleness_warning"):
+            result["empty_cohort_note"] = (
+                "No posts matched the date filter in the synced library. "
+                "Check staleness_warning before concluding publishing stopped."
+            )
         log_tool_call(tool_name="get_tiktok_cohort", request_summary=summary, success=True)
         return result
     except Exception as exc:  # noqa: BLE001

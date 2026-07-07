@@ -4,11 +4,32 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+from typing import Any
 
 from marketing_pipeline import config
 from marketing_pipeline.tiktok.stages.download_media import download_media, resolve_media_path
 from marketing_pipeline.tiktok.stages.transcript_utils import is_garbage_transcript
 from marketing_pipeline.tiktok.stages.write_per_video_complete import write_complete_transcript
+
+# Reuse a single WhisperModel per model_id for the process lifetime. Creating a
+# new model per video causes memory churn (each instance loads weights + spawns
+# CTranslate2 threads) which OOM-kills the worker on batch transcription.
+_MODEL_CACHE: dict[str, Any] = {}
+
+
+def _get_model(model_id: str) -> Any:
+    model = _MODEL_CACHE.get(model_id)
+    if model is None:
+        from faster_whisper import WhisperModel
+
+        model = WhisperModel(
+            model_id,
+            device="cpu",
+            compute_type="int8",
+            cpu_threads=config.WHISPER_CPU_THREADS,
+        )
+        _MODEL_CACHE[model_id] = model
+    return model
 
 
 def _remove_transcript_artifacts(video_id: str, *, out_dir: Path) -> None:
@@ -26,12 +47,10 @@ def transcribe_media(
     caption_hint: str | None = None,
     out_dir: Path | None = None,
 ) -> tuple[list[dict], str]:
-    from faster_whisper import WhisperModel
-
     target = out_dir or config.TRANSCRIPTS_DIR
     target.mkdir(parents=True, exist_ok=True)
     model_id = model_size or config.WHISPER_MODEL
-    model = WhisperModel(model_id, device="cpu", compute_type="int8")
+    model = _get_model(model_id)
     segments, info = model.transcribe(
         str(media_path),
         language="en",

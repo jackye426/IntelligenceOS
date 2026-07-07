@@ -26,6 +26,9 @@ from common import config  # noqa: E402
 
 os.environ.setdefault("MARKETING_DATA_DIR", config.MARKETING_DATA_DIR)
 os.environ.setdefault("WHISPER_MODEL", config.WHISPER_MODEL)
+# Cache the Whisper model on the persistent volume so it is not re-downloaded
+# from HuggingFace on every cold start / restart.
+os.environ.setdefault("HF_HOME", str(Path(config.MARKETING_DATA_DIR) / ".hf_cache"))
 
 from apscheduler.schedulers.blocking import BlockingScheduler  # noqa: E402
 from apscheduler.triggers.cron import CronTrigger  # noqa: E402

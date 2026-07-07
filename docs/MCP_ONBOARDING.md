@@ -93,10 +93,14 @@ Data refreshes automatically: **comments daily**, full update **weekly**. Brand-
 
 Use this in your Monday content meeting or solo review:
 
-1. **“Show TikTok posts since [last Monday], ranked by views.”**
-2. **“Which hook A/B tests ran since then — who won?”**
-3. **“Pick our weakest post from that batch and suggest a hook swap.”**
-4. **After we agree in the meeting:** *“Save this A/B learning: [your note].”*
+1. **`get_tiktok_strategy_brief()`** — constitution, approved learnings, reference set
+2. **`get_tiktok_cohort(since=[last Monday], sort_by="views")`** — check `staleness_warning` if results look empty
+3. Underperformers: discuss why a post flopped → **`draft_tiktok_insight`** → you say **approve** → **`approve_tiktok_insight`**
+4. **`find_ab_tests`** or **`find_variant_groups`** — hook packaging comparisons
+5. **`suggest_hook_repackage`** — only after strategy brief; you approve hooks before filming
+6. Rare: **`propose_constitution_patch`** — human pastes into playbook files (never automatic)
+
+**Important:** If a date filter returns nothing, check `staleness_warning` — the library may be behind the live TikTok channel, not that posting stopped.
 
 Claude pulls live data each time — you don’t need to export spreadsheets first.
 

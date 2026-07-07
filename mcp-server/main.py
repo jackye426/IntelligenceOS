@@ -34,6 +34,13 @@ from tools.get_tiktok_content_briefing import get_tiktok_content_briefing  # noq
 from tools.get_tiktok_video import get_tiktok_video  # noqa: E402
 from tools.find_ab_tests import find_ab_tests  # noqa: E402
 from tools.record_ab_learning import record_ab_learning  # noqa: E402
+from tools.get_tiktok_strategy_brief import get_tiktok_strategy_brief  # noqa: E402
+from tools.tiktok_insights import (  # noqa: E402
+    approve_tiktok_insight,
+    draft_tiktok_insight,
+    list_tiktok_insight_drafts,
+    propose_constitution_patch,
+)
 from tools.suggest_hook_repackage import suggest_hook_repackage  # noqa: E402
 from tools.suggest_next_tiktok_angles import suggest_next_tiktok_angles  # noqa: E402
 from tools.draft_outreach_email import draft_outreach_email  # noqa: E402
@@ -121,9 +128,95 @@ def get_tiktok_cohort_tool(
 
 
 @mcp.tool()
-def get_tiktok_marketing_insights_tool(limit: int = 15, sort_by: str | None = None):
-    """Multi-metric TikTok rankings (views, engagement, saves/1k), cohort medians, and A/B tests. Raise limit for batch reviews."""
-    return get_tiktok_marketing_insights(limit=limit, sort_by=sort_by)  # type: ignore[arg-type]
+def get_tiktok_marketing_insights_tool(
+    limit: int = 15,
+    sort_by: str | None = None,
+    since: str | None = None,
+):
+    """Multi-metric TikTok rankings (views, engagement, saves/1k), cohort medians, and variant groups. Optional since=YYYY-MM-DD."""
+    return get_tiktok_marketing_insights(limit=limit, sort_by=sort_by, since=since)  # type: ignore[arg-type]
+
+
+@mcp.tool()
+def get_tiktok_strategy_brief_tool():
+    """Load TikTok strategy brief: constitution, approved insights, reference set, changelog. Call before creative suggestions."""
+    return get_tiktok_strategy_brief()
+
+
+@mcp.tool()
+def draft_tiktok_insight_tool(
+    group_id: str,
+    video_ids: list[str],
+    what_we_tried: str,
+    expectation: str | None = None,
+    outcome: str | None = None,
+    learning: str | None = None,
+    cluster_basis: str = "manual",
+    confidence: str = "medium",
+    playbook_themes: list[str] | None = None,
+):
+    """Draft a performance insight from conversation for user approval (Gate 1). Does not change constitution."""
+    return draft_tiktok_insight(
+        group_id=group_id,
+        video_ids=video_ids,
+        what_we_tried=what_we_tried,
+        expectation=expectation,
+        outcome=outcome,
+        learning=learning,
+        cluster_basis=cluster_basis,
+        confidence=confidence,
+        playbook_themes=playbook_themes,
+    )
+
+
+@mcp.tool()
+def approve_tiktok_insight_tool(
+    insight_id: str,
+    approved_by: str | None = None,
+    learning: str | None = None,
+):
+    """Approve a drafted insight — saves to approved learnings and changelog. Constitution unchanged."""
+    return approve_tiktok_insight(insight_id, approved_by=approved_by, learning=learning)
+
+
+@mcp.tool()
+def list_tiktok_insight_drafts_tool(limit: int = 20):
+    """List insight drafts awaiting user approval."""
+    return list_tiktok_insight_drafts(limit=limit)
+
+
+@mcp.tool()
+def propose_constitution_patch_tool(
+    insight_id: str,
+    proposed_bullet: str,
+    target_section: str = "content-instruction.md",
+):
+    """Gate 2: propose a constitution edit for human to paste manually. Never auto-applies."""
+    return propose_constitution_patch(
+        insight_id=insight_id,
+        proposed_bullet=proposed_bullet,
+        target_section=target_section,
+    )
+
+
+@mcp.tool()
+def find_variant_groups_tool(
+    min_views: int = 0,
+    hook_source: str | None = None,
+    since: str | None = None,
+    limit: int = 50,
+    winner_by: str = "views",
+    group_by_pair_id: bool = False,
+):
+    """TikTok variant groups (2–N videos, same audio/topic, different hooks). Alias for find_ab_tests."""
+    return find_ab_tests(
+        min_views=min_views,
+        hook_source=hook_source,  # type: ignore[arg-type]
+        since=since,
+        limit=limit,
+        winner_by=winner_by,  # type: ignore[arg-type]
+        group_by_pair_id=group_by_pair_id,
+    )
 
 
 @mcp.tool()

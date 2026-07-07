@@ -6,6 +6,7 @@ from tools.tiktok_shared import (
     aggregate_ab_tests,
     cohort_medians,
     engagement_total,
+    library_stats,
     rank_posts,
     saves_per_1k,
     winner_video_id,
@@ -91,3 +92,20 @@ def test_cohort_medians():
     med = cohort_medians(rows)
     assert med["views"] == 200.0
     assert saves_per_1k(rows[0]["metrics"]) == 100.0
+
+
+def test_library_stats_staleness_warning():
+    from datetime import date, timedelta
+
+    old = (date.today() - timedelta(days=30)).isoformat()
+    rows = [
+        {
+            "platform_post_id": "old",
+            "posted_at": f"{old}T12:00:00+00:00",
+            "metadata": {},
+        }
+    ]
+    stats = library_stats(rows)
+    assert stats["library_newest_posted_at"] == old
+    assert stats["staleness_warning"] is not None
+    assert "stale sync" in stats["staleness_warning"]

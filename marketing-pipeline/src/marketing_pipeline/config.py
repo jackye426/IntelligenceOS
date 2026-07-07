@@ -77,3 +77,16 @@ OPENROUTER_EMBEDDING_MODEL = _getenv(
 MODEL_OCR = _getenv("MODEL_OCR", default="google/gemini-3-flash-preview")
 FFMPEG_PATH = _getenv("FFMPEG_PATH", default="ffmpeg")
 WHISPER_MODEL = _getenv("WHISPER_MODEL", default="small")
+
+
+def _getint(name: str, default: int) -> int:
+    raw = _getenv(name)
+    try:
+        return int(raw) if raw else default
+    except ValueError:
+        return default
+
+
+# Cap CTranslate2 CPU threads. On high-core hosts (e.g. 8 vCPU) the default of
+# "all cores" inflates memory per model. 4 is a safe balance for Whisper small.
+WHISPER_CPU_THREADS = _getint("WHISPER_CPU_THREADS", 4)

@@ -30,6 +30,7 @@ from marketing_pipeline.tiktok.stages.extract_onscreen_hook import (
 from marketing_pipeline.tiktok.stages.fetch_catalog import fetch_catalog
 from marketing_pipeline.tiktok.stages.import_playbooks import import_playbooks
 from marketing_pipeline.tiktok.stages.parse_master_transcripts import parse_master_transcripts
+from marketing_pipeline.tiktok.stages.posted_at import resolve_posted_at
 from marketing_pipeline.tiktok.stages.rebuild_comment_analysis import rebuild_comment_analysis
 from marketing_pipeline.tiktok.stages.refresh_videos import refresh_videos
 from marketing_pipeline.tiktok.stages.write_master_transcripts import write_master_transcripts
@@ -38,6 +39,7 @@ from marketing_pipeline.tiktok.stages.write_outputs import ensure_master_transcr
 from marketing_pipeline.tiktok.stages.download_media import download_media, resolve_media_path
 from marketing_pipeline.tiktok.sync.playbooks import sync_playbooks
 from marketing_pipeline.tiktok.sync.supabase import run_sync
+from marketing_pipeline.tiktok.stages.build_strategy_brief import write_strategy_brief
 
 
 def build_dataset() -> TikTokMarketingDataset:
@@ -89,10 +91,15 @@ def build_dataset() -> TikTokMarketingDataset:
         )
 
         metrics_raw = row.get("metrics") or {}
+        posted_at = resolve_posted_at(
+            video_id,
+            catalog_entry=cat,
+            parsed_posted_at=row.get("posted_at"),
+        )
         post = TikTokPost(
             video_id=video_id,
             url=row["url"],
-            posted_at=row.get("posted_at"),
+            posted_at=posted_at,
             caption=caption,
             duration_sec=row.get("duration_sec"),
             format_guess=format_guess,
@@ -145,6 +152,8 @@ def run_export(*, draft_evidence: bool = True) -> dict[str, str | int]:
     if draft_evidence:
         draft_path = draft_evidence_playbook(dataset)
         result["evidence_draft"] = str(draft_path)
+    brief_path = write_strategy_brief(dataset)
+    result["strategy_brief"] = str(brief_path)
     return result
 
 

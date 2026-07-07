@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import statistics
+from datetime import date, datetime, timezone
 from typing import Any, Literal
 
 from common.supabase_client import get_client
@@ -193,7 +194,34 @@ def post_summary(row: dict[str, Any], *, medians: dict[str, float] | None = None
     stored_tier = meta.get("performance_tier")
     if stored_tier:
         summary["performance_tier"] = stored_tier
+    if meta.get("is_catalog_stub"):
+        summary["is_catalog_stub"] = True
+        summary["transcript_status"] = meta.get("transcript_status") or "pending"
     return summary
+
+
+def library_stats(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    dates = [str(r.get("posted_at") or "")[:10] for r in rows if r.get("posted_at")]
+    newest = max(dates) if dates else None
+    stubs = sum(1 for r in rows if (r.get("metadata") or {}).get("is_catalog_stub"))
+    today = datetime.now(timezone.utc).date()
+    staleness_warning = None
+    pending_transcript = stubs
+    if newest:
+        days_old = (today - date.fromisoformat(newest)).days
+        if days_old > 7:
+            staleness_warning = (
+                f"Synced library newest post is {newest} ({days_old} days behind UTC today). "
+                "An empty date filter may mean stale sync — not that publishing stopped. "
+                "Run tiktok refresh && sync-supabase."
+            )
+    return {
+        "library_video_count": len(rows),
+        "library_newest_posted_at": newest,
+        "catalog_stub_count": stubs,
+        "pending_transcript_count": pending_transcript,
+        "staleness_warning": staleness_warning,
+    }
 
 
 def winner_video_id(

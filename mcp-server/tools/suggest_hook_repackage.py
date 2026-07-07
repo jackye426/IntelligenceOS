@@ -8,6 +8,7 @@ from common.audit import log_tool_call
 from common.openrouter_client import chat_completion
 from tools.get_tiktok_video import get_tiktok_video
 from tools.tiktok_shared import SortBy, fetch_tiktok_posts, post_summary, rank_posts
+from tools.tiktok_strategy_state import brief_excerpt_for_prompt
 
 ReferenceSort = Literal["views", "saves_per_1k", "engagement"]
 
@@ -52,13 +53,18 @@ def suggest_hook_repackage(
                 references.append({**by_saves, "reference_reason": "top_by_saves_per_1k"})
 
         ref_details = [get_tiktok_video(str(r["video_id"])) for r in references if r.get("video_id")]
+        strategy_context = brief_excerpt_for_prompt()
 
         system = (
             "You are a TikTok content strategist for DocMap (endometriosis patient education). "
             "Propose hook repackaging only — never suggest posting without human review. "
-            "Focus on on-screen hook text and caption opening line. Be specific and concise."
+            "Focus on on-screen hook text and caption opening line. Be specific and concise. "
+            "Ground every suggestion in the strategy brief: cite playbook theme and prior learnings."
         )
         user_prompt = f"""
+Strategy brief (required context):
+{strategy_context}
+
 Underperforming video:
 - video_id: {video_id}
 - post_url: {target.get('post_url')}
@@ -76,7 +82,7 @@ Task:
 2. Propose 2-3 alternative on-screen hooks + caption openers for the underperformer that mirror the winner pattern but fit this video's transcript topic.
 3. Note which metric gap matters most (views vs saves/1k vs engagement).
 
-Return markdown with sections: Pattern, Proposed hooks (numbered), Metric note.
+Return markdown with sections: Playbook alignment, Pattern, Proposed hooks (numbered), Metric note, Avoids.
 """.strip()
 
         suggestions = chat_completion(system=system, user=user_prompt)

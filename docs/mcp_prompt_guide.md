@@ -50,22 +50,32 @@ Pair with:
 - "Give me a TikTok content briefing: what's working, what patients ask in comments, and what our playbook says to post next."
 - "What hook patterns are winning on TikTok and what should we film next for pre-surgery patients?"
 
-### Weekly hook A/B review ritual
+### Strategy-first ritual (required before suggestions)
 
-1. `get_tiktok_cohort(since=YYYY-MM-DD, sort_by="views", limit=50)` — recent batch + tiers
-2. `get_tiktok_marketing_insights(limit=15)` — winners by views, engagement, and saves/1k
-3. `find_ab_tests(since=YYYY-MM-DD, winner_by="views")` — hook A/B pairs; use `group_by_pair_id=true` for MRI-style clusters
-4. `get_tiktok_video(video_id)` — full caption, transcript, hooks, comment questions
-5. `suggest_hook_repackage(video_id)` — proposed hook swaps using top performers as reference
-6. `record_ab_learning(pair_id, learning, winner_video_id)` — persist approved learning
+1. `get_tiktok_strategy_brief()` — constitution, approved insights, reference set, changelog
+2. `get_tiktok_cohort(since=YYYY-MM-DD, sort_by="views", limit=50)` — check `staleness_warning` if empty
+3. Underperformer: `get_tiktok_video(video_id)` → discuss in chat → `draft_tiktok_insight` → user approves → `approve_tiktok_insight`
+4. `find_ab_tests` / `find_variant_groups(since=YYYY-MM-DD, winner_by="views")` — variant groups (2–N videos)
+5. `suggest_hook_repackage(video_id)` — loads strategy brief internally; human approves before filming
+6. Gate 2 (rare): `propose_constitution_patch(insight_id, proposed_bullet)` — returns markdown to paste into `content-instruction.md`
+
+**Never** conclude publishing stopped from an empty `since` filter — read `staleness_warning` and `catalog_stub_count`.
+
+### Weekly hook A/B review ritual (legacy shorthand)
+
+1. `get_tiktok_marketing_insights(limit=15, since=YYYY-MM-DD)` — winners by views, engagement, saves/1k (live metrics only; ignore view counts in `recipe-2026-06.md`)
+2. `get_tiktok_video(video_id)` — full caption, transcript, hooks, comment questions
+3. `record_ab_learning(pair_id, learning, winner_video_id)` — backward-compatible; prefer `approve_tiktok_insight` for new learnings
 
 Pair with:
 
+- `get_tiktok_strategy_brief`
 - `get_tiktok_content_briefing`
 - `get_tiktok_marketing_insights`
 - `get_tiktok_video`
 - `get_tiktok_cohort`
-- `find_ab_tests`
+- `find_ab_tests` / `find_variant_groups`
+- `draft_tiktok_insight` / `approve_tiktok_insight` / `list_tiktok_insight_drafts`
 - `suggest_hook_repackage`
 - `record_ab_learning` / `get_ab_learnings`
 - `suggest_next_tiktok_angles`

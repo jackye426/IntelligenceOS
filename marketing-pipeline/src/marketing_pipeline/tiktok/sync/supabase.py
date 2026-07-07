@@ -16,10 +16,20 @@ from marketing_pipeline.shared.embeddings import (
 from marketing_pipeline.shared.ingestion_log import finish_run, start_run
 from marketing_pipeline.shared.supabase_client import get_client
 from marketing_pipeline.tiktok.models import TikTokMarketingDataset, TikTokVideoRecord
+from marketing_pipeline.tiktok.stages.build_strategy_brief import build_strategy_brief, write_strategy_brief
+from marketing_pipeline.tiktok.stages.collect_catalog import load_catalog
 from marketing_pipeline.tiktok.stages.extract_hooks import resolve_primary_hook
 from marketing_pipeline.tiktok.stages.performance_tier import compute_performance_tiers
+from marketing_pipeline.tiktok.stages.tiktok_insights_store import (
+    STATE_PATH,
+    STRATEGY_PLATFORM,
+    STRATEGY_POST_ID,
+    load_state,
+)
 
 JOB_NAME = "tiktok_marketing_sync"
+STRATEGY_BRIEF_ENTITY = "tiktok_strategy_brief"
+STRATEGY_BRIEF_ENTITY_ID = str(uuid.uuid5(uuid.NAMESPACE_URL, "tiktok-strategy-brief:v1"))
 
 
 def load_dataset(path: Path | None = None) -> TikTokMarketingDataset:
@@ -28,6 +38,57 @@ def load_dataset(path: Path | None = None) -> TikTokMarketingDataset:
         raise FileNotFoundError(f"Dataset not found: {target}. Run: tiktok export")
     data = json.loads(target.read_text(encoding="utf-8"))
     return TikTokMarketingDataset.model_validate(data)
+
+
+def _catalog_metrics(entry: dict[str, Any]) -> dict[str, Any]:
+    def _int(key: str) -> int | None:
+        raw = entry.get(key)
+        if raw == "" or raw is None:
+            return None
+        try:
+            return int(raw)
+        except (TypeError, ValueError):
+            return None
+
+    views = _int("view_count") or 0
+    saves = _int("save_count")
+    metrics: dict[str, Any] = {
+        "views": views,
+        "likes": _int("like_count"),
+        "comments": _int("comment_count"),
+        "saves": saves,
+        "shares": _int("share_count"),
+        "duration_sec": _int("duration_sec"),
+    }
+    if views and saves is not None:
+        metrics["saves_per_1k_views"] = round((saves / views) * 1000, 2)
+    return metrics
+
+
+def _catalog_stub_payload(video_id: str, entry: dict[str, Any]) -> dict[str, Any]:
+    caption = entry.get("description") or entry.get("title") or ""
+    title = (caption.split("\n")[0].strip()[:200]) if caption else None
+    synced_at = datetime.now(timezone.utc).isoformat()
+    return {
+        "platform": "tiktok",
+        "platform_post_id": video_id,
+        "title": title,
+        "post_url": entry.get("url") or f"https://www.tiktok.com/@docmap/video/{video_id}",
+        "posted_at": entry.get("post_datetime_utc") or entry.get("post_date_utc"),
+        "topic": None,
+        "format": "video",
+        "hook": title,
+        "caption": caption,
+        "transcript": None,
+        "metrics": _catalog_metrics(entry),
+        "metadata": {
+            "source": "marketing_pipeline",
+            "is_catalog_stub": True,
+            "transcript_status": "pending",
+            "synced_at": synced_at,
+            "dataset_version": config.DATASET_VERSION,
+        },
+    }
 
 
 def _post_payload(
@@ -59,6 +120,7 @@ def _post_payload(
         "transcript_status": record.transcript.status,
         "whisper_model": record.transcript.model,
         "ab_pairs": record.ab_pairs,
+        "is_catalog_stub": False,
     }
     if record.comment_analysis:
         metadata["comment_analysis"] = record.comment_analysis.model_dump()
@@ -173,11 +235,68 @@ def _ingest_comment_batch(
     )
 
 
+def _sync_strategy_state(*, brief: dict[str, Any], skip_embed: bool) -> int:
+    client = get_client()
+    state = load_state()
+    payload = {
+        "platform": STRATEGY_PLATFORM,
+        "platform_post_id": STRATEGY_POST_ID,
+        "title": "TikTok strategy state",
+        "post_url": None,
+        "posted_at": datetime.now(timezone.utc).isoformat(),
+        "topic": "strategy",
+        "format": "metadata",
+        "hook": None,
+        "caption": None,
+        "transcript": None,
+        "metrics": {},
+        "metadata": {
+            "source": "marketing_pipeline",
+            "strategy_brief": brief,
+            "insights": state.get("insights") or [],
+            "changelog": state.get("changelog") or [],
+            "approved_patterns": state.get("approved_patterns") or [],
+            "updated_at": datetime.now(timezone.utc).isoformat(),
+        },
+    }
+    existing = (
+        client.table("content_posts")
+        .select("id")
+        .eq("platform", STRATEGY_PLATFORM)
+        .eq("platform_post_id", STRATEGY_POST_ID)
+        .limit(1)
+        .execute()
+    )
+    if existing.data:
+        client.table("content_posts").update(payload).eq("id", existing.data[0]["id"]).execute()
+    else:
+        client.table("content_posts").insert(payload).execute()
+
+    if skip_embed:
+        return 0
+
+    text_parts = [
+        brief.get("1_constitution") or "",
+        "\n".join(brief.get("6_changelog") or []),
+        json.dumps(brief.get("3_approved_insights") or [], ensure_ascii=False)[:8000],
+    ]
+    body = "\n\n".join(p for p in text_parts if p.strip())
+    return upsert_embedding_chunks(
+        entity_type="marketing_playbook",
+        entity_id=STRATEGY_BRIEF_ENTITY_ID,
+        text=body,
+        source_table="marketing_playbooks",
+        source_title="tiktok-strategy-brief",
+        source_url=None,
+        metadata={"slug": "tiktok-strategy-brief", "status": "approved"},
+    )
+
+
 def _prune_stale_tiktok(canonical_ids: set[str]) -> int:
     client = get_client()
     rows = (
         client.table("content_posts")
-        .select("id, platform_post_id")
+        .select("id, platform_post_id, metadata")
         .eq("platform", "tiktok")
         .execute()
         .data
@@ -185,9 +304,14 @@ def _prune_stale_tiktok(canonical_ids: set[str]) -> int:
     )
     removed = 0
     for row in rows:
-        if row.get("platform_post_id") not in canonical_ids:
-            client.table("content_posts").delete().eq("id", row["id"]).execute()
-            removed += 1
+        pid = str(row.get("platform_post_id") or "")
+        if pid in canonical_ids:
+            continue
+        meta = row.get("metadata") or {}
+        if meta.get("is_catalog_stub"):
+            continue
+        client.table("content_posts").delete().eq("id", row["id"]).execute()
+        removed += 1
     return removed
 
 
@@ -198,7 +322,10 @@ def run_sync(
     skip_embed: bool = False,
 ) -> dict[str, int]:
     dataset = load_dataset(dataset_path)
+    catalog = load_catalog(config.CATALOG_DIR)
     canonical_ids = set(dataset.videos.keys())
+    stub_ids = {vid for vid in catalog if vid not in dataset.videos}
+    canonical_ids |= stub_ids
 
     if dry_run:
         return {
@@ -207,6 +334,7 @@ def run_sync(
             "rows_updated": 0,
             "rows_pruned": 0,
             "embeddings_written": 0,
+            "catalog_stubs": len(stub_ids),
         }
 
     run_id = start_run(JOB_NAME, {"dataset": str(dataset_path or config.DATASET_JSON)})
@@ -216,13 +344,18 @@ def run_sync(
         "rows_updated": 0,
         "rows_pruned": 0,
         "embeddings_written": 0,
+        "catalog_stubs": 0,
     }
 
     post_ids: set[str] = set()
     comment_entity_ids: set[str] = set()
 
     try:
-        counts["rows_seen"] = len(dataset.videos)
+        write_strategy_brief(dataset)
+        brief = build_strategy_brief(dataset)
+        counts["embeddings_written"] += _sync_strategy_state(brief=brief, skip_embed=skip_embed)
+
+        counts["rows_seen"] = len(canonical_ids)
         tiers = compute_performance_tiers(dataset)
 
         for video_id, record in dataset.videos.items():
@@ -244,11 +377,23 @@ def run_sync(
                     str(uuid.uuid5(uuid.NAMESPACE_URL, f"tiktok-comments:{video_id}"))
                 )
 
+        for video_id in stub_ids:
+            entry = catalog[video_id]
+            payload = _catalog_stub_payload(video_id, entry)
+            post_id, inserted, embeds = _upsert_post(payload, skip_embed=skip_embed)
+            post_ids.add(post_id)
+            counts["catalog_stubs"] += 1
+            if inserted:
+                counts["rows_inserted"] += 1
+            else:
+                counts["rows_updated"] += 1
+            counts["embeddings_written"] += embeds
+
         counts["rows_pruned"] = _prune_stale_tiktok(canonical_ids)
         counts["embeddings_pruned"] = delete_orphan_tiktok_embeddings(
             post_ids=post_ids,
             comment_entity_ids=comment_entity_ids,
-            video_ids=canonical_ids,
+            video_ids=set(dataset.videos.keys()),
         )
 
         finish_run(run_id, "success", counts)

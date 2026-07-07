@@ -7,6 +7,7 @@ from typing import Any
 
 from common.audit import log_tool_call
 from tools.tiktok_shared import fetch_tiktok_posts, saves_per_1k
+from tools.tiktok_strategy_state import brief_excerpt_for_prompt
 
 
 def suggest_next_tiktok_angles(
@@ -55,6 +56,8 @@ def suggest_next_tiktok_angles(
             "suggested_angles": ranked,
             "count": len(ranked),
             "filters": {"limit": limit, "min_post_saves_per_1k": min_post_saves_per_1k},
+            "strategy_brief_excerpt": brief_excerpt_for_prompt(max_chars=4000),
+            "output_sections": ["Playbook alignment", "Builds on", "Hypothesis", "Avoids"],
         }
         log_tool_call(tool_name="suggest_next_tiktok_angles", request_summary=summary, success=True)
         return result

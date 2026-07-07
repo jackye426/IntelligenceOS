@@ -5,15 +5,14 @@
       "label": "MRI — who reads it matters",
       "video_ids": [
         "7644863912545881366",
-        "7634579404131241239",
-        "7641301413062102294"
+        "7634579404131241239"
       ],
       "script_id": null,
       "learning": "On-screen hooks that stress who reads the MRI (not just having a scan) outperform generic MRI pain hooks.",
       "learning_status": "approved",
       "hook_pattern": "Competence-gap fear + named stakeholder (who reads it)",
-      "confidence": "medium",
-      "notes": "3-way cluster — compare all pairwise edges"
+      "confidence": "high",
+      "notes": "segment_align ~0.64; third MRI clip (7641301413062102294) is topic-adjacent, different audio"
     },
     {
       "pair_id": "excision-vs-ablation",
@@ -26,8 +25,64 @@
       "learning": "Same excision vs ablation script; packaging with explicit 'ask for excision' hook vs analogy-first hook shifts saves and views.",
       "learning_status": "approved",
       "hook_pattern": "Direct surgical ask vs analogy opener",
+      "confidence": "high",
+      "notes": "segment_align ~0.84"
+    },
+    {
+      "pair_id": "teen-pain-killers",
+      "label": "Teen pain killers — parent-facing hook packaging",
+      "video_ids": [
+        "7650479358867492118",
+        "7632002231339928854"
+      ],
+      "script_id": null,
+      "learning": "Same Liz clip on teen pain; broader parent-education hook ('younger than you think') vs truncated direct hook.",
+      "learning_status": "approved",
+      "hook_pattern": "Parent audience frame vs raw symptom opener",
+      "confidence": "high",
+      "notes": "segment_align ~0.996, same duration"
+    },
+    {
+      "pair_id": "30-min-no-endo",
+      "label": "30-min lap found no endo — hook packaging",
+      "video_ids": [
+        "7650429101584469270",
+        "7640116261598350614"
+      ],
+      "script_id": null,
+      "learning": "Same photos/advocacy monologue; fear hook ('found no endo after 30-min') vs patient-story cold open.",
+      "learning_status": "approved",
+      "hook_pattern": "Diagnostic failure fear vs first-person surgery story",
+      "confidence": "high",
+      "notes": "segment_align ~0.93"
+    },
+    {
+      "pair_id": "surgical-photos",
+      "label": "Ask for surgical photos — direct hook vs 360 Q&A clip",
+      "video_ids": [
+        "7650466482173791510",
+        "7639651293883206935"
+      ],
+      "script_id": null,
+      "learning": "Same Liz photos monologue; imperative hook ('always ask for photos') vastly outperforms Q&A reply framing.",
+      "learning_status": "approved",
+      "hook_pattern": "Direct CTA vs comment-reply entry",
+      "confidence": "high",
+      "notes": "segment_align ~0.74; 24× view gap"
+    },
+    {
+      "pair_id": "9-year-diagnosis-repost",
+      "label": "9-year diagnosis delay — repost vs Part 1",
+      "video_ids": [
+        "7650465917700279574",
+        "7633862545228434710"
+      ],
+      "script_id": null,
+      "learning": "Same core 'simple and complicated' script; Part 1 hook outperforms newer repost packaging.",
+      "learning_status": "approved",
+      "hook_pattern": "Part 1 label vs 'response' repost hook",
       "confidence": "medium",
-      "notes": ""
+      "notes": "segment_align ~0.78; hooks very similar (0.84) — repost not fresh shoot"
     }
   ]
 }
