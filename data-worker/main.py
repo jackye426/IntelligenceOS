@@ -186,6 +186,11 @@ def main() -> None:
     signal.signal(signal.SIGTERM, shutdown)
 
     logger.info("Data worker ready")
+
+    if os.getenv("RUN_ON_START", "").lower() in {"1", "true", "yes"}:
+        logger.info("RUN_ON_START enabled — running tiktok pipeline once now")
+        _safe("tiktok_marketing_on_start", lambda: _run_tiktok_pipeline())()
+
     scheduler.start()
 
 
