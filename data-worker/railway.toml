@@ -3,5 +3,6 @@
 builder = "RAILPACK"
 
 [deploy]
-startCommand = "python -m playwright install chromium && python main.py"
+# playwright is in requirements.txt; install Chromium at boot (non-fatal if it fails).
+startCommand = "sh -c 'python -m playwright install chromium || echo playwright-browser-install-skipped; python main.py'"
 restartPolicyType = "ON_FAILURE"
