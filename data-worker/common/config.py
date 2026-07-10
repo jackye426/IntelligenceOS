@@ -45,6 +45,13 @@ SKIP_TRANSCRIBE = _getenv("SKIP_TRANSCRIBE", default="false").lower() in {
     "yes",
 }
 
+# Studio Playwright insight capture (slow, 2x/week). Set true to disable.
+SKIP_STUDIO_LISTEN = _getenv("SKIP_STUDIO_LISTEN", default="false").lower() in {
+    "1",
+    "true",
+    "yes",
+}
+
 # Writable pipeline data root on Railway (mount a volume at this path)
 MARKETING_DATA_DIR = _getenv("MARKETING_DATA_DIR", default="/app/marketing-data")
 WHISPER_MODEL = _getenv("WHISPER_MODEL", default="small")

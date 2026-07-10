@@ -45,3 +45,6 @@ def test_build_strategy_brief_includes_constitution_and_reference_set():
     assert isinstance(brief["1_constitution"], str)
     assert len(brief["reference_set"]) >= 2
     assert brief["5_anti_patterns"]
+    assert "7_decisions" in brief
+    assert brief["7_decisions"]["open_count"] == 0
+    assert "open decisions" in brief["meta"]["instructions_for_claude"].lower()

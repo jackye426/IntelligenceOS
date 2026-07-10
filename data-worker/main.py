@@ -36,13 +36,16 @@ from apscheduler.triggers.cron import CronTrigger  # noqa: E402
 import marketing_pipeline.bootstrap as _bootstrap_mod  # noqa: E402
 from marketing_pipeline.bootstrap import ensure_pipeline_data  # noqa: E402
 from marketing_pipeline.tiktok.orchestrator import (  # noqa: E402
+    run_display_snapshots,
     run_export,
     run_ocr_batch,
     run_refresh,
     run_refresh_comments,
+    run_studio_listen_production,
     run_sync_playbooks_cmd,
     run_sync_supabase,
 )
+from marketing_pipeline.tiktok.stages.display_api import DisplayApiNotConfigured  # noqa: E402
 from marketing_pipeline.tiktok.stages.fetch_catalog import fetch_catalog  # noqa: E402
 from marketing_pipeline.tiktok.stages.refresh_videos import refresh_videos  # noqa: E402
 from marketing_pipeline.tiktok.stages.write_master_transcripts import (  # noqa: E402
@@ -158,6 +161,35 @@ def main() -> None:
         id="tiktok_weekly",
         replace_existing=True,
     )
+
+    def _run_display_snapshots() -> dict:
+        try:
+            return run_display_snapshots(update_latest=True)
+        except DisplayApiNotConfigured as exc:
+            logger.warning("tiktok_display_snapshots skipped: %s", exc)
+            return {"skipped": True, "reason": str(exc)}
+
+    scheduler.add_job(
+        _safe("tiktok_display_snapshots", _run_display_snapshots),
+        CronTrigger(hour="*/3", minute=15),
+        id="tiktok_display_snapshots",
+        replace_existing=True,
+    )
+
+    if not config.SKIP_STUDIO_LISTEN:
+        # 2x/week, quiet UTC morning — small batch + long pauses (see STUDIO_LISTEN_*)
+        scheduler.add_job(
+            _safe("tiktok_studio_listen", run_studio_listen_production),
+            CronTrigger(day_of_week="tue,fri", hour=5, minute=45),
+            id="tiktok_studio_listen",
+            replace_existing=True,
+        )
+        logger.info(
+            "Studio listen enabled (Tue/Fri 05:45 UTC, recent=%s)",
+            os.getenv("STUDIO_LISTEN_RECENT", "15"),
+        )
+    else:
+        logger.info("SKIP_STUDIO_LISTEN=true — Studio Playwright job disabled")
 
     if not config.SKIP_HCA:
         scheduler.add_job(

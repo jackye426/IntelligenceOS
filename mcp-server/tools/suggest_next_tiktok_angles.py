@@ -57,7 +57,17 @@ def suggest_next_tiktok_angles(
             "count": len(ranked),
             "filters": {"limit": limit, "min_post_saves_per_1k": min_post_saves_per_1k},
             "strategy_brief_excerpt": brief_excerpt_for_prompt(max_chars=4000),
-            "output_sections": ["Playbook alignment", "Builds on", "Hypothesis", "Avoids"],
+            "output_sections": [
+                "Playbook alignment",
+                "Builds on (insights + decisions)",
+                "Hypothesis",
+                "Avoids",
+                "Open decisions to respect",
+            ],
+            "next_step": (
+                "If the human commits to an angle, call log_tiktok_decision with success_criteria "
+                "and review_after; cite decision_id in follow-ups."
+            ),
         }
         log_tool_call(tool_name="suggest_next_tiktok_angles", request_summary=summary, success=True)
         return result

@@ -261,12 +261,33 @@ Relax registry validation: **2–4 videos per group**, still no duplicate video 
 
 ### Weekly ritual (revised)
 
-1. `get_tiktok_strategy_brief()`
-2. `get_tiktok_cohort(since=<review_start>)` — check `staleness_warning`
-3. Underperformers: “why did X flop?” → draft insights
-4. `list_tiktok_insight_drafts` → approve in chat
-5. `find_ab_tests` / variant groups for new discovery
-6. Optional: `propose_constitution_patch` (rare)
+1. `get_tiktok_strategy_brief()` — includes §7 decisions
+2. `list_open_decisions(due_only=true)` — close due decisions first
+3. `get_tiktok_cohort(since=<review_start>)` — check `staleness_warning`
+4. Underperformers: “why did X flop?” → draft insights
+5. `list_tiktok_insight_drafts` → approve in chat
+6. Commit next actions → `log_tiktok_decision`
+7. `find_ab_tests` / variant groups for new discovery
+8. Later: `record_decision_outcome(..., confirmed=true)`
+9. Optional: `propose_constitution_patch` (rare)
+
+---
+
+## Phase 6 — Decision log (AI conversation memory) 🟩
+
+**Goal:** Forward loop after analysis — commit → review → outcome — stored for Claude, no UI.
+
+| Tool | Purpose |
+|------|---------|
+| `log_tiktok_decision` | Human commits to an action in chat |
+| `list_open_decisions` | Open / due queue |
+| `get_tiktok_decision` | One decision by id |
+| `record_decision_outcome` | Human-confirmed verdict (`confirmed=true`) |
+| `cancel_tiktok_decision` | Abandoned plan |
+
+Storage: `content_posts` strategy_state metadata `decisions[]` + brief §`7_decisions`. Sync merges MCP-written decisions so pipeline refresh does not wipe them.
+
+**Non-goals:** no Next.js UI; no auto-verdict; no auto constitution promote; TikTok-only (`platform` ready for Instagram later).
 
 ---
 

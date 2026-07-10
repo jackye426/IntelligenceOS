@@ -44,11 +44,17 @@ Railway’s default builder is **Railpack** (Nixpacks is deprecated). Root Direc
    - `MARKETING_DATA_DIR=/app/marketing-data` — **mount a Railway volume** here
    - `WHISPER_MODEL=small` (optional)
    - `SKIP_TRANSCRIBE=false` (default; set `true` to disable Whisper on worker)
+   - `SKIP_STUDIO_LISTEN=false` (default; Studio Playwright 2×/week — needs login profile on volume)
+   - Optional rate caps: `STUDIO_LISTEN_RECENT=12`, `STUDIO_LISTEN_SETTLE_MS=5000`, `STUDIO_LISTEN_PAUSE_MS=10000`
 5. Deploy → logs should show `Transcription enabled on worker` and `Data worker ready`
 
 **Cron (UTC):**
 - Daily 03:30 — comments → **transcribe new videos** → export → sync → playbooks
+- Every 3h (:15) — Display API metric snapshots (skipped until OAuth configured)
+- Tue/Fri 05:45 — Studio Playwright insight capture (≤12 recent videos, ~10s pause between pages)
 - Weekly Sun 02:00 — full refresh (catalog, stats, transcribe, OCR) → export → sync
+
+**Studio login profile:** Run `python -m marketing_pipeline tiktok studio-listen --login` locally once, then copy `marketing-pipeline/tiktok/data/.tiktok_studio_profile/` onto the Railway volume at `$MARKETING_DATA_DIR/.tiktok_studio_profile/`. Without it the job skips safely.
 
 **Volume (recommended):** Mount persistent storage at `/app/marketing-data` so transcripts survive redeploys. First boot seeds from GitHub `main` if empty.
 

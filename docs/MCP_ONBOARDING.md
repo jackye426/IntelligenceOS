@@ -2,7 +2,7 @@
 
 **For:** Marketing and content team (no coding experience needed)  
 **Scope:** **TikTok only** — ~40 @docmap videos, comments, hooks, and strategy notes  
-**Last updated:** 2026-07-06  
+**Last updated:** 2026-07-10  
 **Need help?** Ask Jack or whoever manages team passwords.
 
 > **Note:** Clinic sales, doctor outreach, and other DocMap data are **not** part of this connector yet. This guide is only for TikTok marketing intelligence.
@@ -11,7 +11,7 @@
 
 ## What is this?
 
-This connects **Claude Desktop** to **DocMap’s TikTok data** — views, saves, transcripts, hooks, comments, A/B tests, and our content playbooks.
+This connects **Claude Desktop** to **DocMap’s TikTok data** — views, saves, transcripts, hooks, comments, A/B tests, playbooks, and a **decision log** (what we committed to do next and whether it worked).
 
 Once set up, you can **chat with Claude** and ask things like:
 
@@ -19,10 +19,12 @@ Once set up, you can **chat with Claude** and ask things like:
 - “What are people asking in the comments on our top posts?”
 - “We used two different hooks on the same video — which one won?”
 - “What should we film next about endometriosis?”
+- “Log that we’re reposting surgical-photos with the direct CTA — check it in a week.”
+- “Which decisions are due for review?”
 
 Claude looks up **real numbers and quotes from our videos** and should include **links or titles** — not guess from the internet.
 
-Think of it as giving Claude a **read-only pass** to our TikTok performance library.
+Think of it as giving Claude a **read-only pass** to our TikTok performance library, plus a shared memory of **learnings** and **commitments**.
 
 ---
 
@@ -35,9 +37,28 @@ Think of it as giving Claude a **read-only pass** to our TikTok performance libr
 | **Hooks** | Spoken line, caption opening, and on-screen text (where captured) |
 | **Comments** | What viewers asked — cost, NHS, specialists, symptoms, etc. |
 | **A/B tests** | Same video posted with different hooks — which performed better |
-| **Playbooks** | Our written strategy notes and approved learnings |
+| **Insights** | Approved takeaways from analysis (“what we observed”) |
+| **Decision log** | Commitments for next actions + later outcome checks |
+| **Playbooks / constitution** | Standing strategy rules (changed rarely, by a human) |
 
 Data refreshes automatically: **comments daily**, full update **weekly**. Brand-new posts may take a few days to show up.
+
+---
+
+## How Claude’s memory layers work
+
+These are **not** the same thing. Use the right one:
+
+| Layer | Answers… | Example |
+|-------|----------|---------|
+| **A/B learning** | In *this* hook pair, who won? | “Direct CTA beat Q&A open on surgical-photos.” |
+| **Insight** | What did we *observe* / learn? | “Imperative surgical CTAs outperform soft interview opens.” |
+| **Decision** | What will we *do next*, and how will we judge it? | “Repost surgical-photos with imperative CTA. Success = saves/1k in top quartile within 7 days.” |
+| **Constitution** | What do we *always* believe? | Standing rule pasted into playbook files (rare) |
+
+**Rule of thumb:** Insights and A/B = past. Decisions = future commitment + later check. Constitution = only after something keeps proving true.
+
+When you agree on a next action in chat, say so clearly (e.g. “Log that decision”) so Claude writes it to the decision log — not only into an insight.
 
 ---
 
@@ -84,6 +105,21 @@ Data refreshes automatically: **comments daily**, full update **weekly**. Brand-
 | “Suggest 5 new angles for pre-surgery content” | Ideas grounded in what’s already working |
 | “What should we film next week?” | Recommendations from performance + comment gaps |
 
+### Decisions (commit → check later)
+
+| You can ask… | Claude should… |
+|--------------|----------------|
+| “Log that we’re reposting [video] with [hook] — success = [metric] in 7 days” | Save a **decision** (not only an insight) |
+| “What decisions are due?” | List open items past their review date |
+| “Did last week’s repost work?” | Pull live metrics, propose a verdict, wait for you to confirm |
+| “Cancel that — we’re not filming it” | Mark the decision cancelled with a reason |
+
+**Good decision (say this kind of thing):**  
+*“Repost surgical-photos with the imperative CTA (‘always ask for photos’). Success = saves per 1k views in the top quartile of the last 30 days within 7 days.”*
+
+**Too vague (don’t leave it like this):**  
+*“Maybe try better hooks on surgery content sometime.”*
+
 **Best first question to try:**  
 *“Give me a TikTok content briefing on endometriosis — what’s working and what people ask in comments.”*
 
@@ -93,14 +129,16 @@ Data refreshes automatically: **comments daily**, full update **weekly**. Brand-
 
 Use this in your Monday content meeting or solo review:
 
-1. **`get_tiktok_strategy_brief()`** — constitution, approved learnings, reference set
-2. **`get_tiktok_cohort(since=[last Monday], sort_by="views")`** — check `staleness_warning` if results look empty
-3. Underperformers: discuss why a post flopped → **`draft_tiktok_insight`** → you say **approve** → **`approve_tiktok_insight`**
-4. **`find_ab_tests`** or **`find_variant_groups`** — hook packaging comparisons
-5. **`suggest_hook_repackage`** — only after strategy brief; you approve hooks before filming
-6. Rare: **`propose_constitution_patch`** — human pastes into playbook files (never automatic)
+1. **Strategy brief** — constitution, approved learnings, open decisions  
+2. **Due decisions first** — close anything due before planning new posts (Claude proposes a verdict from metrics; **you** confirm)  
+3. **Cohort since last Monday** — check for a staleness warning if results look empty  
+4. **Underperformers** — discuss why a post flopped → draft insight → you say **approve**  
+5. **A/B / variant groups** — hook packaging comparisons; save A/B learnings when the pair takeaway is clear  
+6. **Commit next actions** — when the team agrees what to film/repost, ask Claude to **log the decision** with success criteria  
+7. **Hook suggestions** — only after the brief; you approve hooks before filming  
+8. **Rare:** promote a stable learning into the playbook (human pastes — never automatic)
 
-**Important:** If a date filter returns nothing, check `staleness_warning` — the library may be behind the live TikTok channel, not that posting stopped.
+**Important:** If a date filter returns nothing, check for a staleness warning — the library may be behind the live TikTok channel, not that posting stopped.
 
 Claude pulls live data each time — you don’t need to export spreadsheets first.
 
@@ -224,6 +262,11 @@ You should get real @docmap stats and links — not a generic answer.
 - “Give me a TikTok content briefing for our weekly marketing sync.”
 - “Summarise what’s working vs underperforming this month on TikTok.”
 
+**Decisions**
+- “Log this decision: [action] — success = [metric] by [date].”
+- “List open decisions due for review.”
+- “For decision [id], pull metrics and propose a verdict — wait for my confirm.”
+
 ---
 
 ## Tips for better answers
@@ -233,6 +276,9 @@ You should get real @docmap stats and links — not a generic answer.
 3. **One video at a time** — paste the video link or ID for a full breakdown.
 4. **If answers sound generic**, say: “Use DocMap TikTok data — don’t guess.”
 5. **Hook suggestions** — treat as drafts; your judgment before filming.
+6. **Commit decisions out loud** — when you agree what to film/repost, say “log that decision” with a success measure so next week’s chat can check the outcome.
+7. **Don’t confuse layers** — “what we learned” → insight/A/B; “what we’ll do next” → decision.
+8. **Publish dates** — if a date looks wrong, ask Claude to re-check `posted_at` from DocMap. It must not guess from the video ID.
 
 ---
 
@@ -242,11 +288,14 @@ You should get real @docmap stats and links — not a generic answer.
 - Keep the access code in the password manager only
 - Use for internal DocMap marketing planning
 - Save A/B learnings only after the team agrees on the takeaway
+- Log decisions when you commit to a next action (with a clear success measure)
+- Confirm decision outcomes yourself — Claude proposes from metrics; you say yes/no
 
 **Don’t**
 - Share the access code publicly
 - Assume Claude knows TikTok stats without checking DocMap data
 - Film a new hook suggestion without team sign-off
+- Put “what we’ll do next” only into an insight — that belongs in the decision log
 
 ---
 
@@ -271,6 +320,9 @@ No.
 
 **TikTok only?**  
 Yes — for now. Clinic and outreach data will be added separately later.
+
+**What’s the difference between an insight and a decision?**  
+Insight = what we learned from past posts. Decision = what we will do next and how we’ll judge it later. A/B learning = who won in a specific hook pair.
 
 **How fresh is the data?**  
 Comments: daily. Full refresh: weekly.

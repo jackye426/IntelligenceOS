@@ -20,6 +20,7 @@ STRATEGY_POST_ID = "strategy_state"
 def _default_state() -> dict[str, Any]:
     return {
         "insights": [],
+        "decisions": [],
         "approved_patterns": [],
         "changelog": [],
         "updated_at": None,
@@ -32,6 +33,7 @@ def load_state(path: Path | None = None) -> dict[str, Any]:
         return _default_state()
     data = json.loads(target.read_text(encoding="utf-8"))
     data.setdefault("insights", [])
+    data.setdefault("decisions", [])
     data.setdefault("approved_patterns", [])
     data.setdefault("changelog", [])
     return data

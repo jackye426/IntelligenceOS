@@ -52,24 +52,44 @@ Pair with:
 
 ### Strategy-first ritual (required before suggestions)
 
-1. `get_tiktok_strategy_brief()` — constitution, approved insights, reference set, changelog
-2. `get_tiktok_cohort(since=YYYY-MM-DD, sort_by="views", limit=50)` — check `staleness_warning` if empty
-3. Underperformer: `get_tiktok_video(video_id)` → discuss in chat → `draft_tiktok_insight` → user approves → `approve_tiktok_insight`
-4. `find_ab_tests` / `find_variant_groups(since=YYYY-MM-DD, winner_by="views")` — variant groups (2–N videos)
-5. `suggest_hook_repackage(video_id)` — loads strategy brief internally; human approves before filming
-6. Gate 2 (rare): `propose_constitution_patch(insight_id, proposed_bullet)` — returns markdown to paste into `content-instruction.md`
+1. `get_tiktok_strategy_brief()` — constitution, approved insights, **§7 decisions**, reference set, changelog
+2. `list_open_decisions(due_only=true)` — close due decisions before new experiments
+3. `get_tiktok_cohort(since=YYYY-MM-DD, sort_by="views", limit=50)` — check `staleness_warning` if empty
+4. Underperformer: `get_tiktok_video(video_id)` → discuss in chat → `draft_tiktok_insight` → user approves → `approve_tiktok_insight`
+5. If the human commits to an action → `log_tiktok_decision(decision, success_criteria=..., review_after=YYYY-MM-DD, related_video_ids=[...])`
+6. `find_ab_tests` / `find_variant_groups(since=YYYY-MM-DD, winner_by="views")` — variant groups (2–N videos)
+7. `suggest_hook_repackage(video_id)` — loads strategy brief + open decisions; human approves before filming
+8. Later session: metrics → propose verdict → `record_decision_outcome(decision_id, verdict, confirmed=true)`
+9. Gate 2 (rare): `propose_constitution_patch(insight_id, proposed_bullet)` — returns markdown to paste into `content-instruction.md`
 
 **Never** conclude publishing stopped from an empty `since` filter — read `staleness_warning` and `catalog_stub_count`.
+**Never** invent decision outcomes — require human `confirmed=true`.
+**Never** infer publish dates from TikTok video IDs — cite only `posted_at` from tools (UTC).
+
+### Decision log (commitments + outcomes)
+
+Insight = past learning. Decision = what we will do next + later verdict.
+
+Good decision text:
+> “Repost surgical-photos clip with imperative CTA hook. Success = saves/1k ≥ top-quartile of last 30 days within 7 days.”
+
+Pair with:
+
+- `log_tiktok_decision` / `list_open_decisions` / `get_tiktok_decision`
+- `record_decision_outcome` (requires `confirmed: true`)
+- `cancel_tiktok_decision` if the plan is abandoned
 
 ### Weekly hook A/B review ritual (legacy shorthand)
 
 1. `get_tiktok_marketing_insights(limit=15, since=YYYY-MM-DD)` — winners by views, engagement, saves/1k (live metrics only; ignore view counts in `recipe-2026-06.md`)
 2. `get_tiktok_video(video_id)` — full caption, transcript, hooks, comment questions
 3. `record_ab_learning(pair_id, learning, winner_video_id)` — backward-compatible; prefer `approve_tiktok_insight` for new learnings
+4. Commit next action with `log_tiktok_decision` when the team agrees what to film/repost
 
 Pair with:
 
 - `get_tiktok_strategy_brief`
+- `list_open_decisions` / `log_tiktok_decision` / `record_decision_outcome`
 - `get_tiktok_content_briefing`
 - `get_tiktok_marketing_insights`
 - `get_tiktok_video`

@@ -1,41 +1,37 @@
-# DocMap Clinic Outreach Intelligence
+# DocMap Intelligence OS
 
-Internal, human-reviewed MVP for turning a clinic website and prior interaction notes into a structured outreach workspace.
+Monorepo for DocMap internal intelligence: clinic OS (Next.js), hosted MCP for Claude, TikTok marketing pipeline, and data workers.
 
-This first commit is intentionally dependency-light: open `index.html` directly in a browser. It gives the team a usable product skeleton before choosing the production stack.
+## What’s in this repo
 
-## What is included
+| Path | Role |
+|------|------|
+| `app/` | Next.js clinic outreach / accounts UI |
+| `mcp-server/` | Hosted MCP (`https://mcp.docmap.co.uk/mcp`) — TikTok tools, decision log, components read API |
+| `marketing-pipeline/` | TikTok ETL: catalog, transcripts, OCR, comments, **component extract**, Supabase sync |
+| `data-worker/` | Railway cron for TikTok refresh / metric layers |
+| `ingestion-pipeline/` | Clinic CSV → Supabase seed |
+| `docs/` | Deploy, MCP onboarding, execution plans |
 
-- Clinic account list and account detail workspace
-- Practitioner/contact, service, location, pricing, and observation sections
-- Source-linked evidence ledger
-- Pipeline board with MVP stages
-- Outreach composer with review gate and claim checks
-- Local-only persistence through `localStorage`
-- JSON export for the selected account
+## TikTok marketing (quick start)
 
-## Run
+See [`marketing-pipeline/README.md`](marketing-pipeline/README.md).
 
-Open `index.html` in a browser.
+```bash
+cd marketing-pipeline
+pip install -e .
+python -m marketing_pipeline tiktok extract-components   # MODEL_COMPONENTS (DeepSeek flash by default)
+python -m marketing_pipeline tiktok sync-supabase
+```
 
-No install step is required.
+- Team Claude setup: [`docs/MCP_ONBOARDING.md`](docs/MCP_ONBOARDING.md)
+- Component extract plan: [`docs/EXECUTION_PLAN_VIDEO_COMPONENTS.md`](docs/EXECUTION_PLAN_VIDEO_COMPONENTS.md)
+- Deploy: [`docs/DEPLOY.md`](docs/DEPLOY.md)
+- Living status: [`STATUS.md`](STATUS.md)
 
-## Product boundaries
+## Env
 
-- Internal users only
-- No automated email sending
-- No patient medical data ingestion
-- No broad crawling beyond a submitted clinic URL
-- All clinic-specific claims must remain traceable to source evidence or manual notes
+Copy `.env.example` → `.env.local`. Notable TikTok models:
 
-## Recommended production path
-
-Use this static MVP to validate workflow, then move to a full-stack app with:
-
-- Authenticated internal route namespace
-- Database-backed account, source, observation, contact, interaction, draft, stage-history, and task entities
-- Server-side single-domain ingestion with SSRF protection
-- Structured AI extraction with citations
-- Human approval before outreach leaves the system
-
-See `docs/architecture.md` for the conceptual schema and rollout plan.
+- `MODEL_OCR` — vision OCR (default Gemini Flash)
+- `MODEL_COMPONENTS` — component cards (default `deepseek/deepseek-v4-flash`)

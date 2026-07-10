@@ -26,6 +26,7 @@ from marketing_pipeline.tiktok.stages.tiktok_insights_store import (
     STRATEGY_POST_ID,
     load_state,
 )
+from marketing_pipeline.tiktok.stages.video_components_store import load_components
 
 JOB_NAME = "tiktok_marketing_sync"
 STRATEGY_BRIEF_ENTITY = "tiktok_strategy_brief"
@@ -126,6 +127,10 @@ def _post_payload(
         metadata["comment_analysis"] = record.comment_analysis.model_dump()
     if performance_tier:
         metadata["performance_tier"] = performance_tier
+
+    components = load_components(video_id)
+    if components:
+        metadata["components"] = components.model_dump(mode="json")
 
     return {
         "platform": "tiktok",
@@ -235,9 +240,66 @@ def _ingest_comment_batch(
     )
 
 
+def _merge_by_id(
+    primary: list[dict[str, Any]],
+    secondary: list[dict[str, Any]],
+    *,
+    id_key: str,
+) -> list[dict[str, Any]]:
+    """Merge lists by id; primary wins on conflict, then append missing from secondary."""
+    merged: dict[str, dict[str, Any]] = {}
+    for item in secondary:
+        key = str(item.get(id_key) or "")
+        if key:
+            merged[key] = item
+    for item in primary:
+        key = str(item.get(id_key) or "")
+        if key:
+            merged[key] = item
+    return list(merged.values())
+
+
 def _sync_strategy_state(*, brief: dict[str, Any], skip_embed: bool) -> int:
     client = get_client()
     state = load_state()
+    existing = (
+        client.table("content_posts")
+        .select("id, metadata")
+        .eq("platform", STRATEGY_PLATFORM)
+        .eq("platform_post_id", STRATEGY_POST_ID)
+        .limit(1)
+        .execute()
+    )
+    existing_meta: dict[str, Any] = {}
+    if existing.data:
+        existing_meta = existing.data[0].get("metadata") or {}
+
+    # Preserve MCP-written decisions/insights when local file is empty or partial
+    local_decisions = list(state.get("decisions") or [])
+    remote_decisions = list(existing_meta.get("decisions") or [])
+    decisions = _merge_by_id(local_decisions, remote_decisions, id_key="decision_id")
+
+    local_insights = list(state.get("insights") or [])
+    remote_insights = list(existing_meta.get("insights") or [])
+    insights = _merge_by_id(local_insights, remote_insights, id_key="insight_id")
+
+    open_statuses = {"proposed", "committed", "done"}
+    open_decisions = [d for d in decisions if d.get("status") in open_statuses]
+    closed_decisions = [
+        d for d in decisions if d.get("status") in {"outcome_recorded", "cancelled"}
+    ]
+    closed_decisions.sort(
+        key=lambda d: d.get("closed_at") or d.get("created_at") or "",
+        reverse=True,
+    )
+    brief = dict(brief)
+    brief["7_decisions"] = {
+        "open": open_decisions[:15],
+        "recent_closed": closed_decisions[:10],
+        "open_count": len(open_decisions),
+        "closed_count": len(closed_decisions),
+    }
+
     payload = {
         "platform": STRATEGY_PLATFORM,
         "platform_post_id": STRATEGY_POST_ID,
@@ -253,20 +315,15 @@ def _sync_strategy_state(*, brief: dict[str, Any], skip_embed: bool) -> int:
         "metadata": {
             "source": "marketing_pipeline",
             "strategy_brief": brief,
-            "insights": state.get("insights") or [],
-            "changelog": state.get("changelog") or [],
-            "approved_patterns": state.get("approved_patterns") or [],
+            "insights": insights,
+            "decisions": decisions,
+            "changelog": state.get("changelog") or existing_meta.get("changelog") or [],
+            "approved_patterns": state.get("approved_patterns")
+            or existing_meta.get("approved_patterns")
+            or [],
             "updated_at": datetime.now(timezone.utc).isoformat(),
         },
     }
-    existing = (
-        client.table("content_posts")
-        .select("id")
-        .eq("platform", STRATEGY_PLATFORM)
-        .eq("platform_post_id", STRATEGY_POST_ID)
-        .limit(1)
-        .execute()
-    )
     if existing.data:
         client.table("content_posts").update(payload).eq("id", existing.data[0]["id"]).execute()
     else:
@@ -279,6 +336,7 @@ def _sync_strategy_state(*, brief: dict[str, Any], skip_embed: bool) -> int:
         brief.get("1_constitution") or "",
         "\n".join(brief.get("6_changelog") or []),
         json.dumps(brief.get("3_approved_insights") or [], ensure_ascii=False)[:8000],
+        json.dumps(brief.get("7_decisions") or {}, ensure_ascii=False)[:4000],
     ]
     body = "\n\n".join(p for p in text_parts if p.strip())
     return upsert_embedding_chunks(

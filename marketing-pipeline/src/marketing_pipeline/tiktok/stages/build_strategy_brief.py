@@ -19,10 +19,12 @@ CONSTITUTION_FILES = (
 )
 
 INSTRUCTIONS_FOR_CLAUDE = (
-    "Read constitution and approved insights before creative suggestions. "
+    "Read constitution, approved insights, and open decisions before creative suggestions. "
     "Use live cohort metrics only — do not cite view counts from recipe-2026-06.md. "
     "Never infer the channel stopped posting from an empty date filter; check meta.staleness_note. "
-    "Approve insights (Gate 1) before treating as team learning; constitution changes (Gate 2) are manual only."
+    "Prefer closing due decisions (list_open_decisions due_only=true) before inventing new experiments. "
+    "Approve insights (Gate 1) before treating as team learning; constitution changes (Gate 2) are manual only. "
+    "Decision outcomes require human-confirmed verdict — never invent outcomes."
 )
 
 ANTI_PATTERNS = [
@@ -116,6 +118,16 @@ def build_strategy_brief(dataset: TikTokMarketingDataset) -> dict[str, Any]:
         i for i in state.get("insights", []) if i.get("status") == "approved"
     ]
     drafts = [i for i in state.get("insights", []) if i.get("status") == "draft"]
+    decisions = list(state.get("decisions") or [])
+    open_statuses = {"proposed", "committed", "done"}
+    open_decisions = [d for d in decisions if d.get("status") in open_statuses]
+    closed_decisions = [
+        d for d in decisions if d.get("status") in {"outcome_recorded", "cancelled"}
+    ]
+    closed_decisions.sort(
+        key=lambda d: d.get("closed_at") or d.get("created_at") or "",
+        reverse=True,
+    )
 
     brief: dict[str, Any] = {
         "meta": {
@@ -134,6 +146,12 @@ def build_strategy_brief(dataset: TikTokMarketingDataset) -> dict[str, Any]:
         "4_open_drafts": drafts,
         "5_anti_patterns": ANTI_PATTERNS,
         "6_changelog": state.get("changelog") or [],
+        "7_decisions": {
+            "open": open_decisions[:15],
+            "recent_closed": closed_decisions[:10],
+            "open_count": len(open_decisions),
+            "closed_count": len(closed_decisions),
+        },
         "reference_set": _reference_set(dataset),
         "variant_groups": _registry_insights(),
     }

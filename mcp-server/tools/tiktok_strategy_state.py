@@ -33,9 +33,18 @@ def fetch_strategy_brief() -> dict[str, Any]:
             "error": "Strategy brief not synced. Run: tiktok export && tiktok sync-supabase",
         }
     meta = row.get("metadata") or {}
-    brief = meta.get("strategy_brief") or {}
+    brief = dict(meta.get("strategy_brief") or {})
     brief.setdefault("meta", {})
-    return {"ok": True, "brief": brief, "updated_at": meta.get("updated_at")}
+    # Always surface live decisions from metadata (MCP may update without full brief rebuild)
+    from tools.tiktok_decisions import compact_decisions_for_brief
+
+    brief["7_decisions"] = compact_decisions_for_brief(list(meta.get("decisions") or []))
+    return {
+        "ok": True,
+        "brief": brief,
+        "updated_at": meta.get("updated_at"),
+        "open_decision_count": brief["7_decisions"].get("open_count", 0),
+    }
 
 
 def save_strategy_metadata(meta: dict[str, Any]) -> None:
@@ -68,11 +77,14 @@ def brief_excerpt_for_prompt(*, max_chars: int = 6000) -> str:
     if not data.get("ok"):
         return data.get("error") or "Strategy brief unavailable."
     brief = data["brief"]
+    from tools.tiktok_decisions import decisions_excerpt_for_prompt
+
     parts = [
         "## Constitution (excerpt)\n" + (brief.get("1_constitution") or "")[:2500],
-        "## Approved insights\n" + str(brief.get("3_approved_insights") or [])[:2000],
+        "## Approved insights\n" + str(brief.get("3_approved_insights") or [])[:1800],
+        decisions_excerpt_for_prompt(max_chars=1500),
         "## Anti-patterns\n" + "\n".join(f"- {x}" for x in brief.get("5_anti_patterns") or []),
-        "## Reference set\n" + str(brief.get("reference_set") or [])[:1500],
+        "## Reference set\n" + str(brief.get("reference_set") or [])[:1200],
     ]
     text = "\n\n".join(parts)
     return text[:max_chars]

@@ -1,0 +1,15 @@
+{
+  "videos": {
+    "7650491657414085910": {
+      "hook_type": "direct_question",
+      "funnel_stage": "MOFU",
+      "cta_present": true,
+      "format_raw": "video",
+      "needs_review": false,
+      "inputs_hash": "8cb7572184f8f9f8",
+      "extracted_at": "2026-07-10T14:09:56.027589+00:00"
+    }
+  },
+  "count": 1,
+  "updated_at": "2026-07-10T14:09:56.033763+00:00"
+}

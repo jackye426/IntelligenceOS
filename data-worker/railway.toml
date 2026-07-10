@@ -3,5 +3,5 @@
 builder = "RAILPACK"
 
 [deploy]
-startCommand = "python main.py"
+startCommand = "python -m playwright install chromium && python main.py"
 restartPolicyType = "ON_FAILURE"

@@ -38,6 +38,7 @@ from marketing_pipeline.tiktok.stages.write_comments_digest import write_comment
 from marketing_pipeline.tiktok.stages.write_outputs import ensure_master_transcripts, write_dataset
 from marketing_pipeline.tiktok.stages.download_media import download_media, resolve_media_path
 from marketing_pipeline.tiktok.sync.playbooks import sync_playbooks
+from marketing_pipeline.tiktok.stages.extract_components import run_extract_components
 from marketing_pipeline.tiktok.sync.supabase import run_sync
 from marketing_pipeline.tiktok.stages.build_strategy_brief import write_strategy_brief
 
@@ -250,9 +251,126 @@ def run_sync_supabase(*, dry_run: bool = False, skip_embed: bool = False) -> dic
     return run_sync(dry_run=dry_run, skip_embed=skip_embed)
 
 
+def run_extract_components_cmd(
+    *,
+    video_id: str | None = None,
+    force: bool = False,
+    limit: int | None = None,
+) -> dict:
+    return run_extract_components(video_id=video_id, force=force, limit=limit)
+
+
 def run_sync_playbooks_cmd(*, dry_run: bool = False, skip_embed: bool = False) -> dict[str, int]:
     return sync_playbooks(dry_run=dry_run, skip_embed=skip_embed)
 
 
 def run_import_playbooks() -> dict[str, str]:
     return import_playbooks()
+
+
+def run_display_snapshots(
+    *,
+    video_ids: list[str] | None = None,
+    update_latest: bool = True,
+    dry_run: bool = False,
+) -> dict:
+    from marketing_pipeline.tiktok.sync.display_snapshots import run_display_snapshots as _run
+
+    return _run(video_ids=video_ids, update_latest=update_latest, dry_run=dry_run)
+
+
+def run_ingest_studio_insight(
+    path: str,
+    *,
+    video_id: str | None = None,
+    dry_run: bool = False,
+) -> dict:
+    from pathlib import Path
+
+    from marketing_pipeline.tiktok.stages.studio_insight import (
+        ingest_insight_dir,
+        ingest_insight_json,
+    )
+
+    target = Path(path)
+    if target.is_dir():
+        return ingest_insight_dir(target, dry_run=dry_run)
+    return ingest_insight_json(target, platform_post_id=video_id, dry_run=dry_run)
+
+
+def run_ingest_bc_csv(
+    directory: str | None = None,
+    *,
+    account_handle: str = "docmap",
+    dry_run: bool = False,
+) -> dict:
+    from pathlib import Path
+
+    from marketing_pipeline import config
+    from marketing_pipeline.tiktok.stages.ingest_bc_csv import ingest_business_center_export
+
+    target = Path(directory) if directory else config.BC_IMPORTS_DIR
+    return ingest_business_center_export(
+        target,
+        account_handle=account_handle,
+        dry_run=dry_run,
+    )
+
+
+def run_studio_listen(
+    *,
+    login: bool = False,
+    video_ids: list[str] | None = None,
+    recent: int | None = None,
+    all_videos: bool = False,
+    headless: bool = True,
+    ingest: bool = False,
+    dry_run: bool = False,
+) -> dict:
+    from marketing_pipeline.tiktok.stages.studio_listen import run_login, run_studio_listen as _run
+
+    if login:
+        return run_login()
+    return _run(
+        video_ids=video_ids,
+        recent=recent,
+        all_videos=all_videos,
+        headless=headless,
+        ingest=ingest,
+        dry_run=dry_run,
+    )
+
+
+def run_studio_listen_production() -> dict:
+    """Incremental production capture: newest 15 + ingest + headless.
+
+    Failures (no login, Playwright crash) are returned as skipped/failed dicts
+    so the scheduler keeps running — they do not take down the worker.
+    """
+    from marketing_pipeline import config
+    from marketing_pipeline.tiktok.stages.studio_listen import profile_dir, run_studio_listen as _run
+
+    profile = profile_dir()
+    has_session = any(profile.rglob("Cookies")) or any(profile.rglob("cookies.sqlite"))
+    if not has_session:
+        return {
+            "skipped": True,
+            "reason": (
+                "No Studio login profile on volume. "
+                "Run locally: marketing_pipeline tiktok studio-listen --login "
+                "then copy .tiktok_studio_profile onto MARKETING_DATA_DIR"
+            ),
+        }
+
+    try:
+        return _run(
+            recent=config.STUDIO_LISTEN_RECENT,
+            all_videos=False,
+            headless=True,
+            ingest=True,
+            dry_run=False,
+        )
+    except Exception as exc:  # noqa: BLE001
+        logger = __import__("logging").getLogger("marketing_pipeline")
+        logger.exception("studio-listen production run failed")
+        return {"failed": True, "error": str(exc)}

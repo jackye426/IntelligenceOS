@@ -59,10 +59,12 @@ def suggest_hook_repackage(
             "You are a TikTok content strategist for DocMap (endometriosis patient education). "
             "Propose hook repackaging only — never suggest posting without human review. "
             "Focus on on-screen hook text and caption opening line. Be specific and concise. "
-            "Ground every suggestion in the strategy brief: cite playbook theme and prior learnings."
+            "Ground every suggestion in the strategy brief: cite playbook theme, prior learnings, "
+            "and open/closed decisions by decision_id when relevant. Prefer closing due decisions "
+            "over inventing new experiments."
         )
         user_prompt = f"""
-Strategy brief (required context):
+Strategy brief + open decisions (required context):
 {strategy_context}
 
 Underperforming video:
@@ -100,7 +102,10 @@ Return markdown with sections: Playbook alignment, Pattern, Proposed hooks (numb
             "references": references,
             "reference_details": ref_details,
             "suggestions_markdown": suggestions,
-            "next_step": "Human approves hooks, films/reposts, then call record_ab_learning(pair_id=..., learning=...)",
+            "next_step": (
+                "Human approves hooks, films/reposts, then log_tiktok_decision(...) with success_criteria; "
+                "later record_decision_outcome(confirmed=true). Optionally record_ab_learning for pair takeaways."
+            ),
         }
         log_tool_call(
             tool_name="suggest_hook_repackage",

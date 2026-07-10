@@ -56,6 +56,11 @@ def get_tiktok_video(video_id: str) -> dict[str, Any]:
             "title": row.get("title"),
             "post_url": row.get("post_url"),
             "posted_at": row.get("posted_at"),
+            "posted_at_note": (
+                "Cite this UTC publish timestamp only. Do not infer date from video_id."
+                if row.get("posted_at")
+                else "posted_at missing — do not invent or decode a date from video_id."
+            ),
             "topic": row.get("topic"),
             "format": row.get("format"),
             "hook": row.get("hook"),
@@ -69,6 +74,18 @@ def get_tiktok_video(video_id: str) -> dict[str, Any]:
             "partners": partners,
             "performance_tier": meta.get("performance_tier"),
         }
+        try:
+            from tools.tiktok_metrics_layers import fetch_latest_studio_insight
+
+            studio = fetch_latest_studio_insight(video_id)
+            if studio:
+                result["studio_insight"] = {
+                    "captured_at": studio.get("captured_at"),
+                    "metrics": studio.get("metrics") or {},
+                }
+        except Exception:  # noqa: BLE001
+            # Table may not exist until migration 005 is applied
+            pass
         log_tool_call(
             tool_name="get_tiktok_video",
             request_summary=summary,

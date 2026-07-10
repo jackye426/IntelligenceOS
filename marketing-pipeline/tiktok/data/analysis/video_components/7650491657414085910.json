@@ -1,0 +1,61 @@
+{
+  "video_id": "7650491657414085910",
+  "length_sec": 62,
+  "hook": {
+    "text": "Do you think you have endometres of denomyosis?",
+    "channel": "both",
+    "type": "direct_question",
+    "type_other": null,
+    "emotional_mechanism_raw": "Seeking clarity/Validation",
+    "specificity": "unclear",
+    "target_audience_raw": "Patients with suspected or diagnosed endometriosis/adenomyosis seeking guidance",
+    "creates_curiosity": true,
+    "contradicts_common_belief": false,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 7.3,
+    "window_sec_hint": 0.0
+  },
+  "main_claim": {
+    "text": "Patients can access an online clinic to receive a personalized management plan and help navigating the next steps of their care.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "The clinic helps patients understand symptom impact and provides medical, surgical, and lifestyle options (like physiotherapy) to improve quality of life.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "MOFU",
+  "funnel_rationale": "The video targets users who likely already know they have an issue but are confused about diagnosis or 'where to go next', positioning the specialist clinic as the middle-funnel solution before a final BOFU booking.",
+  "cta": {
+    "present": true,
+    "wording": "Book your appointment with her, link in bio.",
+    "position": "end",
+    "channel": "caption",
+    "explicitness": "explicit",
+    "requested_action_raw": "Book an appointment",
+    "value_exchange_raw": "Access to a Clinical Nurse Specialist with 20 years of experience",
+    "urgency": "soft",
+    "funnel_stage": "BOFU"
+  },
+  "topic": {
+    "primary_raw": "Endometriosis and Adenomyosis Management",
+    "secondary_raw": [
+      "Online Clinical Nurse Specialist (CNS) access"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "Liz Bruen",
+    "type_raw": "Clinical Nurse Specialist"
+  },
+  "format_raw": "video",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "google/gemini-3-flash-preview",
+    "extracted_at": "2026-07-10T14:09:56.027589+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "8cb7572184f8f9f8"
+  }
+}

@@ -6,4 +6,4 @@ supabase
 pydantic
 pandas
 # Pin commit hash — bump when marketing-pipeline changes (busts Railway pip layer cache).
-marketing-pipeline[media] @ git+https://github.com/jackye426/IntelligenceOS.git@a5e5e2e#subdirectory=marketing-pipeline
+marketing-pipeline[media,studio] @ git+https://github.com/jackye426/IntelligenceOS.git@a5e5e2e#subdirectory=marketing-pipeline

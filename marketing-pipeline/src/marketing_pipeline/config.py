@@ -75,6 +75,10 @@ OPENROUTER_EMBEDDING_MODEL = _getenv(
     "OPENROUTER_EMBEDDING_MODEL", default="openai/text-embedding-3-small"
 )
 MODEL_OCR = _getenv("MODEL_OCR", default="google/gemini-3-flash-preview")
+# Text LLM for video component cards (transcript/hook/CTA/funnel) — not vision OCR
+MODEL_COMPONENTS = _getenv(
+    "MODEL_COMPONENTS", default="deepseek/deepseek-v4-flash"
+)
 FFMPEG_PATH = _getenv("FFMPEG_PATH", default="ffmpeg")
 WHISPER_MODEL = _getenv("WHISPER_MODEL", default="small")
 
@@ -90,3 +94,23 @@ def _getint(name: str, default: int) -> int:
 # Cap CTranslate2 CPU threads. On high-core hosts (e.g. 8 vCPU) the default of
 # "all cores" inflates memory per model. 4 is a safe balance for Whisper small.
 WHISPER_CPU_THREADS = _getint("WHISPER_CPU_THREADS", 4)
+
+# TikTok Display API (Login Kit) — velocity snapshots
+TIKTOK_CLIENT_KEY = _getenv("TIKTOK_CLIENT_KEY")
+TIKTOK_CLIENT_SECRET = _getenv("TIKTOK_CLIENT_SECRET")
+TIKTOK_ACCESS_TOKEN = _getenv("TIKTOK_ACCESS_TOKEN")
+TIKTOK_REFRESH_TOKEN = _getenv("TIKTOK_REFRESH_TOKEN")
+
+# Drop zone for Business Center / Studio CSV exports
+BC_IMPORTS_DIR = Path(
+    _getenv("TIKTOK_BC_IMPORTS_DIR", default=str(DATA_ROOT / "imports" / "business_center"))
+)
+
+# Studio Playwright listener — keep slow/small to avoid account risk
+# Default: at most 12 videos, ~5s settle + ~10s pause between pages
+STUDIO_LISTEN_RECENT = _getint("STUDIO_LISTEN_RECENT", 15)
+STUDIO_LISTEN_SETTLE_MS = _getint("STUDIO_LISTEN_SETTLE_MS", 5000)
+STUDIO_LISTEN_PAUSE_MS = _getint("STUDIO_LISTEN_PAUSE_MS", 10000)
+STUDIO_LISTEN_PAUSE_JITTER_MS = _getint("STUDIO_LISTEN_PAUSE_JITTER_MS", 4000)
+# Full-catalog baseline may take hours; keep pauses (don't zero them).
+STUDIO_LISTEN_BASELINE_PAUSE_MS = _getint("STUDIO_LISTEN_BASELINE_PAUSE_MS", 8000)
