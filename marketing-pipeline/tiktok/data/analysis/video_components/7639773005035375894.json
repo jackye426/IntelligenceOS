@@ -1,0 +1,61 @@
+{
+  "video_id": "7639773005035375894",
+  "length_sec": 12,
+  "hook": {
+    "text": "Reply to Shell McPhee's comment: Does endo in the POD get worse over time?",
+    "channel": "both",
+    "type": "direct_question",
+    "type_other": null,
+    "emotional_mechanism_raw": "addresses concern about disease progression, provides reassurance and education",
+    "specificity": "high",
+    "target_audience_raw": "endometriosis patients or those concerned about disease progression in the pouch of Douglas",
+    "creates_curiosity": true,
+    "contradicts_common_belief": false,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 2.7,
+    "window_sec_hint": null
+  },
+  "main_claim": {
+    "text": "Endometriosis in the pouch of Douglas can worsen over time if not managed or unresponsive to surgery.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "All endometriosis material, regardless of location, can get worse over time if not managed or if it doesn't respond well to surgical treatment.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "TOFU",
+  "funnel_rationale": "Provides broad educational awareness about the progressive nature of endometriosis in a specific anatomical location, targeting general concern without pushing toward a specific service or appointment.",
+  "cta": {
+    "present": false,
+    "wording": null,
+    "position": "none",
+    "channel": "none",
+    "explicitness": "none",
+    "requested_action_raw": null,
+    "value_exchange_raw": null,
+    "urgency": "unclear",
+    "funnel_stage": null
+  },
+  "topic": {
+    "primary_raw": "Endometriosis progression in the pouch of Douglas",
+    "secondary_raw": [
+      "Disease management and surgical response"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "DocMap",
+    "type_raw": "medical education content creator"
+  },
+  "format_raw": "video",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T16:08:44.020730+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "fb9accf9416b26c5"
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "video_id": "7645351638957313302",
+  "length_sec": 65,
+  "hook": {
+    "text": "Your Endo Events endo events",
+    "channel": "onscreen",
+    "type": "other",
+    "type_other": "project_intro",
+    "emotional_mechanism_raw": "curiosity about a named community project",
+    "specificity": "low",
+    "target_audience_raw": "people with endometriosis or chronic illness",
+    "creates_curiosity": true,
+    "contradicts_common_belief": false,
+    "payoff_clear": false,
+    "seconds_to_main_claim": 5.8,
+    "window_sec_hint": 0.0
+  },
+  "main_claim": {
+    "text": "Endo Events is a community-led, non-profit project for people with endometriosis and other chronic illnesses, which started from a single TikTok invitation.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "The speaker describes the origin story: she made a video asking if people would attend an event, got an overwhelming yes, held the first event, and built from there into a growing series with brand and organization involvement.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "TOFU",
+  "funnel_rationale": "Broadly introduces a new community project aimed at awareness and connection, not specific to diagnosis or treatment paths.",
+  "cta": {
+    "present": true,
+    "wording": "if you're free on the 13th of June, the first ever London event is happening. Worth checking out 💛",
+    "position": "end",
+    "channel": "caption",
+    "explicitness": "implicit",
+    "requested_action_raw": "attend the London event on June 13",
+    "value_exchange_raw": "community connection and education resources",
+    "urgency": "unclear",
+    "funnel_stage": "TOFU"
+  },
+  "topic": {
+    "primary_raw": "Endometriosis community event / Endo Events launch",
+    "secondary_raw": [
+      "Peer support, chronic illness advocacy"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "Laura – Women’s Health Creator (woman mentioned in caption)",
+    "type_raw": "patient advocate / content creator with personal endo experience"
+  },
+  "format_raw": "video",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T15:48:17.682415+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "5563d3246322c2ae"
+  }
+}

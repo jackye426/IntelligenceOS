@@ -1,0 +1,61 @@
+{
+  "video_id": "7643867792634154262",
+  "length_sec": 99,
+  "hook": {
+    "text": "Documenting is your power to get the right diagnosis experiencing",
+    "channel": "both",
+    "type": "authority_statement",
+    "type_other": null,
+    "emotional_mechanism_raw": "Empowers and validates the viewer by framing documentation as a tool for gaining control and credibility in medical interactions.",
+    "specificity": "low",
+    "target_audience_raw": "People with endometriosis or chronic illness who are seeking diagnosis and better medical advocacy.",
+    "creates_curiosity": true,
+    "contradicts_common_belief": false,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 36.0,
+    "window_sec_hint": null
+  },
+  "main_claim": {
+    "text": "Documenting all symptoms in detail (timing, triggers, impact on daily life) gives you a clear, structured way to present your experience to doctors, making it easier to advocate for yourself and get the right diagnosis.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "The creator shares her personal experience of writing down every symptom, when it occurred, and what she was doing, which helped her have a clear plan and structure for appointments. She explains that demonstrating the debilitating effect of symptoms is more effective than vague statements, and recommends documenting everything, bringing someone to appointments, and preparing questions.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "TOFU",
+  "funnel_rationale": "The video provides broad education on the importance of symptom documentation, a foundational awareness topic for endometriosis patients, without discussing specific diagnosis or treatment options.",
+  "cta": {
+    "present": true,
+    "wording": "Chat to us on WhatsApp.",
+    "position": "end",
+    "channel": "caption",
+    "explicitness": "explicit",
+    "requested_action_raw": "Contact via WhatsApp for help organizing your notes before an appointment.",
+    "value_exchange_raw": "Help organizing your notes before an appointment.",
+    "urgency": "soft",
+    "funnel_stage": "BOFU"
+  },
+  "topic": {
+    "primary_raw": "Endometriosis symptom documentation for advocacy",
+    "secondary_raw": [
+      "Patient empowerment, doctor communication"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "Laura (Women's Health Creator / founder of Your Adult Events)",
+    "type_raw": "patient advocate / content creator"
+  },
+  "format_raw": "video",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T15:47:06.895633+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "d097b9faf3c61b67"
+  }
+}

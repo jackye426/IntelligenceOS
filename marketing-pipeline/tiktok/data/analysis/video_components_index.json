@@ -1,5 +1,347 @@
 {
   "videos": {
+    "7629626326927805718": {
+      "hook_type": "contrarian_claim",
+      "funnel_stage": "TOFU",
+      "cta_present": false,
+      "format_raw": "Interview / conversation style, on-camera, possibly two speakers (one off-screen asking questions).",
+      "needs_review": false,
+      "inputs_hash": "bde2495eec061df5",
+      "extracted_at": "2026-07-10T16:14:05.156760+00:00"
+    },
+    "7630900114982210838": {
+      "hook_type": "warning",
+      "funnel_stage": "BOFU",
+      "cta_present": true,
+      "format_raw": "interview with expert",
+      "needs_review": false,
+      "inputs_hash": "169648b5be34a33d",
+      "extracted_at": "2026-07-10T15:31:37.791436+00:00"
+    },
+    "7631220659770690818": {
+      "hook_type": "authority_statement",
+      "funnel_stage": "MOFU",
+      "cta_present": false,
+      "format_raw": "video",
+      "needs_review": false,
+      "inputs_hash": "c1df06c631f13117",
+      "extracted_at": "2026-07-10T15:31:57.653236+00:00"
+    },
+    "7632002231339928854": {
+      "hook_type": "symptom_recognition",
+      "funnel_stage": "TOFU",
+      "cta_present": true,
+      "format_raw": "Narrated educational video with on-screen text overlays",
+      "needs_review": false,
+      "inputs_hash": "9d3d0ca4f753c7a9",
+      "extracted_at": "2026-07-10T15:38:21.505876+00:00"
+    },
+    "7632321370080152854": {
+      "hook_type": "other",
+      "funnel_stage": "TOFU",
+      "cta_present": true,
+      "format_raw": "carousel",
+      "needs_review": false,
+      "inputs_hash": "982809d94e366fba",
+      "extracted_at": "2026-07-10T15:38:37.272894+00:00"
+    },
+    "7633495707416235286": {
+      "hook_type": "direct_question",
+      "funnel_stage": "MOFU",
+      "cta_present": true,
+      "format_raw": "Educational talk with on-screen text overlay",
+      "needs_review": false,
+      "inputs_hash": "39524523b41cb384",
+      "extracted_at": "2026-07-10T15:39:08.961210+00:00"
+    },
+    "7633862545228434710": {
+      "hook_type": "unexpected_fact",
+      "funnel_stage": "TOFU",
+      "cta_present": true,
+      "format_raw": "video",
+      "needs_review": false,
+      "inputs_hash": "ac285d2c208d23de",
+      "extracted_at": "2026-07-10T15:39:27.329516+00:00"
+    },
+    "7634274846117104918": {
+      "hook_type": "unexpected_fact",
+      "funnel_stage": "TOFU",
+      "cta_present": true,
+      "format_raw": "talking head with onscreen text",
+      "needs_review": false,
+      "inputs_hash": "af1d33cd2a8f9c85",
+      "extracted_at": "2026-07-10T16:08:19.803443+00:00"
+    },
+    "7634579404131241239": {
+      "hook_type": "authority_statement",
+      "funnel_stage": "MOFU",
+      "cta_present": false,
+      "format_raw": "video",
+      "needs_review": false,
+      "inputs_hash": "9f750527c8a6b132",
+      "extracted_at": "2026-07-10T15:40:36.667809+00:00"
+    },
+    "7637168703532027158": {
+      "hook_type": "unexpected_fact",
+      "funnel_stage": "TOFU",
+      "cta_present": "unclear",
+      "format_raw": "video",
+      "needs_review": false,
+      "inputs_hash": "e3ad41edd9200def",
+      "extracted_at": "2026-07-10T15:41:18.280308+00:00"
+    },
+    "7638541093646191894": {
+      "hook_type": "personal_story",
+      "funnel_stage": "TOFU",
+      "cta_present": true,
+      "format_raw": "video with spoken interview / testimony and on-screen text question; caption provides additional context and CTA",
+      "needs_review": false,
+      "inputs_hash": "53f657ae61ada93a",
+      "extracted_at": "2026-07-10T15:41:53.279755+00:00"
+    },
+    "7639345448112672022": {
+      "hook_type": "other",
+      "funnel_stage": "MOFU",
+      "cta_present": true,
+      "format_raw": "video",
+      "needs_review": false,
+      "inputs_hash": "901f45abe9d9d2ee",
+      "extracted_at": "2026-07-10T15:42:29.278714+00:00"
+    },
+    "7639651293883206935": {
+      "hook_type": "direct_question",
+      "funnel_stage": "MOFU",
+      "cta_present": false,
+      "format_raw": "video",
+      "needs_review": false,
+      "inputs_hash": "e8333bc0dc2e0d1a",
+      "extracted_at": "2026-07-10T15:42:51.547056+00:00"
+    },
+    "7639676954576276758": {
+      "hook_type": "direct_question",
+      "funnel_stage": "BOFU",
+      "cta_present": false,
+      "format_raw": "video",
+      "needs_review": false,
+      "inputs_hash": "04957ea1fc9cf2b4",
+      "extracted_at": "2026-07-10T15:43:12.200266+00:00"
+    },
+    "7639773005035375894": {
+      "hook_type": "direct_question",
+      "funnel_stage": "TOFU",
+      "cta_present": false,
+      "format_raw": "video",
+      "needs_review": false,
+      "inputs_hash": "fb9accf9416b26c5",
+      "extracted_at": "2026-07-10T16:08:44.020730+00:00"
+    },
+    "7640094039668296982": {
+      "hook_type": "direct_question",
+      "funnel_stage": "TOFU",
+      "cta_present": false,
+      "format_raw": "reply video responding to comment",
+      "needs_review": false,
+      "inputs_hash": "aeafdc22a02abb85",
+      "extracted_at": "2026-07-10T16:09:14.286962+00:00"
+    },
+    "7640116261598350614": {
+      "hook_type": "personal_story",
+      "funnel_stage": "MOFU",
+      "cta_present": true,
+      "format_raw": "video reply to comment",
+      "needs_review": false,
+      "inputs_hash": "7ee4c44534a5a472",
+      "extracted_at": "2026-07-10T16:09:44.843404+00:00"
+    },
+    "7641128554654256387": {
+      "hook_type": "direct_question",
+      "funnel_stage": "MOFU",
+      "cta_present": false,
+      "format_raw": "Video response to comment",
+      "needs_review": false,
+      "inputs_hash": "4294174d05be1d4f",
+      "extracted_at": "2026-07-10T15:44:51.265488+00:00"
+    },
+    "7641301413062102294": {
+      "hook_type": "direct_question",
+      "funnel_stage": "MOFU",
+      "cta_present": false,
+      "format_raw": "video",
+      "needs_review": false,
+      "inputs_hash": "acae674611c6394d",
+      "extracted_at": "2026-07-10T15:45:15.353115+00:00"
+    },
+    "7641554459755089154": {
+      "hook_type": "warning",
+      "funnel_stage": "MOFU",
+      "cta_present": true,
+      "format_raw": "Expert talking head with on-screen text hook",
+      "needs_review": false,
+      "inputs_hash": "8da20233cb54238f",
+      "extracted_at": "2026-07-10T16:10:07.343863+00:00"
+    },
+    "7642386611526716694": {
+      "hook_type": "direct_question",
+      "funnel_stage": "TOFU",
+      "cta_present": true,
+      "format_raw": "video interview with onscreen text question",
+      "needs_review": false,
+      "inputs_hash": "5abf5433091441e1",
+      "extracted_at": "2026-07-10T15:46:07.090587+00:00"
+    },
+    "7643525601353075990": {
+      "hook_type": "other",
+      "funnel_stage": "TOFU",
+      "cta_present": true,
+      "format_raw": "first-person narrative with on-screen text ('I asked AI') and spoken story",
+      "needs_review": false,
+      "inputs_hash": "bd873d72cdb0c3b6",
+      "extracted_at": "2026-07-10T15:46:42.734092+00:00"
+    },
+    "7643867792634154262": {
+      "hook_type": "authority_statement",
+      "funnel_stage": "TOFU",
+      "cta_present": true,
+      "format_raw": "video",
+      "needs_review": false,
+      "inputs_hash": "d097b9faf3c61b67",
+      "extracted_at": "2026-07-10T15:47:06.895633+00:00"
+    },
+    "7644218706028956950": {
+      "hook_type": "direct_question",
+      "funnel_stage": "MOFU",
+      "cta_present": true,
+      "format_raw": "TikTok video with spoken monologue and onscreen text",
+      "needs_review": false,
+      "inputs_hash": "542fa2c6c21dc000",
+      "extracted_at": "2026-07-10T15:47:37.716379+00:00"
+    },
+    "7644580086208859414": {
+      "hook_type": "personal_story",
+      "funnel_stage": "TOFU",
+      "cta_present": true,
+      "format_raw": "first-person monologue, onscreen text overlay, personal storytelling",
+      "needs_review": false,
+      "inputs_hash": "a892863ad3dc6502",
+      "extracted_at": "2026-07-10T15:47:46.283518+00:00"
+    },
+    "7644863912545881366": {
+      "hook_type": "direct_question",
+      "funnel_stage": "MOFU",
+      "cta_present": true,
+      "format_raw": "talking head with onscreen text overlay",
+      "needs_review": false,
+      "inputs_hash": "80d92e3df237a304",
+      "extracted_at": "2026-07-10T15:48:08.054757+00:00"
+    },
+    "7645351638957313302": {
+      "hook_type": "other",
+      "funnel_stage": "TOFU",
+      "cta_present": true,
+      "format_raw": "video",
+      "needs_review": false,
+      "inputs_hash": "5563d3246322c2ae",
+      "extracted_at": "2026-07-10T15:48:17.682415+00:00"
+    },
+    "7647091030986165526": {
+      "hook_type": "myth_correction",
+      "funnel_stage": "TOFU",
+      "cta_present": false,
+      "format_raw": "TikTok video, talking head with onscreen text overlay and caption",
+      "needs_review": false,
+      "inputs_hash": "19ba9e89fe168ccf",
+      "extracted_at": "2026-07-10T15:48:44.849306+00:00"
+    },
+    "7647574808162487574": {
+      "hook_type": "myth_correction",
+      "funnel_stage": "TOFU",
+      "cta_present": false,
+      "format_raw": "video",
+      "needs_review": false,
+      "inputs_hash": "afe435d1554a6f7e",
+      "extracted_at": "2026-07-10T15:49:15.396716+00:00"
+    },
+    "7647939769464278275": {
+      "hook_type": "myth_correction",
+      "funnel_stage": "TOFU",
+      "cta_present": false,
+      "format_raw": "video",
+      "needs_review": false,
+      "inputs_hash": "e2b5eba650ce2991",
+      "extracted_at": "2026-07-10T16:10:31.120643+00:00"
+    },
+    "7649808436883967254": {
+      "hook_type": "symptom_recognition",
+      "funnel_stage": "TOFU",
+      "cta_present": false,
+      "format_raw": "single talking head with onscreen text overlay",
+      "needs_review": false,
+      "inputs_hash": "1319e7cd7f845c03",
+      "extracted_at": "2026-07-10T15:53:08.636422+00:00"
+    },
+    "7650157296907062550": {
+      "hook_type": "myth_correction",
+      "funnel_stage": "TOFU",
+      "cta_present": true,
+      "format_raw": "video (personal story / testimonial style)",
+      "needs_review": false,
+      "inputs_hash": "6b0f77e17f4b744d",
+      "extracted_at": "2026-07-10T15:53:42.909515+00:00"
+    },
+    "7650429101584469270": {
+      "hook_type": "warning",
+      "funnel_stage": "MOFU",
+      "cta_present": true,
+      "format_raw": "video",
+      "needs_review": false,
+      "inputs_hash": "3315e64508630719",
+      "extracted_at": "2026-07-10T15:54:18.085506+00:00"
+    },
+    "7650465917700279574": {
+      "hook_type": "unexpected_fact",
+      "funnel_stage": "TOFU",
+      "cta_present": false,
+      "format_raw": "video",
+      "needs_review": false,
+      "inputs_hash": "3e70784acd268053",
+      "extracted_at": "2026-07-10T15:54:40.450552+00:00"
+    },
+    "7650466482173791510": {
+      "hook_type": "warning",
+      "funnel_stage": "TOFU",
+      "cta_present": true,
+      "format_raw": "video",
+      "needs_review": false,
+      "inputs_hash": "31e6827e92138915",
+      "extracted_at": "2026-07-10T16:11:09.871928+00:00"
+    },
+    "7650467196187036950": {
+      "hook_type": "direct_question",
+      "funnel_stage": "MOFU",
+      "cta_present": true,
+      "format_raw": "video",
+      "needs_review": false,
+      "inputs_hash": "ed61ecc4de2390fa",
+      "extracted_at": "2026-07-10T15:55:34.721740+00:00"
+    },
+    "7650472969264844054": {
+      "hook_type": "warning",
+      "funnel_stage": "MOFU",
+      "cta_present": true,
+      "format_raw": "TikTok video with onscreen text and spoken advice",
+      "needs_review": false,
+      "inputs_hash": "5b5266a71968868f",
+      "extracted_at": "2026-07-10T15:55:49.952995+00:00"
+    },
+    "7650479358867492118": {
+      "hook_type": "myth_correction",
+      "funnel_stage": "MOFU",
+      "cta_present": true,
+      "format_raw": "Video (35 seconds) – talking head with onscreen text overlay",
+      "needs_review": false,
+      "inputs_hash": "438b8715de31b5cd",
+      "extracted_at": "2026-07-10T15:56:40.215078+00:00"
+    },
     "7650491657414085910": {
       "hook_type": "direct_question",
       "funnel_stage": "MOFU",
@@ -8,8 +350,179 @@
       "needs_review": false,
       "inputs_hash": "8cb7572184f8f9f8",
       "extracted_at": "2026-07-10T14:09:56.027589+00:00"
+    },
+    "7651627428573433110": {
+      "hook_type": "warning",
+      "funnel_stage": "TOFU",
+      "cta_present": false,
+      "format_raw": "video",
+      "needs_review": false,
+      "inputs_hash": "fd4135bddab60528",
+      "extracted_at": "2026-07-10T15:57:00.029953+00:00"
+    },
+    "7652662905082547478": {
+      "hook_type": "myth_correction",
+      "funnel_stage": "TOFU",
+      "cta_present": false,
+      "format_raw": "video (talking head with text overlay)",
+      "needs_review": false,
+      "inputs_hash": "558029be04fd1c01",
+      "extracted_at": "2026-07-10T15:57:25.109146+00:00"
+    },
+    "7653120154154568962": {
+      "hook_type": "other",
+      "funnel_stage": "MOFU",
+      "cta_present": true,
+      "format_raw": "video",
+      "needs_review": false,
+      "inputs_hash": "bb53d03b4084a31c",
+      "extracted_at": "2026-07-10T15:57:54.341549+00:00"
+    },
+    "7653123483274054934": {
+      "hook_type": "direct_question",
+      "funnel_stage": "TOFU",
+      "cta_present": false,
+      "format_raw": "talking head with on-screen text list",
+      "needs_review": false,
+      "inputs_hash": "2a735bf8c01b17a3",
+      "extracted_at": "2026-07-10T15:58:41.240992+00:00"
+    },
+    "7653125514676145430": {
+      "hook_type": "other",
+      "funnel_stage": "MOFU",
+      "cta_present": false,
+      "format_raw": "video",
+      "needs_review": false,
+      "inputs_hash": "26169e20f45a777b",
+      "extracted_at": "2026-07-10T15:59:19.147462+00:00"
+    },
+    "7653126732819565846": {
+      "hook_type": "other",
+      "funnel_stage": "TOFU",
+      "cta_present": false,
+      "format_raw": "video",
+      "needs_review": false,
+      "inputs_hash": "6222ead10c7cfede",
+      "extracted_at": "2026-07-10T15:59:31.867711+00:00"
+    },
+    "7653134809450958102": {
+      "hook_type": "list_promise",
+      "funnel_stage": "TOFU",
+      "cta_present": true,
+      "format_raw": "Talking head with on-screen text",
+      "needs_review": false,
+      "inputs_hash": "e68371c3b432e60c",
+      "extracted_at": "2026-07-10T15:59:41.709474+00:00"
+    },
+    "7653135089735421206": {
+      "hook_type": "contrarian_claim",
+      "funnel_stage": "TOFU",
+      "cta_present": false,
+      "format_raw": "video",
+      "needs_review": false,
+      "inputs_hash": "5f234cce6667d0d1",
+      "extracted_at": "2026-07-10T16:00:12.159966+00:00"
+    },
+    "7653774474680077590": {
+      "hook_type": "contrarian_claim",
+      "funnel_stage": "TOFU",
+      "cta_present": false,
+      "format_raw": "video",
+      "needs_review": false,
+      "inputs_hash": "f700a5f5302c93e8",
+      "extracted_at": "2026-07-10T16:11:42.210974+00:00"
+    },
+    "7656847212751916290": {
+      "hook_type": "list_promise",
+      "funnel_stage": "TOFU",
+      "cta_present": true,
+      "format_raw": "video",
+      "needs_review": false,
+      "inputs_hash": "80929f179f9f76f8",
+      "extracted_at": "2026-07-10T16:00:57.564792+00:00"
+    },
+    "7657095030577843459": {
+      "hook_type": "personal_story",
+      "funnel_stage": "TOFU",
+      "cta_present": false,
+      "format_raw": "video",
+      "needs_review": false,
+      "inputs_hash": "7da00fa15feab04a",
+      "extracted_at": "2026-07-10T16:12:22.507890+00:00"
+    },
+    "7657124670826695958": {
+      "hook_type": "direct_question",
+      "funnel_stage": "TOFU",
+      "cta_present": true,
+      "format_raw": "Talking head with onscreen text",
+      "needs_review": false,
+      "inputs_hash": "a7bc767770ceafd3",
+      "extracted_at": "2026-07-10T16:12:47.934531+00:00"
+    },
+    "7657158848876252438": {
+      "hook_type": "other",
+      "funnel_stage": "MOFU",
+      "cta_present": true,
+      "format_raw": "video with song audio and text overlay",
+      "needs_review": false,
+      "inputs_hash": "e729834f545e6513",
+      "extracted_at": "2026-07-10T16:02:23.492459+00:00"
+    },
+    "7657190878246669590": {
+      "hook_type": "myth_correction",
+      "funnel_stage": "TOFU",
+      "cta_present": false,
+      "format_raw": "video",
+      "needs_review": false,
+      "inputs_hash": "677c48866d639282",
+      "extracted_at": "2026-07-10T16:02:42.293089+00:00"
+    },
+    "7657194813548170518": {
+      "hook_type": "unexpected_fact",
+      "funnel_stage": "TOFU",
+      "cta_present": true,
+      "format_raw": "video",
+      "needs_review": false,
+      "inputs_hash": "802f41cec4cc98d0",
+      "extracted_at": "2026-07-10T16:03:18.243401+00:00"
+    },
+    "7657196276609584407": {
+      "hook_type": "direct_question",
+      "funnel_stage": "MOFU",
+      "cta_present": false,
+      "format_raw": "talking head with on-screen text",
+      "needs_review": false,
+      "inputs_hash": "7ed3351f55a6a64c",
+      "extracted_at": "2026-07-10T16:03:45.684673+00:00"
+    },
+    "7657200670260481302": {
+      "hook_type": "warning",
+      "funnel_stage": "MOFU",
+      "cta_present": false,
+      "format_raw": "video with onscreen text and spoken narration",
+      "needs_review": false,
+      "inputs_hash": "5d2338c3fe13d906",
+      "extracted_at": "2026-07-10T16:04:11.200206+00:00"
+    },
+    "7658281999777549590": {
+      "hook_type": "personal_story",
+      "funnel_stage": "TOFU",
+      "cta_present": false,
+      "format_raw": "video",
+      "needs_review": false,
+      "inputs_hash": "95905cb06e69f7ba",
+      "extracted_at": "2026-07-10T16:13:12.957381+00:00"
+    },
+    "7658282932284476694": {
+      "hook_type": "warning",
+      "funnel_stage": "TOFU",
+      "cta_present": false,
+      "format_raw": "video",
+      "needs_review": false,
+      "inputs_hash": "ded5fd257a224740",
+      "extracted_at": "2026-07-10T16:05:08.374882+00:00"
     }
   },
-  "count": 1,
-  "updated_at": "2026-07-10T14:09:56.033763+00:00"
+  "count": 58,
+  "updated_at": "2026-07-10T16:14:06.787058+00:00"
 }

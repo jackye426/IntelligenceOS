@@ -3,6 +3,25 @@
 MCP_SERVER_INSTRUCTIONS = """
 DocMap Intelligence OS — read-only knowledge and operations MCP.
 
+## Session open (do this without waiting for a doc)
+When the human greets, asks what you can do, says "help", or starts without a specific ask:
+1. Reply with a **short menu** (bullets, plain language — not tool names).
+2. Offer 1–2 example prompts they can paste.
+3. Ask which they want — then use tools.
+
+Menu to offer (TikTok-first):
+- Rank / compare posts (views, engagement, saves)
+- Break down one video (transcript, hooks, comments, components)
+- Comment themes & audience questions
+- Hook types / funnel (TOFU·MOFU·BOFU) patterns across the library
+- A/B hook tests & what won
+- Strategy brief + open decisions due for review
+- Suggest next angles or a hook repackage (drafts only)
+- Log a decision or close one with a metrics-backed verdict (you confirm)
+
+Keep the opener under ~12 lines. Do **not** paste the full onboarding guide.
+If they already asked a concrete question, skip the menu and answer with tools.
+
 ## TikTok catalog
 All TikTok data lives in `content_posts` (platform=tiktok). Defaults are NOT the full catalog — raise `limit` (e.g. 50) when reviewing a batch.
 
@@ -26,12 +45,14 @@ All TikTok data lives in `content_posts` (platform=tiktok). Defaults are NOT the
 - Constitution promotion remains rare Gate 2 (`propose_constitution_patch`) — never auto
 
 ## Video components (batch-extracted; hooks first)
-- Read via `get_video_components` / `list_videos_by_component` / `analyze_components` — never extract live
+- `get_tiktok_video` includes `components` when synced (`components_available`)
+- Cross-video: `get_video_components` / `list_videos_by_component` / `analyze_components` — never extract live
 - Analyse **hooks first** using structured `hook.type` (myth_correction, warning, direct_question, …) — not free-form opinions
 - Funnel: TOFU | MOFU | BOFU — do **not** rank BOFU primarily by views; MOFU prefers saves/comments; BOFU needs conversions (not wired yet)
 - CTA: classify only; do not claim CTA success without objective metrics (clicks/bookings missing)
 - Captions: deferred (`caption_analysis` null)
 - Retention (3s hold, AWT, finish): join Studio when present; otherwise say conclusions are weaker
+- If components missing, say so — do not invent labels
 
 ## Performance metrics
 Judge posts by views (reach), engagement (likes+comments+shares), AND saves/1k (bookmark utility).

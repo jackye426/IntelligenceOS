@@ -1,0 +1,61 @@
+{
+  "video_id": "7650157296907062550",
+  "length_sec": 43,
+  "hook": {
+    "text": "Did you know that if you have endometriosis, you're eligible for a Hidden Disabilities Sunflower lanyard?",
+    "channel": "caption_only",
+    "type": "myth_correction",
+    "type_other": null,
+    "emotional_mechanism_raw": "empowerment through hidden support",
+    "specificity": "unclear",
+    "target_audience_raw": "people with endometriosis who travel or experience flare-ups in public",
+    "creates_curiosity": true,
+    "contradicts_common_belief": true,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 0.0,
+    "window_sec_hint": null
+  },
+  "main_claim": {
+    "text": "People with endometriosis can get a free Hidden Disabilities Sunflower lanyard to discreetly signal they need help, without any eligibility requirements.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "The creator shares a personal story of wearing the lanyard on a crowded train, where staff offered to help find a seat after noticing the lanyard. She also notes the lanyard boosts confidence and reduces the embarrassment of asking for help, especially in airports or during travel.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "TOFU",
+  "funnel_rationale": "The video introduces a support tool (Sunflower lanyard) broadly to raise awareness about an option available to people with endometriosis, without promoting a specific clinic, diagnosis, or treatment step.",
+  "cta": {
+    "present": true,
+    "wording": "If you think it could help you, head to hdsunflower.com/uk to find out more.",
+    "position": "end",
+    "channel": "caption",
+    "explicitness": "explicit",
+    "requested_action_raw": "visit hdsunflower.com/uk to learn more about the lanyard",
+    "value_exchange_raw": "free lanyard that discreetly signals need for help, boosting confidence and reducing embarrassment",
+    "urgency": "none",
+    "funnel_stage": "TOFU"
+  },
+  "topic": {
+    "primary_raw": "Hidden Disabilities Sunflower lanyard for endometriosis",
+    "secondary_raw": [
+      "traveling with endometriosis, self-advocacy, confidence"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "Laura (Women’s Health Creator)",
+    "type_raw": "patient advocate / influencer"
+  },
+  "format_raw": "video (personal story / testimonial style)",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T15:53:42.909515+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "6b0f77e17f4b744d"
+  }
+}

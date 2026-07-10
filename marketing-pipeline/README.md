@@ -34,12 +34,14 @@ python -m marketing_pipeline tiktok sync-supabase [--dry-run] [--skip-embed]
 python -m marketing_pipeline tiktok sync-playbooks              # embed playbooks + ALL_COMMENTS
 python -m marketing_pipeline tiktok import-playbooks            # copy strategy docs into playbooks/
 python -m marketing_pipeline tiktok display-snapshots           # Display API velocity layer
-python -m marketing_pipeline tiktok studio-listen [--recent N]  # Studio insight capture
+python -m marketing_pipeline tiktok studio-listen [--recent N]  # Studio insight capture (see note)
 python -m marketing_pipeline tiktok ingest-studio-insight PATH
 python -m marketing_pipeline tiktok ingest-bc-csv [DIR]         # Business Center CSVs
 ```
 
 **OCR:** ffmpeg on PATH (or `FFMPEG_PATH`), `OPENROUTER_API_KEY`, `MODEL_OCR`. Install media extras: `pip install -e ".[media]"`.
+
+**Studio / Playwright (internal only):** `studio-listen` drives a logged-in TikTok Studio browser session to capture avg watch time, finish rate, traffic sources, and retention — fields **not available** via Display API or other DocMap-accessible channels. Install with `pip install -e ".[studio]"`. This is an internal ops workaround for our own account analytics gap, not a public/product scraping surface. Prefer Display API + Business Center CSV when those cover the question.
 
 **Components:** run after transcripts/hooks exist. Writes `tiktok/data/analysis/video_components/{id}.json` and index; `sync-supabase` attaches `metadata.components`. MCP reads via `get_video_components` / `analyze_components` (no live extract). Plan: [`docs/EXECUTION_PLAN_VIDEO_COMPONENTS.md`](../docs/EXECUTION_PLAN_VIDEO_COMPONENTS.md).
 

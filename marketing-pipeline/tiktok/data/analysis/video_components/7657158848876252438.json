@@ -1,0 +1,61 @@
+{
+  "video_id": "7657158848876252438",
+  "length_sec": 24,
+  "hook": {
+    "text": "If you ever start to wonder why all the rain and all the thunder follows her around You better cut that girl loose Oh yeah",
+    "channel": "spoken",
+    "type": "other",
+    "type_other": "song_lyric_metaphor",
+    "emotional_mechanism_raw": "Uses a metaphor of rain and thunder to evoke empathy and curiosity about a woman's suffering.",
+    "specificity": "low",
+    "target_audience_raw": "People who know or relate to someone with unexplained suffering or chronic pain.",
+    "creates_curiosity": true,
+    "contradicts_common_belief": false,
+    "payoff_clear": false,
+    "seconds_to_main_claim": 0.0,
+    "window_sec_hint": null
+  },
+  "main_claim": {
+    "text": "Unexplained infertility is often due to undiagnosed endometriosis, which can be painless, with infertility as the only symptom.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "Extensive endometriosis can cause no pain, and many patients are dismissed because they lack pain, so the workup stops before finding the disease.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "MOFU",
+  "funnel_rationale": "Educates that unexplained infertility is not a final diagnosis but a sign that the workup may have missed endometriosis, addressing a diagnostic gap and prompting viewers to consider this for their next appointment.",
+  "cta": {
+    "present": true,
+    "wording": "Save this for your next appointment, and share it with someone who needs to see it.",
+    "position": "end",
+    "channel": "caption",
+    "explicitness": "explicit",
+    "requested_action_raw": "Save the video for future reference at an appointment; share the video with others.",
+    "value_exchange_raw": "Provides information that can help in a medical appointment and helps others who may be undiagnosed.",
+    "urgency": "soft",
+    "funnel_stage": "MOFU"
+  },
+  "topic": {
+    "primary_raw": "endometriosis and unexplained infertility",
+    "secondary_raw": [
+      "painless endometriosis, diagnostic workup failures"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "DocMap creator",
+    "type_raw": "medical_educator"
+  },
+  "format_raw": "video with song audio and text overlay",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T16:02:23.492459+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "e729834f545e6513"
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "video_id": "7650472969264844054",
+  "length_sec": 62,
+  "hook": {
+    "text": "If you suspect you have endometriosis here is what should you know",
+    "channel": "onscreen",
+    "type": "warning",
+    "type_other": null,
+    "emotional_mechanism_raw": "Addresses frustration and urgency of getting a diagnosis",
+    "specificity": "unclear",
+    "target_audience_raw": "People who suspect they have endometriosis and are struggling to get a diagnosis",
+    "creates_curiosity": true,
+    "contradicts_common_belief": false,
+    "payoff_clear": true,
+    "seconds_to_main_claim": null,
+    "window_sec_hint": 0.0
+  },
+  "main_claim": {
+    "text": "The best thing you can do to get a diagnosis is map out your symptoms: what is cyclical, what is not, and note impacts like missing work or passing out.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "Details how to identify cyclical vs non-cyclical symptoms and their severity to present clearly to a specialist.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "MOFU",
+  "funnel_rationale": "Focuses on preparing for diagnosis and specialist consultation, not just awareness.",
+  "cta": {
+    "present": true,
+    "wording": "If you need help figuring out who to see privately or book a session with Liz - link in bio.",
+    "position": "none",
+    "channel": "caption",
+    "explicitness": "explicit",
+    "requested_action_raw": "Click link in bio to book a session or find a private specialist",
+    "value_exchange_raw": "Help navigating private specialist access or booking a session with Liz",
+    "urgency": "soft",
+    "funnel_stage": "BOFU"
+  },
+  "topic": {
+    "primary_raw": "Endometriosis diagnosis preparation",
+    "secondary_raw": [
+      "Symptom mapping and specialist consultation"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "Liz (likely clinic specialist or patient advocate)",
+    "type_raw": "Healthcare advocate / clinic representative"
+  },
+  "format_raw": "TikTok video with onscreen text and spoken advice",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T15:55:49.952995+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "5b5266a71968868f"
+  }
+}

@@ -79,6 +79,23 @@ Pair with:
 - `record_decision_outcome` (requires `confirmed: true`)
 - `cancel_tiktok_decision` if the plan is abandoned
 
+### Video components (hooks-first structure)
+
+Batch-extracted labels on each video (`metadata.components`). Prefer structured `hook.type` over free-form opinions.
+
+- "What hook type and funnel stage is video `[id]`?"
+- "List MOFU videos with hook type `direct_question`."
+- "Compare saves/1k by hook type for TOFU posts since `[date]`."
+
+Pair with:
+
+- `get_tiktok_video` — includes `components` when synced (`components_available`)
+- `get_video_components` — same card + Studio/velocity join
+- `list_videos_by_component` — filter by `hook.type`, funnel, CTA
+- `analyze_components` — aggregate labels vs metrics (default group_by=`hook.type`)
+
+Rules: never invent components if missing; never rank BOFU primarily by views; CTA success needs conversion metrics (not wired yet).
+
 ### Weekly hook A/B review ritual (legacy shorthand)
 
 1. `get_tiktok_marketing_insights(limit=15, since=YYYY-MM-DD)` — winners by views, engagement, saves/1k (live metrics only; ignore view counts in `recipe-2026-06.md`)
@@ -93,6 +110,7 @@ Pair with:
 - `get_tiktok_content_briefing`
 - `get_tiktok_marketing_insights`
 - `get_tiktok_video`
+- `get_video_components` / `list_videos_by_component` / `analyze_components`
 - `get_tiktok_cohort`
 - `find_ab_tests` / `find_variant_groups`
 - `draft_tiktok_insight` / `approve_tiktok_insight` / `list_tiktok_insight_drafts`

@@ -1,0 +1,61 @@
+{
+  "video_id": "7640116261598350614",
+  "length_sec": 58,
+  "hook": {
+    "text": "Reply to Alice O'Neil's comment I had my surgery with a general gynaecologist, was in surgery for 30 minutes, told there was no endo and pain is in my head. No photos either to take to a specialist.",
+    "channel": "both",
+    "type": "personal_story",
+    "type_other": null,
+    "emotional_mechanism_raw": "Empathy and validation of patient frustration",
+    "specificity": "high",
+    "target_audience_raw": "Women with endometriosis who have had or considering surgery with general gynecologists",
+    "creates_curiosity": true,
+    "contradicts_common_belief": false,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 8.9,
+    "window_sec_hint": 0.0
+  },
+  "main_claim": {
+    "text": "Patients undergoing laparoscopic surgery for suspected endometriosis should receive photos and a detailed analysis of findings, even if no endometriosis is found, to ensure understanding and proper follow-up.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "The doctor argues that photos allow patients to relate to findings, that absence of visible endometriosis does not mean pain is not real, and that a 30-minute procedure without photos is insufficient. He advises seeking a second opinion if such a situation occurs.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "MOFU",
+  "funnel_rationale": "The video addresses a specific patient's surgical experience, educates on the importance of photos and detailed findings during diagnostic laparoscopy, and encourages seeking second opinions, which is typical of middle-of-funnel content for patients evaluating treatment options.",
+  "cta": {
+    "present": true,
+    "wording": "So I would ask for a second opinion if that was the case.",
+    "position": "end",
+    "channel": "spoken",
+    "explicitness": "implicit",
+    "requested_action_raw": "Seek a second opinion from a specialist",
+    "value_exchange_raw": "Proper diagnostic photos and analysis",
+    "urgency": "none",
+    "funnel_stage": "MOFU"
+  },
+  "topic": {
+    "primary_raw": "Endometriosis diagnostic laparoscopy",
+    "secondary_raw": [
+      "Patient rights, second opinions, surgical documentation"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "Doctor (Endometriosis specialist?)",
+    "type_raw": "medical professional"
+  },
+  "format_raw": "video reply to comment",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T16:09:44.843404+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "7ee4c44534a5a472"
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "video_id": "7653123483274054934",
+  "length_sec": 33,
+  "hook": {
+    "text": "Struggling at work with endometriosis? Here's a resource that can help",
+    "channel": "both",
+    "type": "direct_question",
+    "type_other": null,
+    "emotional_mechanism_raw": "empathy and validation",
+    "specificity": "unclear",
+    "target_audience_raw": "Women with endometriosis who are employed or seeking workplace accommodations",
+    "creates_curiosity": true,
+    "contradicts_common_belief": false,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 0.0,
+    "window_sec_hint": null
+  },
+  "main_claim": {
+    "text": "Endometriosis UK has an employer resource to help advocate for workplace accommodations.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "The resource lists specific accommodations like requesting the right chair, working from home on bad days, a parking spot closer, rest breaks, and support around fatigue and nutrition.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "TOFU",
+  "funnel_rationale": "Raises awareness of a resource available to endometriosis patients without prompting specific medical action; top-of-funnel education.",
+  "cta": {
+    "present": false,
+    "wording": null,
+    "position": "none",
+    "channel": "none",
+    "explicitness": "none",
+    "requested_action_raw": null,
+    "value_exchange_raw": null,
+    "urgency": "none",
+    "funnel_stage": null
+  },
+  "topic": {
+    "primary_raw": "Endometriosis workplace accommodations",
+    "secondary_raw": [
+      "Endometriosis UK employer resource"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "content creator / patient advocate",
+    "type_raw": "social media personality"
+  },
+  "format_raw": "talking head with on-screen text list",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T15:58:41.240992+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "2a735bf8c01b17a3"
+  }
+}

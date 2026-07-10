@@ -1,0 +1,61 @@
+{
+  "video_id": "7651627428573433110",
+  "length_sec": 37,
+  "hook": {
+    "text": "This is how we treat woman's health issues",
+    "channel": "onscreen",
+    "type": "warning",
+    "type_other": null,
+    "emotional_mechanism_raw": "frustration, skepticism",
+    "specificity": "low",
+    "target_audience_raw": "women with undiagnosed endometriosis or chronic pelvic pain",
+    "creates_curiosity": true,
+    "contradicts_common_belief": true,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 0.0,
+    "window_sec_hint": null
+  },
+  "main_claim": {
+    "text": "Putting women on birth control pills to treat painful periods without proper diagnosis is not a solution and leads to misdiagnosis of endometriosis.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "The speaker shares a personal story of trying five different pills to treat heavy periods, hormonal acne, and pain, none of which provided lasting relief, highlighting how this approach overlooks underlying endometriosis.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "TOFU",
+  "funnel_rationale": "Educates about a pervasive issue in women's health, targeting broad audience unaware of endometriosis misdiagnosis, building awareness before diagnosis or treatment.",
+  "cta": {
+    "present": false,
+    "wording": null,
+    "position": "none",
+    "channel": "none",
+    "explicitness": "none",
+    "requested_action_raw": null,
+    "value_exchange_raw": null,
+    "urgency": "unclear",
+    "funnel_stage": null
+  },
+  "topic": {
+    "primary_raw": "endometriosis misdiagnosis",
+    "secondary_raw": [
+      "hormonal treatments for period pain"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "Ayala",
+    "type_raw": "patient"
+  },
+  "format_raw": "video",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T15:57:00.029953+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "fd4135bddab60528"
+  }
+}

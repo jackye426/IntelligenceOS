@@ -1,0 +1,61 @@
+{
+  "video_id": "7641554459755089154",
+  "length_sec": 26,
+  "hook": {
+    "text": "If you are getting endo surgery, ask for excision, not ablation. Here's why",
+    "channel": "both",
+    "type": "warning",
+    "type_other": null,
+    "emotional_mechanism_raw": "Urgency and caution, warning against a potentially ineffective procedure",
+    "specificity": "unclear",
+    "target_audience_raw": "Patients scheduled for or considering endometriosis laparoscopy",
+    "creates_curiosity": true,
+    "contradicts_common_belief": true,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 9.9,
+    "window_sec_hint": null
+  },
+  "main_claim": {
+    "text": "Endometriosis should be treated with excision surgery, not ablation, because ablation only removes the surface and leaves deeper disease hidden, making it ineffective.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "Ablation is described as 'skimming' — analogous to skimming the surface of a plastered wall while the underlying problem remains. Endometriosis implants are too deep for surface removal, and disease will hide and persist if only ablated.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "MOFU",
+  "funnel_rationale": "The content targets patients who already know they need or are planning endometriosis surgery, educating them on choice of surgical technique (excision vs ablation) to improve outcomes, typical of middle-funnel decision-support content.",
+  "cta": {
+    "present": true,
+    "wording": "She runs her own virtual clinic - link in bio.",
+    "position": "end",
+    "channel": "caption",
+    "explicitness": "unclear",
+    "requested_action_raw": "Click the link in bio to access the speaker's virtual clinic",
+    "value_exchange_raw": "Access to specialist endometriosis care via virtual clinic",
+    "urgency": "soft",
+    "funnel_stage": "MOFU"
+  },
+  "topic": {
+    "primary_raw": "Endometriosis surgery technique: excision vs ablation",
+    "secondary_raw": [
+      "Laparoscopy for endometriosis; specialist care access"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "Liz Bruen, Endometriosis Clinical Nurse Specialist (CNS)",
+    "type_raw": "Healthcare professional / specialist"
+  },
+  "format_raw": "Expert talking head with on-screen text hook",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T16:10:07.343863+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "8da20233cb54238f"
+  }
+}

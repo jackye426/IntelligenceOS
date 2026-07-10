@@ -50,6 +50,7 @@ def get_tiktok_video(video_id: str) -> dict[str, Any]:
                 }
             )
 
+        components = meta.get("components") if isinstance(meta.get("components"), dict) else None
         result = {
             "found": True,
             "video_id": video_id,
@@ -73,6 +74,8 @@ def get_tiktok_video(video_id: str) -> dict[str, Any]:
             "ab_learning": ab_learning,
             "partners": partners,
             "performance_tier": meta.get("performance_tier"),
+            "components": components,
+            "components_available": components is not None,
         }
         try:
             from tools.tiktok_metrics_layers import fetch_latest_studio_insight

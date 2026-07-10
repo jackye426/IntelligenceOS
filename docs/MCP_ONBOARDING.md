@@ -35,6 +35,7 @@ Think of it as giving Claude a **read-only pass** to our TikTok performance libr
 | **~40 TikTok videos** | Views, likes, saves, shares, engagement |
 | **Transcripts** | What was said in each video |
 | **Hooks** | Spoken line, caption opening, and on-screen text (where captured) |
+| **Video components** | Structured labels per video: hook *type*, funnel stage (TOFU/MOFU/BOFU), CTA, topic, speaker |
 | **Comments** | What viewers asked — cost, NHS, specialists, symptoms, etc. |
 | **A/B tests** | Same video posted with different hooks — which performed better |
 | **Insights** | Approved takeaways from analysis (“what we observed”) |
@@ -77,9 +78,22 @@ When you agree on a next action in chat, say so clearly (e.g. “Log that decisi
 
 | You can ask… | Claude can show… |
 |--------------|------------------|
-| “Break down this video: [paste link or ID]” | Full transcript, caption, hooks, comment themes |
+| “Break down this video: [paste link or ID]” | Full transcript, caption, hooks, comment themes, and component labels when available |
 | “What hook did we use on video [ID]?” | Spoken, caption, and on-screen hook text |
 | “What did people ask in the comments?” | Common questions and themes |
+
+### Video components (hook type, funnel, CTA)
+
+These are **labels extracted offline** (not invented in chat). Ask Claude to use them when comparing *styles* of hooks or funnel stages.
+
+| You can ask… | Claude can show… |
+|--------------|------------------|
+| “What hook *type* is this video — myth correction, warning, direct question…?” | Structured `hook.type` (not just the spoken line) |
+| “Which of our videos are MOFU / TOFU / BOFU?” | List filtered by funnel stage |
+| “Do myth-correction hooks get more saves than warnings?” | Aggregate by hook type vs metrics (hooks first) |
+| “Which videos have a clear CTA?” | Filter by CTA present |
+
+**Note:** Funnel labels guide *which metric to care about* (TOFU → views; MOFU → saves/comments). Do not treat BOFU as “won” on views alone — bookings/clicks aren’t in the library yet.
 
 ### Comments & audience questions
 
@@ -235,15 +249,23 @@ First launch may take **10–20 seconds** while a small helper downloads — tha
 - Look for the **hammer 🔨 / tools** icon below the chat box
 - Click it → **docmap-intelligence** should appear
 
-**Test message:**
+**Test message (either works):**
+
+> What can you help with on our TikTok data?
+
+or
 
 > Use DocMap TikTok data: show me the top 5 posts by views and summarise each hook.
 
-You should get real @docmap stats and links — not a generic answer.
+Claude should either list what it can do (short menu) or return real @docmap stats and links — not a generic answer. You do **not** need to read a long guide first.
 
 ---
 
 ## Example questions (copy & paste)
+
+**Start here (no homework)**
+- “What can you help with on our TikTok data?”
+- “Give me the short menu of what DocMap can do.”
 
 **Quick checks**
 - “Top 10 TikTok posts by saves per 1k views.”

@@ -1,0 +1,61 @@
+{
+  "video_id": "7657124670826695958",
+  "length_sec": 30,
+  "hook": {
+    "text": "Passing out, vomiting, unable to walk? That is not a normal period!",
+    "channel": "both",
+    "type": "direct_question",
+    "type_other": null,
+    "emotional_mechanism_raw": "Shock and validation, telling viewers that their severe symptoms are not normal",
+    "specificity": "unclear",
+    "target_audience_raw": "People with severe period pain who have been dismissed",
+    "creates_curiosity": true,
+    "contradicts_common_belief": true,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 0.0,
+    "window_sec_hint": null
+  },
+  "main_claim": {
+    "text": "Severe menstrual symptoms like passing out, vomiting, and inability to walk are not normal periods and should not be dismissed; they are likely endometriosis.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "The speaker lists severe symptoms and emphatically states they are not normal, then identifies it as endometriosis and notes that symptoms often start at age 11.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "TOFU",
+  "funnel_rationale": "The video aims to raise awareness about severe period symptoms being abnormal, targeting a broad audience who may normalize their pain. It does not directly discuss diagnosis or treatment options, making it top-of-funnel.",
+  "cta": {
+    "present": true,
+    "wording": "book a consultation with Liz (BIO)",
+    "position": "end",
+    "channel": "caption",
+    "explicitness": "unclear",
+    "requested_action_raw": "Book a consultation with Liz",
+    "value_exchange_raw": "Consultation with a specialist for endometriosis care",
+    "urgency": "soft",
+    "funnel_stage": "MOFU"
+  },
+  "topic": {
+    "primary_raw": "Endometriosis symptom awareness",
+    "secondary_raw": [
+      "Myth correction about normal periods"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "Liz",
+    "type_raw": "Doctor or specialist"
+  },
+  "format_raw": "Talking head with onscreen text",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T16:12:47.934531+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "a7bc767770ceafd3"
+  }
+}

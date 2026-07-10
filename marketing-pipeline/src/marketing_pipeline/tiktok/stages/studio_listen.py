@@ -1,5 +1,9 @@
 """Playwright listener for TikTok Studio /aweme/v2/data/insight/ responses.
 
+Internal DocMap ops only: Studio quality metrics (AWT, finish, traffic, retention)
+are not available via Display API or other channels we can use. This is not a
+product/public scrape surface — prefer Display API + BC CSV when those suffice.
+
 Uses a persistent Chromium profile so you log in once (headed), then later
 runs can reopen Studio pages and capture insight JSON without Display API.
 

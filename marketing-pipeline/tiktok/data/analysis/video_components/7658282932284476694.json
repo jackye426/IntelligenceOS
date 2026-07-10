@@ -1,0 +1,61 @@
+{
+  "video_id": "7658282932284476694",
+  "length_sec": 15,
+  "hook": {
+    "text": "Getting diagnosed with endo is only half the battle.",
+    "channel": "both",
+    "type": "warning",
+    "type_other": null,
+    "emotional_mechanism_raw": "Empathy, frustration at medical gaslighting",
+    "specificity": "high",
+    "target_audience_raw": "People with endometriosis or suspected, general public",
+    "creates_curiosity": true,
+    "contradicts_common_belief": true,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 0.0,
+    "window_sec_hint": 6.0
+  },
+  "main_claim": {
+    "text": "Even with a confirmed endometriosis diagnosis, patients often face dismissal from doctors due to age bias, making diagnosis only the first obstacle.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "The video recounts Ayla's story: despite having a diagnosis in her medical notes, she was told she was 'too young' to have endometriosis and sent home. This illustrates that diagnosis does not guarantee proper care or recognition.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "TOFU",
+  "funnel_rationale": "The content raises awareness about a systemic problem (dismissal after diagnosis) rather than providing specific diagnostic or treatment guidance, targeting a broad audience to recognize the issue.",
+  "cta": {
+    "present": false,
+    "wording": null,
+    "position": "none",
+    "channel": "none",
+    "explicitness": "none",
+    "requested_action_raw": null,
+    "value_exchange_raw": null,
+    "urgency": "unclear",
+    "funnel_stage": null
+  },
+  "topic": {
+    "primary_raw": "Endometriosis diagnosis dismissal",
+    "secondary_raw": [
+      "Age bias in healthcare"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "Ayla",
+    "type_raw": "patient"
+  },
+  "format_raw": "video",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T16:05:08.374882+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "ded5fd257a224740"
+  }
+}

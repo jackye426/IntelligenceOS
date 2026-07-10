@@ -1,0 +1,61 @@
+{
+  "video_id": "7634579404131241239",
+  "length_sec": 17,
+  "hook": {
+    "text": "benefits of MRI depends on who's reading it.",
+    "channel": "both",
+    "type": "authority_statement",
+    "type_other": null,
+    "emotional_mechanism_raw": "surprise that MRI accuracy depends on radiologist expertise",
+    "specificity": "unclear",
+    "target_audience_raw": "endometriosis patients considering MRI before laparoscopy",
+    "creates_curiosity": true,
+    "contradicts_common_belief": true,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 0.0,
+    "window_sec_hint": 6.3
+  },
+  "main_claim": {
+    "text": "The benefit of an MRI for endometriosis depends entirely on the radiologist's expertise in endometriosis; otherwise they will miss it.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "The speaker explains that the radiologist must have an interest and understanding of endometriosis to correctly interpret the MRI, and that the same principle applies to surgery.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "MOFU",
+  "funnel_rationale": "The video addresses a specific diagnostic decision (MRI vs laparoscopy) and emphasizes the need for specialist expertise, which is typical of middle-of-funnel content for patients evaluating their diagnostic pathway.",
+  "cta": {
+    "present": false,
+    "wording": null,
+    "position": "none",
+    "channel": "none",
+    "explicitness": "none",
+    "requested_action_raw": null,
+    "value_exchange_raw": null,
+    "urgency": "unclear",
+    "funnel_stage": null
+  },
+  "topic": {
+    "primary_raw": "MRI for endometriosis diagnosis",
+    "secondary_raw": [
+      "radiologist expertise, laparoscopy comparison"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "unidentified female speaker (likely a specialist or patient educator)",
+    "type_raw": "medical educator / specialist"
+  },
+  "format_raw": "video",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T15:40:36.667809+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "9f750527c8a6b132"
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "video_id": "7657190878246669590",
+  "length_sec": 27,
+  "hook": {
+    "text": "Endo surgery isn't a cure.",
+    "channel": "both",
+    "type": "myth_correction",
+    "type_other": null,
+    "emotional_mechanism_raw": "surprise, relief, validation",
+    "specificity": "unclear",
+    "target_audience_raw": "people with endometriosis who have been told surgery is a cure",
+    "creates_curiosity": true,
+    "contradicts_common_belief": true,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 5.6,
+    "window_sec_hint": null
+  },
+  "main_claim": {
+    "text": "Endometriosis surgery is not a cure; it is a chronic condition.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "The speaker shares that she was told surgery would be the end of it, but she learned it's a chronic disease when she didn't get better after the operation.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "TOFU",
+  "funnel_rationale": "Educates about the chronic nature of endometriosis, correcting the common misconception that surgery is a cure.",
+  "cta": {
+    "present": false,
+    "wording": null,
+    "position": "none",
+    "channel": "none",
+    "explicitness": "none",
+    "requested_action_raw": null,
+    "value_exchange_raw": null,
+    "urgency": "unclear",
+    "funnel_stage": null
+  },
+  "topic": {
+    "primary_raw": "endometriosis surgery myths",
+    "secondary_raw": [
+      "chronic illness"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "young woman with endometriosis",
+    "type_raw": "patient"
+  },
+  "format_raw": "video",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T16:02:42.293089+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "677c48866d639282"
+  }
+}

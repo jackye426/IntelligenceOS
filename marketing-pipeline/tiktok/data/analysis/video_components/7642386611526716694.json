@@ -1,0 +1,61 @@
+{
+  "video_id": "7642386611526716694",
+  "length_sec": 70,
+  "hook": {
+    "text": "How did you find out that you might have endometriosis?",
+    "channel": "onscreen",
+    "type": "direct_question",
+    "type_other": null,
+    "emotional_mechanism_raw": "Provokes curiosity and self-reflection by asking a personal question",
+    "specificity": "unclear",
+    "target_audience_raw": "Individuals who suspect they may have endometriosis or are exploring symptoms",
+    "creates_curiosity": true,
+    "contradicts_common_belief": false,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 49.0,
+    "window_sec_hint": 0.0
+  },
+  "main_claim": {
+    "text": "Patients with endometriosis are often dismissed by doctors and told their symptoms are normal, despite severe suffering.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "Laura describes her teenage symptoms (long periods, sickness, passing out), later university symptoms (fatigue, pain during sex, bleeding), and repeated medical gaslighting ('it's just a period', 'it's because you're a woman') until she finally pushed for a laparoscopy. She emphasizes trusting your own body.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "TOFU",
+  "funnel_rationale": "Broad awareness story about the experience of being dismissed in the endometriosis diagnosis journey, no specific service or booking call-to-action.",
+  "cta": {
+    "present": true,
+    "wording": "stay tuned",
+    "position": "end",
+    "channel": "caption",
+    "explicitness": "implicit",
+    "requested_action_raw": "Watch for upcoming full interview content",
+    "value_exchange_raw": "Access to more detailed information from the interview with Laura",
+    "urgency": "none",
+    "funnel_stage": "TOFU"
+  },
+  "topic": {
+    "primary_raw": "endometriosis diagnosis journey",
+    "secondary_raw": [
+      "patient dismissal and gaslighting"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "Laura (Women's Health Creator, founder of Your Endo Events)",
+    "type_raw": "patient / influencer"
+  },
+  "format_raw": "video interview with onscreen text question",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T15:46:07.090587+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "5abf5433091441e1"
+  }
+}

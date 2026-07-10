@@ -54,6 +54,8 @@ Railway’s default builder is **Railpack** (Nixpacks is deprecated). Root Direc
 - Tue/Fri 05:45 — Studio Playwright insight capture (≤12 recent videos, ~10s pause between pages)
 - Weekly Sun 02:00 — full refresh (catalog, stats, transcribe, OCR) → export → sync
 
+**Playwright / TikTok Studio (internal only):** Used solely to capture Studio analytics that **no official API exposes** to us today (avg watch time, finish rate, traffic sources, retention curves). Display API covers public engagement/velocity only. This is an **internal DocMap ops path** — not a product feature for external users, not a substitute for TikTok’s ToS-compliant APIs where they exist, and not something to expose via MCP as a “scrape on demand” tool. Prefer Display API + BC CSV when those fields suffice; use Studio listen only for the quality metrics gap.
+
 **Studio login profile:** Run `python -m marketing_pipeline tiktok studio-listen --login` locally once, then copy `marketing-pipeline/tiktok/data/.tiktok_studio_profile/` onto the Railway volume at `$MARKETING_DATA_DIR/.tiktok_studio_profile/`. Without it the job skips safely.
 
 **Volume (recommended):** Mount persistent storage at `/app/marketing-data` so transcripts survive redeploys. First boot seeds from GitHub `main` if empty.

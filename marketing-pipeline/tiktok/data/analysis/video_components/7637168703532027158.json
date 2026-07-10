@@ -1,0 +1,61 @@
+{
+  "video_id": "7637168703532027158",
+  "length_sec": 63,
+  "hook": {
+    "text": "This is the most overlooked endometriosis symptom. An Endo nurse explains why so many people miss it.",
+    "channel": "both",
+    "type": "unexpected_fact",
+    "type_other": null,
+    "emotional_mechanism_raw": "surprise / intrigue — 'most overlooked' implies something hidden that the viewer may be unaware of, prompting curiosity",
+    "specificity": "unclear",
+    "target_audience_raw": "people with endometriosis or those suspecting endometriosis, especially those whose fatigue is not being linked to their condition",
+    "creates_curiosity": true,
+    "contradicts_common_belief": true,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 0.0,
+    "window_sec_hint": 0.0
+  },
+  "main_claim": {
+    "text": "Fatigue / lethargy is the most overlooked symptom of endometriosis, affecting 95% of patients in a small study.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "The nurse describes a self‑conducted survey of 100 patients in which 95% reported fatigue. She contrasts this with other common symptoms (70% dyspareunia, 80% painful periods) and explains that fatigue is often dismissed because it can be attributed to many other causes. She hypothesises that fatigue stems from a low‑grade, ongoing inflammatory process, using a metaphor of a slow drip in a ceiling.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "TOFU",
+  "funnel_rationale": "The video raises awareness of a lesser‑known symptom (fatigue) and broadens the understanding of endometriosis beyond painful periods. It does not offer diagnosis or treatment steps, nor does it directly promote a consultation service, making it top‑of‑funnel educational content.",
+  "cta": {
+    "present": "unclear",
+    "wording": "Link in bio 🔗",
+    "position": "none",
+    "channel": "caption",
+    "explicitness": "implicit",
+    "requested_action_raw": "click the link in the bio",
+    "value_exchange_raw": "access to Liz, an Endometriosis Clinical Nurse Specialist who offers online consultations",
+    "urgency": "soft",
+    "funnel_stage": "TOFU"
+  },
+  "topic": {
+    "primary_raw": "endometriosis symptom awareness – fatigue / lethargy",
+    "secondary_raw": [
+      "endometriosis symptom dismissal; inflammatory model of fatigue"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "Liz (Endometriosis Clinical Nurse Specialist)",
+    "type_raw": "clinical specialist / nurse"
+  },
+  "format_raw": "video",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T15:41:18.280308+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "e3ad41edd9200def"
+  }
+}

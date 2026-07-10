@@ -1,0 +1,61 @@
+{
+  "video_id": "7644218706028956950",
+  "length_sec": 47,
+  "hook": {
+    "text": "Do you have questions about endometriosis or adenomyosis?",
+    "channel": "spoken",
+    "type": "direct_question",
+    "type_other": null,
+    "emotional_mechanism_raw": "Curiosity and validation for those experiencing symptoms",
+    "specificity": "low",
+    "target_audience_raw": "People with endometriosis or adenomyosis, or those suspecting they have it",
+    "creates_curiosity": true,
+    "contradicts_common_belief": false,
+    "payoff_clear": false,
+    "seconds_to_main_claim": 10.9,
+    "window_sec_hint": 0.0
+  },
+  "main_claim": {
+    "text": "We have developed an online clinic for endometriosis/adenomyosis that helps you understand your symptoms, explore management options (medical, surgical, physiotherapy), and create a personalized plan to improve your quality of life.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "The video describes an online clinic staffed by a Clinical Nurse Specialist (Liz Bruen) with over 20 years of experience. The clinic assesses pain levels, past investigations, fatigue, and other symptoms. After assessment, a plan is developed to help the patient understand their symptoms and choose appropriate management options tailored to their lifestyle.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "MOFU",
+  "funnel_rationale": "The video educates viewers about a specific service (online CNS clinic) and encourages booking an appointment, typical of middle-of-funnel content that bridges awareness and conversion.",
+  "cta": {
+    "present": true,
+    "wording": "Book your appointment with her, link in bio.",
+    "position": "end",
+    "channel": "caption",
+    "explicitness": "unclear",
+    "requested_action_raw": "Book an appointment",
+    "value_exchange_raw": "Get expert guidance from an experienced endometriosis CNS",
+    "urgency": "none",
+    "funnel_stage": "MOFU"
+  },
+  "topic": {
+    "primary_raw": "endometriosis",
+    "secondary_raw": [
+      "adenomyosis"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "Liz Bruen",
+    "type_raw": "Clinical Nurse Specialist"
+  },
+  "format_raw": "TikTok video with spoken monologue and onscreen text",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T15:47:37.716379+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "542fa2c6c21dc000"
+  }
+}

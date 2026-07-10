@@ -1,0 +1,61 @@
+{
+  "video_id": "7647939769464278275",
+  "length_sec": 84,
+  "hook": {
+    "text": "We’ll put you on the pill, that will sort you out.",
+    "channel": "caption_only",
+    "type": "myth_correction",
+    "type_other": null,
+    "emotional_mechanism_raw": "frustration at medical gaslighting and being dismissed",
+    "specificity": "unclear",
+    "target_audience_raw": "teens and parents of teens with undiagnosed endometriosis",
+    "creates_curiosity": true,
+    "contradicts_common_belief": true,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 7.2,
+    "window_sec_hint": null
+  },
+  "main_claim": {
+    "text": "Endometriosis in teens is often dismissed as normal period pain, leading to years of misdiagnosis and ineffective treatments like birth control pills.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "A personal story of being put on the pill at age 11, symptoms continuing despite the pill, heavy bleeding requiring iron supplements, and doctors repeatedly providing excuses rather than investigating the underlying cause.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "TOFU",
+  "funnel_rationale": "Raises awareness about teen endometriosis and the common myth that it's just a bad period, targeting broad audience unfamiliar with the condition.",
+  "cta": {
+    "present": false,
+    "wording": null,
+    "position": "none",
+    "channel": "none",
+    "explicitness": "none",
+    "requested_action_raw": null,
+    "value_exchange_raw": null,
+    "urgency": "unclear",
+    "funnel_stage": "TOFU"
+  },
+  "topic": {
+    "primary_raw": "endometriosis diagnosis delay in teens",
+    "secondary_raw": [
+      "birth control misuse for period pain"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "young woman recounting her personal teenage experience with endometriosis",
+    "type_raw": "patient / storyteller"
+  },
+  "format_raw": "video",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T16:10:31.120643+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "e2b5eba650ce2991"
+  }
+}

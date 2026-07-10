@@ -1,0 +1,61 @@
+{
+  "video_id": "7644863912545881366",
+  "length_sec": 20,
+  "hook": {
+    "text": "Still in pain after endo surgery? Watch this",
+    "channel": "both",
+    "type": "direct_question",
+    "type_other": null,
+    "emotional_mechanism_raw": "curiosity and concern about persistent pain despite surgery",
+    "specificity": "unclear",
+    "target_audience_raw": "individuals with endometriosis who have had surgery but still experience pain",
+    "creates_curiosity": true,
+    "contradicts_common_belief": true,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 0.0,
+    "window_sec_hint": null
+  },
+  "main_claim": {
+    "text": "The accuracy of an MRI for endometriosis depends on the radiologist's expertise and interest in the condition; otherwise, they will miss findings.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "The speaker explains that for an MRI to be useful, the radiologist must have a specific interest in and understanding of endometriosis, otherwise they will miss key signs. This same principle applies to surgery.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "MOFU",
+  "funnel_rationale": "The video moves beyond broad awareness (TOFU) into a specific diagnostic/treatment nuance—radiologist expertise for MRI interpretation—which assists viewers in seeking correct specialist care.",
+  "cta": {
+    "present": true,
+    "wording": "Watch this",
+    "position": "none",
+    "channel": "onscreen",
+    "explicitness": "unclear",
+    "requested_action_raw": "continue watching the video",
+    "value_exchange_raw": "insight on why MRI quality depends on the radiologist",
+    "urgency": "none",
+    "funnel_stage": "TOFU"
+  },
+  "topic": {
+    "primary_raw": "MRI quality and radiologist expertise for endometriosis",
+    "secondary_raw": [
+      "persistent pain after endometriosis surgery"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "female speaker (likely a healthcare professional or patient advocate specializing in endometriosis)",
+    "type_raw": "expert/advocate (speaks authoritatively about diagnostic nuance)"
+  },
+  "format_raw": "talking head with onscreen text overlay",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T15:48:08.054757+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "80d92e3df237a304"
+  }
+}

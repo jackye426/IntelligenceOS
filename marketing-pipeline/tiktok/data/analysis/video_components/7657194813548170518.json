@@ -1,0 +1,61 @@
+{
+  "video_id": "7657194813548170518",
+  "length_sec": 16,
+  "hook": {
+    "text": "35% of girls who develop endometriosis symptoms at 11 also have this",
+    "channel": "both",
+    "type": "unexpected_fact",
+    "type_other": null,
+    "emotional_mechanism_raw": "Shock and concern for parents of young girls with symptoms",
+    "specificity": "unclear",
+    "target_audience_raw": "Parents of young girls with endometriosis symptoms",
+    "creates_curiosity": true,
+    "contradicts_common_belief": true,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 0.0,
+    "window_sec_hint": 16.0
+  },
+  "main_claim": {
+    "text": "35% of girls who develop endometriosis symptoms at age 11 will also have deeply infiltrating endometriosis affecting the rectum and causing bowel symptoms.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "The video explains that these girls have endometriosis affecting the rectum and often have bowel symptoms.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "TOFU",
+  "funnel_rationale": "Raises awareness of a specific statistic to educate parents, positioning the condition as serious and requiring attention, then directs to a booking CTA.",
+  "cta": {
+    "present": true,
+    "wording": "Link in bio to book",
+    "position": "end",
+    "channel": "caption",
+    "explicitness": "unclear",
+    "requested_action_raw": "book a virtual clinic appointment",
+    "value_exchange_raw": "Liz runs a virtual endo clinic, available privately from anywhere in the UK",
+    "urgency": "none",
+    "funnel_stage": "BOFU"
+  },
+  "topic": {
+    "primary_raw": "deeply infiltrating endometriosis in young girls",
+    "secondary_raw": [
+      "early symptoms of endometriosis"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "Liz",
+    "type_raw": "doctor or specialist"
+  },
+  "format_raw": "video",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T16:03:18.243401+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "802f41cec4cc98d0"
+  }
+}

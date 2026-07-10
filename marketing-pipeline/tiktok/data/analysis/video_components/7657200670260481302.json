@@ -1,0 +1,61 @@
+{
+  "video_id": "7657200670260481302",
+  "length_sec": 73,
+  "hook": {
+    "text": "If you've been told you need bowel surgery for endo watch this first",
+    "channel": "both",
+    "type": "warning",
+    "type_other": null,
+    "emotional_mechanism_raw": "urgency, fear of making mistake",
+    "specificity": "unclear",
+    "target_audience_raw": "patients who have been told they need bowel surgery for endometriosis",
+    "creates_curiosity": true,
+    "contradicts_common_belief": false,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 25.0,
+    "window_sec_hint": null
+  },
+  "main_claim": {
+    "text": "Most bowel endometriosis cases are treated with shaving, as deep involvement through the bowel wall is rare.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "The video explains that a recto-end or anal ultrasound scan (available in Cardiff) can assess how deep endometriosis goes into the bowel wall. If it is only on the surface or just below the surface, a skilled laparoscopic surgeon can perform shaving. Full-thickness involvement (through the muscularis propria, called 'the barrier to poo') is rare and requires a colorectal surgeon. The scan provides valuable information for surgical planning.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "MOFU",
+  "funnel_rationale": "The video educates patients already diagnosed with bowel endometriosis about treatment options (shaving vs. full-thickness resection) and specialist involvement (colorectal surgeon). This is mid-funnel content for those considering treatment choices.",
+  "cta": {
+    "present": false,
+    "wording": null,
+    "position": "none",
+    "channel": "none",
+    "explicitness": "none",
+    "requested_action_raw": null,
+    "value_exchange_raw": null,
+    "urgency": "unclear",
+    "funnel_stage": null
+  },
+  "topic": {
+    "primary_raw": "bowel endometriosis treatment levels",
+    "secondary_raw": [
+      "recto-end ultrasound scanning technique, shaving vs full-thickness resection, colorectal surgeon involvement"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "gynecologist or endometriosis specialist",
+    "type_raw": "medical professional"
+  },
+  "format_raw": "video with onscreen text and spoken narration",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T16:04:11.200206+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "5d2338c3fe13d906"
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "video_id": "7639345448112672022",
+  "length_sec": 104,
+  "hook": {
+    "text": "Good afternoon",
+    "channel": "both",
+    "type": "other",
+    "type_other": "greeting/introduction",
+    "emotional_mechanism_raw": "neutral, welcoming",
+    "specificity": "low",
+    "target_audience_raw": "endometriosis patients who have seen previous 360-degree video",
+    "creates_curiosity": false,
+    "contradicts_common_belief": false,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 21.0,
+    "window_sec_hint": 20.0
+  },
+  "main_claim": {
+    "text": "You can ask for a 360-degree surgical assessment when discussing surgery options with your consultant.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "Lizzie explains that when your consultant talks about surgery, you can ask specific questions about what areas they will examine (diaphragm, appendix, bowel, pouch of Douglas, ovaries, space between uterus and pouch of Douglas) and whether they will take pictures or video for your records. She emphasizes that these requests are reasonable.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "MOFU",
+  "funnel_rationale": "Educational content about how to request a detailed surgical assessment, targeting patients considering endometriosis surgery.",
+  "cta": {
+    "present": true,
+    "wording": "book an appointment with Liz, link in bio",
+    "position": "end",
+    "channel": "caption",
+    "explicitness": "explicit",
+    "requested_action_raw": "Book an appointment with Liz",
+    "value_exchange_raw": "Expert 360-degree assessment consultation",
+    "urgency": "none",
+    "funnel_stage": "BOFU"
+  },
+  "topic": {
+    "primary_raw": "360-degree assessment for endometriosis surgery",
+    "secondary_raw": [
+      "patient-doctor communication, asking for comprehensive surgical evaluation"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "Lizzie Brewing",
+    "type_raw": "medical professional"
+  },
+  "format_raw": "video",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T15:42:29.278714+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "901f45abe9d9d2ee"
+  }
+}

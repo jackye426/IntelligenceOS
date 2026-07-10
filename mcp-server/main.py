@@ -122,11 +122,13 @@ def get_content_performance_tool(
 
 @mcp.tool()
 def get_tiktok_video_tool(video_id: str):
-    """Full TikTok video: caption, transcript, hooks (spoken/caption/onscreen), comment_analysis, A/B partners.
+    """Full TikTok video: caption, transcript, hooks, comment_analysis, A/B partners, and batch-extracted `components` when synced.
 
     Prefer over search_knowledge for one video. Cite publish date ONLY from returned `posted_at` (UTC).
     Never decode/infer a date from video_id — TikTok snowflake time can predate public publish by days.
     If `posted_at` is null, say date unknown.
+    If `components_available` is false, say components are not extracted yet (do not invent hook.type / funnel).
+    For cross-video hook-type / funnel aggregates use list_videos_by_component or analyze_components.
     """
     return get_tiktok_video(video_id)
 

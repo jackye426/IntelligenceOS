@@ -1,0 +1,61 @@
+{
+  "video_id": "7656847212751916290",
+  "length_sec": 40,
+  "hook": {
+    "text": "This is what happens during a transvaginal scan for endo",
+    "channel": "onscreen",
+    "type": "list_promise",
+    "type_other": null,
+    "emotional_mechanism_raw": "Curiosity and educational demystification of a medical procedure",
+    "specificity": "unclear",
+    "target_audience_raw": "Endometriosis patients or those undergoing diagnostic scans",
+    "creates_curiosity": true,
+    "contradicts_common_belief": true,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 0.0,
+    "window_sec_hint": null
+  },
+  "main_claim": {
+    "text": "A transvaginal scan for endometriosis involves specific steps: empty bladder initially, then assess bladder for nodules as it fills, and check for adhesions via movement between bladder and uterus.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "The speaker explains that the bladder should be empty at the start but is evaluated at the end as it fills to see nodules. Lack of movement between bladder and uterus indicates adhesions. Adhesions can also be inferred from a retroverted uterus pulling down.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "TOFU",
+  "funnel_rationale": "Broad educational content about what happens during a specific scan, raising awareness without directly pushing diagnosis or treatment.",
+  "cta": {
+    "present": true,
+    "wording": "link in bio to book a consultation",
+    "position": "end",
+    "channel": "caption",
+    "explicitness": "explicit",
+    "requested_action_raw": "Book a consultation via link in bio",
+    "value_exchange_raw": "Answers about scan results or diagnosis",
+    "urgency": "none",
+    "funnel_stage": "BOFU"
+  },
+  "topic": {
+    "primary_raw": "transvaginal scan for endometriosis",
+    "secondary_raw": [
+      "adhesions detection"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "Medical professional (likely doctor or specialist)",
+    "type_raw": "medical professional"
+  },
+  "format_raw": "video",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T16:00:57.564792+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "80929f179f9f76f8"
+  }
+}

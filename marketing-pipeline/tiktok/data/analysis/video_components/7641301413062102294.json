@@ -1,0 +1,61 @@
+{
+  "video_id": "7641301413062102294",
+  "length_sec": 43,
+  "hook": {
+    "text": "Jade 🎗️ My endo specialist told me and mri can either over diagnose or under diagnose endometriosis, is that true? 4-30 Reply",
+    "channel": "both",
+    "type": "direct_question",
+    "type_other": null,
+    "emotional_mechanism_raw": "curiosity, confusion, concern about diagnostic accuracy",
+    "specificity": "high",
+    "target_audience_raw": "people with endometriosis or those seeking diagnostic information",
+    "creates_curiosity": true,
+    "contradicts_common_belief": true,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 6.3,
+    "window_sec_hint": 43.0
+  },
+  "main_claim": {
+    "text": "MRI is particularly effective for identifying endometriosis affecting the bowel above the rectal sigmoid junction, but transvaginal ultrasound is more effective for assessing other pelvic structures; MRI accuracy depends on interpretation quality, which is improving.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "The speaker explains that MRI is good for bowel endometriosis, but transvaginal scan is better for the rest of the pelvis. MRI is the only option in many places for rectal-vaginal endometriosis, and its reliability depends on the assessor's expertise and ongoing education.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "MOFU",
+  "funnel_rationale": "The video addresses a specific diagnostic question about MRI vs ultrasound for endometriosis, targeting patients who are already considering diagnostic options and need more information to make decisions.",
+  "cta": {
+    "present": false,
+    "wording": "",
+    "position": "none",
+    "channel": "none",
+    "explicitness": "none",
+    "requested_action_raw": "",
+    "value_exchange_raw": "",
+    "urgency": "none",
+    "funnel_stage": "unclear"
+  },
+  "topic": {
+    "primary_raw": "endometriosis MRI diagnosis",
+    "secondary_raw": [
+      "overdiagnosis underdiagnosis, MRI vs transvaginal ultrasound"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "Liz",
+    "type_raw": "endometriosis clinical nurse specialist"
+  },
+  "format_raw": "video",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T15:45:15.353115+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "acae674611c6394d"
+  }
+}

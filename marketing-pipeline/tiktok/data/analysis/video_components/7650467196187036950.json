@@ -1,0 +1,61 @@
+{
+  "video_id": "7650467196187036950",
+  "length_sec": 55,
+  "hook": {
+    "text": "Is your surgeon checking these areas for your endo surgery?",
+    "channel": "onscreen",
+    "type": "direct_question",
+    "type_other": null,
+    "emotional_mechanism_raw": "Empowerment through preparation, slight anxiety about potential oversight",
+    "specificity": "high",
+    "target_audience_raw": "Endometriosis patients preparing for laparoscopy",
+    "creates_curiosity": true,
+    "contradicts_common_belief": true,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 0.0,
+    "window_sec_hint": null
+  },
+  "main_claim": {
+    "text": "Patients should ask their surgeon specific questions about checking various anatomical areas during laparoscopy for endometriosis, and request photos/videos.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "The video lists specific areas (diaphragm, appendix, bowel, pouch of Douglas, ovaries, space between uterus and pouch of Douglas) and emphasizes that it is reasonable to ask the surgeon to elevate the pouch of Douglas to see hidden areas. Also mentions requesting pictures or videos.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "MOFU",
+  "funnel_rationale": "Video provides specific questions to ask surgeon before laparoscopy, aimed at patients who are already diagnosed or considering surgery.",
+  "cta": {
+    "present": true,
+    "wording": "Want more personalised advice? Liz runs a virtual clinic and you can book a session via the link in our bio.",
+    "position": "none",
+    "channel": "caption",
+    "explicitness": "unclear",
+    "requested_action_raw": "Book a session with Liz's virtual clinic",
+    "value_exchange_raw": "Personalized advice",
+    "urgency": "none",
+    "funnel_stage": "BOFU"
+  },
+  "topic": {
+    "primary_raw": "Endometriosis laparoscopy preparation questions",
+    "secondary_raw": [
+      "Surgeon evaluation areas, request photos/videos"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "Liz",
+    "type_raw": "health educator/patient advocate"
+  },
+  "format_raw": "video",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T15:55:34.721740+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "ed61ecc4de2390fa"
+  }
+}

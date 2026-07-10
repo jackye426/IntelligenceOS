@@ -1,0 +1,61 @@
+{
+  "video_id": "7638541093646191894",
+  "length_sec": 50,
+  "hook": {
+    "text": "What gives you hope in endometriosis care right now? We have asked our Endo nurse Liz",
+    "channel": "both",
+    "type": "personal_story",
+    "type_other": null,
+    "emotional_mechanism_raw": "Invites the viewer to reflect on hope and shares an inspiring, optimistic perspective from a trusted professional.",
+    "specificity": "unclear",
+    "target_audience_raw": "endometriosis patients and their supporters, especially those feeling discouraged",
+    "creates_curiosity": true,
+    "contradicts_common_belief": true,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 0.0,
+    "window_sec_hint": 0.0
+  },
+  "main_claim": {
+    "text": "Researchers describe endometriosis as a 'cancer-mimicking' disease because it shares biological features like growth, tissue invasion, and treatment resistance.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "The video explains that this terminology shift is not just academic but represents active efforts to change how endometriosis is understood and taken seriously. It then transitions to a hopeful message from a clinical nurse specialist who emphasizes ongoing research, empowered patients, and available tools for improving quality of life.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "TOFU",
+  "funnel_rationale": "The content raises awareness about a new way of understanding endometriosis ('cancer-mimicking') and provides broad education and hope, rather than addressing specific diagnosis or treatment steps.",
+  "cta": {
+    "present": true,
+    "wording": "If you want to speak to her, link in bio.",
+    "position": "end",
+    "channel": "caption",
+    "explicitness": "unclear",
+    "requested_action_raw": "Click the link in the bio to book a consultation with Liz (Endometriosis Clinical Nurse Specialist).",
+    "value_exchange_raw": "Access to specialist guidance and support from someone who is actively working to improve endometriosis care.",
+    "urgency": "soft",
+    "funnel_stage": "TOFU"
+  },
+  "topic": {
+    "primary_raw": "endometriosis research / hope in care",
+    "secondary_raw": [
+      "cancer-mimicking disease framing, quality of life improvement"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "Liz, Endometriosis Clinical Nurse Specialist",
+    "type_raw": "medical professional (clinical nurse specialist)"
+  },
+  "format_raw": "video with spoken interview / testimony and on-screen text question; caption provides additional context and CTA",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T15:41:53.279755+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "53f657ae61ada93a"
+  }
+}

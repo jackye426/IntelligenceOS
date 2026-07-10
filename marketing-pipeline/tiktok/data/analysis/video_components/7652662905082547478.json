@@ -1,0 +1,61 @@
+{
+  "video_id": "7652662905082547478",
+  "length_sec": 72,
+  "hook": {
+    "text": "Too young to have endo and we thought",
+    "channel": "both",
+    "type": "myth_correction",
+    "type_other": null,
+    "emotional_mechanism_raw": "frustration, feeling dismissed, disbelief",
+    "specificity": "unclear",
+    "target_audience_raw": "young women (teens) with symptoms of endometriosis",
+    "creates_curiosity": true,
+    "contradicts_common_belief": true,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 0.0,
+    "window_sec_hint": 0.0
+  },
+  "main_claim": {
+    "text": "Young people can have endometriosis and are often dismissed by doctors who believe it's an adult disease.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "The speaker recounts being told 'don't be silly, you're too young' and being refused referral to gynecology across multiple hospitals, feeling that if she were older she would have been taken seriously.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "TOFU",
+  "funnel_rationale": "Raises awareness about the myth that endometriosis only affects adults, targeting a broad audience for education.",
+  "cta": {
+    "present": false,
+    "wording": null,
+    "position": "none",
+    "channel": "none",
+    "explicitness": "none",
+    "requested_action_raw": null,
+    "value_exchange_raw": null,
+    "urgency": "unclear",
+    "funnel_stage": null
+  },
+  "topic": {
+    "primary_raw": "endometriosis misdiagnosis and dismissal due to age",
+    "secondary_raw": [
+      "age discrimination in healthcare, health advocacy"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "Ayla",
+    "type_raw": "patient"
+  },
+  "format_raw": "video (talking head with text overlay)",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T15:57:25.109146+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "558029be04fd1c01"
+  }
+}

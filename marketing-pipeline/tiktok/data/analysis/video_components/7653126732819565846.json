@@ -1,0 +1,61 @@
+{
+  "video_id": "7653126732819565846",
+  "length_sec": 24,
+  "hook": {
+    "text": "If you ever start to wonder why all the rain and all the thunder follows her around You better cut that girl loose Oh yeah",
+    "channel": "spoken",
+    "type": "other",
+    "type_other": "song lyric metaphor",
+    "emotional_mechanism_raw": "curiosity, intrigue via metaphor",
+    "specificity": "low",
+    "target_audience_raw": "women experiencing unexplained pain, possibly endometriosis patients or those suspecting",
+    "creates_curiosity": true,
+    "contradicts_common_belief": false,
+    "payoff_clear": false,
+    "seconds_to_main_claim": null,
+    "window_sec_hint": 23.8
+  },
+  "main_claim": {
+    "text": "Painful intercourse is one of the most common symptoms of endometriosis and often dismissed by providers.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "The caption emphasizes that this symptom is frequently ignored, and that being specific about its impact on daily life makes it harder to dismiss.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "TOFU",
+  "funnel_rationale": "focuses on awareness of a common but dismissed symptom, broad education without direct call to action",
+  "cta": {
+    "present": false,
+    "wording": "",
+    "position": "none",
+    "channel": "none",
+    "explicitness": "none",
+    "requested_action_raw": "",
+    "value_exchange_raw": "",
+    "urgency": "none",
+    "funnel_stage": "TOFU"
+  },
+  "topic": {
+    "primary_raw": "painful intercourse as endometriosis symptom",
+    "secondary_raw": [
+      "dismissal of symptoms by healthcare providers"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "unknown (likely a patient or narrator)",
+    "type_raw": "likely patient or content creator"
+  },
+  "format_raw": "video",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T15:59:31.867711+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "6222ead10c7cfede"
+  }
+}

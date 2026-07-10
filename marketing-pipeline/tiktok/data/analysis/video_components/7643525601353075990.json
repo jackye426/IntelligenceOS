@@ -1,0 +1,61 @@
+{
+  "video_id": "7643525601353075990",
+  "length_sec": 80,
+  "hook": {
+    "text": "I asked AI to tell me what I should say to my GP to get referred to an endometriosis specialist.",
+    "channel": "both",
+    "type": "other",
+    "type_other": "action_statement",
+    "emotional_mechanism_raw": "Curiosity about an unconventional action (using AI) followed by hope of a solution",
+    "specificity": "high",
+    "target_audience_raw": "endometriosis patients frustrated with generalists/delayed specialist referral",
+    "creates_curiosity": true,
+    "contradicts_common_belief": true,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 6.5,
+    "window_sec_hint": 6.5
+  },
+  "main_claim": {
+    "text": "Using AI (ChatGPT) to analyze MRI reports helped a patient discover bone endometriosis and get a referral to a specialist.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "The speaker describes having persistent pain, being discharged after initial diagnosis, being offered only pain management, and after scans showed nothing, fed MRI data into AI which flagged bone endometriosis. She used AI to generate specific talking points for her GP, which led to a referral to an endometriosis specialist.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "TOFU",
+  "funnel_rationale": "The video raises awareness about a novel, self-advocacy tool (AI) for endometriosis patients, without directly promoting a specific clinic or service, though the caption does include a soft CTA to the creator's service.",
+  "cta": {
+    "present": true,
+    "wording": "Come and talk to us. We'll help you ask the right questions. Link in Bio.",
+    "position": "end",
+    "channel": "caption",
+    "explicitness": "implicit",
+    "requested_action_raw": "Click link in bio to contact service",
+    "value_exchange_raw": "Help navigating the system, understanding symptoms, finding private specialist",
+    "urgency": "soft",
+    "funnel_stage": "MOFU"
+  },
+  "topic": {
+    "primary_raw": "Using AI to navigate endometriosis healthcare system and secure specialist referral",
+    "secondary_raw": [
+      "Endometriosis diagnosis challenges, MRI limitations, patient self-advocacy"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "Laura (Women's Health Creator) – testimonial style",
+    "type_raw": "patient/creator (not the account holder – account appears to be DocMap's co-created or reposted content)"
+  },
+  "format_raw": "first-person narrative with on-screen text ('I asked AI') and spoken story",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T15:46:42.734092+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "bd873d72cdb0c3b6"
+  }
+}

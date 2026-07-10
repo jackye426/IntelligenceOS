@@ -1,0 +1,61 @@
+{
+  "video_id": "7653774474680077590",
+  "length_sec": 44,
+  "hook": {
+    "text": "Her endo surgery was called 'a waste of time' They found stage 4 endometriosis",
+    "channel": "onscreen",
+    "type": "contrarian_claim",
+    "type_other": null,
+    "emotional_mechanism_raw": "surprise and indignation at medical dismissal",
+    "specificity": "high",
+    "target_audience_raw": "women with undiagnosed or dismissed endometriosis symptoms",
+    "creates_curiosity": true,
+    "contradicts_common_belief": true,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 0.0,
+    "window_sec_hint": null
+  },
+  "main_claim": {
+    "text": "The patient had stage 4 endometriosis despite being told by her gynecologist that the diagnostic laparoscopy would be a waste of time and find nothing.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "The transcript describes how the gynecologist repeatedly dismissed the patient in A&E, offered different pills and patches, and only reluctantly agreed to surgery while insisting it was a waste of time. The surgery ultimately found stage 4 endometriosis, contradicting the doctor's claim.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "TOFU",
+  "funnel_rationale": "Raises awareness about the difficulty of getting an endometriosis diagnosis and the phenomenon of medical gaslighting, educating a broad audience without directly promoting a service.",
+  "cta": {
+    "present": false,
+    "wording": null,
+    "position": "none",
+    "channel": "none",
+    "explicitness": "none",
+    "requested_action_raw": null,
+    "value_exchange_raw": null,
+    "urgency": "unclear",
+    "funnel_stage": null
+  },
+  "topic": {
+    "primary_raw": "endometriosis diagnosis",
+    "secondary_raw": [
+      "medical gaslighting / doctor dismissal"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "endometriosis patient",
+    "type_raw": "patient"
+  },
+  "format_raw": "video",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T16:11:42.210974+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "f700a5f5302c93e8"
+  }
+}

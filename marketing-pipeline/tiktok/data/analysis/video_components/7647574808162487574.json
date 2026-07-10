@@ -1,0 +1,61 @@
+{
+  "video_id": "7647574808162487574",
+  "length_sec": 141,
+  "hook": {
+    "text": "Endo & teens First symptoms at the age of 11 Ayla's story",
+    "channel": "both",
+    "type": "myth_correction",
+    "type_other": null,
+    "emotional_mechanism_raw": "personal story evoking empathy and frustration over dismissal of symptoms",
+    "specificity": "high",
+    "target_audience_raw": "Teenagers, parents, educators, healthcare providers",
+    "creates_curiosity": true,
+    "contradicts_common_belief": true,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 0.0,
+    "window_sec_hint": null
+  },
+  "main_claim": {
+    "text": "Severe period pain in teenagers like Ayla's is not normal and may indicate endometriosis; it is often dismissed by teachers and doctors.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "The video tells Ayla's personal story: onset at age 11, fainting, heavy bleeding every 10 minutes, dismissal by school nurse and teachers, and later by GPs who told her to 'get used to it'. It highlights the lack of awareness and the need to take symptoms seriously.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "TOFU",
+  "funnel_rationale": "The video educates about early signs of endometriosis in teenagers, aiming to raise awareness and challenge dismissive attitudes, without promoting a specific service or next step.",
+  "cta": {
+    "present": false,
+    "wording": "",
+    "position": "none",
+    "channel": "none",
+    "explicitness": "none",
+    "requested_action_raw": "",
+    "value_exchange_raw": "",
+    "urgency": "none",
+    "funnel_stage": "TOFU"
+  },
+  "topic": {
+    "primary_raw": "Endometriosis in teenagers",
+    "secondary_raw": [
+      "Menstrual health, dismissal of symptoms"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "Ayla",
+    "type_raw": "Patient with endometriosis"
+  },
+  "format_raw": "video",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T15:49:15.396716+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "afe435d1554a6f7e"
+  }
+}

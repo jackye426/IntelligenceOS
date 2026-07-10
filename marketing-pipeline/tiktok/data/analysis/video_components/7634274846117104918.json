@@ -1,0 +1,61 @@
+{
+  "video_id": "7634274846117104918",
+  "length_sec": 60,
+  "hook": {
+    "text": "It take 9 years on average to get diagnosed with endometriosis Here is why",
+    "channel": "onscreen",
+    "type": "unexpected_fact",
+    "type_other": null,
+    "emotional_mechanism_raw": "Surprise and curiosity: the 9-year statistic is shocking, and the promise of explanation drives engagement.",
+    "specificity": "unclear",
+    "target_audience_raw": "People with endometriosis symptoms or those seeking diagnosis, as well as general audience interested in women's health.",
+    "creates_curiosity": true,
+    "contradicts_common_belief": true,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 0.0,
+    "window_sec_hint": 0.0
+  },
+  "main_claim": {
+    "text": "The average 9-year diagnostic delay for endometriosis is due to lack of education and awareness, and simple questions that could lead to diagnosis are not being asked.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "The video explains that there are guidelines and easy questions that can point towards endometriosis, but healthcare providers need to ask and listen. Complex symptoms (e.g., pain on intercourse, bowel, bladder) often lead to misdiagnosis as period pain, and the individual nature of symptoms complicates diagnosis.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "TOFU",
+  "funnel_rationale": "The video educates about the diagnostic delay issue, raising awareness of why it happens, which is typical of top-of-funnel content. It does not directly promote a specific service, though the caption includes a booking option.",
+  "cta": {
+    "present": true,
+    "wording": "you can book a virtual consultation with her directly.",
+    "position": "end",
+    "channel": "caption",
+    "explicitness": "explicit",
+    "requested_action_raw": "Book a virtual consultation with Liz Bruen",
+    "value_exchange_raw": "Consultation with an Endometriosis Clinical Nurse Specialist with 20 years of experience",
+    "urgency": "none",
+    "funnel_stage": "BOFU"
+  },
+  "topic": {
+    "primary_raw": "Endometriosis diagnosis delay",
+    "secondary_raw": [
+      "Lack of education, complex symptoms, misdiagnosis"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "Liz Bruen",
+    "type_raw": "Endometriosis Clinical Nurse Specialist"
+  },
+  "format_raw": "talking head with onscreen text",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T16:08:19.803443+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "af1d33cd2a8f9c85"
+  }
+}

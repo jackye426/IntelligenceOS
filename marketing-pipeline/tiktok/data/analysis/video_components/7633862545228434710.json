@@ -1,0 +1,61 @@
+{
+  "video_id": "7633862545228434710",
+  "length_sec": 80,
+  "hook": {
+    "text": "It takes 9 years on average to get diagnosed with endometriosis Here is why Part 1",
+    "channel": "onscreen",
+    "type": "unexpected_fact",
+    "type_other": null,
+    "emotional_mechanism_raw": "surprise and curiosity about the diagnostic delay",
+    "specificity": "high",
+    "target_audience_raw": "people suspecting endometriosis, patients, general audience",
+    "creates_curiosity": true,
+    "contradicts_common_belief": true,
+    "payoff_clear": false,
+    "seconds_to_main_claim": 12.0,
+    "window_sec_hint": null
+  },
+  "main_claim": {
+    "text": "The diagnostic delay is caused by multiple factors including social beliefs that period pain is normal, communication gaps, and the complexity of endometriosis symptoms.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "Liz Bruen explains that the delay stems from a social and clinical belief that periods should be tolerated, difficulties in communicating symptoms (especially for teenagers), endometriosis often being misidentified as IBS, the need for symptom tracking, short GP appointments (8 minutes or less), and a breakdown in communication due to frustration or inexperience.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "TOFU",
+  "funnel_rationale": "Provides broad educational content about the reasons behind diagnostic delays, targeting those who may be unfamiliar with the issue and raising awareness.",
+  "cta": {
+    "present": true,
+    "wording": "Liz offers virtual consultations where she'll go through your full symptom history, help you understand your condition, and put together a care plan tailored to you. If you've been waiting, going in circles, or just need someone who actually gets it, her link is in bio.",
+    "position": "end",
+    "channel": "caption",
+    "explicitness": "unclear",
+    "requested_action_raw": "click link in bio to book a virtual consultation",
+    "value_exchange_raw": "full symptom history review, condition understanding, tailored care plan",
+    "urgency": "soft",
+    "funnel_stage": "BOFU"
+  },
+  "topic": {
+    "primary_raw": "endometriosis diagnostic delay",
+    "secondary_raw": [
+      "symptom tracking, communication with GPs"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "Liz Bruen",
+    "type_raw": "medical expert (Endometriosis Clinical Nurse Specialist)"
+  },
+  "format_raw": "video",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T15:39:27.329516+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "ac285d2c208d23de"
+  }
+}

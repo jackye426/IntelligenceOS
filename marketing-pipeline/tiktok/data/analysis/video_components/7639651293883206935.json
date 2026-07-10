@@ -1,0 +1,61 @@
+{
+  "video_id": "7639651293883206935",
+  "length_sec": 51,
+  "hook": {
+    "text": "Reply to Bec's comment what if you ask for a 360 an they say no are they allowed to say no?",
+    "channel": "both",
+    "type": "direct_question",
+    "type_other": null,
+    "emotional_mechanism_raw": "curiosity, empowerment",
+    "specificity": "unclear",
+    "target_audience_raw": "endometriosis patients considering or undergoing laparoscopy",
+    "creates_curiosity": true,
+    "contradicts_common_belief": false,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 7.4,
+    "window_sec_hint": 7.4
+  },
+  "main_claim": {
+    "text": "It is very unlikely a surgeon would refuse to show photos or record during laparoscopy; it is reasonable to expect to see them, and most professionals are keen to discuss and share images.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "All laparoscopic facilities have the ability to record and take pictures, so it's not unreasonable to ask. Surgeons are generally happy to discuss and show photos because it helps patients visualize their condition and understand symptoms.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "MOFU",
+  "funnel_rationale": "Addresses a specific concern about the diagnostic/treatment process (requesting images during laparoscopy), which is relevant for patients seeking diagnosis or treatment.",
+  "cta": {
+    "present": false,
+    "wording": null,
+    "position": "none",
+    "channel": "none",
+    "explicitness": "none",
+    "requested_action_raw": null,
+    "value_exchange_raw": null,
+    "urgency": "unclear",
+    "funnel_stage": null
+  },
+  "topic": {
+    "primary_raw": "requesting 360 view during laparoscopy",
+    "secondary_raw": [
+      "patient rights, doctor-patient communication"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "Dr. (likely endometriosis specialist)",
+    "type_raw": "doctor"
+  },
+  "format_raw": "video",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T15:42:51.547056+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "e8333bc0dc2e0d1a"
+  }
+}

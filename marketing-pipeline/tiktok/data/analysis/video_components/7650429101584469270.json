@@ -1,0 +1,61 @@
+{
+  "video_id": "7650429101584469270",
+  "length_sec": 51,
+  "hook": {
+    "text": "If they found no endo after a 30-min surgery Watch this first",
+    "channel": "both",
+    "type": "warning",
+    "type_other": null,
+    "emotional_mechanism_raw": "Concern and hope – concern that a negative result may be misleading, coupled with hope that there is a solution (photos and second opinion).",
+    "specificity": "high",
+    "target_audience_raw": "People who have had a negative laparoscopy for endometriosis or are about to have one.",
+    "creates_curiosity": true,
+    "contradicts_common_belief": true,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 5.0,
+    "window_sec_hint": null
+  },
+  "main_claim": {
+    "text": "A diagnostic laparoscopy that finds no endometriosis does not necessarily mean there is no endometriosis; the result depends on the surgeon's training and ability to spot all forms of the disease. Patients should request surgical photos and seek a second opinion if needed.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "The video explains that a 30-minute surgery is very quick and may not be thorough enough to detect all endometriosis lesions. It emphasizes that not every surgeon is trained to identify every form of endometriosis, and that photos from the procedure are crucial for a second opinion. The transcript reinforces that patients should ask for a detailed analysis and photos to better understand their condition.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "MOFU",
+  "funnel_rationale": "The video educates on a specific diagnostic procedure (laparoscopy) and its limitations, targeting patients who have already undergone or are considering the procedure. It moves beyond general awareness (TOFU) into diagnosis and specialist knowledge, which is characteristic of MOFU.",
+  "cta": {
+    "present": true,
+    "wording": "Ask for your photos and get a second opinion.",
+    "position": "end",
+    "channel": "both",
+    "explicitness": "explicit",
+    "requested_action_raw": "Ask for surgical photos after a laparoscopy and seek a second opinion if the results are negative.",
+    "value_exchange_raw": "Better understanding of your condition and potentially a correct diagnosis.",
+    "urgency": "none",
+    "funnel_stage": "MOFU"
+  },
+  "topic": {
+    "primary_raw": "Negative laparoscopy and missed endometriosis",
+    "secondary_raw": [
+      "Surgical photos, second opinion, specialist training"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "Endometriosis Nurse Liz",
+    "type_raw": "Nurse/educator"
+  },
+  "format_raw": "video",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T15:54:18.085506+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "3315e64508630719"
+  }
+}

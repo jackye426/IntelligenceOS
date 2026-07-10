@@ -1,0 +1,61 @@
+{
+  "video_id": "7647091030986165526",
+  "length_sec": 95,
+  "hook": {
+    "text": "If you are having a scan for endometriosis, don't panic if it comes back normal Watch this",
+    "channel": "onscreen",
+    "type": "myth_correction",
+    "type_other": null,
+    "emotional_mechanism_raw": "Reassurance, reduces anxiety by normalizing negative scan results and countering fear",
+    "specificity": "low",
+    "target_audience_raw": "Patients with endometriosis undergoing scans, especially those anxious about negative results",
+    "creates_curiosity": true,
+    "contradicts_common_belief": true,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 62.0,
+    "window_sec_hint": null
+  },
+  "main_claim": {
+    "text": "A negative MRI does not mean endometriosis is absent; MRI findings often underestimate disease severity compared to laparoscopy, sometimes requiring a two-stage procedure",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "MRI is good for assessing endometriosis above the rectal sigmoid, cecum, appendix, and pouch of Douglas, but in the speaker's experience, laparoscopic findings (gold standard) usually show worse disease. This lack of correlation means a negative scan does not clear you; you may need further investigation or a two-stage procedure with a colorectal surgeon",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "TOFU",
+  "funnel_rationale": "Broad educational content addressing a common myth about MRI reliability, raising awareness about diagnostic limitations",
+  "cta": {
+    "present": false,
+    "wording": "",
+    "position": "none",
+    "channel": "none",
+    "explicitness": "none",
+    "requested_action_raw": "",
+    "value_exchange_raw": "",
+    "urgency": "none",
+    "funnel_stage": "unclear"
+  },
+  "topic": {
+    "primary_raw": "Endometriosis diagnostic limitations of MRI",
+    "secondary_raw": [
+      "Laparoscopy correlation, two-stage procedure, transvaginal ultrasound comparison"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "Specialist (gynecologist or endometriosis surgeon)",
+    "type_raw": "expert/medical professional"
+  },
+  "format_raw": "TikTok video, talking head with onscreen text overlay and caption",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T15:48:44.849306+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "19ba9e89fe168ccf"
+  }
+}

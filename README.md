@@ -9,7 +9,7 @@ Monorepo for DocMap internal intelligence: clinic OS (Next.js), hosted MCP for C
 | `app/` | Next.js clinic outreach / accounts UI |
 | `mcp-server/` | Hosted MCP (`https://mcp.docmap.co.uk/mcp`) — TikTok tools, decision log, components read API |
 | `marketing-pipeline/` | TikTok ETL: catalog, transcripts, OCR, comments, **component extract**, Supabase sync |
-| `data-worker/` | Railway cron for TikTok refresh / metric layers |
+| `data-worker/` | Railway cron for TikTok refresh / metric layers (Studio Playwright = internal-only; see Deploy) |
 | `ingestion-pipeline/` | Clinic CSV → Supabase seed |
 | `docs/` | Deploy, MCP onboarding, execution plans |
 

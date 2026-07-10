@@ -1,0 +1,61 @@
+{
+  "video_id": "7650479358867492118",
+  "length_sec": 35,
+  "hook": {
+    "text": "Endometriosis can start younger than you think needing to use Here is what parents should know",
+    "channel": "both",
+    "type": "myth_correction",
+    "type_other": null,
+    "emotional_mechanism_raw": "Surprise and concern — challenges the belief that endometriosis only affects adults, creating worry for parents about their children's health.",
+    "specificity": "unclear",
+    "target_audience_raw": "Parents, teachers, classmates, and the general public; also those already diagnosed with endometriosis.",
+    "creates_curiosity": true,
+    "contradicts_common_belief": true,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 5.0,
+    "window_sec_hint": null
+  },
+  "main_claim": {
+    "text": "Endometriosis can start during adolescence (as early as 11-12 years old), not only at ages 18-21, and it severely impacts education, social life, and mental health, yet symptoms like severe pain or passing out are often dismissed as 'normal' periods.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "The speaker urges parents and teachers to recognize warning signs such as needing strong painkillers or fainting on day one of the period, and highlights the long-term consequences on education and social development, as well as the stigma girls face.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "MOFU",
+  "funnel_rationale": "The video educates about early symptoms and impacts of endometriosis, targeting those who may be recognizing symptoms or seeking diagnosis/treatment; it also indirectly promotes a specialist nurse consultation.",
+  "cta": {
+    "present": true,
+    "wording": "Go to the link in our bio to book a consultation with Liz Bruen.",
+    "position": "end",
+    "channel": "caption",
+    "explicitness": "explicit",
+    "requested_action_raw": "Click the link in the bio to schedule a consultation with endometriosis nurse Liz Bruen.",
+    "value_exchange_raw": "Access to a private virtual consultation with the first endometriosis nurse in Wales, now in private practice.",
+    "urgency": "soft",
+    "funnel_stage": "BOFU"
+  },
+  "topic": {
+    "primary_raw": "Early onset of endometriosis in adolescents",
+    "secondary_raw": [
+      "Impact of endometriosis on education and social life, need for awareness in schools, available specialist care"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "Liz Bruen",
+    "type_raw": "Endometriosis nurse specialist, former first endometriosis nurse in Wales"
+  },
+  "format_raw": "Video (35 seconds) – talking head with onscreen text overlay",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T15:56:40.215078+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "438b8715de31b5cd"
+  }
+}

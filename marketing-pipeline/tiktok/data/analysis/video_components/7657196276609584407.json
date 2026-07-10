@@ -1,0 +1,61 @@
+{
+  "video_id": "7657196276609584407",
+  "length_sec": 45,
+  "hook": {
+    "text": "Struggling at work with endometriosis? Here's what you need to know",
+    "channel": "onscreen",
+    "type": "direct_question",
+    "type_other": null,
+    "emotional_mechanism_raw": "creates empathy and curiosity about solutions",
+    "specificity": "high",
+    "target_audience_raw": "people with endometriosis struggling at work",
+    "creates_curiosity": true,
+    "contradicts_common_belief": false,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 0.0,
+    "window_sec_hint": 45.0
+  },
+  "main_claim": {
+    "text": "Work doesn't have to be another battle on top of endometriosis.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "Examples of workplace accommodations include correct chair, work from home, parking spot, rest times, rest chair, and access to good nutrition.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "MOFU",
+  "funnel_rationale": "Provides actionable advice for those already diagnosed to improve their work life, addressing a specific pain point after diagnosis.",
+  "cta": {
+    "present": false,
+    "wording": "no CTA",
+    "position": "none",
+    "channel": "none",
+    "explicitness": "none",
+    "requested_action_raw": "none",
+    "value_exchange_raw": "none",
+    "urgency": "none",
+    "funnel_stage": "MOFU"
+  },
+  "topic": {
+    "primary_raw": "endometriosis workplace accommodations",
+    "secondary_raw": [
+      "workplace rights"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "unknown",
+    "type_raw": "unknown"
+  },
+  "format_raw": "talking head with on-screen text",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T16:03:45.684673+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "7ed3351f55a6a64c"
+  }
+}

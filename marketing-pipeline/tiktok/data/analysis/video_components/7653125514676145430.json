@@ -1,0 +1,61 @@
+{
+  "video_id": "7653125514676145430",
+  "length_sec": 15,
+  "hook": {
+    "text": "If you are not sure your employer will support you with endometriosis, watch this",
+    "channel": "both",
+    "type": "other",
+    "type_other": "conditional reassurance",
+    "emotional_mechanism_raw": "reassurance, relief",
+    "specificity": "unclear",
+    "target_audience_raw": "people with endometriosis concerned about employer support",
+    "creates_curiosity": true,
+    "contradicts_common_belief": true,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 0.0,
+    "window_sec_hint": 0.0
+  },
+  "main_claim": {
+    "text": "Many companies, through HR, will recognise your symptoms and adapt your work to accommodate them.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "The video states that if you have an illness and go through HR, many companies will recognise symptoms and adapt work accordingly.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "MOFU",
+  "funnel_rationale": "Addresses a practical workplace challenge for those already aware of endometriosis, moving beyond basic awareness to actionable advice.",
+  "cta": {
+    "present": false,
+    "wording": null,
+    "position": "none",
+    "channel": "none",
+    "explicitness": "none",
+    "requested_action_raw": null,
+    "value_exchange_raw": null,
+    "urgency": "unclear",
+    "funnel_stage": null
+  },
+  "topic": {
+    "primary_raw": "endometriosis workplace support",
+    "secondary_raw": [
+      "employer accommodations"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "patient",
+    "type_raw": "unclear"
+  },
+  "format_raw": "video",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T15:59:19.147462+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "26169e20f45a777b"
+  }
+}

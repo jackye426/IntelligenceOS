@@ -1,0 +1,61 @@
+{
+  "video_id": "7630900114982210838",
+  "length_sec": 67,
+  "hook": {
+    "text": "If you're getting a laparoscopy for endo, watch this first",
+    "channel": "both",
+    "type": "warning",
+    "type_other": null,
+    "emotional_mechanism_raw": "fear of missed diagnosis or ineffective surgery due to inadequate laparoscopic technique",
+    "specificity": "unclear",
+    "target_audience_raw": "people heading into laparoscopic surgery for endo or currently on the waiting list",
+    "creates_curiosity": true,
+    "contradicts_common_belief": true,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 0.0,
+    "window_sec_hint": null
+  },
+  "main_claim": {
+    "text": "You need to ask for a 360-degree assessment during laparoscopy to ensure all areas are checked, and excision (not ablation) should be performed.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "The nurse explains that standard laparoscopy may miss hidden endometriosis, especially in the pouch of Douglas, unless the surgeon performs a 360-degree assessment, lifts the pouch of Douglas, and systematically checks the diaphragm, bowels, appendix, ovaries, uterus, and bladder. Excision is preferred over ablation.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "BOFU",
+  "funnel_rationale": "The video provides detailed educational content about the laparoscopic procedure (MOFU) but strongly drives to a specific booking CTA for a private consultation with the featured nurse specialist, making it primarily a conversion-focused piece (BOFU). The caption explicitly offers booking via link in bio.",
+  "cta": {
+    "present": true,
+    "wording": "If you would like to speak to Liz yourself, you can find prices, availability and book a zoom appointment with her directly by visiting the link in our bio!",
+    "position": "end",
+    "channel": "caption",
+    "explicitness": "unclear",
+    "requested_action_raw": "Visit the link in the bio to book a zoom appointment with Liz Bruen",
+    "value_exchange_raw": "Access to a private endometriosis clinical nurse specialist consultation for laparoscopy preparation and guidance",
+    "urgency": "none",
+    "funnel_stage": "BOFU"
+  },
+  "topic": {
+    "primary_raw": "laparoscopy for endometriosis",
+    "secondary_raw": [
+      "360-degree assessment, excision vs ablation, specialist consultation"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "Liz Bruen, Endometriosis Clinical Nurse Specialist",
+    "type_raw": "clinical nurse specialist (expert)"
+  },
+  "format_raw": "interview with expert",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T15:31:37.791436+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "169648b5be34a33d"
+  }
+}

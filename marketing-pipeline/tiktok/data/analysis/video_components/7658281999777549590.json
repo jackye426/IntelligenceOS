@@ -1,0 +1,61 @@
+{
+  "video_id": "7658281999777549590",
+  "length_sec": 77,
+  "hook": {
+    "text": "After endo surgery, I was sent home without a single explanation I just PRADA MARFA",
+    "channel": "both",
+    "type": "personal_story",
+    "type_other": null,
+    "emotional_mechanism_raw": "shock and frustration from being neglected after surgery",
+    "specificity": "high",
+    "target_audience_raw": "endometriosis patients who have had or will have surgery",
+    "creates_curiosity": true,
+    "contradicts_common_belief": true,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 5.0,
+    "window_sec_hint": null
+  },
+  "main_claim": {
+    "text": "After endometriosis surgery, patients are often sent home without proper explanation or follow-up, leading to continued suffering and lack of knowledge.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "The speaker describes waking up after surgery, being told she had endometriosis and could have children, then sent home without any conversation about what was done, the stage, location, or what it meant. She only got three months of relief, then was back to square one, received a discharge letter six months later to be seen at an endometriosis clinic, but until then was left alone, leading to constant A&E visits and still not knowing what was happening with her body.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "TOFU",
+  "funnel_rationale": "This video raises awareness about the common experience of poor post-surgical care and lack of patient education, which is broad educational content suitable for the top of the funnel to engage and inform a wide audience.",
+  "cta": {
+    "present": false,
+    "wording": "",
+    "position": "none",
+    "channel": "none",
+    "explicitness": "none",
+    "requested_action_raw": null,
+    "value_exchange_raw": null,
+    "urgency": "unclear",
+    "funnel_stage": null
+  },
+  "topic": {
+    "primary_raw": "endometriosis post-surgery experience",
+    "secondary_raw": [
+      "lack of patient education after surgery"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "I",
+    "type_raw": "patient"
+  },
+  "format_raw": "video",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T16:13:12.957381+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "95905cb06e69f7ba"
+  }
+}

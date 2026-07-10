@@ -1,0 +1,61 @@
+{
+  "video_id": "7632002231339928854",
+  "length_sec": 35,
+  "hook": {
+    "text": "If you're needing to use really strong pain killers, get help.",
+    "channel": "both",
+    "type": "symptom_recognition",
+    "type_other": null,
+    "emotional_mechanism_raw": "Alarm created by suggesting that requiring strong painkillers for periods is abnormal and necessitates seeking help.",
+    "specificity": "high",
+    "target_audience_raw": "Individuals experiencing severe menstrual pain who may not recognize it as a symptom of endometriosis",
+    "creates_curiosity": true,
+    "contradicts_common_belief": true,
+    "payoff_clear": false,
+    "seconds_to_main_claim": null,
+    "window_sec_hint": 0.0
+  },
+  "main_claim": {
+    "text": "Painful periods are often one of the first and most well-known symptoms of endometriosis, and it can progress if untreated.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "The video explains that endometriosis can start as early as age 11-12, impacting education, social life, and leading to labeling. It calls for awareness in schools and among parents and teachers.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "TOFU",
+  "funnel_rationale": "Video primarily educates about endometriosis symptoms and advocates for broader awareness, typical of top-of-funnel content. While it includes a booking CTA, the main message is educational.",
+  "cta": {
+    "present": true,
+    "wording": "go to the link in our bio to book a consultation with Liz Bruen",
+    "position": "end",
+    "channel": "onscreen",
+    "explicitness": "explicit",
+    "requested_action_raw": "Navigate to link in bio and book a consultation with the endometriosis nurse",
+    "value_exchange_raw": "Access to a specialist endometriosis nurse for a private virtual consultation",
+    "urgency": "none",
+    "funnel_stage": "BOFU"
+  },
+  "topic": {
+    "primary_raw": "Endometriosis symptom awareness",
+    "secondary_raw": [
+      "Menstrual health education in schools"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "Liz Bruen",
+    "type_raw": "endometriosis nurse specialist / narrator"
+  },
+  "format_raw": "Narrated educational video with on-screen text overlays",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T15:38:21.505876+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "9d3d0ca4f753c7a9"
+  }
+}

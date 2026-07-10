@@ -1,0 +1,61 @@
+{
+  "video_id": "7631220659770690818",
+  "length_sec": 30,
+  "hook": {
+    "text": "Excision vs. Ablation Here's what the endo nurse wants you to know",
+    "channel": "both",
+    "type": "authority_statement",
+    "type_other": null,
+    "emotional_mechanism_raw": "Appeals to authority of a nurse specialist and creates curiosity about insider knowledge",
+    "specificity": "unclear",
+    "target_audience_raw": "People with endometriosis or considering surgery, evaluating treatment options",
+    "creates_curiosity": true,
+    "contradicts_common_belief": true,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 0.0,
+    "window_sec_hint": null
+  },
+  "main_claim": {
+    "text": "Excision is necessary because endometriosis is too deep to be treated effectively by ablation, which only removes the surface layer.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "Ablation is compared to skimming a wall with blown plaster — it doesn't address the underlying damage. Endometriosis tissue is deep-rooted, so superficial ablation leads to symptom recurrence.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "MOFU",
+  "funnel_rationale": "The video explains a specific treatment comparison (excision vs ablation) aimed at patients who are already diagnosed or evaluating surgery, not broad awareness.",
+  "cta": {
+    "present": false,
+    "wording": "none",
+    "position": "none",
+    "channel": "none",
+    "explicitness": "none",
+    "requested_action_raw": null,
+    "value_exchange_raw": null,
+    "urgency": "none",
+    "funnel_stage": null
+  },
+  "topic": {
+    "primary_raw": "Endometriosis surgery: excision vs ablation",
+    "secondary_raw": [
+      "Endometriosis recurrence after ablation"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "Liz Bruen",
+    "type_raw": "Endometriosis Clinical Specialist Nurse"
+  },
+  "format_raw": "video",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T15:31:57.653236+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "c1df06c631f13117"
+  }
+}

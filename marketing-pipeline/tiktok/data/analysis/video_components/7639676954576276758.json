@@ -1,0 +1,61 @@
+{
+  "video_id": "7639676954576276758",
+  "length_sec": 28,
+  "hook": {
+    "text": "When are we asking for this, just before or are we sending a letter before hand",
+    "channel": "both",
+    "type": "direct_question",
+    "type_other": null,
+    "emotional_mechanism_raw": "Addresses a practical concern, creating curiosity about the correct procedure",
+    "specificity": "unclear",
+    "target_audience_raw": "Endometriosis patients seeking surgery approval",
+    "creates_curiosity": true,
+    "contradicts_common_belief": false,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 2.0,
+    "window_sec_hint": 0.0
+  },
+  "main_claim": {
+    "text": "The request for a letter of approval should be discussed during the appointment with your medical professional, as part of the consensus process.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "Consensus is important to clinicians and begins when they talk to you about the surgical procedure. It's reasonable to discuss it at that point and can be revisited anytime.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "BOFU",
+  "funnel_rationale": "The video addresses a specific step in preparing for or during a consultation to obtain necessary documentation for surgery, which is typical of bottom-of-funnel content.",
+  "cta": {
+    "present": false,
+    "wording": "none",
+    "position": "none",
+    "channel": "none",
+    "explicitness": "none",
+    "requested_action_raw": "none",
+    "value_exchange_raw": "none",
+    "urgency": "none",
+    "funnel_stage": null
+  },
+  "topic": {
+    "primary_raw": "Obtaining a letter for endometriosis surgery",
+    "secondary_raw": [
+      "Patient communication with doctors"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "Doctor",
+    "type_raw": "medical professional"
+  },
+  "format_raw": "video",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T15:43:12.200266+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "04957ea1fc9cf2b4"
+  }
+}

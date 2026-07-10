@@ -1,0 +1,61 @@
+{
+  "video_id": "7649808436883967254",
+  "length_sec": 51,
+  "hook": {
+    "text": "This is the most overlooked endometriosis symptom. Endometriosis nurse explains why",
+    "channel": "onscreen",
+    "type": "symptom_recognition",
+    "type_other": null,
+    "emotional_mechanism_raw": "Surprise and validation – presenting a commonly dismissed symptom as crucial",
+    "specificity": "high",
+    "target_audience_raw": "People with endometriosis or those suspecting they have it",
+    "creates_curiosity": true,
+    "contradicts_common_belief": true,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 0.0,
+    "window_sec_hint": null
+  },
+  "main_claim": {
+    "text": "Fatigue is the most overlooked symptom of endometriosis, affecting over half of patients.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "A nurse's study of 100 patients found 95% had fatigue, 70% had painful intercourse, and 80% had painful periods. Fatigue is often dismissed as normal tiredness but is actually due to an ongoing inflammatory process in the body.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "TOFU",
+  "funnel_rationale": "Awareness education about an overlooked symptom, correcting a common misconception, no direct push toward diagnosis or treatment.",
+  "cta": {
+    "present": false,
+    "wording": null,
+    "position": "none",
+    "channel": "none",
+    "explicitness": "none",
+    "requested_action_raw": null,
+    "value_exchange_raw": null,
+    "urgency": "unclear",
+    "funnel_stage": null
+  },
+  "topic": {
+    "primary_raw": "endometriosis",
+    "secondary_raw": [
+      "fatigue as overlooked symptom"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "endometriosis nurse",
+    "type_raw": "medical professional"
+  },
+  "format_raw": "single talking head with onscreen text overlay",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T15:53:08.636422+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "1319e7cd7f845c03"
+  }
+}
