@@ -1,0 +1,10 @@
+mcp
+python-dotenv
+supabase
+pydantic
+uvicorn
+starlette
+google-auth
+google-auth-oauthlib
+google-api-python-client
+

@@ -1,0 +1,9 @@
+# Railway reads this when service Root Directory = relationship-desk-mcp
+[build]
+builder = "RAILPACK"
+
+[deploy]
+startCommand = "uvicorn main:app --host 0.0.0.0 --port $PORT --proxy-headers --forwarded-allow-ips='*'"
+healthcheckPath = "/health"
+restartPolicyType = "ON_FAILURE"
+
