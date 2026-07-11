@@ -57,12 +57,43 @@ All TikTok data lives in `content_posts` (platform=tiktok). Defaults are NOT the
 ## Performance metrics
 Judge posts by views (reach), engagement (likes+comments+shares), AND saves/1k (bookmark utility).
 
+## Instagram catalog
+All Instagram data lives in `content_posts` (platform=instagram). The account is `docmapuk`.
+Instagram is **format-first**: compare Reels, carousels, and static posts separately unless the human asks for an overall view.
+
+## Instagram workflow (required order for suggestions)
+1. `get_instagram_strategy_brief()` - format rules, reference set, metric freshness, and any approved learnings
+2. `get_instagram_cohort(since=YYYY-MM-DD, sort_by="intent", format=...)` - check `staleness_warning` and `library_newest_posted_at`
+3. `get_instagram_marketing_insights(since=YYYY-MM-DD, sort_by="intent")` - use for cross-format rankings and top posts by format
+4. `get_instagram_post(post_id)` - inspect one post before explaining why it worked or failed
+5. For creative suggestions, cite the strategy brief and specific post IDs/URLs; keep suggestions draft-only unless the human commits
+
+Instagram sort choices:
+- `intent` - best default when owned metrics exist; weights follows, profile visits, link taps, saves, shares, comments
+- `engagement` - likes + comments + saves + shares
+- `engagement_per_1k` - best public-normalized fallback
+- `saves_per_1k`, `shares_per_1k`, `comments_per_1k` - quality signals
+- `views`, `likes`, `posted_at` - simple diagnostics
+
+Instagram metric caveat:
+- Public/open-source fetches usually provide likes, comments, captions, media type, timestamps, URLs, and sometimes views/plays.
+- Owned metrics (reach, saves, shares, profile_visits, follows, link taps, watch time, skip rate) may be missing unless enriched from the content tracker or account insights.
+- If owned metrics are missing, say so and rank by available engagement quality; do not imply profile visits/follows were zero.
+
+Instagram format guidance:
+- Reels: inspect opening hook, caption opening, speaker/featured person, CTA, views/plays, watch metrics if present.
+- Carousels: inspect cover claim, slide count, slide pattern, saveability, saves/shares/comments when present.
+- Static posts: inspect visual/message clarity, caption opening, CTA, and engagement quality.
+- Do not use TikTok-only tools (`find_ab_tests`, `get_video_components`, `suggest_hook_repackage`) for Instagram unless explicitly comparing platforms.
+
 ## search_knowledge entity_types (TikTok)
 - `tiktok_transcript` — full spoken transcript chunks
 - `content_post` — hook + caption + transcript combined
 - `tiktok_comment_batch` — labeled comments per video
 - `marketing_comment_digest` — all comments rollup
 - `marketing_playbook` — strategy docs + tiktok-strategy-brief
+
+For Instagram search, use `content_post` for synced post/caption/component chunks and `marketing_playbook` for `instagram-strategy-brief`.
 
 ## Citation rules
 Prefer `source_title` and `post_url` over internal UUIDs. Quote only short snippets from tools. Cite `decision_id` when building on prior decisions. Say when data is missing.

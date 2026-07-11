@@ -37,6 +37,11 @@ SKIP_CONTENT_TRACKER = _getenv("SKIP_CONTENT_TRACKER", default="false").lower() 
     "yes",
 }
 SKIP_HCA = _getenv("SKIP_HCA", default="false").lower() in {"1", "true", "yes"}
+SKIP_INSTAGRAM = _getenv("SKIP_INSTAGRAM", default="false").lower() in {
+    "1",
+    "true",
+    "yes",
+}
 
 # TikTok pipeline: transcribe new catalog videos on worker (set true to disable)
 SKIP_TRANSCRIBE = _getenv("SKIP_TRANSCRIBE", default="false").lower() in {
@@ -54,6 +59,10 @@ SKIP_STUDIO_LISTEN = _getenv("SKIP_STUDIO_LISTEN", default="false").lower() in {
 
 # Writable pipeline data root on Railway (mount a volume at this path)
 MARKETING_DATA_DIR = _getenv("MARKETING_DATA_DIR", default="/app/marketing-data")
+MARKETING_INSTAGRAM_DATA_DIR = _getenv(
+    "MARKETING_INSTAGRAM_DATA_DIR",
+    default=str(Path(MARKETING_DATA_DIR) / "instagram"),
+)
 WHISPER_MODEL = _getenv("WHISPER_MODEL", default="small")
 
 CONTENT_TRACKER_CSV = REPO_ROOT / (

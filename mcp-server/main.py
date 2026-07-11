@@ -40,6 +40,10 @@ from tools.get_tiktok_metric_layers import (  # noqa: E402
 from tools.find_ab_tests import find_ab_tests  # noqa: E402
 from tools.record_ab_learning import record_ab_learning  # noqa: E402
 from tools.get_tiktok_strategy_brief import get_tiktok_strategy_brief  # noqa: E402
+from tools.get_instagram_post import get_instagram_post  # noqa: E402
+from tools.get_instagram_cohort import get_instagram_cohort  # noqa: E402
+from tools.get_instagram_marketing_insights import get_instagram_marketing_insights  # noqa: E402
+from tools.get_instagram_strategy_brief import get_instagram_strategy_brief  # noqa: E402
 from tools.tiktok_insights import (  # noqa: E402
     approve_tiktok_insight,
     draft_tiktok_insight,
@@ -82,7 +86,12 @@ def search_knowledge_tool(
     entity_type: str | None = None,
     match_count: int = 5,
 ):
-    """Semantic search over DocMap embeddings. TikTok: entity_type tiktok_transcript | content_post | marketing_playbook | marketing_comment_digest."""
+    """Semantic search over DocMap embeddings.
+
+    TikTok entity_type: tiktok_transcript | content_post | tiktok_comment_batch | marketing_comment_digest | marketing_playbook.
+    Instagram entity_type: content_post for post/caption/component chunks; marketing_playbook for instagram-strategy-brief.
+    Prefer platform-specific tools for rankings/cohorts; use search_knowledge for semantic retrieval.
+    """
     return search_knowledge(query, entity_type=entity_type, match_count=match_count)
 
 
@@ -116,7 +125,13 @@ def get_content_performance_tool(
     limit: int = 20,
     sort_by: str = "views",
 ):
-    """Top content posts. sort_by: views | likes | engagement | saves_per_1k | posted_at. Use platform=tiktok for full TikTok catalog."""
+    """Top content posts across platforms.
+
+    Use platform=tiktok or platform=instagram to scope results.
+    sort_by: views | likes | engagement | saves_per_1k | posted_at.
+    For Instagram strategy work prefer get_instagram_cohort/get_instagram_marketing_insights,
+    because they understand format and intent metrics.
+    """
     return get_content_performance(platform=platform, limit=limit, sort_by=sort_by)  # type: ignore[arg-type]
 
 
@@ -192,6 +207,81 @@ def get_tiktok_strategy_brief_tool():
     suggest_next_tiktok_angles. Cite decision_id when building on prior decisions.
     """
     return get_tiktok_strategy_brief()
+
+
+@mcp.tool()
+def get_instagram_strategy_brief_tool():
+    """Load the Instagram strategy brief BEFORE creative suggestions.
+
+    Use first for: "what should we post", "what worked on Instagram", weekly review,
+    content planning, or repackage ideas.
+
+    Returns format rules, reference posts, metric freshness, and approved learnings.
+    Format-first: compare Reels, carousels, and static posts separately.
+    Prefer owned metrics (profile visits/follows/link taps) when present; otherwise use engagement quality.
+    If found=false, tell the human Instagram has not been synced yet.
+    """
+    return get_instagram_strategy_brief()
+
+
+@mcp.tool()
+def get_instagram_post_tool(post_id: str):
+    """Inspect one Instagram post by platform_post_id.
+
+    Use after get_instagram_cohort/get_instagram_marketing_insights when explaining why a specific post worked or failed.
+    Returns caption, format, metrics, deterministic components, carousel child media, source layers, and content-tracker enrichment.
+    Cite post_url and posted_at from the result. Do not infer missing owned metrics as zero.
+    """
+    return get_instagram_post(post_id)
+
+
+@mcp.tool()
+def get_instagram_cohort_tool(
+    since: str | None = None,
+    until: str | None = None,
+    sort_by: str = "intent",
+    limit: int = 50,
+    format: str | None = None,
+    tier: str = "all",
+):
+    """Date-filtered Instagram posts with format filter and staleness warning.
+
+    Use for weekly reviews, recent performance questions, and format-specific comparisons.
+    sort_by:
+    - intent (default): follows/profile_visits/link_taps/saves/shares/comments when present
+    - engagement: likes+comments+saves+shares
+    - engagement_per_1k, saves_per_1k, shares_per_1k, comments_per_1k
+    - views, likes, posted_at
+    format: reel | carousel | static | unknown.
+    Always check staleness_warning before saying there were no recent posts.
+    """
+    return get_instagram_cohort(
+        since=since,
+        until=until,
+        sort_by=sort_by,  # type: ignore[arg-type]
+        limit=limit,
+        format=format,
+        tier=tier,  # type: ignore[arg-type]
+    )
+
+
+@mcp.tool()
+def get_instagram_marketing_insights_tool(
+    limit: int = 15,
+    sort_by: str = "intent",
+    since: str | None = None,
+):
+    """Instagram multi-metric rankings and per-format top posts.
+
+    Use for "what worked?", "rank Instagram posts", or "compare Reels vs carousels vs static".
+    Returns overall rankings plus top_by_format. Default sort_by=intent; use engagement_per_1k
+    when owned metrics are sparse. Follow up with get_instagram_post for any individual post explanation.
+    """
+    return get_instagram_marketing_insights(
+        limit=limit,
+        sort_by=sort_by,  # type: ignore[arg-type]
+        since=since,
+    )
 
 
 @mcp.tool()

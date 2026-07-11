@@ -19,6 +19,7 @@ dependencies = [
 [project.optional-dependencies]
 media = ["yt-dlp", "faster-whisper"]
 ocr = ["opencv-python-headless", "pytesseract"]
+instagram = ["instaloader"]
 studio = ["playwright>=1.40"]
 
 [project.scripts]

@@ -9,6 +9,8 @@ cd marketing-pipeline
 pip install -e .
 # Optional for full refresh (yt-dlp, Whisper):
 pip install -e ".[media]"
+# Optional for Instagram public fetch:
+pip install -e ".[instagram]"
 ```
 
 Env vars (from repo root `.env.local`):
@@ -19,6 +21,8 @@ Env vars (from repo root `.env.local`):
 | `OPENROUTER_API_KEY` | Embeddings, OCR vision, component extract |
 | `MODEL_OCR` | Vision OCR (default `google/gemini-3-flash-preview`) |
 | `MODEL_COMPONENTS` | Text LLM for video component cards (default `deepseek/deepseek-v4-flash`; try `deepseek/deepseek-v4-pro` if needed) |
+| `INSTAGRAM_ACCOUNT` | Instagram account handle (default `docmapuk`) |
+| `MARKETING_INSTAGRAM_DATA_DIR` | Instagram pipeline data root (default `marketing-pipeline/instagram/data`) |
 
 ## CLI
 
@@ -37,6 +41,14 @@ python -m marketing_pipeline tiktok display-snapshots           # Display API ve
 python -m marketing_pipeline tiktok studio-listen [--recent N]  # Studio insight capture (see note)
 python -m marketing_pipeline tiktok ingest-studio-insight PATH
 python -m marketing_pipeline tiktok ingest-bc-csv [DIR]         # Business Center CSVs
+```
+
+Instagram:
+
+```bash
+python -m marketing_pipeline instagram fetch --account docmapuk --limit 50
+python -m marketing_pipeline instagram export
+python -m marketing_pipeline instagram sync-supabase [--dry-run] [--skip-embed]
 ```
 
 **OCR:** ffmpeg on PATH (or `FFMPEG_PATH`), `OPENROUTER_API_KEY`, `MODEL_OCR`. Install media extras: `pip install -e ".[media]"`.

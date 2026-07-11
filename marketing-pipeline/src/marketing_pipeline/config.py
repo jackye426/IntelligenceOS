@@ -67,6 +67,31 @@ ALL_COMMENTS_TXT = EXPORTS_DIR / "ALL_COMMENTS.txt"
 DATASET_VERSION = "2"
 COMMENT_STALE_DAYS = 7
 
+INSTAGRAM_ACCOUNT = _getenv("INSTAGRAM_ACCOUNT", default="docmapuk")
+INSTAGRAM_DATA_ROOT = Path(
+    _getenv(
+        "MARKETING_INSTAGRAM_DATA_DIR",
+        default=str(PACKAGE_ROOT / "instagram" / "data"),
+    )
+)
+INSTAGRAM_RAW_DIR = INSTAGRAM_DATA_ROOT / "raw"
+INSTAGRAM_COMMENTS_RAW_DIR = INSTAGRAM_DATA_ROOT / "comments_raw"
+INSTAGRAM_ANALYSIS_DIR = INSTAGRAM_DATA_ROOT / "analysis"
+INSTAGRAM_EXPORTS_DIR = INSTAGRAM_DATA_ROOT / "exports"
+INSTAGRAM_MEDIA_DIR = INSTAGRAM_DATA_ROOT / "media"
+INSTAGRAM_DATASET_JSON = INSTAGRAM_EXPORTS_DIR / "instagram_marketing_dataset.json"
+INSTAGRAM_STRATEGY_BRIEF_JSON = INSTAGRAM_ANALYSIS_DIR / "instagram_strategy_brief.json"
+INSTAGRAM_CONTENT_TRACKER_CSV = Path(
+    _getenv(
+        "INSTAGRAM_CONTENT_TRACKER_CSV",
+        default=str(
+            REPO_ROOT
+            / "Social media analysis"
+            / "Marketing - Content - Tracker - Content Tracker (3).csv"
+        ),
+    )
+)
+
 
 SUPABASE_URL = _getenv("SUPABASE_URL", "NEXT_PUBLIC_SUPABASE_URL")
 SUPABASE_SERVICE_ROLE_KEY = _getenv("SUPABASE_SERVICE_ROLE_KEY", "SUPABASE_KEY")

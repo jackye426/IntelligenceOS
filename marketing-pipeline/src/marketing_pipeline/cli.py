@@ -21,6 +21,11 @@ from marketing_pipeline.tiktok.orchestrator import (
     run_sync_playbooks_cmd,
     run_sync_supabase,
 )
+from marketing_pipeline.instagram.orchestrator import (
+    run_export as run_instagram_export,
+    run_fetch as run_instagram_fetch,
+    run_sync_supabase as run_instagram_sync_supabase,
+)
 
 
 def _tiktok_parser(sub: argparse._SubParsersAction) -> None:
@@ -135,14 +140,57 @@ def _tiktok_parser(sub: argparse._SubParsersAction) -> None:
     studio_listen.add_argument("--dry-run", action="store_true")
 
 
+def _instagram_parser(sub: argparse._SubParsersAction) -> None:
+    instagram = sub.add_parser("instagram", help="Instagram marketing pipeline")
+    instagram_sub = instagram.add_subparsers(dest="command", required=True)
+
+    fetch = instagram_sub.add_parser(
+        "fetch",
+        help="Fetch recent public Instagram posts for docmapuk via Instaloader",
+    )
+    fetch.add_argument("--account", default="docmapuk")
+    fetch.add_argument("--limit", type=int, default=50)
+    fetch.add_argument("--include-comments", action="store_true")
+
+    instagram_sub.add_parser(
+        "export",
+        help="Build Instagram dataset JSON from local raw artifacts + content tracker enrichment",
+    )
+
+    sync = instagram_sub.add_parser("sync-supabase", help="Sync Instagram dataset to Supabase")
+    sync.add_argument("--dry-run", action="store_true")
+    sync.add_argument("--skip-embed", action="store_true")
+
+
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(prog="marketing_pipeline")
     sub = parser.add_subparsers(dest="channel", required=True)
     _tiktok_parser(sub)
+    _instagram_parser(sub)
 
     args = parser.parse_args(argv)
-    if args.channel != "tiktok":
+    if args.channel not in {"tiktok", "instagram"}:
         parser.error(f"Unsupported channel: {args.channel}")
+
+    if args.channel == "instagram":
+        if args.command == "fetch":
+            result = run_instagram_fetch(
+                account=args.account,
+                limit=args.limit,
+                include_comments=args.include_comments,
+            )
+        elif args.command == "export":
+            result = run_instagram_export()
+        elif args.command == "sync-supabase":
+            result = run_instagram_sync_supabase(
+                dry_run=args.dry_run,
+                skip_embed=args.skip_embed,
+            )
+        else:
+            parser.error(f"Unknown command: {args.command}")
+            return
+        print(json.dumps(result, indent=2))
+        return
 
     if args.command == "export":
         result = run_export()

@@ -25,6 +25,7 @@ sys.path.insert(0, str(ROOT))
 from common import config  # noqa: E402
 
 os.environ.setdefault("MARKETING_DATA_DIR", config.MARKETING_DATA_DIR)
+os.environ.setdefault("MARKETING_INSTAGRAM_DATA_DIR", config.MARKETING_INSTAGRAM_DATA_DIR)
 os.environ.setdefault("WHISPER_MODEL", config.WHISPER_MODEL)
 # Cache the Whisper model on the persistent volume so it is not re-downloaded
 # from HuggingFace on every cold start / restart.
@@ -50,6 +51,11 @@ from marketing_pipeline.tiktok.stages.fetch_catalog import fetch_catalog  # noqa
 from marketing_pipeline.tiktok.stages.refresh_videos import refresh_videos  # noqa: E402
 from marketing_pipeline.tiktok.stages.write_master_transcripts import (  # noqa: E402
     write_master_transcripts,
+)
+from marketing_pipeline.instagram.orchestrator import (  # noqa: E402
+    run_export as run_instagram_export,
+    run_fetch as run_instagram_fetch,
+    run_sync_supabase as run_instagram_sync_supabase,
 )
 
 from jobs.content_tracker import run_content_tracker  # noqa: E402
@@ -124,6 +130,14 @@ def _run_tiktok_pipeline(*, full_refresh: bool = False, include_ocr: bool = Fals
     return result
 
 
+def _run_instagram_pipeline() -> dict:
+    """Fetch public Instagram posts, export dataset, and sync to Supabase."""
+    fetch = run_instagram_fetch(account="docmapuk", limit=80, include_comments=False)
+    export = run_instagram_export()
+    sync = run_instagram_sync_supabase()
+    return {"fetch": fetch, "export": export, "sync": sync}
+
+
 def main() -> None:
     logger.info("marketing_pipeline.bootstrap at %s", _bootstrap_mod.__file__)
     bootstrap = ensure_pipeline_data()
@@ -144,6 +158,17 @@ def main() -> None:
         )
     else:
         logger.info("SKIP_CONTENT_TRACKER=true — content tracker job disabled")
+
+    if not config.SKIP_INSTAGRAM:
+        scheduler.add_job(
+            _safe("instagram_marketing", _run_instagram_pipeline),
+            CronTrigger(hour=3, minute=10),
+            id="instagram_marketing",
+            replace_existing=True,
+        )
+        logger.info("Instagram pipeline enabled for @docmapuk")
+    else:
+        logger.info("SKIP_INSTAGRAM=true — Instagram pipeline disabled")
 
     scheduler.add_job(
         _safe("tiktok_marketing", lambda: _run_tiktok_pipeline()),
