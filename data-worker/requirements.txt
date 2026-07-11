@@ -8,4 +8,4 @@ pandas
 # Explicit — also pulled via marketing-pipeline[studio]; needed before startCommand browser install
 playwright>=1.40
 # Pin commit hash — bump when marketing-pipeline changes (busts Railway pip layer cache).
-marketing-pipeline[media,studio,instagram] @ git+https://github.com/jackye426/IntelligenceOS.git@f182656#subdirectory=marketing-pipeline
+marketing-pipeline[media,studio,instagram] @ git+https://github.com/jackye426/IntelligenceOS.git@98ae735#subdirectory=marketing-pipeline
