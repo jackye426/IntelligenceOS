@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import os
 from pathlib import Path
+from urllib.parse import urlparse
 
 from dotenv import load_dotenv
 
@@ -38,6 +39,23 @@ ALLOWED_HOSTS = [
     host.strip()
     for host in _getenv("RELATIONSHIP_DESK_ALLOWED_HOSTS").split(",")
     if host.strip()
+]
+
+
+def _host_from_url(value: str) -> str:
+    if not value:
+        return ""
+    parsed = urlparse(value if "://" in value else f"https://{value}")
+    return parsed.netloc or parsed.path
+
+
+RAILWAY_HOSTS = [
+    host
+    for host in {
+        _host_from_url(_getenv("RAILWAY_PUBLIC_DOMAIN")),
+        _host_from_url(_getenv("RAILWAY_STATIC_URL")),
+    }
+    if host
 ]
 DNS_REBINDING_PROTECTION = _getenv(
     "RELATIONSHIP_DESK_DNS_REBINDING_PROTECTION",

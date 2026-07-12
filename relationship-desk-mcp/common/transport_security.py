@@ -31,9 +31,9 @@ def _expand_hosts(hosts: list[str]) -> list[str]:
 def build_transport_security() -> TransportSecuritySettings:
     if not config.DNS_REBINDING_PROTECTION:
         return TransportSecuritySettings(enable_dns_rebinding_protection=False)
+    allowed_hosts = config.ALLOWED_HOSTS or [*_DEFAULT_ALLOWED_HOSTS, *config.RAILWAY_HOSTS]
     return TransportSecuritySettings(
         enable_dns_rebinding_protection=True,
-        allowed_hosts=_expand_hosts(config.ALLOWED_HOSTS or _DEFAULT_ALLOWED_HOSTS),
+        allowed_hosts=_expand_hosts(allowed_hosts),
         allowed_origins=config.ALLOWED_ORIGINS,
     )
-
