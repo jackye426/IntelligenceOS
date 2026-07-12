@@ -391,3 +391,99 @@ def list_events(chase_id: str, *, limit: int = 20) -> list[dict[str, Any]]:
         .data
         or []
     )
+
+
+def list_contact_chases(contact_id: str, *, limit: int = 20) -> list[dict[str, Any]]:
+    return (
+        _table("relationship_chases")
+        .select("*, relationship_contacts(*)")
+        .eq("contact_id", contact_id)
+        .order("created_at", desc=True)
+        .limit(max(1, min(limit, 100)))
+        .execute()
+        .data
+        or []
+    )
+
+
+def list_context_sources(contact_id: str, *, limit: int = 30) -> list[dict[str, Any]]:
+    try:
+        return (
+            _table("relationship_context_sources")
+            .select("*")
+            .eq("contact_id", contact_id)
+            .order("occurred_at", desc=True, nullsfirst=False)
+            .limit(max(1, min(limit, 100)))
+            .execute()
+            .data
+            or []
+        )
+    except Exception:
+        return []
+
+
+def list_memory_items(contact_id: str, *, limit: int = 30, include_resolved: bool = False) -> list[dict[str, Any]]:
+    try:
+        query = (
+            _table("relationship_memory_items")
+            .select("*, relationship_context_sources(*)")
+            .eq("contact_id", contact_id)
+            .order("occurred_at", desc=True, nullsfirst=False)
+            .limit(max(1, min(limit, 100)))
+        )
+        if not include_resolved:
+            query = query.eq("status", "active")
+        return query.execute().data or []
+    except Exception:
+        return []
+
+
+def upsert_context_source(
+    *,
+    source_type: str,
+    source_id: str,
+    contact_id: str | None = None,
+    source_url: str | None = None,
+    title: str | None = None,
+    occurred_at: str | None = None,
+    participants: list[dict[str, Any]] | None = None,
+    context_quality: str = "unknown",
+    sensitivity: str = "internal",
+    metadata: dict[str, Any] | None = None,
+) -> dict[str, Any] | None:
+    payload = {
+        "contact_id": contact_id,
+        "source_type": source_type,
+        "source_id": source_id,
+        "source_url": source_url,
+        "title": title,
+        "occurred_at": occurred_at,
+        "participants": participants or [],
+        "context_quality": context_quality,
+        "sensitivity": sensitivity,
+        "metadata": metadata or {},
+        "last_seen_at": now_iso(),
+        "updated_at": now_iso(),
+    }
+    try:
+        existing = (
+            _table("relationship_context_sources")
+            .select("*")
+            .eq("source_type", source_type)
+            .eq("source_id", source_id)
+            .limit(1)
+            .execute()
+            .data
+            or []
+        )
+        if existing:
+            return (
+                _table("relationship_context_sources")
+                .update({k: v for k, v in payload.items() if v is not None})
+                .eq("id", existing[0]["id"])
+                .execute()
+                .data[0]
+            )
+        return _table("relationship_context_sources").insert({k: v for k, v in payload.items() if v is not None}).execute().data[0]
+    except Exception:
+        return None

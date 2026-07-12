@@ -8,6 +8,7 @@ from typing import Any
 from common.audit import log_tool_call
 from common.drafting import draft_followup
 from common.gmail_client import create_draft, get_thread, send_message
+from common.relationship_context import build_context
 from common.relationship_store import add_event, get_chase, update_chase
 from common.safety import classify_message, mode_allows_send
 
@@ -23,6 +24,7 @@ def run(
     try:
         chase = get_chase(chase_id)
         contact = chase.get("relationship_contacts") or {}
+        context = build_context(chase_id=chase_id, include_live_gmail=True)
         thread = get_thread(chase["gmail_thread_id"]) if chase.get("gmail_thread_id") else None
         if not subject or not body:
             drafted = draft_followup(chase, thread=thread)
@@ -58,7 +60,7 @@ def run(
                 event_type="sent",
                 summary=subject,
                 gmail_message_id=result.get("message_id"),
-                metadata={"safety": safety},
+                metadata={"safety": safety, "context_quality": context.get("context_quality")},
             )
         else:
             result = create_draft(
@@ -80,7 +82,11 @@ def run(
                 event_type="drafted",
                 summary=subject,
                 gmail_draft_id=result.get("draft_id"),
-                metadata={"requested_action": action, "safety": safety},
+                metadata={
+                    "requested_action": action,
+                    "safety": safety,
+                    "context_quality": context.get("context_quality"),
+                },
             )
 
         log_tool_call(
@@ -97,6 +103,7 @@ def run(
             "mode_note": "Sending was not allowed, so a draft was created."
             if action != "draft" and not should_send
             else None,
+            "context": context,
             "safety": safety,
             "gmail": result,
         }

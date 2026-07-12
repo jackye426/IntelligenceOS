@@ -27,7 +27,7 @@ from common.auth import AuthMiddleware  # noqa: E402
 from common.instructions import RELATIONSHIP_DESK_INSTRUCTIONS  # noqa: E402
 from common.transport_security import build_transport_security  # noqa: E402
 from tools import act_on_chase, capture_chase, chase_state, draft_chase, list_chases  # noqa: E402
-from tools import followup_candidates, relationship_desk, review_inbox_since, sync_replies, thread_tools  # noqa: E402
+from tools import followup_candidates, relationship_context, relationship_desk, review_inbox_since, sync_replies, thread_tools  # noqa: E402
 
 mcp = FastMCP(
     "Relationship Desk",
@@ -97,6 +97,27 @@ def search_threads_tool(query: str, max_results: int = 10) -> dict[str, Any]:
 def get_thread_brief_tool(gmail_thread_id: str) -> dict[str, Any]:
     """Read and summarize a Gmail thread for relationship context."""
     return thread_tools.brief(gmail_thread_id=gmail_thread_id)
+
+
+@mcp.tool()
+def get_relationship_context_tool(
+    contact_hint: str | None = None,
+    email: str | None = None,
+    chase_id: str | None = None,
+    days_back: int = 180,
+    include_live_gmail: bool = True,
+) -> dict[str, Any]:
+    """Build an evidence-led relationship brief from chase state, contact memory, and live Gmail context.
+
+    Use before drafting judgement-heavy replies. The result labels context quality and missing evidence.
+    """
+    return relationship_context.get(
+        contact_hint=contact_hint,
+        email=email,
+        chase_id=chase_id,
+        days_back=days_back,
+        include_live_gmail=include_live_gmail,
+    )
 
 
 @mcp.tool()

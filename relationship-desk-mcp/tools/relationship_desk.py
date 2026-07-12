@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from . import act_on_chase, capture_chase, draft_chase, followup_candidates, list_chases
+from . import act_on_chase, capture_chase, draft_chase, followup_candidates, list_chases, relationship_context
 
 
 def run(*, instruction: str, limit: int = 10) -> dict[str, Any]:
@@ -15,6 +15,12 @@ def run(*, instruction: str, limit: int = 10) -> dict[str, Any]:
         return {
             "interpreted_as": "review_due_chases",
             "result": list_chases.due_now(limit=limit),
+        }
+
+    if any(phrase in lower for phrase in ["what do we know", "relationship context", "context for", "brief me on"]):
+        return {
+            "interpreted_as": "get_relationship_context",
+            "result": relationship_context.get(contact_hint=text),
         }
 
     if any(phrase in lower for phrase in ["what follow-ups", "followup candidates", "follow-up candidates", "what did you find"]):
@@ -51,5 +57,5 @@ def run(*, instruction: str, limit: int = 10) -> dict[str, Any]:
 
     return {
         "interpreted_as": "needs_more_direction",
-        "message": "I can review due chases, capture a new chase, draft due chases, or send safe due chases.",
+        "message": "I can review due chases, brief a relationship, capture a chase, draft due chases, or send safe due chases.",
     }

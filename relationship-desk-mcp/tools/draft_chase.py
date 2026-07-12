@@ -8,6 +8,7 @@ from common import config
 from common.audit import log_tool_call
 from common.drafting import draft_followup
 from common.gmail_client import get_thread
+from common.relationship_context import build_context
 from common.relationship_store import get_chase
 from common.safety import classify_message
 
@@ -15,6 +16,7 @@ from common.safety import classify_message
 def run(*, chase_id: str, tone: str = "warm") -> dict[str, Any]:
     try:
         chase = get_chase(chase_id)
+        context = build_context(chase_id=chase_id, include_live_gmail=True)
         thread = None
         if chase.get("gmail_thread_id"):
             thread = get_thread(chase["gmail_thread_id"], max_messages=config.MAX_THREAD_MESSAGES)
@@ -31,8 +33,9 @@ def run(*, chase_id: str, tone: str = "warm") -> dict[str, Any]:
             success=True,
             entity_type="relationship_chase",
             entity_id=chase_id,
+            metadata={"context_quality": context.get("context_quality")},
         )
-        return {"chase": chase, "draft": draft, "safety": safety}
+        return {"chase": chase, "context": context, "draft": draft, "safety": safety}
     except Exception as exc:
         log_tool_call(tool_name="draft_chase", request_summary=chase_id, success=False, error=str(exc))
         raise

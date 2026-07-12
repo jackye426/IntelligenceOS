@@ -9,6 +9,7 @@ It deliberately sits outside the marketing Intelligence OS MCP. Marketing tools 
 - tracks who needs chasing and why
 - remembers the needed response, next chase date, and current status
 - searches and briefs Gmail threads
+- builds evidence-led relationship context briefs
 - drafts routine follow-ups
 - creates Gmail drafts
 - sends only when the configured mode and safety rules allow it
@@ -41,8 +42,15 @@ search_threads_tool
 get_thread_brief_tool
 - Read a known Gmail thread before drafting or summarizing context.
 
+get_relationship_context_tool
+- Best for: "what do we know about this person?", pre-call prep, and judgement-heavy drafting.
+- Combines chase/contact state, relationship events, lightweight memory, and live Gmail context.
+- Returns `context_quality`, missing evidence, open loops, timeline, source list, and drafting guidance.
+- If context is email-only or sparse, do not invent meeting details.
+
 draft_chase_tool
 - Generate follow-up copy only. Does not touch Gmail.
+- Returns relationship context alongside the draft so Claude can see evidence quality.
 
 act_on_chase_tool
 - Creates a Gmail draft or sends, depending on RELATIONSHIP_DESK_MODE and safety.
@@ -72,6 +80,7 @@ ignore_followup_candidate_tool
 
 get_relationship_brief_tool
 - Shows chase, contact, and event history before calls or judgement-heavy replies.
+- Use `get_relationship_context_tool` for fuller source-aware context.
 
 mark_waiting_tool / snooze_chase_tool / mark_done_tool
 - Update chase lifecycle after human review or after a draft/send.
@@ -127,6 +136,42 @@ RELATIONSHIP_DESK_MODE=draft_only|supervised_send|auto_send_safe
 
 Run `sql/006_relationship_desk.sql` before using chase-state tools.
 Run `sql/007_relationship_followup_candidates.sql` before using inbox candidate tools.
+Run `sql/008_relationship_context_memory.sql` before using context memory tools.
+
+## Context Memory Policy
+
+Relationship Desk stores lightweight memory and source references, not raw inbox or transcript archives by default.
+
+Store:
+
+```text
+contact ids
+source ids: gmail_thread_id, calendar_event_id, drive_file_id
+dates, titles, participants
+short summaries
+open loops / commitments
+context quality
+```
+
+Avoid storing by default:
+
+```text
+full email bodies
+full transcripts
+attachments
+patient-sensitive content
+```
+
+Use context quality labels literally:
+
+```text
+rich          email + meeting/docs/transcript-style evidence
+good          email plus at least one other source or active memory
+email-only    Gmail/chase evidence only
+calendar-only meeting metadata only
+sparse        contact exists but little context
+unknown       unresolved or no evidence
+```
 
 ## Worker
 
