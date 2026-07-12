@@ -56,6 +56,20 @@ sync_replies_tool
 review_inbox_since_tool
 - Reviews recent inbox threads and suggests which ones may need tracking.
 
+scan_inbox_for_followups_tool
+- Scans recent Gmail inbox threads, classifies likely follow-up needs, and creates suggested candidates.
+- Does not send email.
+- By default does not create chases unless a candidate is accepted.
+
+review_followup_candidates_tool
+- Lists suggested follow-ups found by inbox scans.
+
+accept_followup_candidate_tool
+- Converts a suggested follow-up into a tracked chase.
+
+ignore_followup_candidate_tool
+- Marks noisy or irrelevant suggestions as ignored.
+
 get_relationship_brief_tool
 - Shows chase, contact, and event history before calls or judgement-heavy replies.
 
@@ -85,7 +99,7 @@ The default is `draft_only`.
 The practitioner context table is configurable:
 
 ```text
-SUPABASE_PRACTITIONERS_TABLE=integrated_practitioner_with_phin
+SUPABASE_PRACTITIONERS_TABLE=integrated_practitioners
 ```
 
 This avoids hardcoding a stale practitioner table. If the canonical table changes, change the environment variable instead of the code.
@@ -112,3 +126,33 @@ RELATIONSHIP_DESK_MODE=draft_only|supervised_send|auto_send_safe
 ```
 
 Run `sql/006_relationship_desk.sql` before using chase-state tools.
+Run `sql/007_relationship_followup_candidates.sql` before using inbox candidate tools.
+
+## Worker
+
+The MCP is the interactive action layer. The optional worker keeps inbox state warm in the background:
+
+```bash
+cd relationship-desk-mcp
+python worker.py
+```
+
+Schedule:
+
+```text
+sync_replies: every 30 minutes
+scan_inbox_for_followups: every 2 hours at minute 10
+```
+
+Worker env:
+
+```text
+RELATIONSHIP_WORKER_RUN_ON_START=false
+RELATIONSHIP_WORKER_AUTO_CONVERT=false
+RELATIONSHIP_WORKER_SCAN_HOURS_BACK=96
+RELATIONSHIP_WORKER_SCAN_MAX_RESULTS=50
+RELATIONSHIP_WORKER_MIN_CONFIDENCE=0.65
+RELATIONSHIP_WORKER_SYNC_LIMIT=100
+```
+
+Keep `RELATIONSHIP_WORKER_AUTO_CONVERT=false` until the candidate quality is proven.

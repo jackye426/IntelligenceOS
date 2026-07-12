@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from datetime import datetime, timedelta, timezone
+import re
 from typing import Any
 
 from . import config
@@ -35,6 +36,28 @@ def _clean_email(email: str | None) -> str | None:
 
 def _table(name: str):
     return get_client().table(name)
+
+
+def _search_terms(query: str) -> list[str]:
+    """Split human contact hints into PostgREST-safe search fragments."""
+    raw = (query or "").strip()
+    if not raw:
+        return []
+    email_matches = re.findall(r"[\w.+-]+@[\w.-]+\.\w+", raw)
+    parts = re.split(r"[,;<>()\[\]\n\r\t]+", raw)
+    terms = [*email_matches, *parts]
+    cleaned: list[str] = []
+    seen: set[str] = set()
+    for term in terms:
+        value = re.sub(r"\s+", " ", term).strip()
+        value = value.strip("\"'")
+        if len(value) < 2:
+            continue
+        key = value.lower()
+        if key not in seen:
+            cleaned.append(value)
+            seen.add(key)
+    return cleaned[:4]
 
 
 def upsert_contact(
@@ -83,48 +106,83 @@ def upsert_contact(
 
 
 def search_contacts(query: str, *, limit: int = 10) -> list[dict[str, Any]]:
-    term = (query or "").strip()
-    if not term:
+    terms = _search_terms(query)
+    if not terms:
         return []
-    return (
-        _table("relationship_contacts")
-        .select("*")
-        .or_(f"display_name.ilike.*{term}*,email.ilike.*{term}*,organization.ilike.*{term}*")
-        .limit(limit)
-        .execute()
-        .data
-        or []
-    )
+    seen: set[str] = set()
+    rows: list[dict[str, Any]] = []
+    for term in terms:
+        batch = (
+            _table("relationship_contacts")
+            .select("*")
+            .or_(f"display_name.ilike.*{term}*,email.ilike.*{term}*,organization.ilike.*{term}*")
+            .limit(limit)
+            .execute()
+            .data
+            or []
+        )
+        for row in batch:
+            row_id = str(row.get("id"))
+            if row_id not in seen:
+                rows.append(row)
+                seen.add(row_id)
+        if len(rows) >= limit:
+            break
+    return rows[:limit]
 
 
 def search_practitioners(query: str, *, limit: int = 5) -> list[dict[str, Any]]:
-    term = (query or "").strip()
-    if not term:
+    terms = _search_terms(query)
+    if not terms:
         return []
     fields = "id,name,email,specialty,specialties,practice_name,clinic_name,website,profile_url"
-    try:
-        rows = (
-            _table(config.PRACTITIONERS_TABLE)
-            .select(fields)
-            .or_(f"name.ilike.*{term}*,email.ilike.*{term}*,specialty.ilike.*{term}*")
-            .limit(limit)
-            .execute()
-            .data
-            or []
-        )
-    except Exception:
-        rows = (
-            _table(config.PRACTITIONERS_TABLE)
-            .select("*")
-            .or_(f"name.ilike.*{term}*,email.ilike.*{term}*")
-            .limit(limit)
-            .execute()
-            .data
-            or []
-        )
+    seen: set[str] = set()
+    rows: list[dict[str, Any]] = []
+    table_names = []
+    for table_name in [config.PRACTITIONERS_TABLE, "integrated_practitioners"]:
+        if table_name and table_name not in table_names:
+            table_names.append(table_name)
+    used_table = config.PRACTITIONERS_TABLE
+    for table_name in table_names:
+        table_failed = False
+        for term in terms:
+            try:
+                try:
+                    batch = (
+                        _table(table_name)
+                        .select(fields)
+                        .or_(f"name.ilike.*{term}*,email.ilike.*{term}*,specialty.ilike.*{term}*")
+                        .limit(limit)
+                        .execute()
+                        .data
+                        or []
+                    )
+                except Exception:
+                    batch = (
+                        _table(table_name)
+                        .select("*")
+                        .or_(f"name.ilike.*{term}*,email.ilike.*{term}*")
+                        .limit(limit)
+                        .execute()
+                        .data
+                        or []
+                    )
+            except Exception:
+                table_failed = True
+                break
+            used_table = table_name
+            for row in batch:
+                row_id = str(row.get("id") or row.get("email") or row)
+                if row_id not in seen:
+                    rows.append(row)
+                    seen.add(row_id)
+            if len(rows) >= limit:
+                break
+        if rows or not table_failed:
+            break
     return [
         {
-            "source": config.PRACTITIONERS_TABLE,
+            "source": used_table,
             "linked_entity_type": "practitioner",
             "linked_entity_id": str(row.get("id")),
             "display_name": row.get("name") or row.get("display_name"),
@@ -137,21 +195,31 @@ def search_practitioners(query: str, *, limit: int = 5) -> list[dict[str, Any]]:
 
 
 def search_clinics(query: str, *, limit: int = 5) -> list[dict[str, Any]]:
-    term = (query or "").strip()
-    if not term:
+    terms = _search_terms(query)
+    if not terms:
         return []
-    try:
-        rows = (
-            _table("clinic_accounts")
-            .select("id,name,email,website,status,metadata")
-            .or_(f"name.ilike.*{term}*,email.ilike.*{term}*")
-            .limit(limit)
-            .execute()
-            .data
-            or []
-        )
-    except Exception:
-        return []
+    seen: set[str] = set()
+    rows: list[dict[str, Any]] = []
+    for term in terms:
+        try:
+            batch = (
+                _table("clinic_accounts")
+                .select("id,name,email,website,status,metadata")
+                .or_(f"name.ilike.*{term}*,email.ilike.*{term}*")
+                .limit(limit)
+                .execute()
+                .data
+                or []
+            )
+        except Exception:
+            batch = []
+        for row in batch:
+            row_id = str(row.get("id") or row.get("email") or row)
+            if row_id not in seen:
+                rows.append(row)
+                seen.add(row_id)
+        if len(rows) >= limit:
+            break
     return [
         {
             "source": "clinic_accounts",
@@ -209,7 +277,7 @@ def create_chase(
     if not contact_id and (email or contact_hint):
         resolved = resolve_contact_hint(contact_hint, email=email)
         contact = resolved.get("contact")
-        if contact and contact.get("source") in {config.PRACTITIONERS_TABLE, "clinic_accounts"}:
+        if contact and contact.get("source") in {config.PRACTITIONERS_TABLE, "integrated_practitioners", "clinic_accounts"}:
             contact = upsert_contact(
                 display_name=contact.get("display_name") or contact_hint,
                 email=contact.get("email") or email,

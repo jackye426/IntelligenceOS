@@ -26,7 +26,7 @@ SUPABASE_URL = _getenv("SUPABASE_URL", "NEXT_PUBLIC_SUPABASE_URL")
 SUPABASE_SERVICE_ROLE_KEY = _getenv("SUPABASE_SERVICE_ROLE_KEY", "SUPABASE_KEY")
 PRACTITIONERS_TABLE = _getenv(
     "SUPABASE_PRACTITIONERS_TABLE",
-    default="integrated_practitioner_with_phin",
+    default="integrated_practitioners",
 )
 
 AUTH_TOKEN = _getenv("RELATIONSHIP_DESK_AUTH_TOKEN", "MCP_AUTH_TOKEN")

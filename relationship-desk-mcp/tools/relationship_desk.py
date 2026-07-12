@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from . import act_on_chase, capture_chase, draft_chase, list_chases
+from . import act_on_chase, capture_chase, draft_chase, followup_candidates, list_chases
 
 
 def run(*, instruction: str, limit: int = 10) -> dict[str, Any]:
@@ -15,6 +15,18 @@ def run(*, instruction: str, limit: int = 10) -> dict[str, Any]:
         return {
             "interpreted_as": "review_due_chases",
             "result": list_chases.due_now(limit=limit),
+        }
+
+    if any(phrase in lower for phrase in ["what follow-ups", "followup candidates", "follow-up candidates", "what did you find"]):
+        return {
+            "interpreted_as": "review_followup_candidates",
+            "result": followup_candidates.review(limit=limit),
+        }
+
+    if any(phrase in lower for phrase in ["scan inbox", "check inbox", "find follow-ups", "find followups"]):
+        return {
+            "interpreted_as": "scan_inbox_for_followups",
+            "result": followup_candidates.scan_inbox(max_results=limit),
         }
 
     if "draft" in lower and ("all" in lower or "due" in lower):

@@ -27,7 +27,7 @@ from common.auth import AuthMiddleware  # noqa: E402
 from common.instructions import RELATIONSHIP_DESK_INSTRUCTIONS  # noqa: E402
 from common.transport_security import build_transport_security  # noqa: E402
 from tools import act_on_chase, capture_chase, chase_state, draft_chase, list_chases  # noqa: E402
-from tools import relationship_desk, review_inbox_since, sync_replies, thread_tools  # noqa: E402
+from tools import followup_candidates, relationship_desk, review_inbox_since, sync_replies, thread_tools  # noqa: E402
 
 mcp = FastMCP(
     "Relationship Desk",
@@ -103,6 +103,49 @@ def get_thread_brief_tool(gmail_thread_id: str) -> dict[str, Any]:
 def review_inbox_since_tool(since: str, max_results: int = 20) -> dict[str, Any]:
     """Review inbox threads after a Gmail date string such as 2026/7/1."""
     return review_inbox_since.run(since=since, max_results=max_results)
+
+
+@mcp.tool()
+def scan_inbox_for_followups_tool(
+    since: str | None = None,
+    hours_back: int = 72,
+    max_results: int = 30,
+    auto_convert_high_confidence: bool = False,
+    min_confidence: float = 0.65,
+) -> dict[str, Any]:
+    """Scan recent Gmail inbox threads and create suggested follow-up candidates.
+
+    This does not send email. By default it only creates candidates for review.
+    """
+    return followup_candidates.scan_inbox(
+        since=since,
+        hours_back=hours_back,
+        max_results=max_results,
+        auto_convert_high_confidence=auto_convert_high_confidence,
+        min_confidence=min_confidence,
+    )
+
+
+@mcp.tool()
+def review_followup_candidates_tool(
+    status: str = "suggested",
+    limit: int = 30,
+    min_confidence: float | None = None,
+) -> dict[str, Any]:
+    """Review suggested follow-ups found by inbox scanning."""
+    return followup_candidates.review(status=status, limit=limit, min_confidence=min_confidence)
+
+
+@mcp.tool()
+def accept_followup_candidate_tool(candidate_id: str) -> dict[str, Any]:
+    """Convert a suggested follow-up candidate into a tracked chase."""
+    return followup_candidates.accept(candidate_id)
+
+
+@mcp.tool()
+def ignore_followup_candidate_tool(candidate_id: str, reason: str | None = None) -> dict[str, Any]:
+    """Ignore a follow-up candidate so it does not keep appearing as suggested."""
+    return followup_candidates.ignore(candidate_id, reason=reason)
 
 
 @mcp.tool()
