@@ -1,8 +1,164 @@
 {
-  "refreshed_at": "2026-07-03T05:13:26.221418+00:00",
+  "refreshed_at": "2026-07-06T03:57:00.440477+00:00",
   "since": "2026-04-20",
-  "catalog_count": 65,
+  "catalog_count": 71,
   "already_had_transcript": 37,
-  "attempted_new": 28,
-  "results": []
+  "attempted_new": 34,
+  "results": [
+    {
+      "video_id": "7657196276609584407",
+      "status": "transcribed",
+      "chars": 649
+    },
+    {
+      "video_id": "7657158848876252438",
+      "status": "transcribed",
+      "chars": 122
+    },
+    {
+      "video_id": "7658282932284476694",
+      "status": "transcribed",
+      "chars": 249
+    },
+    {
+      "video_id": "7657137322055503126",
+      "status": "skipped_carousel_or_no_speech"
+    },
+    {
+      "video_id": "7658281999777549590",
+      "status": "transcribed",
+      "chars": 1215
+    },
+    {
+      "video_id": "7657193222283758870",
+      "status": "skipped_carousel_or_no_speech"
+    },
+    {
+      "video_id": "7657194813548170518",
+      "status": "transcribed",
+      "chars": 230
+    },
+    {
+      "video_id": "7657124670826695958",
+      "status": "transcribed",
+      "chars": 494
+    },
+    {
+      "video_id": "7657190878246669590",
+      "status": "transcribed",
+      "chars": 484
+    },
+    {
+      "video_id": "7657119412062801174",
+      "status": "skipped_carousel_or_no_speech"
+    },
+    {
+      "video_id": "7657200670260481302",
+      "status": "transcribed",
+      "chars": 1164
+    },
+    {
+      "video_id": "7657095030577843459",
+      "status": "transcribed",
+      "chars": 625
+    },
+    {
+      "video_id": "7656847212751916290",
+      "status": "transcribed",
+      "chars": 660
+    },
+    {
+      "video_id": "7653774474680077590",
+      "status": "transcribed",
+      "chars": 618
+    },
+    {
+      "video_id": "7653134809450958102",
+      "status": "transcribed",
+      "chars": 180
+    },
+    {
+      "video_id": "7653125514676145430",
+      "status": "transcribed",
+      "chars": 167
+    },
+    {
+      "video_id": "7653135089735421206",
+      "status": "transcribed",
+      "chars": 1167
+    },
+    {
+      "video_id": "7653126732819565846",
+      "status": "transcribed",
+      "chars": 122
+    },
+    {
+      "video_id": "7653123483274054934",
+      "status": "transcribed",
+      "chars": 475
+    },
+    {
+      "video_id": "7653120154154568962",
+      "status": "transcribed",
+      "chars": 429
+    },
+    {
+      "video_id": "7652666439475907843",
+      "status": "skipped_carousel_or_no_speech"
+    },
+    {
+      "video_id": "7652662905082547478",
+      "status": "transcribed",
+      "chars": 1144
+    },
+    {
+      "video_id": "7652295829587250454",
+      "status": "skipped_carousel_or_no_speech"
+    },
+    {
+      "video_id": "7651627428573433110",
+      "status": "transcribed",
+      "chars": 496
+    },
+    {
+      "video_id": "7651627777971457302",
+      "status": "skipped_carousel_or_no_speech"
+    },
+    {
+      "video_id": "7650483052963040534",
+      "status": "skipped_carousel_or_no_speech"
+    },
+    {
+      "video_id": "7641917387201187094",
+      "status": "skipped_carousel_or_no_speech"
+    },
+    {
+      "video_id": "7638883805494889750",
+      "status": "skipped_carousel_or_no_speech"
+    },
+    {
+      "video_id": "7637061986777402646",
+      "status": "skipped_carousel_or_no_speech"
+    },
+    {
+      "video_id": "7636091017875197207",
+      "status": "skipped_carousel_or_no_speech"
+    },
+    {
+      "video_id": "7635716747869424918",
+      "status": "skipped_carousel_or_no_speech"
+    },
+    {
+      "video_id": "7634984535372942614",
+      "status": "skipped_carousel_or_no_speech"
+    },
+    {
+      "video_id": "7634568172330421526",
+      "status": "skipped_carousel_or_no_speech"
+    },
+    {
+      "video_id": "7631307430890048790",
+      "status": "skipped_carousel_or_no_speech"
+    }
+  ]
 }

@@ -1,0 +1,26 @@
+{
+  "video_id": "7658282932284476694",
+  "source_media": "7658282932284476694.mp4",
+  "whisper_model": "small",
+  "model": "small",
+  "language": "en",
+  "duration_after_vad": 15.8141875,
+  "full_text": "you're too young to have endometriosis and I was like I just had a diagnosis like it's on my notes oh well then yeah you just happened to fly go home and that continued for a very very long time and I still didn't know what was going on with my body",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 6.0,
+      "text": "you're too young to have endometriosis and I was like I just had a diagnosis like it's on my notes"
+    },
+    {
+      "start": 6.0,
+      "end": 12.72,
+      "text": "oh well then yeah you just happened to fly go home and that continued for a very very long time"
+    },
+    {
+      "start": 12.72,
+      "end": 15.6,
+      "text": "and I still didn't know what was going on with my body"
+    }
+  ]
+}

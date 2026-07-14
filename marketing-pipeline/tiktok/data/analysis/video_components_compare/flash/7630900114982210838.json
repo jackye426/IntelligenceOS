@@ -1,0 +1,61 @@
+{
+  "video_id": "7630900114982210838",
+  "length_sec": 67,
+  "hook": {
+    "text": "If you're getting a laparoscopy for endo, watch this first",
+    "channel": "both",
+    "type": "warning",
+    "type_other": null,
+    "emotional_mechanism_raw": "fear of misdiagnosis",
+    "specificity": "medium",
+    "target_audience_raw": "people scheduled for or waiting for laparoscopic surgery for endometriosis",
+    "creates_curiosity": true,
+    "contradicts_common_belief": true,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 8.0,
+    "window_sec_hint": null
+  },
+  "main_claim": {
+    "text": "Surgeons may miss endometriosis during laparoscopy unless they perform a 360-degree assessment; patients should ask for this.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "The video details that a 360-degree assessment involves checking the diaphragm, bowels, appendix, ovaries, uterus, bladder, and pouch of Douglas, including elevating the pouch of Douglas to find hidden lesions, and emphasizes excision over ablation.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "MOFU",
+  "funnel_rationale": "Explains a specific diagnostic technique (360-degree assessment) and how to advocate for proper diagnosis, targeting viewers already on the path to surgery.",
+  "cta": {
+    "present": true,
+    "wording": "If you would like to speak to Liz yourself, you can find prices, availability and book a zoom appointment with her directly by visiting the link in our bio!",
+    "position": "none",
+    "channel": "caption",
+    "explicitness": "unclear",
+    "requested_action_raw": "visit link in bio to book zoom appointment",
+    "value_exchange_raw": "speak to Liz, get prices and availability",
+    "urgency": "unclear",
+    "funnel_stage": "BOFU"
+  },
+  "topic": {
+    "primary_raw": "laparoscopic surgery for endometriosis",
+    "secondary_raw": [
+      "360-degree assessment, excision vs ablation"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "Liz Bruen",
+    "type_raw": "clinical nurse specialist"
+  },
+  "format_raw": "interview / expert advice",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1_compare",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T14:23:38.538385+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "169648b5be34a33d"
+  }
+}

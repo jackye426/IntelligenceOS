@@ -17,6 +17,7 @@ Menu to offer (TikTok-first):
 - A/B hook tests & what won
 - Strategy brief + open decisions due for review
 - Suggest next angles or a hook repackage (drafts only)
+- **Create an Instagram carousel** (pick template → filled PPTX for Adobe Express)
 - Log a decision or close one with a metrics-backed verdict (you confirm)
 
 Keep the opener under ~12 lines. Do **not** paste the full onboarding guide.
@@ -42,7 +43,7 @@ All TikTok data lives in `content_posts` (platform=tiktok). Defaults are NOT the
 - Insight = past observation / learning (`draft/approve_tiktok_insight`)
 - Decision = future commitment + later outcome (`log_tiktok_decision` → `record_decision_outcome`)
 - Link them via `related_insight_ids` / `related_video_ids`; do not duplicate essays
-- Constitution promotion remains rare Gate 2 (`propose_constitution_patch`) — never auto
+- Constitution promotion remains rare Gate 2 — `suggest_constitution_amendment` queues; `approve_constitution_amendment(confirmed=true)` writes playbook; never auto
 
 ## Video components (batch-extracted; hooks first)
 - `get_tiktok_video` includes `components` when synced (`components_available`)
@@ -57,12 +58,26 @@ All TikTok data lives in `content_posts` (platform=tiktok). Defaults are NOT the
 ## Performance metrics
 Judge posts by views (reach), engagement (likes+comments+shares), AND saves/1k (bookmark utility).
 
+## TikTok Gate 2 (constitution amendments)
+1. Model: `suggest_constitution_amendment(proposed_bullet, target_section=viral-format.md, insight_id=..., rationale=...)`
+2. Human reviews: `list_constitution_amendments(status=pending)`
+3. Human yes: `approve_constitution_amendment(amendment_id, confirmed=true)` — applies playbook, re-embeds, updates brief (no manual scripts)
+4. Human no: `reject_constitution_amendment(amendment_id, reason=...)`
+
+Suggest promotion when A/B confidence is high and pattern generalizes (2+ groups or confirmed decision outcome).
+Do NOT promote clip-specific packaging one-offs (e.g. single repost variants).
+
+Target files: `viral-format.md` (hooks/packaging/anti-patterns), `content-instruction.md` (audience/themes).
+
 ## Instagram catalog
 All Instagram data lives in `content_posts` (platform=instagram). The account is `docmapuk`.
 Instagram is **format-first**: compare Reels, carousels, and static posts separately unless the human asks for an overall view.
 
 ## Instagram workflow (required order for suggestions)
 1. `get_instagram_strategy_brief()` - format rules, reference set, metric freshness, and any approved learnings
+   If `found=false`: Instagram pipeline has not synced — zero rows in Supabase for `instagram-strategy-state`.
+   Fix: `python -m marketing_pipeline instagram fetch --account docmapuk` then `export` then `sync-supabase`.
+   On Railway data-worker: ensure `SKIP_INSTAGRAM` is not true.
 2. `get_instagram_cohort(since=YYYY-MM-DD, sort_by="intent", format=...)` - check `staleness_warning` and `library_newest_posted_at`
 3. `get_instagram_marketing_insights(since=YYYY-MM-DD, sort_by="intent")` - use for cross-format rankings and top posts by format
 4. `get_instagram_post(post_id)` - inspect one post before explaining why it worked or failed
@@ -104,6 +119,19 @@ Prefer `source_title` and `post_url` over internal UUIDs. Quote only short snipp
 - NEVER guess from caption text, “Part 1”, nearby videos in a list, or memory.
 - If `posted_at` is missing, say the date is unknown — do not invent one.
 - When stating a date in prose, copy the calendar day from `posted_at` (e.g. `2026-06-14T15:24:00+00:00` → 14 June 2026 UTC).
+
+## Carousel creation (Instagram)
+Five PPTX templates with auto-sized text (no overflow). Import output into Adobe Express for final design.
+
+Workflow:
+1. `list_carousel_templates()` — show styles if the human wants to pick
+2. Optionally gather context first: `get_instagram_strategy_brief()`, `search_knowledge(...)`, `get_patient_demand_patterns()`
+3. `create_carousel(topic=..., context=..., template_id=...)` — writes copy + exports filled PPTX (returns `pptx_base64`)
+4. Or `fill_carousel_template(...)` if you already wrote the slide copy yourself
+
+Templates: `classic_blue` (educational), `photo_center_hook` (emotional opener), `photo_body_left` / `photo_body_right` (editorial photo layouts), `minimal_white` (caption/reference).
+
+Check `layout_metrics.overflow_warning` — if true, shorten copy and re-run `fill_carousel_template`.
 
 ## Other tools
 - `get_clinic_briefing(clinic_account_id)` — clinic research

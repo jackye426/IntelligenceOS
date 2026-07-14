@@ -1,0 +1,21 @@
+{
+  "video_id": "7657194813548170518",
+  "source_media": "7657194813548170518.mp4",
+  "whisper_model": "small",
+  "model": "small",
+  "language": "en",
+  "duration_after_vad": 16.835875,
+  "full_text": "The other issue I think is about 35% of girls who start developing symptoms at age of 11 will also have deeply infiltrating endometriosis. So they have endometriosis affecting the rectum. They'll often have bowel symptoms as well.",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 11.0,
+      "text": "The other issue I think is about 35% of girls who start developing symptoms at age of 11 will also have deeply infiltrating endometriosis."
+    },
+    {
+      "start": 11.0,
+      "end": 17.0,
+      "text": "So they have endometriosis affecting the rectum. They'll often have bowel symptoms as well."
+    }
+  ]
+}

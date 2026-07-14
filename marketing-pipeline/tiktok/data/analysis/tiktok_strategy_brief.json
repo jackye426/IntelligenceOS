@@ -1,0 +1,260 @@
+{
+  "meta": {
+    "updated_at": "2026-07-10T16:14:19.604490+00:00",
+    "metrics_as_of": "2026-07-06T04:08:04.294464+00:00",
+    "video_count": 58,
+    "library_newest_posted_at": "2026-07-05",
+    "instructions_for_claude": "Read constitution, approved insights, and open decisions before creative suggestions. Use live cohort metrics only — do not cite view counts from recipe-2026-06.md. Never infer the channel stopped posting from an empty date filter; check meta.staleness_note. Prefer closing due decisions (list_open_decisions due_only=true) before inventing new experiments. Approve insights (Gate 1) before treating as team learning; constitution changes (Gate 2) are manual only. Decision outcomes require human-confirmed verdict — never invent outcomes.",
+    "historical_note": "recipe-2026-06.md is an 8-video cohort (June 2026) — patterns only, not current view counts."
+  },
+  "1_constitution": "## content-instruction.md\n\n## DocMap TikTok Content Instruction\n\nCreate content for women with endometriosis who are not looking for general awareness alone. They are usually at a specific point of uncertainty or failure in their care journey and need to know what to do next.\n\nThe strongest content should help viewers at high-stakes decision points, especially when they have had a normal scan, a rushed or “clear” laparoscopy, persistent pain after surgery, confusing records, or have been dismissed by a clinician. Do not stop at explaining a medical concept. Give the viewer one credible next move, the question to ask, the record to request, or the type of specialist they may need.\n\nPrioritise content around these themes:\n\n1. **Before surgery**\n\n   * What to ask before a laparoscopy\n   * When it is not too late to raise a concern\n   * What a thorough assessment should consider\n   * Questions about excision, ablation, biopsies, photos, bowel, bladder, diaphragm, adhesions and fertility\n   * How to prepare for a pre-op or consent appointment\n\n2. **After a “clear” or inadequate surgery**\n\n   * What to request after laparoscopy: operative notes, surgical photos, histology and discharge letters\n   * What persistent pain after surgery may mean\n   * How to understand whether everything was examined\n   * When a second opinion may be appropriate\n   * How to prepare for a post-operative follow-up\n\n3. **Normal scans but ongoing symptoms**\n\n   * What a normal MRI, ultrasound or CT does and does not mean\n   * Why specialist interpretation can matter\n   * What to ask when symptoms and scan findings do not match\n   * How to approach a conversation about further investigation or referral\n\n4. **Advocacy and being taken seriously**\n\n   * Exact language patients can use with a GP or consultant\n   * How to ask for a referral, second opinion or records\n   * How to create a clear paper trail\n   * How to describe symptoms and functional impact without having to retell an overwhelming story from scratch\n   * What to do when someone says “nothing was found” or “you just have to live with it”\n\n5. **Complex symptoms that are commonly dismissed**\n\n   * Bowel, bladder, hip, leg, back, diaphragm, chest and shoulder symptoms\n   * Fatigue, nausea, brain fog, dizziness and heavy legs\n   * Painful sex, painful urination and painful bowel movements\n   * The difference between “tired” and endometriosis-related exhaustion\n   * How symptoms affect work, relationships, mobility and daily life\n\n6. **Access and finding the right care**\n\n   * What an endometriosis nurse can help with\n   * How to find the right specialist for bowel, bladder, fertility or repeat-surgery concerns\n   * What virtual consultations can help with\n   * How private and NHS routes differ\n   * Practical questions around location, price, waiting times and whether a specialist is appropriate\n\n### Content principle\n\nEvery video should answer one of these questions:\n\n* “What should I do next?”\n* “What should I ask for?”\n* “What should I request?”\n* “Who should I see?”\n* “How do I explain this so I am taken seriously?”\n* “Is this something I should not ignore?”\n\nAvoid broad, passive awareness messaging unless it is designed to build emotional recognition. The best content combines a highly specific patient situation with one action that restores a sense of control.\n\n### Recommended video structure\n\n**Hook:** Start with the exact situation the viewer may be in.\n\nExamples:\n\n* “No endometriosis found during your laparoscopy? Do this before accepting that answer.”\n* “You have already had your pre-op. It is not too late to ask this.”\n* “Your MRI came back normal, but you are still in severe pain. Here is what to ask next.”\n* “Still in pain after endometriosis surgery? Do not go into your follow-up without asking this.”\n* “Before surgery, ask whether they will take photos and send you the operative notes.”\n* “If your doctor says your symptoms are not caused by endometriosis, ask this.”\n* “Endometriosis fatigue is not just being tired.”\n\n---\n\n## viral-format.md\n\nLook for moments where the expert gives a specific patient action around a high-stakes situation, such as what to ask before surgery, why a scan or laparoscopy may miss endo, what symptoms are not normal, or what to say to finally be taken seriously.",
+  "2_approved_patterns": [],
+  "3_approved_insights": [
+    {
+      "group_id": "mri-who-reads",
+      "label": "MRI — who reads it matters",
+      "video_ids": [
+        "7644863912545881366",
+        "7634579404131241239"
+      ],
+      "learning": "On-screen hooks that stress who reads the MRI (not just having a scan) outperform generic MRI pain hooks.",
+      "hook_pattern": "Competence-gap fear + named stakeholder (who reads it)",
+      "confidence": "high",
+      "source": "variant_group_registry",
+      "status": "approved"
+    },
+    {
+      "group_id": "excision-vs-ablation",
+      "label": "Excision vs ablation — hook packaging",
+      "video_ids": [
+        "7641554459755089154",
+        "7631220659770690818"
+      ],
+      "learning": "Same excision vs ablation script; packaging with explicit 'ask for excision' hook vs analogy-first hook shifts saves and views.",
+      "hook_pattern": "Direct surgical ask vs analogy opener",
+      "confidence": "high",
+      "source": "variant_group_registry",
+      "status": "approved"
+    },
+    {
+      "group_id": "teen-pain-killers",
+      "label": "Teen pain killers — parent-facing hook packaging",
+      "video_ids": [
+        "7650479358867492118",
+        "7632002231339928854"
+      ],
+      "learning": "Same Liz clip on teen pain; broader parent-education hook ('younger than you think') vs truncated direct hook.",
+      "hook_pattern": "Parent audience frame vs raw symptom opener",
+      "confidence": "high",
+      "source": "variant_group_registry",
+      "status": "approved"
+    },
+    {
+      "group_id": "30-min-no-endo",
+      "label": "30-min lap found no endo — hook packaging",
+      "video_ids": [
+        "7650429101584469270",
+        "7640116261598350614"
+      ],
+      "learning": "Same photos/advocacy monologue; fear hook ('found no endo after 30-min') vs patient-story cold open.",
+      "hook_pattern": "Diagnostic failure fear vs first-person surgery story",
+      "confidence": "high",
+      "source": "variant_group_registry",
+      "status": "approved"
+    },
+    {
+      "group_id": "surgical-photos",
+      "label": "Ask for surgical photos — direct hook vs 360 Q&A clip",
+      "video_ids": [
+        "7650466482173791510",
+        "7639651293883206935"
+      ],
+      "learning": "Same Liz photos monologue; imperative hook ('always ask for photos') vastly outperforms Q&A reply framing.",
+      "hook_pattern": "Direct CTA vs comment-reply entry",
+      "confidence": "high",
+      "source": "variant_group_registry",
+      "status": "approved"
+    },
+    {
+      "group_id": "9-year-diagnosis-repost",
+      "label": "9-year diagnosis delay — repost vs Part 1",
+      "video_ids": [
+        "7650465917700279574",
+        "7633862545228434710"
+      ],
+      "learning": "Same core 'simple and complicated' script; Part 1 hook outperforms newer repost packaging.",
+      "hook_pattern": "Part 1 label vs 'response' repost hook",
+      "confidence": "medium",
+      "source": "variant_group_registry",
+      "status": "approved"
+    }
+  ],
+  "4_open_drafts": [],
+  "5_anti_patterns": [
+    "Soft interview open without a patient action in the first seconds.",
+    "Service-only CTA cold open without a clinical teaching moment.",
+    "Copying a single viral outlier hook without matching playbook theme.",
+    "Treating same-topic Q&A reply clips as equivalent to imperative surgical CTAs."
+  ],
+  "6_changelog": [],
+  "7_decisions": {
+    "open": [],
+    "recent_closed": [],
+    "open_count": 0,
+    "closed_count": 0
+  },
+  "reference_set": [
+    {
+      "video_id": "7630900114982210838",
+      "reference_reason": "top_views",
+      "views": 381000,
+      "saves_per_1k_views": 54.42,
+      "hook": "If you're getting a laparoscopy for endo, watch this first",
+      "post_url": "https://www.tiktok.com/@docmap/video/7630900114982210838"
+    },
+    {
+      "video_id": "7649808436883967254",
+      "reference_reason": "top_views",
+      "views": 75000,
+      "saves_per_1k_views": 14.69,
+      "hook": "This is the most overlooked endometriosis symptom. Endometriosis nurse explains why",
+      "post_url": "https://www.tiktok.com/@docmap/video/7649808436883967254"
+    },
+    {
+      "video_id": "7650466482173791510",
+      "reference_reason": "top_views",
+      "views": 33600,
+      "saves_per_1k_views": 14.73,
+      "hook": "If you are getting endo surgery, always ask for photos Here is why",
+      "post_url": "https://www.tiktok.com/@docmap/video/7650466482173791510"
+    },
+    {
+      "video_id": "7644863912545881366",
+      "reference_reason": "top_views",
+      "views": 25000,
+      "saves_per_1k_views": 15.96,
+      "hook": "Still in pain after endo surgery? Watch this",
+      "post_url": "https://www.tiktok.com/@docmap/video/7644863912545881366"
+    },
+    {
+      "video_id": "7650429101584469270",
+      "reference_reason": "top_views",
+      "views": 14700,
+      "saves_per_1k_views": 14.35,
+      "hook": "If they found no endo after a 30-min surgery Watch this first",
+      "post_url": "https://www.tiktok.com/@docmap/video/7650429101584469270"
+    },
+    {
+      "video_id": "7650467196187036950",
+      "reference_reason": "top_saves_per_1k",
+      "views": 9611,
+      "saves_per_1k_views": 39.75,
+      "hook": "Is your surgeon checking these areas for your endo surgery?",
+      "post_url": "https://www.tiktok.com/@docmap/video/7650467196187036950"
+    },
+    {
+      "video_id": "7653120154154568962",
+      "reference_reason": "top_saves_per_1k",
+      "views": 4080,
+      "saves_per_1k_views": 23.77,
+      "hook": "Watch this if you're a teenager living with endometriosis",
+      "post_url": "https://www.tiktok.com/@docmap/video/7653120154154568962"
+    },
+    {
+      "video_id": "7644218706028956950",
+      "reference_reason": "top_saves_per_1k",
+      "views": 836,
+      "saves_per_1k_views": 21.53,
+      "hook": "endometriosis",
+      "post_url": "https://www.tiktok.com/@docmap/video/7644218706028956950"
+    },
+    {
+      "video_id": "7657200670260481302",
+      "reference_reason": "top_saves_per_1k",
+      "views": 8607,
+      "saves_per_1k_views": 21.38,
+      "hook": "If you've been told you need bowel surgery for endo watch this first",
+      "post_url": "https://www.tiktok.com/@docmap/video/7657200670260481302"
+    }
+  ],
+  "variant_groups": [
+    {
+      "group_id": "mri-who-reads",
+      "label": "MRI — who reads it matters",
+      "video_ids": [
+        "7644863912545881366",
+        "7634579404131241239"
+      ],
+      "learning": "On-screen hooks that stress who reads the MRI (not just having a scan) outperform generic MRI pain hooks.",
+      "hook_pattern": "Competence-gap fear + named stakeholder (who reads it)",
+      "confidence": "high",
+      "source": "variant_group_registry",
+      "status": "approved"
+    },
+    {
+      "group_id": "excision-vs-ablation",
+      "label": "Excision vs ablation — hook packaging",
+      "video_ids": [
+        "7641554459755089154",
+        "7631220659770690818"
+      ],
+      "learning": "Same excision vs ablation script; packaging with explicit 'ask for excision' hook vs analogy-first hook shifts saves and views.",
+      "hook_pattern": "Direct surgical ask vs analogy opener",
+      "confidence": "high",
+      "source": "variant_group_registry",
+      "status": "approved"
+    },
+    {
+      "group_id": "teen-pain-killers",
+      "label": "Teen pain killers — parent-facing hook packaging",
+      "video_ids": [
+        "7650479358867492118",
+        "7632002231339928854"
+      ],
+      "learning": "Same Liz clip on teen pain; broader parent-education hook ('younger than you think') vs truncated direct hook.",
+      "hook_pattern": "Parent audience frame vs raw symptom opener",
+      "confidence": "high",
+      "source": "variant_group_registry",
+      "status": "approved"
+    },
+    {
+      "group_id": "30-min-no-endo",
+      "label": "30-min lap found no endo — hook packaging",
+      "video_ids": [
+        "7650429101584469270",
+        "7640116261598350614"
+      ],
+      "learning": "Same photos/advocacy monologue; fear hook ('found no endo after 30-min') vs patient-story cold open.",
+      "hook_pattern": "Diagnostic failure fear vs first-person surgery story",
+      "confidence": "high",
+      "source": "variant_group_registry",
+      "status": "approved"
+    },
+    {
+      "group_id": "surgical-photos",
+      "label": "Ask for surgical photos — direct hook vs 360 Q&A clip",
+      "video_ids": [
+        "7650466482173791510",
+        "7639651293883206935"
+      ],
+      "learning": "Same Liz photos monologue; imperative hook ('always ask for photos') vastly outperforms Q&A reply framing.",
+      "hook_pattern": "Direct CTA vs comment-reply entry",
+      "confidence": "high",
+      "source": "variant_group_registry",
+      "status": "approved"
+    },
+    {
+      "group_id": "9-year-diagnosis-repost",
+      "label": "9-year diagnosis delay — repost vs Part 1",
+      "video_ids": [
+        "7650465917700279574",
+        "7633862545228434710"
+      ],
+      "learning": "Same core 'simple and complicated' script; Part 1 hook outperforms newer repost packaging.",
+      "hook_pattern": "Part 1 label vs 'response' repost hook",
+      "confidence": "medium",
+      "source": "variant_group_registry",
+      "status": "approved"
+    }
+  ]
+}

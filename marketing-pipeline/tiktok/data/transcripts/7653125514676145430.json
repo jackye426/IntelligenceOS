@@ -1,0 +1,21 @@
+{
+  "video_id": "7653125514676145430",
+  "source_media": "7653125514676145430.mp4",
+  "whisper_model": "small",
+  "model": "small",
+  "language": "en",
+  "duration_after_vad": 15.582,
+  "full_text": "So if you have an illness and you go through HR, there are many companies where they will recognise symptoms and therefore they will adapt your work to allow for that.",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 9.84,
+      "text": "So if you have an illness and you go through HR, there are many companies where they will"
+    },
+    {
+      "start": 9.84,
+      "end": 15.52,
+      "text": "recognise symptoms and therefore they will adapt your work to allow for that."
+    }
+  ]
+}

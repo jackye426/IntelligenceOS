@@ -5,6 +5,7 @@ from __future__ import annotations
 from datetime import datetime, timezone
 from typing import Any
 
+from common import config
 from common.audit import log_tool_call
 from common.drafting import draft_followup
 from common.gmail_client import create_draft, get_thread, send_message
@@ -20,8 +21,10 @@ def run(
     confirmed: bool = False,
     subject: str | None = None,
     body: str | None = None,
+    from_email: str | None = None,
 ) -> dict[str, Any]:
     try:
+        send_as_email = config.resolve_send_as_email(from_email)
         chase = get_chase(chase_id)
         contact = chase.get("relationship_contacts") or {}
         context = build_context(chase_id=chase_id, include_live_gmail=True)
@@ -44,6 +47,7 @@ def run(
                 body=body,
                 to_email=to_email,
                 thread_id=chase.get("gmail_thread_id"),
+                from_email=send_as_email,
             )
             update_chase(
                 chase_id,
@@ -60,7 +64,11 @@ def run(
                 event_type="sent",
                 summary=subject,
                 gmail_message_id=result.get("message_id"),
-                metadata={"safety": safety, "context_quality": context.get("context_quality")},
+                metadata={
+                    "safety": safety,
+                    "context_quality": context.get("context_quality"),
+                    "from_email": send_as_email,
+                },
             )
         else:
             result = create_draft(
@@ -68,6 +76,7 @@ def run(
                 body=body,
                 to_email=to_email,
                 thread_id=chase.get("gmail_thread_id"),
+                from_email=send_as_email,
             )
             update_chase(
                 chase_id,
@@ -86,6 +95,7 @@ def run(
                     "requested_action": action,
                     "safety": safety,
                     "context_quality": context.get("context_quality"),
+                    "from_email": send_as_email,
                 },
             )
 
@@ -105,7 +115,7 @@ def run(
             else None,
             "context": context,
             "safety": safety,
-            "gmail": result,
+            "gmail": {**result, "from_email": send_as_email},
         }
     except Exception as exc:
         log_tool_call(tool_name="act_on_chase", request_summary=f"{action}:{chase_id}", success=False, error=str(exc))

@@ -1,0 +1,41 @@
+{
+  "video_id": "7651627428573433110",
+  "source_media": "7651627428573433110.mp4",
+  "whisper_model": "small",
+  "model": "small",
+  "language": "en",
+  "duration_after_vad": 37.5480625,
+  "full_text": "I think I went through about five different pills before I was diagnosed with endometriosis. One to tackle the really heavy and painful periods but also I remember suffering with quite like hormonal acne as well so they said oh you know go on a pill it'll solve both problems and it just didn't so then I tried a different pill, different hormonal treatments and everything that I tried it either didn't help at all or it would help for like a month and then that was it I was back to square one.",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 11.6,
+      "text": "I think I went through about five different pills before I was diagnosed with endometriosis."
+    },
+    {
+      "start": 11.6,
+      "end": 17.28,
+      "text": "One to tackle the really heavy and painful periods but also I remember suffering with"
+    },
+    {
+      "start": 17.28,
+      "end": 22.24,
+      "text": "quite like hormonal acne as well so they said oh you know go on a pill it'll solve both"
+    },
+    {
+      "start": 22.24,
+      "end": 29.24,
+      "text": "problems and it just didn't so then I tried a different pill, different hormonal treatments"
+    },
+    {
+      "start": 29.24,
+      "end": 35.08,
+      "text": "and everything that I tried it either didn't help at all or it would help for like a month"
+    },
+    {
+      "start": 35.08,
+      "end": 37.48,
+      "text": "and then that was it I was back to square one."
+    }
+  ]
+}

@@ -23,16 +23,27 @@ INSTRUCTIONS_FOR_CLAUDE = (
     "Use live cohort metrics only — do not cite view counts from recipe-2026-06.md. "
     "Never infer the channel stopped posting from an empty date filter; check meta.staleness_note. "
     "Prefer closing due decisions (list_open_decisions due_only=true) before inventing new experiments. "
-    "Approve insights (Gate 1) before treating as team learning; constitution changes (Gate 2) are manual only. "
+    "Approve insights (Gate 1) before treating as team learning. "
+    "Constitution changes (Gate 2): suggest_constitution_amendment → human approves with approve_constitution_amendment(confirmed=true). "
     "Decision outcomes require human-confirmed verdict — never invent outcomes."
 )
 
-ANTI_PATTERNS = [
-    "Soft interview open without a patient action in the first seconds.",
-    "Service-only CTA cold open without a clinical teaching moment.",
-    "Copying a single viral outlier hook without matching playbook theme.",
-    "Treating same-topic Q&A reply clips as equivalent to imperative surgical CTAs.",
-]
+ANTI_PATTERNS_SECTION = "Anti-patterns"
+
+
+def _anti_patterns_from_playbook() -> list[str]:
+    path = config.PLAYBOOKS_DIR / "viral-format.md"
+    if not path.exists():
+        return []
+    text = path.read_text(encoding="utf-8")
+    marker = f"## {ANTI_PATTERNS_SECTION}"
+    if marker not in text:
+        return []
+    chunk = text.split(marker, 1)[1]
+    nxt = chunk.find("\n## ")
+    if nxt != -1:
+        chunk = chunk[:nxt]
+    return [line.strip().lstrip("- ").strip() for line in chunk.splitlines() if line.strip().startswith("-")]
 
 
 def _read_playbook_excerpt(path: Path, *, max_chars: int = 4000) -> str:
@@ -144,7 +155,7 @@ def build_strategy_brief(dataset: TikTokMarketingDataset) -> dict[str, Any]:
         "2_approved_patterns": state.get("approved_patterns") or [],
         "3_approved_insights": approved_insights + _registry_insights(),
         "4_open_drafts": drafts,
-        "5_anti_patterns": ANTI_PATTERNS,
+        "5_anti_patterns": _anti_patterns_from_playbook(),
         "6_changelog": state.get("changelog") or [],
         "7_decisions": {
             "open": open_decisions[:15],

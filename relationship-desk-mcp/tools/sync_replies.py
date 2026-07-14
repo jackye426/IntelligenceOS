@@ -22,7 +22,7 @@ def _parse_iso(value: str | None) -> datetime | None:
 
 def _is_inbound(message: dict[str, Any], account_email: str | None) -> bool:
     sender = ((message.get("from") or {}).get("email") or "").lower()
-    return bool(sender and account_email and sender != account_email.lower())
+    return bool(sender and not config.is_relationship_desk_email(sender, account_email))
 
 
 def run(*, limit: int = 50) -> dict[str, Any]:

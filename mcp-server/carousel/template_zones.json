@@ -1,0 +1,177 @@
+{
+  "defaults": {
+    "zone_presets": {
+      "hook": {
+        "zones": [
+          {
+            "role": "headline",
+            "x": 1.0,
+            "y": 4.8,
+            "w": 8.0,
+            "h": 3.8,
+            "font": "headline",
+            "max_pt": 52,
+            "min_pt": 28,
+            "color": [255, 255, 255],
+            "align": "center",
+            "valign": "middle"
+          },
+          {
+            "role": "subtitle",
+            "x": 1.2,
+            "y": 8.6,
+            "w": 7.6,
+            "h": 1.4,
+            "font": "body",
+            "max_pt": 22,
+            "min_pt": 14,
+            "color": [255, 255, 255],
+            "align": "center",
+            "valign": "top"
+          }
+        ]
+      },
+      "body": {
+        "zones": [
+          {
+            "role": "headline",
+            "x": 1.0,
+            "y": 7.0,
+            "w": 7.5,
+            "h": 2.8,
+            "font": "headline",
+            "max_pt": 44,
+            "min_pt": 24,
+            "color": [255, 255, 255],
+            "align": "left",
+            "valign": "bottom",
+            "backdrop": {"rgb": [0, 0, 0], "alpha_pct": 45}
+          },
+          {
+            "role": "body",
+            "x": 1.0,
+            "y": 9.9,
+            "w": 7.5,
+            "h": 2.2,
+            "font": "body",
+            "max_pt": 20,
+            "min_pt": 13,
+            "color": [255, 255, 255],
+            "align": "left",
+            "valign": "top",
+            "backdrop": {"rgb": [0, 0, 0], "alpha_pct": 45}
+          }
+        ]
+      },
+      "cta": {
+        "zones": [
+          {
+            "role": "headline",
+            "x": 1.0,
+            "y": 5.2,
+            "w": 8.0,
+            "h": 2.2,
+            "font": "headline",
+            "max_pt": 44,
+            "min_pt": 26,
+            "color": [255, 255, 255],
+            "align": "left",
+            "valign": "middle",
+            "backdrop": {"rgb": [0, 0, 0], "alpha_pct": 40}
+          },
+          {
+            "role": "body",
+            "x": 1.0,
+            "y": 7.6,
+            "w": 7.5,
+            "h": 2.4,
+            "font": "body",
+            "max_pt": 20,
+            "min_pt": 13,
+            "color": [255, 255, 255],
+            "align": "left",
+            "valign": "top",
+            "backdrop": {"rgb": [0, 0, 0], "alpha_pct": 40}
+          },
+          {
+            "role": "cta",
+            "x": 4.5,
+            "y": 10.5,
+            "w": 4.5,
+            "h": 1.2,
+            "font": "cta",
+            "max_pt": 18,
+            "min_pt": 12,
+            "color": [255, 255, 255],
+            "align": "right",
+            "valign": "middle"
+          }
+        ]
+      }
+    }
+  },
+  "templates": {
+    "basic": {
+      "name": "Basic",
+      "description": "Floral hook + foosball editorial body slides. General-purpose educational carousels.",
+      "best_for": ["how-to", "fertility", "gp-appointments", "educational"]
+    },
+    "medical": {
+      "name": "Medical",
+      "description": "Stethoscope hook + warm clinical photography. NHS/GP-focused content.",
+      "best_for": ["medical", "gp", "symptoms", "clinical"]
+    },
+    "pink": {
+      "name": "Pink",
+      "description": "Bold pink with sticker graphics. Validation and myth-busting.",
+      "best_for": ["validation", "myth-bust", "period-pain", "emotional"]
+    },
+    "background": {
+      "name": "Background",
+      "description": "Lifestyle photography with gold headline. Conversational, punchy hooks.",
+      "best_for": ["story", "conversational", "relatable", "hook-heavy"],
+      "zone_presets": {
+        "hook": {
+          "zones": [
+            {
+              "role": "headline",
+              "x": 0.8,
+              "y": 4.2,
+              "w": 8.4,
+              "h": 4.0,
+              "font": "headline",
+              "max_pt": 48,
+              "min_pt": 26,
+              "color": [255, 195, 60],
+              "align": "center",
+              "valign": "middle"
+            },
+            {
+              "role": "subtitle",
+              "x": 2.0,
+              "y": 8.5,
+              "w": 6.5,
+              "h": 1.2,
+              "font": "body",
+              "max_pt": 22,
+              "min_pt": 14,
+              "color": [255, 255, 255],
+              "align": "center",
+              "valign": "top"
+            }
+          ]
+        }
+      }
+    },
+    "intimacy": {
+      "name": "Intimacy",
+      "description": "Warm intimate photography. Painful sex, relationships, sensitive topics.",
+      "best_for": ["intimacy", "painful-sex", "relationships", "sensitive"]
+    },
+    "tips_n_advice": {
+      "name": "Tips & Advice",
+      "description": "Cozy lifestyle hook + practical tip body slides.",
+      "best_for": ["tips", "advice", "self-care", "practical"]
+    }
+  }
+}

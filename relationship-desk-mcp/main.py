@@ -188,14 +188,19 @@ def act_on_chase_tool(
     confirmed: bool = False,
     subject: str | None = None,
     body: str | None = None,
+    from_email: str | None = None,
 ) -> dict[str, Any]:
-    """Create a Gmail draft or send when Relationship Desk mode and safety rules allow it."""
+    """Create a Gmail draft or send when Relationship Desk mode and safety rules allow it.
+
+    Use from_email only for configured Gmail send-as aliases.
+    """
     return act_on_chase.run(
         chase_id=chase_id,
         action=action,
         confirmed=confirmed,
         subject=subject,
         body=body,
+        from_email=from_email,
     )
 
 

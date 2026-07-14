@@ -1,0 +1,61 @@
+{
+  "video_id": "7657200670260481302",
+  "length_sec": 73,
+  "hook": {
+    "text": "If you've been told you need bowel surgery for endo watch this first",
+    "channel": "onscreen",
+    "type": "warning",
+    "type_other": null,
+    "emotional_mechanism_raw": "Urgency and caution, prompting viewer to reconsider assumptions before making a decision about bowel surgery.",
+    "specificity": "unclear",
+    "target_audience_raw": "Endometriosis patients who have been advised to undergo bowel surgery.",
+    "creates_curiosity": true,
+    "contradicts_common_belief": false,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 20.0,
+    "window_sec_hint": null
+  },
+  "main_claim": {
+    "text": "Most bowel endometriosis cases are superficial and can be treated with shaving; full-thickness involvement is rare and requires a colorectal surgeon.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "The video explains that a recto-end or anal ultrasound scan (available in Cardiff) can determine how deeply endometriosis penetrates the bowel wall. Superficial or just-below-surface endometriosis can be shaved by a skilled laparoscopic surgeon. Full-thickness involvement through the muscularis propria (the 'barrier to poo') is rare and requires a colorectal surgeon to avoid complications.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "MOFU",
+  "funnel_rationale": "Targets patients who have already been told they need bowel surgery, providing detailed information about bowel involvement levels and surgical planning, which is characteristic of the consideration stage.",
+  "cta": {
+    "present": false,
+    "wording": null,
+    "position": "none",
+    "channel": "none",
+    "explicitness": "none",
+    "requested_action_raw": null,
+    "value_exchange_raw": null,
+    "urgency": "none",
+    "funnel_stage": "unclear"
+  },
+  "topic": {
+    "primary_raw": "Bowel endometriosis treatment",
+    "secondary_raw": [
+      "Surgical planning, shaving vs full-thickness resection, diagnostic imaging"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "Gynecologist",
+    "type_raw": "medical professional (gynecologist)"
+  },
+  "format_raw": "video",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1_compare",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T14:23:54.962856+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "5d2338c3fe13d906"
+  }
+}

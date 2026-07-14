@@ -16,6 +16,22 @@
     }
   },
   {
+    "cid": "7657587371697980182",
+    "text": "i wondeted if you can explain my images from my laproscopy for me please?",
+    "digg_count": 0,
+    "reply_comment_total": 0,
+    "create_time": 1782921023,
+    "themes": [
+      "personal_story",
+      "general_question"
+    ],
+    "sentiment": {
+      "stance": "personal_story",
+      "primary_emotion": "neutral",
+      "toxicity_spam_flag": false
+    }
+  },
+  {
     "cid": "7650773728427361046",
     "text": "Thank you. I listed all of these for my private appointment at the Manor in Oxford, and the specialist said yes to all 🙏",
     "digg_count": 1,
@@ -28,6 +44,22 @@
     "sentiment": {
       "stance": "agree_validate",
       "primary_emotion": "gratitude_hope",
+      "toxicity_spam_flag": false
+    }
+  },
+  {
+    "cid": "7650982366274700054",
+    "text": "I’ve already had my preop 😭 am I too late?",
+    "digg_count": 2,
+    "reply_comment_total": 0,
+    "create_time": 1781383170,
+    "themes": [
+      "personal_story",
+      "general_question"
+    ],
+    "sentiment": {
+      "stance": "personal_story",
+      "primary_emotion": "distress_frustration",
       "toxicity_spam_flag": false
     }
   },
@@ -58,22 +90,6 @@
     "sentiment": {
       "stance": "personal_story",
       "primary_emotion": "neutral",
-      "toxicity_spam_flag": false
-    }
-  },
-  {
-    "cid": "7650982366274700054",
-    "text": "I’ve already had my preop 😭 am I too late?",
-    "digg_count": 2,
-    "reply_comment_total": 0,
-    "create_time": 1781383170,
-    "themes": [
-      "personal_story",
-      "general_question"
-    ],
-    "sentiment": {
-      "stance": "personal_story",
-      "primary_emotion": "distress_frustration",
       "toxicity_spam_flag": false
     }
   },

@@ -1,0 +1,86 @@
+{
+  "video_id": "7658281999777549590",
+  "source_media": "7658281999777549590.mp4",
+  "whisper_model": "small",
+  "model": "small",
+  "language": "en",
+  "duration_after_vad": 77.718625,
+  "full_text": "Yeah, I just remember waking up and thinking you know, do I have endometriosis and he said yes And I said can I have children and he said yeah and walked off and then I went home that same day and no not even a leaflet You know not even like they never came back and sat me down and said, you know, this is what this means This is where it was. This is what stage it was. This is what we did that I had nothing like no conversation about what my operation just was and then I went home and I think I had about two three weeks off and then I You know resumed back to normal life trying to carry on my studies and you know kind of carry on with life And I only got three months relief from that operation. So then after three months I felt like I was back to square one and I wasn't under my discharge letter came six months after my Surgery and I was then told I needed to be seen in the endometriosis clinic But until that, you know from my surgery to then six months after I was just left alone and then it was constant back into hospital back into A&E and It was oh well, then yeah, you just happen to fly go home and that continued for a Very very long time and I still didn't know what was going on with my body",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 4.26,
+      "text": "Yeah, I just remember waking up and thinking you know, do I have endometriosis and he said yes"
+    },
+    {
+      "start": 4.26,
+      "end": 12.08,
+      "text": "And I said can I have children and he said yeah and walked off and then I went home that same day and no not even a leaflet"
+    },
+    {
+      "start": 12.08,
+      "end": 17.6,
+      "text": "You know not even like they never came back and sat me down and said, you know, this is what this means"
+    },
+    {
+      "start": 18.0,
+      "end": 22.88,
+      "text": "This is where it was. This is what stage it was. This is what we did that I had nothing like"
+    },
+    {
+      "start": 23.54,
+      "end": 26.9,
+      "text": "no conversation about what my operation just was"
+    },
+    {
+      "start": 27.6,
+      "end": 29.6,
+      "text": "and then I went home and"
+    },
+    {
+      "start": 30.6,
+      "end": 33.2,
+      "text": "I think I had about two three weeks off and then I"
+    },
+    {
+      "start": 33.6,
+      "end": 39.2,
+      "text": "You know resumed back to normal life trying to carry on my studies and you know kind of carry on with life"
+    },
+    {
+      "start": 39.2,
+      "end": 44.2,
+      "text": "And I only got three months relief from that operation. So then after three months"
+    },
+    {
+      "start": 44.2,
+      "end": 51.28,
+      "text": "I felt like I was back to square one and I wasn't under my discharge letter came six months after my"
+    },
+    {
+      "start": 52.0,
+      "end": 56.72,
+      "text": "Surgery and I was then told I needed to be seen in the endometriosis clinic"
+    },
+    {
+      "start": 56.88,
+      "end": 62.36,
+      "text": "But until that, you know from my surgery to then six months after I was just left alone"
+    },
+    {
+      "start": 62.36,
+      "end": 65.88,
+      "text": "and then it was constant back into hospital back into A&E and"
+    },
+    {
+      "start": 66.52,
+      "end": 72.96,
+      "text": "It was oh well, then yeah, you just happen to fly go home and that continued for a"
+    },
+    {
+      "start": 73.24,
+      "end": 77.08,
+      "text": "Very very long time and I still didn't know what was going on with my body"
+    }
+  ]
+}

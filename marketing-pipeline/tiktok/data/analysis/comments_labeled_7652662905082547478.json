@@ -1,0 +1,47 @@
+[
+  {
+    "cid": "7652789599913378562",
+    "text": "Also had symptoms since I was 11, only diagnosed two weeks ago at age 27🫠",
+    "digg_count": 2,
+    "reply_comment_total": 0,
+    "create_time": 1781803948,
+    "themes": [
+      "other_uncategorized"
+    ],
+    "sentiment": {
+      "stance": "personal_story",
+      "primary_emotion": "neutral",
+      "toxicity_spam_flag": false
+    }
+  },
+  {
+    "cid": "7657541466101465878",
+    "text": "Thank you for sharing my story ❤️",
+    "digg_count": 0,
+    "reply_comment_total": 0,
+    "create_time": 1782910331,
+    "themes": [
+      "validation_gratitude"
+    ],
+    "sentiment": {
+      "stance": "agree_validate",
+      "primary_emotion": "gratitude_hope",
+      "toxicity_spam_flag": false
+    }
+  },
+  {
+    "cid": "7653548833439384342",
+    "text": "my daughter was the same at 15. they refused a gynaecologist to check her over as she was in pediatric ward",
+    "digg_count": 2,
+    "reply_comment_total": 0,
+    "create_time": 1781980715,
+    "themes": [
+      "advocacy_what_to_ask"
+    ],
+    "sentiment": {
+      "stance": "personal_story",
+      "primary_emotion": "distress_frustration",
+      "toxicity_spam_flag": false
+    }
+  }
+]

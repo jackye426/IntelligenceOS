@@ -109,7 +109,7 @@ def approve_tiktok_insight(
             result = {
                 "ok": True,
                 "insight": entry,
-                "note": "Saved to approved learnings. Constitution unchanged — use propose_constitution_patch to promote.",
+                "note": "Saved to approved learnings (§3). For constitution promotion use suggest_constitution_amendment → approve_constitution_amendment(confirmed=true).",
             }
             log_tool_call(tool_name="approve_tiktok_insight", request_summary=summary, success=True)
             return result
@@ -129,21 +129,32 @@ def propose_constitution_patch(
     *,
     insight_id: str,
     proposed_bullet: str,
-    target_section: str = "content-instruction.md",
+    target_section: str = "viral-format.md",
+    rationale: str = "",
 ) -> dict[str, Any]:
-    """Gate 2: returns markdown for human to paste — never auto-writes constitution."""
-    state = _state_from_row()
-    insight = next((i for i in state["insights"] if i.get("insight_id") == insight_id), None)
-    if not insight:
-        return {"ok": False, "error": f"insight_id {insight_id} not found"}
-    if insight.get("status") != "approved":
-        return {"ok": False, "error": "Insight must be approved (Gate 1) before constitution promotion."}
-    patch = (
-        f"## Proposed addition to {target_section}\n\n"
-        f"- {proposed_bullet}\n\n"
-        f"Source insight: {insight.get('group_id')} ({insight_id})\n"
-        f"Learning: {insight.get('learning')}\n\n"
-        "**This is NOT applied automatically.** Paste into "
-        f"`marketing-pipeline/tiktok/data/playbooks/{target_section}` then run sync-playbooks."
+    """Gate 2: queue a constitution amendment (pending human approval)."""
+    from tools.constitution_amendments import suggest_constitution_amendment
+
+    result = suggest_constitution_amendment(
+        proposed_bullet=proposed_bullet,
+        target_section=target_section,
+        rationale=rationale or "Promoted from approved insight via propose_constitution_patch.",
+        insight_id=insight_id,
     )
-    return {"ok": True, "patch_markdown": patch, "insight_id": insight_id}
+    if not result.get("ok"):
+        return result
+    amendment = result.get("amendment") or {}
+    patch = (
+        f"## Queued amendment for {target_section}\n\n"
+        f"- {proposed_bullet}\n\n"
+        f"Amendment ID: {amendment.get('amendment_id')}\n"
+        f"Source insight: {insight_id}\n\n"
+        "Pending human approval. Call approve_constitution_amendment(amendment_id, confirmed=true) to apply."
+    )
+    return {
+        "ok": True,
+        "patch_markdown": patch,
+        "insight_id": insight_id,
+        "amendment_id": amendment.get("amendment_id"),
+        "amendment": amendment,
+    }

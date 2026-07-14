@@ -1,0 +1,61 @@
+{
+  "video_id": "7643525601353075990",
+  "length_sec": 80,
+  "hook": {
+    "text": "I asked ai",
+    "channel": "both",
+    "type": "personal_story",
+    "type_other": null,
+    "emotional_mechanism_raw": "Empowerment through using AI to overcome medical gaslighting and navigate the system",
+    "specificity": "medium",
+    "target_audience_raw": "Endometriosis patients frustrated with medical system and seeking specialist referral",
+    "creates_curiosity": true,
+    "contradicts_common_belief": true,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 75.0,
+    "window_sec_hint": null
+  },
+  "main_claim": {
+    "text": "AI helped her get a second opinion with an endometriosis specialist.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "She used ChatGPT to analyze her MRI and medical records, then asked it what to say to her GP to get a referral to an endometriosis specialist, which led to a second opinion and better care.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "MOFU",
+  "funnel_rationale": "The video addresses the middle-of-funnel stage: patients already diagnosed with endometriosis but struggling to get appropriate specialist care and navigating referral barriers.",
+  "cta": {
+    "present": true,
+    "wording": "We can help you navigate the system, understanding your symptoms and finding the right private specialist for where you live. Just come and talk to us. We'll help you ask the right questions. Link in BlO.",
+    "position": "end",
+    "channel": "caption",
+    "explicitness": "explicit",
+    "requested_action_raw": "Click link in bio or engage with the service to get help navigating the system",
+    "value_exchange_raw": "Help understanding symptoms, finding a private specialist, and asking the right questions",
+    "urgency": "none",
+    "funnel_stage": "BOFU"
+  },
+  "topic": {
+    "primary_raw": "endometriosis",
+    "secondary_raw": [
+      "using AI for medical advocacy, specialist referral, patient empowerment"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "Laura | Women's Health Creator",
+    "type_raw": "patient/influencer"
+  },
+  "format_raw": "video",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1_compare",
+    "model": "deepseek/deepseek-v4-flash",
+    "extracted_at": "2026-07-10T14:24:51.168378+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "bd873d72cdb0c3b6"
+  }
+}

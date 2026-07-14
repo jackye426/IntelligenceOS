@@ -1,0 +1,17 @@
+[
+  {
+    "cid": "7654879565344768790",
+    "text": "👏👏👏",
+    "digg_count": 0,
+    "reply_comment_total": 0,
+    "create_time": 1782290557,
+    "themes": [
+      "other_uncategorized"
+    ],
+    "sentiment": {
+      "stance": "statement",
+      "primary_emotion": "neutral",
+      "toxicity_spam_flag": false
+    }
+  }
+]

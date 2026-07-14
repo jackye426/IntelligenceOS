@@ -1,0 +1,51 @@
+{
+  "video_id": "7653774474680077590",
+  "source_media": "7653774474680077590.mp4",
+  "whisper_model": "small",
+  "model": "small",
+  "language": "en",
+  "duration_after_vad": 44.00325,
+  "full_text": "And that was when I came across the gynecologist that did my first surgery and you know it was always her for some reason that was on call so every time I'd be admitted or be in A&E it would be like not you again like you know just try a different pill just try you know just try the patch so then it changed from pills to different options and then she finally agreed to do a laparoscopy but even on the day of the laparoscopy you know it was this is a waste of time we're not gonna find anything go it didn't fill me with hope and then to her discuss it would stay trending with Trusas and I never saw her ever again",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 10.72,
+      "text": "And that was when I came across the gynecologist that did my first surgery and you know it"
+    },
+    {
+      "start": 10.72,
+      "end": 15.66,
+      "text": "was always her for some reason that was on call so every time I'd be admitted or be in"
+    },
+    {
+      "start": 15.66,
+      "end": 21.2,
+      "text": "A&E it would be like not you again like you know just try a different pill just try"
+    },
+    {
+      "start": 21.2,
+      "end": 27.08,
+      "text": "you know just try the patch so then it changed from pills to different options and then"
+    },
+    {
+      "start": 27.08,
+      "end": 32.12,
+      "text": "she finally agreed to do a laparoscopy but even on the day of the laparoscopy you"
+    },
+    {
+      "start": 32.12,
+      "end": 37.16,
+      "text": "know it was this is a waste of time we're not gonna find anything go it didn't"
+    },
+    {
+      "start": 37.16,
+      "end": 41.72,
+      "text": "fill me with hope and then to her discuss it would stay trending with Trusas"
+    },
+    {
+      "start": 41.72,
+      "end": 45.64,
+      "text": "and I never saw her ever again"
+    }
+  ]
+}

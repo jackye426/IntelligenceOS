@@ -18,6 +18,7 @@ import os
 import signal
 import sys
 from pathlib import Path
+from typing import Any
 
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
@@ -131,11 +132,31 @@ def _run_tiktok_pipeline(*, full_refresh: bool = False, include_ocr: bool = Fals
 
 
 def _run_instagram_pipeline() -> dict:
-    """Fetch public Instagram posts, export dataset, and sync to Supabase."""
-    fetch = run_instagram_fetch(account="docmapuk", limit=80, include_comments=False)
+    """Export/sync Instagram dataset. Fetch only when Instaloader session is configured."""
+    result: dict[str, Any] = {}
+    if config.SKIP_INSTAGRAM:
+        logger.info("SKIP_INSTAGRAM=true — skipping Instagram fetch/export/sync")
+        return {"skipped": True, "reason": "SKIP_INSTAGRAM=true"}
+
+    session_path = Path(config.MARKETING_INSTAGRAM_DATA_DIR) / "session-docmapuk"
+    if session_path.exists():
+        try:
+            result["fetch"] = run_instagram_fetch(account="docmapuk", limit=80, include_comments=False)
+        except Exception as exc:
+            logger.warning("instagram fetch failed (continuing with existing raw data): %s", exc)
+            result["fetch"] = {"error": str(exc)}
+    else:
+        logger.warning(
+            "No Instaloader session at %s — skipping fetch; using content tracker + existing raw JSON only",
+            session_path,
+        )
+        result["fetch"] = {"skipped": True, "reason": "no_instaloader_session"}
+
     export = run_instagram_export()
     sync = run_instagram_sync_supabase()
-    return {"fetch": fetch, "export": export, "sync": sync}
+    result["export"] = export
+    result["sync"] = sync
+    return result
 
 
 def main() -> None:

@@ -1,0 +1,169 @@
+{
+  "templates": [
+    {
+      "id": "classic_blue",
+      "name": "Classic Blue",
+      "description": "Soft blue background with white serif headlines and sans body text. Clean educational feel.",
+      "best_for": ["how-to", "steps", "checklist", "educational"],
+      "background": {"type": "color", "rgb": [167, 198, 222]},
+      "fonts": {"headline": "Campaign Serif", "body": "Work Sans", "cta": "Amandine"},
+      "layouts": {
+        "hook": {
+          "zones": [
+            {"role": "headline", "x": 1.0, "y": 5.0, "w": 8.0, "h": 4.0, "font": "headline", "max_pt": 56, "min_pt": 28, "color": [255, 255, 255], "align": "left", "valign": "middle"}
+          ]
+        },
+        "body": {
+          "zones": [
+            {"role": "headline", "x": 1.0, "y": 4.8, "w": 8.0, "h": 2.8, "font": "headline", "max_pt": 50, "min_pt": 26, "color": [255, 255, 255], "align": "left", "valign": "top"},
+            {"role": "body", "x": 1.0, "y": 7.8, "w": 8.0, "h": 3.8, "font": "body", "max_pt": 25, "min_pt": 14, "color": [255, 255, 255], "align": "left", "valign": "top"}
+          ]
+        },
+        "cta": {
+          "zones": [
+            {"role": "cta", "x": 1.0, "y": 6.5, "w": 8.0, "h": 3.0, "font": "cta", "max_pt": 35, "min_pt": 20, "color": [255, 255, 255], "align": "center", "valign": "middle"}
+          ]
+        },
+        "title": {
+          "zones": [
+            {"role": "meta", "x": 1.0, "y": 1.0, "w": 8.0, "h": 1.3, "font": "headline", "max_pt": 36, "min_pt": 22, "color": [0, 0, 0], "align": "left", "valign": "top"},
+            {"role": "caption_label", "x": 1.0, "y": 3.8, "w": 8.0, "h": 0.4, "font": "body", "max_pt": 14, "min_pt": 12, "color": [0, 0, 0], "align": "left", "valign": "top"},
+            {"role": "caption", "x": 1.0, "y": 4.3, "w": 8.0, "h": 7.5, "font": "body", "max_pt": 16, "min_pt": 11, "color": [0, 0, 0], "align": "left", "valign": "top"}
+          ]
+        }
+      }
+    },
+    {
+      "id": "photo_center_hook",
+      "name": "Photo Hero Center",
+      "description": "Full-bleed photo background with centered hook headline and subtitle. Strong opener slide.",
+      "best_for": ["hook", "emotional", "validation", "story"],
+      "background": {"type": "color", "rgb": [100, 140, 180]},
+      "fonts": {"headline": "Campaign Serif", "body": "Work Sans", "cta": "Amandine"},
+      "layouts": {
+        "hook": {
+          "zones": [
+            {"role": "headline", "x": 0.8, "y": 4.5, "w": 8.4, "h": 3.5, "font": "headline", "max_pt": 52, "min_pt": 28, "color": [255, 255, 255], "align": "center", "valign": "middle"},
+            {"role": "subtitle", "x": 1.2, "y": 8.2, "w": 7.6, "h": 1.2, "font": "body", "max_pt": 22, "min_pt": 14, "color": [255, 255, 255], "align": "center", "valign": "top"}
+          ]
+        },
+        "body": {
+          "zones": [
+            {"role": "headline", "x": 1.0, "y": 5.0, "w": 8.0, "h": 2.5, "font": "headline", "max_pt": 46, "min_pt": 26, "color": [255, 255, 255], "align": "center", "valign": "top"},
+            {"role": "body", "x": 1.2, "y": 7.8, "w": 7.6, "h": 3.5, "font": "body", "max_pt": 22, "min_pt": 14, "color": [255, 255, 255], "align": "center", "valign": "top"}
+          ]
+        },
+        "cta": {
+          "zones": [
+            {"role": "cta", "x": 1.0, "y": 7.0, "w": 8.0, "h": 2.5, "font": "cta", "max_pt": 32, "min_pt": 18, "color": [255, 255, 255], "align": "center", "valign": "middle"}
+          ]
+        },
+        "title": {
+          "zones": [
+            {"role": "meta", "x": 1.0, "y": 1.0, "w": 8.0, "h": 1.3, "font": "headline", "max_pt": 36, "min_pt": 22, "color": [255, 255, 255], "align": "center", "valign": "top"},
+            {"role": "caption", "x": 1.0, "y": 4.0, "w": 8.0, "h": 7.5, "font": "body", "max_pt": 16, "min_pt": 11, "color": [255, 255, 255], "align": "left", "valign": "top"}
+          ]
+        }
+      }
+    },
+    {
+      "id": "photo_body_left",
+      "name": "Photo Editorial Left",
+      "description": "Moody photo background with left-aligned headline and body in the lower-left. Editorial storytelling.",
+      "best_for": ["story", "tips", "myth-bust", "numbered"],
+      "background": {"type": "color", "rgb": [30, 45, 35]},
+      "fonts": {"headline": "Campaign Serif", "body": "Work Sans", "cta": "Amandine"},
+      "layouts": {
+        "hook": {
+          "zones": [
+            {"role": "headline", "x": 1.0, "y": 7.5, "w": 7.5, "h": 2.5, "font": "headline", "max_pt": 48, "min_pt": 26, "color": [255, 255, 255], "align": "left", "valign": "bottom"},
+            {"role": "subtitle", "x": 1.0, "y": 10.2, "w": 7.5, "h": 1.5, "font": "body", "max_pt": 20, "min_pt": 13, "color": [255, 255, 255], "align": "left", "valign": "top"}
+          ]
+        },
+        "body": {
+          "zones": [
+            {"role": "headline", "x": 1.0, "y": 7.0, "w": 7.5, "h": 2.8, "font": "headline", "max_pt": 44, "min_pt": 24, "color": [255, 255, 255], "align": "left", "valign": "bottom"},
+            {"role": "body", "x": 1.0, "y": 9.9, "w": 7.5, "h": 2.2, "font": "body", "max_pt": 20, "min_pt": 13, "color": [255, 255, 255], "align": "left", "valign": "top"}
+          ]
+        },
+        "cta": {
+          "zones": [
+            {"role": "cta", "x": 1.0, "y": 8.5, "w": 7.5, "h": 2.5, "font": "cta", "max_pt": 30, "min_pt": 18, "color": [255, 255, 255], "align": "left", "valign": "middle"}
+          ]
+        },
+        "title": {
+          "zones": [
+            {"role": "meta", "x": 1.0, "y": 1.0, "w": 8.0, "h": 1.3, "font": "headline", "max_pt": 36, "min_pt": 22, "color": [255, 255, 255], "align": "left", "valign": "top"},
+            {"role": "caption", "x": 1.0, "y": 4.0, "w": 8.0, "h": 7.5, "font": "body", "max_pt": 16, "min_pt": 11, "color": [255, 255, 255], "align": "left", "valign": "top"}
+          ]
+        }
+      }
+    },
+    {
+      "id": "photo_body_right",
+      "name": "Photo Editorial Right",
+      "description": "Photo background with right-aligned text in the lower-right. Good for question-led slides.",
+      "best_for": ["questions", "myth-bust", "contrast", "tips"],
+      "background": {"type": "color", "rgb": [30, 45, 35]},
+      "fonts": {"headline": "Campaign Serif", "body": "Work Sans", "cta": "Amandine"},
+      "layouts": {
+        "hook": {
+          "zones": [
+            {"role": "headline", "x": 1.5, "y": 7.5, "w": 7.5, "h": 2.5, "font": "headline", "max_pt": 48, "min_pt": 26, "color": [255, 255, 255], "align": "right", "valign": "bottom"},
+            {"role": "subtitle", "x": 1.5, "y": 10.2, "w": 7.5, "h": 1.5, "font": "body", "max_pt": 20, "min_pt": 13, "color": [255, 255, 255], "align": "right", "valign": "top"}
+          ]
+        },
+        "body": {
+          "zones": [
+            {"role": "headline", "x": 1.5, "y": 7.0, "w": 7.5, "h": 2.8, "font": "headline", "max_pt": 44, "min_pt": 24, "color": [255, 255, 255], "align": "right", "valign": "bottom"},
+            {"role": "body", "x": 1.5, "y": 9.9, "w": 7.5, "h": 2.2, "font": "body", "max_pt": 20, "min_pt": 13, "color": [255, 255, 255], "align": "right", "valign": "top"}
+          ]
+        },
+        "cta": {
+          "zones": [
+            {"role": "cta", "x": 1.5, "y": 8.5, "w": 7.5, "h": 2.5, "font": "cta", "max_pt": 30, "min_pt": 18, "color": [255, 255, 255], "align": "right", "valign": "middle"}
+          ]
+        },
+        "title": {
+          "zones": [
+            {"role": "meta", "x": 1.0, "y": 1.0, "w": 8.0, "h": 1.3, "font": "headline", "max_pt": 36, "min_pt": 22, "color": [255, 255, 255], "align": "right", "valign": "top"},
+            {"role": "caption", "x": 1.0, "y": 4.0, "w": 8.0, "h": 7.5, "font": "body", "max_pt": 16, "min_pt": 11, "color": [255, 255, 255], "align": "left", "valign": "top"}
+          ]
+        }
+      }
+    },
+    {
+      "id": "minimal_white",
+      "name": "Minimal White",
+      "description": "White background with black editorial typography. Best for caption/reference deck pages.",
+      "best_for": ["caption", "reference", "notes", "planning"],
+      "background": {"type": "color", "rgb": [255, 255, 255]},
+      "fonts": {"headline": "Campaign Serif", "body": "Work Sans", "cta": "Amandine"},
+      "layouts": {
+        "hook": {
+          "zones": [
+            {"role": "headline", "x": 1.0, "y": 5.5, "w": 8.0, "h": 3.5, "font": "headline", "max_pt": 52, "min_pt": 28, "color": [0, 0, 0], "align": "left", "valign": "middle"}
+          ]
+        },
+        "body": {
+          "zones": [
+            {"role": "headline", "x": 1.0, "y": 5.0, "w": 8.0, "h": 2.5, "font": "headline", "max_pt": 46, "min_pt": 26, "color": [0, 0, 0], "align": "left", "valign": "top"},
+            {"role": "body", "x": 1.0, "y": 7.7, "w": 8.0, "h": 4.0, "font": "body", "max_pt": 22, "min_pt": 13, "color": [0, 0, 0], "align": "left", "valign": "top"}
+          ]
+        },
+        "cta": {
+          "zones": [
+            {"role": "cta", "x": 1.0, "y": 7.0, "w": 8.0, "h": 2.5, "font": "cta", "max_pt": 32, "min_pt": 18, "color": [0, 0, 0], "align": "center", "valign": "middle"}
+          ]
+        },
+        "title": {
+          "zones": [
+            {"role": "meta", "x": 1.0, "y": 2.5, "w": 8.0, "h": 1.5, "font": "headline", "max_pt": 40, "min_pt": 24, "color": [0, 0, 0], "align": "left", "valign": "top"},
+            {"role": "caption_label", "x": 1.0, "y": 4.5, "w": 8.0, "h": 0.4, "font": "body", "max_pt": 14, "min_pt": 12, "color": [0, 0, 0], "align": "left", "valign": "top"},
+            {"role": "caption", "x": 1.0, "y": 5.0, "w": 8.0, "h": 6.5, "font": "body", "max_pt": 16, "min_pt": 10, "color": [0, 0, 0], "align": "left", "valign": "top"}
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,5 +1,20 @@
 [
   {
+    "cid": "7644997228524716822",
+    "text": "My mri they said it was completely normal and it was extremely disheartening",
+    "digg_count": 5,
+    "reply_comment_total": 6,
+    "create_time": 1779989642,
+    "themes": [
+      "imaging_mri"
+    ],
+    "sentiment": {
+      "stance": "personal_story",
+      "primary_emotion": "neutral",
+      "toxicity_spam_flag": false
+    }
+  },
+  {
     "cid": "7645202401191936790",
     "text": "I truly believe there now needs to be more endometriosis centres across the country to meet the demand",
     "digg_count": 15,
@@ -15,13 +30,14 @@
     }
   },
   {
-    "cid": "7644997228524716822",
-    "text": "My mri they said it was completely normal and it was extremely disheartening",
-    "digg_count": 5,
-    "reply_comment_total": 6,
-    "create_time": 1779989642,
+    "cid": "7659196018633786115",
+    "text": "I have my scan on the 15th of this month, and I’m opting for the internal scan also as long as I’m asleep for it. I’ve bee in pain so long so I really hope this doesn’t go to waste, wish me luck ❤️‍🩹",
+    "digg_count": 0,
+    "reply_comment_total": 0,
+    "create_time": 1783295565,
     "themes": [
-      "imaging_mri"
+      "imaging_mri",
+      "personal_story"
     ],
     "sentiment": {
       "stance": "personal_story",

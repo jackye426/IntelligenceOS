@@ -9,50 +9,49 @@
     "video_id": "7630900114982210838",
     "n_fetched": 321,
     "theme_distribution": {
-      "personal_story": 114,
-      "other_uncategorized": 111,
-      "general_question": 62,
+      "other_uncategorized": 115,
+      "personal_story": 113,
+      "general_question": 56,
       "post_op_experience": 45,
-      "advocacy_what_to_ask": 37,
-      "pouch_anatomy_question": 37,
-      "validation_gratitude": 27,
+      "advocacy_what_to_ask": 38,
+      "pouch_anatomy_question": 36,
+      "validation_gratitude": 26,
       "imaging_mri": 26,
-      "humor_reaction": 13,
+      "humor_reaction": 11,
       "system_frustration": 4
     },
     "random_stratum_n": 100,
     "random_stratum_theme_distribution": {
-      "personal_story": 39,
-      "other_uncategorized": 32,
-      "post_op_experience": 21,
-      "general_question": 15,
+      "other_uncategorized": 37,
+      "personal_story": 35,
+      "post_op_experience": 18,
       "advocacy_what_to_ask": 13,
-      "pouch_anatomy_question": 12,
+      "pouch_anatomy_question": 13,
+      "general_question": 12,
       "validation_gratitude": 11,
       "imaging_mri": 7,
-      "humor_reaction": 6,
-      "system_frustration": 1
+      "humor_reaction": 5
     },
     "stance_distribution": {
-      "statement": 82,
-      "personal_story": 191,
-      "question": 26,
-      "agree_validate": 22
+      "statement": 87,
+      "personal_story": 189,
+      "agree_validate": 22,
+      "question": 23
     },
     "emotion_distribution": {
-      "neutral": 266,
-      "distress_frustration": 25,
+      "neutral": 269,
+      "distress_frustration": 24,
       "gratitude_hope": 23,
-      "humor": 7
+      "humor": 5
     }
   },
   {
     "video_id": "7631220659770690818",
-    "n_fetched": 10,
+    "n_fetched": 11,
     "theme_distribution": {
-      "personal_story": 4,
+      "personal_story": 5,
+      "advocacy_what_to_ask": 3,
       "validation_gratitude": 3,
-      "advocacy_what_to_ask": 2,
       "system_frustration": 1,
       "other_uncategorized": 1
     },
@@ -60,20 +59,20 @@
     "random_stratum_theme_distribution": {},
     "stance_distribution": {
       "agree_validate": 4,
-      "personal_story": 5,
+      "personal_story": 6,
       "statement": 1
     },
     "emotion_distribution": {
       "gratitude_hope": 4,
-      "neutral": 6
+      "neutral": 7
     }
   },
   {
     "video_id": "7631307430890048790",
     "n_fetched": 2,
     "theme_distribution": {
-      "other_uncategorized": 1,
-      "general_question": 1
+      "general_question": 1,
+      "other_uncategorized": 1
     },
     "random_stratum_n": 0,
     "random_stratum_theme_distribution": {},
@@ -89,8 +88,8 @@
     "n_fetched": 3,
     "theme_distribution": {
       "personal_story": 2,
-      "pouch_anatomy_question": 1,
-      "other_uncategorized": 1
+      "other_uncategorized": 1,
+      "pouch_anatomy_question": 1
     },
     "random_stratum_n": 0,
     "random_stratum_theme_distribution": {},
@@ -252,8 +251,8 @@
     "random_stratum_theme_distribution": {},
     "stance_distribution": {
       "agree_validate": 3,
-      "personal_story": 1,
-      "statement": 1
+      "statement": 1,
+      "personal_story": 1
     },
     "emotion_distribution": {
       "gratitude_hope": 2,
@@ -487,23 +486,23 @@
   },
   {
     "video_id": "7644863912545881366",
-    "n_fetched": 16,
+    "n_fetched": 17,
     "theme_distribution": {
-      "imaging_mri": 8,
+      "imaging_mri": 9,
       "other_uncategorized": 7,
-      "personal_story": 6,
+      "personal_story": 7,
       "post_op_experience": 2,
       "advocacy_what_to_ask": 1
     },
     "random_stratum_n": 0,
     "random_stratum_theme_distribution": {},
     "stance_distribution": {
-      "personal_story": 12,
+      "personal_story": 13,
       "statement": 3,
       "question": 1
     },
     "emotion_distribution": {
-      "neutral": 13,
+      "neutral": 14,
       "distress_frustration": 3
     }
   },
@@ -567,9 +566,9 @@
   },
   {
     "video_id": "7649808436883967254",
-    "n_fetched": 54,
+    "n_fetched": 55,
     "theme_distribution": {
-      "other_uncategorized": 38,
+      "other_uncategorized": 39,
       "personal_story": 9,
       "post_op_experience": 4,
       "system_frustration": 3,
@@ -578,22 +577,21 @@
       "humor_reaction": 1,
       "general_question": 1
     },
-    "random_stratum_n": 34,
+    "random_stratum_n": 35,
     "random_stratum_theme_distribution": {
-      "other_uncategorized": 25,
-      "personal_story": 6,
+      "other_uncategorized": 27,
+      "personal_story": 5,
       "system_frustration": 2,
       "humor_reaction": 1,
-      "imaging_mri": 1,
       "general_question": 1
     },
     "stance_distribution": {
-      "statement": 20,
       "personal_story": 33,
+      "statement": 21,
       "agree_validate": 1
     },
     "emotion_distribution": {
-      "neutral": 47,
+      "neutral": 48,
       "distress_frustration": 5,
       "gratitude_hope": 1,
       "humor": 1
@@ -616,24 +614,24 @@
   },
   {
     "video_id": "7650429101584469270",
-    "n_fetched": 10,
+    "n_fetched": 12,
     "theme_distribution": {
-      "personal_story": 6,
-      "general_question": 4,
+      "personal_story": 7,
+      "general_question": 5,
+      "post_op_experience": 2,
       "other_uncategorized": 2,
-      "post_op_experience": 1,
       "advocacy_what_to_ask": 1,
       "imaging_mri": 1
     },
     "random_stratum_n": 0,
     "random_stratum_theme_distribution": {},
     "stance_distribution": {
-      "personal_story": 6,
+      "personal_story": 8,
       "question": 2,
       "statement": 2
     },
     "emotion_distribution": {
-      "neutral": 10
+      "neutral": 12
     }
   },
   {
@@ -659,10 +657,10 @@
       "personal_story": 5,
       "general_question": 4,
       "advocacy_what_to_ask": 3,
-      "system_frustration": 2,
       "humor_reaction": 2,
-      "post_op_experience": 1,
-      "imaging_mri": 1
+      "system_frustration": 2,
+      "imaging_mri": 1,
+      "post_op_experience": 1
     },
     "random_stratum_n": 0,
     "random_stratum_theme_distribution": {},
@@ -678,21 +676,21 @@
   },
   {
     "video_id": "7650467196187036950",
-    "n_fetched": 6,
+    "n_fetched": 7,
     "theme_distribution": {
-      "personal_story": 5,
-      "general_question": 2,
+      "personal_story": 6,
+      "general_question": 3,
       "validation_gratitude": 2,
       "advocacy_what_to_ask": 1
     },
     "random_stratum_n": 0,
     "random_stratum_theme_distribution": {},
     "stance_distribution": {
-      "personal_story": 4,
+      "personal_story": 5,
       "agree_validate": 2
     },
     "emotion_distribution": {
-      "neutral": 3,
+      "neutral": 4,
       "gratitude_hope": 2,
       "distress_frustration": 1
     }
@@ -756,5 +754,327 @@
     "emotion_distribution": {
       "neutral": 2
     }
+  },
+  {
+    "video_id": "7651627428573433110",
+    "n_fetched": 0,
+    "themes": {},
+    "note": "no comments returned"
+  },
+  {
+    "video_id": "7651627777971457302",
+    "n_fetched": 1,
+    "theme_distribution": {
+      "other_uncategorized": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "statement": 1
+    },
+    "emotion_distribution": {
+      "neutral": 1
+    }
+  },
+  {
+    "video_id": "7652295829587250454",
+    "n_fetched": 1,
+    "theme_distribution": {
+      "personal_story": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "personal_story": 1
+    },
+    "emotion_distribution": {
+      "neutral": 1
+    }
+  },
+  {
+    "video_id": "7652662905082547478",
+    "n_fetched": 3,
+    "theme_distribution": {
+      "other_uncategorized": 1,
+      "validation_gratitude": 1,
+      "advocacy_what_to_ask": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "personal_story": 2,
+      "agree_validate": 1
+    },
+    "emotion_distribution": {
+      "neutral": 1,
+      "gratitude_hope": 1,
+      "distress_frustration": 1
+    }
+  },
+  {
+    "video_id": "7652666439475907843",
+    "n_fetched": 3,
+    "theme_distribution": {
+      "personal_story": 2,
+      "general_question": 2,
+      "imaging_mri": 2,
+      "advocacy_what_to_ask": 1,
+      "pouch_anatomy_question": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "personal_story": 3
+    },
+    "emotion_distribution": {
+      "neutral": 3
+    }
+  },
+  {
+    "video_id": "7653120154154568962",
+    "n_fetched": 5,
+    "theme_distribution": {
+      "personal_story": 4,
+      "general_question": 1,
+      "imaging_mri": 1,
+      "other_uncategorized": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "personal_story": 4,
+      "statement": 1
+    },
+    "emotion_distribution": {
+      "neutral": 5
+    }
+  },
+  {
+    "video_id": "7653123483274054934",
+    "n_fetched": 8,
+    "theme_distribution": {
+      "other_uncategorized": 5,
+      "personal_story": 1,
+      "validation_gratitude": 1,
+      "general_question": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "personal_story": 3,
+      "question": 2,
+      "statement": 3
+    },
+    "emotion_distribution": {
+      "neutral": 7,
+      "gratitude_hope": 1
+    }
+  },
+  {
+    "video_id": "7653125514676145430",
+    "n_fetched": 1,
+    "theme_distribution": {
+      "other_uncategorized": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "statement": 1
+    },
+    "emotion_distribution": {
+      "neutral": 1
+    }
+  },
+  {
+    "video_id": "7653126732819565846",
+    "n_fetched": 0,
+    "themes": {},
+    "note": "no comments returned"
+  },
+  {
+    "video_id": "7653134809450958102",
+    "n_fetched": 0,
+    "themes": {},
+    "note": "no comments returned"
+  },
+  {
+    "video_id": "7653135089735421206",
+    "n_fetched": 0,
+    "themes": {},
+    "note": "no comments returned"
+  },
+  {
+    "video_id": "7653774474680077590",
+    "n_fetched": 0,
+    "themes": {},
+    "note": "no comments returned"
+  },
+  {
+    "video_id": "7656847212751916290",
+    "n_fetched": 3,
+    "theme_distribution": {
+      "general_question": 2,
+      "other_uncategorized": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "personal_story": 1,
+      "question": 2
+    },
+    "emotion_distribution": {
+      "neutral": 3
+    }
+  },
+  {
+    "video_id": "7657095030577843459",
+    "n_fetched": 1,
+    "theme_distribution": {
+      "validation_gratitude": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "agree_validate": 1
+    },
+    "emotion_distribution": {
+      "gratitude_hope": 1
+    }
+  },
+  {
+    "video_id": "7657119412062801174",
+    "n_fetched": 2,
+    "theme_distribution": {
+      "pouch_anatomy_question": 2,
+      "post_op_experience": 1,
+      "personal_story": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "personal_story": 2
+    },
+    "emotion_distribution": {
+      "neutral": 2
+    }
+  },
+  {
+    "video_id": "7657124670826695958",
+    "n_fetched": 1,
+    "theme_distribution": {
+      "personal_story": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "agree_validate": 1
+    },
+    "emotion_distribution": {
+      "neutral": 1
+    }
+  },
+  {
+    "video_id": "7657137322055503126",
+    "n_fetched": 0,
+    "themes": {},
+    "note": "no comments returned"
+  },
+  {
+    "video_id": "7657158848876252438",
+    "n_fetched": 0,
+    "themes": {},
+    "note": "no comments returned"
+  },
+  {
+    "video_id": "7657190878246669590",
+    "n_fetched": 1,
+    "theme_distribution": {
+      "other_uncategorized": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "statement": 1
+    },
+    "emotion_distribution": {
+      "neutral": 1
+    }
+  },
+  {
+    "video_id": "7657193222283758870",
+    "n_fetched": 8,
+    "theme_distribution": {
+      "general_question": 4,
+      "other_uncategorized": 2,
+      "imaging_mri": 1,
+      "personal_story": 1,
+      "advocacy_what_to_ask": 1,
+      "post_op_experience": 1,
+      "humor_reaction": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "question": 3,
+      "personal_story": 5
+    },
+    "emotion_distribution": {
+      "neutral": 7,
+      "distress_frustration": 1
+    }
+  },
+  {
+    "video_id": "7657196276609584407",
+    "n_fetched": 1,
+    "theme_distribution": {
+      "other_uncategorized": 1
+    },
+    "random_stratum_n": 0,
+    "random_stratum_theme_distribution": {},
+    "stance_distribution": {
+      "personal_story": 1
+    },
+    "emotion_distribution": {
+      "neutral": 1
+    }
+  },
+  {
+    "video_id": "7657200670260481302",
+    "n_fetched": 21,
+    "theme_distribution": {
+      "personal_story": 8,
+      "other_uncategorized": 8,
+      "validation_gratitude": 6,
+      "general_question": 3,
+      "pouch_anatomy_question": 1,
+      "imaging_mri": 1,
+      "advocacy_what_to_ask": 1
+    },
+    "random_stratum_n": 1,
+    "random_stratum_theme_distribution": {
+      "other_uncategorized": 1
+    },
+    "stance_distribution": {
+      "question": 1,
+      "personal_story": 7,
+      "agree_validate": 6,
+      "statement": 7
+    },
+    "emotion_distribution": {
+      "neutral": 15,
+      "gratitude_hope": 6
+    }
+  },
+  {
+    "video_id": "7658281999777549590",
+    "n_fetched": 0,
+    "themes": {},
+    "note": "no comments returned"
+  },
+  {
+    "video_id": "7658282932284476694",
+    "n_fetched": 0,
+    "themes": {},
+    "note": "no comments returned"
   }
 ]

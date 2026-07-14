@@ -1,0 +1,52 @@
+[
+  {
+    "cid": "7653054937550783234",
+    "text": "im im scotland and my next appointment is not until Dec!!! i will call everyday to see if cancellation. But I would love a nurses appointment, I am on the east, whats the changes of getting an appointment? Happy to travel",
+    "digg_count": 0,
+    "reply_comment_total": 1,
+    "create_time": 1781865725,
+    "themes": [
+      "personal_story",
+      "general_question"
+    ],
+    "sentiment": {
+      "stance": "personal_story",
+      "primary_emotion": "neutral",
+      "toxicity_spam_flag": false
+    }
+  },
+  {
+    "cid": "7654183506112725782",
+    "text": "is it possible to access MRI records? My NHS app is only for booking routine appointments(cardiff)",
+    "digg_count": 0,
+    "reply_comment_total": 0,
+    "create_time": 1782128488,
+    "themes": [
+      "imaging_mri",
+      "general_question"
+    ],
+    "sentiment": {
+      "stance": "personal_story",
+      "primary_emotion": "neutral",
+      "toxicity_spam_flag": false
+    }
+  },
+  {
+    "cid": "7652797561531679510",
+    "text": "Please could you help me - I’ve been told there’s nothing else my Gynaecologist or General Surgeons can do. I have an MRI and recently had a hysterectomy with conservation of ovaries. There were only 2 pics taken as part of my hysterectomy which suggests to me they didn’t look around properly- like mobilising the organs or looking in pouch of Douglas etc. I would really appreciate and help or advice you could offer xxx",
+    "digg_count": 0,
+    "reply_comment_total": 3,
+    "create_time": 1781805802,
+    "themes": [
+      "advocacy_what_to_ask",
+      "imaging_mri",
+      "pouch_anatomy_question",
+      "personal_story"
+    ],
+    "sentiment": {
+      "stance": "personal_story",
+      "primary_emotion": "neutral",
+      "toxicity_spam_flag": false
+    }
+  }
+]

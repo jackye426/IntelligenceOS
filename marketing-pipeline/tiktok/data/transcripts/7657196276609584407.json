@@ -1,0 +1,51 @@
+{
+  "video_id": "7657196276609584407",
+  "source_media": "7657196276609584407.mp4",
+  "whisper_model": "small",
+  "model": "small",
+  "language": "en",
+  "duration_after_vad": 45.4893125,
+  "full_text": "So if you have an illness and you go through HR, there are many companies where they will recognise symptoms and therefore they will adapt your work to allow for that. Endometriosis UK have a good employer club basically, so employers, they have a leaflet which helps you encourage employers to be accommodating. So things like make sure you've got the correct chair, if you're really tired can you work from home? If you are severely debilitated by it, can you have a parking spot near to the office? Can you have rest times? Is there a chair that you could rest in in the office if you've got severe fatigue? Have you got access to good nutrition?",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 9.88,
+      "text": "So if you have an illness and you go through HR, there are many companies where they will"
+    },
+    {
+      "start": 9.88,
+      "end": 15.72,
+      "text": "recognise symptoms and therefore they will adapt your work to allow for that."
+    },
+    {
+      "start": 15.72,
+      "end": 21.92,
+      "text": "Endometriosis UK have a good employer club basically, so employers, they have a leaflet"
+    },
+    {
+      "start": 21.92,
+      "end": 25.2,
+      "text": "which helps you encourage employers to be accommodating."
+    },
+    {
+      "start": 25.2,
+      "end": 29.44,
+      "text": "So things like make sure you've got the correct chair, if you're really tired can"
+    },
+    {
+      "start": 29.44,
+      "end": 35.12,
+      "text": "you work from home? If you are severely debilitated by it, can you have a parking spot near to"
+    },
+    {
+      "start": 35.12,
+      "end": 40.92,
+      "text": "the office? Can you have rest times? Is there a chair that you could rest in in the office"
+    },
+    {
+      "start": 40.92,
+      "end": 45.36,
+      "text": "if you've got severe fatigue? Have you got access to good nutrition?"
+    }
+  ]
+}

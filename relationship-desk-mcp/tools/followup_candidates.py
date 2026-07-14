@@ -25,10 +25,12 @@ def _gmail_after_date(hours_back: int) -> str:
 
 
 def _latest_external_sender(thread: dict[str, Any], account_email: str | None) -> dict[str, str]:
+    from common import config
+
     for message in reversed(thread.get("messages") or []):
         sender = message.get("from") or {}
         email = (sender.get("email") or "").lower()
-        if email and email != (account_email or "").lower():
+        if email and not config.is_relationship_desk_email(email, account_email):
             return {"email": email, "name": sender.get("name") or ""}
     return {"email": "", "name": ""}
 

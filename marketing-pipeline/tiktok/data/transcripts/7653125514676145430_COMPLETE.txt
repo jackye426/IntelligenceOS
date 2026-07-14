@@ -1,0 +1,9 @@
+video_id: 7653125514676145430
+url: https://www.tiktok.com/@docmap/video/7653125514676145430
+
+## Spoken transcript (Whisper automatic speech recognition, English)
+So if you have an illness and you go through HR, there are many companies where they will recognise symptoms and therefore they will adapt your work to allow for that.
+
+## TikTok title and description (verbatim from post metadata)
+
+If you're not sure your employer will support you with endometriosis,here's some reassurance. Many companies, through HR, will recognise your symptoms and adapt your work to accommodate them. It's always worth having the conversation.

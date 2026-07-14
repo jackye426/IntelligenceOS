@@ -31,17 +31,17 @@
     }
   },
   {
-    "cid": "7631236880445424406",
-    "text": "Thank you for sharing your expertise and experience xx",
-    "digg_count": 1,
-    "reply_comment_total": 1,
-    "create_time": 1776785813,
+    "cid": "7654526353487708950",
+    "text": "I was told I was getting an excision but during my lap they did ablation. This definitely puts things into perspective.",
+    "digg_count": 0,
+    "reply_comment_total": 0,
+    "create_time": 1782208314,
     "themes": [
-      "validation_gratitude"
+      "personal_story"
     ],
     "sentiment": {
-      "stance": "agree_validate",
-      "primary_emotion": "gratitude_hope",
+      "stance": "personal_story",
+      "primary_emotion": "neutral",
       "toxicity_spam_flag": false
     }
   },
@@ -61,6 +61,21 @@
     }
   },
   {
+    "cid": "7631236880445424406",
+    "text": "Thank you for sharing your expertise and experience xx",
+    "digg_count": 1,
+    "reply_comment_total": 1,
+    "create_time": 1776785813,
+    "themes": [
+      "validation_gratitude"
+    ],
+    "sentiment": {
+      "stance": "agree_validate",
+      "primary_emotion": "gratitude_hope",
+      "toxicity_spam_flag": false
+    }
+  },
+  {
     "cid": "7631321428508820246",
     "text": "Thankyou for explain him booked in for 13 July surgery so helping with clarity - I’m in Aus :)",
     "digg_count": 1,
@@ -72,21 +87,6 @@
     "sentiment": {
       "stance": "statement",
       "primary_emotion": "gratitude_hope",
-      "toxicity_spam_flag": false
-    }
-  },
-  {
-    "cid": "7654526353487708950",
-    "text": "I was told I was getting an excision but during my lap they did ablation. This definitely puts things into perspective.",
-    "digg_count": 0,
-    "reply_comment_total": 0,
-    "create_time": 1782208314,
-    "themes": [
-      "personal_story"
-    ],
-    "sentiment": {
-      "stance": "personal_story",
-      "primary_emotion": "neutral",
       "toxicity_spam_flag": false
     }
   },
@@ -112,6 +112,22 @@
     "reply_comment_total": 1,
     "create_time": 1776797649,
     "themes": [
+      "personal_story"
+    ],
+    "sentiment": {
+      "stance": "personal_story",
+      "primary_emotion": "neutral",
+      "toxicity_spam_flag": false
+    }
+  },
+  {
+    "cid": "7658010366941774614",
+    "text": "I had surgery before 6 days with one of the BSGE accredited NHS surgeon and they have done ablation. I am so scared now . I waited for it 2 years. I was told before that excision will be done.",
+    "digg_count": 0,
+    "reply_comment_total": 0,
+    "create_time": 1783019506,
+    "themes": [
+      "advocacy_what_to_ask",
       "personal_story"
     ],
     "sentiment": {

@@ -1,0 +1,36 @@
+{
+  "video_id": "7653120154154568962",
+  "source_media": "7653120154154568962.mp4",
+  "whisper_model": "small",
+  "model": "small",
+  "language": "en",
+  "duration_after_vad": 28.260125,
+  "full_text": "I feel very sorry for teenagers who've got this and also that the access to support is less. However I did mention I think the menstrual project before and the menstrual project have got a fantastic teens part. Really really good support information for teens so any teens out there have a look at menstrual project. They're fabulous. End of UK I've also got lots of stuff about teenagers and so does the Endometrious Foundation.",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 7.6,
+      "text": "I feel very sorry for teenagers who've got this and also that the access to support is"
+    },
+    {
+      "start": 7.6,
+      "end": 12.68,
+      "text": "less. However I did mention I think the menstrual project before and the menstrual project have"
+    },
+    {
+      "start": 12.68,
+      "end": 19.92,
+      "text": "got a fantastic teens part. Really really good support information for teens so any teens"
+    },
+    {
+      "start": 19.92,
+      "end": 24.56,
+      "text": "out there have a look at menstrual project. They're fabulous. End of UK I've also"
+    },
+    {
+      "start": 24.56,
+      "end": 27.88,
+      "text": "got lots of stuff about teenagers and so does the Endometrious Foundation."
+    }
+  ]
+}

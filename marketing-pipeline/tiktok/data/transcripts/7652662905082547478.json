@@ -1,0 +1,76 @@
+{
+  "video_id": "7652662905082547478",
+  "source_media": "7652662905082547478.mp4",
+  "whisper_model": "small",
+  "model": "small",
+  "language": "en",
+  "duration_after_vad": 72.099375,
+  "full_text": "My mum and I did all the research and we thought everything points back to it being endometriosis so then you know I'd go to the GP or I'd go to you know when I was admitted into the pediatric ward I'd say what about endometriosis and it was like oh don't be silly you're too young nobody has that young and it actually got to the point where I went to three different hospitals at the time because they just refused to send me to gynecology because it was well you're 12 years old you're 13 years old you're 14 years old and it's carried on and even now at 18 you know if I'm in A&E or something it's still but it's an adults disease and that was what really kind of stopped me from getting the answers you know it was never a fellow to gynecology they'd never come and see me it would always be a pediatrician I remember just wanting to just cry and I was like it's more than that and just nobody believed me but I truly think if I was maybe in my 20s or my 30s then people would have been like yeah it's endometriosis but I think because I was so young they never put it together and it was unheard of so it was never it was never brought up",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 5.68,
+      "text": "My mum and I did all the research and we thought everything points back to it being endometriosis so"
+    },
+    {
+      "start": 5.68,
+      "end": 13.2,
+      "text": "then you know I'd go to the GP or I'd go to you know when I was admitted into the pediatric ward"
+    },
+    {
+      "start": 13.2,
+      "end": 18.08,
+      "text": "I'd say what about endometriosis and it was like oh don't be silly you're too young nobody"
+    },
+    {
+      "start": 18.08,
+      "end": 23.28,
+      "text": "has that young and it actually got to the point where I went to three different hospitals at the"
+    },
+    {
+      "start": 23.28,
+      "end": 29.44,
+      "text": "time because they just refused to send me to gynecology because it was well you're 12 years old"
+    },
+    {
+      "start": 29.44,
+      "end": 35.52,
+      "text": "you're 13 years old you're 14 years old and it's carried on and even now at 18 you know if I'm in"
+    },
+    {
+      "start": 35.52,
+      "end": 41.76,
+      "text": "A&E or something it's still but it's an adults disease and that was what really kind of stopped"
+    },
+    {
+      "start": 41.76,
+      "end": 46.24,
+      "text": "me from getting the answers you know it was never a fellow to gynecology they'd never come"
+    },
+    {
+      "start": 46.24,
+      "end": 51.84,
+      "text": "and see me it would always be a pediatrician I remember just wanting to just cry and I was"
+    },
+    {
+      "start": 51.84,
+      "end": 57.28,
+      "text": "like it's more than that and just nobody believed me but I truly think if I was"
+    },
+    {
+      "start": 57.28,
+      "end": 62.96,
+      "text": "maybe in my 20s or my 30s then people would have been like yeah it's endometriosis but I think"
+    },
+    {
+      "start": 62.96,
+      "end": 69.76,
+      "text": "because I was so young they never put it together and it was unheard of so it was never it was never"
+    },
+    {
+      "start": 69.76,
+      "end": 72.08,
+      "text": "brought up"
+    }
+  ]
+}

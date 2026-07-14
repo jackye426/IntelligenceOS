@@ -1,0 +1,79 @@
+[
+  {
+    "cid": "7656422062412170006",
+    "text": "Idk if i need to take my pain seriously what if im overacting?",
+    "digg_count": 0,
+    "reply_comment_total": 1,
+    "create_time": 1782649694,
+    "themes": [
+      "personal_story",
+      "general_question"
+    ],
+    "sentiment": {
+      "stance": "personal_story",
+      "primary_emotion": "neutral",
+      "toxicity_spam_flag": false
+    }
+  },
+  {
+    "cid": "7653131915139498774",
+    "text": "i was 15 when I started my journey to get an endo diagnosis. Im now 30 and only just getting an MRI...",
+    "digg_count": 5,
+    "reply_comment_total": 1,
+    "create_time": 1781883657,
+    "themes": [
+      "imaging_mri",
+      "personal_story"
+    ],
+    "sentiment": {
+      "stance": "personal_story",
+      "primary_emotion": "neutral",
+      "toxicity_spam_flag": false
+    }
+  },
+  {
+    "cid": "7659128557667877654",
+    "text": "I have had my for 29 half years stage 4 I feel sorry for the",
+    "digg_count": 0,
+    "reply_comment_total": 0,
+    "create_time": 1783279855,
+    "themes": [
+      "personal_story"
+    ],
+    "sentiment": {
+      "stance": "personal_story",
+      "primary_emotion": "neutral",
+      "toxicity_spam_flag": false
+    }
+  },
+  {
+    "cid": "7657320288514147094",
+    "text": "i’m 17 and i’m currently on a year long waiting list to gynaecology. I have been on my period for 30 days, my mood swings are life ruining, i do not sleep, i can’t eat without feeling ill, and the pain is unbearable, but i am being told i just need to try different birth control and that i have irregular periods because of stress.",
+    "digg_count": 3,
+    "reply_comment_total": 0,
+    "create_time": 1782858833,
+    "themes": [
+      "personal_story"
+    ],
+    "sentiment": {
+      "stance": "personal_story",
+      "primary_emotion": "neutral",
+      "toxicity_spam_flag": false
+    }
+  },
+  {
+    "cid": "7657719544782373635",
+    "text": "❤️",
+    "digg_count": 0,
+    "reply_comment_total": 0,
+    "create_time": 1782951824,
+    "themes": [
+      "other_uncategorized"
+    ],
+    "sentiment": {
+      "stance": "statement",
+      "primary_emotion": "neutral",
+      "toxicity_spam_flag": false
+    }
+  }
+]

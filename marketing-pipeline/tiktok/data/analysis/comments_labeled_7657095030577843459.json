@@ -1,0 +1,17 @@
+[
+  {
+    "cid": "7657541572826071830",
+    "text": "Thank you for sharing my story 🫶🏽",
+    "digg_count": 0,
+    "reply_comment_total": 0,
+    "create_time": 1782910364,
+    "themes": [
+      "validation_gratitude"
+    ],
+    "sentiment": {
+      "stance": "agree_validate",
+      "primary_emotion": "gratitude_hope",
+      "toxicity_spam_flag": false
+    }
+  }
+]

@@ -50,6 +50,12 @@ from tools.tiktok_insights import (  # noqa: E402
     list_tiktok_insight_drafts,
     propose_constitution_patch,
 )
+from tools.constitution_amendments import (  # noqa: E402
+    approve_constitution_amendment,
+    list_constitution_amendments,
+    reject_constitution_amendment,
+    suggest_constitution_amendment,
+)
 from tools.tiktok_decisions import (  # noqa: E402
     cancel_tiktok_decision,
     get_tiktok_decision,
@@ -70,6 +76,11 @@ from tools.get_practitioner_status import get_practitioner_status  # noqa: E402
 from tools.get_weekly_briefing import get_weekly_briefing  # noqa: E402
 from tools.search_knowledge import search_knowledge  # noqa: E402
 from tools.search_practitioners import search_practitioners  # noqa: E402
+from tools.create_carousel import (  # noqa: E402
+    create_carousel,
+    fill_carousel_template,
+    list_carousel_templates,
+)
 
 mcp = FastMCP(
     "DocMap Intelligence OS",
@@ -455,18 +466,72 @@ def list_tiktok_insight_drafts_tool(limit: int = 20):
 def propose_constitution_patch_tool(
     insight_id: str,
     proposed_bullet: str,
-    target_section: str = "content-instruction.md",
+    target_section: str = "viral-format.md",
+    rationale: str = "",
 ):
-    """Gate 2: propose a durable constitution bullet for a HUMAN to paste manually.
+    """Gate 2 (legacy alias): queue a constitution amendment for human approval.
 
-    Never auto-applies. Only after an insight is approved; prefer when a decision
-    outcome (or repeated insights) stably supports a standing rule.
+    Prefer suggest_constitution_amendment. Never auto-applies — use
+    approve_constitution_amendment(..., confirmed=true) after human yes.
     """
     return propose_constitution_patch(
         insight_id=insight_id,
         proposed_bullet=proposed_bullet,
         target_section=target_section,
+        rationale=rationale,
     )
+
+
+@mcp.tool()
+def suggest_constitution_amendment_tool(
+    proposed_bullet: str,
+    target_section: str = "viral-format.md",
+    rationale: str = "",
+    insight_id: str | None = None,
+    source_group_id: str | None = None,
+):
+    """Propose a durable playbook rule (Gate 2 queue). Model suggests; human must approve to write.
+
+    Use when an approved insight (or confirmed decision outcome) generalizes beyond one clip.
+    Target files: viral-format.md (hooks/packaging) or content-instruction.md (audience/themes).
+    """
+    return suggest_constitution_amendment(
+        proposed_bullet=proposed_bullet,
+        target_section=target_section,
+        rationale=rationale,
+        insight_id=insight_id,
+        source_group_id=source_group_id,
+    )
+
+
+@mcp.tool()
+def list_constitution_amendments_tool(status: str | None = None, limit: int = 20):
+    """List pending/approved/rejected constitution amendments (Gate 2 queue)."""
+    return list_constitution_amendments(status=status, limit=limit)  # type: ignore[arg-type]
+
+
+@mcp.tool()
+def approve_constitution_amendment_tool(
+    amendment_id: str,
+    confirmed: bool = False,
+    approved_by: str | None = None,
+):
+    """Apply a pending amendment after explicit human confirmation.
+
+    Requires confirmed=true. Updates playbook in Supabase, re-embeds for search_knowledge,
+    marks linked insight promoted, rebuilds brief — fully automatic, no manual scripts.
+    """
+    return approve_constitution_amendment(
+        amendment_id=amendment_id,
+        confirmed=confirmed,
+        approved_by=approved_by,
+    )
+
+
+@mcp.tool()
+def reject_constitution_amendment_tool(amendment_id: str, reason: str = ""):
+    """Reject a pending constitution amendment with optional reason."""
+    return reject_constitution_amendment(amendment_id=amendment_id, reason=reason)
 
 
 @mcp.tool()
@@ -685,6 +750,69 @@ def get_appointment_availability_tool(
 def get_weekly_briefing_tool():
     """Return a weekly cross-source operational briefing."""
     return get_weekly_briefing()
+
+
+@mcp.tool()
+def list_carousel_templates_tool():
+    """List the 5 DocMap carousel PPTX templates (id, name, description, best_for).
+
+    Call before create_carousel when the human wants to pick a visual style.
+    Templates: classic_blue, photo_center_hook, photo_body_left, photo_body_right, minimal_white.
+    """
+    return list_carousel_templates()
+
+
+@mcp.tool()
+def create_carousel_tool(
+    topic: str,
+    angle: str | None = None,
+    context: str | None = None,
+    template_id: str | None = None,
+    slide_count: int = 6,
+    audience_notes: str | None = None,
+):
+    """Generate carousel copy, pick a template (unless template_id set), and export a filled PPTX.
+
+    Text is auto-wrapped and font-sized per slide zone to avoid overflow.
+    Returns carousel JSON, layout_metrics, pptx_filename, and pptx_base64 for download.
+    Import the PPTX into Adobe Express for final graphics/fonts.
+
+    Workflow: optionally pull patient voice / IG performance via other tools first, pass as context.
+    """
+    return create_carousel(
+        topic=topic,
+        angle=angle,
+        context=context,
+        template_id=template_id,
+        slide_count=slide_count,
+        audience_notes=audience_notes,
+    )
+
+
+@mcp.tool()
+def fill_carousel_template_tool(
+    template_id: str,
+    topic: str,
+    hook: str,
+    slides: list[dict[str, str]],
+    cta: str,
+    caption: str,
+    hook_subtitle: str | None = None,
+):
+    """Fill a carousel template with copy you already wrote (no extra LLM call).
+
+    Each slide dict needs main_text and subtext. Text is auto-sized to fit zones.
+    Returns pptx_base64 — import into Adobe Express for design polish.
+    """
+    return fill_carousel_template(
+        template_id=template_id,
+        topic=topic,
+        hook=hook,
+        slides=slides,
+        cta=cta,
+        caption=caption,
+        hook_subtitle=hook_subtitle,
+    )
 
 
 async def health(_request):

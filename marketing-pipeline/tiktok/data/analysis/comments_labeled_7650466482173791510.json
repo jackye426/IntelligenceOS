@@ -31,17 +31,13 @@
     }
   },
   {
-    "cid": "7657306674193285910",
-    "text": "Was very adamant on getting my pictures, one of the first things I asked for when I woke up from my laparoscopy. The surgeon told me that the printer on the floor wasn’t working so I couldn’t get my photos, I continued to ask and then he told me that none of the printers were working?! I had a follow up call about a month later after I emailed him and asked for a specialist and to get my photos as they must be on a file somewhere and was happy to print them off myself. Only then did he say that no photos were taken at all!",
-    "digg_count": 0,
-    "reply_comment_total": 0,
-    "create_time": 1782855658,
+    "cid": "7651316766904501014",
+    "text": "I asked for this. They didn’t follow through. I was so dissapointed.",
+    "digg_count": 6,
+    "reply_comment_total": 1,
+    "create_time": 1781461028,
     "themes": [
-      "advocacy_what_to_ask",
-      "post_op_experience",
-      "system_frustration",
-      "personal_story",
-      "general_question"
+      "other_uncategorized"
     ],
     "sentiment": {
       "stance": "personal_story",
@@ -65,21 +61,6 @@
     }
   },
   {
-    "cid": "7651316766904501014",
-    "text": "I asked for this. They didn’t follow through. I was so dissapointed.",
-    "digg_count": 6,
-    "reply_comment_total": 1,
-    "create_time": 1781461028,
-    "themes": [
-      "other_uncategorized"
-    ],
-    "sentiment": {
-      "stance": "personal_story",
-      "primary_emotion": "neutral",
-      "toxicity_spam_flag": false
-    }
-  },
-  {
     "cid": "7650959916358107926",
     "text": "I asked to have access to my mri images and they said the file is too big?🤔🙃 I have to do a SAR just to see my own results 😳",
     "digg_count": 12,
@@ -88,6 +69,25 @@
     "themes": [
       "imaging_mri",
       "humor_reaction",
+      "personal_story",
+      "general_question"
+    ],
+    "sentiment": {
+      "stance": "personal_story",
+      "primary_emotion": "neutral",
+      "toxicity_spam_flag": false
+    }
+  },
+  {
+    "cid": "7657306674193285910",
+    "text": "Was very adamant on getting my pictures, one of the first things I asked for when I woke up from my laparoscopy. The surgeon told me that the printer on the floor wasn’t working so I couldn’t get my photos, I continued to ask and then he told me that none of the printers were working?! I had a follow up call about a month later after I emailed him and asked for a specialist and to get my photos as they must be on a file somewhere and was happy to print them off myself. Only then did he say that no photos were taken at all!",
+    "digg_count": 0,
+    "reply_comment_total": 0,
+    "create_time": 1782855658,
+    "themes": [
+      "advocacy_what_to_ask",
+      "post_op_experience",
+      "system_frustration",
       "personal_story",
       "general_question"
     ],
@@ -129,21 +129,6 @@
     }
   },
   {
-    "cid": "7651274072877892374",
-    "text": "I wish I saw this sooner 💔",
-    "digg_count": 2,
-    "reply_comment_total": 0,
-    "create_time": 1781451082,
-    "themes": [
-      "other_uncategorized"
-    ],
-    "sentiment": {
-      "stance": "personal_story",
-      "primary_emotion": "distress_frustration",
-      "toxicity_spam_flag": false
-    }
-  },
-  {
     "cid": "7651460243763118870",
     "text": "yeah you can get them, after you submit a SAR!",
     "digg_count": 0,
@@ -159,17 +144,17 @@
     }
   },
   {
-    "cid": "7654801260047237902",
-    "text": "Not only do I have pictures, I have a full video.",
-    "digg_count": 0,
+    "cid": "7651274072877892374",
+    "text": "I wish I saw this sooner 💔",
+    "digg_count": 2,
     "reply_comment_total": 0,
-    "create_time": 1782272343,
+    "create_time": 1781451082,
     "themes": [
       "other_uncategorized"
     ],
     "sentiment": {
       "stance": "personal_story",
-      "primary_emotion": "neutral",
+      "primary_emotion": "distress_frustration",
       "toxicity_spam_flag": false
     }
   },
@@ -181,6 +166,21 @@
     "create_time": 1781726386,
     "themes": [
       "personal_story"
+    ],
+    "sentiment": {
+      "stance": "personal_story",
+      "primary_emotion": "neutral",
+      "toxicity_spam_flag": false
+    }
+  },
+  {
+    "cid": "7654801260047237902",
+    "text": "Not only do I have pictures, I have a full video.",
+    "digg_count": 0,
+    "reply_comment_total": 0,
+    "create_time": 1782272343,
+    "themes": [
+      "other_uncategorized"
     ],
     "sentiment": {
       "stance": "personal_story",

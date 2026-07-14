@@ -1,0 +1,56 @@
+{
+  "video_id": "7656847212751916290",
+  "source_media": "7656847212751916290.mp4",
+  "whisper_model": "small",
+  "model": "small",
+  "language": "en",
+  "duration_after_vad": 40.798875,
+  "full_text": "When you're doing transvaginal scan you need to have the bladder as empty as possible but you want to also assess the bladder so you do it at the end so you're looking to see if there's any nodules coming in and you can see that as the bladder fills up, okay? If there's no movement between the bladder and the uterus then that will show that you've got adhesions in that space. You can see adhesions sometimes on scan but it's more difficult but sometimes if the uterus looks like it should be antiverted but it's actually retroverted often that can be adhesions which are causing it to pull down and in case when you've got endometrium as that often happens.",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 6.92,
+      "text": "When you're doing transvaginal scan you need to have the bladder as empty as possible but"
+    },
+    {
+      "start": 6.92,
+      "end": 10.88,
+      "text": "you want to also assess the bladder so you do it at the end so you're looking to see"
+    },
+    {
+      "start": 10.88,
+      "end": 15.96,
+      "text": "if there's any nodules coming in and you can see that as the bladder fills up, okay?"
+    },
+    {
+      "start": 15.96,
+      "end": 21.96,
+      "text": "If there's no movement between the bladder and the uterus then that will show that you've"
+    },
+    {
+      "start": 21.96,
+      "end": 24.2,
+      "text": "got adhesions in that space."
+    },
+    {
+      "start": 24.2,
+      "end": 28.64,
+      "text": "You can see adhesions sometimes on scan but it's more difficult but sometimes"
+    },
+    {
+      "start": 28.64,
+      "end": 34.2,
+      "text": "if the uterus looks like it should be antiverted but it's actually retroverted often that can"
+    },
+    {
+      "start": 34.2,
+      "end": 39.32,
+      "text": "be adhesions which are causing it to pull down and in case when you've got endometrium"
+    },
+    {
+      "start": 39.32,
+      "end": 40.44,
+      "text": "as that often happens."
+    }
+  ]
+}

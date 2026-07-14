@@ -1,0 +1,26 @@
+{
+  "0_meta": {
+    "platform": "instagram",
+    "account": "docmapuk",
+    "updated_at": "2026-07-14T09:43:14.755084+00:00",
+    "metrics_as_of": "2026-07-14T09:43:14.706325+00:00",
+    "post_count": 0,
+    "newest_posted_at": null,
+    "format_counts": {}
+  },
+  "1_constitution": "Instagram analysis is format-first: compare Reels, carousels, and static posts separately. Prefer owned conversion metrics when present; otherwise rank by engagement quality.",
+  "2_format_rules": {
+    "reel": "Judge Reels by opening hook, watch metrics when available, comments, and intent actions.",
+    "carousel": "Judge carousels by cover claim, slide structure, saves, shares, and comments.",
+    "static": "Judge static posts by clarity of message, caption opening, CTA, and engagement quality."
+  },
+  "3_approved_insights": [],
+  "4_open_drafts": [],
+  "5_anti_patterns": [],
+  "6_reference_set": [],
+  "7_decisions": {
+    "open": [],
+    "recent_closed": []
+  },
+  "8_changelog": []
+}

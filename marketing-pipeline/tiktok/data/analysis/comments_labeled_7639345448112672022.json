@@ -30,21 +30,6 @@
     }
   },
   {
-    "cid": "7639515550943527702",
-    "text": "I think I would just show him/her this video , you say it all, swiftly and succinctly 🙏🏻🔥💚💫",
-    "digg_count": 1,
-    "reply_comment_total": 0,
-    "create_time": 1778713375,
-    "themes": [
-      "other_uncategorized"
-    ],
-    "sentiment": {
-      "stance": "personal_story",
-      "primary_emotion": "neutral",
-      "toxicity_spam_flag": false
-    }
-  },
-  {
     "cid": "7641669154249065238",
     "text": "Hello Lizzie ❤️❤️❤️",
     "digg_count": 0,
@@ -55,6 +40,21 @@
     ],
     "sentiment": {
       "stance": "statement",
+      "primary_emotion": "neutral",
+      "toxicity_spam_flag": false
+    }
+  },
+  {
+    "cid": "7639515550943527702",
+    "text": "I think I would just show him/her this video , you say it all, swiftly and succinctly 🙏🏻🔥💚💫",
+    "digg_count": 1,
+    "reply_comment_total": 0,
+    "create_time": 1778713375,
+    "themes": [
+      "other_uncategorized"
+    ],
+    "sentiment": {
+      "stance": "personal_story",
       "primary_emotion": "neutral",
       "toxicity_spam_flag": false
     }

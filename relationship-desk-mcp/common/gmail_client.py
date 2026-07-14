@@ -180,10 +180,14 @@ def create_draft(
     body: str,
     to_email: str | None = None,
     thread_id: str | None = None,
+    from_email: str | None = None,
 ) -> dict[str, Any]:
     service = get_service()
+    send_as_email = config.resolve_send_as_email(from_email)
     message = EmailMessage()
     message.set_content(body)
+    if send_as_email:
+        message["From"] = send_as_email
     if to_email:
         message["To"] = to_email
     message["Subject"] = subject
@@ -207,10 +211,14 @@ def send_message(
     body: str,
     to_email: str,
     thread_id: str | None = None,
+    from_email: str | None = None,
 ) -> dict[str, Any]:
     service = get_service()
+    send_as_email = config.resolve_send_as_email(from_email)
     message = EmailMessage()
     message.set_content(body)
+    if send_as_email:
+        message["From"] = send_as_email
     message["To"] = to_email
     message["Subject"] = subject
     message["X-DocMap-Relationship-Desk"] = "true"
@@ -224,4 +232,3 @@ def send_message(
         "thread_id": sent.get("threadId"),
         "status": "sent",
     }
-

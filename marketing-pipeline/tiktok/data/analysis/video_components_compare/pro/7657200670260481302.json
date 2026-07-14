@@ -1,0 +1,61 @@
+{
+  "video_id": "7657200670260481302",
+  "length_sec": 73,
+  "hook": {
+    "text": "If you've been told you need bowel surgery for endo watch this first",
+    "channel": "onscreen",
+    "type": "warning",
+    "type_other": null,
+    "emotional_mechanism_raw": "fear of unnecessary bowel surgery",
+    "specificity": "high",
+    "target_audience_raw": "endometriosis patients told they need bowel surgery",
+    "creates_curiosity": true,
+    "contradicts_common_belief": false,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 19.6,
+    "window_sec_hint": null
+  },
+  "main_claim": {
+    "text": "Most bowel endometriosis is treated by shaving the surface; it is rare for it to penetrate the full bowel wall, which is when a colorectal surgeon becomes necessary.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "The video explains a specialized ultrasound (recto-end/anal) that can accurately assess depth of bowel involvement, although it's not widely available. Most cases involve surface or superficial disease, treated by a gynecologic surgeon via shaving. Only when endometriosis goes through the muscularis propria (the 'barrier to poo') does a colorectal surgeon need to be involved, highlighting the importance of pre-surgical planning.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "TOFU",
+  "funnel_rationale": "Pure educational content clarifying bowel endometriosis management without directing to a specific clinic or service, typical of awareness-building (TOFU).",
+  "cta": {
+    "present": false,
+    "wording": null,
+    "position": "none",
+    "channel": "none",
+    "explicitness": "none",
+    "requested_action_raw": null,
+    "value_exchange_raw": null,
+    "urgency": "unclear",
+    "funnel_stage": null
+  },
+  "topic": {
+    "primary_raw": "bowel endometriosis surgery",
+    "secondary_raw": [
+      "recto-end ultrasound, shaving technique, colorectal surgeon involvement"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "gynecologist",
+    "type_raw": "medical professional"
+  },
+  "format_raw": "video",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1_compare",
+    "model": "deepseek/deepseek-v4-pro",
+    "extracted_at": "2026-07-10T14:26:44.694382+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "5d2338c3fe13d906"
+  }
+}

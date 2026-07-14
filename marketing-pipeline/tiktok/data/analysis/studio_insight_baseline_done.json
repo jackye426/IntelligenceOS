@@ -1,0 +1,7 @@
+{
+  "completed_at": "2026-07-10T13:41:10.685670+00:00",
+  "requested": 71,
+  "captured": 71,
+  "missing": [],
+  "note": "Full catalog on disk; marker corrected after resume run miscounted skip-existing as missing"
+}

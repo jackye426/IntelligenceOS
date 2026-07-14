@@ -80,6 +80,42 @@ GMAIL_REFRESH_TOKEN = _getenv(
     "GMAIL_REFRESH_TOKEN",
 )
 GMAIL_ACCOUNT_EMAIL = _getenv("RELATIONSHIP_GMAIL_ACCOUNT_EMAIL")
+GMAIL_SEND_AS_ALIASES = [
+    email.strip().lower()
+    for email in _getenv("RELATIONSHIP_GMAIL_SEND_AS_ALIASES").split(",")
+    if email.strip()
+]
+GMAIL_DEFAULT_SEND_AS = _getenv(
+    "RELATIONSHIP_GMAIL_DEFAULT_SEND_AS",
+    default=GMAIL_ACCOUNT_EMAIL,
+).strip().lower()
+
+
+def relationship_desk_emails(*extra_emails: str | None) -> set[str]:
+    emails = {
+        email.strip().lower()
+        for email in [GMAIL_ACCOUNT_EMAIL, *GMAIL_SEND_AS_ALIASES, *extra_emails]
+        if email and email.strip()
+    }
+    return emails
+
+
+def is_relationship_desk_email(email: str | None, *extra_emails: str | None) -> bool:
+    return bool(email and email.strip().lower() in relationship_desk_emails(*extra_emails))
+
+
+def resolve_send_as_email(email: str | None = None) -> str | None:
+    selected = (email or GMAIL_DEFAULT_SEND_AS or GMAIL_ACCOUNT_EMAIL).strip().lower()
+    if not selected:
+        return None
+    allowed = relationship_desk_emails()
+    if selected not in allowed:
+        allowed_display = ", ".join(sorted(allowed)) or "(none configured)"
+        raise ValueError(
+            f"Send-as email {selected} is not allowed. Configure it in "
+            f"RELATIONSHIP_GMAIL_SEND_AS_ALIASES. Allowed: {allowed_display}"
+        )
+    return selected
 
 
 def bool_env(name: str, default: bool = False) -> bool:

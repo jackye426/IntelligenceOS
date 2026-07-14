@@ -1,0 +1,26 @@
+{
+  "video_id": "7657158848876252438",
+  "source_media": "7657158848876252438.mp3",
+  "whisper_model": "small",
+  "model": "small",
+  "language": "en",
+  "duration_after_vad": 24.47675,
+  "full_text": "If you ever start to wonder why all the rain and all the thunder follows her around You better cut that girl loose Oh yeah",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 15.12,
+      "text": "If you ever start to wonder why all the rain and all the thunder follows her around"
+    },
+    {
+      "start": 18.64,
+      "end": 21.84,
+      "text": "You better cut that girl loose"
+    },
+    {
+      "start": 22.56,
+      "end": 23.84,
+      "text": "Oh yeah"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "video_id": "7639773005035375894",
+  "length_sec": 12,
+  "hook": {
+    "text": "does endow in the pouch, don't let's get worse over time.",
+    "channel": "spoken",
+    "type": "direct_question",
+    "type_other": null,
+    "emotional_mechanism_raw": "curiosity, personal relevance for endometriosis patients",
+    "specificity": "unclear",
+    "target_audience_raw": "endometriosis patients, those recently diagnosed with POD endo",
+    "creates_curiosity": true,
+    "contradicts_common_belief": false,
+    "payoff_clear": true,
+    "seconds_to_main_claim": 2.7,
+    "window_sec_hint": null
+  },
+  "main_claim": {
+    "text": "Endometriosis in the Pouch of Douglas (POD) can get worse over time if not managed or if it doesn't respond well to surgery.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "supporting_explanation": {
+    "summary": "All endometriosis material, irrespective of location, can progress if unmanaged or treatment-resistant.",
+    "start_sec": null,
+    "end_sec": null
+  },
+  "funnel_stage": "TOFU",
+  "funnel_rationale": "Broad educational claim about disease progression; no mention of diagnosis steps, treatment options, or booking. Aimed at raising awareness.",
+  "cta": {
+    "present": false,
+    "wording": null,
+    "position": "none",
+    "channel": "none",
+    "explicitness": "none",
+    "requested_action_raw": null,
+    "value_exchange_raw": null,
+    "urgency": "none",
+    "funnel_stage": "TOFU"
+  },
+  "topic": {
+    "primary_raw": "Endometriosis progression in Pouch of Douglas",
+    "secondary_raw": [
+      "Endometriosis management and surgical response"
+    ]
+  },
+  "speaker": {
+    "primary_raw": "Doctor / endometriosis specialist",
+    "type_raw": "medical professional"
+  },
+  "format_raw": "video",
+  "caption_analysis": null,
+  "extraction": {
+    "method": "batch_llm_v1_compare",
+    "model": "deepseek/deepseek-v4-pro",
+    "extracted_at": "2026-07-10T14:27:00.207143+00:00",
+    "confidence": 0.6,
+    "needs_review": false,
+    "inputs_hash": "fb9accf9416b26c5"
+  }
+}

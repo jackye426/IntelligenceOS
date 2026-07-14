@@ -1,0 +1,46 @@
+{
+  "video_id": "7657190878246669590",
+  "source_media": "7657190878246669590.mp4",
+  "whisper_model": "small",
+  "model": "small",
+  "language": "en",
+  "duration_after_vad": 27.1455625,
+  "full_text": "And yeah, you've got endow and go home and get on with your life now as if it's not a chronic condition. You know, I only learnt that it was a chronic condition from the fact that I didn't get better after that operation and you know, I was sold, I was sold a dream essentially. It was like, oh you know, like if you do have endow, which you definitely don't, you know, the surgery will help and that's it, you'll never have to see us again and it just wasn't the case, unfortunately.",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 4.56,
+      "text": "And yeah, you've got endow and go home and get on with your life now as if it's not a"
+    },
+    {
+      "start": 4.56,
+      "end": 5.56,
+      "text": "chronic condition."
+    },
+    {
+      "start": 5.56,
+      "end": 10.12,
+      "text": "You know, I only learnt that it was a chronic condition from the fact that I didn't get"
+    },
+    {
+      "start": 10.12,
+      "end": 15.28,
+      "text": "better after that operation and you know, I was sold, I was sold a dream essentially."
+    },
+    {
+      "start": 15.28,
+      "end": 18.92,
+      "text": "It was like, oh you know, like if you do have endow, which you definitely don't,"
+    },
+    {
+      "start": 18.92,
+      "end": 23.12,
+      "text": "you know, the surgery will help and that's it, you'll never have to see us again"
+    },
+    {
+      "start": 23.12,
+      "end": 26.68,
+      "text": "and it just wasn't the case, unfortunately."
+    }
+  ]
+}

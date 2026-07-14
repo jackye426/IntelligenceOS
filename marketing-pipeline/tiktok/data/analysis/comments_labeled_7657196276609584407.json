@@ -1,0 +1,17 @@
+[
+  {
+    "cid": "7659122213777703702",
+    "text": "I work in NHS….",
+    "digg_count": 0,
+    "reply_comment_total": 0,
+    "create_time": 1783278370,
+    "themes": [
+      "other_uncategorized"
+    ],
+    "sentiment": {
+      "stance": "personal_story",
+      "primary_emotion": "neutral",
+      "toxicity_spam_flag": false
+    }
+  }
+]

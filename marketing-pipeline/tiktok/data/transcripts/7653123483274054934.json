@@ -1,0 +1,41 @@
+{
+  "video_id": "7653123483274054934",
+  "source_media": "7653123483274054934.mp4",
+  "whisper_model": "small",
+  "model": "small",
+  "language": "en",
+  "duration_after_vad": 33.55425,
+  "full_text": "Endometriosis UK have a good employer club basically so employers they have a leaflet which helps you encourage employers to be accommodating so things like make sure you've got the correct chair if you're really tired can you work from home and if you are severely debilitated by it can you have a parking spot near to the office can you have rest times is there a chair that you could rest in in the office if you've got severe fatigue have you got access to good nutrition",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 10.0,
+      "text": "Endometriosis UK have a good employer club basically so employers they have a leaflet"
+    },
+    {
+      "start": 10.0,
+      "end": 15.06,
+      "text": "which helps you encourage employers to be accommodating so things like make sure you've got the correct"
+    },
+    {
+      "start": 15.06,
+      "end": 21.0,
+      "text": "chair if you're really tired can you work from home and if you are severely debilitated"
+    },
+    {
+      "start": 21.0,
+      "end": 26.76,
+      "text": "by it can you have a parking spot near to the office can you have rest times is there"
+    },
+    {
+      "start": 26.76,
+      "end": 32.48,
+      "text": "a chair that you could rest in in the office if you've got severe fatigue have you got access"
+    },
+    {
+      "start": 32.48,
+      "end": 33.36,
+      "text": "to good nutrition"
+    }
+  ]
+}

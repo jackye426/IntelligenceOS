@@ -95,12 +95,12 @@ def _is_automated(message: dict[str, Any], subject: str) -> bool:
 
 def _is_outbound(message: dict[str, Any], account_email: str | None) -> bool:
     sender = ((message.get("from") or {}).get("email") or "").lower()
-    return bool(account_email and sender == account_email.lower())
+    return config.is_relationship_desk_email(sender, account_email)
 
 
 def _is_inbound(message: dict[str, Any], account_email: str | None) -> bool:
     sender = ((message.get("from") or {}).get("email") or "").lower()
-    return bool(sender and account_email and sender != account_email.lower())
+    return bool(sender and not config.is_relationship_desk_email(sender, account_email))
 
 
 def _message_text(message: dict[str, Any]) -> str:
