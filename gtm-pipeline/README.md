@@ -89,6 +89,26 @@ gtm-pipeline/src/gtm_pipeline/
   shared/            # address, name, match_confidence, provenance
 ```
 
+## Doctify scope → CQC (Clinic sales agent)
+
+Clinic discovery still uses **Clinic sales agent** listing URLs (`input_urls.csv`). CQC is a **per-clinic lookup** against a cached national directory CSV (not a live “download all CQC then join” each run):
+
+1. Scrape Doctify listings → practice rows (name, location, website, profile URL)
+2. Match each row into `output/cqc_directory.csv` by name + postcode/address
+3. Scrape the matched CQC location page for Registered Manager / Nominated Individual
+
+```bash
+# Sample (1 listing page)
+python gtm-pipeline/scripts/run_scoped_discovery.py \
+  --start-url 'https://www.doctify.com/uk/find/endometriosis/harley-street/practices#distance=10' \
+  --pages 1
+
+# Full Harley Street specialty scope from input_urls.csv
+python gtm-pipeline/scripts/run_scoped_discovery.py --full
+```
+
+`gtm-pipeline cqc match` uses the same directory file (`CQC_DIRECTORY_PATH`) with numeric confidence.
+
 ## Railway service
 
 Separate scrape service on the **IntelligenceOS** Railway project (`gtm-pipeline`).
