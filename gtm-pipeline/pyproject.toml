@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gtm-pipeline"
+version = "0.1.0"
+description = "DocMap GTM Account Intelligence pipeline (Doctify, CQC, owner discovery)"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "beautifulsoup4",
+  "lxml",
+  "pandas",
+  "playwright>=1.40",
+  "pydantic>=2",
+  "python-dotenv",
+  "requests",
+  "supabase",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.scripts]
+gtm-pipeline = "gtm_pipeline.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
