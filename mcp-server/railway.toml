@@ -1,4 +1,4 @@
-# Railway reads this when service Root Directory = mcp-server
+# Railway: Root Directory = mcp-server (monorepo) or repo root (mcp_social)
 [build]
 builder = "RAILPACK"
 

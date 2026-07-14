@@ -7,10 +7,19 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
+_SERVER_ROOT = Path(__file__).resolve().parents[1]
+_MONOREPO_ROOT = Path(__file__).resolve().parents[2]
+# Monorepo: IntelligenceOS root (templates/, marketing-pipeline/). Standalone: mcp-server / mcp_social root.
+REPO_ROOT = (
+    _MONOREPO_ROOT
+    if (_MONOREPO_ROOT / "marketing-pipeline").is_dir()
+    else _SERVER_ROOT
+)
 
 load_dotenv(REPO_ROOT / ".env.local")
 load_dotenv(REPO_ROOT / ".env")
+load_dotenv(_SERVER_ROOT / ".env.local")
+load_dotenv(_SERVER_ROOT / ".env")
 
 
 def _getenv(*names: str, default: str = "") -> str:
