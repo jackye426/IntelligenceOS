@@ -168,6 +168,239 @@ async def _extract_specialist_cards(page) -> list[SpecialistCard]:
     return out
 
 
+def _en(val: Any) -> str:
+    """Extract English string from Doctify i18n dict ``{"en": "..."}`` or plain value."""
+    if val is None:
+        return ""
+    if isinstance(val, dict):
+        for key in ("en", "name", "label", "title", "value", "text"):
+            if key in val and val[key] not in (None, ""):
+                return _en(val[key])
+        for v in val.values():
+            if isinstance(v, (str, int, float)):
+                return str(v).strip()
+            if isinstance(v, dict):
+                nested = _en(v)
+                if nested:
+                    return nested
+        return ""
+    if isinstance(val, list):
+        parts = [_en(x) for x in val]
+        return ", ".join(p for p in parts if p)
+    return str(val).strip()
+
+
+def _is_external_website(href: str) -> bool:
+    if not href or not href.startswith("http"):
+        return False
+    domain = urlparse(href).netloc.replace("www.", "").lower()
+    skip = {
+        "doctify.com",
+        "teamtailor.com",
+        "facebook.com",
+        "twitter.com",
+        "x.com",
+        "instagram.com",
+        "linkedin.com",
+        "youtube.com",
+        "nhs.uk",
+        "google.com",
+        "apple.com",
+        "trustpilot.com",
+        "healthgrades.com",
+    }
+    return not any(s in domain for s in skip)
+
+
+def _format_address(address: Any) -> tuple[str, str | None]:
+    """
+    Normalise Doctify address shapes into (display_line, postcode).
+
+    Handles plain strings, structured dicts (values may be i18n ``{"en": ...}``),
+    and lists of i18n fragments (the bug that produced ``{'en': 'London'}, ...``).
+    """
+    if address is None or address == "":
+        return "", None
+
+    if isinstance(address, dict):
+        for wrap in ("physicalLocation", "postalAddress", "practiceAddress", "location", "address"):
+            if wrap in address and address[wrap] not in (None, "", {}):
+                inner = address[wrap]
+                if isinstance(inner, (dict, list, str)):
+                    return _format_address(inner)
+
+    if isinstance(address, str):
+        text = address.strip()
+        if text.startswith("{") and "'en'" in text:
+            return "", normalise_postcode(text)
+        return text, normalise_postcode(text)
+
+    if isinstance(address, list):
+        parts = [_en(item) for item in address]
+        parts = [p for p in parts if p]
+        text = ", ".join(parts)
+        return text, normalise_postcode(text)
+
+    if isinstance(address, dict):
+        line_keys = (
+            "line1",
+            "line2",
+            "street",
+            "addressLine1",
+            "addressLine2",
+            "address1",
+            "address2",
+            "building",
+        )
+        city_keys = ("city", "town", "area", "locality", "region")
+        pc_keys = ("postcode", "postalCode", "zip", "zipCode")
+
+        lines = [_en(address[k]) for k in line_keys if k in address]
+        cities = [_en(address[k]) for k in city_keys if k in address]
+        pcs = [_en(address[k]) for k in pc_keys if k in address]
+
+        if not any(lines or cities or pcs) and ("en" in address or len(address) <= 3):
+            text = _en(address)
+            return text, normalise_postcode(text)
+
+        parts = [p for p in (*lines, *cities, *pcs) if p]
+        deduped: list[str] = []
+        for p in parts:
+            if not deduped or deduped[-1].lower() != p.lower():
+                deduped.append(p)
+        text = ", ".join(deduped)
+        pc = normalise_postcode(pcs[0] if pcs else text)
+        return text, pc
+
+    text = _en(address)
+    return text, normalise_postcode(text)
+
+
+def _pick_website(val: Any) -> str:
+    """Return first acceptable external website URL from nested structures."""
+    if isinstance(val, str):
+        href = val.strip()
+        return href if _is_external_website(href) else ""
+    if isinstance(val, dict):
+        for key in (
+            "websiteUrl",
+            "website",
+            "externalUrl",
+            "practiceWebsite",
+            "siteUrl",
+            "url",
+            "href",
+            "link",
+        ):
+            if key in val:
+                found = _pick_website(val[key])
+                if found:
+                    return found
+        typ = _en(val.get("type") or val.get("kind") or "").lower()
+        if typ in {"website", "web", "site", "homepage"}:
+            return _pick_website(val.get("value") or val.get("url") or val.get("href"))
+        return ""
+    if isinstance(val, list):
+        for item in val:
+            found = _pick_website(item)
+            if found:
+                return found
+    return ""
+
+
+def _website_from_dom(html: str) -> str:
+    """DOM fallback for website URL when structured fields are missing."""
+    from bs4 import BeautifulSoup
+
+    soup = BeautifulSoup(html, "lxml")
+
+    for a in soup.find_all("a", href=True):
+        href = a.get("href", "")
+        text = a.get_text(" ", strip=True).lower()
+        if _is_external_website(href) and any(
+            w in text for w in ("website", "visit our", "www.", "our site", "official site")
+        ):
+            return href
+
+    for a in soup.find_all("a", href=True):
+        href = a.get("href", "")
+        text = a.get_text(" ", strip=True).lower()
+        rel = " ".join(a.get("rel") or [])
+        target = a.get("target") or ""
+        if _is_external_website(href) and (target == "_blank" or "noopener" in rel):
+            if any(w in text for w in ("book", "appointment", "visit", "website", "contact", "www.")):
+                return href
+
+    for section in soup.find_all(["section", "div", "aside"]):
+        classes = " ".join(section.get("class") or []).lower()
+        if not any(
+            k in classes for k in ("contact", "info", "detail", "sidebar", "about", "profile", "action")
+        ):
+            continue
+        for a in section.find_all("a", href=True):
+            href = a.get("href", "")
+            if _is_external_website(href):
+                return href
+
+    for a in soup.find_all("a", href=True, target="_blank"):
+        href = a.get("href", "")
+        if _is_external_website(href):
+            return href
+    return ""
+
+
+def _address_from_dom(html: str) -> tuple[str, str | None]:
+    """Best-effort visible address / postcode from rendered page text."""
+    from bs4 import BeautifulSoup
+
+    soup = BeautifulSoup(html, "lxml")
+    candidates: list[str] = []
+    for el in soup.select('[itemprop="address"], address, [data-testid*="address"], [class*="address"]'):
+        text = el.get_text(" ", strip=True)
+        if text and len(text) > 8:
+            candidates.append(text)
+    if not candidates:
+        for el in soup.find_all(["p", "span", "div"]):
+            text = el.get_text(" ", strip=True)
+            if not text or len(text) > 160:
+                continue
+            if normalise_postcode(text):
+                candidates.append(text)
+                if len(candidates) >= 5:
+                    break
+    for text in candidates:
+        if "{'en'" in text or '{"en"' in text:
+            continue
+        pc = normalise_postcode(text)
+        if pc:
+            return text, pc
+    return "", None
+
+
+def _deep_find_website(obj: Any, *, depth: int = 0) -> str:
+    """Walk NEXT_DATA for website-like fields when top-level practice keys miss."""
+    if depth > 6 or obj is None:
+        return ""
+    if isinstance(obj, str):
+        return obj if _is_external_website(obj) else ""
+    if isinstance(obj, dict):
+        for key, val in obj.items():
+            if re.search(r"website|externalUrl|siteUrl|homepage", str(key), re.I):
+                found = _pick_website(val)
+                if found:
+                    return found
+        for val in obj.values():
+            found = _deep_find_website(val, depth=depth + 1)
+            if found:
+                return found
+    elif isinstance(obj, list):
+        for item in obj[:30]:
+            found = _deep_find_website(item, depth=depth + 1)
+            if found:
+                return found
+    return ""
+
+
 def _practice_from_next_data(html: str) -> dict[str, Any]:
     """Best-effort structured fields from __NEXT_DATA__."""
     out: dict[str, Any] = {}
@@ -195,62 +428,94 @@ def _practice_from_next_data(html: str) -> dict[str, Any]:
     if not isinstance(practice, dict):
         practice = {}
 
-    def _str(val: Any) -> str:
-        if isinstance(val, dict):
-            return str(val.get("en") or val.get("name") or "").strip()
-        return str(val or "").strip()
-
-    name = _str(practice.get("name") or practice.get("fullName") or practice.get("title"))
+    name = _en(practice.get("name") or practice.get("fullName") or practice.get("title"))
     if name:
         out["clinic_name"] = name
 
-    about = _str(practice.get("about") or practice.get("description") or practice.get("bio"))
+    about = _en(practice.get("about") or practice.get("description") or practice.get("bio"))
     if about:
         out["bio"] = about
 
-    address = practice.get("address") or practice.get("location") or {}
-    if isinstance(address, dict):
-        parts = [
-            address.get("line1") or address.get("street"),
-            address.get("line2"),
-            address.get("city") or address.get("town"),
-            address.get("postcode") or address.get("postalCode"),
-        ]
-        out["address"] = ", ".join(str(p) for p in parts if p)
-        out["postcode"] = normalise_postcode(
-            address.get("postcode") or address.get("postalCode") or out["address"]
-        )
-    elif isinstance(address, str):
-        out["address"] = address
-        out["postcode"] = normalise_postcode(address)
+    address_raw = (
+        practice.get("address")
+        or practice.get("location")
+        or practice.get("physicalLocation")
+        or practice.get("practiceAddress")
+        or {}
+    )
+    address_text, postcode = _format_address(address_raw)
+    if address_text:
+        out["address"] = address_text
+    if postcode:
+        out["postcode"] = postcode
 
-    for key in ("websiteUrl", "website", "externalUrl", "practiceWebsite", "siteUrl"):
-        val = practice.get(key)
-        if isinstance(val, str) and val.startswith("http") and "doctify" not in val:
-            out["website_url"] = val
-            break
+    website = ""
+    for key in (
+        "websiteUrl",
+        "website",
+        "externalUrl",
+        "practiceWebsite",
+        "siteUrl",
+        "ContactDetails",
+        "contactDetails",
+        "contacts",
+        "links",
+        "websites",
+    ):
+        if key in practice:
+            website = _pick_website(practice.get(key))
+            if website:
+                break
+    if not website:
+        website = _deep_find_website(practice) or _deep_find_website(props)
+    if website:
+        out["website_url"] = website
 
     for key in ("email", "contactEmail", "enquiryEmail", "practiceEmail"):
-        val = practice.get(key)
-        if isinstance(val, str) and EMAIL_RE.match(val) and "doctify" not in val:
-            out["email"] = val
+        email = _en(practice.get(key))
+        if email and EMAIL_RE.match(email) and "doctify" not in email.lower():
+            out["email"] = email
             break
+    if "email" not in out:
+        for key in ("ContactDetails", "contactDetails", "contacts"):
+            details = practice.get(key)
+            if not isinstance(details, list):
+                continue
+            for item in details:
+                if not isinstance(item, dict):
+                    continue
+                email = _en(item.get("email") or item.get("value") or "")
+                if email and EMAIL_RE.match(email) and "doctify" not in email.lower():
+                    out["email"] = email
+                    break
+            if "email" in out:
+                break
 
     for key in ("phone", "telephone", "phoneNumber", "contactPhone"):
-        val = practice.get(key)
-        if isinstance(val, str) and len(re.sub(r"\D", "", val)) >= 7:
-            out["phone"] = val.strip()
+        phone = _en(practice.get(key))
+        if phone and len(re.sub(r"\D", "", phone)) >= 7:
+            out["phone"] = phone
             break
 
-    specs = practice.get("specialties") or practice.get("specialities") or practice.get("tags") or []
+    specs = (
+        practice.get("specialties")
+        or practice.get("specialities")
+        or practice.get("tags")
+        or practice.get("keywords")
+        or []
+    )
+    cleaned: list[str] = []
     if isinstance(specs, list):
-        cleaned = []
         for s in specs:
             if isinstance(s, dict):
-                cleaned.append(_str(s.get("name") or s.get("title") or s))
+                if s.get("keywordType") and str(s.get("keywordType")).lower() != "specialty":
+                    continue
+                label = _en(s.get("name") or s.get("title") or s)
             else:
-                cleaned.append(_str(s))
-        out["specialties"] = [c for c in cleaned if c]
+                label = _en(s)
+            if label:
+                cleaned.append(label)
+    out["specialties"] = cleaned
 
     return out
 
@@ -331,9 +596,15 @@ async def extract_practice(url: str, *, headless: bool = True) -> DoctifyPractic
             result.bio = next_fields.get("bio") or _bio_from_dom(html)
             result.address = next_fields.get("address") or ""
             result.postcode = next_fields.get("postcode") or normalise_postcode(result.address)
+            if (not result.address or "{'en'" in result.address) or not result.postcode:
+                dom_addr, dom_pc = _address_from_dom(html)
+                if dom_addr and "{'en'" not in dom_addr:
+                    result.address = dom_addr
+                if dom_pc:
+                    result.postcode = dom_pc
             if not result.postcode and result.address:
                 result.postcode = parse_address(result.address).postcode
-            result.website_url = next_fields.get("website_url") or ""
+            result.website_url = next_fields.get("website_url") or _website_from_dom(html) or ""
             result.email = next_fields.get("email") or ""
             result.phone = next_fields.get("phone") or ""
             result.specialties = next_fields.get("specialties") or []
@@ -438,7 +709,15 @@ def parse_specialists_from_html(html: str, *, doctify_url: str = "") -> DoctifyP
     result.bio = next_fields.get("bio") or _bio_from_dom(html)
     result.address = next_fields.get("address") or ""
     result.postcode = next_fields.get("postcode") or normalise_postcode(result.address)
-    result.website_url = next_fields.get("website_url") or ""
+    if (not result.address or "{'en'" in result.address) or not result.postcode:
+        dom_addr, dom_pc = _address_from_dom(html)
+        if dom_addr and "{'en'" not in dom_addr:
+            result.address = dom_addr
+        if dom_pc:
+            result.postcode = dom_pc
+    if not result.postcode and result.address:
+        result.postcode = parse_address(result.address).postcode
+    result.website_url = next_fields.get("website_url") or _website_from_dom(html) or ""
     result.email = next_fields.get("email") or ""
     result.phone = next_fields.get("phone") or ""
     result.specialties = next_fields.get("specialties") or []

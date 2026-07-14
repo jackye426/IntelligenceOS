@@ -56,3 +56,6 @@ data/cache/
 
 .vercel
 .env*
+
+gtm-pipeline/data/
+

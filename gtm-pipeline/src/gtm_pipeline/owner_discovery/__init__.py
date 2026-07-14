@@ -24,10 +24,12 @@ def _fetch_practitioners_with_about(*, limit: int | None = None) -> list[dict[st
     client = get_client()
     rows: list[dict[str, Any]] = []
     offset = 0
+    # Schema uses locations/website — there is no clinic_name / clinic_id column.
+    select_cols = "id, name, email, emails, about, locations, website, specialty, title"
     while True:
         query = (
             client.table("integrated_practitioners")
-            .select("id, name, email, emails, about, clinic_name, clinic_id")
+            .select(select_cols)
             .not_.is_("about", "null")
             .range(offset, offset + PAGE_SIZE - 1)
         )
@@ -45,29 +47,55 @@ def _best_email(row: dict[str, Any]) -> str:
         return str(row["email"])
     emails = row.get("emails") or []
     if isinstance(emails, list) and emails:
-        return str(emails[0])
+        first = emails[0]
+        if isinstance(first, str):
+            return first
+        if isinstance(first, dict):
+            for k in ("email", "address", "value"):
+                if first.get(k):
+                    return str(first[k])
     return ""
 
 
+def _clinic_name_candidates(row: dict[str, Any]) -> list[str]:
+    """Best-effort clinic/org names from locations JSON (no clinic_name column)."""
+    names: list[str] = []
+    locations = row.get("locations")
+    if isinstance(locations, list):
+        for loc in locations:
+            if isinstance(loc, str) and loc.strip():
+                names.append(loc.strip())
+            elif isinstance(loc, dict):
+                for k in ("name", "clinic_name", "practice", "hospital", "label"):
+                    v = loc.get(k)
+                    if isinstance(v, str) and v.strip():
+                        names.append(v.strip())
+                        break
+    elif isinstance(locations, dict):
+        for k in ("name", "clinic_name"):
+            v = locations.get(k)
+            if isinstance(v, str) and v.strip():
+                names.append(v.strip())
+    # Dedupe preserving order
+    return list(dict.fromkeys(names))
+
+
 def _find_clinic_account_id(client, row: dict[str, Any]) -> str | None:
-    clinic_name = (row.get("clinic_name") or "").strip()
-    if not clinic_name:
-        return None
-    # Prefer exact name match on clinic_accounts
-    hits = (
-        client.table("clinic_accounts")
-        .select("id, name")
-        .ilike("name", clinic_name)
-        .limit(3)
-        .execute()
-        .data
-        or []
-    )
-    if len(hits) == 1:
-        return hits[0]["id"]
-    for h in hits:
-        if (h.get("name") or "").lower() == clinic_name.lower():
-            return h["id"]
+    for clinic_name in _clinic_name_candidates(row):
+        hits = (
+            client.table("clinic_accounts")
+            .select("id, name")
+            .ilike("name", f"%{clinic_name}%")
+            .limit(5)
+            .execute()
+            .data
+            or []
+        )
+        if len(hits) == 1:
+            return hits[0]["id"]
+        for h in hits:
+            if (h.get("name") or "").lower() == clinic_name.lower():
+                return h["id"]
     return None
 
 
