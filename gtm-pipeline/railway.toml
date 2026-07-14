@@ -1,0 +1,11 @@
+# Railway: Root Directory = gtm-pipeline (monorepo) or deploy from this folder.
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+healthcheckPath = "/health"
+healthcheckTimeout = 30
+restartPolicyType = "ON_FAILURE"
+# Playwright scrapes can take a few minutes
+# Railway default HTTP timeout is fine for health; long jobs use the request itself.

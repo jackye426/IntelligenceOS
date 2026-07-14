@@ -89,6 +89,34 @@ gtm-pipeline/src/gtm_pipeline/
   shared/            # address, name, match_confidence, provenance
 ```
 
+## Railway service
+
+Separate scrape service on the **IntelligenceOS** Railway project (`gtm-pipeline`).
+
+```bash
+# from gtm-pipeline/
+railway up --service gtm-pipeline --detach -m "gtm-pipeline scrape service"
+```
+
+Endpoints (auth: `Authorization: Bearer $GTM_SERVICE_TOKEN`):
+
+| Method | Path | Purpose |
+|--------|------|---------|
+| GET | `/health` | Liveness (no auth) |
+| POST | `/doctify/extract` | Live Playwright Doctify extract (+ optional upsert) |
+| POST | `/owners/scan` | Owner discovery scan |
+| POST | `/cqc/match` | CQC directory match |
+| POST | `/cqc/location` | CQC location Overview scrape |
+
+Required env: `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `GTM_SERVICE_TOKEN`.
+
+Local HTTP:
+
+```bash
+pip install -e "./gtm-pipeline[service]"
+uvicorn gtm_pipeline.service:app --reload --port 8080
+```
+
 ## Notes
 
 - Do **not** commit secrets; upserts no-op / dry-run when credentials are missing.

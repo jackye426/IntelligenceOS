@@ -7,12 +7,12 @@ name = "gtm-pipeline"
 version = "0.1.0"
 description = "DocMap GTM Account Intelligence pipeline (Doctify, CQC, owner discovery)"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.10"
 dependencies = [
   "beautifulsoup4",
   "lxml",
   "pandas",
-  "playwright>=1.40",
+  "playwright==1.52.0",
   "pydantic>=2",
   "python-dotenv",
   "requests",
@@ -21,6 +21,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest"]
+service = ["fastapi>=0.115", "uvicorn[standard]>=0.30"]
 
 [project.scripts]
 gtm-pipeline = "gtm_pipeline.cli:main"
