@@ -40,6 +40,42 @@ def _add_owners(sub: argparse._SubParsersAction) -> None:
     scan.add_argument("--dry-run", action="store_true")
 
 
+def _add_people(sub: argparse._SubParsersAction) -> None:
+    people = sub.add_parser("people", help="Person resolve / CQC people match")
+    psub = people.add_subparsers(dest="command", required=True)
+    match = psub.add_parser("match-cqc", help="Match CQC RM/NI names to practitioners")
+    match.add_argument("--registered-manager", default="")
+    match.add_argument("--nominated-individual", default="")
+    match.add_argument("--min-confidence", type=float, default=0.82)
+    match.add_argument("--dry-run", action="store_true")
+
+    enrich = psub.add_parser(
+        "enrich-cqc",
+        help="Batch-match CQC people on gtm_clinic_intelligence → practitioner emails",
+    )
+    enrich.add_argument("--limit", type=int, default=None)
+    enrich.add_argument("--min-confidence", type=float, default=0.82)
+    enrich.add_argument("--dry-run", action="store_true")
+
+
+def _add_sync(sub: argparse._SubParsersAction) -> None:
+    sync = sub.add_parser("sync", help="Supabase sync helpers")
+    ssub = sync.add_subparsers(dest="command", required=True)
+    scoped = ssub.add_parser("scoped-csv", help="Upsert Clinic sales scoped CSV into gtm_*")
+    scoped.add_argument(
+        "--path",
+        type=Path,
+        default=Path("gtm-pipeline/data/full_scope_run.csv"),
+    )
+    scoped.add_argument("--limit", type=int, default=None)
+    scoped.add_argument("--dry-run", action="store_true")
+    scoped.add_argument(
+        "--include-pre-filtered",
+        action="store_true",
+        help="Also sync pre_filtered hospital rows",
+    )
+
+
 def _add_cqc(sub: argparse._SubParsersAction) -> None:
     cqc = sub.add_parser("cqc", help="CQC directory + location lanes (P0b)")
     csub = cqc.add_subparsers(dest="command", required=True)
@@ -99,6 +135,44 @@ def _run_owners_scan(args: argparse.Namespace) -> dict:
     return discover_owners(dry_run=args.dry_run, limit=args.limit)
 
 
+def _run_people_match_cqc(args: argparse.Namespace) -> dict:
+    from gtm_pipeline.person_resolve import match_cqc_people_against_practitioners
+    from gtm_pipeline.shared.supabase_client import supabase_configured
+
+    dry = args.dry_run or not supabase_configured()
+    return match_cqc_people_against_practitioners(
+        registered_manager=args.registered_manager,
+        nominated_individual=args.nominated_individual,
+        min_confidence=args.min_confidence,
+        dry_run=dry,
+    )
+
+
+def _run_people_enrich_cqc(args: argparse.Namespace) -> dict:
+    from gtm_pipeline.shared.supabase_client import supabase_configured
+    from gtm_pipeline.sync.enrich_cqc_people import enrich_cqc_people_from_practitioners
+
+    dry = args.dry_run or not supabase_configured()
+    return enrich_cqc_people_from_practitioners(
+        limit=args.limit,
+        min_confidence=args.min_confidence,
+        dry_run=dry,
+    )
+
+
+def _run_sync_scoped_csv(args: argparse.Namespace) -> dict:
+    from gtm_pipeline.shared.supabase_client import supabase_configured
+    from gtm_pipeline.sync.scoped_csv import sync_scoped_csv
+
+    dry = args.dry_run or not supabase_configured()
+    return sync_scoped_csv(
+        args.path,
+        dry_run=dry,
+        limit=args.limit,
+        skip_pre_filtered=not args.include_pre_filtered,
+    )
+
+
 def _run_cqc_match(args: argparse.Namespace) -> dict:
     from gtm_pipeline.cqc_directory import match_directory
 
@@ -154,7 +228,9 @@ def main(argv: list[str] | None = None) -> None:
     sub = parser.add_subparsers(dest="group", required=True)
     _add_doctify(sub)
     _add_owners(sub)
+    _add_people(sub)
     _add_cqc(sub)
+    _add_sync(sub)
 
     args = parser.parse_args(argv)
 
@@ -163,10 +239,16 @@ def main(argv: list[str] | None = None) -> None:
             result = _run_doctify_extract(args)
         elif args.group == "owners" and args.command == "scan":
             result = _run_owners_scan(args)
+        elif args.group == "people" and args.command == "match-cqc":
+            result = _run_people_match_cqc(args)
+        elif args.group == "people" and args.command == "enrich-cqc":
+            result = _run_people_enrich_cqc(args)
         elif args.group == "cqc" and args.command == "match":
             result = _run_cqc_match(args)
         elif args.group == "cqc" and args.command == "location":
             result = _run_cqc_location(args)
+        elif args.group == "sync" and args.command == "scoped-csv":
+            result = _run_sync_scoped_csv(args)
         else:
             parser.error(f"Unknown command: {args.group} {getattr(args, 'command', '')}")
             return

@@ -568,7 +568,7 @@ async def run_cqc_only(args):
         location = row.get('location', '')
         log(f"\n[{pos+1}/{len(todo)}] {name}")
 
-        cqc = lookup_cqc(name, location)
+        cqc = lookup_cqc(name, location, website=row.get("website_url", ""))
         for key, val in cqc.items():
             df.at[idx, key] = val
 
@@ -703,7 +703,11 @@ async def run_enrich_only(args):
 
         if args.cqc and not clinic.get('cqc_location_id'):
             log("  CQC lookup...")
-            cqc = lookup_cqc(clinic.get('clinic_name', ''), clinic.get('location', ''))
+            cqc = lookup_cqc(
+                clinic.get('clinic_name', ''),
+                clinic.get('location', ''),
+                website=clinic.get('website_url', ''),
+            )
             clinic.update(cqc)
             # Use registered manager as salutation if found
             # Prefer nominated individual (lead clinician/owner) for salutation;
@@ -992,7 +996,11 @@ async def run(args):
         log("\n-- Step 2: CQC registry lookup --")
         for clinic in clinics:
             log(f"  {clinic.get('clinic_name', '?')}")
-            cqc = lookup_cqc(clinic.get('clinic_name', ''), clinic.get('location', ''))
+            cqc = lookup_cqc(
+                clinic.get('clinic_name', ''),
+                clinic.get('location', ''),
+                website=clinic.get('website_url', ''),
+            )
             clinic.update(cqc)
             # Prefer nominated individual (lead clinician/owner) for salutation;
             # fall back to registered manager if not present

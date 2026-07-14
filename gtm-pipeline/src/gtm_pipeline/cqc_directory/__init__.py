@@ -86,7 +86,13 @@ def match_directory(
     path: Path | None = None,
     top_k: int = 5,
 ) -> list[CqcDirectoryCandidate]:
-    """Return ranked CQC directory candidates with numeric confidence."""
+    """Return ranked CQC directory candidates with numeric confidence.
+
+    Always includes a name-narrowed pool (so a wrong Doctify postcode cannot hide
+    the real clinic) and, when ``website`` is set, a hostname pool.
+    """
+    from urllib.parse import urlparse
+
     df = _load_directory(path)
     target = {
         "name": name,
@@ -95,6 +101,15 @@ def match_directory(
         "website": website,
         "phone": phone,
     }
+
+    def _host(url: str) -> str:
+        if not url:
+            return ""
+        try:
+            parsed = urlparse(url if "://" in url else f"https://{url}")
+        except ValueError:
+            return ""
+        return parsed.netloc.lower().removeprefix("www.")
 
     pc = normalise_postcode(postcode or address)
     pools: list[pd.DataFrame] = []
@@ -118,6 +133,20 @@ def match_directory(
         if not narrowed.empty:
             name_pool = narrowed if len(narrowed) <= 5000 else narrowed.head(2000)
     pools.append(name_pool)
+
+    # Website hostname pool (independent of geo / name tokens)
+    host = _host(website)
+    if host:
+        web_col = "Service's website (if available)"
+        if "_web_host" not in df.columns:
+            df = df.copy()
+            df["_web_host"] = df[web_col].map(_host)
+        web_pool = df[df["_web_host"] == host]
+        if web_pool.empty and host.count(".") >= 2:
+            parent = ".".join(host.split(".")[-2:])
+            web_pool = df[df["_web_host"] == parent]
+        if not web_pool.empty:
+            pools.append(web_pool)
 
     # Merge pools without duplicate index rows
     pool = pd.concat(pools).drop_duplicates()

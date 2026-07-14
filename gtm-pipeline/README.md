@@ -107,7 +107,7 @@ python gtm-pipeline/scripts/run_scoped_discovery.py \
 python gtm-pipeline/scripts/run_scoped_discovery.py --full
 ```
 
-`gtm-pipeline cqc match` uses the same directory file (`CQC_DIRECTORY_PATH`) with numeric confidence.
+`gtm-pipeline cqc match` uses the same directory file (`CQC_DIRECTORY_PATH`) with numeric confidence, a name-narrowed pool (wrong postcode cannot hide the clinic), and a website-host pool when a URL is provided.
 
 ## Railway service
 
@@ -135,6 +135,20 @@ Local HTTP:
 ```bash
 pip install -e "./gtm-pipeline[service]"
 uvicorn gtm_pipeline.service:app --reload --port 8080
+```
+
+### Sync scoped discovery → Supabase
+
+```bash
+# Dry-run first
+python -m gtm_pipeline sync scoped-csv --path gtm-pipeline/data/full_scope_run.csv --limit 20 --dry-run
+
+# Upsert (skips pre_filtered by default)
+python -m gtm_pipeline sync scoped-csv --path gtm-pipeline/data/full_scope_run.csv
+
+# Match CQC RM/NI to practitioners
+python -m gtm_pipeline people match-cqc \
+  --nominated-individual "Dr Bassel Hamameeh Al Wattar"
 ```
 
 ## Notes
