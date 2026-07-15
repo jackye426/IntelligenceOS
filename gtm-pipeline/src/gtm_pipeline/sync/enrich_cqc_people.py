@@ -18,6 +18,7 @@ def enrich_cqc_people_from_practitioners(
     min_confidence: float = 0.82,
     dry_run: bool = False,
     page_size: int = 200,
+    clinic_intelligence_ids: list[str] | None = None,
 ) -> dict[str, Any]:
     """For clinics with CQC RM/NI, match practitioners and attach emails."""
     stats: dict[str, Any] = {
@@ -38,6 +39,7 @@ def enrich_cqc_people_from_practitioners(
     client = get_client()
     offset = 0
     processed = 0
+    id_filter = [x for x in (clinic_intelligence_ids or []) if x]
 
     while True:
         if limit is not None and processed >= limit:
@@ -50,10 +52,23 @@ def enrich_cqc_people_from_practitioners(
             )
             .not_.is_("cqc_location_id", "null")
             .order("updated_at", desc=True)
-            .range(offset, offset + page_size - 1)
         )
-        rows = q.execute().data or []
-        if not rows:
+        if id_filter:
+            # Process filter set in chunks via .in_
+            chunk = id_filter[offset : offset + page_size]
+            if not chunk:
+                break
+            q = q.in_("id", chunk)
+            rows = q.execute().data or []
+            offset += page_size
+        else:
+            q = q.range(offset, offset + page_size - 1)
+            rows = q.execute().data or []
+            if not rows:
+                break
+            offset += page_size
+
+        if not rows and id_filter:
             break
 
         for intel in rows:
@@ -69,10 +84,11 @@ def enrich_cqc_people_from_practitioners(
                 stats["cqc_people_named"] += 1
 
             try:
+                # Pull near-misses for review; auto-apply only at min_confidence
                 result = match_cqc_people_against_practitioners(
                     nominated_individual=ni,
                     registered_manager=rm,
-                    min_confidence=min_confidence,
+                    min_confidence=0.50,
                     dry_run=False,
                 )
             except Exception as exc:  # noqa: BLE001
@@ -81,8 +97,40 @@ def enrich_cqc_people_from_practitioners(
 
             matched_any = False
             email_any = False
+            from gtm_pipeline import config as gtm_config
+            from gtm_pipeline.sync.match_reviews import maybe_queue_match_review
+
             for m in result.get("matches") or []:
+                conf = float(m.get("confidence") or 0)
                 if not m.get("practitioner_id"):
+                    continue
+                if conf < min_confidence:
+                    if conf >= gtm_config.MATCH_REVIEW_THRESHOLD:
+                        maybe_queue_match_review(
+                            entity_type="person_clinic",
+                            candidate={
+                                "practitioner_id": m.get("practitioner_id"),
+                                "matched_name": m.get("matched_name"),
+                                "email": m.get("email"),
+                                "role": m.get("role"),
+                            },
+                            target={
+                                "query_name": m.get("query_name"),
+                                "clinic_name": intel.get("clinic_name"),
+                                "role": m.get("role"),
+                            },
+                            confidence=conf,
+                            reasons=list(m.get("reasons") or []),
+                            clinic_intelligence_id=intel["id"],
+                            clinic_account_id=intel.get("clinic_account_id"),
+                            dedupe_key=(
+                                f"person_clinic:{intel['id']}:{m.get('role')}:"
+                                f"{m.get('practitioner_id')}"
+                            ),
+                            dry_run=False,
+                        )
+                        stats.setdefault("review_queued", 0)
+                        stats["review_queued"] += 1
                     continue
                 stats["matched_practitioner"] += 1
                 matched_any = True
@@ -165,8 +213,10 @@ def enrich_cqc_people_from_practitioners(
                 ).eq("id", intel["id"]).execute()
                 stats["intel_bumped"] += 1
 
-        if len(rows) < page_size:
+        if id_filter:
+            if offset >= len(id_filter):
+                break
+        elif len(rows) < page_size:
             break
-        offset += page_size
 
     return stats

@@ -253,8 +253,45 @@ def attach_owner_evidence(
     ).execute()
 
 
-def sync_doctify_extract(extract: Any, *, dry_run: bool = False, create_account: bool = True) -> dict[str, Any]:
-    """Persist a DoctifyPracticeExtract to Supabase."""
+_CQC_PRESERVE_FIELDS = (
+    "cqc_location_id",
+    "cqc_location_url",
+    "cqc_registered_since",
+    "cqc_specialisms",
+    "cqc_registered_manager",
+    "cqc_nominated_individual",
+    "cqc_provider_name",
+)
+
+
+def _fetch_existing_cqc(doctify_url: str) -> dict[str, Any]:
+    if not supabase_configured() or not doctify_url:
+        return {}
+    client = get_client()
+    found = (
+        client.table("gtm_clinic_intelligence")
+        .select(",".join(_CQC_PRESERVE_FIELDS) + ",provenance")
+        .eq("doctify_url", doctify_url)
+        .limit(1)
+        .execute()
+        .data
+        or []
+    )
+    return found[0] if found else {}
+
+
+def sync_doctify_extract(
+    extract: Any,
+    *,
+    dry_run: bool = False,
+    create_account: bool = True,
+    preserve_cqc: bool = True,
+) -> dict[str, Any]:
+    """Persist a DoctifyPracticeExtract to Supabase.
+
+    When ``preserve_cqc`` is True (default), existing CQC columns are kept so a
+    Playwright re-extract does not wipe prior directory/location enrichment.
+    """
     from gtm_pipeline.doctify.extract import DoctifyPracticeExtract
 
     assert isinstance(extract, DoctifyPracticeExtract)
@@ -268,7 +305,11 @@ def sync_doctify_extract(extract: Any, *, dry_run: bool = False, create_account:
             dry_run=dry_run,
         )
 
-    intel_payload = {
+    provenance = dict(extract.provenance or {})
+    # Clear OG pending flag when gtm Playwright extract succeeds
+    provenance.pop("og_pending_reextract", None)
+
+    intel_payload: dict[str, Any] = {
         "clinic_account_id": account_id,
         "doctify_url": extract.doctify_url,
         "clinic_name": extract.clinic_name,
@@ -285,8 +326,17 @@ def sync_doctify_extract(extract: Any, *, dry_run: bool = False, create_account:
         "structure": extract.structure,
         "leadership_keywords": extract.leadership_keywords,
         "evidence": extract.evidence,
-        "provenance": extract.provenance,
+        "provenance": provenance,
     }
+
+    if preserve_cqc and not dry_run:
+        existing = _fetch_existing_cqc(extract.doctify_url)
+        for key in _CQC_PRESERVE_FIELDS:
+            if existing.get(key) is not None and key not in intel_payload:
+                intel_payload[key] = existing[key]
+            elif existing.get(key) is not None:
+                intel_payload.setdefault(key, existing[key])
+
     intel = upsert_clinic_intelligence(intel_payload, dry_run=dry_run)
 
     people = [

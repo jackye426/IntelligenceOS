@@ -18,6 +18,13 @@ from gtm_pipeline.shared.name import normalise_name
 logger = logging.getLogger(__name__)
 
 _DIR_CACHE: pd.DataFrame | None = None
+_DIR_CACHE_PATH: Path | None = None
+
+
+def clear_directory_cache() -> None:
+    global _DIR_CACHE, _DIR_CACHE_PATH
+    _DIR_CACHE = None
+    _DIR_CACHE_PATH = None
 
 
 @dataclass
@@ -38,16 +45,29 @@ class CqcDirectoryCandidate:
         return asdict(self)
 
 
-def _load_directory(path: Path | None = None) -> pd.DataFrame:
-    global _DIR_CACHE
+def _load_directory(path: Path | None = None, *, auto_refresh: bool = True) -> pd.DataFrame:
+    global _DIR_CACHE, _DIR_CACHE_PATH
     path = path or config.CQC_DIRECTORY_PATH
-    if _DIR_CACHE is not None and path == config.CQC_DIRECTORY_PATH:
+
+    if auto_refresh:
+        from gtm_pipeline.cqc_directory.refresh import ensure_directory
+
+        try:
+            path = ensure_directory(path, raise_on_error=False)
+        except FileNotFoundError:
+            pass
+
+    if (
+        _DIR_CACHE is not None
+        and _DIR_CACHE_PATH is not None
+        and path.resolve() == _DIR_CACHE_PATH.resolve()
+    ):
         return _DIR_CACHE
 
     if not path.exists():
         raise FileNotFoundError(
             f"CQC directory CSV not found at {path}. "
-            "Set CQC_DIRECTORY_PATH or run the legacy Clinic sales agent download."
+            "Run `python -m gtm_pipeline cqc refresh-directory` or set CQC_DIRECTORY_PATH."
         )
 
     # Official CQC CSV has 4 preamble rows before the header.
@@ -55,8 +75,8 @@ def _load_directory(path: Path | None = None) -> pd.DataFrame:
     df = df.fillna("")
     df["_name_norm"] = df["Name"].map(normalise_name)
     df["_postcode_norm"] = df["Postcode"].map(normalise_postcode)
-    if path == config.CQC_DIRECTORY_PATH:
-        _DIR_CACHE = df
+    _DIR_CACHE = df
+    _DIR_CACHE_PATH = path.resolve()
     return df
 
 

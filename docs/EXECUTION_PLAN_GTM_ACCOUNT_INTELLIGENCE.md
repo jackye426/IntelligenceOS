@@ -1,8 +1,8 @@
 # Execution Plan — GTM Account Intelligence
 
-**Status:** P0 in progress  
+**Status:** P0 complete (backfill); P1 segment + P2 LinkedIn find-only implemented  
 **Package:** `gtm-pipeline/`  
-**Schema:** `sql/009_gtm_account_intelligence.sql`
+**Schema:** `sql/009_gtm_account_intelligence.sql` → `010` durable jobs → `011` outreach cohorts
 
 This plan is the source of truth for DocMap GTM Account Intelligence inside the Intelligence OS monorepo.
 
@@ -14,12 +14,12 @@ Build clinic-level GTM intelligence (size, CQC, founders/owners, evidence) with 
 
 ## Phases
 
-| Phase | Scope | This run |
+| Phase | Scope | Status |
 |-------|--------|----------|
-| **P0** | Schema, shared match utils, Doctify extract, owner discovery, CQC directory + location, Supabase sync, tests | **YES** |
-| P1 | Companies House / deeper person resolve / email enrichment | No |
-| P2 | LinkedIn automation | No |
-| P3 | Outreach send + Next.js review UI | No |
+| **P0** | Schema, shared match utils, Doctify extract, owner discovery, CQC directory + location, Supabase sync, tests | Done (~1512 Playwright clinics) |
+| **P1** | Outreach segments + contact prepare + **`gtm_outreach_contacts`** (one PIC/clinic) | Done |
+| **P2** | RocketReach + LinkedIn find for **everyone** on contacts (no send) | Done |
+| P3 | Outreach send + Next.js review UI | Out of scope |
 
 ---
 
@@ -74,7 +74,7 @@ Every successful extract upserts Supabase (`--dry-run` when no credentials). Opt
 
 - Do not modify unrelated marketing / TikTok / MCP code
 - Do not delete `Clinic sales agent/`
-- Do not implement LinkedIn, outreach send, or Next.js review UI in P0
+- LinkedIn is find-only (no connect/InMail/send); P3 send stays out
 - No secrets in git
 
 ## Done criteria (P0)
@@ -86,3 +86,11 @@ Every successful extract upserts Supabase (`--dry-run` when no credentials). Opt
 5. Supabase upsert path implemented (dry-run without credentials)  
 6. Owner discovery writes unmatched to schema  
 7. README + shared match/address tests  
+
+## Done criteria (P1 segment + P2 find)
+
+1. `sql/011_gtm_outreach_segments.sql` applied; cohorts seedable  
+2. `segments refresh` / `list` CLI + `/segments/*` Railway routes  
+3. `contacts prepare` rematch + people enrich on a cohort  
+4. `contacts linkedin-find` durable; stores `linkedin_url` only (no clinic specialty overwrite)  
+5. Smoke metrics documented in `gtm-pipeline/SCOPE_AND_CQC.md`  

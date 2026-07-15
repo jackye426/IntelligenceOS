@@ -22,7 +22,8 @@ Env (from repo root `.env.local` / `.env`):
 | `CQC_DIRECTORY_PATH` | Optional override for CQC directory CSV |
 | `CQC_API_KEY` | Optional CQC Public API (stub client) |
 
-Apply schema: run `sql/009_gtm_account_intelligence.sql` in the Supabase SQL editor.
+Apply schema: run `sql/009_gtm_account_intelligence.sql`, then `sql/010_gtm_durable_jobs.sql`,
+then `sql/011_gtm_outreach_segments.sql` in the Supabase SQL editor.
 
 ## CLI
 
@@ -85,29 +86,54 @@ gtm-pipeline/src/gtm_pipeline/
   owner_discovery/   # P0a-owners
   person_resolve/    # stub
   scoring/           # size + founder score + leadership keywords
+  segments/          # outreach cohorts (size × specialty)
+  contacts/          # CQC rematch + people enrich for cohorts
+  linkedin/          # find-only profile URL (no send)
   sync/              # Supabase upserts
   shared/            # address, name, match_confidence, provenance
 ```
 
-## Doctify scope → CQC (Clinic sales agent)
+## Segments + outreach contacts
 
-Clinic discovery still uses **Clinic sales agent** listing URLs (`input_urls.csv`). CQC is a **per-clinic lookup** against a cached national directory CSV (not a live “download all CQC then join” each run):
-
-1. Scrape Doctify listings → practice rows (name, location, website, profile URL)
-2. Match each row into `output/cqc_directory.csv` by name + postcode/address
-3. Scrape the matched CQC location page for Registered Manager / Nominated Individual
+Cohorts prioritize batches. **Sales surface** is `gtm_outreach_contacts` (one PIC/clinic).
 
 ```bash
-# Sample (1 listing page)
-python gtm-pipeline/scripts/run_scoped_discovery.py \
-  --start-url 'https://www.doctify.com/uk/find/endometriosis/harley-street/practices#distance=10' \
-  --pages 1
-
-# Full Harley Street specialty scope from input_urls.csv
-python gtm-pipeline/scripts/run_scoped_discovery.py --full
+python -m gtm_pipeline contacts refresh-outreach
+python -m gtm_pipeline contacts rocketreach --limit 20
+python -m gtm_pipeline contacts linkedin-find --limit 20
+python -m gtm_pipeline contacts list --ready-sales
 ```
 
-`gtm-pipeline cqc match` uses the same directory file (`CQC_DIRECTORY_PATH`) with numeric confidence, a name-narrowed pool (wrong postcode cannot hide the clinic), and a website-host pool when a URL is provided.
+Loop: CQC PIC → materialize → RocketReach **and** LinkedIn for everyone → export ready.
+Clinic profile stays Doctify/CQC; enrichers never overwrite specialties/size/bio.
+
+See [`SCOPE_AND_CQC.md`](SCOPE_AND_CQC.md).
+
+## Doctify scope → extract → CQC (gtm-pipeline only)
+
+**Do not call** `Clinic sales agent/` from GTM runners. Scope CSV is listing URLs only
+(`gtm-pipeline/config/doctify_scope.csv`). Practice enrichment uses Playwright extract;
+CQC uses `gtm_pipeline.cqc_directory` + `cqc_location`.
+
+```bash
+# Listing discovery
+python -m gtm_pipeline doctify discover --scope gtm-pipeline/config/doctify_scope.csv --limit 20 --out stubs.json
+
+# Batch re-extract existing Supabase URLs (priority: email / CQC / score>=40)
+python -m gtm_pipeline doctify extract-batch --from-supabase --priority --limit 20 --upsert --cqc
+
+# Orchestrated sample (listing → extract → optional CQC)
+python gtm-pipeline/scripts/run_scoped_discovery.py \
+  --start-url 'https://www.doctify.com/uk/find/endometriosis/harley-street/practices#distance=10' \
+  --pages 1 --limit 5 --upsert --cqc
+
+# Full Harley Street specialty scope
+python gtm-pipeline/scripts/run_scoped_discovery.py --full --upsert --cqc
+```
+
+`gtm-pipeline cqc match` uses `CQC_DIRECTORY_PATH` (directory CSV may still live under
+Clinic sales `output/` as a **data artifact** only) with numeric confidence, name-narrowed
+pool, and website-host pool.
 
 ## Railway service
 
@@ -123,10 +149,50 @@ Endpoints (auth: `Authorization: Bearer $GTM_SERVICE_TOKEN`):
 | Method | Path | Purpose |
 |--------|------|---------|
 | GET | `/health` | Liveness (no auth) |
-| POST | `/doctify/extract` | Live Playwright Doctify extract (+ optional upsert) |
+| GET | `/jobs` / `/jobs/{id}` | Poll job status (durable Supabase + in-memory) |
+| POST | `/jobs/{id}/resume` | Re-attach worker to durable job after restart |
+| GET | `/match-reviews/pending` | Ambiguous matches flagged for outreach review |
+| POST | `/doctify/extract` | Single practice extract (+ optional upsert) |
+| POST | `/doctify/discover` | Listing → practice URL stubs (default background) |
+| POST | `/doctify/extract-batch` | Durable parallel batch extract (default) |
+| POST | `/pipeline/scoped-run` | E2E: discover → extract → CQC (or supabase backfill) |
 | POST | `/owners/scan` | Owner discovery scan |
+| POST | `/cqc/refresh-directory` | Download/refresh national CQC directory CSV |
 | POST | `/cqc/match` | CQC directory match |
 | POST | `/cqc/location` | CQC location Overview scrape |
+| POST | `/segments/refresh` | Rebuild outreach cohort membership |
+| GET | `/segments` / `/segments/{slug}/members` | List cohorts / members |
+| POST | `/contacts/prepare` | CQC rematch + people enrich for a cohort |
+| POST | `/contacts/refresh-outreach` | Materialize PIC outreach contacts (no network) |
+| POST | `/contacts/rocketreach` | RocketReach enrich (durable; everyone) |
+| POST | `/contacts/linkedin-find` | LinkedIn find-only (durable; everyone missing URL) |
+| GET | `/contacts/outreach` | List / `ready_sales=true` handoff |
+
+Long runs default to **background jobs** (`background: true`). Response includes `job_id`;
+poll `GET /jobs/{id}` until `status` is `completed` or `failed`.
+
+Trigger examples (after deploy):
+
+```bash
+BASE=https://gtm-pipeline-production-ed6f.up.railway.app
+AUTH="Authorization: Bearer $GTM_SERVICE_TOKEN"
+
+# Priority backfill of existing Supabase URLs (Playwright + CQC)
+curl -sS -X POST "$BASE/pipeline/scoped-run" -H "$AUTH" -H "Content-Type: application/json" \
+  -d '{"from_supabase":true,"priority":true,"discover_limit":20,"cqc":true,"upsert":true}'
+
+# Or extract-batch only
+curl -sS -X POST "$BASE/doctify/extract-batch" -H "$AUTH" -H "Content-Type: application/json" \
+  -d '{"from_supabase":true,"priority":true,"limit":20,"upsert":true,"cqc":true}'
+
+# Sample listing discover (1 page worth via limit)
+curl -sS -X POST "$BASE/doctify/discover" -H "$AUTH" -H "Content-Type: application/json" \
+  -d '{"start_url":"https://www.doctify.com/uk/find/endometriosis/harley-street/practices#distance=10","pages":1,"limit":10}'
+```
+
+CQC directory auto-refreshes on startup when missing/stale (`CQC_DIRECTORY_AUTO_REFRESH`,
+`CQC_DIRECTORY_MAX_AGE_DAYS`). File lives under `GTM_DATA_DIR` (Railway: `/tmp/gtm-data`).
+Scope CSV is baked into the image at `config/doctify_scope.csv`.
 
 Required env: `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `GTM_SERVICE_TOKEN`.
 
@@ -137,14 +203,14 @@ pip install -e "./gtm-pipeline[service]"
 uvicorn gtm_pipeline.service:app --reload --port 8080
 ```
 
-### Sync scoped discovery → Supabase
+### Sync / recover
 
 ```bash
-# Dry-run first
-python -m gtm_pipeline sync scoped-csv --path gtm-pipeline/data/full_scope_run.csv --limit 20 --dry-run
+# Prefer Playwright batch over legacy CSV sync
+python -m gtm_pipeline doctify extract-batch --from-supabase --priority --upsert --cqc
 
-# Upsert (skips pre_filtered by default)
-python -m gtm_pipeline sync scoped-csv --path gtm-pipeline/data/full_scope_run.csv
+# Legacy: upsert old OG scoped CSV (seed only — not the ongoing path)
+python -m gtm_pipeline sync scoped-csv --path gtm-pipeline/data/full_scope_run.csv --limit 20 --dry-run
 
 # Match CQC RM/NI to practitioners
 python -m gtm_pipeline people match-cqc \
@@ -155,4 +221,4 @@ python -m gtm_pipeline people match-cqc \
 
 - Do **not** commit secrets; upserts no-op / dry-run when credentials are missing.
 - `Clinic sales agent/` remains legacy — this package replaces CSV-first enrichment for GTM.
-- P1–P3 (LinkedIn, outreach send, Next.js review UI) are intentionally out of scope here.
+- Auto-send / sequencing (P3) stays out of scope. LinkedIn here is **find-only**.
