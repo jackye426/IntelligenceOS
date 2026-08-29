@@ -18,7 +18,11 @@ from marketing_pipeline.instagram.stages.extract_components import (
     first_text_line,
     infer_format,
 )
-from marketing_pipeline.instagram.stages.fetch_posts import fetch_posts, load_raw_posts
+from marketing_pipeline.instagram.stages.fetch_posts import (
+    fetch_posts,
+    load_raw_posts,
+    login_and_save_session,
+)
 from marketing_pipeline.instagram.stages.import_content_tracker import (
     load_tracker_rows,
     shortcode_from_url,
@@ -244,6 +248,10 @@ def run_fetch(
     include_comments: bool = False,
 ) -> dict[str, Any]:
     return fetch_posts(account=account, limit=limit, include_comments=include_comments)
+
+
+def run_login(*, account: str = config.INSTAGRAM_ACCOUNT, password: str | None = None) -> dict[str, Any]:
+    return login_and_save_session(account=account, password=password)
 
 
 def run_export() -> dict[str, Any]:

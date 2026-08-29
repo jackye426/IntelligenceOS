@@ -14,6 +14,96 @@ class InstaloaderNotInstalled(RuntimeError):
     """Raised when the optional instaloader dependency is missing."""
 
 
+def session_path(account: str | None = None) -> Path:
+    """Instaloader session file path expected by data-worker + fetch."""
+    handle = (account or config.INSTAGRAM_ACCOUNT).lstrip("@")
+    return config.INSTAGRAM_DATA_ROOT / f"session-{handle}"
+
+
+def _make_loader():
+    try:
+        import instaloader  # type: ignore
+    except ImportError as exc:
+        raise InstaloaderNotInstalled(
+            "Instaloader is not installed. Install with: pip install -e .[instagram]"
+        ) from exc
+
+    return instaloader.Instaloader(
+        download_pictures=False,
+        download_videos=False,
+        download_video_thumbnails=False,
+        download_geotags=False,
+        download_comments=False,
+        save_metadata=False,
+        compress_json=False,
+    )
+
+
+def login_and_save_session(
+    *,
+    account: str | None = None,
+    password: str | None = None,
+) -> dict[str, Any]:
+    """Interactive Instaloader login; writes session-{account} under INSTAGRAM_DATA_ROOT.
+
+    Prefer logging in as @docmapuk so the file is named session-docmapuk (what Railway expects).
+    Supports Instagram 2FA prompts via interactive_login when password is omitted.
+    """
+    handle = (account or config.INSTAGRAM_ACCOUNT).lstrip("@")
+    target = session_path(handle)
+    target.parent.mkdir(parents=True, exist_ok=True)
+
+    loader = _make_loader()
+    try:
+        if password:
+            loader.login(handle, password)
+        else:
+            # Prompts for password / 2FA in the terminal
+            loader.interactive_login(handle)
+    except Exception as exc:  # noqa: BLE001
+        msg = str(exc)
+        # Instagram often returns a relative checkpoint path — make it clickable.
+        if "Checkpoint required" in msg or "checkpoint" in msg.lower():
+            marker = "Point your browser to "
+            if marker in msg:
+                rel = msg.split(marker, 1)[1].split(" - follow", 1)[0].strip()
+                if rel.startswith("/"):
+                    url = f"https://www.instagram.com{rel}"
+                elif rel.startswith("http"):
+                    url = rel
+                else:
+                    url = f"https://www.instagram.com/{rel.lstrip('/')}"
+                raise RuntimeError(
+                    "Instagram requires a security checkpoint before Instaloader can log in.\n"
+                    f"1. Open this URL in a browser (same machine / logged-in if possible):\n   {url}\n"
+                    "2. Complete the challenge (approve login / confirm it's you).\n"
+                    "3. Re-run: python -m marketing_pipeline instagram login --account docmapuk\n"
+                    "Tip: first log into Instagram normally in Chrome as @docmapuk, then retry."
+                ) from exc
+        raise
+
+    # Instaloader writes session-{username} into the given directory
+    loader.save_session_to_file(str(target))
+    if not target.exists():
+        # Some versions append nothing; others may write beside the path — normalize.
+        raise FileNotFoundError(f"Instaloader did not write session file at {target}")
+
+    return {
+        "account": handle,
+        "session_path": str(target),
+        "note": "Copy this file to Railway volume: $MARKETING_DATA_DIR/instagram/session-docmapuk",
+    }
+
+
+def _load_session(loader: Any, account: str) -> bool:
+    """Load session-{account} if present. Returns True when loaded."""
+    path = session_path(account)
+    if not path.exists():
+        return False
+    loader.load_session_from_file(account, str(path))
+    return True
+
+
 def _iso(value: Any) -> str | None:
     if value is None:
         return None
@@ -100,23 +190,18 @@ def fetch_posts(
     include_comments: bool = False,
     output_path: Path | None = None,
 ) -> dict[str, Any]:
-    try:
-        import instaloader  # type: ignore
-    except ImportError as exc:
-        raise InstaloaderNotInstalled(
-            "Instaloader is not installed. Install with: pip install -e .[instagram]"
-        ) from exc
+    import instaloader  # type: ignore  # noqa: F401 — validated via _make_loader
 
-    loader = instaloader.Instaloader(
-        download_pictures=False,
-        download_videos=False,
-        download_video_thumbnails=False,
-        download_geotags=False,
-        download_comments=False,
-        save_metadata=False,
-        compress_json=False,
-    )
-    profile = instaloader.Profile.from_username(loader.context, account)
+    handle = account.lstrip("@")
+    loader = _make_loader()
+    session_loaded = _load_session(loader, handle)
+    if not session_loaded:
+        raise FileNotFoundError(
+            f"No Instaloader session at {session_path(handle)}. "
+            f"Run: python -m marketing_pipeline instagram login --account {handle}"
+        )
+
+    profile = instaloader.Profile.from_username(loader.context, handle)
 
     posts: list[dict[str, Any]] = []
     for index, post in enumerate(profile.get_posts()):
@@ -124,18 +209,23 @@ def fetch_posts(
             break
         posts.append(_post_to_dict(post, include_comments=include_comments))
 
-    target = output_path or config.INSTAGRAM_RAW_DIR / f"{account}_posts.json"
+    target = output_path or config.INSTAGRAM_RAW_DIR / f"{handle}_posts.json"
     target.parent.mkdir(parents=True, exist_ok=True)
     payload = {
-        "account": account,
+        "account": handle,
         "source": "instaloader",
         "limit": limit,
         "include_comments": include_comments,
+        "session_loaded": session_loaded,
         "posts": posts,
     }
     target.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
-    return {"account": account, "posts": len(posts), "raw_path": str(target)}
-
+    return {
+        "account": handle,
+        "posts": len(posts),
+        "raw_path": str(target),
+        "session_loaded": session_loaded,
+    }
 
 def load_raw_posts(path: Path | None = None) -> list[dict[str, Any]]:
     target = path or config.INSTAGRAM_RAW_DIR / f"{config.INSTAGRAM_ACCOUNT}_posts.json"

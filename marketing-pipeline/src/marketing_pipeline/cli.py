@@ -24,6 +24,7 @@ from marketing_pipeline.tiktok.orchestrator import (
 from marketing_pipeline.instagram.orchestrator import (
     run_export as run_instagram_export,
     run_fetch as run_instagram_fetch,
+    run_login as run_instagram_login,
     run_sync_supabase as run_instagram_sync_supabase,
 )
 
@@ -144,9 +145,20 @@ def _instagram_parser(sub: argparse._SubParsersAction) -> None:
     instagram = sub.add_parser("instagram", help="Instagram marketing pipeline")
     instagram_sub = instagram.add_subparsers(dest="command", required=True)
 
+    login = instagram_sub.add_parser(
+        "login",
+        help="Create Instaloader session file (session-docmapuk) for fetch + Railway",
+    )
+    login.add_argument("--account", default="docmapuk", help="Instagram username to log in as")
+    login.add_argument(
+        "--password",
+        default=None,
+        help="Optional; omit to type password / 2FA interactively (safer)",
+    )
+
     fetch = instagram_sub.add_parser(
         "fetch",
-        help="Fetch recent public Instagram posts for docmapuk via Instaloader",
+        help="Fetch recent Instagram posts for docmapuk via Instaloader (requires session)",
     )
     fetch.add_argument("--account", default="docmapuk")
     fetch.add_argument("--limit", type=int, default=50)
@@ -173,7 +185,9 @@ def main(argv: list[str] | None = None) -> None:
         parser.error(f"Unsupported channel: {args.channel}")
 
     if args.channel == "instagram":
-        if args.command == "fetch":
+        if args.command == "login":
+            result = run_instagram_login(account=args.account, password=args.password)
+        elif args.command == "fetch":
             result = run_instagram_fetch(
                 account=args.account,
                 limit=args.limit,
@@ -187,9 +201,8 @@ def main(argv: list[str] | None = None) -> None:
                 skip_embed=args.skip_embed,
             )
         else:
-            parser.error(f"Unknown command: {args.command}")
-            return
-        print(json.dumps(result, indent=2))
+            parser.error(f"Unknown Instagram command: {args.command}")
+        print(json.dumps(result, indent=2, default=str))
         return
 
     if args.command == "export":

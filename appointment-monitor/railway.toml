@@ -1,0 +1,7 @@
+# Railway: set Root Directory = appointment-monitor
+[build]
+builder = "RAILPACK"
+
+[deploy]
+startCommand = "python scheduler.py"
+restartPolicyType = "ON_FAILURE"

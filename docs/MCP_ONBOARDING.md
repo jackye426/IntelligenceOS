@@ -1,17 +1,17 @@
-# DocMap TikTok Intelligence — Claude setup guide
+# DocMap Intelligence — Claude setup guide
 
-**For:** Marketing and content team (no coding experience needed)  
-**Scope:** **TikTok only** — ~40 @docmap videos, comments, hooks, and strategy notes  
-**Last updated:** 2026-07-10  
+**For:** DocMap team (no coding experience needed)  
+**Scope:** TikTok marketing (primary), Instagram, carousel creation, plus lighter clinic / doctor / patient-demand lookups  
+**Last updated:** 2026-07-23  
 **Need help?** Ask Jack or whoever manages team passwords.
 
-> **Note:** Clinic sales, doctor outreach, and other DocMap data are **not** part of this connector yet. This guide is only for TikTok marketing intelligence.
+> **Note:** TikTok is the richest dataset today (~98 @docmap videos). Instagram tools exist but the synced library is still thin. Clinic and doctor tools are available for lookup/drafts — they do **not** send emails or post content automatically.
 
 ---
 
 ## What is this?
 
-This connects **Claude Desktop** to **DocMap’s TikTok data** — views, saves, transcripts, hooks, comments, A/B tests, playbooks, and a **decision log** (what we committed to do next and whether it worked).
+This connects **Claude Desktop** to **DocMap’s internal data** — the same numbers and notes we use for marketing, clinic research, and doctor outreach.
 
 Once set up, you can **chat with Claude** and ask things like:
 
@@ -21,10 +21,14 @@ Once set up, you can **chat with Claude** and ask things like:
 - “What should we film next about endometriosis?”
 - “Log that we’re reposting surgical-photos with the direct CTA — check it in a week.”
 - “Which decisions are due for review?”
+- “How are our Instagram Reels doing vs carousels?”
+- “Create a classic-blue carousel on [topic] for Adobe Express.”
+- “What do we know about [clinic] before my call?”
+- “Has Dr [name] been contacted yet?”
 
-Claude looks up **real numbers and quotes from our videos** and should include **links or titles** — not guess from the internet.
+Claude looks up **real DocMap data** and should include **links or titles** — not guess from the internet.
 
-Think of it as giving Claude a **read-only pass** to our TikTok performance library, plus a shared memory of **learnings** and **commitments**.
+Think of it as giving Claude a **pass to our intelligence library**, plus shared memory of **learnings** and **commitments** (especially for TikTok).
 
 ---
 
@@ -32,30 +36,34 @@ Think of it as giving Claude a **read-only pass** to our TikTok performance libr
 
 | Data | What you get |
 |------|----------------|
-| **~40 TikTok videos** | Views, likes, saves, shares, engagement |
-| **Transcripts** | What was said in each video |
+| **~98 TikTok videos** (@docmap) | Views, likes, saves, shares, engagement |
+| **Transcripts** | What was said in each TikTok |
 | **Hooks** | Spoken line, caption opening, and on-screen text (where captured) |
-| **Video components** | Structured labels per video: hook *type*, funnel stage (TOFU/MOFU/BOFU), CTA, topic, speaker |
+| **Video components** | Structured labels: hook *type*, funnel stage (TOFU/MOFU/BOFU), CTA, topic, speaker |
 | **Comments** | What viewers asked — cost, NHS, specialists, symptoms, etc. |
 | **A/B tests** | Same video posted with different hooks — which performed better |
 | **Insights** | Approved takeaways from analysis (“what we observed”) |
-| **Decision log** | Commitments for next actions + later outcome checks |
-| **Playbooks / constitution** | Standing strategy rules (changed rarely, by a human) |
+| **Decision log** | Commitments for next actions + later outcome checks (TikTok) |
+| **Playbooks / constitution** | Standing strategy rules (changed rarely, with human approval) |
+| **Deeper TikTok metrics** | Early velocity, Studio watch/finish/retention (when captured), account-day rollups |
+| **Instagram** | Strategy brief, cohort rankings, post detail — format-first (Reels / carousels / static). Library still growing |
+| **Carousel maker** | Filled PPTX from DocMap templates → import into Adobe Express |
+| **Clinic / doctors / demand** | Clinic briefings, practitioner search & outreach status, patient-demand tags, appointment slots, weekly ops briefing |
 
-Data refreshes automatically: **comments daily**, full update **weekly**. Brand-new posts may take a few days to show up.
+Data refreshes automatically where pipelines are wired: **comments daily**, fuller TikTok update **weekly**. Brand-new posts may take a few days to show up. Instagram depends on the Instagram sync job having run.
 
 ---
 
 ## How Claude’s memory layers work
 
-These are **not** the same thing. Use the right one:
+These are **not** the same thing. Use the right one (mainly TikTok today):
 
 | Layer | Answers… | Example |
 |-------|----------|---------|
 | **A/B learning** | In *this* hook pair, who won? | “Direct CTA beat Q&A open on surgical-photos.” |
 | **Insight** | What did we *observe* / learn? | “Imperative surgical CTAs outperform soft interview opens.” |
 | **Decision** | What will we *do next*, and how will we judge it? | “Repost surgical-photos with imperative CTA. Success = saves/1k in top quartile within 7 days.” |
-| **Constitution** | What do we *always* believe? | Standing rule pasted into playbook files (rare) |
+| **Constitution** | What do we *always* believe? | Standing rule in the playbook (rare; human must approve) |
 
 **Rule of thumb:** Insights and A/B = past. Decisions = future commitment + later check. Constitution = only after something keeps proving true.
 
@@ -65,7 +73,7 @@ When you agree on a next action in chat, say so clearly (e.g. “Log that decisi
 
 ## What can you ask Claude to do?
 
-### Performance & rankings
+### TikTok — performance & rankings
 
 | You can ask… | Claude can show… |
 |--------------|------------------|
@@ -74,15 +82,16 @@ When you agree on a next action in chat, say so clearly (e.g. “Log that decisi
 | “How did we do since [date]?” | Recent batch with strong vs weak posts |
 | “Compare our best and worst endometriosis videos” | Side-by-side stats and hooks |
 
-### Deep dive on one video
+### TikTok — deep dive on one video
 
 | You can ask… | Claude can show… |
 |--------------|------------------|
 | “Break down this video: [paste link or ID]” | Full transcript, caption, hooks, comment themes, and component labels when available |
 | “What hook did we use on video [ID]?” | Spoken, caption, and on-screen hook text |
 | “What did people ask in the comments?” | Common questions and themes |
+| “Show Studio watch time / finish rate for this video” | Studio insight metrics when captured |
 
-### Video components (hook type, funnel, CTA)
+### TikTok — video components (hook type, funnel, CTA)
 
 These are **labels extracted offline** (not invented in chat). Ask Claude to use them when comparing *styles* of hooks or funnel stages.
 
@@ -111,7 +120,7 @@ These are **labels extracted offline** (not invented in chat). Ask Claude to use
 | “This video underperformed — suggest a better hook” | Ideas based on top performers (you approve before filming) |
 | “Save what we learned from this A/B test” | Stores an approved note for next time (only after you confirm) |
 
-### Strategy & planning
+### Strategy & planning (TikTok)
 
 | You can ask… | Claude can show… |
 |--------------|------------------|
@@ -134,7 +143,51 @@ These are **labels extracted offline** (not invented in chat). Ask Claude to use
 **Too vague (don’t leave it like this):**  
 *“Maybe try better hooks on surgery content sometime.”*
 
-**Best first question to try:**  
+### Playbook / constitution (rare)
+
+| You can ask… | Claude should… |
+|--------------|----------------|
+| “Propose adding this rule to the playbook…” | Queue an amendment for review |
+| “Show pending constitution amendments” | List the Gate 2 queue |
+| “Approve / reject amendment [id]” | Apply or reject **only after you confirm** |
+
+Constitution changes are rare. Claude never auto-writes the playbook.
+
+### Instagram
+
+Instagram is **format-first**: compare Reels, carousels, and static posts separately unless you ask for an overall view.
+
+| You can ask… | Claude can show… |
+|--------------|------------------|
+| “Give me the Instagram strategy brief” | Format rules, reference posts, metric freshness |
+| “Top Instagram posts since [date] by intent / engagement” | Cohort rankings (check for a staleness warning if empty) |
+| “Compare Reels vs carousels” | Per-format top posts |
+| “Break down this Instagram post: [ID or link]” | Caption, format, metrics, components |
+
+**Caveat:** Owned metrics (reach, saves, profile visits, follows, link taps) may be missing unless enriched. If they’re missing, Claude should say so — not pretend they were zero. If Claude says Instagram isn’t synced yet, ask Jack to check the Instagram pipeline.
+
+### Instagram carousels (create for Express)
+
+| You can ask… | Claude can show… |
+|--------------|------------------|
+| “What carousel templates do we have?” | classic_blue, photo_center_hook, photo_body_left / right, minimal_white |
+| “Create a carousel on [topic] using classic_blue” | Slide copy + filled PPTX (download / import into Adobe Express) |
+| “Fill this template with my copy…” | PPTX from copy you already wrote |
+
+Text is auto-sized to fit slide zones. If Claude warns about overflow, shorten the copy and regenerate. Final design polish still happens in **Adobe Express**.
+
+### Clinic, doctors & ops (lighter use)
+
+| You can ask… | Claude can show… |
+|--------------|------------------|
+| “Brief me on clinic [name / id]” | Approved research notes and contacts |
+| “Search for Dr [name]” / “Has [doctor] been contacted?” | Practitioner match + outreach status |
+| “Draft an outreach email to [doctor] — wait for my confirm” | **Gmail draft only** (never sends until you confirm the draft step) |
+| “What are patients asking about lately?” | Demand themes from **tagged metadata** (not raw chat transcripts) |
+| “Any open appointment slots for [name]?” | Visible upcoming slots |
+| “Give me the weekly ops briefing” | Cross-source weekly summary |
+
+**Best first question to try (marketing):**  
 *“Give me a TikTok content briefing on endometriosis — what’s working and what people ask in comments.”*
 
 ---
@@ -150,9 +203,11 @@ Use this in your Monday content meeting or solo review:
 5. **A/B / variant groups** — hook packaging comparisons; save A/B learnings when the pair takeaway is clear  
 6. **Commit next actions** — when the team agrees what to film/repost, ask Claude to **log the decision** with success criteria  
 7. **Hook suggestions** — only after the brief; you approve hooks before filming  
-8. **Rare:** promote a stable learning into the playbook (human pastes — never automatic)
+8. **Rare:** promote a stable learning into the playbook (Claude queues; **you** approve)
 
-**Important:** If a date filter returns nothing, check for a staleness warning — the library may be behind the live TikTok channel, not that posting stopped.
+**Instagram (when the library is populated):** start with the Instagram strategy brief → cohort / rankings by format → inspect individual posts → keep creative suggestions as drafts unless you commit.
+
+**Important:** If a date filter returns nothing, check for a staleness warning — the library may be behind the live channel, not that posting stopped.
 
 Claude pulls live data each time — you don’t need to export spreadsheets first.
 
@@ -160,12 +215,14 @@ Claude pulls live data each time — you don’t need to export spreadsheets fir
 
 ## What this cannot do (yet)
 
-- **Clinic or doctor data** — not connected (coming later)
-- **Instagram** — limited; TikTok is the main dataset today
-- **Post new TikToks or edit videos** — read-only
-- **Guarantee viral hits** — it shows what worked before, not predictions
+- **Post or edit** TikTok / Instagram content from Claude  
+- **Send** outreach emails — drafts only, after you confirm  
+- **Guarantee viral hits** — it shows what worked before, not predictions  
+- **Treat Instagram like a full twin of TikTok** — IG sync is thinner; owned metrics may be sparse  
+- **Raw patient chat transcripts** — demand tool is metadata/tags only  
+- **Claim BOFU / CTA “conversion wins”** from views alone — bookings/clicks aren’t wired yet  
 
-If Claude says it has no data, the video may be too new or the system may still be updating — try again later or ask Jack.
+If Claude says it has no data, the post may be too new or the sync may still be updating — try again later or ask Jack.
 
 ---
 
@@ -251,11 +308,11 @@ First launch may take **10–20 seconds** while a small helper downloads — tha
 
 **Test message (either works):**
 
-> What can you help with on our TikTok data?
+> What can you help with?
 
 or
 
-> Use DocMap TikTok data: show me the top 5 posts by views and summarise each hook.
+> Use DocMap data: show me the top 5 TikTok posts by views and summarise each hook.
 
 Claude should either list what it can do (short menu) or return real @docmap stats and links — not a generic answer. You do **not** need to read a long guide first.
 
@@ -264,10 +321,10 @@ Claude should either list what it can do (short menu) or return real @docmap sta
 ## Example questions (copy & paste)
 
 **Start here (no homework)**
-- “What can you help with on our TikTok data?”
+- “What can you help with?”
 - “Give me the short menu of what DocMap can do.”
 
-**Quick checks**
+**TikTok — quick checks**
 - “Top 10 TikTok posts by saves per 1k views.”
 - “Best performing endometriosis videos — hooks and view counts.”
 - “TikTok posts since 1 April 2026, ranked by engagement.”
@@ -289,18 +346,27 @@ Claude should either list what it can do (short menu) or return real @docmap sta
 - “List open decisions due for review.”
 - “For decision [id], pull metrics and propose a verdict — wait for my confirm.”
 
+**Instagram & carousels**
+- “Give me the Instagram strategy brief and top posts by format.”
+- “Create a classic_blue carousel on pelvic pain red flags for Adobe Express.”
+
+**Clinic / doctors**
+- “Search practitioners named [name] and summarise specialty and outreach status.”
+- “Brief me on clinic [name] before my call.”
+
 ---
 
 ## Tips for better answers
 
-1. **Ask for links** — “include TikTok URLs for each video.”
+1. **Ask for links** — “include TikTok / Instagram URLs for each post.”
 2. **Be specific on dates** — “since March 2026” beats “recently.”
-3. **One video at a time** — paste the video link or ID for a full breakdown.
-4. **If answers sound generic**, say: “Use DocMap TikTok data — don’t guess.”
-5. **Hook suggestions** — treat as drafts; your judgment before filming.
+3. **One post at a time** — paste the link or ID for a full breakdown.
+4. **If answers sound generic**, say: “Use DocMap data — don’t guess.”
+5. **Hook / carousel suggestions** — treat as drafts; your judgment before filming or publishing.
 6. **Commit decisions out loud** — when you agree what to film/repost, say “log that decision” with a success measure so next week’s chat can check the outcome.
 7. **Don’t confuse layers** — “what we learned” → insight/A/B; “what we’ll do next” → decision.
 8. **Publish dates** — if a date looks wrong, ask Claude to re-check `posted_at` from DocMap. It must not guess from the video ID.
+9. **Instagram** — ask by format (Reels vs carousel vs static) unless you want an overall view.
 
 ---
 
@@ -308,16 +374,18 @@ Claude should either list what it can do (short menu) or return real @docmap sta
 
 **Do**
 - Keep the access code in the password manager only
-- Use for internal DocMap marketing planning
+- Use for internal DocMap planning and research
 - Save A/B learnings only after the team agrees on the takeaway
 - Log decisions when you commit to a next action (with a clear success measure)
-- Confirm decision outcomes yourself — Claude proposes from metrics; you say yes/no
+- Confirm decision outcomes and constitution changes yourself — Claude proposes; you say yes/no
+- Confirm before any Gmail draft is created
 
 **Don’t**
 - Share the access code publicly
-- Assume Claude knows TikTok stats without checking DocMap data
+- Assume Claude knows live social stats without checking DocMap data
 - Film a new hook suggestion without team sign-off
 - Put “what we’ll do next” only into an insight — that belongs in the decision log
+- Expect Claude to send emails or publish posts
 
 ---
 
@@ -327,8 +395,9 @@ Claude should either list what it can do (short menu) or return real @docmap sta
 |---------|----------|
 | “MCP server could not be loaded” | Settings must use the full block above (`npx` + `mcp-remote`), not just a website URL. Ask Jack for a fresh copy. |
 | No tools / hammer icon | Quit Claude fully, check Node.js installed, wait 20 sec on reopen. |
-| Generic answers, no stats | Say: “Query DocMap TikTok intelligence.” |
+| Generic answers, no stats | Say: “Query DocMap intelligence.” |
 | Empty / no videos | Data may be updating — retry later or ask Jack. |
+| Instagram empty / “not synced” | Instagram pipeline may need a run — ask Jack. |
 | “Unauthorized” | Access code wrong or missing `Bearer ` before the code. |
 
 **IT / technical help:** [`mcp_team_setup.md`](mcp_team_setup.md)
@@ -340,14 +409,14 @@ Claude should either list what it can do (short menu) or return real @docmap sta
 **Do I need to code?**  
 No.
 
-**TikTok only?**  
-Yes — for now. Clinic and outreach data will be added separately later.
+**Is it only TikTok?**  
+No — TikTok is the main, richest set. Instagram, carousels, clinic, and doctor tools are also connected. Depth varies by source.
 
 **What’s the difference between an insight and a decision?**  
 Insight = what we learned from past posts. Decision = what we will do next and how we’ll judge it later. A/B learning = who won in a specific hook pair.
 
 **How fresh is the data?**  
-Comments: daily. Full refresh: weekly.
+TikTok comments: daily. Fuller TikTok refresh: weekly. Instagram: when the IG sync has run. Brand-new posts can lag a few days.
 
 **Phone?**  
 Computer + Claude Desktop only.
@@ -361,7 +430,7 @@ Normal Claude account; DocMap hosts the connector.
 
 | | |
 |---|---|
-| **What it covers** | @docmap TikTok (~40 videos) |
+| **What it covers** | TikTok (~98 videos) + Instagram + carousels + clinic/doctor lookups |
 | **Connector name** | docmap-intelligence |
 | **Access code** | Team password manager |
 | **Settings file (Windows)** | `%APPDATA%\Claude\claude_desktop_config.json` |
@@ -371,4 +440,4 @@ Normal Claude account; DocMap hosts the connector.
 
 ## More prompts (optional)
 
-TikTok-focused examples: [`mcp_prompt_guide.md`](mcp_prompt_guide.md) (TikTok sections)
+Extra examples across TikTok, Instagram, clinics, and doctors: [`mcp_prompt_guide.md`](mcp_prompt_guide.md)

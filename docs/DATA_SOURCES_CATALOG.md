@@ -149,6 +149,7 @@ Status key: **Live** = ingested to Supabase · **Partial** = parsed locally, not
 | ID | Source | Status | Sensitivity | Metadata storage | Embedding `entity_type` | On-disk / origin | Extraction | Maintenance |
 |----|--------|--------|-------------|------------------|-------------------------|------------------|------------|-------------|
 | E1 | **HCA appointment slots** | Partial (dev) | internal | `appointment_slots`, `booking_guids` | — (structured) | `Appointment utilization rate/hca-monitor/data/hca_monitor.db` | `scripts/ingest-hca-sqlite.py` | Deferred in prod (`MASTER_PLAN`) |
+| E1b | **Spire Cardiff appointment slots** | Live (dev scrape) | internal | `appointment_slots` (`source_system=spire_monitor`) | — (structured) | Spire COBPS HTTP APIs | `appointment-monitor/` (Railway-ready) | Roster: Phillips, Cornish, Soliman; 3×/day schedule |
 | E2 | **Internal meeting transcripts** | Schema | internal | `call_transcripts` (`category=internal`) | `internal_meeting` | Drive | Import | Low priority |
 | E3 | **MCP audit / ingestion health** | Live | internal | `mcp_tool_audit_log`, `data_ingestion_runs` | — | Generated | Automatic | Retention policy TBD |
 

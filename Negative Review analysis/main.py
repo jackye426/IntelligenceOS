@@ -28,8 +28,14 @@ load_dotenv(Path(__file__).parent / ".env")
 import io
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, line_buffering=True)
 
-# ── Default CSV location (the user's sales pipeline file) ─────────────────
-DEFAULT_CSV = Path(r"C:\Users\yulon\Desktop\Current Projects\Clinic sales agent\output\clinic_sales_results.csv")
+# Default CSV: clinic-sales-agent export (override with --input)
+_REPO_ROOT = Path(__file__).resolve().parent
+_CANDIDATE_CSVS = [
+    _REPO_ROOT / "output" / "clinic_sales_results.csv",
+    _REPO_ROOT.parent / "Clinic sales agent" / "output" / "clinic_sales_results.csv",
+    _REPO_ROOT.parent / "clinic-sales-agent" / "output" / "clinic_sales_results.csv",
+]
+DEFAULT_CSV = next((p for p in _CANDIDATE_CSVS if p.is_file()), _CANDIDATE_CSVS[1])
 DATA_DIR = Path("data")
 DATA_DIR.mkdir(exist_ok=True)
 
