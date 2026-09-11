@@ -1,4 +1,4 @@
-mcp
+mcp<2
 httpx
 openai
 python-dotenv
