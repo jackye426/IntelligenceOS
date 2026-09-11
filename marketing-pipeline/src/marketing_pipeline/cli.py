@@ -10,6 +10,9 @@ from marketing_pipeline.tiktok.orchestrator import (
     run_analyze,
     run_display_snapshots,
     run_export,
+    run_fetch_catalog_cmd,
+    run_fetch_comments_cmd,
+    run_sample_plan_cmd,
     run_extract_components_cmd,
     run_import_playbooks,
     run_ingest_bc_csv,
@@ -29,9 +32,46 @@ from marketing_pipeline.instagram.orchestrator import (
 )
 
 
+# Peer commands must name their account explicitly. Defaulting to docmap would
+# let a peer run write into the owned library.
+PEER_SAFE_DEFAULT = "docmap"
+
+
 def _tiktok_parser(sub: argparse._SubParsersAction) -> None:
     tiktok = sub.add_parser("tiktok", help="TikTok marketing pipeline")
+    tiktok.add_argument(
+        "--account",
+        default=PEER_SAFE_DEFAULT,
+        help="Account handle to operate on (default docmap). Any other value is a "
+        "peer library with its own data root, prompts and Supabase scope.",
+    )
     tiktok_sub = tiktok.add_subparsers(dest="command", required=True)
+
+    fetch_cat = tiktok_sub.add_parser(
+        "fetch-catalog",
+        help="Fetch profile catalog + follower count + bio (cheap; run before sample-plan)",
+    )
+    fetch_cat.add_argument("--since", default="2019-01-01")
+    fetch_cat.add_argument("--cookies-from-browser", default=None)
+
+    sample = tiktok_sub.add_parser(
+        "sample-plan",
+        help="Detect eras and pick a reproducible stratified deep sample",
+    )
+    sample.add_argument("--deep", type=int, default=200, help="Target deep-sample size")
+    sample.add_argument("--seed", type=int, default=20260910)
+    sample.add_argument("--since", default=None)
+
+    fetch_comments = tiktok_sub.add_parser(
+        "fetch-comments",
+        help="Optional comment drill-down for named videos (budgeted, resumable)",
+    )
+    fetch_comments.add_argument(
+        "--video-id", action="append", dest="video_ids", default=None, help="Repeatable"
+    )
+    fetch_comments.add_argument("--max-comments", type=int, default=500)
+    fetch_comments.add_argument("--request-budget", type=int, default=400)
+    fetch_comments.add_argument("--force", action="store_true")
 
     tiktok_sub.add_parser("export", help="Build dataset JSON from local artifacts")
     tiktok_sub.add_parser("analyze", help="Run analysis and write dataset")
@@ -43,6 +83,11 @@ def _tiktok_parser(sub: argparse._SubParsersAction) -> None:
     refresh.add_argument("--skip-ocr", action="store_true")
     refresh.add_argument("--skip-comments", action="store_true")
     refresh.add_argument("--no-download", action="store_true", help="Skip yt-dlp media download for OCR only")
+    refresh.add_argument(
+        "--skip-catalog",
+        action="store_true",
+        help="Reuse the catalog on disk instead of re-listing the profile (use when resuming)",
+    )
 
     refresh_comments = tiktok_sub.add_parser("refresh-comments", help="Fetch, label, compile comments")
     refresh_comments.add_argument("--force", action="store_true")
@@ -58,6 +103,18 @@ def _tiktok_parser(sub: argparse._SubParsersAction) -> None:
     extract_comp.add_argument("--video-id", default=None)
     extract_comp.add_argument("--force", action="store_true")
     extract_comp.add_argument("--limit", type=int, default=None)
+    extract_comp.add_argument(
+        "--schema",
+        default=None,
+        choices=["docmap-endo", "generic-clinician"],
+        help="Component prompt schema. Peer accounts default to generic-clinician.",
+    )
+    extract_comp.add_argument(
+        "--from-sample-plan",
+        action="store_true",
+        dest="sample_only",
+        help="Restrict to the deep sample recorded in sample_plan.json",
+    )
 
     sync = tiktok_sub.add_parser("sync-supabase", help="Sync dataset to Supabase")
     sync.add_argument("--dry-run", action="store_true")
@@ -184,6 +241,47 @@ def main(argv: list[str] | None = None) -> None:
     if args.channel not in {"tiktok", "instagram"}:
         parser.error(f"Unsupported channel: {args.channel}")
 
+    if args.channel == "tiktok":
+        # Point every path constant at this account before any stage runs.
+        from marketing_pipeline import config
+
+        try:
+            active = config.activate_account(getattr(args, "account", None))
+        except config.AccountIsolationError as exc:
+            parser.error(str(exc))
+        if config.is_peer_account(active):
+            # Owner-only surfaces: Studio, Display API and Business Center all
+            # require authenticated access to the account. They cannot work on a
+            # peer, and playbooks/insights are DocMap governance artefacts.
+            owner_only = {
+                "display-snapshots",
+                "ingest-studio-insight",
+                "studio-listen",
+                "ingest-bc-csv",
+                "sync-playbooks",
+                "import-playbooks",
+            }
+            if args.command in owner_only:
+                parser.error(
+                    f"'{args.command}' is owner-only and cannot run for peer account "
+                    f"'{active}'. It needs authenticated access to the account, or it "
+                    "writes DocMap governance artefacts."
+                )
+            print(
+                json.dumps(
+                    {
+                        "account": active,
+                        "mode": "peer_library",
+                        "data_root": str(config.DATA_ROOT),
+                        "owner_scope": config.owner_scope(),
+                        "note": "Peer run: isolated data root, generic prompts, "
+                        "no strategy brief, comments off by default.",
+                    },
+                    indent=2,
+                ),
+                file=sys.stderr,
+            )
+
     if args.channel == "instagram":
         if args.command == "login":
             result = run_instagram_login(account=args.account, password=args.password)
@@ -205,7 +303,21 @@ def main(argv: list[str] | None = None) -> None:
         print(json.dumps(result, indent=2, default=str))
         return
 
-    if args.command == "export":
+    if args.command == "fetch-catalog":
+        result = run_fetch_catalog_cmd(
+            since=args.since,
+            cookies_from_browser=args.cookies_from_browser,
+        )
+    elif args.command == "sample-plan":
+        result = run_sample_plan_cmd(deep=args.deep, seed=args.seed, since=args.since)
+    elif args.command == "fetch-comments":
+        result = run_fetch_comments_cmd(
+            video_ids=args.video_ids,
+            max_comments=args.max_comments,
+            request_budget=args.request_budget,
+            force=args.force,
+        )
+    elif args.command == "export":
         result = run_export()
     elif args.command == "analyze":
         result = run_analyze()
@@ -218,6 +330,7 @@ def main(argv: list[str] | None = None) -> None:
             skip_ocr=args.skip_ocr,
             skip_comments=args.skip_comments,
             download_for_ocr=not args.no_download,
+            skip_catalog=args.skip_catalog,
         )
     elif args.command == "refresh-comments":
         result = run_refresh_comments(force=args.force)
@@ -231,6 +344,8 @@ def main(argv: list[str] | None = None) -> None:
             video_id=args.video_id,
             force=args.force,
             limit=args.limit,
+            schema=args.schema,
+            sample_only=args.sample_only,
         )
     elif args.command == "sync-supabase":
         result = run_sync_supabase(dry_run=args.dry_run, skip_embed=args.skip_embed)

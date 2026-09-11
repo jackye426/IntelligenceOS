@@ -43,7 +43,7 @@ def write_comments_digest(
         views = int(cat.get("view_count") or 0)
         post_date = cat.get("post_date_utc") or "unknown"
         title = (cat.get("title") or cat.get("description") or "")[:80]
-        url = cat.get("url") or f"https://www.tiktok.com/@docmap/video/{video_id}"
+        url = cat.get("url") or config.video_url(video_id)
 
         labeled_path = config.ANALYSIS_DIR / f"comments_labeled_{video_id}.json"
         labeled_by_cid: dict[str, dict] = {}

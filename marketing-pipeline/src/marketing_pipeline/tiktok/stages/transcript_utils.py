@@ -1,8 +1,18 @@
-"""Detect carousel / music-only transcripts."""
+"""Detect carousel / music-only transcripts.
+
+Most rules here are generic (empty, too short, music-only, outro boilerplate).
+One is not: the topic gate below discards a transcript whose caption looks
+DocMap-shaped but whose speech does not. That is relevance filtering for one
+account's subject matter, and applying it to another creator silently throws
+away good transcripts — it discarded roughly half of an early peer ingest,
+including plain talking-head videos. It is therefore DocMap-only.
+"""
 
 from __future__ import annotations
 
 import re
+
+from marketing_pipeline import config
 
 MEDICAL_TOPIC_HINT = re.compile(
     r"endo|endometriosis|period|pain|symptom|diagnos|women|girl|school|patient|gp|doctor|"
@@ -12,7 +22,19 @@ MEDICAL_TOPIC_HINT = re.compile(
 )
 
 
-def is_garbage_transcript(full_text: str | None, *, caption_hint: str | None = None) -> bool:
+def is_garbage_transcript(
+    full_text: str | None,
+    *,
+    caption_hint: str | None = None,
+    apply_topic_gate: bool | None = None,
+) -> bool:
+    """True when a transcript carries no usable speech.
+
+    `apply_topic_gate` controls only the DocMap subject-matter rule; it defaults
+    to off for peer accounts. Every other rule is generic and always applies.
+    """
+    if apply_topic_gate is None:
+        apply_topic_gate = not config.is_peer_account()
     t = (full_text or "").strip()
     if not t:
         return True
@@ -39,7 +61,7 @@ def is_garbage_transcript(full_text: str | None, *, caption_hint: str | None = N
         tl,
     ):
         return True
-    if caption_hint and len(t) < 600:
+    if apply_topic_gate and caption_hint and len(t) < 600:
         if MEDICAL_TOPIC_HINT.search(caption_hint) and not MEDICAL_TOPIC_HINT.search(t):
             return True
     return False

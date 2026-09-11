@@ -38,7 +38,7 @@ def copy_legacy_artifacts() -> dict[str, int]:
             n += 1
         counts[str(dst_dir.name)] = n
 
-    for path in legacy.glob("docmap_catalog_*.json"):
+    for path in legacy.glob("docmap_catalog_*.json"):  # legacy tree is DocMap-only by definition
         config.CATALOG_DIR.mkdir(parents=True, exist_ok=True)
         target = config.CATALOG_DIR / path.name
         if not target.exists():

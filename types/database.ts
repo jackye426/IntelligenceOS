@@ -257,12 +257,21 @@ export type Database = {
           query_embedding: number[];
           match_count?: number;
           filter_type?: string | null;
+          max_sensitivity?: string;
+          /** Defaults to "docmap". Pass "peer:<handle>" to read a peer library. */
+          filter_owner_scope?: string;
         };
         Returns: {
           id: string;
           entity_type: string;
           entity_id: string;
+          source_table: string | null;
+          source_title: string | null;
+          source_url: string | null;
+          chunk_index: number;
           content: string;
+          metadata: Record<string, unknown>;
+          sensitivity: string;
           similarity: number;
         }[];
       };

@@ -23,10 +23,11 @@ from marketing_pipeline.tiktok.stages.video_components_store import (
 )
 from marketing_pipeline.tiktok.sync.supabase import load_dataset
 
-SYSTEM_PROMPT = """You extract structured marketing components from DocMap TikTok videos
-(endometriosis patient education / specialist access).
-
-Return ONLY valid JSON matching the schema. No markdown fences.
+# Hook vocabulary and CTA rules are shared by every schema so hook mixes stay
+# comparable across accounts. Only the subject framing and the funnel definitions
+# differ, and funnel values are mapped through FUNNEL_CROSSWALK rather than
+# redefined, so a peer card and a DocMap card mean the same thing.
+_SHARED_RULES = """Return ONLY valid JSON matching the schema. No markdown fences.
 
 Rules:
 - Classify hook.type using ONLY this vocabulary:
@@ -34,15 +35,63 @@ Rules:
   authority_statement, personal_story, list_promise, outcome_promise, contrarian_claim, other
   If other, set type_other to a short phrase.
 - hook.channel: spoken | onscreen | both | caption_only
-- funnel_stage: TOFU | MOFU | BOFU | unclear
-  TOFU = awareness/myths/broad education; MOFU = diagnosis/treatment/specialist explainers;
-  BOFU = booking/clinic choice/consult prep/named service.
 - CTA: if none, present=false, position=none, channel=none, explicitness=none.
   present may be true, false, or "unclear".
 - caption_analysis must be null (deferred).
 - Keep quotes short. Prefer the provided primary hook text for hook.text when sensible.
 - seconds_to_main_claim: estimate from segment timings when possible, else null.
 """
+
+DOCMAP_PROMPT = """You extract structured marketing components from DocMap TikTok videos
+(endometriosis patient education / specialist access).
+
+""" + _SHARED_RULES + """- funnel_stage: TOFU | MOFU | BOFU | unclear
+  TOFU = awareness/myths/broad education; MOFU = diagnosis/treatment/specialist explainers;
+  BOFU = booking/clinic choice/consult prep/named service.
+"""
+
+GENERIC_CLINICIAN_PROMPT = """You extract structured marketing components from a
+clinician-educator's short-form videos. The creator may work in any specialty.
+Do not assume a condition, a care pathway, or a commercial offer. Describe what
+the video actually does.
+
+""" + _SHARED_RULES + """- funnel_stage: TOFU | MOFU | BOFU | unclear
+  TOFU = awareness: broad education, myths, general interest.
+  MOFU = how-it-works: mechanism, diagnosis, options, what to expect.
+  BOFU = product or service CTA: booking, consult, named offer, owned destination.
+  Judge by the job the video does, not by topic.
+"""
+
+# Same three values, specialty-neutral wording. Kept as a mapping so a card's
+# funnel_stage can be read consistently whichever schema produced it.
+FUNNEL_CROSSWALK = {
+    "TOFU": "awareness",
+    "MOFU": "how_it_works",
+    "BOFU": "product_cta",
+    "unclear": "unclear",
+}
+
+SCHEMAS: dict[str, str] = {
+    "docmap-endo": DOCMAP_PROMPT,
+    "generic-clinician": GENERIC_CLINICIAN_PROMPT,
+}
+DEFAULT_SCHEMA = "docmap-endo"
+PEER_SCHEMA = "generic-clinician"
+
+# Retained for callers that imported the old name.
+SYSTEM_PROMPT = DOCMAP_PROMPT
+
+
+def resolve_schema(schema: str | None = None) -> tuple[str, str]:
+    """Return (schema_name, system_prompt). Peer accounts default to generic."""
+    name = schema or (PEER_SCHEMA if config.is_peer_account() else DEFAULT_SCHEMA)
+    if name not in SCHEMAS:
+        raise ValueError(f"Unknown component schema '{name}'. Known: {sorted(SCHEMAS)}")
+    return name, SCHEMAS[name]
+
+
+def prompt_fingerprint(prompt: str) -> str:
+    return hashlib.sha256(prompt.encode("utf-8")).hexdigest()[:8]
 
 
 def _inputs_hash(
@@ -51,13 +100,22 @@ def _inputs_hash(
     hook_detail: dict[str, Any],
     caption: str | None,
     duration_sec: int | None,
+    schema: str = DEFAULT_SCHEMA,
+    prompt_hash: str = "",
 ) -> str:
+    """Cache key for a component card.
+
+    The prompt is part of the key: without it, switching schemas leaves every
+    cached card in place and the new prompt never runs.
+    """
     payload = json.dumps(
         {
             "transcript": transcript.strip(),
             "hook": hook_detail,
             "caption": (caption or "").strip(),
             "duration_sec": duration_sec,
+            "schema": schema,
+            "prompt": prompt_hash,
         },
         ensure_ascii=False,
         sort_keys=True,
@@ -179,11 +237,14 @@ def extract_one(
     *,
     force: bool = False,
     model: str | None = None,
+    schema: str | None = None,
 ) -> dict[str, Any]:
     transcript = (rec.transcript.full_text or "").strip()
     if not transcript:
         return {"video_id": video_id, "status": "skipped", "reason": "no_transcript"}
 
+    schema_name, system_prompt = resolve_schema(schema)
+    prompt_hash = prompt_fingerprint(system_prompt)
     hook_detail = rec.hook.model_dump()
     duration = rec.post.duration_sec or rec.post.metrics.duration_sec
     digest = _inputs_hash(
@@ -191,6 +252,8 @@ def extract_one(
         hook_detail=hook_detail,
         caption=rec.post.caption,
         duration_sec=duration,
+        schema=schema_name,
+        prompt_hash=prompt_hash,
     )
 
     existing = load_components(video_id)
@@ -199,10 +262,11 @@ def extract_one(
 
     used_model = model or config.MODEL_COMPONENTS
     raw = chat_completion(
-        system=SYSTEM_PROMPT,
+        system=system_prompt,
         user=build_user_prompt(video_id, rec),
         model=used_model,
-        max_tokens=2200,
+        # Long transcripts produce long cards; 2200 truncated some mid-string.
+        max_tokens=4000,
     )
     data = _normalize_llm_payload(json.loads(_strip_json(raw)), video_id=video_id, duration=duration)
 
@@ -211,6 +275,9 @@ def extract_one(
         {
             "method": "batch_llm_v1",
             "model": used_model,
+            "schema_version": schema_name,
+            "prompt_fingerprint": prompt_hash,
+            "account_handle": config.ACCOUNT,
             "extracted_at": datetime.now(timezone.utc).isoformat(),
             "inputs_hash": digest,
             "confidence": float(extraction.get("confidence") or 0.6),
@@ -232,8 +299,10 @@ def extract_one(
     return {
         "video_id": video_id,
         "status": "extracted",
+        "schema_version": schema_name,
         "hook_type": card.hook.type,
         "funnel_stage": card.funnel_stage,
+        "funnel_label": FUNNEL_CROSSWALK.get(card.funnel_stage, card.funnel_stage),
         "cta_present": card.cta.present,
         "needs_review": card.extraction.needs_review,
     }
@@ -245,9 +314,18 @@ def run_extract_components(
     force: bool = False,
     limit: int | None = None,
     model: str | None = None,
+    schema: str | None = None,
+    sample_only: bool = False,
 ) -> dict[str, Any]:
     dataset: TikTokMarketingDataset = load_dataset()
     ids = [video_id] if video_id else sorted(dataset.videos.keys())
+    if sample_only and not video_id:
+        from marketing_pipeline.tiktok.stages.sample_plan import deep_sample_ids
+
+        planned = deep_sample_ids()
+        if not planned:
+            raise RuntimeError("sample_plan.json is missing or contains no deep-sample ids")
+        ids = [v for v in ids if v in planned]
     if limit is not None:
         ids = ids[:limit]
 

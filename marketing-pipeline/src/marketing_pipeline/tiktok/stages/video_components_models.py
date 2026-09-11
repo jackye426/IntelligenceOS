@@ -236,6 +236,11 @@ class ExtractionMeta(BaseModel):
     confidence: float = 0.0
     needs_review: bool = False
     inputs_hash: str | None = None
+    # Provenance. Without these a card cannot be traced to the account or the
+    # prompt that produced it, so a stray card is unidentifiable on disk.
+    account_handle: str | None = None
+    schema_version: str | None = None
+    prompt_fingerprint: str | None = None
 
     @field_validator("confidence", mode="before")
     @classmethod

@@ -8,6 +8,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from marketing_pipeline import config
+from marketing_pipeline.tiktok.stages.collect_catalog import load_catalog
 from marketing_pipeline.tiktok.stages.yt_meta import analytics_dict, fetch_yt_meta
 
 
@@ -112,6 +113,31 @@ def _spoken_hook(video_id: str, *, transcripts_dir: Path) -> str:
     return full_text.split("\n")[0].strip()[:250]
 
 
+def _analytics_from_catalog(row: dict) -> dict:
+    """analytics_dict shape, built from a catalog row with no network call."""
+    from datetime import datetime as _dt
+
+    post_dt = row.get("post_datetime_utc") or ""
+    ts = None
+    if post_dt:
+        try:
+            ts = int(_dt.fromisoformat(post_dt).timestamp())
+        except ValueError:
+            ts = None
+    post_date = row.get("post_date_utc") or None
+    return {
+        "view_count": row.get("view_count"),
+        "like_count": row.get("like_count"),
+        "comment_count": row.get("comment_count"),
+        "save_count": row.get("save_count"),
+        "share_count": row.get("share_count"),
+        "post_timestamp": ts,
+        "upload_date": post_date.replace("-", "") if post_date else None,
+        "post_date_utc": post_date,
+        "duration_sec": row.get("duration_sec"),
+    }
+
+
 def write_master_transcripts(
     *,
     refresh_metrics: bool = True,
@@ -128,13 +154,23 @@ def write_master_transcripts(
         raise FileNotFoundError(f"no *_COMPLETE.txt under {trans_dir}")
 
     metrics_cache: dict[str, dict] = {}
-    for path in files:
-        vid = _video_id_from_path(path)
-        try:
-            meta = fetch_yt_meta(vid, cache=not refresh_metrics)
-            metrics_cache[vid] = analytics_dict(meta)
-        except Exception:  # noqa: BLE001
-            metrics_cache[vid] = {}
+    if config.is_peer_account():
+        # The peer catalog already carries every metric, freshly listed. Forcing
+        # a per-video refresh here would fire one yt-dlp call per transcript
+        # (hundreds), which gets the client throttled; the failures then fall
+        # into the empty-dict branch below and silently destroy the date sort.
+        catalog = load_catalog(config.CATALOG_DIR)
+        for path in files:
+            vid = _video_id_from_path(path)
+            metrics_cache[vid] = _analytics_from_catalog(catalog.get(vid) or {})
+    else:
+        for path in files:
+            vid = _video_id_from_path(path)
+            try:
+                meta = fetch_yt_meta(vid, cache=not refresh_metrics)
+                metrics_cache[vid] = analytics_dict(meta)
+            except Exception:  # noqa: BLE001
+                metrics_cache[vid] = {}
 
     def sort_key(path: Path) -> tuple:
         vid = _video_id_from_path(path)

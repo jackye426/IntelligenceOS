@@ -9,13 +9,30 @@ from typing import Any
 from marketing_pipeline import config
 from marketing_pipeline.tiktok.stages.video_components_models import VideoComponents
 
-COMPONENTS_DIR = config.ANALYSIS_DIR / "video_components"
-INDEX_PATH = config.ANALYSIS_DIR / "video_components_index.json"
+# Resolved per call, never at import. `config.ANALYSIS_DIR` is rebound by
+# config.activate_account(), but cli.py imports this module (via orchestrator)
+# BEFORE the account is activated. As module-level constants these paths froze
+# to DocMap's tree, so a peer run wrote its component cards straight into the
+# owned library. Keep them functions.
 
 
 def components_dir() -> Path:
-    COMPONENTS_DIR.mkdir(parents=True, exist_ok=True)
-    return COMPONENTS_DIR
+    path = config.ANALYSIS_DIR / "video_components"
+    path.mkdir(parents=True, exist_ok=True)
+    return path
+
+
+def index_path() -> Path:
+    return config.ANALYSIS_DIR / "video_components_index.json"
+
+
+def __getattr__(name: str):
+    """Back-compat for callers that still read the old module constants."""
+    if name == "COMPONENTS_DIR":
+        return components_dir()
+    if name == "INDEX_PATH":
+        return index_path()
+    raise AttributeError(name)
 
 
 def sidecar_path(video_id: str) -> Path:
@@ -40,9 +57,9 @@ def save_components(card: VideoComponents) -> Path:
 
 
 def load_index() -> dict[str, Any]:
-    if not INDEX_PATH.exists():
+    if not index_path().exists():
         return {"videos": {}, "updated_at": None, "count": 0}
-    return json.loads(INDEX_PATH.read_text(encoding="utf-8"))
+    return json.loads(index_path().read_text(encoding="utf-8"))
 
 
 def rebuild_index() -> dict[str, Any]:
@@ -72,8 +89,8 @@ def rebuild_index() -> dict[str, Any]:
         "count": len(videos),
         "updated_at": datetime.now(timezone.utc).isoformat(),
     }
-    INDEX_PATH.parent.mkdir(parents=True, exist_ok=True)
-    INDEX_PATH.write_text(json.dumps(index, indent=2, ensure_ascii=False), encoding="utf-8")
+    index_path().parent.mkdir(parents=True, exist_ok=True)
+    index_path().write_text(json.dumps(index, indent=2, ensure_ascii=False), encoding="utf-8")
     return index
 
 

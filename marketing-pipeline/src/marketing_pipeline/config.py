@@ -44,6 +44,14 @@ REPO_ROOT = Path(__file__).resolve().parents[3]
 PACKAGE_ROOT = _dev_package_root()
 DATA_ROOT = _resolve_data_root()
 
+# Account currently active for this process. Every path constant below is derived
+# from it. `docmap` is the owned account; anything else is an observed peer
+# library and must never share a data root with DocMap (see activate_account).
+DEFAULT_ACCOUNT = "docmap"
+ACCOUNT = DEFAULT_ACCOUNT
+OWNED_ACCOUNTS = frozenset({"docmap"})
+DOCMAP_DATA_ROOT = DATA_ROOT
+
 load_dotenv(REPO_ROOT / ".env.local")
 load_dotenv(REPO_ROOT / ".env")
 
@@ -139,3 +147,109 @@ STUDIO_LISTEN_PAUSE_MS = _getint("STUDIO_LISTEN_PAUSE_MS", 10000)
 STUDIO_LISTEN_PAUSE_JITTER_MS = _getint("STUDIO_LISTEN_PAUSE_JITTER_MS", 4000)
 # Full-catalog baseline may take hours; keep pauses (don't zero them).
 STUDIO_LISTEN_BASELINE_PAUSE_MS = _getint("STUDIO_LISTEN_BASELINE_PAUSE_MS", 8000)
+
+
+# ---------------------------------------------------------------------------
+# Account scoping
+# ---------------------------------------------------------------------------
+# Stages read paths as `config.CATALOG_DIR` (late-bound module attributes), so
+# activating an account rebinds them in place and every stage follows without a
+# signature change. Peer libraries get their own tree under peers/<handle>/ and
+# are hard-blocked from resolving onto the DocMap data root.
+
+
+class AccountIsolationError(RuntimeError):
+    """Raised when a peer account would read or write DocMap's data root."""
+
+
+_DATA_ROOT_DERIVED = (
+    ("TRANSCRIPTS_DIR", "transcripts"),
+    ("CATALOG_DIR", "catalog"),
+    ("COMMENTS_RAW_DIR", "comments_raw"),
+    ("ANALYSIS_DIR", "analysis"),
+    ("EXPORTS_DIR", "exports"),
+    ("MEDIA_DIR", "media"),
+    ("OCR_CACHE_DIR", "ocr"),
+    ("YT_META_DIR", "yt_meta"),
+    ("PLAYBOOKS_DIR", "playbooks"),
+)
+
+
+def peer_data_root(handle: str) -> Path:
+    """Data root for a peer library. Never inside the DocMap tree."""
+    account_root = _getenv(f"MARKETING_PEER_DATA_DIR_{handle.upper()}")
+    if account_root:
+        return Path(account_root)
+    parent_root = _getenv("MARKETING_PEER_DATA_DIR")
+    if parent_root:
+        return Path(parent_root) / handle
+    return PACKAGE_ROOT / "peers" / handle
+
+
+def _apply_data_root(root: Path) -> None:
+    """Rebind every DATA_ROOT-derived path constant to `root`."""
+    globals()["DATA_ROOT"] = root
+    for name, leaf in _DATA_ROOT_DERIVED:
+        globals()[name] = root / leaf
+    globals()["MASTER_TRANSCRIPTS"] = root / "transcripts" / "ALL_COMPLETE_TRANSCRIPTS.txt"
+    globals()["DATASET_JSON"] = root / "exports" / "tiktok_marketing_dataset.json"
+    globals()["ALL_COMMENTS_TXT"] = root / "exports" / "ALL_COMMENTS.txt"
+    globals()["BC_IMPORTS_DIR"] = root / "imports" / "business_center"
+    globals()["SAMPLE_PLAN_JSON"] = root / "analysis" / "sample_plan.json"
+
+
+def activate_account(handle: str | None) -> str:
+    """Point this process at `handle`'s data tree. Returns the active handle.
+
+    Raises AccountIsolationError if a peer account resolves onto the DocMap
+    data root, which would mean writing peer media into the owned library.
+    """
+    handle = (handle or DEFAULT_ACCOUNT).strip().lstrip("@").lower()
+    if not handle:
+        raise AccountIsolationError("Account handle cannot be empty.")
+
+    if handle in OWNED_ACCOUNTS:
+        globals()["ACCOUNT"] = handle
+        _apply_data_root(DOCMAP_DATA_ROOT)
+        return handle
+
+    root = peer_data_root(handle).resolve()
+    docmap_root = Path(DOCMAP_DATA_ROOT).resolve()
+    if root == docmap_root or docmap_root in root.parents:
+        raise AccountIsolationError(
+            f"Peer account '{handle}' resolved to the DocMap data root ({root}). "
+            "Set MARKETING_PEER_DATA_DIR to a directory outside the DocMap tree."
+        )
+    root.mkdir(parents=True, exist_ok=True)
+    globals()["ACCOUNT"] = handle
+    _apply_data_root(root)
+    return handle
+
+
+def is_peer_account(handle: str | None = None) -> bool:
+    return (handle or ACCOUNT) not in OWNED_ACCOUNTS
+
+
+def owner_scope(handle: str | None = None) -> str:
+    """Supabase owner_scope for the active account."""
+    h = handle or ACCOUNT
+    return h if h in OWNED_ACCOUNTS else f"peer:{h}"
+
+
+def profile_url(handle: str | None = None) -> str:
+    return f"https://www.tiktok.com/@{handle or ACCOUNT}"
+
+
+def video_url(video_id: str, handle: str | None = None) -> str:
+    return f"https://www.tiktok.com/@{handle or ACCOUNT}/video/{video_id}"
+
+
+def catalog_filename(since: str, handle: str | None = None) -> str:
+    return f"{handle or ACCOUNT}_catalog_since_{since.replace('-', '')}.json"
+
+
+def catalog_glob(handle: str | None = None) -> str:
+    return f"{handle or ACCOUNT}_catalog_since_*.json"
+
+
+SAMPLE_PLAN_JSON = ANALYSIS_DIR / "sample_plan.json"

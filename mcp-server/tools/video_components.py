@@ -8,7 +8,13 @@ from typing import Any, Literal
 
 from common.audit import log_tool_call
 from tools.tiktok_metrics_layers import compute_velocity, fetch_latest_studio_insight, fetch_metric_snapshots
-from tools.tiktok_shared import fetch_tiktok_post, fetch_tiktok_posts, filter_by_date, saves_per_1k
+from tools.tiktok_shared import (
+    account_scope_enforced,
+    fetch_tiktok_post,
+    fetch_tiktok_posts,
+    filter_by_date,
+    saves_per_1k,
+)
 
 GroupBy = Literal[
     "hook.type",
@@ -97,6 +103,7 @@ def get_video_components(video_id: str) -> dict[str, Any]:
             "ok": True,
             "found": True,
             "video_id": video_id,
+            "account_handle": row.get("account_handle"),
             "posted_at": row.get("posted_at"),
             "posted_at_note": "Cite this UTC publish timestamp only. Do not infer date from video_id.",
             "post_url": row.get("post_url"),
@@ -165,6 +172,7 @@ def list_videos_by_component(
             matched.append(
                 {
                     "video_id": row.get("platform_post_id"),
+                    "account_handle": row.get("account_handle"),
                     "posted_at": row.get("posted_at"),
                     "post_url": row.get("post_url"),
                     "hook": row.get("hook"),
@@ -180,6 +188,8 @@ def list_videos_by_component(
                 break
         result = {
             "ok": True,
+            "account": "docmap",
+            "account_scope_enforced": account_scope_enforced(),
             "count": len(matched),
             "filters": {
                 "field": field,
@@ -283,6 +293,8 @@ def analyze_components(
 
         result = {
             "ok": True,
+            "account": "docmap",
+            "account_scope_enforced": account_scope_enforced(),
             "group_by": group_by,
             "metric": resolved_metric,
             "videos_with_components": with_components,

@@ -36,6 +36,7 @@ export async function POST(req: Request) {
     match_count: TOP_K,
     filter_type: null,
     max_sensitivity: "confidential",
+    filter_owner_scope: "docmap",
   });
 
   if (rpcError) return NextResponse.json({ error: rpcError.message }, { status: 500 });

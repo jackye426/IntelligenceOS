@@ -40,6 +40,13 @@ from tools.get_tiktok_metric_layers import (  # noqa: E402
 from tools.find_ab_tests import find_ab_tests  # noqa: E402
 from tools.record_ab_learning import record_ab_learning  # noqa: E402
 from tools.get_tiktok_strategy_brief import get_tiktok_strategy_brief  # noqa: E402
+from tools.peer_library import (  # noqa: E402
+    get_peer_comments,
+    get_peer_content_batch,
+    get_peer_corpus_manifest,
+    get_peer_era_summary,
+    get_peer_library_brief,
+)
 from tools.get_instagram_post import get_instagram_post  # noqa: E402
 from tools.get_instagram_cohort import get_instagram_cohort  # noqa: E402
 from tools.get_instagram_marketing_insights import get_instagram_marketing_insights  # noqa: E402
@@ -185,7 +192,9 @@ def get_tiktok_cohort_tool(
     limit: int = 50,
     tier: str = "all",
 ):
-    """Date-filtered TikTok posts with outperform/underperform tiers. sort_by: views | engagement | saves_per_1k | likes.
+    """DocMap-only TikTok posts with cohort tiers. Never use for peer analysis.
+
+    sort_by: views | engagement | saves_per_1k | likes.
 
     Each post's publish date is `posted_at` (UTC). Cite that field only — never infer dates from video IDs.
     """
@@ -218,6 +227,108 @@ def get_tiktok_strategy_brief_tool():
     suggest_next_tiktok_angles. Cite decision_id when building on prior decisions.
     """
     return get_tiktok_strategy_brief()
+
+
+# ---------------------------------------------------------------------------
+# Peer libraries (observed creators, e.g. drleewarren)
+# ---------------------------------------------------------------------------
+# Isolation: these require an explicit peer account and refuse docmap. The
+# get_tiktok_* tools above are DocMap-only and will not return peer rows.
+# Ritual: era summary -> lean manifest -> content batches -> write the artefact.
+# Do NOT load the DocMap strategy brief while analysing a peer.
+
+
+@mcp.tool()
+def get_peer_library_brief_tool(account: str):
+    """START HERE for a peer creator. Descriptive map of their library, no conclusions.
+
+    Returns catalog size, date range, neutral statistical segments, rolling-local tier counts,
+    top/bottom posts by local ratio, evidence coverage, the analysis ritual, and an
+    explicit not_measurable block. It deliberately contains NO claim about what
+    works or why — you produce that by reading the posts themselves.
+    """
+    return get_peer_library_brief(account)
+
+
+@mcp.tool()
+def get_peer_era_summary_tool(account: str):
+    """Server-side aggregates for a peer library: monthly trends, duration mix,
+    neutral statistical segments with median views, and median gap between posts.
+
+    era_1/era_2/era_3 are not semantic labels. Use monthly_trend and raw posts to
+    decide where breakout, acceleration, maturity or decline actually occurred.
+    """
+    return get_peer_era_summary(account)
+
+
+@mcp.tool()
+def get_peer_corpus_manifest_tool(
+    account: str,
+    cursor: int = 0,
+    limit: int = 400,
+    include_captions: bool = False,
+    video_ids: list[str] | None = None,
+    sample_only: bool = False,
+    order: str = "posted_at",
+):
+    """Lean, complete map of a peer catalog — one row per post, NO captions or transcripts.
+
+    Captions are excluded on purpose: at ~1,372 posts they alone would fill the context.
+    Each row carries posted_at, duration, public stats, per-1k ratios, cadence fields,
+    rolling-LOCAL views ratio and window_n, era, and coverage flags. Missing metrics are
+    null, never zero. Ratios compare a post to its neighbours in publish time, not to the
+    whole catalog, so old posts are not flattered by having been live longer.
+
+    Paginated: check total_rows, returned_rows and next_cursor. order: posted_at | views |
+    local_ratio. Pick ids from here, then read them with get_peer_content_batch.
+    """
+    return get_peer_corpus_manifest(
+        account,
+        cursor=cursor,
+        limit=limit,
+        include_captions=include_captions,
+        video_ids=video_ids,
+        sample_only=sample_only,
+        order=order,
+    )
+
+
+@mcp.tool()
+def get_peer_content_batch_tool(
+    account: str,
+    video_ids: list[str],
+    include_transcript: bool = True,
+    include_components: bool = True,
+):
+    """Full evidence for 1-25 peer posts per call: caption, transcript, all hook channels,
+    duration, metrics, local ratio, cadence.
+
+    This is the primary analysis input — read the actual content rather than relying on
+    labels. Component cards arrive under `derived_annotation`: they were assigned by a
+    cheaper pipeline model from the transcript, are NOT ground truth, and you should
+    disagree where the content warrants it.
+
+    On-screen text is `ocr_scope: opening_frames` only, so do not claim anything about
+    pacing, mid-video captioning or edit rhythm.
+    """
+    return get_peer_content_batch(
+        account,
+        video_ids,
+        include_transcript=include_transcript,
+        include_components=include_components,
+    )
+
+
+@mcp.tool()
+def get_peer_comments_tool(account: str, video_ids: list[str]):
+    """OPTIONAL drill-down: audience-response signals for named peer posts.
+
+    Not part of the default analysis. Use only when a specific hypothesis needs
+    audience evidence. Returns the labelled per-video summary that was synced
+    (themes, questions, objections); raw comment text is not in this store, and for
+    a peer library comments are usually not fetched at all.
+    """
+    return get_peer_comments(account, video_ids)
 
 
 @mcp.tool()
@@ -680,7 +791,9 @@ def list_videos_by_component_tool(
     since: str | None = None,
     limit: int = 50,
 ):
-    """List videos filtered by component fields (e.g. field=hook.type exact_value=direct_question).
+    """List DocMap videos by components. Never use for peer analysis.
+
+    Example: field=hook.type exact_value=direct_question.
 
     Optional funnel_stage=TOFU|MOFU|BOFU|unclear, cta_present=true|false|unclear.
     """
@@ -703,7 +816,7 @@ def analyze_components_tool(
     funnel_stage: str | None = None,
     min_n: int = 1,
 ):
-    """Aggregate component labels vs metrics (hooks-first: group_by=hook.type).
+    """Aggregate DocMap component labels vs metrics. Never use for peer analysis.
 
     metric: views | saves_per_1k | shares | engagement | comments.
     If funnel_stage set and metric omitted, defaults: TOFU→views, MOFU/BOFU→saves_per_1k.
@@ -816,7 +929,14 @@ def fill_carousel_template_tool(
 
 
 async def health(_request):
-    return JSONResponse({"status": "ok", "service": "docmap-mcp"})
+    return JSONResponse(
+        {
+            "status": "ok",
+            "service": "docmap-mcp",
+            "peer_library_surface": "v2",
+            "account_scoping": "required_fail_closed",
+        }
+    )
 
 
 app = mcp.streamable_http_app()

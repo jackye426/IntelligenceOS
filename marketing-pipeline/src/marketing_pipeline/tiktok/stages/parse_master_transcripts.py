@@ -6,6 +6,8 @@ import re
 from pathlib import Path
 from typing import Any
 
+from marketing_pipeline import config
+
 VIDEO_BLOCK_RE = re.compile(
     r"={80,}\nVIDEO \d+ / \d+ — id (\d+)\n={80,}\n(.*?)(?=\n={80,}\nVIDEO |\Z)",
     re.DOTALL,
@@ -52,7 +54,7 @@ def parse_video_block(video_id: str, block: str) -> dict[str, Any]:
     post_url = (
         url_match.group(1).strip()
         if url_match
-        else f"https://www.tiktok.com/@docmap/video/{video_id}"
+        else config.video_url(video_id)
     )
 
     caption = caption_match.group(1).strip() if caption_match else None

@@ -19,7 +19,7 @@ from marketing_pipeline.tiktok.models import TikTokMarketingDataset, TikTokVideo
 from marketing_pipeline.tiktok.stages.build_strategy_brief import build_strategy_brief, write_strategy_brief
 from marketing_pipeline.tiktok.stages.collect_catalog import load_catalog
 from marketing_pipeline.tiktok.stages.extract_hooks import resolve_primary_hook
-from marketing_pipeline.tiktok.stages.performance_tier import compute_performance_tiers
+from marketing_pipeline.tiktok.stages.performance_tier import compute_tiers
 from marketing_pipeline.tiktok.stages.tiktok_insights_store import (
     STATE_PATH,
     STRATEGY_PLATFORM,
@@ -73,8 +73,10 @@ def _catalog_stub_payload(video_id: str, entry: dict[str, Any]) -> dict[str, Any
     return {
         "platform": "tiktok",
         "platform_post_id": video_id,
+        "account_handle": config.ACCOUNT,
+        "owner_scope": config.owner_scope(),
         "title": title,
-        "post_url": entry.get("url") or f"https://www.tiktok.com/@docmap/video/{video_id}",
+        "post_url": entry.get("url") or config.video_url(video_id),
         "posted_at": entry.get("post_datetime_utc") or entry.get("post_date_utc"),
         "topic": None,
         "format": "video",
@@ -97,6 +99,7 @@ def _post_payload(
     record: TikTokVideoRecord,
     *,
     performance_tier: dict[str, Any] | None = None,
+    sample_plan: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     post = record.post
     hook = record.hook
@@ -127,6 +130,27 @@ def _post_payload(
         metadata["comment_analysis"] = record.comment_analysis.model_dump()
     if performance_tier:
         metadata["performance_tier"] = performance_tier
+    if sample_plan:
+        metadata["sample_plan"] = {
+            "is_deep_sample": video_id in set(sample_plan.get("deep_sample") or []),
+            "seed": sample_plan.get("seed"),
+            "catalog_hash": sample_plan.get("catalog_hash"),
+        }
+    if record.transcript.segments:
+        metadata["transcript_segments"] = record.transcript.segments
+
+    ocr_path = config.OCR_CACHE_DIR / f"{video_id}.json"
+    if ocr_path.exists():
+        try:
+            ocr = json.loads(ocr_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            ocr = None
+        if isinstance(ocr, dict):
+            metadata["ocr_evidence"] = {
+                "frames": ocr.get("frames") or [],
+                "results": ocr.get("ocr_results") or [],
+                "model": ocr.get("model"),
+            }
 
     components = load_components(video_id)
     if components:
@@ -135,6 +159,8 @@ def _post_payload(
     return {
         "platform": "tiktok",
         "platform_post_id": video_id,
+        "account_handle": config.ACCOUNT,
+        "owner_scope": config.owner_scope(),
         "title": title,
         "post_url": post.url,
         "posted_at": post.posted_at,
@@ -151,12 +177,15 @@ def _post_payload(
 def _upsert_post(payload: dict[str, Any], *, skip_embed: bool) -> tuple[str, bool, int]:
     client = get_client()
     platform_post_id = payload["platform_post_id"]
+    account = payload.get("account_handle") or config.ACCOUNT
+    scope = payload.get("owner_scope") or config.owner_scope()
     embeds_written = 0
 
     existing = (
         client.table("content_posts")
         .select("id")
         .eq("platform", "tiktok")
+        .eq("account_handle", account)
         .eq("platform_post_id", platform_post_id)
         .limit(1)
         .execute()
@@ -182,7 +211,12 @@ def _upsert_post(payload: dict[str, Any], *, skip_embed: bool) -> tuple[str, boo
         ]
         if part
     )
-    meta = {"platform": "tiktok", "video_id": platform_post_id, "source": "marketing_pipeline"}
+    meta = {
+        "platform": "tiktok",
+        "video_id": platform_post_id,
+        "source": "marketing_pipeline",
+        "account_handle": account,
+    }
 
     if embedding_text:
         embeds_written += upsert_embedding_chunks(
@@ -193,6 +227,7 @@ def _upsert_post(payload: dict[str, Any], *, skip_embed: bool) -> tuple[str, boo
             source_title=payload.get("title"),
             source_url=payload.get("post_url"),
             metadata=meta,
+            owner_scope=scope,
         )
 
     if payload.get("transcript"):
@@ -204,6 +239,7 @@ def _upsert_post(payload: dict[str, Any], *, skip_embed: bool) -> tuple[str, boo
             source_title=payload.get("title"),
             source_url=payload.get("post_url"),
             metadata=meta,
+            owner_scope=scope,
         )
 
     return post_id, inserted, embeds_written
@@ -214,8 +250,15 @@ def _ingest_comment_batch(
     record: TikTokVideoRecord,
     *,
     skip_embed: bool,
+    embed_comments: bool = True,
 ) -> int:
-    if skip_embed or not record.comments:
+    """Embed a per-video comment digest.
+
+    Off by default for peer libraries: comments there are an on-demand
+    drill-down, so embedding them would store audience text the analysis never
+    asked for.
+    """
+    if skip_embed or not embed_comments or not record.comments:
         return 0
 
     lines = []
@@ -235,8 +278,14 @@ def _ingest_comment_batch(
         text=batch_text,
         source_table="content_posts",
         source_title=f"TikTok comments {video_id}",
-        source_url=f"https://www.tiktok.com/@docmap/video/{video_id}",
-        metadata={"platform": "tiktok", "video_id": video_id, "source": "marketing_pipeline"},
+        source_url=config.video_url(video_id),
+        metadata={
+            "platform": "tiktok",
+            "video_id": video_id,
+            "source": "marketing_pipeline",
+            "account_handle": config.ACCOUNT,
+        },
+        owner_scope=config.owner_scope(),
     )
 
 
@@ -350,12 +399,20 @@ def _sync_strategy_state(*, brief: dict[str, Any], skip_embed: bool) -> int:
     )
 
 
-def _prune_stale_tiktok(canonical_ids: set[str]) -> int:
+def _prune_stale_tiktok(canonical_ids: set[str], *, account: str) -> int:
+    """Delete rows for `account` that are no longer in its catalog.
+
+    The account filter is mandatory. Unscoped, this deleted every TikTok row
+    outside the current run, so syncing a peer library wiped DocMap's catalog.
+    """
+    if not account:
+        raise ValueError("account is required: an unscoped prune deletes other libraries.")
     client = get_client()
     rows = (
         client.table("content_posts")
         .select("id, platform_post_id, metadata")
         .eq("platform", "tiktok")
+        .eq("account_handle", account)
         .execute()
         .data
         or []
@@ -378,9 +435,24 @@ def run_sync(
     dataset_path: Path | None = None,
     dry_run: bool = False,
     skip_embed: bool = False,
+    embed_comments: bool | None = None,
 ) -> dict[str, int]:
+    account = config.ACCOUNT
+    is_peer = config.is_peer_account()
+    # Peer libraries: comments are an optional drill-down, never embedded by default.
+    if embed_comments is None:
+        embed_comments = not is_peer
     dataset = load_dataset(dataset_path)
     catalog = load_catalog(config.CATALOG_DIR)
+    sample_plan = None
+    if is_peer:
+        from marketing_pipeline.tiktok.stages.sample_plan import load_sample_plan
+
+        sample_plan = load_sample_plan()
+        if not sample_plan:
+            raise RuntimeError("Peer sync requires sample_plan.json")
+        if sample_plan.get("account") != account:
+            raise RuntimeError("sample_plan.json belongs to a different account")
     canonical_ids = set(dataset.videos.keys())
     stub_ids = {vid for vid in catalog if vid not in dataset.videos}
     canonical_ids |= stub_ids
@@ -395,7 +467,10 @@ def run_sync(
             "catalog_stubs": len(stub_ids),
         }
 
-    run_id = start_run(JOB_NAME, {"dataset": str(dataset_path or config.DATASET_JSON)})
+    run_id = start_run(
+        JOB_NAME,
+        {"dataset": str(dataset_path or config.DATASET_JSON), "account": account},
+    )
     counts = {
         "rows_seen": 0,
         "rows_inserted": 0,
@@ -409,16 +484,24 @@ def run_sync(
     comment_entity_ids: set[str] = set()
 
     try:
-        write_strategy_brief(dataset)
-        brief = build_strategy_brief(dataset)
-        counts["embeddings_written"] += _sync_strategy_state(brief=brief, skip_embed=skip_embed)
+        # Strategy brief and strategy_state are DocMap governance artefacts.
+        # A peer library must never write a brief or a strategy row.
+        if not is_peer:
+            write_strategy_brief(dataset)
+            brief = build_strategy_brief(dataset)
+            counts["embeddings_written"] += _sync_strategy_state(
+                brief=brief, skip_embed=skip_embed
+            )
 
         counts["rows_seen"] = len(canonical_ids)
-        tiers = compute_performance_tiers(dataset)
+        tiers = compute_tiers(dataset, basis="rolling" if is_peer else "global")
 
         for video_id, record in dataset.videos.items():
             payload = _post_payload(
-                video_id, record, performance_tier=tiers.get(video_id)
+                video_id,
+                record,
+                performance_tier=tiers.get(video_id),
+                sample_plan=sample_plan,
             )
             post_id, inserted, embeds = _upsert_post(payload, skip_embed=skip_embed)
             post_ids.add(post_id)
@@ -428,7 +511,7 @@ def run_sync(
                 counts["rows_updated"] += 1
             counts["embeddings_written"] += embeds
             counts["embeddings_written"] += _ingest_comment_batch(
-                video_id, record, skip_embed=skip_embed
+                video_id, record, skip_embed=skip_embed, embed_comments=embed_comments
             )
             if record.comments:
                 comment_entity_ids.add(
@@ -438,6 +521,12 @@ def run_sync(
         for video_id in stub_ids:
             entry = catalog[video_id]
             payload = _catalog_stub_payload(video_id, entry)
+            if sample_plan:
+                payload["metadata"]["sample_plan"] = {
+                    "is_deep_sample": video_id in set(sample_plan.get("deep_sample") or []),
+                    "seed": sample_plan.get("seed"),
+                    "catalog_hash": sample_plan.get("catalog_hash"),
+                }
             post_id, inserted, embeds = _upsert_post(payload, skip_embed=skip_embed)
             post_ids.add(post_id)
             counts["catalog_stubs"] += 1
@@ -447,11 +536,12 @@ def run_sync(
                 counts["rows_updated"] += 1
             counts["embeddings_written"] += embeds
 
-        counts["rows_pruned"] = _prune_stale_tiktok(canonical_ids)
+        counts["rows_pruned"] = _prune_stale_tiktok(canonical_ids, account=account)
         counts["embeddings_pruned"] = delete_orphan_tiktok_embeddings(
             post_ids=post_ids,
             comment_entity_ids=comment_entity_ids,
             video_ids=set(dataset.videos.keys()),
+            owner_scope=config.owner_scope(),
         )
 
         finish_run(run_id, "success", counts)

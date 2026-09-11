@@ -7,8 +7,12 @@ from pathlib import Path
 
 from marketing_pipeline.tiktok.models import TikTokComment, TikTokCommentAnalysis
 
-QUESTION_THEMES = {"general_question", "advocacy_what_to_ask", "pouch_anatomy_question"}
-OBJECTION_THEMES = {"system_frustration", "imaging_mri"}
+# Resolved per call: a peer library uses the generic vocabulary, so hardcoding
+# DocMap's theme names here would leave questions and objections empty.
+from marketing_pipeline.tiktok.stages import comment_labels  # noqa: E402
+
+QUESTION_THEMES = comment_labels.QUESTION_THEMES_BY_VOCAB["docmap-endo"]
+OBJECTION_THEMES = comment_labels.OBJECTION_THEMES_BY_VOCAB["docmap-endo"]
 
 
 def load_labeled_comments(analysis_dir: Path, video_id: str) -> list[TikTokComment]:
@@ -49,15 +53,18 @@ def build_comment_analysis(
     objections: list[str] = []
     content_requests: list[str] = []
 
+    question_set = comment_labels.question_themes()
+    objection_set = comment_labels.objection_themes()
+
     for comment in comments:
         for theme in comment.themes:
             theme_counts[theme] = theme_counts.get(theme, 0) + 1
         if "?" in comment.text:
             questions.append(comment.text[:300])
         for theme in comment.themes:
-            if theme in QUESTION_THEMES and comment.text not in questions:
+            if theme in question_set and comment.text not in questions:
                 questions.append(comment.text[:300])
-            if theme in OBJECTION_THEMES and comment.text not in objections:
+            if theme in objection_set and comment.text not in objections:
                 objections.append(comment.text[:300])
 
     primary = max(theme_counts, key=theme_counts.get) if theme_counts else None

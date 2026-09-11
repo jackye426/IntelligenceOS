@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from itertools import combinations
 
+from marketing_pipeline import config
+
 from marketing_pipeline.tiktok.models import (
     PerformanceDifference,
     TikTokABPair,
@@ -89,12 +91,34 @@ def detect_ab_pairs(dataset: TikTokMarketingDataset) -> list[TikTokABPair]:
             add_pair(pair_id, video_a, video_b, "registry", learning=learning)
 
     # Auto-suggest: one partner per video max; best segment alignment wins.
+    #
+    # Skipped for peer libraries. An auto-detected "A/B pair" asserts that the
+    # creator ran the same content with two packagings; for an observed peer that
+    # is our inference, not their experiment, and A/B machinery is DocMap-only by
+    # design. It is also the most expensive step here: the comparison is O(n^2),
+    # so DocMap's ~70 videos make ~2.4k pairs while a 244-video peer library makes
+    # ~30k, each one previously re-reading a transcript JSON from disk.
+    if config.is_peer_account():
+        dataset.ab_pairs = pairs
+        return pairs
+
     video_ids = [v for v in dataset.videos if v not in paired_videos]
     candidates: list[tuple[float, str, str]] = []
 
+    # Read each transcript once. This used to sit in the inner loop, turning
+    # ~30k comparisons into ~30k file reads and parses.
+    segment_cache: dict[str, list] = {}
+
+    def segments_for(video_id: str) -> list:
+        cached = segment_cache.get(video_id)
+        if cached is None:
+            cached = load_whisper_segments(video_id) or []
+            segment_cache[video_id] = cached
+        return cached
+
     for i, vid_a in enumerate(video_ids):
         rec_a: TikTokVideoRecord = dataset.videos[vid_a]
-        segs_a = load_whisper_segments(vid_a)
+        segs_a = segments_for(vid_a)
         if not segs_a:
             continue
         hook_a = _hook_text(rec_a)
@@ -112,7 +136,7 @@ def detect_ab_pairs(dataset: TikTokMarketingDataset) -> list[TikTokABPair]:
             if text_similarity(hook_a, hook_b) > HOOK_SIM_MAX:
                 continue
 
-            segs_b = load_whisper_segments(vid_b)
+            segs_b = segments_for(vid_b)
             if not segs_b:
                 continue
 

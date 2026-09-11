@@ -150,11 +150,12 @@ def run_export(*, draft_evidence: bool = True) -> dict[str, str | int]:
         "dataset": str(config.DATASET_JSON),
         "onscreen_hooks": sum(1 for v in dataset.videos.values() if v.hook.onscreen_hook),
     }
-    if draft_evidence:
+    if draft_evidence and not config.is_peer_account():
         draft_path = draft_evidence_playbook(dataset)
         result["evidence_draft"] = str(draft_path)
-    brief_path = write_strategy_brief(dataset)
-    result["strategy_brief"] = str(brief_path)
+    if not config.is_peer_account():
+        brief_path = write_strategy_brief(dataset)
+        result["strategy_brief"] = str(brief_path)
     return result
 
 
@@ -219,8 +220,15 @@ def run_refresh(
     skip_comments: bool = False,
     download_for_ocr: bool = True,
     download_for_transcribe: bool = True,
+    skip_catalog: bool = False,
 ) -> dict:
-    catalog_result = fetch_catalog(since=since)
+    # Re-listing the profile on every resume is both wasteful and the fastest way
+    # to get throttled: the listing endpoint is far more rate-limited than the
+    # per-video downloads. On a resume the catalog on disk is already good.
+    if skip_catalog:
+        catalog_result = {"skipped": True, "reason": "--skip-catalog"}
+    else:
+        catalog_result = fetch_catalog(since=since)
     video_result = refresh_videos(
         since=since,
         skip_transcribe=skip_transcribe,
@@ -256,8 +264,20 @@ def run_extract_components_cmd(
     video_id: str | None = None,
     force: bool = False,
     limit: int | None = None,
+    model: str | None = None,
+    schema: str | None = None,
+    sample_only: bool = False,
 ) -> dict:
-    return run_extract_components(video_id=video_id, force=force, limit=limit)
+    from marketing_pipeline.tiktok.stages.extract_components import run_extract_components
+
+    return run_extract_components(
+        video_id=video_id,
+        force=force,
+        limit=limit,
+        model=model,
+        schema=schema,
+        sample_only=sample_only,
+    )
 
 
 def run_sync_playbooks_cmd(*, dry_run: bool = False, skip_embed: bool = False) -> dict[str, int]:
@@ -296,6 +316,46 @@ def run_ingest_studio_insight(
     if target.is_dir():
         return ingest_insight_dir(target, dry_run=dry_run)
     return ingest_insight_json(target, platform_post_id=video_id, dry_run=dry_run)
+
+
+def run_fetch_catalog_cmd(
+    *,
+    since: str = "2019-01-01",
+    cookies_from_browser: str | None = None,
+) -> dict:
+    """Catalog-only fetch: cheap, complete, and the input to sample-plan."""
+    from marketing_pipeline.tiktok.stages.fetch_catalog import fetch_catalog
+
+    return fetch_catalog(since=since, cookies_from_browser=cookies_from_browser)
+
+
+def run_sample_plan_cmd(
+    *,
+    deep: int = 200,
+    seed: int = 20260910,
+    since: str | None = None,
+) -> dict:
+    from marketing_pipeline.tiktok.stages.sample_plan import run_sample_plan
+
+    return run_sample_plan(deep=deep, seed=seed, since=since)
+
+
+def run_fetch_comments_cmd(
+    *,
+    video_ids: list[str] | None = None,
+    max_comments: int = 500,
+    request_budget: int | None = 400,
+    force: bool = False,
+) -> dict:
+    """Targeted comment fetch. Budgeted and resumable by design."""
+    from marketing_pipeline.tiktok.stages.collect_comments import collect_comments
+
+    return collect_comments(
+        max_comments=max_comments,
+        force=force,
+        video_ids=video_ids,
+        request_budget=request_budget,
+    )
 
 
 def run_ingest_bc_csv(

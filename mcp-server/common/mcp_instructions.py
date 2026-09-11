@@ -23,8 +23,43 @@ Menu to offer (TikTok-first):
 Keep the opener under ~12 lines. Do **not** paste the full onboarding guide.
 If they already asked a concrete question, skip the menu and answer with tools.
 
+## Peer libraries (observed creators, not DocMap)
+
+`content_posts` is scoped by `account_handle`. All get_tiktok_* tools are DocMap-only.
+A peer creator (e.g. drleewarren) is read ONLY through the get_peer_* tools, which
+require an explicit account and refuse `docmap`.
+
+Peer ritual — follow in order, do not skip to conclusions:
+1. `get_peer_library_brief(account)` — what is here, what cannot be measured.
+2. `get_peer_era_summary(account)` — how the timeline is shaped.
+3. `get_peer_corpus_manifest(account)` — lean rows; select posts per era and tier.
+4. `get_peer_content_batch(account, video_ids)` — read captions and transcripts, 10-25
+   per call, until the sample is in context.
+5. Write the artefact: audience engine, why it works, portable vs creator-specific,
+   assignment template. Label it hypotheses with confidence levels, not findings.
+
+Rules for peer analysis:
+- If the `get_peer_*` tools are absent, STOP. The MCP deployment is stale. Never use
+  DocMap-only cohort/component tools and manually filter URLs as a substitute.
+- Before analysis, require `isolation_audit.safe_to_analyse=true` from
+  `get_peer_library_brief`. If false, do not trust any aggregate or tier.
+- Era names are neutral (`era_1`, `era_2`, `era_3`). They are statistical segments,
+  not claims about when breakout or maturity occurred. Use `monthly_trend` and raw
+  posts to interpret and name the actual phases.
+- Do NOT load `get_tiktok_strategy_brief` during peer passes. The DocMap constitution
+  must not colour the read, and it never scores a peer.
+- Views are cross-sectional. They cannot show follower acquisition. A rising view floor
+  is a proxy, never proof.
+- Component cards are `derived_annotation` from a cheaper model. Disagree when the
+  content warrants it.
+- OCR is opening-frames only: no claims about pacing or edit rhythm.
+- Comments are an optional drill-down for a named hypothesis, never the default evidence.
+- Never write insights, decisions or constitution amendments from peer data.
+
 ## TikTok catalog
-All TikTok data lives in `content_posts` (platform=tiktok). Defaults are NOT the full catalog — raise `limit` (e.g. 50) when reviewing a batch.
+All legacy TikTok tools are DocMap-only and report `account=docmap`. Peer analysis
+must use the explicit `get_peer_*` surface. Defaults are NOT the full catalog; raise
+`limit` (e.g. 50) when reviewing a DocMap batch.
 
 ## TikTok workflow (required order for suggestions)
 1. `get_tiktok_strategy_brief()` — constitution, approved insights, **§7 decisions** (open + recent closed), reference set, changelog

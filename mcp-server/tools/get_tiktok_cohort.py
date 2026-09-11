@@ -7,6 +7,7 @@ from typing import Any, Literal
 from common.audit import log_tool_call
 from tools.tiktok_shared import (
     SortBy,
+    account_scope_enforced,
     cohort_medians,
     fetch_tiktok_posts,
     filter_by_date,
@@ -52,6 +53,8 @@ def get_tiktok_cohort(
                 break
 
         result = {
+            "account": "docmap",
+            "account_scope_enforced": account_scope_enforced(),
             "since": since,
             "until": until,
             "sort_by": sort_by,

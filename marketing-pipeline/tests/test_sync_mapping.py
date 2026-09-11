@@ -29,3 +29,24 @@ def test_post_payload_metadata_source():
     assert payload["platform"] == "tiktok"
     assert payload["metadata"]["source"] == "marketing_pipeline"
     assert payload["metrics"]["saves_per_1k_views"] == 50.0
+
+
+def test_post_payload_carries_sample_and_transcript_evidence():
+    record = TikTokVideoRecord(
+        post=TikTokPost(video_id="123", url="https://example.test/123"),
+        transcript=TikTokTranscript(
+            video_id="123",
+            full_text="Hello world.",
+            segments=[{"start": 0.0, "end": 1.0, "text": "Hello world."}],
+            status="transcribed",
+        ),
+        hook=TikTokHook(video_id="123", spoken_hook="Hello."),
+    )
+    payload = _post_payload(
+        "123",
+        record,
+        sample_plan={"deep_sample": ["123"], "seed": 42, "catalog_hash": "abc"},
+    )
+
+    assert payload["metadata"]["sample_plan"]["is_deep_sample"] is True
+    assert payload["metadata"]["transcript_segments"][0]["start"] == 0.0

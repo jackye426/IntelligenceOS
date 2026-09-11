@@ -102,8 +102,9 @@ def test_funnel_stages():
 def test_sidecar_roundtrip(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
     import marketing_pipeline.tiktok.stages.video_components_store as store
 
-    monkeypatch.setattr(store, "COMPONENTS_DIR", tmp_path)
-    monkeypatch.setattr(store, "INDEX_PATH", tmp_path / "video_components_index.json")
+    # Paths resolve from config.ANALYSIS_DIR at call time now, so redirect that.
+    # Patching module constants silently wrote into the real DocMap tree.
+    monkeypatch.setattr(store.config, "ANALYSIS_DIR", tmp_path)
     card = VideoComponents.model_validate(_card(video_id="sidecartest"))
     path = save_components(card)
     assert path.exists()

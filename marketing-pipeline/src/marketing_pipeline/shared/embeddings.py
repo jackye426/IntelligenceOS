@@ -35,6 +35,7 @@ def upsert_embedding_chunks(
     sensitivity: str = "internal",
     metadata: dict[str, Any] | None = None,
     skip_unchanged: bool = True,
+    owner_scope: str = "docmap",
 ) -> int:
     chunks = chunk_text(text)
     if not chunks:
@@ -61,7 +62,8 @@ def upsert_embedding_chunks(
             "chunk_index": index,
             "content_hash": digest,
             "sensitivity": sensitivity,
-            "owner_scope": "docmap",
+            # Peer libraries must be filterable out of DocMap retrieval.
+            "owner_scope": owner_scope,
             "metadata": metadata or {},
         }
         client.table("document_embeddings").upsert(
@@ -85,13 +87,23 @@ def delete_orphan_tiktok_embeddings(
     post_ids: set[str],
     comment_entity_ids: set[str],
     video_ids: set[str],
+    owner_scope: str = "docmap",
 ) -> int:
+    """Drop embeddings for posts that no longer exist **within one owner_scope**.
+
+    Without the scope filter a peer sync would treat every DocMap TikTok
+    embedding as an orphan and delete it, because none of DocMap's post ids
+    appear in the peer run's id set.
+    """
+    if not owner_scope:
+        raise ValueError("owner_scope is required: an unscoped prune deletes other libraries.")
     client = get_client()
     removed = 0
     rows = (
         client.table("document_embeddings")
         .select("id, entity_type, entity_id, metadata")
         .in_("entity_type", ["content_post", "tiktok_transcript", "tiktok_comment_batch"])
+        .eq("owner_scope", owner_scope)
         .execute()
         .data
         or []

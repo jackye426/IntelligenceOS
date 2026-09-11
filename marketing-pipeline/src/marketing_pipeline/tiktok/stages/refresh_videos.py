@@ -24,6 +24,20 @@ def refresh_videos(
     catalog = load_catalog_rows(since=since)
     have = existing_complete_ids()
     need_transcribe = [row for row in catalog if row["video_id"] not in have]
+    sample_plan = None
+    if config.is_peer_account():
+        from marketing_pipeline.tiktok.stages.sample_plan import load_sample_plan
+
+        sample_plan = load_sample_plan()
+        if not sample_plan:
+            raise RuntimeError(
+                "Peer transcription requires sample_plan.json. Run 'tiktok --account "
+                f"{config.ACCOUNT} sample-plan' first."
+            )
+        if sample_plan.get("account") != config.ACCOUNT:
+            raise RuntimeError("sample_plan.json belongs to a different account")
+        selected = {str(video_id) for video_id in sample_plan.get("deep_sample") or []}
+        need_transcribe = [row for row in need_transcribe if row["video_id"] in selected]
 
     stats_result = refresh_stats(catalog, have_complete=have)
     transcribe_log: list[dict] = []
@@ -31,11 +45,23 @@ def refresh_videos(
     if not skip_transcribe and need_transcribe:
         for row in need_transcribe:
             video_id = row["video_id"]
-            try:
-                meta = fetch_yt_meta(video_id)
-            except Exception as exc:  # noqa: BLE001
-                transcribe_log.append({"video_id": video_id, "status": "meta_failed", "error": str(exc)})
-                continue
+            if config.is_peer_account():
+                # transcribe_video only reads title/description/webpage_url, and
+                # the catalog already has all three. Skipping the per-video
+                # metadata scrape halves the request count for a peer ingest.
+                meta = {
+                    "title": row.get("title"),
+                    "description": row.get("description"),
+                    "webpage_url": row.get("url"),
+                }
+            else:
+                try:
+                    meta = fetch_yt_meta(video_id)
+                except Exception as exc:  # noqa: BLE001
+                    transcribe_log.append(
+                        {"video_id": video_id, "status": "meta_failed", "error": str(exc)}
+                    )
+                    continue
             result = transcribe_video(
                 video_id,
                 meta,
@@ -48,7 +74,7 @@ def refresh_videos(
 
     slug = since.replace("-", "")
     missing = [row for row in catalog if row["video_id"] not in have]
-    miss_path = config.ANALYSIS_DIR / f"docmap_no_transcript_since_{slug}.csv"
+    miss_path = config.ANALYSIS_DIR / f"{config.ACCOUNT}_no_transcript_since_{slug}.csv"
     if missing:
         config.ANALYSIS_DIR.mkdir(parents=True, exist_ok=True)
         with miss_path.open("w", encoding="utf-8-sig", newline="") as handle:
@@ -76,6 +102,7 @@ def refresh_videos(
                 "catalog_count": len(catalog),
                 "already_had_transcript": len(catalog) - len(need_transcribe),
                 "attempted_new": len(need_transcribe),
+                "sample_plan_hash": sample_plan.get("catalog_hash") if sample_plan else None,
                 "results": transcribe_log,
             },
             ensure_ascii=False,
@@ -89,6 +116,7 @@ def refresh_videos(
         "catalog_count": len(catalog),
         "with_transcript": len(have),
         "newly_attempted": len(need_transcribe),
+        "sample_plan_hash": sample_plan.get("catalog_hash") if sample_plan else None,
         "transcribe_log": transcribe_log,
         "stats": stats_result,
         "log_path": str(log_path),

@@ -9,31 +9,17 @@ from collections import Counter
 from pathlib import Path
 
 from marketing_pipeline import config
+from marketing_pipeline.tiktok.stages import comment_labels
 
-THEME_PATTERNS: list[tuple[str, list[str]]] = [
-    ("advocacy_what_to_ask", [r"\b360\b", r"ask for", r"surgeon", r"refused", r"say no", r"check my"]),
-    ("post_op_experience", [r"after surgery", r"months ago", r"worse", r"laparoscopy", r"had mine"]),
-    ("imaging_mri", [r"\bmri\b", r"scan", r"pick up", r"imaging"]),
-    ("system_frustration", [r"degree in medicine", r"myself\b", r"going in circles", r"not fair", r"ridiculous"]),
-    ("humor_reaction", [r"😂|😳|lol|haha|who\?"]),
-    ("pouch_anatomy_question", [r"pouch of", r"douglas", r"what is"]),
-    ("validation_gratitude", [r"thank", r"needed this", r"so helpful", r"wish i knew"]),
-    ("personal_story", [r"\bi\b.*\b(my|me|i'm|i am)\b", r"when i", r"i had"]),
-    ("general_question", [r"\?", r"can someone", r"why is", r"what if"]),
-]
+# Vocabularies live in comment_labels so a peer library is not labelled with
+# DocMap's endometriosis regex (which would bucket almost everything as
+# other_uncategorized and quietly empty the audience-demand evidence).
+THEME_PATTERNS = comment_labels.DOCMAP_THEME_PATTERNS
 
 
-def label_themes(text: str) -> list[str]:
-    t = text.lower()
-    hits = []
-    for name, pats in THEME_PATTERNS:
-        for pat in pats:
-            if re.search(pat, t, re.I):
-                hits.append(name)
-                break
-    if not hits:
-        hits.append("other_uncategorized")
-    return hits
+def label_themes(text: str, *, vocabulary: str | None = None) -> list[str]:
+    """Label one comment using the active account's vocabulary."""
+    return comment_labels.label_themes(text, vocabulary=vocabulary)
 
 
 def structured_sentiment(text: str) -> dict:
