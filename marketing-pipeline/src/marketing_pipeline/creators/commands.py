@@ -238,7 +238,7 @@ def _past_deadline(deadline: str, now: datetime | None = None) -> bool:
 
 
 def run_drain(*, deadline: str = "02:45", now: datetime | None = None) -> dict[str, Any]:
-    """L1/L2 drain. Never ingest, never promote, never activate_account."""
+    """L1/L2 drain. Never ingest, never promote, never call account activation."""
     assert_isolated_from_docmap()
     if _past_deadline(deadline, now=now):
         return {

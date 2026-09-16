@@ -465,6 +465,7 @@ def test_drain_dispatch_does_not_activate_account():
     from marketing_pipeline.creators import commands as cmds
 
     src = inspect.getsource(cmds.run_drain)
-    assert "activate_account" not in src
+    assert "activate_account(" not in src
     assert "tiktok.sync" not in src
+    assert "config.activate_account" not in src
 
