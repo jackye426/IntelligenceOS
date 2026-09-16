@@ -1,19 +1,74 @@
 # Feature Implementation Plan — Doctor-creator corpus (TikTok)
 
 **Overall Progress:** `0%`
-**Revised:** 2026-09-16 (v3 — MCP scale + GTM plug-in; supersedes 2026-09-14 v2)
-**Owner packages:** `marketing-pipeline` (collect + insight cards), `gtm-pipeline` (link + promote into existing sales), `mcp-server` (layered read), `data-worker` (schedule)
+**Revised:** 2026-09-16 (v4 — L3 fleet + production bar; supersedes v3 MCP/GTM revision)
+**Owner packages:** `marketing-pipeline` (collect + insight cards), `gtm-pipeline` (link + promote into existing sales), `mcp-server` (layered read), `data-worker` (DocMap cron only), **`creator-deep-worker`** (new Railway service)
 
 ## TLDR
 
 Build a separate, resumable pipeline that discovers a few thousand TikTok doctor-creators and feeds **organised intelligence** to Claude and to sales. Two products, one store:
 
-- **Research / marketing OS:** every hydrated doctor gets a structured **insight card**. Specialty boards and pattern tables are computed server-side so a session can reason about thousands of creators without loading thousands of libraries. A **quota** of accounts (not a handful, not all of them) is promoted into the existing peer-library pipeline for Warren-depth analysis. Transfer briefs are **stored**, so the next session reads the playbook instead of re-ingesting 200 transcripts.
+- **Research / marketing OS:** every hydrated doctor gets a structured **insight card** and specialty boards so Claude can reason about thousands without loading thousands of libraries. **Any** scored creator can be deep-dived **one at a time** in MCP. In the background, a dedicated worker fleet runs the same Warren pipeline (catalog → stratified sample → Whisper/OCR/components → sync → **auto-written transfer brief**) for every **good-fit** creator, not a handful.
 - **Customer / sales:** UK private-practice doctors who want to grow are promoted into the **existing GTM sales path** — `upsert_clinic_intelligence` → `upsert_clinic_people` → `refresh_cohort` → `refresh_outreach_contacts` → RocketReach / LinkedIn-find → `list_ready_for_sales`. No parallel lead list, no new CRM board.
 
-Nothing touches `content_posts`, `document_embeddings`, the DocMap data tree or DocMap's TikTok login except the existing isolated `--account` peer path, and only for the deep-quota set.
+v3 was a correct *analysis* contract and a **prototype ops** contract. It is **not production-grade**. This revision names the production bar and changes L3 from a 40–80 quota to an on-demand + background job system.
 
-v2's reuse assumptions for discovery were wrong (see probes). v3 keeps those constraints and changes the **analysis contract**: v2 treated deep insight as "a handful of peer libraries." That does not make us good at marketing doctors. v3 treats thousands of insight cards + specialty aggregates as the default intelligence, and Warren-depth as a growing, indexed library on top.
+---
+
+## Is this production-grade today?
+
+**No.** What we have now (one Warren ingest, APScheduler on a single `data-worker`, session-written briefs, L3 as a quota) is a **working prototype of the method**. Shipping v3 as-is would strand deep analysis in Claude chats and would either starve the fleet or knock out DocMap's own TikTok cron.
+
+A production system is one where:
+
+1. Interactive MCP can deep-dive **any** creator, one library at a time, including one that is still in the queue.
+2. Every **good-fit** creator is enqueued automatically; a worker completes the Warren pipeline and writes a **draft brief without a human session**.
+3. DocMap's owned TikTok jobs keep their SLO while the fleet runs.
+4. Failures are isolated, resumable, observable, and cost-capped.
+5. Playbooks cite stored briefs, not live transcript dumps.
+
+### What is already production-*shaped* (keep)
+
+| Piece | Why it counts |
+|---|---|
+| Fail-closed account scoping on `content_posts` | Warren postmortem; isolation tests |
+| GTM durable jobs (`gtm_claim_job_items`, heartbeat, item status) | Real pattern to **copy**, not to reuse as-is |
+| Peer sample-plan + `--skip-catalog` resume | A crashed ingest can continue |
+| Insight cards + specialty stats | Claude can use thousands without N Warren sessions |
+| Counters and non-zero exits on crawl commands | Postmortem lesson #1 |
+
+### What is not production (must add)
+
+| Gap | Why it fails in prod | Bar |
+|---|---|---|
+| L3 was a quota of 40–80 | Good-fit is ~1.5–2k research-eligible doctors; a quota is a sample of the method, not coverage | Auto-enqueue every good-fit; priority queue |
+| Briefs written in a Claude chat | 2,000 sessions do not happen; playbooks stay empty | Background `write_brief` job using the same Python functions as `get_peer_*` |
+| One `data-worker` APScheduler | DocMap cron at 03:30 shares TikTok IP; `activate_account` is **process-global** so two peer ingests in one process corrupt paths | Separate `creator-deep-worker`; **one ingest per process**; listing concurrency = 1 globally |
+| GTM job stale = 600 s | Whisper of ~200 clips is hours; reclaiming at 10 min double-runs media | `creator_deep_jobs` with heartbeat 60 s and stale **4 h** |
+| Isolation audit loads full DocMap on every brief | Fine at 187 rows; must never scan all peer accounts | Keep current peer-vs-DocMap-only audit; add SQL `count` by `account_handle` |
+| Media left on disk | Warren sample is GBs; ×1,500 fills a volume | Delete media after Whisper+OCR; persist transcripts + cards only |
+| Peer embeddings | `owner_scope` poison if left on | Deep ingest `--skip-embed`; `search_knowledge` stays DocMap |
+| No cost/throughput cap | 1,500 × (6–15 h CPU Whisper + ~400 OCR calls) is unbounded spend | Daily budget, measured throughput, skip OCR on auto if over budget |
+| No coverage gate before a brief | 51% transcript yield silently produced a “complete” Warren-like run once | Brief job refuses to write unless sample transcript yield ≥ 70% and components ≥ 70% |
+| Manual SQL migrations | Drift between env and `verify-supabase-schema.py` | Schema apply is still manual, but worker **refuses to start** if verify fails |
+| `SKIP_CREATOR_CORPUS` default true, no alerts | Fleet never runs, or runs and nobody knows it died | Queue depth + success-ratio + DocMap-cron-overlap alerts |
+| On-demand not first-class | Human has to wait for quota-select | `request_deep_dive(handle)` jumps the queue; returns `job_id` + ETA |
+
+### Cost math (why a second worker is not optional)
+
+Warren-depth on **one** creator, sampled (~200 videos, not the full catalog):
+
+| Stage | Per creator (order of magnitude) |
+|---|---|
+| Catalog list (yt-dlp, throttled) | minutes–tens of minutes |
+| Download + Whisper `small` CPU, 200 clips | **4–12 hours** on one box (full 1,372 was 15–25 h) |
+| OCR on sample | ~400–600 vision calls |
+| Components | ~200 LLM calls |
+| Auto brief | 1 long-context LLM call over era summary + batched packets assembled in-process |
+
+At 1,500 good-fits × 8 h Whisper ≈ **12,000 CPU-hours**. One Railway replica is ~500 days. Production therefore means: **smaller auto sample (80)**, **priority order**, **optional GPU/faster-whisper**, and **OCR skipped on auto** when the daily vision budget is gone. On-demand deep dives keep the full 200-sample + OCR path.
+
+This is still cheaper than 1,500 interactive Claude rituals, and it is the only way “we analysed them like Warren” is true for the corpus rather than for one neurosurgeon.
 
 ---
 
@@ -29,7 +84,7 @@ If we promoted thousands of creators into `content_posts` and asked Claude to "l
 - Isolation audits also load all DocMap rows on every brief.
 - Storage and Whisper/OCR cost of 2,000 full catalogs is an order of magnitude past the Warren run (262 posts, 244 transcripts, already a full-day ingest).
 
-So: **do not feed thousands of creators through `get_peer_*`.** Feed thousands through a corpus surface designed for boards and aggregates. Use `get_peer_*` only after a human (or a quota rule) has picked **one** account for a deep pass. Persist the brief so the next session starts from conclusions, not raw video.
+So: **do not open thousands of libraries in one MCP session.** Feed thousands through boards and stored briefs. `get_peer_*` is the **interactive** deep dive: one account, current session. The **background** fleet writes those libraries and briefs so the session usually starts from a brief that already exists.
 
 ---
 
@@ -39,9 +94,9 @@ So: **do not feed thousands of creators through `get_peer_*`.** Feed thousands t
 |---|---|---|---|---|
 | **L1 Corpus** | every unique author → all that screen in (~2.5–3.5k) | 1 profile HTML GET + yt-dlp ≤23 videos (research-eligible later re-hydrated to ≤50) | summary, specialty board, paginated lean rows | Who exists; who is worth a look |
 | **L2 Insight card** | every hydrated **doctor** (~1.5–3k) | 0 extra network; 1 cached LLM extract (classify + insight) | one card per profile; specialty pattern tables; compare ≤8 | **Deep insight at thousands** — hooks, formats, CTAs, cadence, saves, positioning — without Whisper |
-| **L3 Deep library** | **quota**, not all: 40–80 in cycle 1, grow toward ~150 | existing peer pipeline (full catalog, stratified ~200 Whisper/OCR/components) | `list_peer_libraries` index, then existing `get_peer_*` **one account per pass**, then stored transfer brief | How a specific engine actually works; portable mechanics with evidence |
+| **L3 Deep library** | **every good-fit**, plus **any** handle on demand | catalog + stratified Whisper/OCR/components via a job queue; auto `write_brief` | `request_deep_dive` / queue status; `list_peer_libraries`; `get_peer_*` **one account per session**; stored brief | Warren-depth evidence + durable artefact |
 
-**L2 is the product for "we have thousands."** L3 is the product for "we understand this creator the way we understood Warren." Marketing a signed doctor starts at `get_specialty_playbook`, which is assembled from L2 patterns + stored L3 briefs, not from live transcript dumps.
+**L2 is how Claude browses thousands. L3 is how we actually understand each good-fit, asynchronously.** Interactive MCP still opens **one** L3 library at a time. The difference from v3 is the worker, not the context window.
 
 **Explicitly not fetched at L1/L2:** media, Whisper, OCR, component cards, comments, following lists, full catalogs, embeddings, Instagram. IG handles in bios are recorded, not followed.
 
@@ -69,12 +124,12 @@ DDL path: every migration is applied manually in the Supabase SQL editor, then v
 ## Critical Decisions
 
 1. **Two lanes, one store.** Every discovered account gets one row in `creator_profiles`. Lane is derived: `customer | research | both | discard | pending_review`.
-2. **Thousands get insight cards, not full peer libraries.** L2 is mandatory for every hydrated doctor. L3 is a quota with an index and stored briefs.
-3. **MCP is layered, never a dump.** Claude starts at specialty aggregates, then a page of cards, then at most eight-way compare, then at most **one** L3 deep dive per session. Truncation is visible (`total_rows`, `returned_rows`, `next_cursor`).
-4. **Transfer briefs are durable.** After an L3 pass, the four-section artefact is written to `creator_peer_briefs` (draft → confirmed). Later sessions read the brief. They do not re-load 200 transcripts unless the human asks to reopen the library.
+2. **Thousands get insight cards immediately; good-fits get Warren-depth in the background.** L2 is mandatory for every hydrated doctor. L3 auto-enqueues every good-fit. Interactive MCP may deep-dive **any** creator (jumps the queue).
+3. **MCP is layered, never a dump.** Claude starts at specialty aggregates, then a page of cards, then at most eight-way compare, then at most **one** L3 deep dive per session. Prefer the stored brief when it exists.
+4. **Transfer briefs are produced by a job, not a chat.** After ingest coverage gates pass, `write_brief` assembles era summary + sample packets **in process** (same functions as `get_peer_*`, no HTTP loopback) and writes `creator_peer_briefs` as `draft`. Humans confirm a sample and any brief cited into a customer assignment. Later sessions read the brief.
 5. **Customer rows are promoted into existing GTM, not copied into a parallel lead list.** Promotion calls `upsert_clinic_intelligence` and `upsert_clinic_people`, then the existing cohort / contact / enrich / list path.
 6. **Promotion requires human review.** Scoring suggests; a person confirms. No auto-writes into outreach.
-7. **The LLM extracts; code decides.** Classifier/insight card returns labelled fields with verbatim quotes. Lane, scores, specialty patterns and quota selection are deterministic.
+7. **The LLM extracts; code decides.** Classifier/insight card returns labelled fields with verbatim quotes. Lane, scores, specialty patterns and good-fit / queue priority are deterministic.
 8. **Missing is null, never zero.** Score components with missing inputs are excluded; `score_coverage` records what was used.
 9. **Discovery is a pluggable adapter behind a gate.** Manual handle import exists from day one.
 10. **Every command writes counters** to `creator_crawl_runs`. A degraded run exits non-zero.
@@ -99,10 +154,10 @@ DDL path: every migration is applied manually in the Supabase SQL editor, then v
                           profile_html GET   rules+bio   yt-dlp ≤23/50  insight card  lane + scores
                                                                             │
                                             ┌───────────────────────────────┼─────────────────────────┐
-                                            ▼ L2                            ▼ L3 quota                 ▼ customer|both (GB)
-                                 creator_insight_cards              creators promote-peer      gtm-pipeline creators promote
-                                 creator_specialty_stats            (existing tiktok --account)     │
-                                            │                       creator_peer_briefs             │ existing:
+                                            ▼ L2                    ▼ L3 job queue                 ▼ customer|both (GB)
+                                 creator_insight_cards              creator_deep_jobs               gtm-pipeline creators promote
+                                 creator_specialty_stats            (ingest → write_brief)               │
+                                            │                       on-demand jumps queue                │ existing:
                                             ▼                               │                       │  upsert_clinic_intelligence
                                  MCP corpus tools                           ▼                       │  upsert_clinic_people
                                  (summary, boards, cards,           MCP get_peer_*                  │  refresh_cohort (new branch)
@@ -119,13 +174,14 @@ DDL path: every migration is applied manually in the Supabase SQL editor, then v
 
 | Package | New module | Responsibility | Must not |
 |---|---|---|---|
-| `marketing-pipeline` | `src/marketing_pipeline/creators/` | seeds, discovery, profile, screen, hydrate, classify/insight card, score, specialty stats, quota select, export, eval, drain, promote-peer wrapper | import `tiktok.sync`, `shared.embeddings`; call `activate_account`; write non-`creator_*` tables |
+| `marketing-pipeline` | `src/marketing_pipeline/creators/` | seeds, discovery, profile, screen, hydrate, classify/insight card, score, specialty stats, good-fit enqueue, deep-job handlers, export, eval, drain | import `tiktok.sync` except via `promote-peer` **subprocess**; never `activate_account` inside drain; never `shared.embeddings` |
 | `gtm-pipeline` | `src/gtm_pipeline/creators/` | link; promote via **existing** upserts; cohort builder branch | invent a second contact table; write `creator_*` except link/promotion columns |
 | `mcp-server` | `tools/creator_corpus.py` | L1/L2 read tools + review write + specialty playbook | return creator rows from `get_tiktok_*` or `get_peer_*` |
-| `mcp-server` | `tools/peer_library.py` (extend) | `list_peer_libraries`, `get_peer_transfer_brief`, `save_peer_transfer_brief` | load more than one deep library per tool call |
+| `mcp-server` | `tools/peer_library.py` (extend) | `request_deep_dive`, `get_deep_job`, `list_peer_libraries`, brief get/save | load more than one deep library per tool call |
 | `mcp-server` | `tools/gtm_sales.py` (thin wrap) | `list_gtm_ready_for_sales`, `get_gtm_contact` calling existing `list_ready_for_sales` / contact fetch | send email; draft outreach to unconfirmed / pending_review |
-| `data-worker` | jobs in `main.py` | bounded nightly drain; weekly specialty-stats refresh | browser discovery; overlap 03:00–04:00 DocMap TikTok window |
-| `sql/` | `014_creator_corpus.sql`, `015_gtm_creator_handoff.sql` | schema | alter `content_posts` or `document_embeddings` |
+| `data-worker` | jobs in `main.py` | DocMap TikTok cron **only**; corpus drain stays off the 03:30 window | peer ingest; `activate_account` for non-docmap |
+| `creator-deep-worker` | new Railway service, same repo | claim `creator_deep_jobs`; **one peer ingest per process**; `write_brief`; on-demand first | two ingests in one process; listing during DocMap 03:00–04:00 UTC |
+| `sql/` | `014_creator_corpus.sql`, `015_gtm_creator_handoff.sql` | schema including `creator_deep_jobs` | alter `content_posts` or `document_embeddings` |
 
 Local disk is a **cache**: `MARKETING_CREATORS_DATA_DIR`, default `marketing-pipeline/creators/data/`, gitignored. Paths resolve **per call**. A test asserts they differ from `studio_listen.profile_dir()` and `config.DOCMAP_DATA_ROOT`.
 
@@ -145,30 +201,66 @@ Local disk is a **cache**: `MARKETING_CREATORS_DATA_DIR`, default `marketing-pip
 | **2c Specialty stats** | all scored doctors | 0 | per-`specialty_key` distributions and exemplars | `creator_specialty_stats` |
 | **3 Linked** | customer or both with GB geo | 0 (Supabase reads) | matches to practitioners / people / clinics / `doctor_outreach` | `creator_links` |
 | **4 Promoted** | human-confirmed customers | 0 + existing enrich jobs | GTM clinic, person, contact, cohort | **existing** GTM tables |
-| **5 Deep peer** | **quota** (see below) | existing peer pipeline | full catalog + sampled Whisper/OCR/components + **stored transfer brief** | existing peer library + `creator_peer_briefs` |
+| **5 Deep peer** | every good-fit + any on-demand | `creator_deep_jobs` ingest then `write_brief` | full catalog + stratified Whisper/OCR/components + **stored transfer brief**; media deleted after extract; **no embeddings** | existing peer library + `creator_peer_briefs` |
 
 Pinned videos can appear first in a flat listing. All windows are computed by `posted_at`.
 
-### Deep-library quota (L3)
+### L3 — on-demand any creator + background fleet for every good-fit
 
-Not a handful. Not everyone.
+Interactive MCP may open **one** peer library at a time, for **any** handle that has at least a profile row. Background jobs run Warren-depth for every **good-fit** without waiting for a chat.
 
-**Cycle 1 (after ≥2k scored profiles):** 40–80 accounts, selected deterministically:
+**Good-fit** (deterministic, versioned `GOOD_FIT_VERSION`):
 
-| Slot | Rule | Why |
-|---|---|---|
-| Specialty exemplars | top 3 `research_score` per **priority specialty** with ≥30 scored doctors | what "good" looks like in that field |
-| Mid-size | 8 accounts with followers 5k–30k, highest `views_to_followers_median` in band | growth stage we can actually assign to a signed clinic |
-| UK private | top 8 `customer_score` among lane `customer\|both` | the market we sell into |
-| Contrast | 4 high-follower / low `saves_per_1k` and 4 low-follower / high `saves_per_1k` | stop copying vanity reach |
+```text
+is_doctor
+AND doctor_confidence >= 0.8
+AND lane IN (research, both, customer)
+AND NOT do_not_contact
+AND hydrate_status = complete
+AND (
+      research_eligible
+      OR (customer_eligible AND growth_intent_level >= 2)
+    )
+```
 
-Priority specialties for quota **and** practitioner seeds (extend `gtm_pipeline.segments.specialty._CANONICAL_PATTERNS`):
+After each `creators score`, `creators enqueue-deep` inserts a `creator_deep_jobs` item for every good-fit that has no succeeded ingest. Idempotent on `creator_profile_id`.
+
+**Priority** (higher claimed first):
+
+| Priority | Who |
+|---|---|
+| 100 | `request_deep_dive` (human / MCP, any handle) |
+| 80 | UK private / lane `customer\|both` |
+| 60 | Priority specialties (below), highest `research_score` first |
+| 40 | Remaining research-eligible |
+| 20 | Backfill / retry |
+
+Priority specialties (also practitioner seeds; extend `gtm_pipeline.segments.specialty._CANONICAL_PATTERNS`):
 
 `obstetrics_gynaecology, fertility, menopause, endometriosis, ivf, dermatology, colorectal, general_surgery, gastroenterology, urology, general_practice`
 
-Colorectal / general surgery are in the quota because Simon is the wedge customer, even if they are not GTM commercial-fit tier A.
+**Two ingest qualities:**
 
-**Later cycles:** fill remaining specialties (3 each) until ~150 L3 libraries. Never auto-promote an account that already has `peer_account_handle`. `creators quota-select --dry-run` prints the set; `--apply` writes `deep_quota_status=selected` and requires `--run` on `promote-peer` per handle (or a bounded worker job off the DocMap TikTok window).
+| Path | Sample | OCR | Embed | When |
+|---|---|---|---|---|
+| `auto` | 80, stratified | skip if daily vision budget spent; else opening-frames on sample | never | background good-fit |
+| `on_demand` | 200, stratified (Warren default) | yes | never | `request_deep_dive` or `--quality on_demand` |
+
+Both still fetch the **full catalog metadata** (layer A). Expensive stages stay sampled. Comments stay off.
+
+**Job kinds** on `creator_deep_jobs` / `creator_deep_job_items` (copy GTM durable jobs, **do not** reuse `gtm_pipeline_jobs`):
+
+- `deep_ingest` — subprocess `python -m marketing_pipeline tiktok --account HANDLE fetch-catalog && sample-plan && refresh --from-sample-plan --skip-embed && extract-components --schema generic-clinician && sync-supabase --account HANDLE --skip-embed`; then delete media; coverage counters.
+- `write_brief` — only if transcript_yield ≥ 0.70 and component_yield ≥ 0.70 on the sample; assemble packets via `peer_library` Python functions; one LLM write to `creator_peer_briefs` status=`draft`.
+- Failed coverage → item `failed` with reason, not a fake brief.
+
+**Do not reuse GTM's 600 s stale window.** Whisper items heartbeat every 60 s; `stale_seconds=14400`. GTM reclaim at 10 minutes would double-download mid-job.
+
+**Process isolation:** `config.activate_account` is process-global (Warren leak #6). The deep worker claims **one ingest item**, forks a subprocess, waits, then claims the next. Never two `--account` ingests in one interpreter. Listing uses a global advisory lock so two replicas cannot yt-dlp-list at once. Whisper may run on a second replica only after listing has finished for that item (payload says `catalog_ready`).
+
+**On-demand MCP:** `request_deep_dive_tool(handle, quality=on_demand, confirmed=false)` previews; `confirmed=true` enqueues priority 100 even if the handle is not good-fit (must be `stage` past `profiled`, not `unavailable`). Returns `{job_id, queue_position, eta_hours, existing_brief, ingest_status}`. `get_deep_job_tool(job_id|handle)` is the status poll. When `ingest_status=succeeded`, existing `get_peer_*` works. If a draft brief exists, ritual B starts there unless the human asks to reopen packets.
+
+**DocMap SLO:** `creator-deep-worker` takes a listing pause 02:50–04:15 UTC. Corpus `drain` stays on `data-worker` before 02:45. `SKIP_CREATOR_DEEP` default **true** until schema verify + one golden ingest (Warren already on disk) replays green.
 
 ---
 
@@ -209,10 +301,11 @@ RLS follows `009`: `authenticated` may select, `service_role` may do everything.
 | Current insight (denormalised) | `insight_card_id, is_doctor, doctor_confidence, doctor_role, specialty_raw, specialty_key, geo_country, geo_confidence, practice_setting, growth_intent_level, positioning_line, hook_jobs, format_mix, cta_mix` |
 | Scoring | `lane, lane_reasons, customer_score, research_score, score_breakdown, score_coverage, scoring_version, scored_at` |
 | Review | `review_status, review_lane_override, reviewed_by, reviewed_at, review_note, do_not_contact` |
-| Promotion | `promoted_clinic_intelligence_id, promoted_person_id, promoted_at, peer_account_handle, peer_promoted_at, deep_quota_status` (`none \| selected \| ingested \| brief_draft \| brief_confirmed`) |
+| Promotion | `promoted_clinic_intelligence_id, promoted_person_id, promoted_at, peer_account_handle, peer_promoted_at` |
+| Deep fleet | `deep_status` (`none \| queued \| ingesting \| ingested \| brief_draft \| brief_failed \| brief_confirmed`), `deep_quality` (`auto \| on_demand`), `deep_job_id`, `good_fit bool`, `good_fit_version` |
 | Provenance | `provenance jsonb` |
 
-Indexes: `(stage, work_status, next_attempt_at)`, `(lane, customer_score desc)`, `(lane, specialty_key, research_score desc)`, `(geo_country)`, `(review_status)`, `(deep_quota_status)`.
+Indexes: `(stage, work_status, next_attempt_at)`, `(lane, customer_score desc)`, `(lane, specialty_key, research_score desc)`, `(geo_country)`, `(review_status)`, `(deep_status)`, `(good_fit, research_score desc)`.
 
 ### `creator_profile_snapshots`
 
@@ -242,9 +335,13 @@ Exemplars are handles only (≤5 per bucket). Full cards are loaded with `get_cr
 
 ### `creator_peer_briefs` — stored L3 artefacts
 
-`id, creator_profile_id, account_handle, status` (`draft \| confirmed \| rejected`), `artefact jsonb` (four sections + limits + confidence table), `evidence_video_ids text[], model, created_at, confirmed_by, confirmed_at`. Unique current confirmed row per handle.
+`id, creator_profile_id, account_handle, status` (`draft \| confirmed \| rejected`), `source` (`auto_job \| mcp_session`), `artefact jsonb` (four sections + limits + confidence table), `evidence_video_ids text[], coverage jsonb {transcript_yield, component_yield, sample_n, catalog_n}, model, created_at, confirmed_by, confirmed_at`. Unique current non-rejected row per handle.
 
-Without this table, every new Claude session re-runs Warren. With it, `get_specialty_playbook` can cite 12 confirmed briefs without opening a single transcript.
+`write_brief` is the default author (`auto_job`). An MCP session may overwrite a draft after a human re-reads packets. Playbooks cite `confirmed` first; they may cite `draft` only when labelled as unreviewed.
+
+### `creator_deep_jobs` / `creator_deep_job_items`
+
+Same shape as `gtm_pipeline_jobs` / `gtm_pipeline_job_items` (claim, heartbeat, attempts, result jsonb) with kinds `deep_ingest | write_brief`, `stale_seconds` default 14400, unique `(kind, item_key)` where `item_key` is `creator_profile_id`. Priority integer on the item. RPC `creator_claim_deep_job_items` mirrors `gtm_claim_job_items` but orders by `priority desc, created_at`.
 
 ### `creator_links`
 
@@ -260,7 +357,7 @@ Same pattern as `gtm_claim_job_items`: reclaim expired leases; `FOR UPDATE SKIP 
 
 ### Views
 
-- **`creator_corpus_current`** — one lean row per scored profile: handle, url, nickname, specialty_key, doctor_role, geo_country, follower_count, posts_30d, median_views, median_saves_per_1k, median_shares_per_1k, median_engagement_rate, private_practice, growth_intent_level, positioning_line, lane, scores, coverage, review_status, promoted, deep_quota_status, last_post_at, scored_at. **No caption dumps. No transcripts.**
+- **`creator_corpus_current`** — one lean row per scored profile: handle, url, nickname, specialty_key, doctor_role, geo_country, follower_count, posts_30d, median_views, median_saves_per_1k, median_shares_per_1k, median_engagement_rate, private_practice, growth_intent_level, positioning_line, lane, scores, coverage, review_status, promoted, good_fit, deep_status, last_post_at, scored_at. **No caption dumps. No transcripts.**
 - **`creator_customer_queue`** — lane `customer|both`, `do_not_contact=false`, not promoted, `customer_score desc`, best link joined.
 - **`creator_research_board`** — lane `research|both`, ordered by `specialty_key, research_score desc`.
 
@@ -473,10 +570,10 @@ All list tools paginate and return `total_rows, returned_rows, next_cursor`. Def
 
 | Tool | Purpose | Returns |
 |---|---|---|
-| `get_creator_corpus_summary_tool()` | session start | counts by stage, lane, geo, specialty, review, deep_quota; last 10 run counters; seed yields |
+| `get_creator_corpus_summary_tool()` | session start | counts by stage, lane, geo, specialty, review, good_fit, deep_status; queue depth; last 10 run counters; seed yields |
 | `get_specialty_board_tool(specialty_key)` | **marketing analysis start** | `creator_specialty_stats` row + exemplar handles only |
-| `list_creators_tool(lane, geo?, specialty_key?, min_score?, follower band, review_status?, deep_quota_status?, order=customer_score\|research_score\|saves\|followers\|posts_30d, cursor, limit≤100)` | browse | lean `creator_corpus_current` rows (**no captions, no cards**) |
-| `get_creator_profile_tool(handle)` | one creator | profile facts, snapshots (incl. follower delta if any), rollups, **full insight card with validated quotes**, latest ≤8 caption_hooks, score breakdown, links, promotion / quota state |
+| `list_creators_tool(lane, geo?, specialty_key?, min_score?, follower band, review_status?, deep_status?, good_fit?, order=customer_score\|research_score\|saves\|followers\|posts_30d, cursor, limit≤100)` | browse | lean `creator_corpus_current` rows (**no captions, no cards**) |
+| `get_creator_profile_tool(handle)` | one creator | profile facts, snapshots, rollups, **full insight card with validated quotes**, latest ≤8 caption_hooks, score breakdown, links, promotion / `deep_status` / queue |
 | `compare_creators_tool(handles ≤8)` | side-by-side | rollups, hook_jobs, formats, CTAs, saves/1k, positioning_line, scores — still no transcripts |
 | `get_specialty_playbook_tool(specialty_key)` | assign work to a signed doctor | stats + top hook_jobs/formats/CTAs with n and exemplar handles + **cited confirmed L3 briefs** (portable table only) + `not_measurable` block |
 | `list_creator_seeds_tool(order=doctor_yield)` | which searches to keep | seed yield table |
@@ -484,13 +581,15 @@ All list tools paginate and return `total_rows, returned_rows, next_cursor`. Def
 
 #### L3 — extend `tools/peer_library.py`
 
-Existing five `get_peer_*` tools **unchanged** (one account, same caps, same isolation audit).
+Existing five `get_peer_*` tools **unchanged** (one account, same caps, same isolation audit — peer vs DocMap only, never scan the whole fleet).
 
 | New tool | Purpose |
 |---|---|
-| `list_peer_libraries_tool(specialty_key?, cursor, limit≤50)` | index only: handle, specialty_key, catalog_size, deep_sample_n, coverage flags, brief_status, last_sync. **No posts.** |
-| `get_peer_transfer_brief_tool(account)` | stored artefact or `{found:false, ritual: [...]}` |
-| `save_peer_transfer_brief_tool(account, artefact, confirmed=false)` | draft/confirm; preview unless confirmed |
+| `request_deep_dive_tool(handle, quality=on_demand, confirmed=false)` | jump the queue for **any** profiled handle |
+| `get_deep_job_tool(handle or job_id)` | ingest/brief status, coverage, ETA |
+| `list_peer_libraries_tool(specialty_key?, deep_status?, cursor, limit≤50)` | index only: handle, specialty, catalog_size, sample_n, coverage, brief_status. **No posts.** |
+| `get_peer_transfer_brief_tool(account)` | stored artefact or `{found:false, ingest_status, ritual}` |
+| `save_peer_transfer_brief_tool(account, artefact, confirmed=false)` | human confirm/overwrite of a draft |
 
 #### Rituals (written into `common/mcp_instructions.py`)
 
@@ -501,11 +600,11 @@ Existing five `get_peer_*` tools **unchanged** (one account, same caps, same iso
 3. `list_creators(lane=research, specialty_key, order=research_score)` — one page
 4. `compare_creators` on 4–8 exemplars from the board (high saves, mid-size, UK private, contrast)
 5. `get_specialty_playbook(specialty_key)`
-6. Only if a named handle still needs Warren-depth: `list_peer_libraries` → if no brief, run the **existing** peer ritual for **that one account** → `save_peer_transfer_brief`
+6. Only if a named handle still needs packets: `get_deep_job` → if ingested, existing peer ritual for **that one account**; if not, `request_deep_dive(confirmed=true)` and wait. Do **not** open `get_peer_content_batch` for a second account in the same session.
 
 Do **not** open `get_peer_content_batch` for a second account in the same session.
 
-**B. One-creator deep dive:** existing peer ritual, isolation gate first. Last-23/50 on the corpus card is **current packaging**. Growth claims require snapshot deltas or L3 era medians. OCR is opening-frames only. Views are not follower acquisition.
+**B. One-creator deep dive:** `get_deep_job(handle)`. If a brief exists, read it first. If ingest succeeded and the human wants packets, existing peer ritual, isolation gate first. If ingest is queued, say so and do not pretend L2 captions are transcripts. Last-23/50 on the corpus card is **current packaging**. Growth claims require snapshot deltas or L3 era medians. OCR is opening-frames only. Views are not follower acquisition.
 
 **C. Sales handoff:** `list_gtm_ready_for_sales(cohort=tiktok_doctor_creators)` → `get_gtm_contact`. Draft only via existing `draft_outreach_email` after `confirmed=true`. Corpus `pending_review` is not a lead.
 
@@ -517,15 +616,21 @@ Menu (session open) gains two bullets: specialty creator board / playbook; GTM r
 - `creators eval --labels creators/eval/labels_v1.csv` — 150 hand-labelled profiles (~60 UK, ~60 US, ~30 lookalikes). Gate before promotion: `is_doctor` precision ≥ 0.95, GB precision ≥ 0.90, customer-lane precision ≥ 0.85.
 - **Outcome join (read-only, no new scrape):** for promoted UK people, `get_gtm_contact` also calls existing `get_appointment_availability(practitioner_name=...)` when a name match exists. Store a **pointer** (`last_availability_check`) on the contact evidence, not a copy of slots. Comment sentiment stays out of v1 (peer comments remain on-demand at L3 only).
 
-### 13. Deep peer promotion
+### 13. Deep ingest + auto brief (the fleet)
 
-`creators quota-select` writes the cycle set. `creators promote-peer --handle X [--run]` requires `deep_quota_status=selected` (or explicit `--force` with review confirmed), lane `research|both`, no existing `peer_account_handle`. `--run` executes the existing sequence (`tiktok fetch-catalog --account X`, `sample-plan`, `refresh --from-sample-plan`, `extract-components --schema generic-clinician`, `sync-supabase --account X`). Peer release gate in `PEER_INGEST_POSTMORTEM.md` still applies. After ingest, Claude (or an operator) writes `creator_peer_briefs`. Worker must **not** run promote-peer inside the DocMap TikTok window.
+`creators enqueue-deep` after score. `creators promote-peer --handle X --quality auto|on_demand` is the ingest handler, always a **subprocess**. `--skip-embed` is mandatory. Peer release gate in `PEER_INGEST_POSTMORTEM.md` still applies per account. `creators write-brief --handle X` runs coverage gates then the artefact writer.
 
-### 14. Worker
+`creator-deep-worker` (new Railway service): loop claim ingest → subprocess → claim write_brief. Pause listing 02:50–04:15 UTC. `SKIP_CREATOR_DEEP` default true until `scripts/verify-supabase-schema.py` passes and a replay of `@drleewarren` produces a draft brief with yield ≥ 0.70.
 
-- `creator_corpus_drain`: 01:00 UTC, deadline 02:45, `SKIP_CREATOR_CORPUS` default **true**. `creators drain --profile-max 400 --hydrate-max 120 --deadline 02:45` then classify/score/rebuild-specialty-stats then `gtm_pipeline creators link` (no promotion, no promote-peer).
-- `creator_corpus_refresh`: Sundays 00:30 UTC. Re-profile top 500 by score older than 30 days; re-hydrate top 200; rebuild stats.
-- Startup assertion: `CREATORS_DATA_DIR` is not inside `DOCMAP_DATA_ROOT`.
+`data-worker` must not call promote-peer. Corpus drain remains on data-worker with the 02:45 deadline.
+
+### 14. Workers
+
+- `data-worker` / `creator_corpus_drain`: 01:00 UTC, deadline 02:45, `SKIP_CREATOR_CORPUS` default **true**. Drain = profile → screen → hydrate → classify → score → rebuild-specialty-stats → enqueue-deep → `gtm_pipeline creators link`. No ingest, no promotion.
+- `data-worker` / `creator_corpus_refresh`: Sundays 00:30 UTC. Re-profile top 500; re-hydrate top 200; rebuild stats; enqueue newly good-fit.
+- `creator-deep-worker`: always-on claim loop (not cron). Ingest + write_brief only.
+- Startup: both services run `verify-supabase-schema.py` and exit non-zero if 014/015 missing. `CREATORS_DATA_DIR` and peer data roots asserted outside `DOCMAP_DATA_ROOT`.
+- Alerts (logs + `/health` on the deep worker): queue depth, items older than 24 h, success ratio < 0.8 over 50 items, DocMap listing overlap, disk > 70%.
 
 ### 15. Data governance
 
@@ -548,10 +653,19 @@ Add:
 | `test_caption_hook_is_first_sentence_or_80` | hook never equals a 300-char blob |
 | `test_research_score_uses_saves_not_likes_only` | a high-like / zero-save profile does not outrank a high-save peer in-band |
 | `test_specialty_stats_exemplars_are_handles_only` | no captions in the stats row |
-| `test_quota_select_is_deterministic` | same scored corpus → same 40–80 handles |
+| `test_good_fit_predicate` | inactive US brand is false; UK private growth_intent 2 is true |
+| `test_enqueue_deep_is_idempotent` | second score does not duplicate job items |
+| `test_on_demand_outranks_auto` | claim order is priority 100 then 80 |
+| `test_write_brief_refuses_low_yield` | 0.51 transcript yield → failed item, no artefact |
+| `test_ingest_is_subprocess_not_activate_in_parent` | parent `config.ACCOUNT` stays docmap |
+| `test_skip_embed_on_deep_sync` | no `document_embeddings` rows for peer video ids |
+| `test_media_deleted_after_ingest` | sample media dir empty; transcripts remain |
+| `test_gtm_stale_seconds_not_used` | deep claim uses ≥14400 |
 | `test_mcp_compare_rejects_more_than_eight` | |
 | `test_mcp_playbook_does_not_inline_transcripts` | |
 | `test_list_peer_libraries_has_no_post_payload` | |
+| `test_request_deep_dive_requires_confirmed` | |
+| `test_isolation_audit_does_not_load_all_peers` | audit queries docmap + one handle only |
 | `test_list_ready_for_sales_includes_evidence` | creator angle present after promote |
 | `test_refresh_outreach_includes_non_cqc_creator_clinics` | `--all-people` / `cqc_named_only=False` |
 | `test_refresh_cohort_creator_source_branch` | generic `segments refresh` keeps `tiktok_doctor_creators` |
@@ -571,10 +685,11 @@ Add:
 | UK doctors | 200–500 | practitioner-name seeds dominate |
 | Customer lane | 100–300 | |
 | Promoted after review | 50–150 | into **existing** `list_ready_for_sales` |
-| L3 deep libraries cycle 1 | 40–80 | quota-select |
-| L3 toward steady state | ~150 | later cycles, stored briefs |
+| Good-fit (L3 auto queue) | ~800–2,000 | research-eligible ∪ (UK private with growth intent ≥2) |
+| L3 ingested + draft brief (steady) | same as good-fit, over weeks | fleet throughput, not a quota |
+| On-demand deep dives | unbounded | any profiled handle, priority 100 |
 
-If Step 0 measures throughput below 50% of plan, cap hydrate at 1.5k and prioritise `uk` + `practitioner` slices. **Do not** drop insight cards to save cost; drop L3 volume first.
+If Step 0 measures throughput below 50% of plan, cap hydrate at 1.5k and prioritise `uk` + `practitioner` slices. If Whisper throughput is <4 auto ingests/day, **do not** drop insight cards; shrink auto sample to 40 or pause OCR. Interactive on-demand stays 200-sample.
 
 ---
 
@@ -589,7 +704,7 @@ If Step 0 measures throughput below 50% of plan, cap hydrate at 1.5k and priorit
   - [ ] 🟥 **Gate:** ≥300 unique authors from 20 seeds, <5% blocked, profile-fetch success ≥90%. Else stop
 
 - [ ] 🟥 **Step 1: Schema and store**
-  - [ ] 🟥 `sql/014` (including insight cards, specialty stats, peer briefs, caption_hook, saves rollups, deep_quota_status) and `sql/015`
+  - [ ] 🟥 `sql/014` (insight cards, specialty stats, peer briefs, caption_hook, saves, `good_fit`, `deep_status`, `creator_deep_jobs`) and `sql/015`
   - [ ] 🟥 Apply in SQL editor; extend `scripts/verify-supabase-schema.py`
   - [ ] 🟥 `creators/` paths, store allowlist, runs, ratelimit, CLI channel, `creators status`
   - [ ] 🟥 Isolation tests
@@ -633,15 +748,19 @@ If Step 0 measures throughput below 50% of plan, cap hydrate at 1.5k and priorit
   - [ ] 🟥 Mentions/stitch of top 100 per lane, depth 1
   - [ ] 🟥 Acceptance: new handles flow through 2–6; graph seeds report `doctor_yield`
 
-- [ ] 🟥 **Step 9: Schedule and refresh**
-  - [ ] 🟥 Drain + Sunday refresh (default off); `creators purge`
+- [ ] 🟥 **Step 9: Schedule, drain, alerts**
+  - [ ] 🟥 Drain + Sunday refresh (default off); `creators purge`; verify-schema on boot
   - [ ] 🟥 Acceptance: 7 nights with no DocMap TikTok failure from our throttling; snapshots accrue
 
-- [ ] 🟥 **Step 10: Deep quota + stored briefs (Warren-depth, many times)**
-  - [ ] 🟥 `quota-select` deterministic; `promote-peer` wrapper; `list_peer_libraries`; `save/get_peer_transfer_brief`
-  - [ ] 🟥 `get_specialty_playbook` cites confirmed briefs
+- [ ] 🟥 **Step 10: Deep fleet + auto briefs (production L3)**
+  - [ ] 🟥 `creator_deep_jobs` + claim RPC (stale 4 h); `enqueue-deep`; good-fit predicate tests
+  - [ ] 🟥 `promote-peer` as **subprocess**, `--skip-embed`, media delete; coverage counters
+  - [ ] 🟥 `write-brief` coverage gate + artefact writer (in-process `get_peer_*` functions)
+  - [ ] 🟥 `creator-deep-worker` service, listing pause 02:50–04:15, `/health` queue metrics
+  - [ ] 🟥 `request_deep_dive` / `get_deep_job`; `list_peer_libraries`; playbook cites briefs
+  - [ ] 🟥 Replay `@drleewarren` as the golden ingest: yield ≥ 0.70, isolation audit pass, draft brief written **without** a Claude session
   - [ ] 🟥 Thin `list_gtm_ready_for_sales` MCP wrap
-  - [ ] 🟥 Acceptance: cycle-1 quota is 40–80 handles; one promoted account passes the existing peer release gate; a second Claude session can load a confirmed brief **without** calling `get_peer_content_batch`; playbook for `colorectal` cites ≥1 brief or explicitly says none yet
+  - [ ] 🟥 Acceptance: enqueue 20 good-fits; worker completes ≥3 ingest+brief with DocMap cron green; `request_deep_dive` on a non-queued handle returns priority 100 and is claimed next; a second MCP session loads the draft brief **without** `get_peer_content_batch`; `document_embeddings` has no `peer:*` rows from the fleet
 
 ---
 
@@ -667,24 +786,27 @@ If Step 0 measures throughput below 50% of plan, cap hydrate at 1.5k and priorit
 **It isolates:**
 - [ ] `scripts/verify-supabase-schema.py` exits 0
 - [ ] `get_tiktok_cohort()` still `account=docmap`, `catalog_size=187`
-- [ ] `content_posts` / `document_embeddings` counts unchanged except for L3 quota handles, each with `owner_scope=peer:<handle>`
+- [ ] `content_posts` / `document_embeddings` DocMap counts unchanged; each ingested peer has `owner_scope=peer:<handle>` and **zero** embedding rows unless a future decision reverses `--skip-embed`
 
 ---
 
 ## Decisions needed from the owner
 
 1. **Discovery source after Step 0:** research TikTok login (Playwright), vendor API, or both.
-2. **L3 quota size.** Default cycle 1 = 40–80, cap ~150. Raising toward "everyone" re-creates the Warren scaling failure.
+2. **Auto sample size and OCR budget.** Default auto = 80 videos, OCR optional; on-demand = 200 + OCR. Changing auto to 200 for everyone is a cost decision, not a product one.
 3. **Legitimate-interest sign-off** before M6 promotion.
 4. **Whether promotion should also create `clinic_accounts`.** v1 stops at GTM contacts.
 5. **Whether MCP should wrap `list_ready_for_sales` in v1** or keep sales CLI/HTTP-only until the evidence select is proven. Default: wrap in Step 10, after CLI handoff is green.
+6. **GPU / faster-whisper** if measured CPU throughput is below ~4 auto ingests per replica-day. Do not guess; measure on the Warren replay.
 
 ## Out of scope (v1)
 
-- Whisper / OCR / full catalogs for the whole corpus (that is L3 quota only)
+- Whisper / OCR / full catalogs at L1/L2 (L3 auto is sampled; on-demand is Warren-sized sample)
+- Two peer ingests in one process (`activate_account` is global)
+- Reusing `gtm_pipeline_jobs` (600 s stale) for Whisper
+- Peer embeddings / `search_knowledge` over creator transcripts
 - Instagram, YouTube, LinkedIn fetching (handles recorded only)
 - Comments / commenter graphs / following lists at L1/L2
-- Embeddings or `search_knowledge` over the corpus
 - Web UI for the corpus (MCP + CSV + existing GTM list)
 - Automatic outreach drafting or sending
 - Auto-merging creator clinics with Doctify clinics
