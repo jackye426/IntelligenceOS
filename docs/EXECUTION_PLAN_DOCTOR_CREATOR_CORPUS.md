@@ -1,13 +1,13 @@
 # Feature Implementation Plan — Doctor-creator corpus (TikTok)
 
-**Overall Progress:** `code landed, not live` — link/promote/exports/promote-peer in repo; SQL not applied; discovery and Whisper fleet off
-**Revised:** 2026-09-16 (v5 — L3 product is the Warren *content guidelines* artefact, not a four-section essay)
+**Overall Progress:** `code landed, not live` — link/promote/exports/promote-peer in repo; SQL not applied; Whisper fleet off; **no vendor API / research login**
+**Revised:** 2026-09-16 (v5.1 — discovery v1 is the Warren handle path; Step 0 login/vendor spike cancelled)
 **Build:** 2026-09-16 — first implementation on `cursor/doctor-creator-corpus-build-e5a0` (PR #3); link/promote slice on `cursor/creator-corpus-link-promote-e5a0`
 **Owner packages:** `marketing-pipeline` (collect + insight cards), `gtm-pipeline` (link + promote into existing sales), `mcp-server` (layered read), `data-worker` (DocMap cron only), **`creator-deep-worker`** (new Railway service)
 
 ## TLDR
 
-Build a separate, resumable pipeline that discovers a few thousand TikTok doctor-creators and feeds **organised intelligence** to Claude and to sales. Two products, one store:
+Build a separate, resumable pipeline that takes **known TikTok doctor handles** (same path as `@drleewarren`) and feeds **organised intelligence** to Claude and to sales. Two products, one store:
 
 - **Research / marketing OS:** every hydrated doctor gets a structured **insight card** and specialty boards so Claude can reason about thousands without loading thousands of libraries. **Any** scored creator can be deep-dived **one at a time** in MCP. In the background, a dedicated worker fleet runs the same Warren pipeline (catalog → stratified sample → Whisper/OCR/components → sync → **auto-written content guidelines**) for every **good-fit** creator, not a handful. Golden artefact: `docs/examples/drleewarren-content-guidelines.md`.
 - **Customer / sales:** UK private-practice doctors who want to grow are promoted into the **existing GTM sales path** — `upsert_clinic_intelligence` → `upsert_clinic_people` → `refresh_cohort` → `refresh_outreach_contacts` → RocketReach / LinkedIn-find → `list_ready_for_sales`. No parallel lead list, no new CRM board.
@@ -182,6 +182,29 @@ DDL path: every migration is applied manually in the Supabase SQL editor, then v
 
 ---
 
+## What “Step 0” was (locked 2026-09-16)
+
+Step 0 was **not** how we ingest a creator like Lee Warren. It was a proposed **search** spike: find unknown doctors via hashtags and name search.
+
+Warren did not do that. We already had `@drleewarren`. The working path is:
+
+1. Known handle (`import-handles`, or type `--account drleewarren`).
+2. Logged-out `GET https://www.tiktok.com/@handle` for bio / followers (no TikTok login).
+3. **yt-dlp profile listing** (`--playlist-end`) for recent videos — this is what produced the 262-post Warren catalog.
+4. For L3 only: download sample → Whisper + OCR → `content_guidelines_v1`.
+
+The 14 Sep probes showed yt-dlp **cannot** do hashtag discovery (`tiktok:tag` returns empty) and a logged-out browser hits captcha on `/tag/…`. That is why the plan asked for a dedicated research login or a paid vendor. **We do not have either. Those adapters are cancelled.** v1 does not need them.
+
+What still needs a live check (the Warren fetcher at a few dozen handles, not a search gate):
+
+- Profile GET success / block / not-found on a known-handle list.
+- yt-dlp `--playlist-end 23` and `50`: time, null rate, throttle.
+- Then apply SQL and replay `@drleewarren` as the writer golden.
+
+Do **not** block the Warren path on “≥300 unique authors from 20 hashtag seeds.” That gate assumed search we are not doing.
+
+---
+
 ## Critical Decisions
 
 1. **Two lanes, one store.** Every discovered account gets one row in `creator_profiles`. Lane is derived: `customer | research | both | discard | pending_review`.
@@ -192,7 +215,7 @@ DDL path: every migration is applied manually in the Supabase SQL editor, then v
 6. **Promotion requires human review.** Scoring suggests; a person confirms. No auto-writes into outreach.
 7. **The LLM extracts; code decides.** Classifier/insight card returns labelled fields with verbatim quotes. Lane, scores, specialty patterns and good-fit / queue priority are deterministic.
 8. **Missing is null, never zero.** Score components with missing inputs are excluded; `score_coverage` records what was used.
-9. **Discovery is a pluggable adapter behind a gate.** Manual handle import exists from day one.
+9. **Discovery v1 is the Warren path: known handles.** `creators import-handles`. No research TikTok login, no vendor API. Hashtag/keyword search is out of scope until credentials exist. Graph (mentions/stitch) may add handles after the first scored cycle. `seed-practitioners` is GTM identity matching, not TikTok name-search.
 10. **Every command writes counters** to `creator_crawl_runs`. A degraded run exits non-zero.
 11. **A separate CLI channel with a table allowlist.** `python -m marketing_pipeline creators …` never calls `config.activate_account`, never imports `tiktok.sync`, and refuses writes outside `creator_*` (plus the documented GTM promote path in `gtm-pipeline`).
 12. **The follower band (5k–100k) is a customer score component,** never a discovery filter.
@@ -207,8 +230,8 @@ DDL path: every migration is applied manually in the Supabase SQL editor, then v
 ## Architecture
 
 ```text
-             ┌──────────────── DISCOVERY (Step 0-gated adapters) ─────────────────┐
- seeds ──▶   │ browser_session (research login) │ vendor_api │ manual CSV │ graph │ ──▶ creator_discovery_hits
+             ┌──────── DISCOVERY v1 (Warren path; no login / no vendor) ──────────┐
+ handles ──▶ │ manual CSV (`import-handles`) │ graph (after first cycle)         │ ──▶ creator_discovery_hits
              └────────────────────────────────────────────────────────────────────┘
                                    │ dedup on tiktok_user_id
                                    ▼
@@ -430,7 +453,7 @@ Same pattern as `gtm_claim_job_items`: reclaim expired leases; `FOR UPDATE SKIP 
 
 ### Rate limiting, leases, circuit breaker
 
-- Token bucket (Step 0 replaces defaults): `profile_html` 1 / 4–8 s; `listing` 1 / 20–40 s; `browser_discovery` 1 scroll / 3–6 s, ≤40 scrolls per seed.
+- Token bucket (measure on a known-handle list; do not wait for a search adapter): `profile_html` 1 / 4–8 s; `listing` 1 / 20–40 s. No `browser_discovery` in v1.
 - Block signals: HTTP 403/429; HTML without the rehydration blob; `statusCode` not in {0, 10202, 10221}; captcha text; listing with >20% null entries.
 - Circuit breaker: 5 consecutive blocks pause 30 min; a second trip ends the run `status=blocked` and releases claims to `retry`.
 - Budget: `--max-requests` and `--deadline HH:MM`. Worker hard-stops at 02:45 UTC so DocMap's 03:30 TikTok jobs never share a throttled IP.
@@ -442,7 +465,8 @@ Same pattern as `gtm_claim_job_items`: reclaim expired leases; `FOR UPDATE SKIP 
 - `creators seed-import --file seeds.csv`
 - `creators seed-practitioners --specialties obstetrics_gynaecology,fertility,menopause,endometriosis,ivf,dermatology,colorectal,general_surgery,gastroenterology --limit 1500` shells out to `python -m gtm_pipeline creators export-practitioner-seeds` (reads `integrated_practitioners`, **not** `…_with_phin`). `meta` carries `practitioner_id` and `gmc_number`.
 - Starter hashtag CSVs: global MedTok; UK (`ukdoctor`, `nhsdoctor`, `gpuk`, `privatedoctoruk`, `harleystreet`, city+specialty); creator-behaviour (`doctorsoftiktok`, `learnontiktok`); **colorectal / bowel / general surgery** tags for the Simon wedge.
-- Slice budget `--slice-budget global=0.7,uk=0.2,practitioner=0.1`.
+- Slice budget `--slice-budget global=0.7,uk=0.2,practitioner=0.1` is unused in v1 (no hashtag/search adapter).
+- **v1 does not search TikTok.** Hashtag CSVs and practitioner-name searches need a login or vendor we do not have. Keep the lists as a future seed file; do not wire a scraper for them.
 
 ### 1. Discovery
 
@@ -450,10 +474,10 @@ Interface: `DiscoverySource.run(seed, budget) -> Iterator[DiscoveryHit]`.
 
 | Adapter | How | Status |
 |---|---|---|
-| `manual` | `creators import-handles --file handles.csv --slice manual` | Build first |
-| `browser_session` | Playwright persistent context on a **dedicated** research login at `CREATORS_DATA_DIR/.tiktok_research_profile`. Intercept `/api/challenge/item_list/`, `/api/search/user/full/`, `/api/search/general/full/` (same pattern as `studio_listen._attach_response_listener`). Captcha stops that seed | Step 0; local only |
-| `vendor_api` | `CREATORS_VENDOR` + `CREATORS_VENDOR_KEY`; cost per call in run counters | Step 0; worker-safe |
-| `graph` | No network. Mentions and stitch/duet of the top 100 per lane → `graph_mention` seeds | After first scored cycle |
+| `manual` | `creators import-handles --file handles.csv --slice manual` | **v1 source.** Same as Warren: we already know `@handle` |
+| `graph` | No extra TikTok search. Mentions and stitch/duet of ingested videos → new handles | After first scored cycle |
+| `browser_session` | Playwright on a dedicated research login | **Cancelled.** Owner has no research TikTok login. Do not use DocMap's studio profile |
+| `vendor_api` | `CREATORS_VENDOR` + `CREATORS_VENDOR_KEY` | **Cancelled.** Owner has no vendor API |
 
 Dedup on `tiktok_user_id`. Handle changes update `handle_history`. A second seed increments `discovery_count` and never re-queues a profile past `profiled`.
 
@@ -739,23 +763,18 @@ Add:
 
 ---
 
-## Expected funnel (estimates; Step 0 replaces them)
+## Expected funnel (v1 is handle-list sized, not 8–15k from hashtags)
 
-| Stage | Count | Basis |
+The table below was estimated for hashtag + name-search discovery. **It does not apply until a search adapter exists.** v1 volume = the handle CSV we import, plus graph extras from those catalogs.
+
+| Stage | Hashtag-era estimate (parked) | v1 |
 |---|---|---|
-| Discovered | 8–15k | ~60 hashtag seeds × 100–300 authors plus ~1,500 practitioner searches |
-| Profiled | 5–9k | |
-| Screened in / hydrated | 2.5–3.5k | |
-| Insight cards (doctors) | 1.5–3k | **this is the thousands-scale intelligence** |
-| Research lane | 1.5–2.2k | |
-| UK doctors | 200–500 | practitioner-name seeds dominate |
-| Customer lane | 100–300 | |
-| Promoted after review | 50–150 | into **existing** `list_ready_for_sales` |
-| Good-fit (L3 auto queue) | ~800–2,000 | research-eligible ∪ (UK private with growth intent ≥2) |
-| L3 ingested + draft brief (steady) | same as good-fit, over weeks | fleet throughput, not a quota |
-| On-demand deep dives | unbounded | any profiled handle, priority 100 |
+| Discovered | 8–15k from ~60 hashtag seeds + practitioner searches | count of imported handles |
+| Profiled / screened / hydrated / insight cards | 2.5–3.5k / 1.5–3k | whatever screens in from that list |
+| Customer lane / promoted | 100–300 / 50–150 | after human review of GB `customer\|both` |
+| Good-fit L3 queue | ~800–2,000 | good-fit subset of the imported list |
 
-If Step 0 measures throughput below 50% of plan, cap hydrate at 1.5k and prioritise `uk` + `practitioner` slices. If Whisper throughput is <4 auto ingests/day, **do not** drop insight cards; shrink auto sample to 40 or pause OCR. Interactive on-demand stays 200-sample. Auto 80 is the golden-guidelines size, not a compromise.
+If a later search adapter appears, re-measure before using the parked estimates. If Whisper throughput is <4 auto ingests/day, **do not** drop insight cards; shrink auto sample to 40 or pause OCR. Interactive on-demand stays 200-sample. Auto 80 is the golden-guidelines size, not a compromise.
 
 ---
 
@@ -763,13 +782,13 @@ If Step 0 measures throughput below 50% of plan, cap hydrate at 1.5k and priorit
 
 Legend: 🟩 done and live · 🟨 code in repo, not applied/accepted live · 🟥 not started
 
-- [ ] 🟥 **Step 0: Spike and gate (no production code)** — **still the discovery gate; do not turn workers on until this passes**
-  - [ ] 🟥 Dedicated research TikTok login; `browser_session` on 5 hashtags + 20 practitioner-name searches
-  - [ ] 🟥 Price one `vendor_api` on the same seeds
-  - [ ] 🟥 Profile-fetch 200 known handles (success / block / not-found; blob stability over 3 days)
-  - [ ] 🟥 `--playlist-end 23` and `50` on 50 handles: time, null rate, throttle
-  - [ ] 🟥 Write `docs/CREATOR_CORPUS_SPIKE.md`
-  - [ ] 🟥 **Gate:** ≥300 unique authors from 20 seeds, <5% blocked, profile-fetch success ≥90%. Else stop
+- [x] 🟨 **Step 0: Discovery source locked — Warren handle path**
+  - [x] 🟨 **No research TikTok login; no vendor API.** Hashtag / name-search adapters cancelled
+  - [x] 🟨 v1 source is `creators import-handles` (same as `@drleewarren`)
+  - [ ] 🟥 Profile-fetch on a known-handle list (success / block / not-found) — Warren fetcher check, not a search gate
+  - [ ] 🟥 `--playlist-end 23` and `50` on a known-handle list: time, null rate, throttle
+  - [ ] 🟥 Write measured rates into `docs/CREATOR_CORPUS_SPIKE.md` when that check runs
+  - [ ] ~~Gate: ≥300 unique authors from 20 seeds~~ **dropped** (assumed search we are not doing)
 
 - [ ] 🟨 **Step 1: Schema and store**
   - [x] 🟨 `sql/014` (insight cards, specialty stats, peer briefs, caption_hook, saves, `good_fit`, `deep_status`, `creator_deep_jobs`) and `sql/015` — files in repo
@@ -791,11 +810,11 @@ Legend: 🟩 done and live · 🟨 code in repo, not applied/accepted live · �
   - [x] 🟨 `creators eval` + `labels_v1.csv` template (150-row pack still a human task)
   - [ ] 🟥 **Gate:** eval thresholds before Step 6 promotion
 
-- [ ] 🟨 **Step 5: Discovery at volume**
-  - [ ] 🟥 Chosen adapter; slice budget; live discovery still gated on Step 0
-  - [x] 🟨 `seed-practitioners` shells out to `gtm_pipeline creators export-practitioner-seeds` (colorectal/surgery keys included)
+- [ ] 🟨 **Step 5: Volume (imported handles, not hashtag crawl)**
+  - [x] 🟨 Adapter chosen: **manual handles**; login/vendor cancelled
+  - [x] 🟨 `seed-practitioners` shells out to `gtm_pipeline creators export-practitioner-seeds` (identity matching, not TikTok name search)
   - [x] 🟨 `drain` command + deadline 02:45 (default **off** via `SKIP_CREATOR_CORPUS`); drain calls `gtm_pipeline creators link`
-  - [ ] 🟥 Acceptance: ≥2k scored profiles **with insight cards**; every seed has `doctor_yield`; specialty stats n matches scored doctors
+  - [ ] 🟥 Acceptance: imported handles reach scored + insight cards; specialty stats n matches scored doctors (2k was a search-era target; v1 is list-sized)
 
 - [ ] 🟨 **Step 6: GTM plug-in (existing sales path)**
   - [x] 🟨 `gtm_pipeline creators link`; `--recheck` → `gtm_match_reviews` (`force_review`, no auto-merge)
@@ -863,7 +882,7 @@ Legend: 🟩 done and live · 🟨 code in repo, not applied/accepted live · �
 
 ## Decisions needed from the owner
 
-1. **Discovery source after Step 0:** research TikTok login (Playwright), vendor API, or both.
+1. **Discovery source.** **Locked 2026-09-16:** Warren handle path (`import-handles`). No research TikTok login, no vendor API. Hashtag/name search parked.
 2. **Auto OCR budget.** Auto sample is **80** because that is what produced the golden guidelines (62 packets). On-demand = 200 + required OCR. Raising auto to 200 is a cost decision, not a product one. Skipping OCR on auto when over budget is allowed; section 3 must then be labelled inferred.
 3. **Legitimate-interest sign-off** before M6 promotion.
 4. **Whether promotion should also create `clinic_accounts`.** v1 stops at GTM contacts.
@@ -872,6 +891,8 @@ Legend: 🟩 done and live · 🟨 code in repo, not applied/accepted live · �
 
 ## Out of scope (v1)
 
+- Hashtag / keyword / practitioner-name **search** on TikTok (needs a login or vendor we do not have)
+- A dedicated research TikTok login or `CREATORS_VENDOR` adapter
 - Whisper / OCR / full catalogs at L1/L2 (L3 auto is the 80-packet guidelines sample; on-demand is extra packets)
 - Reproducing Warren’s exact ratios on other creators (the *schema* is locked; the numbers are his)
 - Two peer ingests in one process (`activate_account` is global)
