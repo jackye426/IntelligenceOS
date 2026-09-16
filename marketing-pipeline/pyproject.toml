@@ -27,3 +27,7 @@ marketing-pipeline = "marketing_pipeline.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

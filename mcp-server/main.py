@@ -41,11 +41,26 @@ from tools.find_ab_tests import find_ab_tests  # noqa: E402
 from tools.record_ab_learning import record_ab_learning  # noqa: E402
 from tools.get_tiktok_strategy_brief import get_tiktok_strategy_brief  # noqa: E402
 from tools.peer_library import (  # noqa: E402
+    get_deep_job,
     get_peer_comments,
     get_peer_content_batch,
     get_peer_corpus_manifest,
     get_peer_era_summary,
     get_peer_library_brief,
+    get_peer_transfer_brief,
+    list_peer_libraries,
+    request_deep_dive,
+    save_peer_transfer_brief,
+)
+from tools.creator_corpus import (  # noqa: E402
+    compare_creators,
+    get_creator_corpus_summary,
+    get_creator_profile,
+    get_specialty_board,
+    get_specialty_playbook,
+    list_creator_seeds,
+    list_creators,
+    review_creator,
 )
 from tools.get_instagram_post import get_instagram_post  # noqa: E402
 from tools.get_instagram_cohort import get_instagram_cohort  # noqa: E402
@@ -230,6 +245,101 @@ def get_tiktok_strategy_brief_tool():
 
 
 # ---------------------------------------------------------------------------
+# Doctor-creator corpus (L1/L2 boards — thousands, no transcripts)
+# ---------------------------------------------------------------------------
+# Ritual A: summary → specialty board → one page of list_creators → compare ≤8
+# → specialty playbook. Open at most one L3 library per session.
+
+
+@mcp.tool()
+def get_creator_corpus_summary_tool():
+    """Session start for the doctor-creator corpus. Counts by stage/lane/specialty/deep_status, queue depth, recent run counters. No captions."""
+    return get_creator_corpus_summary()
+
+
+@mcp.tool()
+def get_specialty_board_tool(specialty_key: str):
+    """Marketing analysis start for a specialty. Histograms + exemplar HANDLES only, not cards."""
+    return get_specialty_board(specialty_key)
+
+
+@mcp.tool()
+def list_creators_tool(
+    lane: str | None = None,
+    geo: str | None = None,
+    specialty_key: str | None = None,
+    min_score: float | None = None,
+    min_followers: int | None = None,
+    max_followers: int | None = None,
+    review_status: str | None = None,
+    deep_status: str | None = None,
+    good_fit: bool | None = None,
+    order: str = "research_score",
+    cursor: int = 0,
+    limit: int = 50,
+):
+    """Paginated lean creator_corpus_current rows. No captions, no insight cards. limit cap 100."""
+    return list_creators(
+        lane=lane,
+        geo=geo,
+        specialty_key=specialty_key,
+        min_score=min_score,
+        min_followers=min_followers,
+        max_followers=max_followers,
+        review_status=review_status,
+        deep_status=deep_status,
+        good_fit=good_fit,
+        order=order,
+        cursor=cursor,
+        limit=limit,
+    )
+
+
+@mcp.tool()
+def get_creator_profile_tool(handle: str):
+    """One creator: profile facts, insight card with quotes, ≤8 caption_hooks, scores, links, deep_status."""
+    return get_creator_profile(handle)
+
+
+@mcp.tool()
+def compare_creators_tool(handles: list[str]):
+    """Side-by-side rollups for at most 8 handles. No transcripts."""
+    return compare_creators(handles)
+
+
+@mcp.tool()
+def get_specialty_playbook_tool(specialty_key: str):
+    """Assign work to a signed doctor: specialty stats + cited L3 guideline sections (not raw transcripts)."""
+    return get_specialty_playbook(specialty_key)
+
+
+@mcp.tool()
+def list_creator_seeds_tool(order: str = "doctor_yield", cursor: int = 0, limit: int = 50):
+    """Which discovery searches to keep. Yield table, no profile dumps."""
+    return list_creator_seeds(order=order, cursor=cursor, limit=limit)
+
+
+@mcp.tool()
+def review_creator_tool(
+    handle: str,
+    review_status: str | None = None,
+    review_lane_override: str | None = None,
+    review_note: str | None = None,
+    do_not_contact: bool | None = None,
+    confirmed: bool = False,
+):
+    """Human review write. Preview unless confirmed=true."""
+    return review_creator(
+        handle,
+        review_status=review_status,
+        review_lane_override=review_lane_override,
+        review_note=review_note,
+        do_not_contact=do_not_contact,
+        confirmed=confirmed,
+    )
+
+
+# ---------------------------------------------------------------------------
 # Peer libraries (observed creators, e.g. drleewarren)
 # ---------------------------------------------------------------------------
 # Isolation: these require an explicit peer account and refuse docmap. The
@@ -329,6 +439,46 @@ def get_peer_comments_tool(account: str, video_ids: list[str]):
     a peer library comments are usually not fetched at all.
     """
     return get_peer_comments(account, video_ids)
+
+
+@mcp.tool()
+def request_deep_dive_tool(handle: str, quality: str = "on_demand", confirmed: bool = False):
+    """Jump the L3 queue for any profiled handle. Preview unless confirmed=true. Priority 100."""
+    return request_deep_dive(handle, quality=quality, confirmed=confirmed)
+
+
+@mcp.tool()
+def get_deep_job_tool(handle: str | None = None, job_id: str | None = None):
+    """Ingest/brief status, coverage, ETA for one handle or job_id."""
+    return get_deep_job(handle=handle, job_id=job_id)
+
+
+@mcp.tool()
+def list_peer_libraries_tool(
+    specialty_key: str | None = None,
+    deep_status: str | None = None,
+    cursor: int = 0,
+    limit: int = 50,
+):
+    """Index of L3 libraries: handle, specialty, coverage, brief_status. No posts."""
+    return list_peer_libraries(
+        specialty_key=specialty_key,
+        deep_status=deep_status,
+        cursor=cursor,
+        limit=limit,
+    )
+
+
+@mcp.tool()
+def get_peer_transfer_brief_tool(account: str):
+    """Stored content_guidelines_v1 for one account, or found=false with ingest_status."""
+    return get_peer_transfer_brief(account)
+
+
+@mcp.tool()
+def save_peer_transfer_brief_tool(account: str, artefact: dict, confirmed: bool = False):
+    """Human confirm/overwrite of a draft brief. Schema must be content_guidelines_v1."""
+    return save_peer_transfer_brief(account, artefact, confirmed=confirmed)
 
 
 @mcp.tool()
@@ -934,6 +1084,7 @@ async def health(_request):
             "status": "ok",
             "service": "docmap-mcp",
             "peer_library_surface": "v2",
+            "creator_corpus_surface": "v1",
             "account_scoping": "required_fail_closed",
         }
     )

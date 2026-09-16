@@ -51,11 +51,7 @@ marketing-pipeline/tiktok/data/analysis/tiktok_display_tokens.json
 marketing-pipeline/instagram/data/session-*
 marketing-pipeline/instagram/data/raw/
 
-# Peer libraries (observed creators). A third party's content and bulk derived
-# artefacts stay local — they live in Supabase and regenerate from the catalog
-# plus the recorded seed. Only the small audit trail is tracked: the catalog
-# snapshot, the profile capture and sample_plan.json, which together make a
-# deep sample reproducible and reviewable.
+marketing-pipeline/creators/data/
 marketing-pipeline/peers/*/media/
 marketing-pipeline/peers/*/ocr/
 marketing-pipeline/peers/*/yt_meta/

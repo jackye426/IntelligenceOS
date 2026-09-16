@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 from datetime import date, timedelta
 
 import pytest
@@ -65,6 +66,10 @@ def test_peer_tools_refuse_docmap():
         lambda: pl.get_peer_corpus_manifest("docmap"),
         lambda: pl.get_peer_content_batch("docmap", ["v001"]),
         lambda: pl.get_peer_comments("docmap", ["v001"]),
+        lambda: pl.request_deep_dive("docmap", confirmed=True),
+        lambda: pl.get_deep_job(handle="docmap"),
+        lambda: pl.get_peer_transfer_brief("docmap"),
+        lambda: pl.save_peer_transfer_brief("docmap", {"schema_version": "content_guidelines_v1"}, confirmed=False),
     ):
         with pytest.raises(pl.PeerAccountError, match="owned library"):
             call()
@@ -498,3 +503,85 @@ def test_normal_catalog_is_not_flagged(peer):
     manifest = pl.get_peer_corpus_manifest("drleewarren", limit=5)
     assert manifest["corpus_truncated"] is False
     assert manifest["corpus_truncation_warning"] is None
+
+
+def test_isolation_audit_does_not_load_all_peers(monkeypatch):
+    seen: list[str] = []
+    rows = _rows()
+
+    def fake_all(account):
+        seen.append(account)
+        if account == "docmap":
+            return [
+                {
+                    "platform_post_id": "doc-1",
+                    "post_url": "https://www.tiktok.com/@docmap/video/doc-1",
+                    "posted_at": "2022-01-01T00:00:00+00:00",
+                    "metrics": {"views": 10},
+                    "metadata": {},
+                }
+            ]
+        return rows
+
+    monkeypatch.setattr(pl, "_all_rows", fake_all)
+    monkeypatch.setattr(pl, "log_tool_call", lambda **kwargs: None)
+    pl.get_peer_library_brief("drleewarren")
+    assert set(seen) <= {"drleewarren", "docmap"}
+    assert "drjane" not in seen
+    assert seen.count("drleewarren") >= 1
+
+
+def test_request_deep_dive_requires_confirmed(monkeypatch):
+    from tools.corpus_store import MemoryCorpus, set_corpus
+
+    store = MemoryCorpus()
+    set_corpus(store)
+    monkeypatch.setattr(pl, "log_tool_call", lambda **kwargs: None)
+    store.insert(
+        "creator_profiles",
+        {
+            "tiktok_user_id": "1",
+            "handle": "drjane",
+            "stage": "scored",
+            "deep_status": "none",
+        },
+    )
+    preview = pl.request_deep_dive("drjane", confirmed=False)
+    assert preview["preview"] is True
+    assert store.count("creator_deep_job_items") == 0
+    written = pl.request_deep_dive("drjane", confirmed=True)
+    assert written["preview"] is False
+    assert written["priority"] == 100
+    items = store.list("creator_deep_job_items")
+    assert len(items) == 1
+    assert items[0]["priority"] == 100
+    set_corpus(None)
+
+
+def test_list_peer_libraries_has_no_post_payload(monkeypatch):
+    from tools.corpus_store import MemoryCorpus, set_corpus
+
+    store = MemoryCorpus()
+    set_corpus(store)
+    store.insert(
+        "creator_profiles",
+        {
+            "tiktok_user_id": "1",
+            "handle": "drjane",
+            "stage": "scored",
+            "specialty_key": "colorectal",
+            "deep_status": "queued",
+            "video_count": 40,
+            "good_fit": True,
+        },
+    )
+    out = pl.list_peer_libraries(specialty_key="colorectal")
+    assert out["returned_rows"] == 1
+    lib = out["libraries"][0]
+    assert lib["handle"] == "drjane"
+    assert "posts" not in lib
+    assert "caption" not in lib
+    dumped = json.dumps(out)
+    assert '"posts"' not in dumped
+    assert "caption" not in dumped
+    set_corpus(None)

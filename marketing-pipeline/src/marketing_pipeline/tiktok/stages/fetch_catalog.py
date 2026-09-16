@@ -30,6 +30,7 @@ def fetch_playlist(
     cookies_from_browser: str | None = None,
     handle: str | None = None,
     attempts: int = 3,
+    playlist_end: int | None = None,
 ) -> dict:
     """List a profile's videos via yt-dlp.
 
@@ -46,6 +47,8 @@ def fetch_playlist(
         "--no-warnings",
         config.profile_url(handle),
     ]
+    if playlist_end is not None:
+        cmd.extend(["--playlist-end", str(playlist_end)])
     if cookies_from_browser:
         cmd.extend(["--cookies-from-browser", cookies_from_browser])
 

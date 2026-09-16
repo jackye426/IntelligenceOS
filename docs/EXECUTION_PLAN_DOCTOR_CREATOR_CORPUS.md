@@ -1,7 +1,8 @@
 # Feature Implementation Plan — Doctor-creator corpus (TikTok)
 
-**Overall Progress:** `0%`
+**Overall Progress:** `code landed, not live` — schema/CLI/MCP/GTM-plug stubs in repo; SQL not applied; discovery and Whisper fleet off
 **Revised:** 2026-09-16 (v5 — L3 product is the Warren *content guidelines* artefact, not a four-section essay)
+**Build:** 2026-09-16 — first implementation on `cursor/doctor-creator-corpus-build-e5a0` (PR #3)
 **Owner packages:** `marketing-pipeline` (collect + insight cards), `gtm-pipeline` (link + promote into existing sales), `mcp-server` (layered read), `data-worker` (DocMap cron only), **`creator-deep-worker`** (new Railway service)
 
 ## TLDR
@@ -760,7 +761,9 @@ If Step 0 measures throughput below 50% of plan, cap hydrate at 1.5k and priorit
 
 ## Tasks
 
-- [ ] 🟥 **Step 0: Spike and gate (no production code)**
+Legend: 🟩 done and live · 🟨 code in repo, not applied/accepted live · 🟥 not started
+
+- [ ] 🟥 **Step 0: Spike and gate (no production code)** — **still the discovery gate; do not turn workers on until this passes**
   - [ ] 🟥 Dedicated research TikTok login; `browser_session` on 5 hashtags + 20 practitioner-name searches
   - [ ] 🟥 Price one `vendor_api` on the same seeds
   - [ ] 🟥 Profile-fetch 200 known handles (success / block / not-found; blob stability over 3 days)
@@ -768,61 +771,62 @@ If Step 0 measures throughput below 50% of plan, cap hydrate at 1.5k and priorit
   - [ ] 🟥 Write `docs/CREATOR_CORPUS_SPIKE.md`
   - [ ] 🟥 **Gate:** ≥300 unique authors from 20 seeds, <5% blocked, profile-fetch success ≥90%. Else stop
 
-- [ ] 🟥 **Step 1: Schema and store**
-  - [ ] 🟥 `sql/014` (insight cards, specialty stats, peer briefs, caption_hook, saves, `good_fit`, `deep_status`, `creator_deep_jobs`) and `sql/015`
-  - [ ] 🟥 Apply in SQL editor; extend `scripts/verify-supabase-schema.py`
-  - [ ] 🟥 `creators/` paths, store allowlist, runs, ratelimit, CLI channel, `creators status`
-  - [ ] 🟥 Isolation tests
+- [ ] 🟨 **Step 1: Schema and store**
+  - [x] 🟨 `sql/014` (insight cards, specialty stats, peer briefs, caption_hook, saves, `good_fit`, `deep_status`, `creator_deep_jobs`) and `sql/015` — files in repo
+  - [ ] 🟥 Apply in SQL editor; then `scripts/verify-supabase-schema.py` (probes exist; live apply is still manual)
+  - [x] 🟨 `creators/` paths, store allowlist, runs, ratelimit, CLI channel, `creators status`
+  - [x] 🟨 Isolation tests (unit; 29 passed)
 
-- [ ] 🟥 **Step 2: Manual intake, profile fetch, screen**
-  - [ ] 🟥 `import-handles`, `seed-import`, profile fixtures, bio_parse, screen
+- [ ] 🟨 **Step 2: Manual intake, profile fetch, screen**
+  - [x] 🟨 `import-handles`, `seed-import`, profile fixtures, bio_parse, screen
   - [ ] 🟥 Acceptance: 200 imported handles reach terminal or `screened`; counters sum to 200
 
-- [ ] 🟥 **Step 3: Hydrate**
-  - [ ] 🟥 `playlist_end` + back-compat test; caption_hook; saves/shares rollups; partial listing behaviour
+- [ ] 🟨 **Step 3: Hydrate**
+  - [x] 🟨 `playlist_end` + back-compat test; caption_hook; saves/shares rollups; partial listing behaviour
   - [ ] 🟥 Acceptance: posts_30d and saves/1k spot-checked on 10 live profiles
 
-- [ ] 🟥 **Step 4: Insight cards, score, specialty stats, eval**
-  - [ ] 🟥 classify_v1 + insight fields, quote validation, cache
-  - [ ] 🟥 score.py (saves in research; lane table); `rebuild-specialty-stats`
+- [ ] 🟨 **Step 4: Insight cards, score, specialty stats, eval**
+  - [x] 🟨 classify fields, quote validation, cache key — **heuristic card only; LLM `classify_v1` not wired**
+  - [x] 🟨 score.py (saves in research; lane table); `rebuild-specialty-stats`
   - [ ] 🟥 `labels_v1.csv` (150); `creators eval`
   - [ ] 🟥 **Gate:** eval thresholds before Step 6 promotion
 
 - [ ] 🟥 **Step 5: Discovery at volume**
-  - [ ] 🟥 Chosen adapter; `seed-practitioners` with colorectal/surgery specialties; slice budget; `drain`
+  - [ ] 🟥 Chosen adapter; `seed-practitioners` with colorectal/surgery specialties; slice budget
+  - [x] 🟨 `drain` command + deadline 02:45 (default **off** via `SKIP_CREATOR_CORPUS`)
   - [ ] 🟥 Acceptance: ≥2k scored profiles **with insight cards**; every seed has `doctor_yield`; specialty stats n matches scored doctors
 
-- [ ] 🟥 **Step 6: GTM plug-in (existing sales path)**
-  - [ ] 🟥 `creators/link.py`; `--recheck` → `gtm_match_reviews`
+- [ ] 🟨 **Step 6: GTM plug-in (existing sales path)**
+  - [ ] 🟥 `gtm_pipeline creators link`; `--recheck` → `gtm_match_reviews`
   - [ ] 🟥 Review CSV
   - [ ] 🟥 `promote.py` calling `upsert_clinic_intelligence` / `upsert_clinic_people`
-  - [ ] 🟥 `refresh_cohort` `source=creator_corpus` branch
-  - [ ] 🟥 `infer_email_source` `tiktok_bio`; `refresh_outreach_contacts(..., cqc_named_only=False)`
-  - [ ] 🟥 `list_outreach_contacts` / `list_ready_for_sales` select `evidence` + clinic website/specialties/source_creator
-  - [ ] 🟥 Specialty pattern keys for colorectal / general_surgery / gastroenterology
+  - [x] 🟨 `refresh_cohort` `source=creator_corpus` branch
+  - [x] 🟨 `infer_email_source` `tiktok_bio`; `--all-people` already maps to `cqc_named_only=False`
+  - [x] 🟨 `list_outreach_contacts` / `list_ready_for_sales` select `evidence` + clinic website/specialties/source_creator
+  - [x] 🟨 Specialty pattern keys for colorectal / general_surgery / gastroenterology
   - [ ] 🟥 Governance sign-off
   - [ ] 🟥 Acceptance: 20 confirmed customers promote idempotently; `gtm-pipeline contacts list --ready-sales` shows TikTok angle in `evidence`; `segments refresh` keeps them; RocketReach `--cohort tiktok_doctor_creators` accepts them
 
-- [ ] 🟥 **Step 7: MCP corpus + playbook (the thousands feed)**
-  - [ ] 🟥 `tools/creator_corpus.py`, instructions rituals A/C, `/health` field, menu bullets
+- [ ] 🟨 **Step 7: MCP corpus + playbook (the thousands feed)**
+  - [x] 🟨 `tools/creator_corpus.py`, instructions rituals A/B/C, `/health` field, menu bullets
   - [ ] 🟥 Exports + data dictionary
-  - [ ] 🟥 Tests: pagination, compare cap 8, playbook has no transcripts, `get_tiktok_*` has no creator handles
+  - [x] 🟨 Tests: pagination, compare cap 8, playbook has no transcripts, `get_tiktok_*` default remains docmap
   - [ ] 🟥 Acceptance: one Claude session does summary → specialty board → compare 6 → playbook, with no SQL and no `get_peer_*`
 
 - [ ] 🟥 **Step 8: Graph expansion**
   - [ ] 🟥 Mentions/stitch of top 100 per lane, depth 1
   - [ ] 🟥 Acceptance: new handles flow through 2–6; graph seeds report `doctor_yield`
 
-- [ ] 🟥 **Step 9: Schedule, drain, alerts**
-  - [ ] 🟥 Drain + Sunday refresh (default off); `creators purge`; verify-schema on boot
+- [ ] 🟨 **Step 9: Schedule, drain, alerts**
+  - [x] 🟨 Drain + Sunday refresh **scheduled, default off**; no `creators purge` yet; verify-schema probes exist, **not run on worker boot**
   - [ ] 🟥 Acceptance: 7 nights with no DocMap TikTok failure from our throttling; snapshots accrue
 
-- [ ] 🟥 **Step 10: Deep fleet + auto briefs (production L3)**
-  - [ ] 🟥 `creator_deep_jobs` + claim RPC (stale 4 h); `enqueue-deep`; good-fit predicate tests
+- [ ] 🟨 **Step 10: Deep fleet + auto briefs (production L3)**
+  - [x] 🟨 `creator_deep_jobs` + claim RPC (stale 4 h); `enqueue-deep`; good-fit predicate tests
   - [ ] 🟥 `promote-peer` as **subprocess**, `--skip-embed`, media delete; coverage counters
-  - [ ] 🟥 `write-brief` coverage gate + `content_guidelines_v1` writer (deterministic tables, then in-process `get_peer_*` functions)
-  - [ ] 🟥 `creator-deep-worker` service, listing pause 02:50–04:15, `/health` queue metrics
-  - [ ] 🟥 `request_deep_dive` / `get_deep_job`; `list_peer_libraries`; playbook cites guidelines sections
+  - [x] 🟨 `write-brief` coverage gate + `content_guidelines_v1` schema/tables (deterministic); **LLM section writer not wired**; packets not yet assembled via in-process `get_peer_*`
+  - [x] 🟨 `creator-deep-worker` stub: `/health`, listing pause 02:50–04:15, `SKIP_CREATOR_DEEP` default true — **does not claim or ingest yet**
+  - [x] 🟨 `request_deep_dive` / `get_deep_job`; `list_peer_libraries`; playbook cites guidelines sections
   - [ ] 🟥 Seed `@drleewarren` from `docs/examples/drleewarren-content-guidelines.md` as `confirmed` (`source=mcp_session`) so playbooks can cite it immediately
   - [ ] 🟥 Replay `@drleewarren` as the writer golden: yield ≥ 0.70, isolation audit pass, draft validates `content_guidelines_v1` **without** a Claude session (does not have to reproduce the exact Warren numbers)
   - [ ] 🟥 Thin `list_gtm_ready_for_sales` MCP wrap
