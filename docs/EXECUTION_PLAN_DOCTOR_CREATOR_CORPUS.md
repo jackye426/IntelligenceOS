@@ -1,8 +1,8 @@
 # Feature Implementation Plan — Doctor-creator corpus (TikTok)
 
-**Overall Progress:** `code landed, not live` — schema/CLI/MCP/GTM-plug stubs in repo; SQL not applied; discovery and Whisper fleet off
+**Overall Progress:** `code landed, not live` — link/promote/exports/promote-peer in repo; SQL not applied; discovery and Whisper fleet off
 **Revised:** 2026-09-16 (v5 — L3 product is the Warren *content guidelines* artefact, not a four-section essay)
-**Build:** 2026-09-16 — first implementation on `cursor/doctor-creator-corpus-build-e5a0` (PR #3)
+**Build:** 2026-09-16 — first implementation on `cursor/doctor-creator-corpus-build-e5a0` (PR #3); link/promote slice on `cursor/creator-corpus-link-promote-e5a0`
 **Owner packages:** `marketing-pipeline` (collect + insight cards), `gtm-pipeline` (link + promote into existing sales), `mcp-server` (layered read), `data-worker` (DocMap cron only), **`creator-deep-worker`** (new Railway service)
 
 ## TLDR
@@ -786,30 +786,31 @@ Legend: 🟩 done and live · 🟨 code in repo, not applied/accepted live · �
   - [ ] 🟥 Acceptance: posts_30d and saves/1k spot-checked on 10 live profiles
 
 - [ ] 🟨 **Step 4: Insight cards, score, specialty stats, eval**
-  - [x] 🟨 classify fields, quote validation, cache key — **heuristic card only; LLM `classify_v1` not wired**
+  - [x] 🟨 classify fields, quote validation, cache key — LLM `classify_v1` wired with heuristic fallback
   - [x] 🟨 score.py (saves in research; lane table); `rebuild-specialty-stats`
-  - [ ] 🟥 `labels_v1.csv` (150); `creators eval`
+  - [x] 🟨 `creators eval` + `labels_v1.csv` template (150-row pack still a human task)
   - [ ] 🟥 **Gate:** eval thresholds before Step 6 promotion
 
-- [ ] 🟥 **Step 5: Discovery at volume**
-  - [ ] 🟥 Chosen adapter; `seed-practitioners` with colorectal/surgery specialties; slice budget
-  - [x] 🟨 `drain` command + deadline 02:45 (default **off** via `SKIP_CREATOR_CORPUS`)
+- [ ] 🟨 **Step 5: Discovery at volume**
+  - [ ] 🟥 Chosen adapter; slice budget; live discovery still gated on Step 0
+  - [x] 🟨 `seed-practitioners` shells out to `gtm_pipeline creators export-practitioner-seeds` (colorectal/surgery keys included)
+  - [x] 🟨 `drain` command + deadline 02:45 (default **off** via `SKIP_CREATOR_CORPUS`); drain calls `gtm_pipeline creators link`
   - [ ] 🟥 Acceptance: ≥2k scored profiles **with insight cards**; every seed has `doctor_yield`; specialty stats n matches scored doctors
 
 - [ ] 🟨 **Step 6: GTM plug-in (existing sales path)**
-  - [ ] 🟥 `gtm_pipeline creators link`; `--recheck` → `gtm_match_reviews`
-  - [ ] 🟥 Review CSV
-  - [ ] 🟥 `promote.py` calling `upsert_clinic_intelligence` / `upsert_clinic_people`
+  - [x] 🟨 `gtm_pipeline creators link`; `--recheck` → `gtm_match_reviews` (`force_review`, no auto-merge)
+  - [x] 🟨 Review CSV (`creators review-export` / `review-import`)
+  - [x] 🟨 `promote.py` calling `upsert_clinic_intelligence` / `upsert_clinic_people` (no `clinic_accounts`)
   - [x] 🟨 `refresh_cohort` `source=creator_corpus` branch
   - [x] 🟨 `infer_email_source` `tiktok_bio`; `--all-people` already maps to `cqc_named_only=False`
-  - [x] 🟨 `list_outreach_contacts` / `list_ready_for_sales` select `evidence` + clinic website/specialties/source_creator
-  - [x] 🟨 Specialty pattern keys for colorectal / general_surgery / gastroenterology
+  - [x] 🟨 `list_outreach_contacts` / `list_ready_for_sales` select `evidence` + clinic website/specialties/source_creator; optional `--cohort`
+  - [x] 🟨 Specialty pattern keys for colorectal / general_surgery / gastroenterology; `export-specialty-map`
   - [ ] 🟥 Governance sign-off
   - [ ] 🟥 Acceptance: 20 confirmed customers promote idempotently; `gtm-pipeline contacts list --ready-sales` shows TikTok angle in `evidence`; `segments refresh` keeps them; RocketReach `--cohort tiktok_doctor_creators` accepts them
 
 - [ ] 🟨 **Step 7: MCP corpus + playbook (the thousands feed)**
   - [x] 🟨 `tools/creator_corpus.py`, instructions rituals A/B/C, `/health` field, menu bullets
-  - [ ] 🟥 Exports + data dictionary
+  - [x] 🟨 Exports + `docs/CREATOR_CORPUS_DATA_DICTIONARY.md`
   - [x] 🟨 Tests: pagination, compare cap 8, playbook has no transcripts, `get_tiktok_*` default remains docmap
   - [ ] 🟥 Acceptance: one Claude session does summary → specialty board → compare 6 → playbook, with no SQL and no `get_peer_*`
 
@@ -818,18 +819,18 @@ Legend: 🟩 done and live · 🟨 code in repo, not applied/accepted live · �
   - [ ] 🟥 Acceptance: new handles flow through 2–6; graph seeds report `doctor_yield`
 
 - [ ] 🟨 **Step 9: Schedule, drain, alerts**
-  - [x] 🟨 Drain + Sunday refresh **scheduled, default off**; no `creators purge` yet; verify-schema probes exist, **not run on worker boot**
+  - [x] 🟨 Drain + Sunday refresh **scheduled, default off**; `creators purge`; verify-schema on worker boot **when skip is false**
   - [ ] 🟥 Acceptance: 7 nights with no DocMap TikTok failure from our throttling; snapshots accrue
 
 - [ ] 🟨 **Step 10: Deep fleet + auto briefs (production L3)**
   - [x] 🟨 `creator_deep_jobs` + claim RPC (stale 4 h); `enqueue-deep`; good-fit predicate tests
-  - [ ] 🟥 `promote-peer` as **subprocess**, `--skip-embed`, media delete; coverage counters
+  - [x] 🟨 `promote-peer` as **subprocess**, `--skip-embed`, media delete; coverage counters
   - [x] 🟨 `write-brief` coverage gate + `content_guidelines_v1` schema/tables (deterministic); **LLM section writer not wired**; packets not yet assembled via in-process `get_peer_*`
-  - [x] 🟨 `creator-deep-worker` stub: `/health`, listing pause 02:50–04:15, `SKIP_CREATOR_DEEP` default true — **does not claim or ingest yet**
+  - [x] 🟨 `creator-deep-worker` claims via RPC (stale 4 h), forks `promote-peer`; listing pause 02:50–04:15; `SKIP_CREATOR_DEEP` default true
   - [x] 🟨 `request_deep_dive` / `get_deep_job`; `list_peer_libraries`; playbook cites guidelines sections
-  - [ ] 🟥 Seed `@drleewarren` from `docs/examples/drleewarren-content-guidelines.md` as `confirmed` (`source=mcp_session`) so playbooks can cite it immediately
+  - [x] 🟨 Seed `@drleewarren` from `docs/examples/drleewarren-content-guidelines.md` as `confirmed` (`source=mcp_session`) — CLI `seed-warren-brief`; not live until SQL applied
   - [ ] 🟥 Replay `@drleewarren` as the writer golden: yield ≥ 0.70, isolation audit pass, draft validates `content_guidelines_v1` **without** a Claude session (does not have to reproduce the exact Warren numbers)
-  - [ ] 🟥 Thin `list_gtm_ready_for_sales` MCP wrap
+  - [x] 🟨 Thin `list_gtm_ready_for_sales` / `get_gtm_contact` MCP wrap
   - [ ] 🟥 Acceptance: enqueue 20 good-fits; worker completes ≥3 ingest+guidelines with DocMap cron green; `request_deep_dive` on a non-queued handle returns priority 100 and is claimed next; a second MCP session loads the draft guidelines **without** `get_peer_content_batch`; `document_embeddings` has no `peer:*` rows from the fleet
 
 ---

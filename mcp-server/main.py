@@ -62,6 +62,7 @@ from tools.creator_corpus import (  # noqa: E402
     list_creators,
     review_creator,
 )
+from tools.gtm_sales import get_gtm_contact, list_gtm_ready_for_sales  # noqa: E402
 from tools.get_instagram_post import get_instagram_post  # noqa: E402
 from tools.get_instagram_cohort import get_instagram_cohort  # noqa: E402
 from tools.get_instagram_marketing_insights import get_instagram_marketing_insights  # noqa: E402
@@ -337,6 +338,18 @@ def review_creator_tool(
         do_not_contact=do_not_contact,
         confirmed=confirmed,
     )
+
+
+@mcp.tool()
+def list_gtm_ready_for_sales_tool(cohort: str | None = None, limit: int = 50):
+    """GTM ready-for-sales handoff. Include TikTok angle in evidence. Cap 100. Never drafts mail."""
+    return list_gtm_ready_for_sales(cohort=cohort, limit=limit)
+
+
+@mcp.tool()
+def get_gtm_contact_tool(clinic_intelligence_id: str):
+    """One GTM clinic + PIC contact + TikTok creator angle. No draft."""
+    return get_gtm_contact(clinic_intelligence_id)
 
 
 # ---------------------------------------------------------------------------
