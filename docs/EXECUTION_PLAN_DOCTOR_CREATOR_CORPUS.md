@@ -1,6 +1,6 @@
 # Feature Implementation Plan — Doctor-creator corpus (TikTok)
 
-**Overall Progress:** `code landed, not live` — link/promote/exports/promote-peer in repo; SQL not applied; Whisper fleet off; **no vendor API / research login**
+**Overall Progress:** `schema applied, not live` — owner ran `sql/014` + `sql/015` (2026-09-16); `verify-supabase-schema.py` not yet run from this agent (no `SUPABASE_*` here); Whisper fleet off; **no vendor API / research login**
 **Revised:** 2026-09-16 (v5.1 — discovery v1 is the Warren handle path; Step 0 login/vendor spike cancelled)
 **Build:** 2026-09-16 — first implementation on `cursor/doctor-creator-corpus-build-e5a0` (PR #3); link/promote slice on `cursor/creator-corpus-link-promote-e5a0`
 **Owner packages:** `marketing-pipeline` (collect + insight cards), `gtm-pipeline` (link + promote into existing sales), `mcp-server` (layered read), `data-worker` (DocMap cron only), **`creator-deep-worker`** (new Railway service)
@@ -792,7 +792,8 @@ Legend: 🟩 done and live · 🟨 code in repo, not applied/accepted live · �
 
 - [ ] 🟨 **Step 1: Schema and store**
   - [x] 🟨 `sql/014` (insight cards, specialty stats, peer briefs, caption_hook, saves, `good_fit`, `deep_status`, `creator_deep_jobs`) and `sql/015` — files in repo
-  - [ ] 🟥 Apply in SQL editor; then `scripts/verify-supabase-schema.py` (probes exist; live apply is still manual)
+  - [x] 🟨 Apply in SQL editor — **owner reported applied 2026-09-16**
+  - [ ] 🟥 `scripts/verify-supabase-schema.py` from a machine with `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` (this cloud agent has neither; MCP auth timed out)
   - [x] 🟨 `creators/` paths, store allowlist, runs, ratelimit, CLI channel, `creators status`
   - [x] 🟨 Isolation tests (unit; 29 passed)
 
@@ -847,7 +848,7 @@ Legend: 🟩 done and live · 🟨 code in repo, not applied/accepted live · �
   - [x] 🟨 `write-brief` coverage gate + `content_guidelines_v1` schema/tables (deterministic); **LLM section writer not wired**; packets not yet assembled via in-process `get_peer_*`
   - [x] 🟨 `creator-deep-worker` claims via RPC (stale 4 h), forks `promote-peer`; listing pause 02:50–04:15; `SKIP_CREATOR_DEEP` default true
   - [x] 🟨 `request_deep_dive` / `get_deep_job`; `list_peer_libraries`; playbook cites guidelines sections
-  - [x] 🟨 Seed `@drleewarren` from `docs/examples/drleewarren-content-guidelines.md` as `confirmed` (`source=mcp_session`) — CLI `seed-warren-brief`; not live until SQL applied
+  - [x] 🟨 Seed `@drleewarren` from `docs/examples/drleewarren-content-guidelines.md` as `confirmed` (`source=mcp_session`) — CLI `seed-warren-brief` ready; live insert still needs `SUPABASE_*` in the runner
   - [ ] 🟥 Replay `@drleewarren` as the writer golden: yield ≥ 0.70, isolation audit pass, draft validates `content_guidelines_v1` **without** a Claude session (does not have to reproduce the exact Warren numbers)
   - [x] 🟨 Thin `list_gtm_ready_for_sales` / `get_gtm_contact` MCP wrap
   - [ ] 🟥 Acceptance: enqueue 20 good-fits; worker completes ≥3 ingest+guidelines with DocMap cron green; `request_deep_dive` on a non-queued handle returns priority 100 and is claimed next; a second MCP session loads the draft guidelines **without** `get_peer_content_batch`; `document_embeddings` has no `peer:*` rows from the fleet
