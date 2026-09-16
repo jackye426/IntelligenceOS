@@ -1,7 +1,7 @@
 # Feature Implementation Plan — Doctor-creator corpus (TikTok)
 
 **Overall Progress:** `0%`
-**Revised:** 2026-09-16 (v4 — L3 fleet + production bar; supersedes v3 MCP/GTM revision)
+**Revised:** 2026-09-16 (v4.1 — locks “analyze like Lee Warren”; same ops bar as v4)
 **Owner packages:** `marketing-pipeline` (collect + insight cards), `gtm-pipeline` (link + promote into existing sales), `mcp-server` (layered read), `data-worker` (DocMap cron only), **`creator-deep-worker`** (new Railway service)
 
 ## TLDR
@@ -72,6 +72,39 @@ This is still cheaper than 1,500 interactive Claude rituals, and it is the only 
 
 ---
 
+## Analyze like Lee Warren (locked)
+
+The production bar and the build sequence (Steps 0–10) are in **this** document. The *meaning* of the analysis was locked in `docs/EXECUTION_PLAN_PEER_LIBRARY.md` (2026-09-10) and is reused here as L3. We are **not** copying Warren’s voice, faith frame, or neurosurgery stories. We are reverse-engineering a **clinician-creator operating system** from the posts themselves.
+
+That matches the 11 Sep 2026 DocMap × Simon marketing call: Warren is the research engine (opening hooks, transcripts, cadence, topics, performance), then we assign portable mechanics into a doctor’s specialty and iterate on bookings and audience quality — not agency volume and trial-and-error.
+
+### Product (what we hand a human)
+
+One **transfer brief**, four sections, labelled **hypotheses with confidence**, never findings:
+
+1. **Audience engine** — who it is for, positioning line, repeatable formats with examples, cadence over time (not one average), duration mix by era, owned ladder from bio/captions, and an explicit “what we cannot see”.
+2. **Why it works** — winners vs matched underperformers against the **rolling local median**: topic, format, duration, opening construction, spoken vs on-screen vs caption hooks, CTA, recurring authority moves. Cite posts **and** counterexamples. Pacing/edit rhythm is out of scope (OCR is opening frames only).
+3. **Portable vs him-specific** — transfer table; each portable item has a confidence level and the observation that supports it.
+4. **Assignment template** — fill-in fields, not scripts: `[clinician role] + [named promise] + [who it is for]`, two to four weekly series formats, a cadence the customer can sustain, hook *types*, CTA to an **owned** next step. Instantiated in *their* specialty.
+
+Reject the brief if it is a hook leaderboard, recommends copying his topics/faith/book titles, or makes a causal growth claim the data cannot support (no follower time series, no retention, no paid/organic split).
+
+### Evidence (what the pipeline does)
+
+| Layer | Coverage | Stages | Carries |
+|---|---|---|---|
+| **A — Metadata** | **Entire catalog** (not last-23) | catalog fetch | Section 1: cadence, rising view floor, format eras, caption CTA ladder |
+| **B — Deep** | Stratified sample by era × performance (never most-recent-N) | media, Whisper, opening-frame OCR, hook merge, `generic-clinician` components | Section 2 |
+| **C — Comments** | Off by default; named video ids only | comment fetch | Optional audience-response follow-up |
+
+Sample sizes: **on-demand = 200** (Warren default). **Auto fleet = 80** (cost; owner can raise it). Both still fetch full catalog metadata. Missing metrics stay null, never zero. Isolation: `--account`, `--skip-embed`, media deleted after extract.
+
+**How it is read:** one account at a time. Isolation brief → era summary → lean manifest pages → deep packets until the sample is in context → write the four sections. Auto `write_brief` does that **in process** after transcript and component yield ≥ 70%. A Claude session may rewrite a draft after re-reading packets. Playbooks cite the stored brief, not a live transcript dump.
+
+The original peer-library lock (“MCP supplies evidence; Claude writes the thesis”) still holds for **interactive** dives. At corpus scale the fleet LLM is allowed to write a **draft**; humans confirm a sample and any brief cited into a customer assignment. Nothing auto-promotes to constitution.
+
+---
+
 ## Why Lee Warren does not scale as-is
 
 `get_peer_*` is built for **one** account. The ritual is: isolation brief → era summary → lean manifest pages → 10–25 deep packets until ~200 transcripts are in context → write a four-section transfer brief. Context budget is the binding constraint (lean manifest ~40–70 tokens/row; a deep packet 600–1,200 tokens; captions on a full catalog 275–480k and therefore forbidden by default).
@@ -138,6 +171,8 @@ DDL path: every migration is applied manually in the Supabase SQL editor, then v
 13. **Saves are a first-class research signal.** Engagement for ranking uses saves and shares, not likes-only applause. Matches how we already read Simon vs other DocMap contributors.
 14. **Last-23 (or last-50) is current packaging, not growth history.** Follower snapshots on a 30-day cycle become the growth signal once two captures exist. MCP instructions must say this.
 15. **Sales handoff must show the angle.** Today's `list_ready_for_sales` omits `evidence`. Creator promotion is wasted if sales only sees name + email. Extend the select; do not build a new UI.
+16. **One peer ingest per OS process.** `activate_account` is process-global (Warren leak #6). The deep worker forks a subprocess per handle and never runs two `--account` ingests in one interpreter.
+17. **“Analyze like Lee Warren” is the locked method above**, not “copy Lee Warren.” L3 runs that method. L2 insight cards are a cheaper browse layer, not a substitute for the brief.
 
 ---
 
