@@ -1,14 +1,14 @@
 # Feature Implementation Plan — Doctor-creator corpus (TikTok)
 
 **Overall Progress:** `0%`
-**Revised:** 2026-09-16 (v4.1 — locks “analyze like Lee Warren”; same ops bar as v4)
+**Revised:** 2026-09-16 (v5 — L3 product is the Warren *content guidelines* artefact, not a four-section essay)
 **Owner packages:** `marketing-pipeline` (collect + insight cards), `gtm-pipeline` (link + promote into existing sales), `mcp-server` (layered read), `data-worker` (DocMap cron only), **`creator-deep-worker`** (new Railway service)
 
 ## TLDR
 
 Build a separate, resumable pipeline that discovers a few thousand TikTok doctor-creators and feeds **organised intelligence** to Claude and to sales. Two products, one store:
 
-- **Research / marketing OS:** every hydrated doctor gets a structured **insight card** and specialty boards so Claude can reason about thousands without loading thousands of libraries. **Any** scored creator can be deep-dived **one at a time** in MCP. In the background, a dedicated worker fleet runs the same Warren pipeline (catalog → stratified sample → Whisper/OCR/components → sync → **auto-written transfer brief**) for every **good-fit** creator, not a handful.
+- **Research / marketing OS:** every hydrated doctor gets a structured **insight card** and specialty boards so Claude can reason about thousands without loading thousands of libraries. **Any** scored creator can be deep-dived **one at a time** in MCP. In the background, a dedicated worker fleet runs the same Warren pipeline (catalog → stratified sample → Whisper/OCR/components → sync → **auto-written content guidelines**) for every **good-fit** creator, not a handful. Golden artefact: `docs/examples/drleewarren-content-guidelines.md`.
 - **Customer / sales:** UK private-practice doctors who want to grow are promoted into the **existing GTM sales path** — `upsert_clinic_intelligence` → `upsert_clinic_people` → `refresh_cohort` → `refresh_outreach_contacts` → RocketReach / LinkedIn-find → `list_ready_for_sales`. No parallel lead list, no new CRM board.
 
 v3 was a correct *analysis* contract and a **prototype ops** contract. It is **not production-grade**. This revision names the production bar and changes L3 from a 40–80 quota to an on-demand + background job system.
@@ -22,10 +22,10 @@ v3 was a correct *analysis* contract and a **prototype ops** contract. It is **n
 A production system is one where:
 
 1. Interactive MCP can deep-dive **any** creator, one library at a time, including one that is still in the queue.
-2. Every **good-fit** creator is enqueued automatically; a worker completes the Warren pipeline and writes a **draft brief without a human session**.
+2. Every **good-fit** creator is enqueued automatically; a worker completes the Warren pipeline and writes a **`content_guidelines_v1` draft without a human session**.
 3. DocMap's owned TikTok jobs keep their SLO while the fleet runs.
 4. Failures are isolated, resumable, observable, and cost-capped.
-5. Playbooks cite stored briefs, not live transcript dumps.
+5. Playbooks cite stored guidelines (thesis, first-15s rules, beats, caption spec, anti-patterns, checklist), not live transcript dumps.
 
 ### What is already production-*shaped* (keep)
 
@@ -56,17 +56,17 @@ A production system is one where:
 
 ### Cost math (why a second worker is not optional)
 
-Warren-depth on **one** creator, sampled (~200 videos, not the full catalog):
+Warren-depth on **one** creator, as actually compiled (~80 deep packets, not the full catalog; golden used 62 of 262):
 
 | Stage | Per creator (order of magnitude) |
 |---|---|
 | Catalog list (yt-dlp, throttled) | minutes–tens of minutes |
-| Download + Whisper `small` CPU, 200 clips | **4–12 hours** on one box (full 1,372 was 15–25 h) |
-| OCR on sample | ~400–600 vision calls |
-| Components | ~200 LLM calls |
-| Auto brief | 1 long-context LLM call over era summary + batched packets assembled in-process |
+| Download + Whisper `small` CPU, 80 clips with timestamps | **2–6 hours** on one box (200-clip on-demand is 4–12 h; full 1,372 was 15–25 h) |
+| OCR four opening frames on sample | ~320 vision calls at 80; skip on auto if over daily budget |
+| Components | ~80 LLM calls |
+| Auto guidelines | deterministic test tables + 1 long-context LLM write of `content_guidelines_v1` |
 
-At 1,500 good-fits × 8 h Whisper ≈ **12,000 CPU-hours**. One Railway replica is ~500 days. Production therefore means: **smaller auto sample (80)**, **priority order**, **optional GPU/faster-whisper**, and **OCR skipped on auto** when the daily vision budget is gone. On-demand deep dives keep the full 200-sample + OCR path.
+At 1,500 good-fits × ~4 h Whisper ≈ **6,000 CPU-hours**. One Railway replica is still months. Production therefore means: **auto sample 80** (the size that produced the golden doc), **priority order**, **optional GPU/faster-whisper**, and **OCR skipped on auto** when the daily vision budget is gone. On-demand deep dives keep the 200-sample + required-OCR path for humans who want more packets.
 
 This is still cheaper than 1,500 interactive Claude rituals, and it is the only way “we analysed them like Warren” is true for the corpus rather than for one neurosurgeon.
 
@@ -74,40 +74,67 @@ This is still cheaper than 1,500 interactive Claude rituals, and it is the only 
 
 ## Analyze like Lee Warren (locked)
 
-The production bar and the build sequence (Steps 0–10) are in **this** document. The *meaning* of the analysis was locked in `docs/EXECUTION_PLAN_PEER_LIBRARY.md` (2026-09-10) and is reused here as L3. We are **not** copying Warren’s voice, faith frame, or neurosurgery stories. We are reverse-engineering a **clinician-creator operating system** from the posts themselves.
+The production bar and Steps 0–10 are in this document. The *product* of the analysis is the document we already compiled for `@drleewarren`:
 
-That matches the 11 Sep 2026 DocMap × Simon marketing call: Warren is the research engine (opening hooks, transcripts, cadence, topics, performance), then we assign portable mechanics into a doctor’s specialty and iterate on bookings and audience quality — not agency volume and trial-and-error.
+`docs/examples/drleewarren-content-guidelines.md`
 
-### Product (what we hand a human)
+That file is the golden L3 artefact. `write_brief` must emit the **same kind of document** for every good-fit creator. The peer-library plan’s four research questions (audience engine / why it works / portable vs specific / assignment template) are how we *read* a library. They are not the deliverable. The deliverable is **talent-agnostic content guidelines** a presenter can ship against.
 
-One **transfer brief**, four sections, labelled **hypotheses with confidence**, never findings:
+That matches the 11 Sep 2026 DocMap × Simon marketing call: Warren is the research engine, then we assign portable mechanics into a doctor’s specialty and iterate on bookings and audience quality.
 
-1. **Audience engine** — who it is for, positioning line, repeatable formats with examples, cadence over time (not one average), duration mix by era, owned ladder from bio/captions, and an explicit “what we cannot see”.
-2. **Why it works** — winners vs matched underperformers against the **rolling local median**: topic, format, duration, opening construction, spoken vs on-screen vs caption hooks, CTA, recurring authority moves. Cite posts **and** counterexamples. Pacing/edit rhythm is out of scope (OCR is opening frames only).
-3. **Portable vs him-specific** — transfer table; each portable item has a confidence level and the observation that supports it.
-4. **Assignment template** — fill-in fields, not scripts: `[clinician role] + [named promise] + [who it is for]`, two to four weekly series formats, a cadence the customer can sustain, hook *types*, CTA to an **owned** next step. Instantiated in *their* specialty.
+### What we actually did for Warren (calibrates L3)
 
-Reject the brief if it is a hook leaderboard, recommends copying his topics/faith/book titles, or makes a causal growth claim the data cannot support (no follower time series, no retention, no paid/organic split).
+| Fact | Number | Consequence |
+|---|---|---|
+| Catalog metadata | 262 posts, Feb 2022–Sep 2026 | Layer A is the full timeline, not last-23 |
+| Deep packets | **62 of 262** read in full (caption + transcript + OCR frames) | Auto sample **80** is the real method, not a cheap substitute for 200 |
+| Timed first-15s tests | **43 recent-era** posts with timestamped transcripts; winners = 2x+ rolling local baseline (n=19) vs underperformers below 1x (n=16) | Whisper must keep **word/segment timestamps**. First-15s tables are computed, not guessed |
+| OCR | frames at **0.0s, 0.5s, 1.0s, 2.0s** | Detects static title banner vs word-by-word auto-captions. Not “pacing of the whole video” |
+| Epistemic tags | every claim is *measured* or *inferred* | No retention, no follower history, no traffic-source split. Guidelines are a **strong prior to test on our Studio numbers**, not settled law |
+| Voice | talent-agnostic; `[PROBLEM]` / `[MECHANISM]` placeholders | Copy the *move*, never his scripture, surgical metaphor, or biography |
 
-### Evidence (what the pipeline does)
+On-demand sample 200 remains available for a human who wants more packets. It is not what produced the golden doc.
 
-| Layer | Coverage | Stages | Carries |
-|---|---|---|---|
-| **A — Metadata** | **Entire catalog** (not last-23) | catalog fetch | Section 1: cadence, rising view floor, format eras, caption CTA ladder |
-| **B — Deep** | Stratified sample by era × performance (never most-recent-N) | media, Whisper, opening-frame OCR, hook merge, `generic-clinician` components | Section 2 |
-| **C — Comments** | Off by default; named video ids only | comment fetch | Optional audience-response follow-up |
+### Product (schema `content_guidelines_v1`)
 
-Sample sizes: **on-demand = 200** (Warren default). **Auto fleet = 80** (cost; owner can raise it). Both still fetch full catalog metadata. Missing metrics stay null, never zero. Isolation: `--account`, `--skip-embed`, media deleted after extract.
+One artefact. Required sections, in this order. Each quantitative claim is tagged `measured` or `inferred`. Inventing a number when `n` is too small is a failed brief.
 
-**How it is read:** one account at a time. Isolation brief → era summary → lean manifest pages → deep packets until the sample is in context → write the four sections. Auto `write_brief` does that **in process** after transcript and component yield ≥ 70%. A Claude session may rewrite a draft after re-reading packets. Playbooks cite the stored brief, not a live transcript dump.
+| # | Section | Must contain |
+|---|---|---|
+| 0 | **One-line thesis** | What changed in the engine (for Warren: *who the content is about*). Every later rule is downstream of this. |
+| 1 | **First 15 seconds** | Winner vs loser table on timestamped transcripts (abstract-category words / 100, words spoken, WPS, sentences, words/sentence, seconds to first you/your). Rules. What does **not** discriminate. Opening archetypes with quoted examples. |
+| 2 | **Full video structure** | The repeating beat sequence on top performers (Warren: six beats). Portable names, his examples in quotes. |
+| 3 | **Production spec** | OCR banner persistence across the four opening frames; setting as credential; lower-third. Caveat that OCR is 0–2s only. |
+| 4 | **Length** | Floor / ceiling / target from rolling-local ratios. “Length is not the lever; structure is.” |
+| 5 | **Caption spec** | Caption length, **caption-to-transcript character ratio**, CTA stack order, disclaimer position, hashtag load. Caption-as-idea-testbed if the timeline shows it. |
+| 6 | **Hook naming formulas** | Repeatable title patterns, his examples, which pattern is the sharpest lever. |
+| 7 | **Metric before format** | Comments/1k vs saves/1k (and shares/1k) by content type. They are different instruments. |
+| 8 | **Cadence and compounding** | What happened after 10x+ local-baseline posts (double down that week vs go quiet). Baseline vs live-signal cadence. |
+| 9 | **Anti-patterns** | Table of his worst posts with rolling-local ratios. Series trap called out if save-rate is high and reach-ratio is low. |
+| 10 | **What NOT to copy** | Him-specific content vs the portable *move*. |
+| 11 | **Pre-publish checklist** | Tick boxes derived from 1–5, plus automatic fails from 9. |
+| 12 | **How to measure ourselves** | Rolling local baseline; views are cross-sectional; saves/1k as earliest quality signal; the open Studio-retention question this peer cannot answer. |
 
-The original peer-library lock (“MCP supplies evidence; Claude writes the thesis”) still holds for **interactive** dives. At corpus scale the fleet LLM is allowed to write a **draft**; humans confirm a sample and any brief cited into a customer assignment. Nothing auto-promotes to constitution.
+Reject the artefact if it is a hook leaderboard, copies his topics/faith/book titles, reports raw views as growth, or states a causal watch-time claim we did not observe.
+
+### Evidence the writer is given (code computes, LLM interprets)
+
+`write_brief` must **not** dump packets into a chat and hope. It assembles:
+
+1. Full-catalog lean rows + era aggregates (cadence, rising view floor, duration mix).
+2. **Deterministic test tables** on the deep sample: rolling-local ratio per post; first-15s stats on timestamped transcripts for 2x+ vs <1x; caption-to-transcript ratios; saves/comments/shares per 1k by a coarse content-type label; OCR four-frame equality (static banner vs fragments).
+3. Deep packets (caption, transcript with timestamps, OCR texts, component card) for the winner set, the loser set, and a handful of mid.
+4. Coverage block: `catalog_n`, `sample_n`, `transcript_yield`, `timed_transcript_n`, `first15_n_top`, `first15_n_bottom`, `component_yield`, `ocr_frame_yield`.
+
+Gates: sample transcript yield ≥ 0.70 and component yield ≥ 0.70, same as before. **Plus:** if `first15_n_top < 8` or `first15_n_bottom < 8`, section 1 tables are `insufficient_sample` (nulls + the n), never invented. OCR skip on auto (budget) → section 3 is inferred from captions only and labelled as such.
+
+Isolation: `--account`, `--skip-embed`, media deleted after extract. One account at a time. Auto job writes `draft`. A Claude session may rewrite after re-reading packets. Humans confirm a sample and any brief cited into a customer assignment. Nothing auto-promotes to constitution.
 
 ---
 
 ## Why Lee Warren does not scale as-is
 
-`get_peer_*` is built for **one** account. The ritual is: isolation brief → era summary → lean manifest pages → 10–25 deep packets until ~200 transcripts are in context → write a four-section transfer brief. Context budget is the binding constraint (lean manifest ~40–70 tokens/row; a deep packet 600–1,200 tokens; captions on a full catalog 275–480k and therefore forbidden by default).
+`get_peer_*` is built for **one** account. The ritual is: isolation brief → era summary → lean manifest pages → 10–25 deep packets until the sample is in context → write `content_guidelines_v1`. Context budget is the binding constraint (lean manifest ~40–70 tokens/row; a deep packet 600–1,200 tokens; captions on a full catalog 275–480k and therefore forbidden by default).
 
 If we promoted thousands of creators into `content_posts` and asked Claude to "look at the corpus":
 
@@ -127,7 +154,7 @@ So: **do not open thousands of libraries in one MCP session.** Feed thousands th
 |---|---|---|---|---|
 | **L1 Corpus** | every unique author → all that screen in (~2.5–3.5k) | 1 profile HTML GET + yt-dlp ≤23 videos (research-eligible later re-hydrated to ≤50) | summary, specialty board, paginated lean rows | Who exists; who is worth a look |
 | **L2 Insight card** | every hydrated **doctor** (~1.5–3k) | 0 extra network; 1 cached LLM extract (classify + insight) | one card per profile; specialty pattern tables; compare ≤8 | **Deep insight at thousands** — hooks, formats, CTAs, cadence, saves, positioning — without Whisper |
-| **L3 Deep library** | **every good-fit**, plus **any** handle on demand | catalog + stratified Whisper/OCR/components via a job queue; auto `write_brief` | `request_deep_dive` / queue status; `list_peer_libraries`; `get_peer_*` **one account per session**; stored brief | Warren-depth evidence + durable artefact |
+| **L3 Deep library** | **every good-fit**, plus **any** handle on demand | catalog + stratified Whisper (timestamped) / OCR 0/0.5/1/2s / components via a job queue; auto `write_brief` | `request_deep_dive` / queue status; `list_peer_libraries`; `get_peer_*` **one account per session**; stored `content_guidelines_v1` | Warren-depth evidence + durable guidelines |
 
 **L2 is how Claude browses thousands. L3 is how we actually understand each good-fit, asynchronously.** Interactive MCP still opens **one** L3 library at a time. The difference from v3 is the worker, not the context window.
 
@@ -159,7 +186,7 @@ DDL path: every migration is applied manually in the Supabase SQL editor, then v
 1. **Two lanes, one store.** Every discovered account gets one row in `creator_profiles`. Lane is derived: `customer | research | both | discard | pending_review`.
 2. **Thousands get insight cards immediately; good-fits get Warren-depth in the background.** L2 is mandatory for every hydrated doctor. L3 auto-enqueues every good-fit. Interactive MCP may deep-dive **any** creator (jumps the queue).
 3. **MCP is layered, never a dump.** Claude starts at specialty aggregates, then a page of cards, then at most eight-way compare, then at most **one** L3 deep dive per session. Prefer the stored brief when it exists.
-4. **Transfer briefs are produced by a job, not a chat.** After ingest coverage gates pass, `write_brief` assembles era summary + sample packets **in process** (same functions as `get_peer_*`, no HTTP loopback) and writes `creator_peer_briefs` as `draft`. Humans confirm a sample and any brief cited into a customer assignment. Later sessions read the brief.
+4. **Content guidelines are produced by a job, not a chat.** After ingest coverage gates pass, `write_brief` computes the deterministic test tables, assembles packets **in process** (same functions as `get_peer_*`, no HTTP loopback), and writes `creator_peer_briefs.artefact` as `content_guidelines_v1` status=`draft`. Humans confirm a sample and any brief cited into a customer assignment. Later sessions read the brief. Golden shape: `docs/examples/drleewarren-content-guidelines.md`.
 5. **Customer rows are promoted into existing GTM, not copied into a parallel lead list.** Promotion calls `upsert_clinic_intelligence` and `upsert_clinic_people`, then the existing cohort / contact / enrich / list path.
 6. **Promotion requires human review.** Scoring suggests; a person confirms. No auto-writes into outreach.
 7. **The LLM extracts; code decides.** Classifier/insight card returns labelled fields with verbatim quotes. Lane, scores, specialty patterns and good-fit / queue priority are deterministic.
@@ -172,7 +199,7 @@ DDL path: every migration is applied manually in the Supabase SQL editor, then v
 14. **Last-23 (or last-50) is current packaging, not growth history.** Follower snapshots on a 30-day cycle become the growth signal once two captures exist. MCP instructions must say this.
 15. **Sales handoff must show the angle.** Today's `list_ready_for_sales` omits `evidence`. Creator promotion is wasted if sales only sees name + email. Extend the select; do not build a new UI.
 16. **One peer ingest per OS process.** `activate_account` is process-global (Warren leak #6). The deep worker forks a subprocess per handle and never runs two `--account` ingests in one interpreter.
-17. **“Analyze like Lee Warren” is the locked method above**, not “copy Lee Warren.” L3 runs that method. L2 insight cards are a cheaper browse layer, not a substitute for the brief.
+17. **“Analyze like Lee Warren” means emit `content_guidelines_v1`**, the document in `docs/examples/drleewarren-content-guidelines.md`. It is not a four-section essay and it is not “copy Lee Warren.” L2 insight cards are a cheaper browse layer, not a substitute.
 
 ---
 
@@ -236,7 +263,7 @@ Local disk is a **cache**: `MARKETING_CREATORS_DATA_DIR`, default `marketing-pip
 | **2c Specialty stats** | all scored doctors | 0 | per-`specialty_key` distributions and exemplars | `creator_specialty_stats` |
 | **3 Linked** | customer or both with GB geo | 0 (Supabase reads) | matches to practitioners / people / clinics / `doctor_outreach` | `creator_links` |
 | **4 Promoted** | human-confirmed customers | 0 + existing enrich jobs | GTM clinic, person, contact, cohort | **existing** GTM tables |
-| **5 Deep peer** | every good-fit + any on-demand | `creator_deep_jobs` ingest then `write_brief` | full catalog + stratified Whisper/OCR/components + **stored transfer brief**; media deleted after extract; **no embeddings** | existing peer library + `creator_peer_briefs` |
+| **5 Deep peer** | every good-fit + any on-demand | `creator_deep_jobs` ingest then `write_brief` | full catalog + stratified Whisper (timestamped) / OCR at 0/0.5/1/2s / components + **stored `content_guidelines_v1`**; media deleted after extract; **no embeddings** | existing peer library + `creator_peer_briefs` |
 
 Pinned videos can appear first in a flat listing. All windows are computed by `posted_at`.
 
@@ -278,15 +305,15 @@ Priority specialties (also practitioner seeds; extend `gtm_pipeline.segments.spe
 
 | Path | Sample | OCR | Embed | When |
 |---|---|---|---|---|
-| `auto` | 80, stratified | skip if daily vision budget spent; else opening-frames on sample | never | background good-fit |
-| `on_demand` | 200, stratified (Warren default) | yes | never | `request_deep_dive` or `--quality on_demand` |
+| `auto` | **80**, stratified (matches the 62-packet Warren guidelines, not a downgrade from 200) | 0.0 / 0.5 / 1.0 / 2.0s frames; skip if daily vision budget spent | never | background good-fit |
+| `on_demand` | 200, stratified | same four frames, required | never | `request_deep_dive` or `--quality on_demand` |
 
 Both still fetch the **full catalog metadata** (layer A). Expensive stages stay sampled. Comments stay off.
 
 **Job kinds** on `creator_deep_jobs` / `creator_deep_job_items` (copy GTM durable jobs, **do not** reuse `gtm_pipeline_jobs`):
 
-- `deep_ingest` — subprocess `python -m marketing_pipeline tiktok --account HANDLE fetch-catalog && sample-plan && refresh --from-sample-plan --skip-embed && extract-components --schema generic-clinician && sync-supabase --account HANDLE --skip-embed`; then delete media; coverage counters.
-- `write_brief` — only if transcript_yield ≥ 0.70 and component_yield ≥ 0.70 on the sample; assemble packets via `peer_library` Python functions; one LLM write to `creator_peer_briefs` status=`draft`.
+- `deep_ingest` — subprocess `python -m marketing_pipeline tiktok --account HANDLE fetch-catalog && sample-plan && refresh --from-sample-plan --skip-embed && extract-components --schema generic-clinician && sync-supabase --account HANDLE --skip-embed`; Whisper keeps segment timestamps; OCR requests frames at 0.0/0.5/1.0/2.0s; then delete media; coverage counters including `timed_transcript_n`.
+- `write_brief` — only if transcript_yield ≥ 0.70 and component_yield ≥ 0.70 on the sample; compute deterministic test tables (rolling-local ratios, first-15s stats, caption/transcript ratio, per-1k by type, OCR frame-equality); assemble packets via `peer_library` Python functions; one LLM write of `content_guidelines_v1` to `creator_peer_briefs` status=`draft`. Schema missing a required section → failed item.
 - Failed coverage → item `failed` with reason, not a fake brief.
 
 **Do not reuse GTM's 600 s stale window.** Whisper items heartbeat every 60 s; `stale_seconds=14400`. GTM reclaim at 10 minutes would double-download mid-job.
@@ -370,7 +397,7 @@ Exemplars are handles only (≤5 per bucket). Full cards are loaded with `get_cr
 
 ### `creator_peer_briefs` — stored L3 artefacts
 
-`id, creator_profile_id, account_handle, status` (`draft \| confirmed \| rejected`), `source` (`auto_job \| mcp_session`), `artefact jsonb` (four sections + limits + confidence table), `evidence_video_ids text[], coverage jsonb {transcript_yield, component_yield, sample_n, catalog_n}, model, created_at, confirmed_by, confirmed_at`. Unique current non-rejected row per handle.
+`id, creator_profile_id, account_handle, status` (`draft \| confirmed \| rejected`), `source` (`auto_job \| mcp_session`), `schema_version` text default `content_guidelines_v1`, `artefact jsonb` (sections 0–12 as in the golden Warren file, plus `coverage` and `tests` for the deterministic tables), `evidence_video_ids text[], coverage jsonb {transcript_yield, timed_transcript_n, first15_n_top, first15_n_bottom, component_yield, ocr_frame_yield, sample_n, catalog_n}, model, created_at, confirmed_by, confirmed_at`. Unique current non-rejected row per handle.
 
 `write_brief` is the default author (`auto_job`). An MCP session may overwrite a draft after a human re-reads packets. Playbooks cite `confirmed` first; they may cite `draft` only when labelled as unreviewed.
 
@@ -610,7 +637,7 @@ All list tools paginate and return `total_rows, returned_rows, next_cursor`. Def
 | `list_creators_tool(lane, geo?, specialty_key?, min_score?, follower band, review_status?, deep_status?, good_fit?, order=customer_score\|research_score\|saves\|followers\|posts_30d, cursor, limit≤100)` | browse | lean `creator_corpus_current` rows (**no captions, no cards**) |
 | `get_creator_profile_tool(handle)` | one creator | profile facts, snapshots, rollups, **full insight card with validated quotes**, latest ≤8 caption_hooks, score breakdown, links, promotion / `deep_status` / queue |
 | `compare_creators_tool(handles ≤8)` | side-by-side | rollups, hook_jobs, formats, CTAs, saves/1k, positioning_line, scores — still no transcripts |
-| `get_specialty_playbook_tool(specialty_key)` | assign work to a signed doctor | stats + top hook_jobs/formats/CTAs with n and exemplar handles + **cited confirmed L3 briefs** (portable table only) + `not_measurable` block |
+| `get_specialty_playbook_tool(specialty_key)` | assign work to a signed doctor | stats + top hook_jobs/formats/CTAs with n and exemplar handles + **cited confirmed L3 guidelines** (thesis, first-15s rules, beats, caption spec, anti-patterns, checklist — not raw transcripts) + `not_measurable` block |
 | `list_creator_seeds_tool(order=doctor_yield)` | which searches to keep | seed yield table |
 | `review_creator_tool(..., confirmed=false)` | human review write | preview or written review |
 
@@ -623,8 +650,8 @@ Existing five `get_peer_*` tools **unchanged** (one account, same caps, same iso
 | `request_deep_dive_tool(handle, quality=on_demand, confirmed=false)` | jump the queue for **any** profiled handle |
 | `get_deep_job_tool(handle or job_id)` | ingest/brief status, coverage, ETA |
 | `list_peer_libraries_tool(specialty_key?, deep_status?, cursor, limit≤50)` | index only: handle, specialty, catalog_size, sample_n, coverage, brief_status. **No posts.** |
-| `get_peer_transfer_brief_tool(account)` | stored artefact or `{found:false, ingest_status, ritual}` |
-| `save_peer_transfer_brief_tool(account, artefact, confirmed=false)` | human confirm/overwrite of a draft |
+| `get_peer_transfer_brief_tool(account)` | stored `content_guidelines_v1` or `{found:false, ingest_status, ritual}` |
+| `save_peer_transfer_brief_tool(account, artefact, confirmed=false)` | human confirm/overwrite of a draft; schema must still be `content_guidelines_v1` |
 
 #### Rituals (written into `common/mcp_instructions.py`)
 
@@ -639,7 +666,7 @@ Existing five `get_peer_*` tools **unchanged** (one account, same caps, same iso
 
 Do **not** open `get_peer_content_batch` for a second account in the same session.
 
-**B. One-creator deep dive:** `get_deep_job(handle)`. If a brief exists, read it first. If ingest succeeded and the human wants packets, existing peer ritual, isolation gate first. If ingest is queued, say so and do not pretend L2 captions are transcripts. Last-23/50 on the corpus card is **current packaging**. Growth claims require snapshot deltas or L3 era medians. OCR is opening-frames only. Views are not follower acquisition.
+**B. One-creator deep dive:** `get_deep_job(handle)`. If guidelines exist, read them first. If ingest succeeded and the human wants packets, existing peer ritual, isolation gate first. If ingest is queued, say so and do not pretend L2 captions are transcripts. Last-23/50 on the corpus card is **current packaging**. Growth claims require snapshot deltas or L3 era medians. First-15s metrics need timestamped transcripts. OCR is four opening frames (static banner vs fragments), not whole-video pacing. Views are not follower acquisition.
 
 **C. Sales handoff:** `list_gtm_ready_for_sales(cohort=tiktok_doctor_creators)` → `get_gtm_contact`. Draft only via existing `draft_outreach_email` after `confirmed=true`. Corpus `pending_review` is not a lead.
 
@@ -655,7 +682,7 @@ Menu (session open) gains two bullets: specialty creator board / playbook; GTM r
 
 `creators enqueue-deep` after score. `creators promote-peer --handle X --quality auto|on_demand` is the ingest handler, always a **subprocess**. `--skip-embed` is mandatory. Peer release gate in `PEER_INGEST_POSTMORTEM.md` still applies per account. `creators write-brief --handle X` runs coverage gates then the artefact writer.
 
-`creator-deep-worker` (new Railway service): loop claim ingest → subprocess → claim write_brief. Pause listing 02:50–04:15 UTC. `SKIP_CREATOR_DEEP` default true until `scripts/verify-supabase-schema.py` passes and a replay of `@drleewarren` produces a draft brief with yield ≥ 0.70.
+`creator-deep-worker` (new Railway service): loop claim ingest → subprocess → claim write_brief. Pause listing 02:50–04:15 UTC. `SKIP_CREATOR_DEEP` default true until `scripts/verify-supabase-schema.py` passes and a replay of `@drleewarren` produces a `content_guidelines_v1` draft with yield ≥ 0.70 that validates against the required sections.
 
 `data-worker` must not call promote-peer. Corpus drain remains on data-worker with the 02:45 deadline.
 
@@ -692,6 +719,9 @@ Add:
 | `test_enqueue_deep_is_idempotent` | second score does not duplicate job items |
 | `test_on_demand_outranks_auto` | claim order is priority 100 then 80 |
 | `test_write_brief_refuses_low_yield` | 0.51 transcript yield → failed item, no artefact |
+| `test_write_brief_schema_content_guidelines_v1` | missing section 0–12 or untagged numbers → failed item |
+| `test_write_brief_first15_insufficient_sample` | n_top < 8 → section 1 tables null, not invented |
+| `test_ocr_frames_are_0_0_5_1_2` | four opening timestamps requested; equality used for static-banner flag |
 | `test_ingest_is_subprocess_not_activate_in_parent` | parent `config.ACCOUNT` stays docmap |
 | `test_skip_embed_on_deep_sync` | no `document_embeddings` rows for peer video ids |
 | `test_media_deleted_after_ingest` | sample media dir empty; transcripts remain |
@@ -724,7 +754,7 @@ Add:
 | L3 ingested + draft brief (steady) | same as good-fit, over weeks | fleet throughput, not a quota |
 | On-demand deep dives | unbounded | any profiled handle, priority 100 |
 
-If Step 0 measures throughput below 50% of plan, cap hydrate at 1.5k and prioritise `uk` + `practitioner` slices. If Whisper throughput is <4 auto ingests/day, **do not** drop insight cards; shrink auto sample to 40 or pause OCR. Interactive on-demand stays 200-sample.
+If Step 0 measures throughput below 50% of plan, cap hydrate at 1.5k and prioritise `uk` + `practitioner` slices. If Whisper throughput is <4 auto ingests/day, **do not** drop insight cards; shrink auto sample to 40 or pause OCR. Interactive on-demand stays 200-sample. Auto 80 is the golden-guidelines size, not a compromise.
 
 ---
 
@@ -790,12 +820,13 @@ If Step 0 measures throughput below 50% of plan, cap hydrate at 1.5k and priorit
 - [ ] 🟥 **Step 10: Deep fleet + auto briefs (production L3)**
   - [ ] 🟥 `creator_deep_jobs` + claim RPC (stale 4 h); `enqueue-deep`; good-fit predicate tests
   - [ ] 🟥 `promote-peer` as **subprocess**, `--skip-embed`, media delete; coverage counters
-  - [ ] 🟥 `write-brief` coverage gate + artefact writer (in-process `get_peer_*` functions)
+  - [ ] 🟥 `write-brief` coverage gate + `content_guidelines_v1` writer (deterministic tables, then in-process `get_peer_*` functions)
   - [ ] 🟥 `creator-deep-worker` service, listing pause 02:50–04:15, `/health` queue metrics
-  - [ ] 🟥 `request_deep_dive` / `get_deep_job`; `list_peer_libraries`; playbook cites briefs
-  - [ ] 🟥 Replay `@drleewarren` as the golden ingest: yield ≥ 0.70, isolation audit pass, draft brief written **without** a Claude session
+  - [ ] 🟥 `request_deep_dive` / `get_deep_job`; `list_peer_libraries`; playbook cites guidelines sections
+  - [ ] 🟥 Seed `@drleewarren` from `docs/examples/drleewarren-content-guidelines.md` as `confirmed` (`source=mcp_session`) so playbooks can cite it immediately
+  - [ ] 🟥 Replay `@drleewarren` as the writer golden: yield ≥ 0.70, isolation audit pass, draft validates `content_guidelines_v1` **without** a Claude session (does not have to reproduce the exact Warren numbers)
   - [ ] 🟥 Thin `list_gtm_ready_for_sales` MCP wrap
-  - [ ] 🟥 Acceptance: enqueue 20 good-fits; worker completes ≥3 ingest+brief with DocMap cron green; `request_deep_dive` on a non-queued handle returns priority 100 and is claimed next; a second MCP session loads the draft brief **without** `get_peer_content_batch`; `document_embeddings` has no `peer:*` rows from the fleet
+  - [ ] 🟥 Acceptance: enqueue 20 good-fits; worker completes ≥3 ingest+guidelines with DocMap cron green; `request_deep_dive` on a non-queued handle returns priority 100 and is claimed next; a second MCP session loads the draft guidelines **without** `get_peer_content_batch`; `document_embeddings` has no `peer:*` rows from the fleet
 
 ---
 
@@ -809,7 +840,7 @@ If Step 0 measures throughput below 50% of plan, cap hydrate at 1.5k and priorit
 **It is organised for MCP at thousands:**
 - [ ] `get_specialty_board` returns histograms and exemplar **handles**, not cards
 - [ ] `list_creators` pages lean rows; a full card is only on `get_creator_profile` / `compare_creators` (≤8)
-- [ ] `get_specialty_playbook` can be consumed in one call and names `not_measurable` (no follower history until snapshots, no bookings unless availability pointer, no spoken hooks unless an L3 brief exists)
+- [ ] `get_specialty_playbook` can be consumed in one call and names `not_measurable` (no follower history until snapshots, no bookings unless availability pointer, no spoken first-15s rules unless an L3 guidelines brief exists)
 - [ ] Opening two L3 libraries in one session is something the instructions forbid and the tools do not encourage (no bulk transcript tool)
 
 **It plugs into existing sales:**
@@ -828,7 +859,7 @@ If Step 0 measures throughput below 50% of plan, cap hydrate at 1.5k and priorit
 ## Decisions needed from the owner
 
 1. **Discovery source after Step 0:** research TikTok login (Playwright), vendor API, or both.
-2. **Auto sample size and OCR budget.** Default auto = 80 videos, OCR optional; on-demand = 200 + OCR. Changing auto to 200 for everyone is a cost decision, not a product one.
+2. **Auto OCR budget.** Auto sample is **80** because that is what produced the golden guidelines (62 packets). On-demand = 200 + required OCR. Raising auto to 200 is a cost decision, not a product one. Skipping OCR on auto when over budget is allowed; section 3 must then be labelled inferred.
 3. **Legitimate-interest sign-off** before M6 promotion.
 4. **Whether promotion should also create `clinic_accounts`.** v1 stops at GTM contacts.
 5. **Whether MCP should wrap `list_ready_for_sales` in v1** or keep sales CLI/HTTP-only until the evidence select is proven. Default: wrap in Step 10, after CLI handoff is green.
@@ -836,7 +867,8 @@ If Step 0 measures throughput below 50% of plan, cap hydrate at 1.5k and priorit
 
 ## Out of scope (v1)
 
-- Whisper / OCR / full catalogs at L1/L2 (L3 auto is sampled; on-demand is Warren-sized sample)
+- Whisper / OCR / full catalogs at L1/L2 (L3 auto is the 80-packet guidelines sample; on-demand is extra packets)
+- Reproducing Warren’s exact ratios on other creators (the *schema* is locked; the numbers are his)
 - Two peer ingests in one process (`activate_account` is global)
 - Reusing `gtm_pipeline_jobs` (600 s stale) for Whisper
 - Peer embeddings / `search_knowledge` over creator transcripts
