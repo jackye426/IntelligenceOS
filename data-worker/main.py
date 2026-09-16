@@ -247,6 +247,39 @@ def main() -> None:
     else:
         logger.info("SKIP_HCA=true — HCA migration job disabled")
 
+    def _run_creator_corpus_drain() -> dict:
+        if config.SKIP_CREATOR_CORPUS:
+            logger.info("SKIP_CREATOR_CORPUS=true — corpus drain disabled")
+            return {"skipped": True, "reason": "SKIP_CREATOR_CORPUS=true"}
+        from marketing_pipeline.creators.commands import run_drain
+
+        return run_drain(deadline="02:45")
+
+    def _run_creator_corpus_refresh() -> dict:
+        if config.SKIP_CREATOR_CORPUS:
+            logger.info("SKIP_CREATOR_CORPUS=true — Sunday corpus refresh disabled")
+            return {"skipped": True, "reason": "SKIP_CREATOR_CORPUS=true"}
+        from marketing_pipeline.creators.commands import run_sunday_refresh
+
+        return run_sunday_refresh()
+
+    if not config.SKIP_CREATOR_CORPUS:
+        scheduler.add_job(
+            _safe("creator_corpus_drain", _run_creator_corpus_drain),
+            CronTrigger(hour=1, minute=0),
+            id="creator_corpus_drain",
+            replace_existing=True,
+        )
+        scheduler.add_job(
+            _safe("creator_corpus_refresh", _run_creator_corpus_refresh),
+            CronTrigger(day_of_week="sun", hour=0, minute=30),
+            id="creator_corpus_refresh",
+            replace_existing=True,
+        )
+        logger.info("Creator corpus drain enabled (01:00 UTC, deadline 02:45)")
+    else:
+        logger.info("SKIP_CREATOR_CORPUS=true — creator corpus drain/refresh disabled")
+
     if config.SKIP_TRANSCRIBE:
         logger.info("SKIP_TRANSCRIBE=true — worker will not run Whisper")
     else:

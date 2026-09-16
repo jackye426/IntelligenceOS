@@ -87,7 +87,7 @@ def _fetch_people_index() -> tuple[dict[str, list[dict[str, Any]]], set[str]]:
             client.table("gtm_clinic_people")
             .select(
                 "id, clinic_intelligence_id, full_name, role, specialty, email, priority, "
-                "linkedin_url, linkedin_status"
+                "linkedin_url, linkedin_status, creator_profile_id"
             )
             .range(offset, offset + page - 1)
             .execute()
@@ -147,6 +147,115 @@ def _member_status(
     return "needs_contact"
 
 
+def _commit_cohort_members(
+    cohort: dict[str, Any],
+    matched: list[dict[str, Any]],
+    *,
+    slug: str,
+    scanned: int,
+    dry_run: bool,
+) -> dict[str, Any]:
+    status_counts: dict[str, int] = {}
+    for m in matched:
+        status_counts[m["status"]] = status_counts.get(m["status"], 0) + 1
+    if dry_run:
+        return {
+            "slug": slug,
+            "dry_run": True,
+            "scanned": scanned,
+            "matched": len(matched),
+            "status_counts": status_counts,
+        }
+    client = get_client()
+    client.table("gtm_outreach_cohort_members").delete().eq(
+        "cohort_id", cohort["id"]
+    ).execute()
+    for i in range(0, len(matched), 200):
+        chunk = matched[i : i + 200]
+        client.table("gtm_outreach_cohort_members").insert(chunk).execute()
+    client.table("gtm_outreach_cohorts").update({"updated_at": _now()}).eq(
+        "id", cohort["id"]
+    ).execute()
+    return {
+        "slug": slug,
+        "dry_run": False,
+        "scanned": scanned,
+        "matched": len(matched),
+        "status_counts": status_counts,
+    }
+
+
+def _refresh_creator_corpus_cohort(
+    cohort: dict[str, Any],
+    rules: dict[str, Any],
+    *,
+    dry_run: bool,
+) -> dict[str, Any]:
+    """Membership = clinics with source_creator_profile_id or people.creator_profile_id."""
+    require_people = bool(rules.get("require_people", True))
+    people_by_clinic, email_clinics = _fetch_people_index()
+    client = get_client()
+    clinic_ids: set[str] = set()
+    scanned = 0
+    page = 1000
+    offset = 0
+    clinics: dict[str, dict[str, Any]] = {}
+    while True:
+        batch = (
+            client.table("gtm_clinic_intelligence")
+            .select(
+                "id, clinic_name, visible_clinic_size, specialties, founder_score, "
+                "source_creator_profile_id, cqc_nominated_individual, cqc_registered_manager"
+            )
+            .range(offset, offset + page - 1)
+            .execute()
+            .data
+            or []
+        )
+        for row in batch:
+            scanned += 1
+            clinics[row["id"]] = row
+            if row.get("source_creator_profile_id"):
+                clinic_ids.add(row["id"])
+        if len(batch) < page:
+            break
+        offset += page
+    for cid, people in people_by_clinic.items():
+        if any(p.get("creator_profile_id") for p in people):
+            clinic_ids.add(cid)
+
+    matched: list[dict[str, Any]] = []
+    for cid in clinic_ids:
+        row = clinics.get(cid) or {}
+        people = people_by_clinic.get(cid) or []
+        if require_people and not people:
+            continue
+        has_email = cid in email_clinics
+        best = _pick_best_person(
+            people,
+            preferred_specialty_keys=set(),
+            cqc_nominated_individual=row.get("cqc_nominated_individual") or "",
+            cqc_registered_manager=row.get("cqc_registered_manager") or "",
+        )
+        matched.append(
+            {
+                "cohort_id": cohort["id"],
+                "clinic_intelligence_id": cid,
+                "primary_specialty": primary_specialty_label(list(row.get("specialties") or [])),
+                "visible_clinic_size": row.get("visible_clinic_size") or "solo",
+                "has_person_email": has_email,
+                "best_person_id": (best or {}).get("id"),
+                "founder_score": int(row.get("founder_score") or 0),
+                "status": _member_status(has_email=has_email, best=best),
+                "reasons": [{"source": "creator_corpus"}],
+                "updated_at": _now(),
+            }
+        )
+    return _commit_cohort_members(
+        cohort, matched, slug=cohort.get("slug") or "tiktok_doctor_creators", scanned=scanned, dry_run=dry_run
+    )
+
+
 def refresh_cohort(slug: str, *, dry_run: bool = False) -> dict[str, Any]:
     """Rebuild membership for one cohort from current intelligence + people."""
     if not supabase_configured():
@@ -157,6 +266,9 @@ def refresh_cohort(slug: str, *, dry_run: bool = False) -> dict[str, Any]:
         raise ValueError(f"Unknown cohort slug: {slug}")
 
     rules = cohort.get("rules") or {}
+    if rules.get("source") == "creator_corpus":
+        return _refresh_creator_corpus_cohort(cohort, rules, dry_run=dry_run)
+
     sizes = rules.get("sizes")
     size_set = set(sizes) if sizes else None
     specialty_keys = set(rules.get("specialty_keys") or [])
