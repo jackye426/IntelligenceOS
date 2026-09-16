@@ -57,6 +57,14 @@ SKIP_STUDIO_LISTEN = _getenv("SKIP_STUDIO_LISTEN", default="false").lower() in {
     "yes",
 }
 
+# Doctor-creator corpus drain (01:00 UTC, deadline 02:45). Default true until
+# sql/014+015 verify green and discovery is gated. Never runs peer ingest.
+SKIP_CREATOR_CORPUS = _getenv("SKIP_CREATOR_CORPUS", default="true").lower() in {
+    "1",
+    "true",
+    "yes",
+}
+
 # Writable pipeline data root on Railway (mount a volume at this path)
 MARKETING_DATA_DIR = _getenv("MARKETING_DATA_DIR", default="/app/marketing-data")
 MARKETING_INSTAGRAM_DATA_DIR = _getenv(

@@ -2,6 +2,7 @@
 
 from gtm_pipeline.contacts.pic import (
     derive_preferred_channel,
+    infer_email_source,
     pick_person_in_charge,
     synthetic_pic_from_cqc,
 )
@@ -49,3 +50,11 @@ def test_preferred_channel():
     assert derive_preferred_channel(email="a@b.c", linkedin_url="https://linkedin.com/in/x") == "email"
     assert derive_preferred_channel(email="", linkedin_url="https://linkedin.com/in/x") == "linkedin"
     assert derive_preferred_channel(email="", linkedin_url="") == "none"
+
+
+def test_infer_email_source_tiktok_bio():
+    person = {"provenance": {"source": "creator_corpus"}, "email": "dr@clinic.co.uk"}
+    assert infer_email_source(person, "dr@clinic.co.uk") == "tiktok_bio"
+    assert infer_email_source({"provenance": {"source": "people_enrich"}}, "a@b.c") == "practitioner"
+    assert infer_email_source(None, "a@b.c") == "doctify"
+

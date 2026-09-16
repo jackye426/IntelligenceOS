@@ -6,31 +6,6 @@ import argparse
 import json
 import sys
 
-from marketing_pipeline.tiktok.orchestrator import (
-    run_analyze,
-    run_display_snapshots,
-    run_export,
-    run_fetch_catalog_cmd,
-    run_fetch_comments_cmd,
-    run_sample_plan_cmd,
-    run_extract_components_cmd,
-    run_import_playbooks,
-    run_ingest_bc_csv,
-    run_ingest_studio_insight,
-    run_ocr_batch,
-    run_refresh,
-    run_refresh_comments,
-    run_studio_listen,
-    run_sync_playbooks_cmd,
-    run_sync_supabase,
-)
-from marketing_pipeline.instagram.orchestrator import (
-    run_export as run_instagram_export,
-    run_fetch as run_instagram_fetch,
-    run_login as run_instagram_login,
-    run_sync_supabase as run_instagram_sync_supabase,
-)
-
 
 # Peer commands must name their account explicitly. Defaulting to docmap would
 # let a peer run write into the owned library.
@@ -231,15 +206,70 @@ def _instagram_parser(sub: argparse._SubParsersAction) -> None:
     sync.add_argument("--skip-embed", action="store_true")
 
 
+def _creators_parser(sub: argparse._SubParsersAction) -> None:
+    creators = sub.add_parser(
+        "creators",
+        help="Doctor-creator corpus (isolated from DocMap TikTok / activate_account)",
+    )
+    csub = creators.add_subparsers(dest="command", required=True)
+    csub.add_parser("status", help="Reconcile profile / run counters")
+
+    imp = csub.add_parser("import-handles", help="Manual CSV/list of TikTok handles")
+    imp.add_argument("--file", required=True)
+
+    seeds = csub.add_parser("seed-import", help="Import discovery seeds CSV")
+    seeds.add_argument("--file", required=True)
+
+    profile = csub.add_parser("profile", help="Fetch profile HTML + screen")
+    profile.add_argument("--handle", default=None)
+    profile.add_argument("--html", default=None, help="Offline HTML fixture")
+
+    hydrate = csub.add_parser("hydrate", help="yt-dlp listing --playlist-end")
+    hydrate.add_argument("--handle", default=None)
+    hydrate.add_argument("--playlist-end", type=int, default=23)
+    hydrate.add_argument("--fixture", default=None, help="Offline playlist JSON")
+
+    classify = csub.add_parser("classify", help="Insight cards")
+    classify.add_argument("--handle", default=None)
+
+    csub.add_parser("score", help="Lane + scores + specialty stats")
+    csub.add_parser("rebuild-specialty-stats")
+    csub.add_parser("enqueue-deep")
+
+    brief = csub.add_parser("write-brief", help="content_guidelines_v1 draft")
+    brief.add_argument("--handle", required=True)
+    brief.add_argument("--sample", default=None, help="JSON sample packets for the writer")
+
+    drain = csub.add_parser(
+        "drain",
+        help="Profile → hydrate → classify → score → enqueue-deep. Stops at --deadline UTC.",
+    )
+    drain.add_argument("--deadline", default="02:45", help="HH:MM UTC hard stop (DocMap SLO)")
+
+    csub.add_parser(
+        "sunday-refresh",
+        help="Rebuild scores/stats and enqueue newly good-fit (no live discovery)",
+    )
+
+
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(prog="marketing_pipeline")
     sub = parser.add_subparsers(dest="channel", required=True)
     _tiktok_parser(sub)
     _instagram_parser(sub)
+    _creators_parser(sub)
 
     args = parser.parse_args(argv)
-    if args.channel not in {"tiktok", "instagram"}:
+    if args.channel not in {"tiktok", "instagram", "creators"}:
         parser.error(f"Unsupported channel: {args.channel}")
+
+    if args.channel == "creators":
+        from marketing_pipeline.creators.commands import dispatch
+        from marketing_pipeline.creators.runs import exit_code
+
+        result = dispatch(args)
+        print(json.dumps(result, indent=2, default=str))
+        raise SystemExit(exit_code(result.get("status") or "completed"))
 
     if args.channel == "tiktok":
         # Point every path constant at this account before any stage runs.
@@ -283,6 +313,12 @@ def main(argv: list[str] | None = None) -> None:
             )
 
     if args.channel == "instagram":
+        from marketing_pipeline.instagram.orchestrator import (
+            run_export as run_instagram_export,
+            run_fetch as run_instagram_fetch,
+            run_login as run_instagram_login,
+            run_sync_supabase as run_instagram_sync_supabase,
+        )
         if args.command == "login":
             result = run_instagram_login(account=args.account, password=args.password)
         elif args.command == "fetch":
@@ -302,6 +338,25 @@ def main(argv: list[str] | None = None) -> None:
             parser.error(f"Unknown Instagram command: {args.command}")
         print(json.dumps(result, indent=2, default=str))
         return
+
+    from marketing_pipeline.tiktok.orchestrator import (
+        run_analyze,
+        run_display_snapshots,
+        run_export,
+        run_fetch_catalog_cmd,
+        run_fetch_comments_cmd,
+        run_sample_plan_cmd,
+        run_extract_components_cmd,
+        run_import_playbooks,
+        run_ingest_bc_csv,
+        run_ingest_studio_insight,
+        run_ocr_batch,
+        run_refresh,
+        run_refresh_comments,
+        run_studio_listen,
+        run_sync_playbooks_cmd,
+        run_sync_supabase,
+    )
 
     if args.command == "fetch-catalog":
         result = run_fetch_catalog_cmd(

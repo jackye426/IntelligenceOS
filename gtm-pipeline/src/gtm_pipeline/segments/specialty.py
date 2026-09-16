@@ -34,6 +34,18 @@ _CANONICAL_PATTERNS: dict[str, tuple[str, ...]] = {
     "mental_health": ("mental health", "psychiatr", "psycholog"),
     "ophthalmology": ("ophthalmology", "eye clinic", "optometr"),
     "urology": ("urology",),
+    "colorectal": (
+        "colorectal",
+        "bowel surgeon",
+        "coloproctolog",
+    ),
+    "general_surgery": ("general surg",),
+    "gastroenterology": (
+        "gastroenterolog",
+        "ibd",
+        "crohn",
+        "colitis",
+    ),
     "dental": ("dental", "dentist", "orthodont"),
 }
 

@@ -260,7 +260,8 @@ def list_outreach_contacts(
         .select(
             "id, clinic_intelligence_id, clinic_account_id, person_id, full_name, role, "
             "email, email_source, rocketreach_email, rocketreach_status, linkedin_url, "
-            "linkedin_status, preferred_channel, priority, founder_score, status, updated_at"
+            "linkedin_status, preferred_channel, priority, founder_score, status, "
+            "evidence, provenance, updated_at"
         )
         .order("founder_score", desc=True)
         .limit(limit)
@@ -283,19 +284,26 @@ def list_ready_for_sales(*, limit: int = 200) -> dict[str, Any]:
         return out
     client = get_client()
     ids = [c["clinic_intelligence_id"] for c in out["contacts"]]
-    names: dict[str, str] = {}
+    names: dict[str, Any] = {}
     for i in range(0, len(ids), 100):
         chunk = ids[i : i + 100]
         rows = (
             client.table("gtm_clinic_intelligence")
-            .select("id, clinic_name")
+            .select("id, clinic_name, website_url, specialties, source_creator_profile_id")
             .in_("id", chunk)
             .execute()
             .data
             or []
         )
         for r in rows:
-            names[r["id"]] = r.get("clinic_name") or ""
+            names[r["id"]] = r
     for c in out["contacts"]:
-        c["clinic_name"] = names.get(c["clinic_intelligence_id"], "")
+        clinic = names.get(c["clinic_intelligence_id"]) or {}
+        if isinstance(clinic, dict) and "clinic_name" in clinic:
+            c["clinic_name"] = clinic.get("clinic_name") or ""
+            c["website_url"] = clinic.get("website_url")
+            c["specialties"] = clinic.get("specialties") or []
+            c["source_creator_profile_id"] = clinic.get("source_creator_profile_id")
+        else:
+            c["clinic_name"] = clinic if isinstance(clinic, str) else ""
     return out

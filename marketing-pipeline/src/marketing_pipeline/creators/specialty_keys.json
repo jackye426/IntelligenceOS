@@ -1,0 +1,13 @@
+{
+  "obstetrics_gynaecology": ["obstetrics", "gynaecology", "gynecology", "obgyn"],
+  "fertility": ["fertility", "reproductive medicine"],
+  "ivf": ["ivf", "in vitro", "egg freezing"],
+  "menopause": ["menopause", "perimenopause", "hrt"],
+  "endometriosis": ["endometriosis"],
+  "dermatology": ["dermatology", "dermatolog"],
+  "colorectal": ["colorectal", "bowel surgeon", "coloproctolog"],
+  "general_surgery": ["general surg"],
+  "gastroenterology": ["gastroenterolog", "ibd", "crohn", "colitis"],
+  "urology": ["urology"],
+  "general_practice": ["general practice", "family medicine"]
+}

@@ -137,6 +137,8 @@ def infer_email_source(person: dict[str, Any] | None, email: str) -> str:
     src = (prov.get("source") or "").lower() if isinstance(prov, dict) else ""
     if "people_enrich" in src or "practitioner" in src:
         return "practitioner"
+    if src == "creator_corpus":
+        return "tiktok_bio"
     role = (person.get("role") or "").lower()
     if role in {"nominated_individual", "registered_manager"}:
         # Usually from enrich path when email present

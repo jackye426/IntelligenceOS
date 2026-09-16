@@ -18,11 +18,13 @@ Design rules, in order of importance:
 
 from __future__ import annotations
 
+import json
 import math
 import statistics
 from typing import Any
 
 from common.audit import log_tool_call
+from tools.corpus_store import get_corpus
 from tools.tiktok_shared import (
     account_scope_enforced,
     cadence_fields,
@@ -857,3 +859,303 @@ def get_peer_library_brief(account: str) -> dict[str, Any]:
             error=str(exc),
         )
         raise
+
+
+GUIDELINES_SCHEMA = "content_guidelines_v1"
+REQUIRED_GUIDELINE_SECTIONS = [str(i) for i in range(13)]
+LIBRARY_INDEX_KEYS = {
+    "handle",
+    "specialty_key",
+    "catalog_size",
+    "sample_n",
+    "coverage",
+    "brief_status",
+    "deep_status",
+    "good_fit",
+}
+
+
+def _past_profiled(stage: str | None) -> bool:
+    return (stage or "") in {"screened", "hydrated", "classified", "scored"}
+
+
+def _open_ingest_job(corpus: Any) -> dict[str, Any]:
+    existing = [
+        job
+        for job in corpus.list("creator_deep_jobs")
+        if job.get("kind") == "deep_ingest" and job.get("status") in {"queued", "running"}
+    ]
+    if existing:
+        return existing[0]
+    return corpus.insert(
+        "creator_deep_jobs",
+        {"kind": "deep_ingest", "status": "running", "params": {}, "meta": {"standing": True}},
+    )
+
+
+def _queue_position(corpus: Any, item: dict[str, Any]) -> int:
+    queued = [
+        row
+        for row in corpus.list("creator_deep_job_items")
+        if row.get("status") in {"queued", "running"} and row.get("kind") == "deep_ingest"
+    ]
+    ordered = sorted(
+        queued,
+        key=lambda row: (-int(row.get("priority") or 0), str(row.get("created_at") or "")),
+    )
+    for index, row in enumerate(ordered, start=1):
+        if row.get("id") == item.get("id"):
+            return index
+    return len(ordered) + 1
+
+
+def _validate_guidelines(artefact: dict[str, Any]) -> list[str]:
+    errors: list[str] = []
+    if artefact.get("schema_version") != GUIDELINES_SCHEMA:
+        errors.append("schema_version")
+    sections = artefact.get("sections") or {}
+    for key in REQUIRED_GUIDELINE_SECTIONS:
+        if key not in sections:
+            errors.append(f"missing_section_{key}")
+    return errors
+
+
+def request_deep_dive(
+    handle: str,
+    *,
+    quality: str = "on_demand",
+    confirmed: bool = False,
+) -> dict[str, Any]:
+    """Jump the L3 queue. Preview unless confirmed=true."""
+    peer = _require_peer(handle)
+    if quality not in {"auto", "on_demand"}:
+        raise PeerAccountError("quality must be auto or on_demand")
+    corpus = get_corpus()
+    profile = corpus.get("creator_profiles", handle=peer)
+    if not profile:
+        raise PeerAccountError(f"no creator_profiles row for {peer}")
+    stage = profile.get("stage")
+    if stage == "unavailable" or not _past_profiled(stage):
+        raise PeerAccountError(
+            "handle must be past profiled (screened/hydrated/classified/scored) and not unavailable"
+        )
+    brief = corpus.get("creator_peer_briefs", account_handle=peer)
+    ingest = corpus.get("creator_deep_job_items", item_key=profile["id"], kind="deep_ingest")
+    preview = {
+        "handle": peer,
+        "preview": not confirmed,
+        "quality": quality,
+        "priority": 100,
+        "stage": stage,
+        "existing_brief": (brief or {}).get("status"),
+        "ingest_status": (ingest or {}).get("status") or "none",
+        "job_id": (ingest or {}).get("id"),
+    }
+    if not confirmed:
+        return preview
+
+    job = _open_ingest_job(corpus)
+    item = corpus.upsert(
+        "creator_deep_job_items",
+        {
+            "job_id": job["id"],
+            "kind": "deep_ingest",
+            "item_key": profile["id"],
+            "priority": 100,
+            "payload": {"handle": peer, "quality": quality},
+            "status": (ingest or {}).get("status") or "queued",
+        },
+        keys=("kind", "item_key"),
+    )
+    corpus.update(
+        "creator_deep_job_items",
+        {
+            "priority": 100,
+            "payload": {"handle": peer, "quality": quality},
+            "status": item.get("status") or "queued",
+        },
+        id=item["id"],
+    )
+    item = corpus.get("creator_deep_job_items", id=item["id"]) or item
+    corpus.update(
+        "creator_profiles",
+        {
+            "deep_status": "queued" if item.get("status") == "queued" else profile.get("deep_status"),
+            "deep_quality": quality,
+            "deep_job_id": item.get("id"),
+        },
+        id=profile["id"],
+    )
+    position = _queue_position(corpus, item)
+    return {
+        "handle": peer,
+        "preview": False,
+        "job_id": item.get("id"),
+        "queue_position": position,
+        "eta_hours": position * 4,
+        "existing_brief": (brief or {}).get("status"),
+        "ingest_status": item.get("status"),
+        "priority": 100,
+        "quality": quality,
+    }
+
+
+def get_deep_job(*, handle: str | None = None, job_id: str | None = None) -> dict[str, Any]:
+    if not handle and not job_id:
+        raise PeerAccountError("handle or job_id is required")
+    corpus = get_corpus()
+    item = None
+    profile = None
+    if job_id:
+        item = corpus.get("creator_deep_job_items", id=job_id)
+        if item:
+            profile = corpus.get("creator_profiles", id=item.get("item_key"))
+    if handle:
+        peer = _require_peer(handle)
+        profile = corpus.get("creator_profiles", handle=peer)
+        if profile:
+            item = corpus.get(
+                "creator_deep_job_items",
+                item_key=profile["id"],
+                kind="deep_ingest",
+            )
+    if not profile:
+        return {"found": False, "handle": handle, "job_id": job_id}
+    brief = corpus.get("creator_peer_briefs", account_handle=profile.get("handle"))
+    coverage = (brief or {}).get("coverage") or (item or {}).get("result") or {}
+    position = _queue_position(corpus, item) if item else None
+    return {
+        "found": True,
+        "handle": profile.get("handle"),
+        "job_id": (item or {}).get("id"),
+        "ingest_status": (item or {}).get("status") or "none",
+        "deep_status": profile.get("deep_status"),
+        "brief_status": (brief or {}).get("status"),
+        "coverage": coverage,
+        "queue_position": position,
+        "eta_hours": (position * 4) if position else None,
+        "priority": (item or {}).get("priority"),
+    }
+
+
+def list_peer_libraries(
+    *,
+    specialty_key: str | None = None,
+    deep_status: str | None = None,
+    cursor: int = 0,
+    limit: int = 50,
+) -> dict[str, Any]:
+    page_size = min(max(int(limit or 50), 1), 50)
+    corpus = get_corpus()
+    profiles = corpus.list("creator_profiles")
+    rows: list[dict[str, Any]] = []
+    for profile in profiles:
+        if specialty_key and profile.get("specialty_key") != specialty_key:
+            continue
+        if deep_status and profile.get("deep_status") != deep_status:
+            continue
+        if profile.get("deep_status") in {None, "none"} and not deep_status:
+            continue
+        handle = profile.get("handle")
+        brief = corpus.get("creator_peer_briefs", account_handle=handle)
+        coverage = (brief or {}).get("coverage") or {}
+        rows.append(
+            {
+                "handle": handle,
+                "specialty_key": profile.get("specialty_key"),
+                "catalog_size": coverage.get("catalog_n") or profile.get("video_count"),
+                "sample_n": coverage.get("sample_n"),
+                "coverage": {
+                    "transcript_yield": coverage.get("transcript_yield"),
+                    "component_yield": coverage.get("component_yield"),
+                    "timed_transcript_n": coverage.get("timed_transcript_n"),
+                },
+                "brief_status": (brief or {}).get("status"),
+                "deep_status": profile.get("deep_status"),
+                "good_fit": profile.get("good_fit"),
+            }
+        )
+    total = len(rows)
+    page = rows[cursor : cursor + page_size]
+    dumped = json.dumps(page)
+    if '"posts"' in dumped:
+        raise PeerAccountError("list_peer_libraries refused a post payload")
+    for row in page:
+        extra = set(row) - LIBRARY_INDEX_KEYS
+        if extra:
+            raise PeerAccountError(f"unexpected library index fields: {sorted(extra)}")
+    return {
+        "total_rows": total,
+        "returned_rows": len(page),
+        "next_cursor": cursor + len(page) if cursor + len(page) < total else None,
+        "libraries": page,
+    }
+
+
+def get_peer_transfer_brief(account: str) -> dict[str, Any]:
+    handle = _require_peer(account)
+    corpus = get_corpus()
+    profile = corpus.get("creator_profiles", handle=handle)
+    brief = corpus.get("creator_peer_briefs", account_handle=handle)
+    ingest = None
+    if profile:
+        ingest = corpus.get("creator_deep_job_items", item_key=profile["id"], kind="deep_ingest")
+    if not brief:
+        return {
+            "found": False,
+            "account": handle,
+            "ingest_status": (ingest or {}).get("status") or "none",
+            "ritual": (
+                "If ingest succeeded, use get_peer_library_brief for this one account. "
+                "If queued, wait; do not treat L2 caption_hooks as spoken packets."
+            ),
+        }
+    artefact = brief.get("artefact") or {}
+    return {
+        "found": True,
+        "account": handle,
+        "status": brief.get("status"),
+        "source": brief.get("source"),
+        "schema_version": brief.get("schema_version") or artefact.get("schema_version"),
+        "artefact": artefact,
+        "coverage": brief.get("coverage"),
+        "unreviewed": brief.get("status") == "draft",
+    }
+
+
+def save_peer_transfer_brief(
+    account: str,
+    artefact: dict[str, Any],
+    *,
+    confirmed: bool = False,
+) -> dict[str, Any]:
+    handle = _require_peer(account)
+    errors = _validate_guidelines(artefact)
+    if errors:
+        raise PeerAccountError(f"invalid content_guidelines_v1: {','.join(errors)}")
+    preview = {
+        "account": handle,
+        "preview": not confirmed,
+        "schema_version": artefact.get("schema_version"),
+    }
+    if not confirmed:
+        return preview
+    corpus = get_corpus()
+    profile = corpus.get("creator_profiles", handle=handle)
+    if not profile:
+        raise PeerAccountError(f"no creator_profiles row for {handle}")
+    row = corpus.upsert(
+        "creator_peer_briefs",
+        {
+            "creator_profile_id": profile["id"],
+            "account_handle": handle,
+            "status": "confirmed",
+            "source": "mcp_session",
+            "schema_version": GUIDELINES_SCHEMA,
+            "artefact": artefact,
+            "coverage": artefact.get("coverage") or {},
+        },
+        keys=("account_handle",),
+    )
+    corpus.update("creator_profiles", {"deep_status": "brief_confirmed"}, id=profile["id"])
+    return {"account": handle, "written": True, "brief_id": row.get("id"), "status": "confirmed"}

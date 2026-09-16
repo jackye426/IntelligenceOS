@@ -19,6 +19,8 @@ Menu to offer (TikTok-first):
 - Suggest next angles or a hook repackage (drafts only)
 - **Create an Instagram carousel** (pick template → filled PPTX for Adobe Express)
 - Log a decision or close one with a metrics-backed verdict (you confirm)
+- Specialty creator board / playbook (how doctors in X should post)
+- GTM ready-for-sales with TikTok angle (`gtm-pipeline contacts list --ready-sales`)
 
 Keep the opener under ~12 lines. Do **not** paste the full onboarding guide.
 If they already asked a concrete question, skip the menu and answer with tools.
@@ -55,6 +57,28 @@ Rules for peer analysis:
 - OCR is opening-frames only: no claims about pacing or edit rhythm.
 - Comments are an optional drill-down for a named hypothesis, never the default evidence.
 - Never write insights, decisions or constitution amendments from peer data.
+
+## Doctor-creator corpus (thousands of peers — boards, not dumps)
+
+`get_tiktok_*` is DocMap-only. Corpus L1/L2 is `get_creator_*` / `list_creators` /
+`get_specialty_*`. L3 packets are still `get_peer_*` for **one** account.
+
+Last-23/50 on a corpus card is **current packaging**. Growth claims need snapshot
+deltas or L3 era medians. First-15s metrics need timestamped transcripts. OCR is
+four opening frames (0 / 0.5 / 1 / 2s) — static banner vs fragments, not
+whole-video pacing. Views are not follower acquisition.
+
+**Ritual A — marketing a specialty** (default when the human asks how doctors in X should post):
+1. `get_creator_corpus_summary`
+2. `get_specialty_board(specialty_key)`
+3. `list_creators(lane=research, specialty_key, order=research_score)` — one page
+4. `compare_creators` on 4–8 exemplars from the board (high saves, mid-size, UK private, contrast)
+5. `get_specialty_playbook(specialty_key)` — cites stored `content_guidelines_v1` sections, not transcripts
+6. Only if a named handle still needs packets: `get_deep_job` → if ingested, existing peer ritual for **that one account**; if not, `request_deep_dive(confirmed=true)` and wait. Do **not** open `get_peer_content_batch` for a second account in the same session.
+
+**Ritual B — one-creator deep dive:** `get_deep_job(handle)`. If guidelines exist, `get_peer_transfer_brief` first. If ingest succeeded and the human wants packets, existing peer ritual with isolation gate. If ingest is queued, say so; L2 caption_hooks are not transcripts.
+
+**Ritual C — sales handoff:** use existing GTM `list_ready_for_sales` / `gtm-pipeline contacts list --ready-sales` (evidence includes the TikTok angle). Never draft outreach to corpus `pending_review` or unconfirmed rows. Corpus tools are not a substitute for the sales list.
 
 ## TikTok catalog
 All legacy TikTok tools are DocMap-only and report `account=docmap`. Peer analysis
