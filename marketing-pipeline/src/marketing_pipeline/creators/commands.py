@@ -9,7 +9,7 @@ from typing import Any
 
 from marketing_pipeline.creators.apply_profile import apply_profile_failure, apply_profile_success
 from marketing_pipeline.creators.caption import caption_hook
-from marketing_pipeline.creators.classify import apply_card, heuristic_card, input_hash
+from marketing_pipeline.creators.classify import apply_card, classify_v1, input_hash
 from marketing_pipeline.creators.enqueue_deep import enqueue_deep
 from marketing_pipeline.creators.hydrate import hydrate_profile
 from marketing_pipeline.creators.import_handles import import_handles
@@ -56,7 +56,14 @@ def run_seed_import(path: Path) -> dict[str, Any]:
                     "value": row.get("value") or "",
                     "priority": int(row.get("priority") or 50),
                     "status": "active",
-                    "meta": {},
+                    "meta": {
+                        **(
+                            {"practitioner_id": row["practitioner_id"]}
+                            if row.get("practitioner_id")
+                            else {}
+                        ),
+                        **({"gmc_number": row["gmc_number"]} if row.get("gmc_number") else {}),
+                    },
                 },
             )
             n += 1
@@ -156,8 +163,8 @@ def run_classify(*, handle: str | None = None) -> dict[str, Any]:
         if cached:
             n += 1
             continue
-        card = heuristic_card(profile, videos)
-        apply_card(profile, card, store=store, input_key=key)
+        card, model_name = classify_v1(profile, videos)
+        apply_card(profile, card, store=store, input_key=key, model=model_name)
         n += 1
     finish_run(run["id"], status="completed", counters={"classified": n}, store=store)
     return {"run_id": run["id"], "status": "completed", "counters": {"classified": n}}
@@ -257,13 +264,160 @@ def run_drain(*, deadline: str = "02:45", now: datetime | None = None) -> dict[s
     stages["classify"] = run_classify()
     stages["score"] = run_score()
     stages["enqueue_deep"] = run_enqueue_deep()
-    stages["link"] = {"skipped": True, "reason": "gtm_creators_link_not_wired"}
+    stages["link"] = run_gtm_link()
     failed = any((s.get("status") in {"blocked", "failed"} for s in stages.values() if isinstance(s, dict)))
     return {
         "status": "blocked" if failed else "completed",
         "deadline": deadline,
         "stages": stages,
     }
+
+
+def _repo_root() -> Path:
+    return Path(__file__).resolve().parents[4]
+
+
+def _pythonpath() -> str:
+    import os
+
+    root = _repo_root()
+    extra = [
+        str(root / "gtm-pipeline" / "src"),
+        str(root / "marketing-pipeline" / "src"),
+    ]
+    current = os.environ.get("PYTHONPATH", "")
+    return os.pathsep.join([*extra, current] if current else extra)
+
+
+def run_gtm_link(*, dry_run: bool = False) -> dict[str, Any]:
+    """Shell out to gtm_pipeline creators link. Drain never loads TikTok sync."""
+    import os
+    import subprocess
+    import sys
+
+    cmd = [sys.executable, "-m", "gtm_pipeline", "creators", "link"]
+    if dry_run:
+        cmd.append("--dry-run")
+    try:
+        completed = subprocess.run(
+            cmd,
+            check=False,
+            capture_output=True,
+            text=True,
+            env={**os.environ, "PYTHONPATH": _pythonpath()},
+        )
+    except OSError as exc:
+        return {"skipped": True, "reason": str(exc)}
+    if completed.returncode != 0:
+        return {
+            "status": "failed",
+            "returncode": completed.returncode,
+            "stderr": (completed.stderr or "")[-500:],
+        }
+    try:
+        payload = json.loads(completed.stdout or "{}")
+    except json.JSONDecodeError:
+        payload = {"stdout": completed.stdout}
+    return {"status": "completed", **payload}
+
+
+def run_seed_practitioners(
+    *,
+    specialties: str,
+    limit: int = 1500,
+    out: Path | None = None,
+) -> dict[str, Any]:
+    import os
+    import subprocess
+    import sys
+
+    assert_isolated_from_docmap()
+    dest = out or (_repo_root() / "marketing-pipeline" / "creators" / "data" / "practitioner_seeds.csv")
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    cmd = [
+        sys.executable,
+        "-m",
+        "gtm_pipeline",
+        "creators",
+        "export-practitioner-seeds",
+        "--specialties",
+        specialties,
+        "--limit",
+        str(limit),
+        "--out",
+        str(dest),
+    ]
+    completed = subprocess.run(
+        cmd,
+        check=False,
+        capture_output=True,
+        text=True,
+        env={**os.environ, "PYTHONPATH": _pythonpath()},
+    )
+    if completed.returncode != 0:
+        return {
+            "status": "failed",
+            "returncode": completed.returncode,
+            "stderr": (completed.stderr or "")[-800:],
+        }
+    imported = run_seed_import(dest)
+    return {"status": imported.get("status"), "export_path": str(dest), "import": imported}
+
+
+def run_export(view: str, path: Path) -> dict[str, Any]:
+    assert_isolated_from_docmap()
+    from marketing_pipeline.creators.export import export_view, write_data_dictionary
+
+    result = export_view(view, path=path)
+    if view in {"corpus", "dictionary"}:
+        write_data_dictionary(_repo_root() / "docs" / "CREATOR_CORPUS_DATA_DICTIONARY.md")
+    return result
+
+
+def run_purge(*, older_than_days: int = 90) -> dict[str, Any]:
+    assert_isolated_from_docmap()
+    from marketing_pipeline.creators.purge import run_purge as _purge
+
+    store = get_store()
+    run = start_run("purge", params={"older_than_days": older_than_days}, store=store)
+    result = _purge(older_than_days=older_than_days, store=store)
+    finish_run(run["id"], status="completed", counters=result, store=store)
+    return {"run_id": run["id"], "status": "completed", **result}
+
+
+def run_promote_peer_cmd(handle: str, *, quality: str = "auto", dry_run: bool = False) -> dict[str, Any]:
+    assert_isolated_from_docmap()
+    from marketing_pipeline.creators.promote_peer import run_promote_peer
+
+    return run_promote_peer(handle, quality=quality, dry_run=dry_run)
+
+
+def run_seed_warren_brief() -> dict[str, Any]:
+    assert_isolated_from_docmap()
+    from marketing_pipeline.creators.seed_warren import seed_warren_brief
+
+    return seed_warren_brief()
+
+
+def run_review_export(path: Path) -> dict[str, Any]:
+    assert_isolated_from_docmap()
+    from marketing_pipeline.creators.review_csv import review_export
+
+    return review_export(path=path)
+
+
+def run_review_import(path: Path) -> dict[str, Any]:
+    assert_isolated_from_docmap()
+    from marketing_pipeline.creators.review_csv import review_import
+
+    return review_import(path=path)
+
+
+def run_eval(path: Path) -> dict[str, Any]:
+    assert_isolated_from_docmap()
+    from marketing_pipeline.creators.eval import run_eval as _eval
+
+    return _eval(labels_path=path)
 
 
 def run_sunday_refresh() -> dict[str, Any]:
@@ -309,4 +463,28 @@ def dispatch(args: Any) -> dict[str, Any]:
         return run_drain(deadline=getattr(args, "deadline", "02:45"))
     if command == "sunday-refresh":
         return run_sunday_refresh()
+    if command == "seed-practitioners":
+        return run_seed_practitioners(
+            specialties=getattr(args, "specialties"),
+            limit=getattr(args, "limit", 1500),
+            out=Path(args.out) if getattr(args, "out", None) else None,
+        )
+    if command == "export":
+        return run_export(args.view, Path(args.out))
+    if command == "purge":
+        return run_purge(older_than_days=getattr(args, "older_than_days", 90))
+    if command == "promote-peer":
+        return run_promote_peer_cmd(
+            args.handle,
+            quality=getattr(args, "quality", "auto"),
+            dry_run=getattr(args, "dry_run", False),
+        )
+    if command == "seed-warren-brief":
+        return run_seed_warren_brief()
+    if command == "review-export":
+        return run_review_export(Path(args.out))
+    if command == "review-import":
+        return run_review_import(Path(args.file))
+    if command == "eval":
+        return run_eval(Path(args.labels))
     raise SystemExit(f"Unknown creators command: {command}")

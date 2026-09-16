@@ -226,3 +226,22 @@ def test_list_ready_for_sales_includes_evidence(monkeypatch):
     assert row["specialties"] == ["colorectal"]
     assert row["source_creator_profile_id"] == "p1"
     assert "evidence" in outreach.list_outreach_contacts(status="ready")["contacts"][0]
+
+
+def test_list_ready_for_sales_cohort_filter(monkeypatch):
+    client = FakeClient(_seed())
+    client.data["gtm_outreach_cohort_members"] = [
+        {"cohort_id": "co-creator", "clinic_intelligence_id": "cl-creator"}
+    ]
+    monkeypatch.setattr("gtm_pipeline.contacts.outreach.supabase_configured", lambda: True)
+    monkeypatch.setattr("gtm_pipeline.contacts.outreach.get_client", lambda: client)
+    monkeypatch.setattr("gtm_pipeline.contacts.outreach.get_cohort", lambda slug: client.data["gtm_outreach_cohorts"][0])
+    monkeypatch.setattr(
+        "gtm_pipeline.contacts.outreach.list_members",
+        lambda slug, status=None, limit=5000: {
+            "members": [{"clinic_intelligence_id": "cl-creator"}]
+        },
+    )
+    out = outreach.list_ready_for_sales(limit=10, cohort="tiktok_doctor_creators")
+    assert out["returned"] == 1
+    assert out["contacts"][0]["source_creator_profile_id"] == "p1"

@@ -66,6 +66,31 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(mess
 logger = logging.getLogger("data-worker")
 
 
+def _verify_creator_schema() -> bool:
+    """Refuse corpus drain if sql/014+015 are missing. DocMap jobs still run."""
+    import subprocess
+
+    script = ROOT.parent / "scripts" / "verify-supabase-schema.py"
+    if not script.exists():
+        logger.error("verify-supabase-schema.py missing at %s", script)
+        return False
+    completed = subprocess.run(
+        [sys.executable, str(script)],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if completed.returncode != 0:
+        logger.error(
+            "creator schema verify failed (exit %s): %s",
+            completed.returncode,
+            (completed.stdout or completed.stderr or "")[-800:],
+        )
+        return False
+    logger.info("creator schema verify passed")
+    return True
+
+
 def _safe(job_name: str, fn):
     def wrapper():
         logger.info("Starting job: %s", job_name)
@@ -264,19 +289,24 @@ def main() -> None:
         return run_sunday_refresh()
 
     if not config.SKIP_CREATOR_CORPUS:
-        scheduler.add_job(
-            _safe("creator_corpus_drain", _run_creator_corpus_drain),
-            CronTrigger(hour=1, minute=0),
-            id="creator_corpus_drain",
-            replace_existing=True,
-        )
-        scheduler.add_job(
-            _safe("creator_corpus_refresh", _run_creator_corpus_refresh),
-            CronTrigger(day_of_week="sun", hour=0, minute=30),
-            id="creator_corpus_refresh",
-            replace_existing=True,
-        )
-        logger.info("Creator corpus drain enabled (01:00 UTC, deadline 02:45)")
+        if not _verify_creator_schema():
+            logger.error(
+                "SKIP_CREATOR_CORPUS effectively true — schema verify failed; DocMap cron still scheduled"
+            )
+        else:
+            scheduler.add_job(
+                _safe("creator_corpus_drain", _run_creator_corpus_drain),
+                CronTrigger(hour=1, minute=0),
+                id="creator_corpus_drain",
+                replace_existing=True,
+            )
+            scheduler.add_job(
+                _safe("creator_corpus_refresh", _run_creator_corpus_refresh),
+                CronTrigger(day_of_week="sun", hour=0, minute=30),
+                id="creator_corpus_refresh",
+                replace_existing=True,
+            )
+            logger.info("Creator corpus drain enabled (01:00 UTC, deadline 02:45)")
     else:
         logger.info("SKIP_CREATOR_CORPUS=true — creator corpus drain/refresh disabled")
 

@@ -242,7 +242,7 @@ def _creators_parser(sub: argparse._SubParsersAction) -> None:
 
     drain = csub.add_parser(
         "drain",
-        help="Profile → hydrate → classify → score → enqueue-deep. Stops at --deadline UTC.",
+        help="Profile → hydrate → classify → score → enqueue-deep → gtm link. Stops at --deadline UTC.",
     )
     drain.add_argument("--deadline", default="02:45", help="HH:MM UTC hard stop (DocMap SLO)")
 
@@ -250,6 +250,45 @@ def _creators_parser(sub: argparse._SubParsersAction) -> None:
         "sunday-refresh",
         help="Rebuild scores/stats and enqueue newly good-fit (no live discovery)",
     )
+
+    seeds_p = csub.add_parser(
+        "seed-practitioners",
+        help="Shell out to gtm_pipeline creators export-practitioner-seeds then seed-import",
+    )
+    seeds_p.add_argument(
+        "--specialties",
+        default="obstetrics_gynaecology,fertility,menopause,endometriosis,ivf,dermatology,colorectal,general_surgery,gastroenterology",
+    )
+    seeds_p.add_argument("--limit", type=int, default=1500)
+    seeds_p.add_argument("--out", default=None)
+
+    exp = csub.add_parser("export", help="CSV views or generated data dictionary")
+    exp.add_argument("--view", default="corpus", help="corpus|customer|research|specialty-stats|dictionary")
+    exp.add_argument("--out", required=True)
+
+    purge = csub.add_parser("purge", help="Drop bio/captions/videos for discard rows older than N days")
+    purge.add_argument("--older-than-days", type=int, default=90)
+
+    peer = csub.add_parser(
+        "promote-peer",
+        help="Subprocess Warren ingest for one handle (--skip-embed, then delete media)",
+    )
+    peer.add_argument("--handle", required=True)
+    peer.add_argument("--quality", choices=["auto", "on_demand"], default="auto")
+    peer.add_argument("--dry-run", action="store_true")
+
+    csub.add_parser(
+        "seed-warren-brief",
+        help="Load docs/examples/drleewarren-content-guidelines.md as confirmed L3",
+    )
+
+    rev_ex = csub.add_parser("review-export", help="CSV of customer-lane rows for human review")
+    rev_ex.add_argument("--out", required=True)
+    rev_im = csub.add_parser("review-import", help="Apply review CSV (review_status / DNC)")
+    rev_im.add_argument("--file", required=True)
+
+    ev = csub.add_parser("eval", help="Precision vs labels_v1.csv before promotion")
+    ev.add_argument("--labels", required=True)
 
 
 def main(argv: list[str] | None = None) -> None:

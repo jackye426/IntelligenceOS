@@ -12,6 +12,7 @@ import logging
 import os
 import signal
 import socket
+import subprocess
 import sys
 import threading
 from datetime import datetime, timezone
@@ -63,6 +64,31 @@ def worker_id() -> str:
     return os.getenv("RAILWAY_REPLICA_ID") or f"{socket.gethostname()}-{os.getpid()}"
 
 
+def verify_schema() -> bool:
+    script = REPO / "scripts" / "verify-supabase-schema.py"
+    completed = subprocess.run(
+        [sys.executable, str(script)],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if completed.returncode != 0:
+        HEALTH["schema_verify"] = "failed"
+        HEALTH["schema_verify_error"] = (completed.stdout or completed.stderr or "")[-500:]
+        return False
+    HEALTH["schema_verify"] = "ok"
+    return True
+
+
+def _client():
+    from supabase import create_client
+
+    return create_client(
+        os.environ["SUPABASE_URL"],
+        os.environ.get("SUPABASE_SERVICE_ROLE_KEY") or os.environ["SUPABASE_KEY"],
+    )
+
+
 def _refresh_health() -> None:
     HEALTH["listing_paused"] = listing_paused()
     HEALTH["skip"] = SKIP_CREATOR_DEEP
@@ -70,12 +96,7 @@ def _refresh_health() -> None:
     if SKIP_CREATOR_DEEP or not os.getenv("SUPABASE_URL"):
         return
     try:
-        from supabase import create_client
-
-        client = create_client(
-            os.environ["SUPABASE_URL"],
-            os.environ.get("SUPABASE_SERVICE_ROLE_KEY") or os.environ["SUPABASE_KEY"],
-        )
+        client = _client()
         queued = (
             client.table("creator_deep_job_items")
             .select("id", count="exact")
@@ -107,14 +128,116 @@ def _run_ingest_subprocess(handle: str, quality: str) -> dict[str, Any]:
         sys.executable,
         "-m",
         "marketing_pipeline",
-        "tiktok",
-        "--account",
+        "creators",
+        "promote-peer",
+        "--handle",
         handle,
-        "fetch-catalog",
+        "--quality",
+        quality,
     ]
-    # Parent only forks. The child is the only process allowed to activate_account.
-    logger.info("subprocess ingest (not yet started because SKIP): %s", cmd)
-    return {"handle": handle, "quality": quality, "skipped": True, "reason": "stub_until_golden_replay"}
+    env = {
+        **os.environ,
+        "PYTHONPATH": os.pathsep.join(
+            [
+                str(REPO / "marketing-pipeline" / "src"),
+                os.environ.get("PYTHONPATH", ""),
+            ]
+        ),
+    }
+    logger.info("subprocess ingest (parent does not activate_account): %s", cmd)
+    completed = subprocess.run(cmd, check=False, capture_output=True, text=True, env=env)
+    payload: dict[str, Any] = {
+        "handle": handle,
+        "quality": quality,
+        "returncode": completed.returncode,
+        "skipped": False,
+    }
+    if completed.returncode != 0:
+        payload["stderr"] = (completed.stderr or "")[-500:]
+        payload["status"] = "failed"
+        return payload
+    try:
+        payload["result"] = json.loads(completed.stdout or "{}")
+    except json.JSONDecodeError:
+        payload["stdout"] = completed.stdout
+    payload["status"] = "completed"
+    return payload
+
+
+def _run_write_brief(handle: str) -> dict[str, Any]:
+    cmd = [
+        sys.executable,
+        "-m",
+        "marketing_pipeline",
+        "creators",
+        "write-brief",
+        "--handle",
+        handle,
+    ]
+    env = {
+        **os.environ,
+        "PYTHONPATH": os.pathsep.join(
+            [
+                str(REPO / "marketing-pipeline" / "src"),
+                os.environ.get("PYTHONPATH", ""),
+            ]
+        ),
+    }
+    completed = subprocess.run(cmd, check=False, capture_output=True, text=True, env=env)
+    return {"handle": handle, "returncode": completed.returncode, "kind": "write_brief"}
+
+
+def _finish_item(client, item: dict[str, Any], *, status: str, result: dict[str, Any]) -> None:
+    client.table("creator_deep_job_items").update(
+        {
+            "status": status,
+            "result": result,
+            "heartbeat_at": datetime.now(timezone.utc).isoformat(),
+        }
+    ).eq("id", item["id"]).execute()
+
+
+def _claim(kind: str) -> list[dict[str, Any]]:
+    client = _client()
+    claimed = client.rpc(
+        "creator_claim_deep_job_items",
+        {
+            "p_limit": 1,
+            "p_worker_id": worker_id(),
+            "p_stale_seconds": DEEP_STALE_SECONDS,
+            "p_kind": kind,
+        },
+    ).execute()
+    return claimed.data or []
+
+
+def process_one(*, pause_listing: bool) -> bool:
+    """Claim at most one item. Returns True if work ran."""
+    kind = "write_brief" if pause_listing else None
+    items = _claim(kind) if kind else _claim("deep_ingest")
+    if not items and not pause_listing:
+        items = _claim("write_brief")
+    if not items:
+        return False
+    item = items[0]
+    payload = item.get("payload") or {}
+    handle = payload.get("handle") or ""
+    quality = payload.get("quality") or "auto"
+    HEALTH["active_ingest"] = handle or item.get("id")
+    client = _client()
+    try:
+        if item.get("kind") == "write_brief":
+            result = _run_write_brief(handle)
+        else:
+            result = _run_ingest_subprocess(handle, quality)
+        ok = result.get("returncode", 1) == 0 or result.get("status") == "completed"
+        _finish_item(client, item, status="succeeded" if ok else "failed", result=result)
+    except Exception as exc:  # noqa: BLE001
+        logger.exception("deep item failed")
+        _finish_item(client, item, status="failed", result={"error": str(exc)})
+    finally:
+        HEALTH["active_ingest"] = None
+    return True
 
 
 def _claim_loop(stop: threading.Event) -> None:
@@ -124,18 +247,24 @@ def _claim_loop(stop: threading.Event) -> None:
             HEALTH["active_ingest"] = None
             stop.wait(30)
             continue
-        if listing_paused():
-            logger.info("listing pause 02:50–04:15 UTC — not claiming ingest items")
+        if not os.getenv("SUPABASE_URL"):
+            HEALTH["note"] = "no supabase"
             stop.wait(30)
             continue
-        # Production loop: rpc creator_claim_deep_job_items (stale 14400), fork one ingest, wait.
-        HEALTH["note"] = "claim loop idle until SKIP_CREATOR_DEEP=false"
-        stop.wait(30)
+        try:
+            worked = process_one(pause_listing=listing_paused())
+        except Exception:
+            logger.exception("claim loop error")
+            worked = False
+        stop.wait(5 if worked else 30)
 
 
 def main() -> None:
     if DEEP_STALE_SECONDS < 14400:
         raise SystemExit("creator-deep-worker refuses GTM 600s stale window")
+    if not SKIP_CREATOR_DEEP and not verify_schema():
+        raise SystemExit("creator-deep-worker refuses to start: schema verify failed")
+
     port = int(os.getenv("PORT", "8080"))
     server = ThreadingHTTPServer(("0.0.0.0", port), _Health)
     thread = threading.Thread(target=server.serve_forever, daemon=True)
