@@ -244,7 +244,7 @@ async def health(request):  # noqa: ANN001
         or "unknown",
     }
     try:
-        names = tool_names_from_mcp(mcp) or parse_tool_names_from_main_path(main_py)
+        names = parse_tool_names_from_main_path(main_py) or tool_names_from_mcp(mcp)
         payload = provenance(
             service="relationship-desk",
             tool_names=names,
