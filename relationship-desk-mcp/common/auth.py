@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import hmac
+
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.requests import Request
 from starlette.responses import JSONResponse
@@ -20,10 +22,20 @@ class AuthMiddleware(BaseHTTPMiddleware):
                 status_code=503,
             )
 
+        token = config.AUTH_TOKEN.strip()
         auth_header = request.headers.get("authorization", "")
-        token_header = request.headers.get("x-relationship-desk-auth", "")
-        expected = f"Bearer {config.AUTH_TOKEN.strip()}"
-        if auth_header.strip() != expected and token_header.strip() != config.AUTH_TOKEN.strip():
+        token_header = request.headers.get("x-relationship-desk-auth", "").strip()
+        bearer = auth_header.strip()
+        bearer_ok = bearer and token and (
+            hmac.compare_digest(bearer, f"Bearer {token}")
+            or hmac.compare_digest(bearer, token)
+        )
+        header_ok = (
+            len(token_header) == len(token)
+            and bool(token)
+            and hmac.compare_digest(token_header, token)
+        )
+        if not (bearer_ok or header_ok):
             return JSONResponse({"error": "Unauthorized"}, status_code=401)
 
         origin = request.headers.get("origin")

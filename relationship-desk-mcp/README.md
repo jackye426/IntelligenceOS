@@ -131,7 +131,7 @@ RELATIONSHIP_GMAIL_CLIENT_ID
 RELATIONSHIP_GMAIL_CLIENT_SECRET
 RELATIONSHIP_GMAIL_REFRESH_TOKEN
 RELATIONSHIP_GMAIL_ACCOUNT_EMAIL
-RELATIONSHIP_GMAIL_SEND_AS_ALIASES=admin@docmap.co.uk,jack@docmap.co.uk,kevin@docmap.co.uk,hello@docmap.co.uk
+RELATIONSHIP_GMAIL_SEND_AS_ALIASES=admin@docmap.co.uk
 RELATIONSHIP_GMAIL_DEFAULT_SEND_AS=admin@docmap.co.uk
 RELATIONSHIP_DESK_MODE=draft_only|supervised_send|auto_send_safe
 ```
@@ -139,7 +139,34 @@ RELATIONSHIP_DESK_MODE=draft_only|supervised_send|auto_send_safe
 `RELATIONSHIP_GMAIL_ACCOUNT_EMAIL` should match the Gmail account used to generate the refresh token.
 `RELATIONSHIP_GMAIL_DEFAULT_SEND_AS` controls the default `From` address for drafts/sends.
 Every send-as address must be configured in Gmail for that account and listed in
-`RELATIONSHIP_GMAIL_SEND_AS_ALIASES`.
+`RELATIONSHIP_GMAIL_SEND_AS_ALIASES`. In Google Workspace, each alias must be a verified
+**Send mail as** address on the `admin@docmap.co.uk` account before Railway env vars will work.
+
+Aliases also feed reply detection (`sync_replies`): outbound mail from those addresses is
+treated as "from us".
+
+### Production Railway (Email MCP service)
+
+Set explicitly (triggers redeploy):
+
+```text
+RELATIONSHIP_GMAIL_SEND_AS_ALIASES=admin@docmap.co.uk
+RELATIONSHIP_GMAIL_DEFAULT_SEND_AS=admin@docmap.co.uk
+```
+
+### Gmail OAuth scopes and token remint
+
+The refresh-token helper requests only `gmail.readonly` and `gmail.compose` (no `gmail.modify`).
+`gmail.compose` still allows sending mail via the API; draft-only behaviour is enforced by
+`RELATIONSHIP_DESK_MODE`, not by OAuth scope alone.
+
+After changing scopes, remint as the mailbox owner:
+
+```bash
+# Place client_secret.json at IntelligenceOS repo root, then:
+python relationship-desk-mcp/generate_gmail_refresh_token.py
+# Update RELATIONSHIP_GMAIL_REFRESH_TOKEN on the Email MCP Railway service.
+```
 
 Run `sql/006_relationship_desk.sql` before using chase-state tools.
 Run `sql/007_relationship_followup_candidates.sql` before using inbox candidate tools.

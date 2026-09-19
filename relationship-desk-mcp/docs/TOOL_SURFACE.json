@@ -1,0 +1,26 @@
+{
+  "service": "relationship-desk",
+  "tool_count": 19,
+  "fingerprint": "dca2de1c2c85",
+  "tool_names": [
+    "accept_followup_candidate",
+    "act_on_chase",
+    "capture_chase",
+    "draft_chase",
+    "get_relationship_brief",
+    "get_relationship_context",
+    "get_thread_brief",
+    "ignore_followup_candidate",
+    "list_chases",
+    "mark_done",
+    "mark_waiting",
+    "relationship_desk",
+    "review_due_chases",
+    "review_followup_candidates",
+    "review_inbox_since",
+    "scan_inbox_for_followups",
+    "search_threads",
+    "snooze_chase",
+    "sync_replies"
+  ]
+}

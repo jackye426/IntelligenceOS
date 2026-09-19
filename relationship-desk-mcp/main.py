@@ -9,6 +9,7 @@ Local run:
 
 from __future__ import annotations
 
+import os
 import sys
 from pathlib import Path
 from typing import Any
@@ -24,6 +25,11 @@ sys.path.insert(0, str(ROOT))
 
 from common import config  # noqa: E402
 from common.auth import AuthMiddleware  # noqa: E402
+from common.build_provenance import (  # noqa: E402
+    parse_tool_names_from_main_path,
+    provenance,
+    tool_names_from_mcp,
+)
 from common.instructions import RELATIONSHIP_DESK_INSTRUCTIONS  # noqa: E402
 from common.transport_security import build_transport_security  # noqa: E402
 from tools import act_on_chase, capture_chase, chase_state, draft_chase, list_chases  # noqa: E402
@@ -229,14 +235,43 @@ def snooze_chase_tool(chase_id: str, until: str, note: str | None = None) -> dic
 
 
 async def health(request):  # noqa: ANN001
-    return JSONResponse(
-        {
-            "status": "ok",
-            "service": "relationship-desk",
-            "mode": config.DESK_MODE,
-            "practitioners_table": config.PRACTITIONERS_TABLE,
-        }
-    )
+    main_py = ROOT / "main.py"
+    extra = {
+        "mode": config.DESK_MODE,
+        "practitioners_table": config.PRACTITIONERS_TABLE,
+        "git_commit": os.getenv("BUILD_GIT_COMMIT", "")
+        or os.getenv("RAILWAY_GIT_COMMIT_SHA", "")
+        or "unknown",
+    }
+    try:
+        names = tool_names_from_mcp(mcp) or parse_tool_names_from_main_path(main_py)
+        payload = provenance(
+            service="relationship-desk",
+            tool_names=names,
+            admin_routes=False,
+            extra=extra,
+        )
+    except Exception:
+        try:
+            names = parse_tool_names_from_main_path(main_py)
+            payload = provenance(
+                service="relationship-desk",
+                tool_names=names,
+                admin_routes=False,
+                extra=extra,
+            )
+        except Exception:
+            payload = {
+                "status": "ok",
+                "service": "relationship-desk",
+                "platform": "unknown",
+                "repo": "unknown",
+                "commit": "unknown",
+                "tool_count": None,
+                "tool_fingerprint": "unavailable",
+                "admin_routes": False,
+            }
+    return JSONResponse(payload)
 
 
 async def root(request):  # noqa: ANN001
