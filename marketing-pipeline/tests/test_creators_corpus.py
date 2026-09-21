@@ -469,3 +469,197 @@ def test_drain_dispatch_does_not_activate_account():
     assert "tiktok.sync" not in src
     assert "config.activate_account" not in src
 
+
+def test_export_corpus_csv(mem, tmp_path):
+    mem.insert(
+        "creator_profiles",
+        {
+            "tiktok_user_id": "u1",
+            "handle": "drjane",
+            "lane": "customer",
+            "specialty_key": "colorectal",
+            "caption": "SHOULD_NOT_APPEAR",
+        },
+    )
+    path = tmp_path / "corpus.csv"
+    from marketing_pipeline.creators.export import export_view
+
+    out = export_view("corpus", path=path, store=mem)
+    assert out["rows"] == 1
+    text = path.read_text()
+    assert "drjane" in text
+    assert "SHOULD_NOT_APPEAR" not in text
+    assert "caption" not in text.splitlines()[0]
+
+
+def test_purge_discards_old_bio_and_videos(mem):
+    from datetime import datetime, timedelta, timezone
+
+    from marketing_pipeline.creators.purge import run_purge
+
+    old = (datetime.now(timezone.utc) - timedelta(days=120)).isoformat()
+    profile = mem.insert(
+        "creator_profiles",
+        {
+            "tiktok_user_id": "gone",
+            "handle": "oldbrand",
+            "lane": "discard",
+            "stage": "excluded",
+            "bio": "secret bio",
+            "excluded_reason": "brand",
+            "first_seen_at": old,
+            "updated_at": old,
+        },
+    )
+    mem.insert(
+        "creator_videos",
+        {
+            "video_id": "v1",
+            "creator_profile_id": profile["id"],
+            "caption": "old caption",
+        },
+    )
+    out = run_purge(older_than_days=90, store=mem)
+    assert out["purged_profiles"] == 1
+    assert out["videos_deleted"] == 1
+    kept = mem.get("creator_profiles", handle="oldbrand")
+    assert kept["bio"] is None
+    assert kept["excluded_reason"] == "brand"
+    assert kept["tiktok_user_id"] == "gone"
+    assert mem.list("creator_videos") == []
+
+
+def test_seed_warren_brief_confirmed(mem):
+    from marketing_pipeline.creators.seed_warren import seed_warren_brief
+    from marketing_pipeline.creators.write_brief import REQUIRED_SECTIONS, validate_artefact
+
+    out = seed_warren_brief(store=mem)
+    assert out["handle"] == "drleewarren"
+    assert out["status"] == "confirmed"
+    assert out["sections"] == REQUIRED_SECTIONS
+    brief = mem.get("creator_peer_briefs", account_handle="drleewarren")
+    assert brief["source"] == "mcp_session"
+    assert brief["status"] == "confirmed"
+    assert validate_artefact(brief["artefact"]) == []
+
+
+def test_promote_peer_is_subprocess_skip_embed(tmp_path, monkeypatch):
+    import inspect
+
+    from marketing_pipeline.creators import promote_peer as pp
+
+    monkeypatch.setenv("MARKETING_PEER_DATA_DIR", str(tmp_path / "peers"))
+    argv = pp.ingest_argv("drleewarren", quality="auto")
+    dumped = " ".join(" ".join(cmd) for cmd in argv)
+    assert "--skip-embed" in dumped
+    assert "--account drleewarren" in dumped or "drleewarren" in dumped
+    assert "activate_account" not in dumped
+    src = inspect.getsource(pp.run_promote_peer)
+    assert "activate_account(" not in src
+    dry = pp.run_promote_peer("drleewarren", quality="on_demand", dry_run=True)
+    assert dry["skip_embed"] is True
+    assert any("--deep" in cmd and "200" in cmd for cmd in dry["commands"])
+
+
+def test_media_deleted_after_ingest(tmp_path, monkeypatch):
+    from marketing_pipeline.creators.promote_peer import delete_peer_media, peer_transcripts_dir
+
+    monkeypatch.setenv("MARKETING_PEER_DATA_DIR", str(tmp_path / "peers"))
+    media = tmp_path / "peers" / "drjane" / "media"
+    transcripts = tmp_path / "peers" / "drjane" / "transcripts"
+    media.mkdir(parents=True)
+    transcripts.mkdir(parents=True)
+    (media / "clip.mp4").write_bytes(b"xx")
+    (transcripts / "ALL_COMPLETE_TRANSCRIPTS.txt").write_text("kept")
+    out = delete_peer_media("drjane")
+    assert out["media_empty"] is True
+    assert not (media / "clip.mp4").exists()
+    assert (transcripts / "ALL_COMPLETE_TRANSCRIPTS.txt").exists()
+    assert peer_transcripts_dir("drjane").exists()
+
+
+def test_review_csv_round_trip(mem, tmp_path):
+    from marketing_pipeline.creators.review_csv import review_export, review_import
+
+    mem.insert(
+        "creator_profiles",
+        {
+            "tiktok_user_id": "u1",
+            "handle": "drjane",
+            "lane": "customer",
+            "review_status": "pending",
+            "do_not_contact": False,
+            "customer_score": 70,
+        },
+    )
+    path = tmp_path / "review.csv"
+    review_export(path=path, store=mem)
+    text = path.read_text()
+    text = text.replace("pending", "confirmed")
+    path.write_text(text)
+    out = review_import(path=path, store=mem)
+    assert out["updated"] == 1
+    assert mem.get("creator_profiles", handle="drjane")["review_status"] == "confirmed"
+
+
+def test_eval_precision_gates(mem, tmp_path):
+    from marketing_pipeline.creators.eval import run_eval
+
+    mem.insert(
+        "creator_profiles",
+        {
+            "tiktok_user_id": "u1",
+            "handle": "drjane",
+            "is_doctor": True,
+            "geo_country": "GB",
+            "lane": "customer",
+        },
+    )
+    labels = tmp_path / "labels.csv"
+    labels.write_text("handle,is_doctor,geo_country,lane\ndrjane,true,GB,customer\n")
+    out = run_eval(labels_path=labels, store=mem)
+    assert out["passed"] is True
+    assert out["scores"]["is_doctor_precision"] == 1.0
+
+
+def test_classify_v1_falls_back_to_heuristic(mem, monkeypatch):
+    from marketing_pipeline.creators.classify import classify_v1
+
+    monkeypatch.setattr("marketing_pipeline.config.OPENROUTER_API_KEY", "")
+    profile = {
+        "id": "x",
+        "nickname": "Dr Jane",
+        "bio": "Consultant colorectal surgeon. Book at jane.clinic",
+        "bio_link": "https://jane.clinic",
+        "bio_links": [{"url": "https://jane.clinic", "class": "own_site"}],
+        "screen_result": "include",
+        "geo_country": "GB",
+        "geo_confidence": 0.9,
+    }
+    card, model = classify_v1(profile, [], use_llm=False)
+    assert model == "heuristic"
+    assert card.is_doctor is True
+
+
+def test_drain_gtm_link_is_subprocess_not_activate():
+    import inspect
+
+    from marketing_pipeline.creators import commands as cmds
+
+    drain_src = inspect.getsource(cmds.run_drain)
+    link_src = inspect.getsource(cmds.run_gtm_link)
+    assert "activate_account(" not in drain_src
+    assert "activate_account(" not in link_src
+    assert "tiktok.sync" not in drain_src
+    assert "gtm_pipeline" in link_src
+
+
+def test_deep_worker_parent_does_not_activate_account():
+    root = Path(__file__).resolve().parents[2]
+    src = (root / "creator-deep-worker" / "main.py").read_text()
+    assert "activate_account(" not in src
+    assert "promote-peer" in src
+    assert "p_stale_seconds" in src
+    assert "14400" in src
+
+
