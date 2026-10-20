@@ -25,3 +25,6 @@ BEGIN
       FOR ALL TO service_role USING (true) WITH CHECK (true);
   END IF;
 END $$;
+
+-- Source table is supplied by the external practitioner pipeline.
+GRANT SELECT ON TABLE public.integrated_practitioners TO service_role;

@@ -161,3 +161,9 @@ SELECT id,
  WHERE platform = 'tiktok'
    AND post_url IS NOT NULL
    AND position('@' || account_handle || '/' in post_url) = 0;
+
+-- Explicit backend access: do not depend on Supabase automatic table grants.
+-- RLS and SQL privileges are independent. No browser-role privileges are added.
+ALTER TABLE public.content_posts ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE public.content_posts TO service_role;
+GRANT SELECT ON TABLE public.content_posts_handle_mismatch TO service_role;

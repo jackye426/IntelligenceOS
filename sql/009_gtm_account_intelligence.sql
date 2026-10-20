@@ -219,3 +219,14 @@ BEGIN
       FOR ALL TO service_role USING (true) WITH CHECK (true);
   END IF;
 END $$;
+
+-- Explicit backend access: do not depend on Supabase automatic table grants.
+-- RLS and SQL privileges are independent. No browser-role privileges are added.
+ALTER TABLE public.gtm_clinic_intelligence ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.gtm_clinic_intelligence TO service_role;
+ALTER TABLE public.gtm_clinic_people ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.gtm_clinic_people TO service_role;
+ALTER TABLE public.gtm_match_reviews ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.gtm_match_reviews TO service_role;
+ALTER TABLE public.gtm_unmatched_owners ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.gtm_unmatched_owners TO service_role;

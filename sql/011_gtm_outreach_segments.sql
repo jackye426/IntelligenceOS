@@ -137,3 +137,10 @@ BEGIN
       FOR ALL TO service_role USING (true) WITH CHECK (true);
   END IF;
 END $$;
+
+-- Explicit backend access: do not depend on Supabase automatic table grants.
+-- RLS and SQL privileges are independent. No browser-role privileges are added.
+ALTER TABLE public.gtm_outreach_cohorts ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, UPDATE ON TABLE public.gtm_outreach_cohorts TO service_role;
+ALTER TABLE public.gtm_outreach_cohort_members ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, DELETE ON TABLE public.gtm_outreach_cohort_members TO service_role;

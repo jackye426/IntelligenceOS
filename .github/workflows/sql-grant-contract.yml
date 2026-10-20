@@ -1,0 +1,19 @@
+name: SQL grant contract
+on:
+  pull_request:
+    paths: ['sql/**', 'tests/sql/**', '.github/workflows/sql-grant-contract.yml']
+  push:
+    branches: [main]
+    paths: ['sql/**', 'tests/sql/**', '.github/workflows/sql-grant-contract.yml']
+permissions:
+  contents: read
+jobs:
+  grants:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --prefix tests/sql
+      - run: npm test --prefix tests/sql

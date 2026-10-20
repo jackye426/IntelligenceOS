@@ -51,3 +51,10 @@ CREATE TABLE IF NOT EXISTS relationship_worker_state (
   value JSONB NOT NULL DEFAULT '{}',
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+
+-- Explicit backend access: do not depend on Supabase automatic table grants.
+-- RLS and SQL privileges are independent. No browser-role privileges are added.
+ALTER TABLE public.relationship_followup_candidates ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.relationship_followup_candidates TO service_role;
+ALTER TABLE public.relationship_worker_state ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.relationship_worker_state TO service_role;

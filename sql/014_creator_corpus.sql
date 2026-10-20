@@ -715,3 +715,33 @@ BEGIN
     END IF;
   END LOOP;
 END $$;
+
+-- Explicit backend access: do not depend on Supabase automatic table grants.
+-- RLS and SQL privileges are independent. No browser-role privileges are added.
+ALTER TABLE public.creator_seeds ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.creator_seeds TO service_role;
+ALTER TABLE public.creator_discovery_hits ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.creator_discovery_hits TO service_role;
+ALTER TABLE public.creator_profiles ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.creator_profiles TO service_role;
+ALTER TABLE public.creator_profile_snapshots ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT ON TABLE public.creator_profile_snapshots TO service_role;
+ALTER TABLE public.creator_videos ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE public.creator_videos TO service_role;
+ALTER TABLE public.creator_insight_cards ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.creator_insight_cards TO service_role;
+ALTER TABLE public.creator_specialty_stats ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.creator_specialty_stats TO service_role;
+ALTER TABLE public.creator_peer_briefs ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.creator_peer_briefs TO service_role;
+ALTER TABLE public.creator_deep_jobs ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.creator_deep_jobs TO service_role;
+ALTER TABLE public.creator_deep_job_items ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.creator_deep_job_items TO service_role;
+ALTER TABLE public.creator_links ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.creator_links TO service_role;
+ALTER TABLE public.creator_crawl_runs ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.creator_crawl_runs TO service_role;
+GRANT SELECT ON TABLE public.creator_corpus_current TO service_role;
+GRANT SELECT ON TABLE public.creator_customer_queue TO service_role;
+GRANT SELECT ON TABLE public.creator_research_board TO service_role;

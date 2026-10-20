@@ -214,3 +214,26 @@ CREATE TABLE IF NOT EXISTS doctify_profiles (
 
 CREATE INDEX IF NOT EXISTS idx_doctify_account   ON doctify_profiles (clinic_account_id);
 CREATE INDEX IF NOT EXISTS idx_doctify_scraped   ON doctify_profiles (scraped_at DESC);
+
+-- Explicit backend access: do not depend on Supabase automatic table grants.
+-- RLS and SQL privileges are independent. No browser-role privileges are added.
+ALTER TABLE public.clinic_accounts ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.clinic_accounts TO service_role;
+ALTER TABLE public.clinic_sources ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT ON TABLE public.clinic_sources TO service_role;
+ALTER TABLE public.clinic_research_runs ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.clinic_research_runs TO service_role;
+ALTER TABLE public.clinic_observations ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT ON TABLE public.clinic_observations TO service_role;
+ALTER TABLE public.clinic_contacts ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT ON TABLE public.clinic_contacts TO service_role;
+ALTER TABLE public.clinic_interactions ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT ON TABLE public.clinic_interactions TO service_role;
+ALTER TABLE public.outreach_drafts ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.outreach_drafts TO service_role;
+ALTER TABLE public.pipeline_stage_history ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT ON TABLE public.pipeline_stage_history TO service_role;
+ALTER TABLE public.account_tasks ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.account_tasks TO service_role;
+ALTER TABLE public.doctify_profiles ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.doctify_profiles TO service_role;

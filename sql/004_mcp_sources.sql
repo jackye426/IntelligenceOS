@@ -267,3 +267,22 @@ LANGUAGE sql STABLE AS $$
   ORDER BY embedding <=> query_embedding
   LIMIT match_count;
 $$;
+
+-- Explicit backend access: do not depend on Supabase automatic table grants.
+-- RLS and SQL privileges are independent. No browser-role privileges are added.
+ALTER TABLE public.email_threads ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.email_threads TO service_role;
+ALTER TABLE public.patient_conversations ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.patient_conversations TO service_role;
+ALTER TABLE public.call_transcripts ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.call_transcripts TO service_role;
+ALTER TABLE public.content_posts ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE public.content_posts TO service_role;
+ALTER TABLE public.appointment_slots ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.appointment_slots TO service_role;
+ALTER TABLE public.booking_guids ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.booking_guids TO service_role;
+ALTER TABLE public.data_ingestion_runs ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.data_ingestion_runs TO service_role;
+ALTER TABLE public.mcp_tool_audit_log ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT ON TABLE public.mcp_tool_audit_log TO service_role;

@@ -89,7 +89,7 @@ BEGIN
   JOIN pg_class t ON c.conrelid = t.oid
   WHERE t.relname = 'gtm_pipeline_jobs'
     AND c.contype = 'c'
-    AND pg_get_constraintdef(c.oid) ILIKE '%kind%';
+    AND pg_get_constraintdef(c.oid) ILIKE '%kind%'
   LIMIT 1;
   IF conname IS NOT NULL THEN
     EXECUTE format('ALTER TABLE gtm_pipeline_jobs DROP CONSTRAINT %I', conname);
@@ -108,3 +108,8 @@ BEGIN
 EXCEPTION
   WHEN duplicate_object THEN NULL;
 END $$;
+
+-- Explicit backend access: do not depend on Supabase automatic table grants.
+-- RLS and SQL privileges are independent. No browser-role privileges are added.
+ALTER TABLE public.gtm_outreach_contacts ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.gtm_outreach_contacts TO service_role;

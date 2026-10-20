@@ -84,3 +84,14 @@ CREATE TABLE IF NOT EXISTS tiktok_audience_snapshots (
 
 CREATE INDEX IF NOT EXISTS idx_tiktok_audience_time
   ON tiktok_audience_snapshots (account_handle, captured_at DESC);
+
+-- Explicit backend access: do not depend on Supabase automatic table grants.
+-- RLS and SQL privileges are independent. No browser-role privileges are added.
+ALTER TABLE public.content_metric_snapshots ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT ON TABLE public.content_metric_snapshots TO service_role;
+ALTER TABLE public.tiktok_studio_insights ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT ON TABLE public.tiktok_studio_insights TO service_role;
+ALTER TABLE public.tiktok_account_daily ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.tiktok_account_daily TO service_role;
+ALTER TABLE public.tiktok_audience_snapshots ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT ON TABLE public.tiktok_audience_snapshots TO service_role;

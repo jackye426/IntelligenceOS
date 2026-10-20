@@ -88,3 +88,12 @@ CREATE INDEX IF NOT EXISTS idx_relationship_events_chase_created
 CREATE INDEX IF NOT EXISTS idx_relationship_events_type_created
   ON relationship_events (event_type, created_at DESC);
 
+
+-- Explicit backend access: do not depend on Supabase automatic table grants.
+-- RLS and SQL privileges are independent. No browser-role privileges are added.
+ALTER TABLE public.relationship_contacts ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.relationship_contacts TO service_role;
+ALTER TABLE public.relationship_chases ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.relationship_chases TO service_role;
+ALTER TABLE public.relationship_events ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT ON TABLE public.relationship_events TO service_role;

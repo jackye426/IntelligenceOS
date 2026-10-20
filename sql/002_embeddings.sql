@@ -61,3 +61,8 @@ LANGUAGE sql STABLE AS $$
   ORDER BY embedding <=> query_embedding
   LIMIT match_count;
 $$;
+
+-- Explicit backend access: do not depend on Supabase automatic table grants.
+-- RLS and SQL privileges are independent. No browser-role privileges are added.
+ALTER TABLE public.document_embeddings ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE public.document_embeddings TO service_role;
