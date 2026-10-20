@@ -64,3 +64,10 @@ CREATE INDEX IF NOT EXISTS idx_relationship_memory_items_contact_status
 
 CREATE INDEX IF NOT EXISTS idx_relationship_memory_items_type
   ON relationship_memory_items (memory_type, status);
+
+-- Explicit backend access: do not depend on Supabase automatic table grants.
+-- RLS and SQL privileges are independent. No browser-role privileges are added.
+ALTER TABLE public.relationship_context_sources ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.relationship_context_sources TO service_role;
+ALTER TABLE public.relationship_memory_items ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.relationship_memory_items TO service_role;

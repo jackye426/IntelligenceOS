@@ -1,0 +1,447 @@
+{
+  "clinic_accounts": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  "clinic_sources": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT"
+    ]
+  },
+  "clinic_research_runs": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  "clinic_observations": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT"
+    ]
+  },
+  "clinic_contacts": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT"
+    ]
+  },
+  "clinic_interactions": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT"
+    ]
+  },
+  "outreach_drafts": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  "pipeline_stage_history": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT"
+    ]
+  },
+  "account_tasks": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  "doctify_profiles": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  "document_embeddings": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE",
+      "DELETE"
+    ]
+  },
+  "doctor_outreach": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  "doctor_recommendation_events": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  "email_threads": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  "patient_conversations": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  "call_transcripts": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  "content_posts": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE",
+      "DELETE"
+    ]
+  },
+  "appointment_slots": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  "booking_guids": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  "data_ingestion_runs": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  "mcp_tool_audit_log": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT"
+    ]
+  },
+  "content_metric_snapshots": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT"
+    ]
+  },
+  "tiktok_studio_insights": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT"
+    ]
+  },
+  "tiktok_account_daily": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  "tiktok_audience_snapshots": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT"
+    ]
+  },
+  "relationship_contacts": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  "relationship_chases": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  "relationship_events": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT"
+    ]
+  },
+  "relationship_followup_candidates": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  "relationship_worker_state": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  "relationship_context_sources": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  "relationship_memory_items": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  "gtm_clinic_intelligence": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  "gtm_clinic_people": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  "gtm_match_reviews": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  "gtm_unmatched_owners": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  "gtm_pipeline_jobs": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  "gtm_pipeline_job_items": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  "gtm_outreach_cohorts": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "UPDATE"
+    ]
+  },
+  "gtm_outreach_cohort_members": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "DELETE"
+    ]
+  },
+  "gtm_outreach_contacts": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  "content_posts_handle_mismatch": {
+    "kind": "view",
+    "privileges": [
+      "SELECT"
+    ]
+  },
+  "creator_seeds": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  "creator_discovery_hits": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  "creator_profiles": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  "creator_profile_snapshots": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT"
+    ]
+  },
+  "creator_videos": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE",
+      "DELETE"
+    ]
+  },
+  "creator_insight_cards": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  "creator_specialty_stats": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  "creator_peer_briefs": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  "creator_deep_jobs": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  "creator_deep_job_items": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  "creator_links": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  "creator_crawl_runs": {
+    "kind": "table",
+    "privileges": [
+      "SELECT",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  "creator_corpus_current": {
+    "kind": "view",
+    "privileges": [
+      "SELECT"
+    ]
+  },
+  "creator_customer_queue": {
+    "kind": "view",
+    "privileges": [
+      "SELECT"
+    ]
+  },
+  "creator_research_board": {
+    "kind": "view",
+    "privileges": [
+      "SELECT"
+    ]
+  },
+  "integrated_practitioners": {
+    "kind": "external",
+    "privileges": [
+      "SELECT"
+    ]
+  }
+}

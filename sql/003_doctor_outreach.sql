@@ -87,3 +87,10 @@ CREATE INDEX IF NOT EXISTS doctor_reco_events_source_file_idx
   ON public.doctor_recommendation_events (source_file);
 CREATE INDEX IF NOT EXISTS doctor_reco_events_urls_gin
   ON public.doctor_recommendation_events USING gin (urls);
+
+-- Explicit backend access: do not depend on Supabase automatic table grants.
+-- RLS and SQL privileges are independent. No browser-role privileges are added.
+ALTER TABLE public.doctor_outreach ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.doctor_outreach TO service_role;
+ALTER TABLE public.doctor_recommendation_events ENABLE ROW LEVEL SECURITY;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.doctor_recommendation_events TO service_role;
