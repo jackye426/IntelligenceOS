@@ -50,6 +50,24 @@ class WorkerTests(unittest.TestCase):
         self.assertEqual(len(self.events),2)
         self.assertTrue(all(e[1]=="instagram" for e in self.events))
 
+    def test_peer_entrypoint_is_exact_tiktok_only_no_cross_owner(self):
+        requested = []
+        def fetch(handle):
+            requested.append(handle)
+            if handle == "robotic.endosurgeon":
+                raise TimeoutError()
+            return self.rows["tiktok"]
+        result = job.refresh_public_peers(
+            save=self.save, fetchers={"tiktok":fetch, "instagram":lambda _:self.fail()},
+            clock=lambda:"2026-11-23T00:00:00Z")
+        self.assertEqual(requested, ["robotic.endosurgeon", "drleewarren"])
+        self.assertEqual(result["tiktok:robotic.endosurgeon"]["status"], "fetch_failed")
+        self.assertEqual(result["tiktok:drleewarren"]["saved"], 2)
+        self.assertTrue(all(row[2] == "drleewarren" for row in self.events))
+        self.assertEqual(job.owner_scope_for("tiktok","drleewarren"), "peer:drleewarren")
+        with self.assertRaises(ValueError):
+            job.owner_scope_for("instagram","robotic.endosurgeon")
+
     def test_existing_third_party_tiktok_backend(self):
         with patch.object(job.subprocess, "check_output",return_value=b'{"entries": []}') as run:
             job.tiktok_posts("endobowelsurgeon")

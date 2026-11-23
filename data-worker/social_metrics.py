@@ -10,6 +10,8 @@ import sys
 
 TARGETS = {"tiktok": ("docmap", "endobowelsurgeon"),
            "instagram": ("docmapuk", "endobowelsurgeon")}
+TIKTOK_PEERS = ("robotic.endosurgeon", "drleewarren")
+PEER_TARGETS = {"tiktok": TIKTOK_PEERS}
 FIELDS = {
     "tiktok": {"views": "view_count", "likes": "like_count",
                "comments": "comment_count", "shares": "repost_count", "saves": "save_count"},
@@ -84,20 +86,34 @@ def observations(platform, handle, rows):
             posted = posted.replace(tzinfo=timezone.utc)
         yield post_id, url, posted.isoformat() if isinstance(posted, datetime) else None, metrics
 
+def owner_scope_for(platform, handle):
+    if handle in TIKTOK_PEERS:
+        if platform != "tiktok":
+            raise ValueError("peer analytics are limited to public TikTok")
+        return f"peer:{handle}"
+    if handle == "endobowelsurgeon" and handle in TARGETS.get(platform, ()):
+        return "peer:endobowelsurgeon"  # existing schema representation for Simon
+    if handle in TARGETS.get(platform, ()):
+        return "docmap"
+    raise ValueError("unapproved social target")
+
+
 def write_snapshot(client, platform, handle, observation, captured_at):
     post_id, url, posted_at, metrics = observation
+    scope = owner_scope_for(platform, handle)
     table = client.table("content_posts")
-    existing = (table.select("id,account_handle").eq("platform", platform)
+    existing = (table.select("id,account_handle,owner_scope").eq("platform", platform)
                 .eq("platform_post_id", post_id).limit(1).execute().data or [])
     if existing:
         row = existing[0]
-        if row["account_handle"] not in (handle, "docmap" if handle == "docmapuk" else handle):
+        if (row["account_handle"] not in (handle, "docmap" if handle == "docmapuk" else handle)
+                or row["owner_scope"] != scope):
             raise ValueError("content post ownership conflict")
     else:
         row = table.insert({
             "platform": platform, "platform_post_id": post_id, "post_url": url,
             "posted_at": posted_at, "account_handle": handle,
-            "owner_scope": "peer:endobowelsurgeon" if handle == "endobowelsurgeon" else "docmap",
+            "owner_scope": scope,
             "title": f"{handle} {platform} post", "metrics": metrics,
             "metadata": {"is_catalog_stub": True, "source": SOURCES[platform]},
         }).execute().data[0]
@@ -140,3 +156,8 @@ def refresh(*, save, enrich=None, fetchers=None, targets=TARGETS, clock=None):
         except Exception as exc:
             result["enrichment"] = {"status": "failed", "error_type": type(exc).__name__}
     return result
+
+
+def refresh_public_peers(*, save, fetchers=None, clock=None):
+    """Only public post-level counters; never an owned reader or an embedder."""
+    return refresh(targets=PEER_TARGETS, save=save, fetchers=fetchers, clock=clock)

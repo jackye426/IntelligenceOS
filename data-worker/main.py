@@ -61,7 +61,9 @@ from marketing_pipeline.instagram.orchestrator import (  # noqa: E402
 )
 
 from common.supabase_client import get_client  # noqa: E402
-from social_metrics import TARGETS, refresh as refresh_social_metrics, write_snapshot  # noqa: E402
+from social_metrics import (  # noqa: E402
+    TARGETS, refresh as refresh_social_metrics, refresh_public_peers, write_snapshot,
+)
 
 from jobs.content_tracker import run_content_tracker  # noqa: E402
 from jobs.hca_sqlite import run_hca_migration  # noqa: E402
@@ -201,6 +203,16 @@ def _run_social_pipeline(*, full_refresh: bool = False, include_ocr: bool = Fals
         _SOCIAL_JOB_LOCK.release()
 
 
+def _run_public_peer_metrics() -> dict:
+    if not _SOCIAL_JOB_LOCK.acquire(blocking=False):
+        return {"status": "skipped_overlap"}
+    try:
+        client = get_client()
+        return refresh_public_peers(save=lambda *args: write_snapshot(client, *args))
+    finally:
+        _SOCIAL_JOB_LOCK.release()
+
+
 def main() -> None:
     logger.info("marketing_pipeline.bootstrap at %s", _bootstrap_mod.__file__)
     bootstrap = ensure_pipeline_data()
@@ -236,6 +248,13 @@ def main() -> None:
         ),
         CronTrigger(day_of_week="sun", hour=2, minute=0),
         id="social_weekly",
+        replace_existing=True,
+    )
+
+    scheduler.add_job(
+        _safe("public_tiktok_peer_metrics", _run_public_peer_metrics),
+        CronTrigger(hour=9, minute=0),
+        id="public_tiktok_peer_metrics",
         replace_existing=True,
     )
 
@@ -337,4 +356,11 @@ def main() -> None:
 
 
 if __name__ == "__main__":
+    if sys.argv[1:] == ["--public-peer-metrics-once"]:
+        result = _run_public_peer_metrics()
+        logger.info("Public peer observation outcomes: %s", result)
+        sys.exit(0 if result and all(isinstance(item, dict) and item.get("status") == "saved"
+                                        for item in result.values()) else 1)
+    if sys.argv[1:]:
+        sys.exit("usage: python main.py [--public-peer-metrics-once]")
     main()
