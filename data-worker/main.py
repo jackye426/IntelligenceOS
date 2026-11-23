@@ -42,27 +42,25 @@ from marketing_pipeline.tiktok.orchestrator import (  # noqa: E402
     run_display_snapshots,
     run_export,
     run_ocr_batch,
-    run_refresh,
     run_refresh_comments,
     run_studio_listen_production,
     run_sync_playbooks_cmd,
     run_sync_supabase,
 )
 from marketing_pipeline.tiktok.stages.display_api import DisplayApiNotConfigured  # noqa: E402
-from marketing_pipeline.tiktok.stages.fetch_catalog import fetch_catalog  # noqa: E402
-from marketing_pipeline.tiktok.stages.refresh_videos import refresh_videos  # noqa: E402
+from marketing_pipeline.tiktok.stages.transcribe_video import transcribe_video  # noqa: E402
+from marketing_pipeline.tiktok.stages.write_per_video_complete import existing_complete_ids  # noqa: E402
 from marketing_pipeline.tiktok.stages.write_master_transcripts import (  # noqa: E402
     write_master_transcripts,
 )
 from marketing_pipeline.instagram.orchestrator import (  # noqa: E402
     run_export as run_instagram_export,
-    run_fetch as run_instagram_fetch,
     run_sync_supabase as run_instagram_sync_supabase,
 )
 
 from common.supabase_client import get_client  # noqa: E402
 from social_metrics import (  # noqa: E402
-    TARGETS, refresh as refresh_social_metrics, refresh_public_peers, write_snapshot,
+    TARGETS, TIKTOK_PEERS, refresh as refresh_social_metrics, refresh_public_peers, write_snapshot,
 )
 
 from jobs.content_tracker import run_content_tracker  # noqa: E402
@@ -86,91 +84,32 @@ def _safe(job_name: str, fn):
     return wrapper
 
 
-def _transcribe_new_videos() -> dict:
-    """Fetch catalog and transcribe any videos missing COMPLETE transcripts."""
-    fetch_catalog()
-    videos = refresh_videos(
-        skip_transcribe=False,
-        whisper_model=config.WHISPER_MODEL,
-        download_if_missing=True,
-    )
-    master = write_master_transcripts(refresh_metrics=False)
-    return {"videos": videos, "master": master}
-
-
-def _run_tiktok_pipeline(*, full_refresh: bool = False, include_ocr: bool = False) -> dict:
-    """Export + sync; refresh comments; transcribe new videos on worker."""
-    result: dict = {}
-
-    if full_refresh:
-        result["refresh"] = run_refresh(
-            skip_transcribe=config.SKIP_TRANSCRIBE,
-            skip_ocr=not include_ocr,
-        )
-    else:
-        try:
-            result["comments"] = run_refresh_comments()
-        except Exception as exc:
-            logger.warning("refresh-comments failed: %s", exc)
-
-        if not config.SKIP_TRANSCRIBE:
-            try:
-                result["transcribe"] = _transcribe_new_videos()
-            except Exception as exc:
-                logger.exception("transcribe-new-videos failed: %s", exc)
-
-    result["export"] = run_export()
-    result["sync"] = run_sync_supabase()
-    try:
-        result["playbooks"] = run_sync_playbooks_cmd()
-    except Exception as exc:
-        logger.warning("sync-playbooks failed: %s", exc)
-        result["playbooks"] = {"error": str(exc)}
-
-    if include_ocr and not full_refresh:
-        try:
-            result["ocr"] = run_ocr_batch()
-        except Exception as exc:
-            logger.warning("ocr-hooks failed: %s", exc)
-            result["ocr"] = {"error": str(exc)}
-
-    return result
-
-
-def _run_instagram_pipeline() -> dict:
-    """Export/sync Instagram dataset. Fetch only when Instaloader session is configured."""
-    result: dict[str, Any] = {}
-    if config.SKIP_INSTAGRAM:
-        logger.info("SKIP_INSTAGRAM=true — skipping Instagram fetch/export/sync")
-        return {"skipped": True, "reason": "SKIP_INSTAGRAM=true"}
-
-    session_path = Path(config.MARKETING_INSTAGRAM_DATA_DIR) / "session-docmapuk"
-    if session_path.exists():
-        try:
-            result["fetch"] = run_instagram_fetch(account="docmapuk", limit=80, include_comments=False)
-        except Exception as exc:
-            logger.warning("instagram fetch failed (continuing with existing raw data): %s", exc)
-            result["fetch"] = {"error": str(exc)}
-    else:
-        logger.warning(
-            "No Instaloader session at %s — skipping fetch; using content tracker + existing raw JSON only",
-            session_path,
-        )
-        result["fetch"] = {"skipped": True, "reason": "no_instaloader_session"}
-
-    export = run_instagram_export()
-    sync = run_instagram_sync_supabase()
-    result["export"] = export
-    result["sync"] = sync
-    return result
+def _transcribe_observed_docmap_posts(posts: dict[str, str]) -> dict:
+    """Transcribe a bounded set of already captured posts, without a stats refresh."""
+    have = existing_complete_ids()
+    attempted = 0
+    for post_id, url in posts.items():
+        if post_id in have:
+            continue
+        transcribe_video(post_id, {"webpage_url": url}, model_size=config.WHISPER_MODEL)
+        attempted += 1
+        if attempted == 8:
+            break
+    if attempted:
+        write_master_transcripts(refresh_metrics=False)
+    return {"attempted": attempted}
 
 
 _SOCIAL_JOB_LOCK = Lock()
 
 
-def _refresh_social_pipeline(*, include_ocr: bool = False) -> dict:
+def _refresh_social_pipeline(*, include_ocr: bool = False, include_peers: bool = False) -> dict:
     targets = {platform: handles for platform, handles in TARGETS.items()
                if platform != "instagram" or not config.SKIP_INSTAGRAM}
+    if include_peers:
+        targets["tiktok"] += TIKTOK_PEERS
+
+    observed_docmap_posts: dict[str, str] = {}
 
     def enrich(captured):
         results = {}
@@ -189,6 +128,11 @@ def _refresh_social_pipeline(*, include_ocr: bool = False) -> dict:
                         run_refresh_comments()
                     except Exception as exc:
                         logger.warning("Optional comment refresh failed: %s", type(exc).__name__)
+                    if not config.SKIP_TRANSCRIBE:
+                        try:
+                            _transcribe_observed_docmap_posts(observed_docmap_posts)
+                        except Exception as exc:
+                            logger.warning("Optional transcription failed: %s", type(exc).__name__)
                     run_export()
                     run_sync_supabase()
                     run_sync_playbooks_cmd()
@@ -203,18 +147,23 @@ def _refresh_social_pipeline(*, include_ocr: bool = False) -> dict:
         return results
 
     client = get_client()
+    def save(platform, handle, observation, captured_at):
+        write_snapshot(client, platform, handle, observation, captured_at)
+        if (platform, handle) == ("tiktok", "docmap"):
+            observed_docmap_posts[observation[0]] = observation[1]
+
     return refresh_social_metrics(
         targets=targets,
-        save=lambda *args: write_snapshot(client, *args),
+        save=save,
         enrich=enrich,
     )
 
 
-def _run_social_pipeline(*, include_ocr: bool = False) -> dict:
+def _run_social_pipeline(*, include_ocr: bool = False, include_peers: bool = False) -> dict:
     if not _SOCIAL_JOB_LOCK.acquire(blocking=False):
         return {"status": "skipped_overlap"}
     try:
-        return _refresh_social_pipeline(include_ocr=include_ocr)
+        return _refresh_social_pipeline(include_ocr=include_ocr, include_peers=include_peers)
     finally:
         _SOCIAL_JOB_LOCK.release()
 
@@ -365,7 +314,7 @@ def main() -> None:
     logger.info("Data worker ready")
 
     if os.getenv("RUN_ON_START", "").lower() in {"1", "true", "yes"}:
-        logger.info("RUN_ON_START enabled — running tiktok pipeline once now")
+        logger.info("RUN_ON_START enabled — running social pipeline once now")
         _safe("tiktok_marketing_on_start", _run_social_pipeline)()
 
     scheduler.start()
@@ -377,6 +326,12 @@ if __name__ == "__main__":
         logger.info("Public peer observation outcomes: %s", result)
         sys.exit(0 if result and all(isinstance(item, dict) and item.get("status") == "saved"
                                         for item in result.values()) else 1)
+    if sys.argv[1:] == ["--social-metrics-once"]:
+        results = _run_social_pipeline(include_peers=True)
+        logger.info("Social metric verification outcomes: %s", results)
+        incomplete = [target for target, item in results.items()
+                      if target != "enrichment" and (not isinstance(item, dict) or item.get("status") != "saved")]
+        sys.exit(1 if incomplete else 0)
     if sys.argv[1:]:
-        sys.exit("usage: python main.py [--public-peer-metrics-once]")
+        sys.exit("usage: python main.py [--public-peer-metrics-once|--social-metrics-once]")
     main()

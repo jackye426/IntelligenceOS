@@ -5,10 +5,10 @@ before legacy analysis can contact OpenRouter. A 401 is reported independently.
 A failed Instagram or Simon fetch cannot suppress DocMap TikTok enrichment
 after its counts are persisted, and vice versa. DocMap's existing cached
 export/sync, comments, playbooks and weekly OCR remain separate from fresh counts.
-Scheduled fresh transcription refresh is not invoked by this unified job:
-the old package refetches counts inside transcription and does not expose a
-save-first boundary. Simon and peers are counts-only; this patch does not
-transfer transcripts, comments, private account analytics or embeddings for them.
+When transcription is enabled, up to eight newly observed DocMap videos
+per pass can be transcribed after persistence, without a second stats pull.
+Simon and peers are counts-only; they do not receive transcript, comment,
+private account, or embedding processing.
 No fallback to an older JSON dump counts as fresh. Null counters are omitted;
 real zeroes are retained. TikTok keeps yt-dlp; existing separately configured
 Display API snapshots were not turned on or repurposed by this change.
@@ -40,5 +40,6 @@ authorized shell in that worker can run `python main.py --public-peer-metrics-on
 Choose a time away from the scheduled jobs; a process-local lock does not
 coordinate a separate shell invocation. Exit 0 means both peers reported at
 least one successful persisted observation and no batch errors; verify the
-new stored timestamps, not just that command output. Do not add a permanent
-RUN_ON_START or service setting to mimic one run.
+new stored timestamps, not just that command output. Use `python main.py --social-metrics-once` for the full owned plus peer verification.
+The full command reports enrichment outcomes separately from acquisition.
+Do not add a permanent RUN_ON_START or service setting to mimic one run.
