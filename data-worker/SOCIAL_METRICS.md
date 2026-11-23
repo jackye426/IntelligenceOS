@@ -2,6 +2,13 @@
 Daily and weekly account refreshes persist collected numeric counts for the two
 TikTok accounts and (unless SKIP_INSTAGRAM is set) the two Instagram accounts
 before legacy analysis can contact OpenRouter. A 401 is reported independently.
+A failed Instagram or Simon fetch cannot suppress DocMap TikTok enrichment
+after its counts are persisted, and vice versa. DocMap's existing cached
+export/sync, comments, playbooks and weekly OCR remain separate from fresh counts.
+Scheduled fresh transcription refresh is not invoked by this unified job:
+the old package refetches counts inside transcription and does not expose a
+save-first boundary. Simon and peers are counts-only; this patch does not
+transfer transcripts, comments, private account analytics or embeddings for them.
 No fallback to an older JSON dump counts as fresh. Null counters are omitted;
 real zeroes are retained. TikTok keeps yt-dlp; existing separately configured
 Display API snapshots were not turned on or repurposed by this change.

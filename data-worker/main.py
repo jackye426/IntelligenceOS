@@ -168,23 +168,39 @@ def _run_instagram_pipeline() -> dict:
 _SOCIAL_JOB_LOCK = Lock()
 
 
-def _refresh_social_pipeline(*, full_refresh: bool = False, include_ocr: bool = False) -> dict:
+def _refresh_social_pipeline(*, include_ocr: bool = False) -> dict:
     targets = {platform: handles for platform, handles in TARGETS.items()
                if platform != "instagram" or not config.SKIP_INSTAGRAM}
 
-    def enrich():
-        failures = []
-        for platform in targets:
+    def enrich(captured):
+        results = {}
+        for platform, primary in (("tiktok", "docmap"), ("instagram", "docmapuk")):
+            target = f"{platform}:{primary}"
+            if target not in captured:
+                continue
+            if captured[target]["status"] != "saved":
+                results[platform] = {"status": "blocked", "reason": "primary_capture_incomplete"}
+                continue
             try:
+                # Legacy analysis is intentionally separate from the fresh
+                # snapshot layer. Do not pull another unpersisted count batch.
                 if platform == "tiktok":
-                    _run_tiktok_pipeline(full_refresh=full_refresh, include_ocr=include_ocr)
+                    try:
+                        run_refresh_comments()
+                    except Exception as exc:
+                        logger.warning("Optional comment refresh failed: %s", type(exc).__name__)
+                    run_export()
+                    run_sync_supabase()
+                    run_sync_playbooks_cmd()
+                    if include_ocr:
+                        run_ocr_batch()
                 else:
-                    _run_instagram_pipeline()
+                    run_instagram_export()
+                    run_instagram_sync_supabase()
+                results[platform] = {"status": "ok"}
             except Exception as exc:
-                failures.append((platform, type(exc).__name__))
-        if failures:
-            logger.warning("Optional social enrichment failed: %s", failures)
-            raise RuntimeError("optional social enrichment failed")
+                results[platform] = {"status": "failed", "error_type": type(exc).__name__}
+        return results
 
     client = get_client()
     return refresh_social_metrics(
@@ -194,11 +210,11 @@ def _refresh_social_pipeline(*, full_refresh: bool = False, include_ocr: bool = 
     )
 
 
-def _run_social_pipeline(*, full_refresh: bool = False, include_ocr: bool = False) -> dict:
+def _run_social_pipeline(*, include_ocr: bool = False) -> dict:
     if not _SOCIAL_JOB_LOCK.acquire(blocking=False):
         return {"status": "skipped_overlap"}
     try:
-        return _refresh_social_pipeline(full_refresh=full_refresh, include_ocr=include_ocr)
+        return _refresh_social_pipeline(include_ocr=include_ocr)
     finally:
         _SOCIAL_JOB_LOCK.release()
 
@@ -244,7 +260,7 @@ def main() -> None:
     scheduler.add_job(
         _safe(
             "social_weekly",
-            lambda: _run_social_pipeline(full_refresh=True, include_ocr=True),
+            lambda: _run_social_pipeline(include_ocr=True),
         ),
         CronTrigger(day_of_week="sun", hour=2, minute=0),
         id="social_weekly",

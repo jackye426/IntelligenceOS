@@ -149,10 +149,9 @@ def refresh(*, save, enrich=None, fetchers=None, targets=TARGETS, clock=None):
                     pass
             result[target] = {"status": "saved" if count == len(rows) else "save_failed",
                               "saved": count, "observed": len(rows)}
-    if enrich is not None and all(value["status"] == "saved" for value in result.values()):
+    if enrich is not None:
         try:
-            enrich()
-            result["enrichment"] = {"status": "ok"}
+            result["enrichment"] = enrich(result.copy())
         except Exception as exc:
             result["enrichment"] = {"status": "failed", "error_type": type(exc).__name__}
     return result

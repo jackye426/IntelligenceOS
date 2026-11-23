@@ -24,7 +24,7 @@ class WorkerTests(unittest.TestCase):
                            **kwargs)
 
     def test_every_count_is_saved_before_embedding_401(self):
-        def embed():
+        def embed(captured):
             self.events.append(("embed",))
             raise HTTPError("https://example.invalid", 401, "unauthorized", {}, None)
         actual = self.run_refresh(enrich=embed)
@@ -43,10 +43,11 @@ class WorkerTests(unittest.TestCase):
                 raise RuntimeError("fetch failed")
             return [{"id":"123456", "view_count":None}]
         actual = self.run_refresh(
-            enrich=lambda:self.fail("don't enrich old cached artifacts"),
+            enrich=lambda captured: {"instagram": captured["instagram:docmapuk"]["status"]},
             fetchers={"tiktok":tiktok, "instagram":self.fetch("instagram")})
         self.assertEqual(actual["tiktok:docmap"]["status"], "fetch_failed")
         self.assertEqual(actual["tiktok:endobowelsurgeon"]["status"], "no_fresh_observations")
+        self.assertEqual(actual["enrichment"], {"instagram":"saved"})
         self.assertEqual(len(self.events),2)
         self.assertTrue(all(e[1]=="instagram" for e in self.events))
 
@@ -70,10 +71,10 @@ class WorkerTests(unittest.TestCase):
 
     def test_existing_third_party_tiktok_backend(self):
         with patch.object(job.subprocess, "check_output",return_value=b'{"entries": []}') as run:
-            job.tiktok_posts("endobowelsurgeon")
+            job.tiktok_posts("robotic.endosurgeon")
         cmd = run.call_args.args[0]
         self.assertIn("yt_dlp",cmd)
-        self.assertIn("https://www.tiktok.com/@endobowelsurgeon",cmd)
+        self.assertIn("https://www.tiktok.com/@robotic.endosurgeon",cmd)
 
 if __name__ == "__main__":
     unittest.main()
