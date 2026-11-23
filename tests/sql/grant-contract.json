@@ -443,5 +443,7 @@
     "privileges": [
       "SELECT"
     ]
-  }
+  },
+  "latest_social_metric_snapshots": {"kind": "view", "privileges": ["SELECT"]},
+  "latest_public_tiktok_peer_metrics": {"kind": "view", "privileges": ["SELECT"]}
 }
