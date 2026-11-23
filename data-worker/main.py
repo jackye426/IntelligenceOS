@@ -17,6 +17,7 @@ import logging
 import os
 import signal
 import sys
+from threading import Lock
 from pathlib import Path
 from typing import Any
 
@@ -58,6 +59,9 @@ from marketing_pipeline.instagram.orchestrator import (  # noqa: E402
     run_fetch as run_instagram_fetch,
     run_sync_supabase as run_instagram_sync_supabase,
 )
+
+from common.supabase_client import get_client  # noqa: E402
+from social_metrics import TARGETS, refresh as refresh_social_metrics, write_snapshot  # noqa: E402
 
 from jobs.content_tracker import run_content_tracker  # noqa: E402
 from jobs.hca_sqlite import run_hca_migration  # noqa: E402
@@ -159,6 +163,44 @@ def _run_instagram_pipeline() -> dict:
     return result
 
 
+_SOCIAL_JOB_LOCK = Lock()
+
+
+def _refresh_social_pipeline(*, full_refresh: bool = False, include_ocr: bool = False) -> dict:
+    targets = {platform: handles for platform, handles in TARGETS.items()
+               if platform != "instagram" or not config.SKIP_INSTAGRAM}
+
+    def enrich():
+        failures = []
+        for platform in targets:
+            try:
+                if platform == "tiktok":
+                    _run_tiktok_pipeline(full_refresh=full_refresh, include_ocr=include_ocr)
+                else:
+                    _run_instagram_pipeline()
+            except Exception as exc:
+                failures.append((platform, type(exc).__name__))
+        if failures:
+            logger.warning("Optional social enrichment failed: %s", failures)
+            raise RuntimeError("optional social enrichment failed")
+
+    client = get_client()
+    return refresh_social_metrics(
+        targets=targets,
+        save=lambda *args: write_snapshot(client, *args),
+        enrich=enrich,
+    )
+
+
+def _run_social_pipeline(*, full_refresh: bool = False, include_ocr: bool = False) -> dict:
+    if not _SOCIAL_JOB_LOCK.acquire(blocking=False):
+        return {"status": "skipped_overlap"}
+    try:
+        return _refresh_social_pipeline(full_refresh=full_refresh, include_ocr=include_ocr)
+    finally:
+        _SOCIAL_JOB_LOCK.release()
+
+
 def main() -> None:
     logger.info("marketing_pipeline.bootstrap at %s", _bootstrap_mod.__file__)
     bootstrap = ensure_pipeline_data()
@@ -180,31 +222,20 @@ def main() -> None:
     else:
         logger.info("SKIP_CONTENT_TRACKER=true — content tracker job disabled")
 
-    if not config.SKIP_INSTAGRAM:
-        scheduler.add_job(
-            _safe("instagram_marketing", _run_instagram_pipeline),
-            CronTrigger(hour=3, minute=10),
-            id="instagram_marketing",
-            replace_existing=True,
-        )
-        logger.info("Instagram pipeline enabled for @docmapuk")
-    else:
-        logger.info("SKIP_INSTAGRAM=true — Instagram pipeline disabled")
-
     scheduler.add_job(
-        _safe("tiktok_marketing", lambda: _run_tiktok_pipeline()),
+        _safe("social_marketing", _run_social_pipeline),
         CronTrigger(hour=3, minute=30),
-        id="tiktok_marketing",
+        id="social_marketing",
         replace_existing=True,
     )
 
     scheduler.add_job(
         _safe(
-            "tiktok_weekly",
-            lambda: _run_tiktok_pipeline(full_refresh=True, include_ocr=True),
+            "social_weekly",
+            lambda: _run_social_pipeline(full_refresh=True, include_ocr=True),
         ),
         CronTrigger(day_of_week="sun", hour=2, minute=0),
-        id="tiktok_weekly",
+        id="social_weekly",
         replace_existing=True,
     )
 
@@ -300,7 +331,7 @@ def main() -> None:
 
     if os.getenv("RUN_ON_START", "").lower() in {"1", "true", "yes"}:
         logger.info("RUN_ON_START enabled — running tiktok pipeline once now")
-        _safe("tiktok_marketing_on_start", lambda: _run_tiktok_pipeline())()
+        _safe("tiktok_marketing_on_start", _run_social_pipeline)()
 
     scheduler.start()
 
