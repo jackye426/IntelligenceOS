@@ -50,8 +50,6 @@ def _collect(url, handle, video_id):
         if len(media) != 1 or media[0].stat().st_size > 80 * 1024**2:
             raise ValueError("no bounded media for proof")
         segments, transcript = transcribe_media(media[0], video_id, caption_hint=caption, out_dir=path)
-        if not segments or not transcript:
-            raise ValueError("no timestamped speech for proof")
         results = []
         for second in OPENING_SECONDS:
             image = path / "frame.png"
@@ -67,6 +65,13 @@ def _rows(client, table, fields, filters):
     for field, value in filters.items():
         query = query.eq(field, value)
     return query.limit(2).execute().data or []
+
+
+def evidence_status(*, processing_completed, content_present):
+    """Keep valid negatives distinct from failed/indeterminate processing."""
+    if not processing_completed:
+        return "processing_failed"
+    return "present" if content_present else "not_present"
 
 
 def _proof_one(client, handle, video_id, *, collect, apply):
@@ -97,8 +102,15 @@ def _proof_one(client, handle, video_id, *, collect, apply):
     if not version:
         raise ValueError("catalogue row has no write guard")
     caption, segments, transcript, frames = collect(url, handle, video_id)
-    if not (caption and segments and transcript and any(f.get("text") for f in frames)):
-        raise ValueError("proof requires caption, timed speech and visible opening text")
+    transcript_status = evidence_status(processing_completed=True,
+                                        content_present=bool(segments and transcript))
+    ocr_status = evidence_status(
+        processing_completed=tuple(f.get("second") for f in frames) == OPENING_SECONDS,
+        content_present=any(f.get("text") for f in frames),
+    )
+    if not caption or transcript_status != "present" or ocr_status != "present":
+        return {"status": "failed", "reason": "choose_proof_clip_with_all_evidence",
+                "transcript_evidence": transcript_status, "opening_ocr_evidence": ocr_status}
     ocr_evidence = {"scope": "opening_frames", "model": "tesseract",
                     "frames": [f["second"] for f in frames], "results": frames}
     metadata = {**baseline, "transcript_segments": segments,

@@ -3,7 +3,7 @@ from types import SimpleNamespace
 
 import pytest
 
-from peer_content_proof import ACCOUNTS, run_proof
+from peer_content_proof import ACCOUNTS, OPENING_SECONDS, evidence_status, run_proof
 
 
 class Query:
@@ -65,7 +65,7 @@ def targets():
 def evidence(url, account, video):
     assert url == f"https://www.tiktok.com/@{account}/video/{video}"
     return "A caption", [{"start": 0, "end": 1, "text": "speech"}], "speech", [
-        {"second": 0, "text": "existing visible text"}
+        {"second": second, "text": "existing visible text"} for second in OPENING_SECONDS
     ]
 
 
@@ -135,3 +135,27 @@ def test_conflicting_catalogue_update_is_not_overwritten(targets):
     results = run_proof(db, targets, apply=True, collect=race)
     assert results["endobowelsurgeon"]["status"] == "failed"
     assert len(db.writes) == 2
+
+
+def test_valid_silent_and_text_free_video_is_not_processing_failure(targets):
+    db = DB(targets)
+    blank = [{"second": second, "text": ""} for second in OPENING_SECONDS]
+    valid_negative = run_proof(
+        db, targets, apply=True, collect=lambda *_: ("A caption", [], "", blank)
+    )
+    for result in valid_negative.values():
+        assert result["status"] == "failed"  # not a suitable proof clip
+        assert result["transcript_evidence"] == "not_present"
+        assert result["opening_ocr_evidence"] == "not_present"
+    assert not db.writes
+    assert evidence_status(processing_completed=False, content_present=False) == "processing_failed"
+
+
+def test_partial_frame_processing_is_not_text_free(targets):
+    db = DB(targets)
+    partial = run_proof(
+        db, targets, apply=True, collect=lambda *_: ("A caption", [], "", [])
+    )
+    assert all(result["opening_ocr_evidence"] == "processing_failed"
+               for result in partial.values())
+    assert not db.writes
