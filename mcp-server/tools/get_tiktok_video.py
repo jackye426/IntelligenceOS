@@ -69,6 +69,7 @@ def get_tiktok_video(video_id: str) -> dict[str, Any]:
             "caption": row.get("caption"),
             "transcript": row.get("transcript"),
             "metrics": row.get("metrics") or {},
+            "metrics_provenance": row.get("metrics_provenance"),
             "comment_analysis": comment_analysis,
             "ab_pairs": ab_pairs,
             "ab_learning": ab_learning,
@@ -107,3 +108,4 @@ def get_tiktok_video(video_id: str) -> dict[str, Any]:
             error=str(exc),
         )
         raise
+

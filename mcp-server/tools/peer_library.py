@@ -317,6 +317,7 @@ def _manifest_row(
         "video_id": vid,
         "posted_at": row.get("posted_at"),
         "duration_sec": _num_or_none(metrics.get("duration_sec")),
+        "metrics_provenance": row.get("metrics_provenance"),
         "views": _num_or_none(metrics.get("views")),
         "likes": _num_or_none(metrics.get("likes")),
         "comments": _num_or_none(metrics.get("comments")),
@@ -608,6 +609,7 @@ def get_peer_content_batch(
                 "ocr_results": (meta.get("ocr_evidence") or {}).get("results") or [],
                 "ocr_model": (meta.get("ocr_evidence") or {}).get("model"),
                 "metrics": row.get("metrics") or {},
+                "metrics_provenance": row.get("metrics_provenance"),
                 "local_views_ratio": rolling.get(vid, {}).get("views_ratio"),
                 "local_tier": rolling.get(vid, {}).get("tier"),
                 "local_median_views": rolling.get(vid, {}).get("local_median_views"),
@@ -1159,3 +1161,4 @@ def save_peer_transfer_brief(
     )
     corpus.update("creator_profiles", {"deep_status": "brief_confirmed"}, id=profile["id"])
     return {"account": handle, "written": True, "brief_id": row.get("id"), "status": "confirmed"}
+

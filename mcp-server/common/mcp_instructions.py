@@ -83,7 +83,13 @@ whole-video pacing. Views are not follower acquisition.
 ## TikTok catalog
 All legacy TikTok tools are DocMap-only and report `account=docmap`. Peer analysis
 must use the explicit `get_peer_*` surface. Defaults are NOT the full catalog; raise
-`limit` (e.g. 50) when reviewing a DocMap batch.
+`limit` (e.g. 50) when reviewing a DocMap batch. Use `get_tiktok_cohort` for
+date-filtered DocMap posts and relative tiers; `get_content_performance` for
+generic ranked posts (its TikTok rows are also DocMap-only, even across platforms).
+For public counts cite `metrics_provenance.captured_at` and check freshness.
+Cached or unavailable results are not current, and `posted_at` is not a metric
+timestamp. Display API velocity, Studio insights, and Business Center rollups
+are separate data layers, not fallback public snapshots.
 
 ## TikTok workflow (required order for suggestions)
 1. `get_tiktok_strategy_brief()` — constitution, approved insights, **§7 decisions** (open + recent closed), reference set, changelog
@@ -93,7 +99,7 @@ must use the explicit `get_peer_*` surface. Defaults are NOT the full catalog; r
 5. If the human commits to an action → `log_tiktok_decision` (one imperative sentence + success_criteria + review_after)
 6. `find_ab_tests` / variant groups for hook packaging comparisons
 7. `suggest_hook_repackage` or `suggest_next_tiktok_angles` — only after strategy brief loaded; cite `decision_id` when relevant
-8. Later: pull live metrics → propose verdict → `record_decision_outcome(..., confirmed=true)` after human agrees
+8. Later: check latest snapshot freshness → propose verdict → `record_decision_outcome(..., confirmed=true)` after human agrees
 
 **Never** conclude publishing stopped from an empty date filter. Check `staleness_warning` and `catalog_stub_count`.
 **Never** invent decision outcomes — metrics may be proposed; verdict requires human `confirmed=true`.
@@ -197,3 +203,4 @@ Check `layout_metrics.overflow_warning` — if true, shorten copy and re-run `fi
 - `search_practitioners` / `get_practitioner_status` — doctor outreach
 - `draft_outreach_email` — Gmail draft only; requires `confirmed=true` after human review
 """.strip()
+
