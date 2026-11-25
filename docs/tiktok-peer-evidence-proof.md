@@ -4,7 +4,7 @@
 
 ## Gate 1: prove the reader
 
-The live domain runs the separate `synaptic-docmap/mcp_social` repository. The read-path work in IntelligenceOS PR #7 is a reference, not a deployment to that service. Adapt and test it against the actual deployed source before releasing. Read by platform + handle + owner scope + video ID; permit these three expected scope pairs, keep DocMap-only tools isolated, and return caption, timed transcript, opening-frame OCR and latest saved public counts with capture time/source. Empty, unavailable, or old evidence must be explicit.
+Verify the authenticated peer reader before running the worker proof. Read by platform + handle + owner scope + video ID; permit these three expected scope pairs, keep DocMap-only tools isolated, and return caption, timed transcript, opening-frame OCR and latest saved public counts with capture time/source. Empty, unavailable, or old evidence must be explicit.
 
 ## Gate 2: one public video each
 
