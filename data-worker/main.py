@@ -189,6 +189,21 @@ def main() -> None:
 
     scheduler = BlockingScheduler(timezone="UTC")
 
+    # Isolated, explicitly opt-in personal X archive; never auto-backfill.
+    personal_x_db = os.getenv("PERSONAL_X_ARCHIVE_PATH", "").strip()
+    if personal_x_db and os.getenv("TWITTERAPI_IO_KEY", "").strip():
+        from personal_x_archive import run_archive
+
+        scheduler.add_job(
+            _safe("personal_x_archive", lambda: run_archive(
+                Path(personal_x_db), "poll", os.environ["TWITTERAPI_IO_KEY"]
+            )),
+            CronTrigger(hour=17, minute=0),
+            id="personal_x_archive",
+            replace_existing=True,
+            max_instances=1,
+        )
+
     if not config.SKIP_CONTENT_TRACKER:
         scheduler.add_job(
             _safe("content_tracker", run_content_tracker),
