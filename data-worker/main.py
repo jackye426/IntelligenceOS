@@ -189,6 +189,19 @@ def main() -> None:
 
     scheduler = BlockingScheduler(timezone="UTC")
 
+    # Opt-in only. The owner selects a directory on the persistent volume.
+    x_watch_state = os.getenv("X_ALGORITHM_WATCH_STATE_DIR", "").strip()
+    if x_watch_state:
+        from x_algorithm_watch import run_watch
+
+        scheduler.add_job(
+            _safe("x_algorithm_watch", lambda: run_watch(Path(x_watch_state))),
+            CronTrigger(day_of_week="mon", hour=6, minute=0),
+            id="x_algorithm_watch",
+            replace_existing=True,
+            max_instances=1,
+        )
+
     if not config.SKIP_CONTENT_TRACKER:
         scheduler.add_job(
             _safe("content_tracker", run_content_tracker),
