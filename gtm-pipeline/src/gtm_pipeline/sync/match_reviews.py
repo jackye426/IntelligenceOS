@@ -28,15 +28,19 @@ def maybe_queue_match_review(
     clinic_account_id: str | None = None,
     dedupe_key: str | None = None,
     dry_run: bool = False,
+    force_review: bool = False,
 ) -> dict[str, Any] | None:
     """Queue for review when confidence is in [review_threshold, auto_accept).
 
     Does not auto-apply the match — outreach drafting should resolve pending rows.
+    ``force_review`` skips the auto-accept / below-threshold band (creator-clinic
+    domain overlap must never auto-merge).
     """
-    if confidence >= config.MATCH_AUTO_ACCEPT:
-        return None
-    if confidence < config.MATCH_REVIEW_THRESHOLD:
-        return None
+    if not force_review:
+        if confidence >= config.MATCH_AUTO_ACCEPT:
+            return None
+        if confidence < config.MATCH_REVIEW_THRESHOLD:
+            return None
 
     payload: dict[str, Any] = {
         "entity_type": entity_type,

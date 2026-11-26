@@ -1,0 +1,4 @@
+handle,is_doctor,geo_country,lane,notes
+drjane,true,GB,customer,template row — replace with the 150-label pack
+lookalikeclinic,false,GB,discard,brand / not a doctor
+usneurosurgeon,true,US,research,research-only US doctor

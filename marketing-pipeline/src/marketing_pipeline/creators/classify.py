@@ -137,7 +137,14 @@ def heuristic_card(profile: dict[str, Any], videos: list[dict[str, Any]]) -> Ins
     )
 
 
-def apply_card(profile: dict[str, Any], card: InsightCardModel, *, store=None, input_key: str) -> dict[str, Any]:
+def apply_card(
+    profile: dict[str, Any],
+    card: InsightCardModel,
+    *,
+    store=None,
+    input_key: str,
+    model: str | None = None,
+) -> dict[str, Any]:
     store = store or get_store()
     payload = card.model_dump()
     row = store.upsert(
@@ -146,7 +153,7 @@ def apply_card(profile: dict[str, Any], card: InsightCardModel, *, store=None, i
             "creator_profile_id": profile["id"],
             "classifier_version": CLASSIFIER_VERSION,
             "prompt_fingerprint": CLASSIFIER_VERSION,
-            "model": "heuristic" if not payload.get("model") else payload.get("model"),
+            "model": model or "heuristic",
             "input_hash": input_key,
             "output": payload,
             "evidence": payload.get("evidence") or [],
@@ -195,3 +202,143 @@ def apply_card(profile: dict[str, Any], card: InsightCardModel, *, store=None, i
         patch["lane"] = "pending_review"
     store.update("creator_profiles", patch, id=profile["id"])
     return row
+
+
+CLASSIFY_SYSTEM = """You extract a structured insight card from a TikTok doctor profile.
+Return JSON only matching this schema (extra keys forbidden):
+{
+  "is_doctor": bool,
+  "doctor_confidence": float 0-1,
+  "doctor_role": string|null,
+  "specialty_raw": string|null,
+  "specialty_key": string|null,
+  "geo_country": string|null,
+  "geo_confidence": float|null,
+  "practice_setting": string|null,
+  "growth_intent_level": 0|1|2|3,
+  "positioning_line": string|null,
+  "named_promise": string|null,
+  "who_it_is_for": string|null,
+  "hook_jobs": [string],
+  "content_formats": [string],
+  "format_mix": {string: int},
+  "cta_types": [string],
+  "series_markers": [string],
+  "caption_hooks": [string],
+  "evidence": [{"field": string, "quote": string, "source": "bio"|"nickname"|"captions"}]
+}
+Every non-null identity claim (is_doctor, geo_country, growth_intent_level) MUST have a verbatim quote from bio, nickname, or captions.
+hook_jobs must be from: name_the_problem, contradict_belief, authority_first, curiosity_gap, numbered_promise, patient_situation, myth, other.
+growth_intent: 0 none; 1 brand-building; 2 practice promotion (own site / booking / private practice); 3 explicit book/DM/enquiry CTA.
+If you cannot support a field with a quote, set it null / 0 / false.
+"""
+
+
+def _strip_json(text: str) -> str:
+    import re
+
+    text = (text or "").strip()
+    if text.startswith("```"):
+        text = re.sub(r"^```(?:json)?\s*", "", text)
+        text = re.sub(r"\s*```$", "", text)
+    start = text.find("{")
+    end = text.rfind("}")
+    if start >= 0 and end > start:
+        return text[start : end + 1]
+    return text
+
+
+def _sources(profile: dict[str, Any], videos: list[dict[str, Any]]) -> dict[str, str]:
+    captions = "\n".join(
+        f"[{v.get('video_id')}] {(v.get('caption') or v.get('caption_hook') or '')[:300]}"
+        for v in videos[:23]
+    )
+    return {
+        "bio": profile.get("bio") or "",
+        "nickname": profile.get("nickname") or "",
+        "captions": captions,
+        "bio_link": profile.get("bio_link") or "",
+    }
+
+
+def _sanitize_llm_payload(data: dict[str, Any]) -> dict[str, Any]:
+    allowed = set(InsightCardModel.model_fields)
+    cleaned = {k: v for k, v in data.items() if k in allowed}
+    if cleaned.get("growth_intent_level") is None:
+        cleaned["growth_intent_level"] = 0
+    if cleaned.get("doctor_confidence") is None:
+        cleaned["doctor_confidence"] = 0.0
+    hooks = cleaned.get("hook_jobs") or []
+    cleaned["hook_jobs"] = [h for h in hooks if h in HOOK_JOBS]
+    evidence = []
+    for item in cleaned.get("evidence") or []:
+        if not isinstance(item, dict):
+            continue
+        if not item.get("field") or not item.get("quote"):
+            continue
+        evidence.append(
+            {
+                "field": item["field"],
+                "quote": item["quote"],
+                "source": item.get("source") or "bio",
+            }
+        )
+    cleaned["evidence"] = evidence
+    return cleaned
+
+
+def classify_v1_llm(profile: dict[str, Any], videos: list[dict[str, Any]]) -> InsightCardModel:
+    from marketing_pipeline import config
+    from marketing_pipeline.shared.openrouter_client import chat_completion
+
+    sources = _sources(profile, videos)
+    user = json.dumps(
+        {
+            "nickname": profile.get("nickname"),
+            "bio": profile.get("bio"),
+            "bio_link": profile.get("bio_link"),
+            "bio_links": profile.get("bio_links"),
+            "geo_signals": profile.get("geo_signals"),
+            "rollups": {
+                "follower_count": profile.get("follower_count"),
+                "posts_30d": profile.get("posts_30d"),
+                "median_saves_per_1k": profile.get("median_saves_per_1k"),
+                "median_views": profile.get("median_views"),
+            },
+            "caption_hooks": [v.get("caption_hook") for v in videos[:23] if v.get("caption_hook")],
+            "captions": sources["captions"],
+        },
+        ensure_ascii=False,
+    )
+    raw = chat_completion(
+        system=CLASSIFY_SYSTEM,
+        user=user,
+        model=config.MODEL_CREATOR_CLASSIFY,
+        max_tokens=2000,
+    )
+    data = json.loads(_strip_json(raw))
+    if not isinstance(data, dict):
+        raise ValueError("classifier did not return an object")
+    card = InsightCardModel.model_validate(_sanitize_llm_payload(data))
+    card, _meta = validate_quotes(card, sources)
+    return card
+
+
+def classify_v1(
+    profile: dict[str, Any],
+    videos: list[dict[str, Any]],
+    *,
+    use_llm: bool | None = None,
+) -> tuple[InsightCardModel, str]:
+    """LLM extract with quote validation; heuristic fallback when no key / LLM fails."""
+    from marketing_pipeline import config
+
+    if use_llm is None:
+        use_llm = bool(config.OPENROUTER_API_KEY)
+    if use_llm:
+        try:
+            return classify_v1_llm(profile, videos), config.MODEL_CREATOR_CLASSIFY
+        except (ValidationError, ValueError, json.JSONDecodeError, RuntimeError):
+            pass
+    return heuristic_card(profile, videos), "heuristic"
+

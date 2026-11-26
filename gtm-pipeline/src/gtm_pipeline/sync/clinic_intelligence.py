@@ -84,28 +84,44 @@ def find_or_create_clinic_account(
 
 
 def upsert_clinic_intelligence(row: dict[str, Any], *, dry_run: bool = False) -> dict[str, Any]:
-    """Upsert gtm_clinic_intelligence by doctify_url (preferred) or clinic_account_id."""
+    """Upsert gtm_clinic_intelligence by id, doctify_url, source_creator_profile_id, or clinic_account_id."""
     payload = {**row, "updated_at": _now()}
     payload.setdefault("scraped_at", _now())
 
     if dry_run or not supabase_configured():
         logger.info(
-            "[dry-run] would upsert gtm_clinic_intelligence doctify=%s name=%s",
+            "[dry-run] would upsert gtm_clinic_intelligence doctify=%s name=%s source_creator=%s",
             payload.get("doctify_url"),
             payload.get("clinic_name"),
+            payload.get("source_creator_profile_id"),
         )
-        return {"dry_run": True, "payload": payload}
+        return {"dry_run": True, "id": payload.get("id"), "payload": payload}
 
     client = get_client()
+    row_id = payload.get("id")
     doctify_url = payload.get("doctify_url")
     account_id = payload.get("clinic_account_id")
+    source_creator = payload.get("source_creator_profile_id")
 
     existing = None
-    if doctify_url:
+    if row_id:
+        existing = {"id": row_id}
+    if existing is None and doctify_url:
         found = (
             client.table("gtm_clinic_intelligence")
             .select("id")
             .eq("doctify_url", doctify_url)
+            .limit(1)
+            .execute()
+            .data
+            or []
+        )
+        existing = found[0] if found else None
+    if existing is None and source_creator:
+        found = (
+            client.table("gtm_clinic_intelligence")
+            .select("id")
+            .eq("source_creator_profile_id", source_creator)
             .limit(1)
             .execute()
             .data
@@ -124,6 +140,7 @@ def upsert_clinic_intelligence(row: dict[str, Any], *, dry_run: bool = False) ->
         )
         existing = found[0] if found else None
 
+    payload.pop("id", None)
     if existing:
         updated = (
             client.table("gtm_clinic_intelligence")
@@ -162,6 +179,7 @@ def upsert_clinic_people(
             payload["clinic_account_id"] = clinic_account_id
 
         doctify_profile = payload.get("doctify_profile_url")
+        existing = []
         if doctify_profile:
             existing = (
                 client.table("gtm_clinic_people")
@@ -173,10 +191,21 @@ def upsert_clinic_people(
                 .data
                 or []
             )
-            if existing:
-                client.table("gtm_clinic_people").update(payload).eq("id", existing[0]["id"]).execute()
-                n += 1
-                continue
+        if not existing and payload.get("creator_profile_id"):
+            existing = (
+                client.table("gtm_clinic_people")
+                .select("id")
+                .eq("clinic_intelligence_id", clinic_intelligence_id)
+                .eq("creator_profile_id", payload["creator_profile_id"])
+                .limit(1)
+                .execute()
+                .data
+                or []
+            )
+        if existing:
+            client.table("gtm_clinic_people").update(payload).eq("id", existing[0]["id"]).execute()
+            n += 1
+            continue
 
         client.table("gtm_clinic_people").insert(payload).execute()
         n += 1

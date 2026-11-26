@@ -652,11 +652,12 @@ def contacts_outreach_list(
     preferred_channel: str | None = None,
     ready_sales: bool = False,
     limit: int = 100,
+    cohort: str | None = None,
 ) -> dict[str, Any]:
     from gtm_pipeline.contacts import list_outreach_contacts, list_ready_for_sales
 
     if ready_sales:
-        return list_ready_for_sales(limit=limit)
+        return list_ready_for_sales(limit=limit, cohort=cohort)
     return list_outreach_contacts(
         status=status, preferred_channel=preferred_channel, limit=limit
     )

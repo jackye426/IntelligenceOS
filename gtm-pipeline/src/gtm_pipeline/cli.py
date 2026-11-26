@@ -148,6 +148,48 @@ def _add_segments(sub: argparse._SubParsersAction) -> None:
     cohorts.add_argument("--all", action="store_true", help="Include inactive")
 
 
+def _add_creators(sub: argparse._SubParsersAction) -> None:
+    creators = sub.add_parser(
+        "creators",
+        help="Link / promote doctor-creator corpus rows into existing GTM sales",
+    )
+    csub = creators.add_subparsers(dest="command", required=True)
+
+    link = csub.add_parser("link", help="Match GB creators onto practitioners / GTM people / clinics")
+    link.add_argument("--lane", default="customer,both", help="Comma-separated lanes")
+    link.add_argument("--dry-run", action="store_true")
+    link.add_argument(
+        "--recheck",
+        action="store_true",
+        help="Queue gtm_match_reviews for creator/Doctify domain overlap (never auto-merge)",
+    )
+
+    promote = csub.add_parser(
+        "promote",
+        help="Confirmed customer|both → upsert_clinic_intelligence / people / cohort / outreach",
+    )
+    promote.add_argument("--handle", default=None)
+    promote.add_argument("--all-confirmed", action="store_true")
+    promote.add_argument("--dry-run", action="store_true")
+
+    seeds = csub.add_parser(
+        "export-practitioner-seeds",
+        help="CSV of integrated_practitioners names for creators seed-import",
+    )
+    seeds.add_argument(
+        "--specialties",
+        default="obstetrics_gynaecology,fertility,menopause,endometriosis,ivf,dermatology,colorectal,general_surgery,gastroenterology",
+    )
+    seeds.add_argument("--limit", type=int, default=1500)
+    seeds.add_argument("--out", type=Path, required=True)
+
+    spec = csub.add_parser(
+        "export-specialty-map",
+        help="Write GTM canonical specialty keys to creators/specialty_keys.json",
+    )
+    spec.add_argument("--out", type=Path, default=None)
+
+
 def _add_contacts(sub: argparse._SubParsersAction) -> None:
     contacts = sub.add_parser("contacts", help="Outreach contacts + enrichment")
     csub = contacts.add_subparsers(dest="command", required=True)
@@ -215,6 +257,7 @@ def _add_contacts(sub: argparse._SubParsersAction) -> None:
         action="store_true",
         help="Export-ready handoff rows with clinic_name",
     )
+    listing.add_argument("--cohort", default="", help="Optional cohort slug filter")
 
 def _add_cqc(sub: argparse._SubParsersAction) -> None:
     cqc = sub.add_parser("cqc", help="CQC directory + location lanes (P0b)")
@@ -551,12 +594,44 @@ def _run_contacts_list(args: argparse.Namespace) -> dict:
     from gtm_pipeline.contacts import list_outreach_contacts, list_ready_for_sales
 
     if args.ready_sales:
-        return list_ready_for_sales(limit=args.limit)
+        return list_ready_for_sales(limit=args.limit, cohort=args.cohort or None)
     return list_outreach_contacts(
         status=args.status or None,
         preferred_channel=args.channel or None,
         limit=args.limit,
     )
+
+
+def _run_creators_link(args: argparse.Namespace) -> dict:
+    from gtm_pipeline.creators import link_creators
+
+    lanes = tuple(part.strip() for part in (args.lane or "").split(",") if part.strip())
+    return link_creators(lanes=lanes or ("customer", "both"), dry_run=args.dry_run, recheck=args.recheck)
+
+
+def _run_creators_promote(args: argparse.Namespace) -> dict:
+    from gtm_pipeline.creators import promote_creators
+
+    if not args.handle and not args.all_confirmed:
+        raise SystemExit("promote requires --handle or --all-confirmed")
+    return promote_creators(
+        handle=args.handle,
+        all_confirmed=args.all_confirmed,
+        dry_run=args.dry_run,
+    )
+
+
+def _run_creators_export_practitioner_seeds(args: argparse.Namespace) -> dict:
+    from gtm_pipeline.creators import export_practitioner_seeds
+
+    specialties = [p.strip() for p in args.specialties.split(",") if p.strip()]
+    return export_practitioner_seeds(specialties=specialties, limit=args.limit, path=args.out)
+
+
+def _run_creators_export_specialty_map(args: argparse.Namespace) -> dict:
+    from gtm_pipeline.creators import export_specialty_map
+
+    return export_specialty_map(path=args.out)
 
 
 def main(argv: list[str] | None = None) -> None:
@@ -571,6 +646,7 @@ def main(argv: list[str] | None = None) -> None:
     _add_sync(sub)
     _add_segments(sub)
     _add_contacts(sub)
+    _add_creators(sub)
 
     args = parser.parse_args(argv)
 
@@ -611,6 +687,14 @@ def main(argv: list[str] | None = None) -> None:
             result = _run_contacts_linkedin_find(args)
         elif args.group == "contacts" and args.command == "list":
             result = _run_contacts_list(args)
+        elif args.group == "creators" and args.command == "link":
+            result = _run_creators_link(args)
+        elif args.group == "creators" and args.command == "promote":
+            result = _run_creators_promote(args)
+        elif args.group == "creators" and args.command == "export-practitioner-seeds":
+            result = _run_creators_export_practitioner_seeds(args)
+        elif args.group == "creators" and args.command == "export-specialty-map":
+            result = _run_creators_export_specialty_map(args)
         else:
             parser.error(f"Unknown command: {args.group} {getattr(args, 'command', '')}")
             return

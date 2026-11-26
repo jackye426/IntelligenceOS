@@ -277,9 +277,17 @@ def list_outreach_contacts(
     return {"contacts": rows, "count": total, "returned": len(rows)}
 
 
-def list_ready_for_sales(*, limit: int = 200) -> dict[str, Any]:
+def list_ready_for_sales(*, limit: int = 200, cohort: str | None = None) -> dict[str, Any]:
     """Handoff view: ready contacts with clinic name joined via second query."""
     out = list_outreach_contacts(status="ready", limit=limit)
+    if cohort:
+        clinic_ids = _cohort_clinic_ids(cohort)
+        if clinic_ids is not None:
+            out["contacts"] = [
+                c for c in out["contacts"] if c.get("clinic_intelligence_id") in clinic_ids
+            ]
+            out["returned"] = len(out["contacts"])
+            out["cohort"] = cohort
     if not out["contacts"]:
         return out
     client = get_client()

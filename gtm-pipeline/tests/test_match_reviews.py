@@ -28,17 +28,17 @@ def test_below_review_skips_queue():
     assert out is None
 
 
-def test_ambiguous_queues_dry_run():
-    mid = (config.MATCH_REVIEW_THRESHOLD + config.MATCH_AUTO_ACCEPT) / 2
+def test_force_review_queues_even_above_auto_accept():
     out = maybe_queue_match_review(
-        entity_type="clinic_cqc",
+        entity_type="creator_clinic",
         candidate={"name": "A"},
         target={"name": "B"},
-        confidence=mid,
-        reasons=["ambiguous"],
-        dedupe_key="clinic_cqc:test:1",
+        confidence=0.90,
+        reasons=["bio_domain_overlap"],
+        dedupe_key="creator_clinic:p1",
         dry_run=True,
+        force_review=True,
     )
     assert out is not None
+    assert out["dedupe_key"] == "creator_clinic:p1"
     assert out["status"] == "pending"
-    assert out["dedupe_key"] == "clinic_cqc:test:1"

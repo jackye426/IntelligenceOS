@@ -112,6 +112,9 @@ MODEL_OCR = _getenv("MODEL_OCR", default="google/gemini-3-flash-preview")
 MODEL_COMPONENTS = _getenv(
     "MODEL_COMPONENTS", default="deepseek/deepseek-v4-flash"
 )
+MODEL_CREATOR_CLASSIFY = _getenv(
+    "MODEL_CREATOR_CLASSIFY", default=MODEL_COMPONENTS
+)
 FFMPEG_PATH = _getenv("FFMPEG_PATH", default="ffmpeg")
 WHISPER_MODEL = _getenv("WHISPER_MODEL", default="small")
 
