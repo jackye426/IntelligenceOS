@@ -158,9 +158,13 @@ def get_content_performance_tool(
     limit: int = 20,
     sort_by: str = "views",
 ):
-    """Top content posts across platforms.
+    """Top content posts across platforms; TikTok results are DocMap-only.
 
     Use platform=tiktok or platform=instagram to scope results.
+    For TikTok date filters and relative tiers use get_tiktok_cohort instead.
+    For other TikTok accounts use the explicit get_peer_* tools.
+    Check metrics_provenance for source, captured_at and freshness before citing TikTok numbers.
+    Cached or missing counts are not current. Non-TikTok metrics are unchanged.
     sort_by: views | likes | engagement | saves_per_1k | posted_at.
     For Instagram strategy work prefer get_instagram_cohort/get_instagram_marketing_insights,
     because they understand format and intent metrics.
@@ -209,6 +213,9 @@ def get_tiktok_cohort_tool(
 ):
     """DocMap-only TikTok posts with cohort tiers. Never use for peer analysis.
 
+    Use this for date filters and tiers; use get_content_performance for cross-platform rankings.
+    Check each post's metrics_provenance.captured_at and freshness before citing counts.
+    Fall back to cached metrics only as historical context, never as current counts.
     sort_by: views | engagement | saves_per_1k | likes.
 
     Each post's publish date is `posted_at` (UTC). Cite that field only — never infer dates from video IDs.
@@ -1110,3 +1117,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

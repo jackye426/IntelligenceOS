@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
+import logging
 import statistics
-from datetime import date, datetime, timezone
+from collections import defaultdict
+from datetime import date, datetime, timedelta, timezone
 from typing import Any, Literal
 
 from common.supabase_client import get_client
@@ -27,6 +29,104 @@ TIKTOK_POST_COLUMNS = (
 
 
 DEFAULT_ACCOUNT = "docmap"
+_LOG = logging.getLogger(__name__)
+# Nightly capture cadence plus one missed run. Captured-at remains authoritative.
+MAX_SNAPSHOT_AGE = timedelta(hours=48)
+_SNAPSHOT_BATCH_SIZE = 100
+_SNAPSHOT_VIEWS = {
+    ("docmap", "docmap"): "latest_social_metric_snapshots",
+    ("endobowelsurgeon", "peer:endobowelsurgeon"): "latest_social_metric_snapshots",
+    ("drleewarren", "peer:drleewarren"): "latest_public_tiktok_peer_metrics",
+    ("robotic.endosurgeon", "peer:robotic.endosurgeon"): "latest_public_tiktok_peer_metrics",
+}
+_PUBLIC_COUNTS = ("views", "likes", "comments", "shares", "saves")
+
+
+def attach_tiktok_snapshot_metrics(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Join by account, scope and video ID; never blend different captures."""
+    now = datetime.now(timezone.utc)
+    grouped: dict[tuple[str, str], set[str]] = defaultdict(set)
+    for row in rows:
+        key = row.get("account_handle"), row.get("owner_scope")
+        video_id = row.get("platform_post_id")
+        if key in _SNAPSHOT_VIEWS and video_id:
+            grouped[key].add(str(video_id))
+
+    snapshots: dict[tuple[str, str, str], tuple[datetime, dict[str, Any]]] = {}
+    unavailable: set[tuple[str, str, str]] = set()
+    for (account, scope), ids in grouped.items():
+        ordered = sorted(ids)
+        for start in range(0, len(ordered), _SNAPSHOT_BATCH_SIZE):
+            batch = ordered[start : start + _SNAPSHOT_BATCH_SIZE]
+            try:
+                data = (
+                    get_client().table(_SNAPSHOT_VIEWS[(account, scope)])
+                    .select("platform,platform_post_id,account_handle,owner_scope,source,captured_at,metrics")
+                    .eq("platform", "tiktok")
+                    .eq("source", "yt_dlp")
+                    .eq("account_handle", account)
+                    .eq("owner_scope", scope)
+                    .in_("platform_post_id", batch)
+                    .execute().data or []
+                )
+            except Exception:
+                _LOG.warning("TikTok snapshot read failed for an account scope", exc_info=True)
+                unavailable.update((account, scope, video_id) for video_id in batch)
+                continue
+            for item in data:
+                video_id = str(item.get("platform_post_id"))
+                if (
+                    item.get("account_handle") != account or item.get("owner_scope") != scope
+                    or item.get("platform") != "tiktok" or item.get("source") != "yt_dlp"
+                    or video_id not in batch
+                ):
+                    continue
+                try:
+                    captured = datetime.fromisoformat(item["captured_at"].replace("Z", "+00:00"))
+                    if captured.tzinfo is None or captured > now:
+                        raise ValueError("invalid capture time")
+                except (AttributeError, KeyError, TypeError, ValueError):
+                    continue
+                raw = item.get("metrics")
+                if not isinstance(raw, dict):
+                    continue
+                counts = {
+                    field: raw[field] for field in _PUBLIC_COUNTS
+                    if type(raw.get(field)) is int and raw[field] >= 0
+                }
+                if not counts:
+                    continue
+                key = account, scope, video_id
+                if key not in snapshots or snapshots[key][0] < captured:
+                    snapshots[key] = captured, counts
+
+    output = []
+    for row in rows:
+        key = row.get("account_handle"), row.get("owner_scope"), str(row.get("platform_post_id"))
+        snapshot = snapshots.get(key)
+        cached = row.get("metrics") or {}
+        if snapshot:
+            captured, counts = snapshot
+            # Duration is static video metadata, not an engagement measurement.
+            duration = {"duration_sec": cached["duration_sec"]} if "duration_sec" in cached else {}
+            metrics = {**duration, **counts}
+            provenance = {
+                "source": "yt_dlp",
+                "captured_at": captured.isoformat(),
+                "freshness": "stale" if now - captured > MAX_SNAPSHOT_AGE else "fresh",
+            }
+        else:
+            metrics = cached
+            provenance = {
+                "source": "content_posts.metrics" if cached else None,
+                "captured_at": None,
+                "freshness": "snapshot_unavailable" if key in unavailable else (
+                    "cached_unknown_age" if cached else "missing"
+                ),
+            }
+        output.append({**row, "metrics": metrics, "metrics_provenance": provenance})
+    return output
+
 
 # Set to False if the required account column is missing. Reads then fail closed
 # rather than silently serving a mixed library.
@@ -113,7 +213,7 @@ def fetch_tiktok_posts(
         if len(page) < page_size:
             break
     _validate_account_rows(rows, account)
-    return rows
+    return attach_tiktok_snapshot_metrics(rows)
 
 
 def fetch_tiktok_post(
@@ -149,7 +249,7 @@ def fetch_tiktok_post(
             else:
                 raise
     _validate_account_rows(rows, account)
-    return rows[0] if rows else None
+    return attach_tiktok_snapshot_metrics(rows)[0] if rows else None
 
 
 def saves_per_1k(metrics: dict[str, Any]) -> float:
@@ -266,6 +366,14 @@ def post_summary(row: dict[str, Any], *, medians: dict[str, float] | None = None
     metrics = row.get("metrics") or {}
     meta = row.get("metadata") or {}
     hook_detail = meta.get("hook_detail") or {}
+    provenance = row.get("metrics_provenance")
+    snapshot_metrics = (provenance or {}).get("source") == "yt_dlp"
+    engagement_measured = not snapshot_metrics or all(
+        metrics.get(field) is not None for field in ("likes", "comments", "shares")
+    )
+    saves_rate_measured = not snapshot_metrics or (
+        metrics.get("saves") is not None and bool(metrics.get("views"))
+    )
     summary: dict[str, Any] = {
         "video_id": row.get("platform_post_id"),
         "account_handle": row.get("account_handle"),
@@ -280,9 +388,10 @@ def post_summary(row: dict[str, Any], *, medians: dict[str, float] | None = None
         "post_url": row.get("post_url"),
         "posted_at": row.get("posted_at"),
         "metrics": metrics,
+        "metrics_provenance": provenance,
         "views": metrics.get("views"),
-        "engagement": int(engagement_total(metrics)),
-        "saves_per_1k_views": saves_per_1k(metrics),
+        "engagement": int(engagement_total(metrics)) if engagement_measured else None,
+        "saves_per_1k_views": saves_per_1k(metrics) if saves_rate_measured else None,
     }
     if medians is not None:
         summary["tier_vs_cohort_views"] = performance_tier(row, medians, sort_by="views")
@@ -408,6 +517,8 @@ def aggregate_ab_tests(
                     "ab_learning": ab_learning if ab_learning.get("pair_id") == pair_id else None,
                     "performance_difference": ref.get("performance_difference"),
                     "video_metrics": video_metrics,
+                    "video_metrics_provenance": row.get("metrics_provenance"),
+                    "partner_metrics_provenance": partner.get("metrics_provenance"),
                     "partner_metrics": partner_metrics,
                     "video_hook": row.get("hook"),
                     "partner_hook": partner.get("hook"),
@@ -569,3 +680,4 @@ def cadence_fields(rows: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
         if current:
             prev = current
     return out
+

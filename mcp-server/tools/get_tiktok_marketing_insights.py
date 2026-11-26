@@ -26,11 +26,10 @@ def get_tiktok_marketing_insights(
 ) -> dict[str, Any]:
     summary = f"limit={limit} sort_by={sort_by} since={since}"
     try:
-        rows = fetch_tiktok_posts()
-        if since:
-            rows = filter_by_date(rows, since=since)
-        stats = library_stats(fetch_tiktok_posts())
-        medians = cohort_medians(rows if rows else fetch_tiktok_posts())
+        all_rows = fetch_tiktok_posts()
+        rows = filter_by_date(all_rows, since=since) if since else all_rows
+        stats = library_stats(all_rows)
+        medians = cohort_medians(rows or all_rows)
 
         rankings: dict[str, list[dict[str, Any]]] = {}
         for key in ("views", "engagement", "saves_per_1k"):
@@ -73,3 +72,4 @@ def get_tiktok_marketing_insights(
             error=str(exc),
         )
         raise
+
